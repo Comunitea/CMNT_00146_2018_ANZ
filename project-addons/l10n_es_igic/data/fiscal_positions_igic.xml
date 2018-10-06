@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+        <!-- Definición de posición fiscal para Importaciones a Canarias y Exportaciones desde Canarias
+
+        Enrique Zanardi (Atlantux Consultores) - consultores@atlantux.com (2016-11-08)
+        -->
+
+        <!-- ************************************************************* -->
+        <!-- Fiscal Position Templates -->
+        <!-- ************************************************************* -->
+
+        <record id="fp_extra_canarias" model="account.fiscal.position.template">
+            <field name="name">
+                Régimen de Importaciones/Exportaciones desde Canarias
+            </field>
+            <field name="chart_template_id" ref="account_chart_template_pymes_canarias"/>
+        </record>
+
+         <record id="fp_canarias" model="account.fiscal.position.template">
+            <field name="name">
+                Régimen Interno Canario
+            </field>
+            <field name="chart_template_id" ref="account_chart_template_pymes_canarias"/>
+        </record>
+
+
+        <!-- ************************************************************* -->
+        <!-- Fiscal Position Tax Templates -->
+        <!-- ************************************************************* -->
+
+        <!-- Importaciones/Exportaciones desde Canarias -->
+
+        <record id="fptt_extra_canarias_s_igic0" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_extra_canarias"/>
+            <field name="tax_src_id" ref="account_tax_template_s_igic0"/>
+            <field name="tax_dest_id" ref="account_tax_template_s_igic0_exp"/>
+        </record>
+
+        <record id="fptt_extra_canarias_s_igic3" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_extra_canarias"/>
+            <field name="tax_src_id" ref="account_tax_template_s_igic3"/>
+            <field name="tax_dest_id" ref="account_tax_template_s_igic0_exp"/>
+        </record>
+
+        <record id="fptt_extra_canarias_s_igic7" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_extra_canarias"/>
+            <field name="tax_src_id" ref="account_tax_template_s_igic7"/>
+            <field name="tax_dest_id" ref="account_tax_template_s_igic0_exp"/>
+        </record>
+
+        <record id="fptt_extra_canarias_s_igic95" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_extra_canarias"/>
+            <field name="tax_src_id" ref="account_tax_template_s_igic95"/>
+            <field name="tax_dest_id" ref="account_tax_template_s_igic0_exp"/>
+        </record>
+
+        <record id="fptt_extra_canarias_s_igic135" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_extra_canarias"/>
+            <field name="tax_src_id" ref="account_tax_template_s_igic135"/>
+            <field name="tax_dest_id" ref="account_tax_template_s_igic0_exp"/>
+        </record>
+
+        <record id="fptt_extra_canarias_s_igic20" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_extra_canarias"/>
+            <field name="tax_src_id" ref="account_tax_template_s_igic20"/>
+            <field name="tax_dest_id" ref="account_tax_template_s_igic0_exp"/>
+        </record>
+
+        <record id="fptt_extra_ventas_canarias_4b" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_extra_canarias"/>
+            <field name="tax_src_id" ref="l10n_es.account_tax_template_s_iva4b"/>
+            <field name="tax_dest_id" ref="account_tax_template_s_igic0_exp"/>
+        </record>
+
+        <record id="fptt_extra_ventas_canarias_10b" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_extra_canarias"/>
+            <field name="tax_src_id" ref="l10n_es.account_tax_template_s_iva10b"/>
+            <field name="tax_dest_id" ref="account_tax_template_s_igic0_exp"/>
+        </record>
+
+        <record id="fptt_extra_ventas_canarias_21b" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_extra_canarias"/>
+            <field name="tax_src_id" ref="l10n_es.account_tax_template_s_iva21b"/>
+            <field name="tax_dest_id" ref="account_tax_template_s_igic0_exp"/>
+        </record>
+
+        <record id="fptt_extra_ventas_canarias_4s" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_extra_canarias"/>
+            <field name="tax_src_id" ref="l10n_es.account_tax_template_s_iva4s"/>
+            <field name="tax_dest_id" ref="account_tax_template_s_igic0_exp"/>
+        </record>
+
+        <record id="fptt_extra_ventas_canarias_10s" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_extra_canarias"/>
+            <field name="tax_src_id" ref="l10n_es.account_tax_template_s_iva10s"/>
+            <field name="tax_dest_id" ref="account_tax_template_s_igic0_exp"/>
+        </record>
+
+        <record id="fptt_extra_ventas_canarias_21s" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_extra_canarias"/>
+            <field name="tax_src_id" ref="l10n_es.account_tax_template_s_iva21s"/>
+            <field name="tax_dest_id" ref="account_tax_template_s_igic0_exp"/>
+        </record>
+
+        <record id="fptt_extra_ventas_canarias_21isp" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_extra_canarias"/>
+            <field name="tax_src_id" ref="l10n_es.account_tax_template_s_iva21isp"/>
+            <field name="tax_dest_id" ref="account_tax_template_s_igic0_exp"/>
+        </record>
+
+        <record id="fptt_extra_canarias_c_igic0_oc" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_extra_canarias"/>
+            <field name="tax_src_id" ref="account_tax_template_c_igic0_oc"/>
+            <field name="tax_dest_id" ref="account_tax_template_c_igic0_ibc"/>
+        </record>
+
+        <record id="fptt_extra_canarias_c_igic3_oc" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_extra_canarias"/>
+            <field name="tax_src_id" ref="account_tax_template_c_igic3_oc"/>
+            <field name="tax_dest_id" ref="account_tax_template_c_igic3_ibc"/>
+        </record>
+
+        <record id="fptt_extra_canarias_c_iva4_bc" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_extra_canarias"/>
+            <field name="tax_src_id" ref="l10n_es.account_tax_template_p_iva4_bc"/>
+            <field name="tax_dest_id" ref="account_tax_template_c_igic3_ibc"/>
+        </record>
+
+        <record id="fptt_extra_canarias_c_iva4_sc" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_extra_canarias"/>
+            <field name="tax_src_id" ref="l10n_es.account_tax_template_p_iva4_sc"/>
+            <field name="tax_dest_id" ref="account_tax_template_c_igic3_ibc"/>
+        </record>
+
+        <record id="fptt_extra_canarias_c_igic7_oc" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_extra_canarias"/>
+            <field name="tax_src_id" ref="account_tax_template_c_igic7_oc"/>
+            <field name="tax_dest_id" ref="account_tax_template_c_igic7_ibc"/>
+        </record>
+
+        <record id="fptt_extra_canarias_c_iva10_bc" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_extra_canarias"/>
+            <field name="tax_src_id" ref="l10n_es.account_tax_template_p_iva10_bc"/>
+            <field name="tax_dest_id" ref="account_tax_template_c_igic7_ibc"/>
+        </record>
+
+        <record id="fptt_extra_canarias_c_iva10_sc" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_extra_canarias"/>
+            <field name="tax_src_id" ref="l10n_es.account_tax_template_p_iva10_sc"/>
+            <field name="tax_dest_id" ref="account_tax_template_c_igic7_ibc"/>
+        </record>
+
+        <record id="fptt_extra_canarias_c_igic95_oc" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_extra_canarias"/>
+            <field name="tax_src_id" ref="account_tax_template_c_igic95_oc"/>
+            <field name="tax_dest_id" ref="account_tax_template_c_igic95_ibc"/>
+        </record>
+
+        <record id="fptt_extra_canarias_c_iva21_bc" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_extra_canarias"/>
+            <field name="tax_src_id" ref="l10n_es.account_tax_template_p_iva21_bc"/>
+            <field name="tax_dest_id" ref="account_tax_template_c_igic95_ibc"/>
+        </record>
+
+        <record id="fptt_extra_canarias_c_iva21_sc" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_extra_canarias"/>
+            <field name="tax_src_id" ref="l10n_es.account_tax_template_p_iva21_sc"/>
+            <field name="tax_dest_id" ref="account_tax_template_c_igic95_ibc"/>
+        </record>
+
+        <record id="fptt_extra_canarias_c_igic135_oc" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_extra_canarias"/>
+            <field name="tax_src_id" ref="account_tax_template_c_igic135_oc"/>
+            <field name="tax_dest_id" ref="account_tax_template_c_igic135_ibc"/>
+        </record>
+
+        <record id="fptt_extra_canarias_c_igic20_oc" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_extra_canarias"/>
+            <field name="tax_src_id" ref="account_tax_template_c_igic20_oc"/>
+            <field name="tax_dest_id" ref="account_tax_template_c_igic20_ibc"/>
+        </record>
+
+        <record id="fptt_extra_canarias_c_igic0_bi" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_extra_canarias"/>
+            <field name="tax_src_id" ref="account_tax_template_c_igic0_bi"/>
+            <field name="tax_dest_id" ref="account_tax_template_c_igic0_ibi"/>
+        </record>
+
+        <record id="fptt_extra_canarias_c_igic3_bi" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_extra_canarias"/>
+            <field name="tax_src_id" ref="account_tax_template_c_igic3_bi"/>
+            <field name="tax_dest_id" ref="account_tax_template_c_igic3_ibi"/>
+        </record>
+
+        <record id="fptt_extra_canarias_c_iva4_bi" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_extra_canarias"/>
+            <field name="tax_src_id" ref="l10n_es.account_tax_template_p_iva4_bi"/>
+            <field name="tax_dest_id" ref="account_tax_template_c_igic3_ibi"/>
+        </record>
+
+        <record id="fptt_extra_canarias_c_igic7_bi" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_extra_canarias"/>
+            <field name="tax_src_id" ref="account_tax_template_c_igic7_bi"/>
+            <field name="tax_dest_id" ref="account_tax_template_c_igic7_ibi"/>
+        </record>
+
+        <record id="fptt_extra_canarias_c_iva10_bi" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_extra_canarias"/>
+            <field name="tax_src_id" ref="l10n_es.account_tax_template_p_iva10_bi"/>
+            <field name="tax_dest_id" ref="account_tax_template_c_igic7_ibi"/>
+        </record>
+
+        <record id="fptt_extra_canarias_c_igic95_bi" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_extra_canarias"/>
+            <field name="tax_src_id" ref="account_tax_template_c_igic95_bi"/>
+            <field name="tax_dest_id" ref="account_tax_template_c_igic95_ibi"/>
+        </record>
+
+        <record id="fptt_extra_canarias_c_iva21_bi" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_extra_canarias"/>
+            <field name="tax_src_id" ref="l10n_es.account_tax_template_p_iva21_bi"/>
+            <field name="tax_dest_id" ref="account_tax_template_c_igic95_ibi"/>
+        </record>
+
+        <record id="fptt_extra_canarias_c_igic135_bi" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_extra_canarias"/>
+            <field name="tax_src_id" ref="account_tax_template_c_igic135_bi"/>
+            <field name="tax_dest_id" ref="account_tax_template_c_igic135_ibi"/>
+        </record>
+
+        <record id="fptt_extra_canarias_c_igic20_bi" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_extra_canarias"/>
+            <field name="tax_src_id" ref="account_tax_template_c_igic20_bi"/>
+            <field name="tax_dest_id" ref="account_tax_template_c_igic20_ibi"/>
+        </record>
+
+        <!-- Régimen Interno Canario -->
+
+        <record id="fptt_ventas_canarias_4b" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_canarias"/>
+            <field name="tax_src_id" ref="l10n_es.account_tax_template_s_iva4b"/>
+            <field name="tax_dest_id" ref="account_tax_template_s_igic3"/>
+        </record>
+
+        <record id="fptt_ventas_canarias_10b" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_canarias"/>
+            <field name="tax_src_id" ref="l10n_es.account_tax_template_s_iva10b"/>
+            <field name="tax_dest_id" ref="account_tax_template_s_igic7"/>
+        </record>
+
+        <record id="fptt_ventas_canarias_21b" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_canarias"/>
+            <field name="tax_src_id" ref="l10n_es.account_tax_template_s_iva21b"/>
+            <field name="tax_dest_id" ref="account_tax_template_s_igic95"/>
+        </record>
+
+        <record id="fptt_ventas_canarias_4s" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_canarias"/>
+            <field name="tax_src_id" ref="l10n_es.account_tax_template_s_iva4s"/>
+            <field name="tax_dest_id" ref="account_tax_template_s_igic3"/>
+        </record>
+
+        <record id="fptt_ventas_canarias_10s" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_canarias"/>
+            <field name="tax_src_id" ref="l10n_es.account_tax_template_s_iva10s"/>
+            <field name="tax_dest_id" ref="account_tax_template_s_igic7"/>
+        </record>
+
+        <record id="fptt_ventas_canarias_21s" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_canarias"/>
+            <field name="tax_src_id" ref="l10n_es.account_tax_template_s_iva21s"/>
+            <field name="tax_dest_id" ref="account_tax_template_s_igic95"/>
+        </record>
+
+        <record id="fptt_ventas_canarias_21isp" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_canarias"/>
+            <field name="tax_src_id" ref="l10n_es.account_tax_template_s_iva21isp"/>
+            <field name="tax_dest_id" ref="account_tax_template_s_igic95"/>
+        </record>
+
+
+</odoo>

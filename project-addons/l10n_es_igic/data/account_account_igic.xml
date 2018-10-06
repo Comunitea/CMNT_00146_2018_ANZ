@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+        <record id="account_group_4707" model="account.group">
+            <field name="code_prefix">4707</field>
+            <field name="name">Hacienda Pública, deudora por IGIC</field>
+            <field name="parent_id" ref="l10n_es.account_group_470"/>
+        </record>
+
+        <record id="account_igic_4707" model="account.account.template">
+            <field name="code">4707</field>
+            <field name="reconcile" eval="True"/>
+            <field name="name">Hacienda Pública. deudora por IGIC</field>
+            <field name="user_type_id" ref="account.data_account_type_current_assets"/>
+            <field name="chart_template_id" ref="account_chart_template_pymes_canarias"/>
+            <field name="group_id" ref="account_group_4707"/>
+        </record>
+
+        <record id="account_igic_47071" model="account.account.template">
+            <field name="code">47071</field>
+            <field name="reconcile" eval="True"/>
+            <field name="name">Hacienda Pública, deudora por IGIC régimen transitorio circulante</field>
+            <field name="user_type_id" ref="account.data_account_type_current_assets"/>
+            <field name="chart_template_id" ref="account_chart_template_pymes_canarias"/>
+            <field name="group_id" ref="account_group_4707"/>
+        </record>
+
+        <record id="account_igic_47072" model="account.account.template">
+            <field name="code">47072</field>
+            <field name="reconcile" eval="True"/>
+            <field name="name">Hacienda Pública, deudora por IGIC régimen transitorio inversión</field>
+            <field name="user_type_id" ref="account.data_account_type_current_assets"/>
+            <field name="chart_template_id" ref="account_chart_template_pymes_canarias"/>
+            <field name="group_id" ref="account_group_4707"/>
+        </record>
+
+        <record id="account_igic_4727" model="account.account.template">
+            <field name="code">4727</field>
+            <field name="reconcile" eval="True"/>
+            <field name="name">Hacienda Pública. IGIC soportado</field>
+            <field name="user_type_id" ref="account.data_account_type_current_assets"/>
+            <field name="chart_template_id" ref="account_chart_template_pymes_canarias"/>
+            <field name="group_id" ref="l10n_es.account_group_472"/>
+        </record>
+
+        <record id="account_igic_4777" model="account.account.template">
+            <field name="code">4777</field>
+            <field name="reconcile" eval="True"/>
+            <field name="name">Hacienda Pública. IGIC repercutido</field>
+            <field name="user_type_id" ref="account.data_account_type_current_liabilities"/>
+            <field name="chart_template_id" ref="account_chart_template_pymes_canarias"/>
+            <field name="group_id" ref="l10n_es.account_group_477"/>
+        </record>
+
+        <record id="account_igic_4757" model="account.account.template">
+            <field name="code">4757</field>
+            <field name="reconcile" eval="True"/>
+            <field name="name">Hacienda Pública, acreedora por IGIC</field>
+            <field name="user_type_id" ref="account.data_account_type_current_liabilities"/>
+            <field name="chart_template_id" ref="account_chart_template_pymes_canarias"/>
+            <field name="group_id" ref="l10n_es.account_group_475"/>
+        </record>
+
+        <record id="account_igic_6343" model="account.account.template">
+            <field name="code">6343</field>
+            <field name="reconcile" eval="False"/>
+            <field name="name">Ajustes negativos en IGIC de circulante</field>
+            <field name="user_type_id" ref="account.data_account_type_expenses"/>
+            <field name="chart_template_id" ref="account_chart_template_pymes_canarias"/>
+            <field name="group_id" ref="l10n_es.account_group_634"/>
+        </record>
+
+        <record id="account_igic_6344" model="account.account.template">
+            <field name="code">6344</field>
+            <field name="reconcile" eval="False"/>
+            <field name="name">Ajustes negativos en IGIC de inversión</field>
+            <field name="user_type_id" ref="account.data_account_type_expenses"/>
+            <field name="chart_template_id" ref="account_chart_template_pymes_canarias"/>
+            <field name="group_id" ref="l10n_es.account_group_634"/>
+        </record>
+
+
+        <record id="account_igic_6393" model="account.account.template">
+            <field name="code">6393</field>
+            <field name="reconcile" eval="False"/>
+            <field name="name">Ajustes positivos en IGIC de circulante</field>
+            <field name="user_type_id" ref="account.data_account_type_expenses"/>
+            <field name="chart_template_id" ref="account_chart_template_pymes_canarias"/>
+            <field name="group_id" ref="l10n_es.account_group_639"/>
+        </record>
+
+
+        <record id="account_igic_6394" model="account.account.template">
+            <field name="code">6394</field>
+            <field name="reconcile" eval="False"/>
+            <field name="name">Ajustes positivos en IGIC de inversión</field>
+            <field name="user_type_id" ref="account.data_account_type_expenses"/>
+            <field name="chart_template_id" ref="account_chart_template_pymes_canarias"/>
+            <field name="group_id" ref="l10n_es.account_group_639"/>
+        </record>
+
+</odoo>

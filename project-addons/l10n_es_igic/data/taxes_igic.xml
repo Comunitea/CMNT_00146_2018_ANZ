@@ -1,0 +1,402 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+        <record id="tax_group_igic_0" model="account.tax.group">
+            <field name="name">IGIC 0%</field>
+        </record>
+
+        <record id="tax_group_igic_3" model="account.tax.group">
+            <field name="name">IGIC 3%</field>
+        </record>
+
+        <record id="tax_group_igic_7" model="account.tax.group">
+            <field name="name">IGIC 7%</field>
+        </record>
+
+        <record id="tax_group_igic_95" model="account.tax.group">
+            <field name="name">IGIC 9,5%</field>
+        </record>
+
+        <record id="tax_group_igic_135" model="account.tax.group">
+            <field name="name">IGIC 13,5%</field>
+        </record>
+
+        <record id="tax_group_igic_20" model="account.tax.group">
+            <field name="name">IGIC 20%</field>
+        </record>
+
+        <!-- IGIC Devengado - Venta -->
+
+        <record id="account_tax_template_s_igic0" model="account.tax.template">
+            <field name="chart_template_id" ref="account_chart_template_pymes_canarias"/>
+            <field name="name">IGIC 0%</field>
+            <field name="description">S_IGIC0</field>
+            <field eval="0.00" name="amount"/>
+            <field name="amount_type">percent</field>
+            <field name="account_id" ref="account_igic_4777"/>
+            <field name="refund_account_id" ref="account_igic_4777"/>
+            <field name="type_tax_use">sale</field>
+            <field name="tax_group_id" ref="tax_group_igic_0"/>
+        </record>
+
+        <record id="account_tax_template_s_igic3" model="account.tax.template">
+            <field name="chart_template_id" ref="account_chart_template_pymes_canarias"/>
+            <field name="name">IGIC 3%</field>
+            <field name="description">S_IGIC3</field>
+            <field eval="3" name="amount"/>
+            <field name="amount_type">percent</field>
+            <field name="account_id" ref="account_igic_4777"/>
+            <field name="refund_account_id" ref="account_igic_4777"/>
+            <field name="type_tax_use">sale</field>
+            <field name="tax_group_id" ref="tax_group_igic_3"/>
+        </record>
+
+        <record id="account_tax_template_s_igic7" model="account.tax.template">
+            <field name="chart_template_id" ref="account_chart_template_pymes_canarias"/>
+            <field name="name">IGIC 7%</field>
+            <field name="description">S_IGIC7</field>
+            <field eval="7" name="amount"/>
+            <field name="amount_type">percent</field>
+            <field name="account_id" ref="account_igic_4777"/>
+            <field name="refund_account_id" ref="account_igic_4777"/>
+            <field name="type_tax_use">sale</field>
+            <field name="tax_group_id" ref="tax_group_igic_7"/>
+        </record>
+
+        <record id="account_tax_template_s_igic95" model="account.tax.template">
+            <field name="chart_template_id" ref="account_chart_template_pymes_canarias"/>
+            <field name="name">IGIC 9,5%</field>
+            <field name="description">S_IGIC95</field>
+            <field eval="9.5" name="amount"/>
+            <field name="amount_type">percent</field>
+            <field name="account_id" ref="account_igic_4777"/>
+            <field name="refund_account_id" ref="account_igic_4777"/>
+            <field name="type_tax_use">sale</field>
+            <field name="tax_group_id" ref="tax_group_igic_95"/>
+        </record>
+
+        <record id="account_tax_template_s_igic135" model="account.tax.template">
+            <field name="chart_template_id" ref="account_chart_template_pymes_canarias"/>
+            <field name="name">IGIC 13,5%</field>
+            <field name="description">S_IGIC135</field>
+            <field eval="13.5" name="amount"/>
+            <field name="amount_type">percent</field>
+            <field name="account_id" ref="account_igic_4777"/>
+            <field name="refund_account_id" ref="account_igic_4777"/>
+            <field name="type_tax_use">sale</field>
+            <field name="tax_group_id" ref="tax_group_igic_135"/>
+        </record>
+
+        <record id="account_tax_template_s_igic20" model="account.tax.template">
+            <field name="chart_template_id" ref="account_chart_template_pymes_canarias"/>
+            <field name="name">IGIC 20%</field>
+            <field name="description">S_IGIC20</field>
+            <field eval="20" name="amount"/>
+            <field name="amount_type">percent</field>
+            <field name="account_id" ref="account_igic_4777"/>
+            <field name="refund_account_id" ref="account_igic_4777"/>
+            <field name="type_tax_use">sale</field>
+            <field name="tax_group_id" ref="tax_group_igic_20"/>
+        </record>
+
+        <record id="account_tax_template_s_igic0_exp" model="account.tax.template">
+            <field name="chart_template_id" ref="account_chart_template_pymes_canarias"/>
+            <field name="name">IGIC 0% Exportaciones</field>
+            <field name="description">S_IGIC0_EXP</field>
+            <field eval="0.00" name="amount"/>
+            <field name="amount_type">percent</field>
+            <field name="type_tax_use">sale</field>
+            <field name="tax_group_id" ref="tax_group_igic_0"/>
+        </record>
+
+        <!-- IGIC Soportado - Compra -->
+
+        <record id="account_tax_template_c_igic0_oc" model="account.tax.template">
+            <field name="chart_template_id" ref="account_chart_template_pymes_canarias"/>
+            <field name="name">IGIC 0% Soportado (operaciones corrientes)</field>
+            <field name="description">P_IGIC0_OC</field>
+            <field eval="0.00" name="amount"/>
+            <field name="amount_type">percent</field>
+            <field name="account_id" ref="account_igic_4727"/>
+            <field name="refund_account_id" ref="account_igic_4727"/>
+            <field name="type_tax_use">purchase</field>
+            <field name="tax_group_id" ref="tax_group_igic_0"/>
+        </record>
+
+        <record id="account_tax_template_c_igic3_oc" model="account.tax.template">
+            <field name="chart_template_id" ref="account_chart_template_pymes_canarias"/>
+            <field name="name">IGIC 3% Soportado (operaciones corrientes)</field>
+            <field name="description">P_IGIC3_OC</field>
+            <field eval="3" name="amount"/>
+            <field name="amount_type">percent</field>
+            <field name="account_id" ref="account_igic_4727"/>
+            <field name="refund_account_id" ref="account_igic_4727"/>
+            <field name="type_tax_use">purchase</field>
+            <field name="tax_group_id" ref="tax_group_igic_3"/>
+        </record>
+
+        <record id="account_tax_template_c_igic7_oc" model="account.tax.template">
+            <field name="chart_template_id" ref="account_chart_template_pymes_canarias"/>
+            <field name="name">IGIC 7% Soportado (operaciones corrientes)</field>
+            <field name="description">P_IGIC7_OC</field>
+            <field eval="7" name="amount"/>
+            <field name="amount_type">percent</field>
+            <field name="account_id" ref="account_igic_4727"/>
+            <field name="refund_account_id" ref="account_igic_4727"/>
+            <field name="type_tax_use">purchase</field>
+            <field name="tax_group_id" ref="tax_group_igic_7"/>
+        </record>
+
+        <record id="account_tax_template_c_igic95_oc" model="account.tax.template">
+            <field name="chart_template_id" ref="account_chart_template_pymes_canarias"/>
+            <field name="name">IGIC 9,5% Soportado (operaciones corrientes)</field>
+            <field name="description">P_IGIC95_OC</field>
+            <field eval="9.5" name="amount"/>
+            <field name="amount_type">percent</field>
+            <field name="account_id" ref="account_igic_4727"/>
+            <field name="refund_account_id" ref="account_igic_4727"/>
+            <field name="type_tax_use">purchase</field>
+            <field name="tax_group_id" ref="tax_group_igic_95"/>
+        </record>
+
+        <record id="account_tax_template_c_igic135_oc" model="account.tax.template">
+            <field name="chart_template_id" ref="account_chart_template_pymes_canarias"/>
+            <field name="name">IGIC 13,5% Soportado (operaciones corrientes)</field>
+            <field name="description">P_IGIC135_OC</field>
+            <field eval="13.5" name="amount"/>
+            <field name="amount_type">percent</field>
+            <field name="account_id" ref="account_igic_4727"/>
+            <field name="refund_account_id" ref="account_igic_4727"/>
+            <field name="type_tax_use">purchase</field>
+            <field name="tax_group_id" ref="tax_group_igic_135"/>
+        </record>
+
+        <record id="account_tax_template_c_igic20_oc" model="account.tax.template">
+            <field name="chart_template_id" ref="account_chart_template_pymes_canarias"/>
+            <field name="name">IGIC 20% Soportado (operaciones corrientes)</field>
+            <field name="description">P_IGIC20_OC</field>
+            <field eval="9.5" name="amount"/>
+            <field name="amount_type">percent</field>
+            <field name="account_id" ref="account_igic_4727"/>
+            <field name="refund_account_id" ref="account_igic_4727"/>
+            <field name="type_tax_use">purchase</field>
+            <field name="tax_group_id" ref="tax_group_igic_20"/>
+        </record>
+
+        <record id="account_tax_template_c_igic0_bi" model="account.tax.template">
+            <field name="chart_template_id" ref="account_chart_template_pymes_canarias"/>
+            <field name="name">IGIC 0% Soportado (bienes de inversión)</field>
+            <field name="description">P_IGIC0_BI</field>
+            <field eval="0.00" name="amount"/>
+            <field name="amount_type">percent</field>
+            <field name="account_id" ref="account_igic_4727"/>
+            <field name="refund_account_id" ref="account_igic_4727"/>
+            <field name="type_tax_use">purchase</field>
+            <field name="tax_group_id" ref="tax_group_igic_0"/>
+        </record>
+
+        <record id="account_tax_template_c_igic3_bi" model="account.tax.template">
+            <field name="chart_template_id" ref="account_chart_template_pymes_canarias"/>
+            <field name="name">IGIC 3% Soportado (bienes de inversión)</field>
+            <field name="description">P_IGIC3_BI</field>
+            <field eval="3" name="amount"/>
+            <field name="amount_type">percent</field>
+            <field name="account_id" ref="account_igic_4727"/>
+            <field name="refund_account_id" ref="account_igic_4727"/>
+            <field name="type_tax_use">purchase</field>
+            <field name="tax_group_id" ref="tax_group_igic_3"/>
+        </record>
+
+        <record id="account_tax_template_c_igic7_bi" model="account.tax.template">
+            <field name="chart_template_id" ref="account_chart_template_pymes_canarias"/>
+            <field name="name">IGIC 7% Soportado (bienes de inversión)</field>
+            <field name="description">P_IGIC7_BI</field>
+            <field eval="7" name="amount"/>
+            <field name="amount_type">percent</field>
+            <field name="account_id" ref="account_igic_4727"/>
+            <field name="refund_account_id" ref="account_igic_4727"/>
+            <field name="type_tax_use">purchase</field>
+            <field name="tax_group_id" ref="tax_group_igic_7"/>
+        </record>
+
+        <record id="account_tax_template_c_igic95_bi" model="account.tax.template">
+            <field name="chart_template_id" ref="account_chart_template_pymes_canarias"/>
+            <field name="name">IGIC 9,5% Soportado (bienes de inversión)</field>
+            <field name="description">P_IGIC95_BI</field>
+            <field eval="9.5" name="amount"/>
+            <field name="amount_type">percent</field>
+            <field name="account_id" ref="account_igic_4727"/>
+            <field name="refund_account_id" ref="account_igic_4727"/>
+            <field name="type_tax_use">purchase</field>
+            <field name="tax_group_id" ref="tax_group_igic_95"/>
+        </record>
+
+        <record id="account_tax_template_c_igic135_bi" model="account.tax.template">
+            <field name="chart_template_id" ref="account_chart_template_pymes_canarias"/>
+            <field name="name">IGIC 13,5% Soportado (bienes de inversión)</field>
+            <field name="description">P_IGIC135_BI</field>
+            <field eval="13.5" name="amount"/>
+            <field name="amount_type">percent</field>
+            <field name="account_id" ref="account_igic_4727"/>
+            <field name="refund_account_id" ref="account_igic_4727"/>
+            <field name="type_tax_use">purchase</field>
+            <field name="tax_group_id" ref="tax_group_igic_135"/>
+        </record>
+
+        <record id="account_tax_template_c_igic20_bi" model="account.tax.template">
+            <field name="chart_template_id" ref="account_chart_template_pymes_canarias"/>
+            <field name="name">IGIC 20% Soportado (bienes de inversión)</field>
+            <field name="description">P_IGIC20_BI</field>
+            <field eval="9.5" name="amount"/>
+            <field name="amount_type">percent</field>
+            <field name="account_id" ref="account_igic_4727"/>
+            <field name="refund_account_id" ref="account_igic_4727"/>
+            <field name="type_tax_use">purchase</field>
+            <field name="tax_group_id" ref="tax_group_igic_20"/>
+        </record>
+
+        <record id="account_tax_template_c_igic0_ibi" model="account.tax.template">
+            <field name="chart_template_id" ref="account_chart_template_pymes_canarias"/>
+            <field name="name">IGIC 0% Soportado en Importaciones bienes de inversión</field>
+            <field name="description">P_IGIC0_IBI</field>
+            <field eval="0.00" name="amount"/>
+            <field name="amount_type">percent</field>
+            <field name="account_id" ref="account_igic_4727"/>
+            <field name="refund_account_id" ref="account_igic_4727"/>
+            <field name="type_tax_use">purchase</field>
+            <field name="tax_group_id" ref="tax_group_igic_0"/>
+        </record>
+
+        <record id="account_tax_template_c_igic3_ibi" model="account.tax.template">
+            <field name="chart_template_id" ref="account_chart_template_pymes_canarias"/>
+            <field name="name">IGIC 3% Soportado en Importaciones bienes de inversión</field>
+            <field name="description">P_IGIC3_IBI</field>
+            <field eval="3" name="amount"/>
+            <field name="amount_type">percent</field>
+            <field name="account_id" ref="account_igic_4727"/>
+            <field name="refund_account_id" ref="account_igic_4727"/>
+            <field name="type_tax_use">purchase</field>
+            <field name="tax_group_id" ref="tax_group_igic_3"/>
+        </record>
+
+        <record id="account_tax_template_c_igic7_ibi" model="account.tax.template">
+            <field name="chart_template_id" ref="account_chart_template_pymes_canarias"/>
+            <field name="name">IGIC 7% Soportado en Importaciones bienes de inversión</field>
+            <field name="description">P_IGIC7_IBI</field>
+            <field eval="7" name="amount"/>
+            <field name="amount_type">percent</field>
+            <field name="account_id" ref="account_igic_4727"/>
+            <field name="refund_account_id" ref="account_igic_4727"/>
+            <field name="type_tax_use">purchase</field>
+            <field name="tax_group_id" ref="tax_group_igic_7"/>
+        </record>
+
+        <record id="account_tax_template_c_igic95_ibi" model="account.tax.template">
+            <field name="chart_template_id" ref="account_chart_template_pymes_canarias"/>
+            <field name="name">IGIC 9,5% Soportado en Importaciones bienes de inversión</field>
+            <field name="description">P_IGIC95_IBI</field>
+            <field eval="9.5" name="amount"/>
+            <field name="amount_type">percent</field>
+            <field name="account_id" ref="account_igic_4727"/>
+            <field name="refund_account_id" ref="account_igic_4727"/>
+            <field name="type_tax_use">purchase</field>
+            <field name="tax_group_id" ref="tax_group_igic_95"/>
+        </record>
+
+        <record id="account_tax_template_c_igic135_ibi" model="account.tax.template">
+            <field name="chart_template_id" ref="account_chart_template_pymes_canarias"/>
+            <field name="name">IGIC 13,5% Soportado en Importaciones bienes de inversión</field>
+            <field name="description">P_IGIC135_IBI</field>
+            <field eval="13.5" name="amount"/>
+            <field name="amount_type">percent</field>
+            <field name="account_id" ref="account_igic_4727"/>
+            <field name="refund_account_id" ref="account_igic_4727"/>
+            <field name="type_tax_use">purchase</field>
+            <field name="tax_group_id" ref="tax_group_igic_135"/>
+        </record>
+
+        <record id="account_tax_template_c_igic20_ibi" model="account.tax.template">
+            <field name="chart_template_id" ref="account_chart_template_pymes_canarias"/>
+            <field name="name">IGIC 20% Soportado en Importaciones bienes de inversión</field>
+            <field name="description">P_IGIC20_IBI</field>
+            <field eval="20" name="amount"/>
+            <field name="amount_type">percent</field>
+            <field name="account_id" ref="account_igic_4727"/>
+            <field name="refund_account_id" ref="account_igic_4727"/>
+            <field name="type_tax_use">purchase</field>
+            <field name="tax_group_id" ref="tax_group_igic_20"/>
+        </record>
+
+        <record id="account_tax_template_c_igic0_ibc" model="account.tax.template">
+            <field name="chart_template_id" ref="account_chart_template_pymes_canarias"/>
+            <field name="name">IGIC 0% Soportado en Importaciones bienes corrientes</field>
+            <field name="description">P_IGIC0_IBC</field>
+            <field eval="0.00" name="amount"/>
+            <field name="amount_type">percent</field>
+            <field name="account_id" ref="account_igic_4727"/>
+            <field name="refund_account_id" ref="account_igic_4727"/>
+            <field name="type_tax_use">purchase</field>
+            <field name="tax_group_id" ref="tax_group_igic_0"/>
+        </record>
+
+        <record id="account_tax_template_c_igic3_ibc" model="account.tax.template">
+            <field name="chart_template_id" ref="account_chart_template_pymes_canarias"/>
+            <field name="name">IGIC 3% Soportado en Importaciones bienes corrientes</field>
+            <field name="description">P_IGIC3_IBC</field>
+            <field eval="3" name="amount"/>
+            <field name="amount_type">percent</field>
+            <field name="account_id" ref="account_igic_4727"/>
+            <field name="refund_account_id" ref="account_igic_4727"/>
+            <field name="type_tax_use">purchase</field>
+            <field name="tax_group_id" ref="tax_group_igic_3"/>
+        </record>
+
+        <record id="account_tax_template_c_igic7_ibc" model="account.tax.template">
+            <field name="chart_template_id" ref="account_chart_template_pymes_canarias"/>
+            <field name="name">IGIC 7% Soportado en Importaciones bienes corrientes</field>
+            <field name="description">P_IGIC7_IBC</field>
+            <field eval="7" name="amount"/>
+            <field name="amount_type">percent</field>
+            <field name="account_id" ref="account_igic_4727"/>
+            <field name="refund_account_id" ref="account_igic_4727"/>
+            <field name="type_tax_use">purchase</field>
+            <field name="tax_group_id" ref="tax_group_igic_7"/>
+        </record>
+
+        <record id="account_tax_template_c_igic95_ibc" model="account.tax.template">
+            <field name="chart_template_id" ref="account_chart_template_pymes_canarias"/>
+            <field name="name">IGIC 9,5% Soportado en Importaciones bienes corrientes</field>
+            <field name="description">P_IGIC95_IBC</field>
+            <field eval="9.5" name="amount"/>
+            <field name="amount_type">percent</field>
+            <field name="account_id" ref="account_igic_4727"/>
+            <field name="refund_account_id" ref="account_igic_4727"/>
+            <field name="type_tax_use">purchase</field>
+            <field name="tax_group_id" ref="tax_group_igic_95"/>
+        </record>
+
+        <record id="account_tax_template_c_igic135_ibc" model="account.tax.template">
+            <field name="chart_template_id" ref="account_chart_template_pymes_canarias"/>
+            <field name="name">IGIC 13,5% Soportado en Importaciones bienes corrientes</field>
+            <field name="description">P_IGIC135_IBC</field>
+            <field eval="13.5" name="amount"/>
+            <field name="amount_type">percent</field>
+            <field name="account_id" ref="account_igic_4727"/>
+            <field name="refund_account_id" ref="account_igic_4727"/>
+            <field name="type_tax_use">purchase</field>
+            <field name="tax_group_id" ref="tax_group_igic_135"/>
+        </record>
+
+        <record id="account_tax_template_c_igic20_ibc" model="account.tax.template">
+            <field name="chart_template_id" ref="account_chart_template_pymes_canarias"/>
+            <field name="name">IGIC 20% Soportado en Importaciones bienes corrientes</field>
+            <field name="description">P_IGIC20_IBC</field>
+            <field eval="20" name="amount"/>
+            <field name="amount_type">percent</field>
+            <field name="account_id" ref="account_igic_4727"/>
+            <field name="refund_account_id" ref="account_igic_4727"/>
+            <field name="type_tax_use">purchase</field>
+            <field name="tax_group_id" ref="tax_group_igic_20"/>
+        </record>
+
+</odoo>
