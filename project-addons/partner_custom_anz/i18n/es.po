@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-10-23 11:28+0000\n"
-"PO-Revision-Date: 2018-10-23 11:28+0000\n"
+"POT-Creation-Date: 2018-10-23 15:52+0000\n"
+"PO-Revision-Date: 2018-10-23 15:52+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -22,13 +22,70 @@ msgid "Affiliate"
 msgstr "Asociado"
 
 #. module: partner_custom_anz
+#: model:ir.model,name:partner_custom_anz.model_account_analytic_account
+msgid "Analytic Account"
+msgstr "Cuenta analítica"
+
+#. module: partner_custom_anz
+#: model:ir.model.fields,field_description:partner_custom_anz.field_res_partner_analytic_default_count
+#: model:ir.model.fields,field_description:partner_custom_anz.field_res_users_analytic_default_count
+msgid "Analytic Defaults"
+msgstr "Analytic Defaults"
+
+#. module: partner_custom_anz
+#: model:ir.model.fields,help:partner_custom_anz.field_product_attribute_is_tboot
+#: model:ir.model.fields,help:partner_custom_anz.field_product_attribute_value_is_tboot
+msgid "Check it if attribute will contain                               type of boots"
+msgstr "Marcado si el atributo contendrá tipos de botas"
+
+#. module: partner_custom_anz
+#: model:ir.model.fields,help:partner_custom_anz.field_product_attribute_is_color
+#: model:ir.model.fields,help:partner_custom_anz.field_product_attribute_value_is_color
+msgid "Check it if attribute will contain colors"
+msgstr "Marcado si el atributo contendrá colores"
+
+#. module: partner_custom_anz
 #: model:ir.model,name:partner_custom_anz.model_res_partner
 msgid "Contact"
 msgstr "Contacto"
+
+#. module: partner_custom_anz
+#: model:ir.model.fields,field_description:partner_custom_anz.field_product_attribute_is_color
+#: model:ir.model.fields,field_description:partner_custom_anz.field_product_attribute_value_is_color
+msgid "Is color"
+msgstr "Es color"
+
+#. module: partner_custom_anz
+#: model:ir.model.fields,field_description:partner_custom_anz.field_product_attribute_is_tboot
+#: model:ir.model.fields,field_description:partner_custom_anz.field_product_attribute_value_is_tboot
+msgid "Is type of boot"
+msgstr "Es tipo de bota"
 
 #. module: partner_custom_anz
 #: model:ir.model.fields,field_description:partner_custom_anz.field_res_partner_player
 #: model:ir.model.fields,field_description:partner_custom_anz.field_res_users_player
 msgid "Player"
 msgstr "Jugador"
+
+#. module: partner_custom_anz
+#: model:ir.model,name:partner_custom_anz.model_product_attribute
+msgid "Product Attribute"
+msgstr "Atributo de producto"
+
+#. module: partner_custom_anz
+#: model:ir.model.fields,field_description:partner_custom_anz.field_res_partner_boot_type
+#: model:ir.model.fields,field_description:partner_custom_anz.field_res_users_boot_type
+msgid "Type of boot"
+msgstr "Tipo de bota"
+
+#. module: partner_custom_anz
+#: model:ir.model.fields,field_description:partner_custom_anz.field_res_partner_color_type
+#: model:ir.model.fields,field_description:partner_custom_anz.field_res_users_color_type
+msgid "Type of color"
+msgstr "Tipo de color"
+
+#. module: partner_custom_anz
+#: model:ir.model,name:partner_custom_anz.model_product_attribute_value
+msgid "product.attribute.value"
+msgstr "product.attribute.value"
 

@@ -9,10 +9,13 @@
     'author': "Comunitea, ",
     'depends': [
         'base',
-        'account_analytic_default'
+        'account_analytic_default',
+        'contract',
+        'product',
     ],
     'data': [
-        'views/partner_view.xml'
+        'views/partner_view.xml',
+        'views/product_view.xml'
     ],
     'installable': True,
 }

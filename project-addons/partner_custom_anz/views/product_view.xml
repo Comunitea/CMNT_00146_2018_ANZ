@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="product_attribute_view_form_add_custom" model="ir.ui.view">
+        <field name="name">product.attribute.form.add.custom</field>
+        <field name="inherit_id" ref="product.product_attribute_view_form"/>
+        <field name="model">product.attribute</field>
+        <field name="arch" type="xml">
+            <field name="create_variant" position="after">
+                <field name="is_tboot"/>
+                <field name="is_color"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="attribute_tree_view_add_custom" model="ir.ui.view">
+        <field name="name">product.attribute.tree.add.custom</field>
+        <field name="model">product.attribute</field>
+        <field name="inherit_id" ref="product.attribute_tree_view"/>
+        <field name="arch" type="xml">
+            <field name="create_variant" position="after">
+                <field name="is_tboot"/>
+                <field name="is_color"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="variants_tree_view_add_custom" model="ir.ui.view">
+        <field name="name">variants.tree.view.add.custom</field>
+        <field name="model">product.attribute.value</field>
+        <field name="inherit_id" ref="product.variants_tree_view"/>
+        <field name="arch" type="xml">
+            <field name="name" position="after">
+                <field name="is_tboot"/>
+                <field name="is_color"/>
+            </field>
+        </field>
+    </record>
+
+</odoo>
+
