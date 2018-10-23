@@ -24,12 +24,13 @@ class ResPartner(models.Model):
         self.ensure_one()
         domain = [('partner_id', '=', self.id)]
         defaults = self.env['account.analytic.default'].search(domain)
+        action_name = 'account_analytic_default.action_analytic_default_list'
         action = self.env.ref(
-            'analytic.action_account_analytic_account_form').read()[0]
+            action_name).read()[0]
         if len(defaults) > 1:
             action['domain'] = [('id', 'in', defaults.ids)]
         elif len(defaults) == 1:
-            form_view_name = 'analytic.view_account_analytic_account_form'
+            form_view_name = 'account.analytic.default.form'
             action['views'] = [
                 (self.env.ref(form_view_name).id, 'form')]
             action['res_id'] = defaults.ids[0]
