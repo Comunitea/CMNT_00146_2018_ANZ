@@ -15,7 +15,6 @@ class ResPartner(models.Model):
                                 domain=[('is_tboot', '=', True)])
     color_type = fields.Many2one('product.attribute.value', 'Type of color',
                                  domain=[('is_color', '=', True)])
-    
 
     @api.multi
     def _count_analytic_defaults(self):
