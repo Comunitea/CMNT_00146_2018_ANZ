@@ -11,11 +11,12 @@
         'base',
         'account_analytic_default',
         'contract',
-        'product',
+        'product_brand',
+        'partner_area',
+        'product_custom_anz'
     ],
     'data': [
-        'views/partner_view.xml',
-        'views/product_view.xml'
+        'views/partner_view.xml'
     ],
     'installable': True,
 }
