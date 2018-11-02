@@ -89,3 +89,19 @@ msgstr "Tipo de color"
 msgid "product.attribute.value"
 msgstr "product.attribute.value"
 
+#. module: partner_custom_anz
+#: model:ir.model.fields,field_description:partner_custom_anz.field_account_invoice_sponsored
+msgid "Sponsored"
+msgstr "Patrocinado"
+
+#. module: partner_custom_anz
+#: model:ir.model.fields,field_description:partner_custom_anz.field_res_partner_sponsorship_bag
+#: model:ir.model.fields,field_description:partner_custom_anz.field_res_users_sponsorship_bag
+msgid "Sponsorship Bag"
+msgstr "Bolsa patrocinio"
+
+#. module: partner_custom_anz
+#: code:addons/partner_custom_anz/models/res_partner.py:53
+#, python-format
+msgid "You try to sponsorship a quantity of %s and                 the rest of the bag is %s."
+msgstr "Trata de patrocinar una cantidad de %s y                   el resto de la bolsa es %s."

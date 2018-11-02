@@ -3,3 +3,4 @@
 from . import res_partner  # noqa
 from . import account_analytic  # noqa
 from . import product  # noqa
+from . import account_invoice

@@ -13,6 +13,7 @@
             <field name="lang" position="after">
                 <field name="boot_type" attrs="{'invisible': [('player', '=', False)]}"/>
                 <field name="color_type" attrs="{'invisible': [('player', '=', False)]}"/>
+                <field name="sponsorship_bag" attrs="{'invisible': [('player', '=', False)]}"/>
             </field>
 
             <div name="button_box" position="inside">
