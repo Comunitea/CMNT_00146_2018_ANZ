@@ -16,7 +16,8 @@
         'product_custom_anz'
     ],
     'data': [
-        'views/partner_view.xml'
+        'views/partner_view.xml',
+        'views/account_invoice.xml'
     ],
     'installable': True,
 }

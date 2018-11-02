@@ -1,6 +1,7 @@
 # © 2016 Comunitea - Javier Colmenero <javier@comunitea.com>
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
-from odoo import api, fields, models
+from odoo import api, fields, models, _
+from odoo.exceptions import UserError
 
 # © 2016 Comunitea - Javier Colmenero <javier@comunitea.com>
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
@@ -23,6 +24,7 @@ class ResPartner(models.Model):
 
     affiliate = fields.Boolean('Affiliate')
     player = fields.Boolean('Player')
+    sponsorship_bag = fields.Float()
     analytic_default_count = fields.Integer('Analytic Defaults',
                                             compute='_count_analytic_defaults')
     boot_type = fields.Many2one('product.attribute.value', 'Type of boot',
@@ -58,4 +60,13 @@ class ResPartner(models.Model):
         else:
             action = {'type': 'ir.actions.act_window_close'}
         return action
+
+    def decrease_bag(self, amount):
+        if amount < 0.0:
+            self.sponsorship_bag += abs(amount)
+        elif amount <= self.sponsorship_bag:
+            self.sponsorship_bag -= amount
+        elif amount > self.sponsorship_bag:
+            raise UserError(_('You try to sponsorship a quantity of %s and \
+                the rest of the bag is %s.') % (amount, self.sponsorship_bag))
 
