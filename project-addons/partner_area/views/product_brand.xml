@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record model="ir.ui.view" id="view_brand_area_ids">
+        <field name="name">Areas</field>
+        <field name="model">product.brand</field>
+        <field name="arch" type="xml">
+            <tree string="Areas">
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_view_brand_area_ids" model="ir.actions.act_window">
+        <field name="name">Areas</field>
+        <field name="res_model">product.brand</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="partner_area.view_brand_area_ids"/>
+        <field name="help" type="html">
+          <p class="oe_view_nocontent_create">
+             Click to add a partner area.
+          </p>
+        </field>
+    </record>
+
+    <record id="product_brand_area_ids" model="ir.ui.view">
+        <field name="name">product.brand.area.ids</field>
+        <field name="inherit_id" ref="product_brand.view_product_brand_form"/>
+        <field name="model">product.brand</field>
+        <field name="arch" type="xml">
+
+            <xpath expr="//group/field[@name='description']" position="after">
+                <group >
+
+                    <group string="Allowed areas">
+                        <field nolabel="1" name="allowed_area_ids"/>
+                        <group>
+                            <button name="show_allowed_area_ids" type="action" class="oe_stat_button" icon="fa-ban">
+                                <field name="allowed_area_ids_count" widget="statinfo" string="Allowed areas"/>
+                            </button>
+                        </group>
+                    </group>
+                    <group string="Restricted areas">
+                        <field nolabel="1" name="restricted_area_ids"/>
+                         <group>
+                            <button name="show_restricted_area_ids" type="action" class="oe_stat_button" icon="fa-check">
+                            <field name="restricted_area_ids_count" widget="statinfo" string="Restricted areas"/>
+                        </button>
+                        </group>
+                    </group>
+                </group>
+
+            </xpath>
+        </field>
+
+    </record>
+
+</odoo>
+

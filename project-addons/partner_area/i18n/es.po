@@ -1,0 +1,213 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* partner_area
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 11.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-10-31 15:36+0000\n"
+"PO-Revision-Date: 2018-10-31 15:36+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: partner_area
+#: model:ir.model.fields,field_description:partner_area.field_res_partner_area_active
+msgid "Active"
+msgstr "Activo"
+
+#. module: partner_area
+#: model:ir.model.fields,field_description:partner_area.field_product_brand_allowed_area_ids
+#: model:ir.model.fields,field_description:partner_area.field_product_brand_allowed_area_ids_count
+#: model:ir.model.fields,field_description:partner_area.field_product_brand_restricted_area_ids_count
+#: model:ir.ui.view,arch_db:partner_area.product_brand_area_ids
+msgid "Allowed areas"
+msgstr "Zonas permitidas"
+
+#. module: partner_area
+#: model:ir.ui.view,arch_db:partner_area.view_partner_area_search
+msgid "Archived"
+msgstr "Archivado"
+
+#. module: partner_area
+#: model:ir.ui.view,arch_db:partner_area.view_res_partner_area_form
+msgid "Area"
+msgstr "Zona"
+
+#. module: partner_area
+#: model:ir.ui.view,arch_db:partner_area.view_partner_area_search
+msgid "Area code"
+msgstr "Código de zona"
+
+#. module: partner_area
+#: model:ir.actions.act_window,name:partner_area.action_view_brand_area_ids
+#: model:ir.ui.view,arch_db:partner_area.view_brand_area_ids
+msgid "Areas"
+msgstr "Zonas"
+
+#. module: partner_area
+#: model:ir.model.fields,help:partner_area.field_res_partner_area_active
+msgid "By unchecking the active field, you may hide a partner area without deleting it."
+msgstr "Si lo marcas como archivado, puedes ocultarlo sin borrar."
+
+#. module: partner_area
+#: model:ir.model.fields,field_description:partner_area.field_res_partner_area_child_ids
+msgid "Childs area"
+msgstr "Subzonas"
+
+#. module: partner_area
+#: model:ir.actions.act_window,help:partner_area.action_res_partner_area_form
+#: model:ir.actions.act_window,help:partner_area.action_view_brand_area_ids
+msgid "Click to add a partner area."
+msgstr "Añadir una zona."
+
+#. module: partner_area
+#: model:ir.model,name:partner_area.model_res_partner
+msgid "Contact"
+msgstr "Contacto"
+
+#. module: partner_area
+#: model:ir.model.fields,field_description:partner_area.field_res_partner_area_create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: partner_area
+#: model:ir.model.fields,field_description:partner_area.field_res_partner_area_create_date
+msgid "Created on"
+msgstr "Creado en"
+
+#. module: partner_area
+#: model:ir.model.fields,field_description:partner_area.field_res_partner_area_display_name
+msgid "Display Name"
+msgstr "Nombre mostrado"
+
+#. module: partner_area
+#: model:ir.model.fields,field_description:partner_area.field_res_partner_area_complete_name
+msgid "Full area Name"
+msgstr "Nombre completo"
+
+#. module: partner_area
+#: model:ir.model.fields,field_description:partner_area.field_res_partner_area_id
+msgid "ID"
+msgstr "ID (identificación)"
+
+#. module: partner_area
+#: model:ir.model.fields,help:partner_area.field_product_brand_allowed_area_ids
+msgid "If empty, all areas; else allowed only in this areas"
+msgstr "Zonas permitidas, si esta vacío, se permiten todas"
+
+#. module: partner_area
+#: model:ir.ui.view,arch_db:partner_area.view_res_partner_area_form
+msgid "Info"
+msgstr "Información"
+
+#. module: partner_area
+#: model:ir.model.fields,field_description:partner_area.field_res_partner_area___last_update
+msgid "Last Modified on"
+msgstr "Última modificación en"
+
+#. module: partner_area
+#: model:ir.model.fields,field_description:partner_area.field_res_partner_area_write_uid
+msgid "Last Updated by"
+msgstr "Última actualización de"
+
+#. module: partner_area
+#: model:ir.model.fields,field_description:partner_area.field_res_partner_area_write_date
+msgid "Last Updated on"
+msgstr "Última actualización en"
+
+#. module: partner_area
+#: model:ir.model.fields,field_description:partner_area.field_res_partner_area_parent_left
+msgid "Left Parent"
+msgstr "Padre izquierdo"
+
+#. module: partner_area
+#: model:ir.model.fields,field_description:partner_area.field_res_partner_area_area_id
+#: model:ir.ui.view,arch_db:partner_area.view_partner_area_search
+msgid "Parent area"
+msgstr "Zona padre"
+
+#. module: partner_area
+#: model:ir.model.fields,field_description:partner_area.field_res_partner_area_partner_ids
+msgid "Partner"
+msgstr "Empresa"
+
+#. module: partner_area
+#: model:ir.model.fields,field_description:partner_area.field_res_partner_area_id_9345
+#: model:ir.model.fields,field_description:partner_area.field_res_partner_area_name
+#: model:ir.model.fields,field_description:partner_area.field_res_users_area_id
+#: model:ir.ui.view,arch_db:partner_area.view_partner_area_search
+#: model:ir.ui.view,arch_db:partner_area.view_partner_area_tree
+#: model:ir.ui.view,arch_db:partner_area.view_res_partner_area_form
+msgid "Partner area"
+msgstr "Zona"
+
+#. module: partner_area
+#: model:ir.model.fields,field_description:partner_area.field_res_partner_area_code
+msgid "Partner area code"
+msgstr "Código"
+
+#. module: partner_area
+#: model:ir.actions.act_window,name:partner_area.action_res_partner_area_form
+#: model:ir.ui.menu,name:partner_area.menu_action_res_partner_area_form
+#: model:ir.ui.view,arch_db:partner_area.view_partner_area_search
+msgid "Partner areas"
+msgstr "Zonas"
+
+#. module: partner_area
+#: model:ir.model.fields,field_description:partner_area.field_res_partner_area_area_partner_ids
+#: model:ir.ui.view,arch_db:partner_area.view_res_partner_area_form
+msgid "Partners"
+msgstr "Empresas"
+
+#. module: partner_area
+#: model:ir.model,name:partner_area.model_product_template
+msgid "Product Template"
+msgstr "Plantilla de producto"
+
+#. module: partner_area
+#: model:ir.model.fields,field_description:partner_area.field_product_brand_restricted_area_ids
+#: model:ir.model.fields,help:partner_area.field_product_brand_restricted_area_ids
+#: model:ir.ui.view,arch_db:partner_area.product_brand_area_ids
+msgid "Restricted areas"
+msgstr "Zonas restringidas"
+
+#. module: partner_area
+#: model:ir.model.fields,field_description:partner_area.field_res_partner_area_parent_right
+msgid "Right Parent"
+msgstr "Padre derecho"
+
+#. module: partner_area
+#: model:ir.model.fields,field_description:partner_area.field_res_partner_area_state_ids
+msgid "States in area"
+msgstr "Paises en la zona"
+
+#. module: partner_area
+#: model:ir.model.fields,field_description:partner_area.field_res_partner_area_sub_partner_ids
+msgid "Sub Partner"
+msgstr "Sub Partner"
+
+#. module: partner_area
+#: model:ir.ui.view,arch_db:partner_area.view_res_partner_area_form
+msgid "Sub areas"
+msgstr "Sub zona"
+
+#. module: partner_area
+#: code:addons/partner_area/models/partner_area.py:62
+#, python-format
+msgid "You have to set a name for this area."
+msgstr "Debes proporcionar un nombre para esta zona."
+
+#. module: partner_area
+#: model:ir.model,name:partner_area.model_product_brand
+msgid "product.brand"
+msgstr "product.brand"
+
+#. module: partner_area
+#: model:ir.model,name:partner_area.model_res_partner_area
+msgid "res.partner.area"
+msgstr "res.partner.area"
