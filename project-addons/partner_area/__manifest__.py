@@ -2,22 +2,18 @@
 # © 2018 Comunitea - Javier Colmenero <javier@comunitea.com>
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
 {
-    'name': 'Partner Custom Anzamar',
+    'name': 'Partner Area',
     'version': '11.0.0.0.0',
     'category': 'Custom',
     'license': 'AGPL-3',
     'author': "Comunitea, ",
     'depends': [
-        'base',
-        'account_analytic_default',
-        'contract',
         'product_brand',
-        'partner_area',
-        'product_custom_anz'
     ],
     'data': [
         'views/partner_view.xml',
-        'views/account_invoice.xml'
+        'views/res_partner_area.xml',
+        'views/product_brand.xml',
     ],
     'installable': True,
 }

@@ -3,13 +3,27 @@
 from odoo import api, fields, models, _
 from odoo.exceptions import UserError
 
+# © 2016 Comunitea - Javier Colmenero <javier@comunitea.com>
+# License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
+from odoo import api, fields, models,_
+from odoo.exceptions import UserError
+
 
 class ResPartner(models.Model):
 
     _inherit = 'res.partner'
 
-    affiliate = fields.Boolean()
-    player = fields.Boolean()
+    @api.multi
+    def get_boot_ids(self):
+        order_line_ids = self.env['sale.order.line']
+        for player in self.filtered(lambda x: x.player):
+            domain = [('order_id.partner_id', '=', player.id), ('product_id.boot_type', '!=', False)]
+            player.boot_ids = [(6, 0, order_line_ids.search(domain).ids)]
+            player.boot_ids_count = sum(x.qty_delivered for x in player.boot_ids)
+
+
+    affiliate = fields.Boolean('Affiliate')
+    player = fields.Boolean('Player')
     sponsorship_bag = fields.Float()
     analytic_default_count = fields.Integer('Analytic Defaults',
                                             compute='_count_analytic_defaults')
@@ -17,6 +31,9 @@ class ResPartner(models.Model):
                                 domain=[('is_tboot', '=', True)])
     color_type = fields.Many2one('product.attribute.value', 'Type of color',
                                  domain=[('is_color', '=', True)])
+    boot_ids = fields.One2many('sale.order.line', string="Histórico", compute="get_boot_ids")
+    boot_ids_count = fields.Integer(string="Quantity", compute="get_boot_ids")
+
 
     @api.multi
     def _count_analytic_defaults(self):
@@ -52,3 +69,4 @@ class ResPartner(models.Model):
         elif amount > self.sponsorship_bag:
             raise UserError(_('You try to sponsorship a quantity of %s and \
                 the rest of the bag is %s.') % (amount, self.sponsorship_bag))
+

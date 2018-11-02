@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!--act_window
+        context="{'area': active_id}"
+        id="act_product_location_open"
+        name="Products"
+        res_model="product.product"
+        src_model="stock.location"/-->
+
+    <record id="view_res_partner_area_form" model="ir.ui.view">
+        <field name="name">res.partner.area.form</field>
+        <field name="model">res.partner.area</field>
+        <field name="arch" type="xml">
+            <form string="Partner area">
+                <div class="oe_button_box" name="button_box">
+                   <button name="toggle_active" type="object" class="oe_stat_button" icon="fa-archive">
+                        <field name="active" widget="boolean_button" options='{"terminology": "archive"}'/>
+                    </button>
+                </div>
+                <label for="name" class="oe_edit_only"/>
+                <h1>
+                    <field name="name"/>
+                </h1>
+                <label for="area_id" class="oe_edit_only"/>
+                <h2>
+                    <field name="area_id" options="{'no_create': True}"/>
+                </h2>
+                <group>
+                    <field name="code"/>
+                </group>
+                <notebook>
+                    <page string="Info">
+                        <group string="Sub areas">
+                            <div>
+                                <field name="child_ids"/>
+                            </div>
+                        </group>
+                    </page>
+                    <page string="Partners">
+                        <group string="Area">
+                            <div>
+                                <field name="partner_ids">
+                                    <tree>
+                                        <field name="display_name"></field>
+                                    </tree>
+                                </field>
+                            </div>
+                        </group>
+                        <group string="Sub areas">
+                            <div>
+                                <field name="sub_partner_ids">
+                                    <tree>
+                                        <field name="display_name"></field>
+                                    </tree>
+                                </field>
+                            </div>
+                        </group>
+
+                    </page>
+                </notebook>
+            </form>
+        </field>
+    </record>
+
+
+    <record id="view_partner_area_search" model="ir.ui.view">
+        <field name="name">partner.area.search</field>
+        <field name="model">res.partner.area</field>
+        <field name="arch" type="xml">
+            <search string="Partner area">
+                <field name="name" string="Partner areas"/>
+                <field name="code" string="Area code"/>
+                <field name="area_id" string="Parent area"/>
+                <separator/>
+                <filter string="Archived" name="inactive" domain="[('active','=',False)]"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="view_partner_area_tree" model="ir.ui.view">
+        <field name="name">partner.area.tree</field>
+        <field name="model">res.partner.area</field>
+        <field name="priority" eval="1"/>
+        <field name="arch" type="xml">
+            <tree string="Partner area">
+                <field name="active" invisible="1"/>
+                <field name="display_name"/>
+                <field name="name"/>
+                <field name="code"/>
+            </tree>
+        </field>
+    </record>
+
+
+    <record id="action_res_partner_area_form" model="ir.actions.act_window">
+        <field name="name">Partner areas</field>
+        <field name="res_model">res.partner.area</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="partner_area.view_partner_area_tree"/>
+        <field name="search_view_id" ref="partner_area.view_partner_area_search"/>
+        <field name="context">{'search_default_in_location':1}</field>
+        <field name="help" type="html">
+          <p class="oe_view_nocontent_create">
+             Click to add a partner area.
+          </p>
+        </field>
+    </record>
+    <menuitem action="action_res_partner_area_form" id="menu_action_res_partner_area_form"
+        parent="sale.menu_sale_config" sequence="50" />
+
+
+</odoo>
+
+

@@ -36,5 +36,32 @@
         </field>
     </record>
 
+    <record id="product_template_for_view_anz" model="ir.ui.view">
+        <field name="name">product.template.view.custom.anz</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_only_form_view"/>
+        <field name="arch" type="xml">
+            <field name="attribute_line_ids" position="after">
+                <field name="boot_type"/>
+                <field name="product_color"/>
+
+            </field>
+        </field>
+    </record>
+
+
+    <record id="product_product_for_view_anz" model="ir.ui.view">
+        <field name="name">product.product.view.custom.anz</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.product_normal_form_view"/>
+        <field name="arch" type="xml">
+            <field name="categ_id" position="after">
+                  <field name="boot_type"/>
+                <field name="product_color"/>
+
+            </field>
+        </field>
+    </record>
+
 </odoo>
 
