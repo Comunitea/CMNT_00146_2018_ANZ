@@ -14,12 +14,14 @@ class SaleOrderLine(models.Model):
     @api.onchange('product_id')
     def product_id_change(self):
         result = super(SaleOrderLine, self).product_id_change()
-        if self.order_id.partner_id and self.order_id.partner_id.player and self.product_id:
+        self.is_player_boot = False
+        if self.product_id and self.order_id.partner_id and self.order_id.partner_id.player and self.order_id.partner_id.boot_type:
             partner = self.order_id.partner_id
-            self.is_player_boot = not partner.color_type or \
-                                  (partner.color_type and self.product_id.product_color == partner.color_type) and \
-                                  partner.boot_type and  \
-                                  partner.boot_type == self.product_id.boot_type
-            self.discount = 100.00
+            self.is_player_boot = self.product_id.boot_type == partner.boot_type and (not partner.color_type or (partner.color_type and partner.color_type in self.attribute_value_ids))
+
+            if self.is_player_boot:
+                print ("DESCUENTO 100%")
+                self.discount = 100.00
+
         return result
 
