@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="view_operating_unit_form_custom_anz" model="ir.ui.view">
+        <field name="name">operating.unit.custom.anz</field>
+        <field name="model">operating.unit</field>
+        <field name="inherit_id" ref="operating_unit.view_operating_unit_form"/>
+        <field name="arch" type="xml">
+            <field name="company_id" position="after">
+                <field name="brand_ids"/>
+            </field>
+        </field>
+    </record>
+
+</odoo>
+
