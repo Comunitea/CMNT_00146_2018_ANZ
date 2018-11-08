@@ -6,14 +6,6 @@ from odoo.osv import expression
 class SaleOrder(models.Model):
     _inherit = "sale.order"
 
-    @api.multi
-    @api.depends('order_line')
-    def _compute_sale_order_line_count(self):
-        for order in self:
-            order.sale_order_line_count = len(order.order_line)
-
-    sale_order_line_count = fields.Integer('Order line count', compute='_compute_sale_order_line_count')
-
 
     @api.multi
     def action_view_order_lines(self):
@@ -29,8 +21,7 @@ class SaleOrder(models.Model):
             'sale_order_line_tree.sale_order_line_tree_view_action').read()[0]
 
         action['views'] = {
-            (tree_view and tree_view[1] or False, 'tree'),
-            (form_view and form_view[1] or False, 'form')}
+            (tree_view and tree_view[1] or False, 'tree')}
 
         action['domain'] = [('id', 'in', self.order_line.ids)]
 
@@ -45,13 +36,35 @@ class SaleOrder(models.Model):
         action.update({'tax_id':
                         {'domain': [('type_tax_use', '=', 'sale'), ('company_id', '=', self.company_id)]}
                        })
-
+        print (action)
         return action
 
 class SaleOrderLine(models.Model):
+
     _inherit = "sale.order.line"
 
     product_tmpl_id = fields.Many2one('product.template', string="Template")
+    variant_sequence = fields.Integer(string="Variant sequence")
+    _order = 'sequence, variant_sequence'
+
+    @api.multi
+    def write(self, vals):
+        return super(SaleOrderLine, self).write(vals)
+
+    @api.multi
+    @api.onchange('product_tmpl_id')
+    def product_tmpl_id_change(self):
+        self.ensure_one()
+        self.product_id = False
+        result = super(SaleOrderLine, self).product_id_change() or []
+        if self.product_tmpl_id:
+            result.update({'domain':
+                               {'product_id': [('product_tmpl_id', '=', self.product_tmpl_id.id)]}
+                           })
+        else:
+            result.update({'domain':[]})
+
+        return result
 
 
     @api.multi
@@ -59,9 +72,14 @@ class SaleOrderLine(models.Model):
     def product_id_change(self):
         result = super(SaleOrderLine, self).product_id_change()
         if self.product_id:
-            self.product_tmpl_id = self.product_id.product_tmpl_id
+            if not self.product_tmpl_id:
+                self.product_tmpl_id = self.product_id.product_tmpl_id
+
+            self.variant_sequence = self.product_id.attribute_value_ids.sequence
         else:
+            self.variant_sequence = 0
             self.product_tmpl_id = False
+
         return result
 
     @api.model

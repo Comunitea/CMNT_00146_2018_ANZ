@@ -1,0 +1,285 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* sale_order_line_tree
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 11.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-11-08 18:38+0000\n"
+"PO-Revision-Date: 2018-11-08 18:38+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sale_order_line_tree
+#: model:ir.model.fields,field_description:sale_order_line_tree.field_sale_order_line_template_group_nbr
+msgid "# of Lines"
+msgstr "# de líneas"
+
+#. module: sale_order_line_tree
+#: model:ir.model.fields,field_description:sale_order_line_tree.field_sale_order_line_template_group_amt_invoiced
+msgid "Amount Invoiced"
+msgstr "Importe facturado"
+
+#. module: sale_order_line_tree
+#: model:ir.model.fields,field_description:sale_order_line_tree.field_sale_order_line_template_group_amt_to_invoice
+msgid "Amount To Invoice"
+msgstr "Importe a facturar"
+
+#. module: sale_order_line_tree
+#: selection:sale.order.line.template.group,state:0
+msgid "Cancelled"
+msgstr "Cancelado"
+
+#. module: sale_order_line_tree
+#: model:ir.model.fields,field_description:sale_order_line_tree.field_sale_order_line_template_group_company_id
+msgid "Company"
+msgstr "Compañía"
+
+#. module: sale_order_line_tree
+#: model:ir.model.fields,field_description:sale_order_line_tree.field_sale_order_line_template_group_confirmation_date
+msgid "Confirmation Date"
+msgstr "Fecha de confirmación"
+
+#. module: sale_order_line_tree
+#: model:ir.model.fields,field_description:sale_order_line_tree.field_sale_order_line_template_group_date
+msgid "Date Order"
+msgstr "Fecha de pedido"
+
+#. module: sale_order_line_tree
+#: model:ir.ui.view,arch_db:sale_order_line_tree.sale_order_line_form_view
+msgid "Delivered Quantity"
+msgstr "Cantidad Entregada"
+
+#. module: sale_order_line_tree
+#: model:ir.model.fields,field_description:sale_order_line_tree.field_sale_order_line_template_group_discount
+msgid "Discount (%)"
+msgstr "(%) Descuento"
+
+#. module: sale_order_line_tree
+#: model:ir.model.fields,field_description:sale_order_line_tree.field_sale_order_line_template_group_display_name
+msgid "Display Name"
+msgstr "Nombre mostrado"
+
+#. module: sale_order_line_tree
+#: selection:sale.order.line.template.group,state:0
+msgid "Draft Quotation"
+msgstr "Borrador"
+
+#. module: sale_order_line_tree
+#: model:ir.model.fields,field_description:sale_order_line_tree.field_sale_order_line_template_group_weight
+msgid "Gross Weight"
+msgstr "Peso bruto"
+
+#. module: sale_order_line_tree
+#: model:ir.model.fields,field_description:sale_order_line_tree.field_sale_order_line_template_group_id
+msgid "ID"
+msgstr "ID (identificación)"
+
+#. module: sale_order_line_tree
+#: model:ir.ui.view,arch_db:sale_order_line_tree.sale_order_line_form_view
+msgid "Invoiced Quantity"
+msgstr "Cantidad Facturada"
+
+#. module: sale_order_line_tree
+#: model:ir.model.fields,field_description:sale_order_line_tree.field_sale_order_line_template_group___last_update
+msgid "Last Modified on"
+msgstr "Última modificación en"
+
+#. module: sale_order_line_tree
+#: model:ir.model.fields,field_description:sale_order_line_tree.field_sale_order_line_template_group_line_name
+msgid "Line name"
+msgstr "Descripción"
+
+#. module: sale_order_line_tree
+#: model:ir.ui.view,arch_db:sale_order_line_tree.view_sale_order_line_group_template_tree
+msgid "Lines group by template"
+msgstr "Líneas de plantilla"
+
+#. module: sale_order_line_tree
+#: model:ir.ui.view,arch_db:sale_order_line_tree.sale_order_line_tree_view
+msgid "Modify Variants"
+msgstr "Modificar variantes"
+
+#. module: sale_order_line_tree
+#: model:ir.model.fields,field_description:sale_order_line_tree.field_sale_order_line_template_group_order_id
+msgid "Order"
+msgstr "Orden"
+
+#. module: sale_order_line_tree
+#: model:ir.model.fields,field_description:sale_order_line_tree.field_sale_order_line_template_group_name
+msgid "Order Reference"
+msgstr "Referencia del pedido"
+
+#. module: sale_order_line_tree
+#: model:ir.model.fields,field_description:sale_order_line_tree.field_sale_order_sale_order_line_count
+msgid "Order line count"
+msgstr "Nº de líneas"
+
+#. module: sale_order_line_tree
+#: model:ir.actions.act_window,name:sale_order_line_tree.sale_order_line_tree_view_action
+#: model:ir.ui.view,arch_db:sale_order_line_tree.sale_order_form_order_line_tree
+msgid "Order lines"
+msgstr "Líneas de venta"
+
+#. module: sale_order_line_tree
+#: model:ir.ui.view,arch_db:sale_order_line_tree.sale_order_line_tree_view
+msgid "Ordered Qty"
+msgstr "Ctdad pedida"
+
+#. module: sale_order_line_tree
+#: model:ir.ui.view,arch_db:sale_order_line_tree.sale_order_line_form_view
+msgid "Ordered Quantity"
+msgstr "Cantidad pedida"
+
+#. module: sale_order_line_tree
+#: model:ir.model.fields,field_description:sale_order_line_tree.field_sale_order_line_template_group_pricelist_id
+msgid "Pricelist"
+msgstr "Lista de precios"
+
+#. module: sale_order_line_tree
+#: model:ir.model.fields,field_description:sale_order_line_tree.field_sale_order_line_template_group_categ_id
+msgid "Product Category"
+msgstr "Categoría de producto"
+
+#. module: sale_order_line_tree
+#: model:ir.model.fields,field_description:sale_order_line_tree.field_sale_order_line_template_group_product_tmpl_id
+msgid "Product Template"
+msgstr "Plantilla producto"
+
+#. module: sale_order_line_tree
+#: model:ir.model.fields,field_description:sale_order_line_tree.field_sale_order_line_template_group_qty_delivered
+msgid "Qty Delivered"
+msgstr "Ctdad Enviada"
+
+#. module: sale_order_line_tree
+#: model:ir.model.fields,field_description:sale_order_line_tree.field_sale_order_line_template_group_qty_invoiced
+msgid "Qty Invoiced"
+msgstr "Ctdad Facturada"
+
+#. module: sale_order_line_tree
+#: model:ir.model.fields,field_description:sale_order_line_tree.field_sale_order_line_template_group_product_uom_qty
+msgid "Qty Ordered"
+msgstr "Ctdad Ordenada"
+
+#. module: sale_order_line_tree
+#: model:ir.model.fields,field_description:sale_order_line_tree.field_sale_order_line_template_group_qty_to_invoice
+msgid "Qty To Invoice"
+msgstr "Ctdad para Facturar"
+
+#. module: sale_order_line_tree
+#: model:ir.model,name:sale_order_line_tree.model_sale_order
+msgid "Quotation"
+msgstr "Presupuesto"
+
+#. module: sale_order_line_tree
+#: selection:sale.order.line.template.group,state:0
+msgid "Quotation Sent"
+msgstr "Presupuesto enviado"
+
+#. module: sale_order_line_tree
+#: model:ir.model.fields,field_description:sale_order_line_tree.field_sale_order_line_template_group_team_id
+msgid "Sales Channel"
+msgstr "Canal de ventas"
+
+#. module: sale_order_line_tree
+#: selection:sale.order.line.template.group,state:0
+msgid "Sales Done"
+msgstr "Realizadas"
+
+#. module: sale_order_line_tree
+#: selection:sale.order.line.template.group,state:0
+msgid "Sales Order"
+msgstr "Ventas"
+
+#. module: sale_order_line_tree
+#: model:ir.model,name:sale_order_line_tree.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Línea pedido de venta"
+
+#. module: sale_order_line_tree
+#: model:ir.ui.view,arch_db:sale_order_line_tree.sale_order_line_form_view
+#: model:ir.ui.view,arch_db:sale_order_line_tree.sale_order_line_tree_view
+msgid "Sales Order Lines"
+msgstr "Líneas de pedidos de venta"
+
+#. module: sale_order_line_tree
+#: model:ir.model,name:sale_order_line_tree.model_sale_order_line_template_group
+msgid "Sales order line group by template"
+msgstr "Líneas agrupadas por plantilla"
+
+#. module: sale_order_line_tree
+#: model:ir.model.fields,field_description:sale_order_line_tree.field_sale_order_line_template_group_state
+msgid "Status"
+msgstr "Estado"
+
+#. module: sale_order_line_tree
+#: model:ir.model.fields,field_description:sale_order_line_tree.field_sale_order_line_product_tmpl_id
+#: model:ir.ui.view,arch_db:sale_order_line_tree.view_sales_order_line_filter
+msgid "Template"
+msgstr "Plantilla"
+
+#. module: sale_order_line_tree
+#: model:ir.model.fields,field_description:sale_order_line_tree.field_sale_order_sale_order_line_template_count
+msgid "Template line count"
+msgstr "Nº de plantillas"
+
+#. module: sale_order_line_tree
+#: model:ir.ui.view,arch_db:sale_order_line_tree.sale_order_form_order_line_template
+msgid "Template lines"
+msgstr "Líneas de plantillla"
+
+#. module: sale_order_line_tree
+#: model:ir.model.fields,field_description:sale_order_line_tree.field_sale_order_line_template_group_price_total
+msgid "Total"
+msgstr "Total"
+
+#. module: sale_order_line_tree
+#: model:ir.model.fields,field_description:sale_order_line_tree.field_sale_order_line_template_group_product_uom
+msgid "Unit of Measure"
+msgstr "Unidad de medida"
+
+#. module: sale_order_line_tree
+#: model:ir.model.fields,field_description:sale_order_line_tree.field_sale_order_line_template_group_price_subtotal
+msgid "Untaxed Total"
+msgstr "Total libre de impuestos"
+
+#. module: sale_order_line_tree
+#: model:ir.model.fields,field_description:sale_order_line_tree.field_sale_order_line_variant_sequence
+msgid "Variant sequence"
+msgstr "Orden de talla"
+
+#. module: sale_order_line_tree
+#: model:ir.model.fields,field_description:sale_order_line_tree.field_sale_order_line_template_group_variant_suffix
+msgid "Variant suffix"
+msgstr "Sufijo de variante"
+
+#. module: sale_order_line_tree
+#: model:ir.model.fields,field_description:sale_order_line_tree.field_sale_order_line_template_group_volume
+msgid "Volume"
+msgstr "Volumen"
+
+#. module: sale_order_line_tree
+#: model:ir.ui.view,arch_db:sale_order_line_tree.sale_order_line_form_view
+msgid "days"
+msgstr "días"
+
+#. module: sale_order_line_tree
+#: model:ir.model,name:sale_order_line_tree.model_sale_manage_variant
+msgid "sale.manage.variant"
+msgstr "Gestión de variantes"
+
+#. module: sale_order_line_tree
+#: model:ir.actions.act_window,name:sale_order_line_tree.view_sale_order_line_group_template_tree_action
+msgid "sale.order.line.template.group.tree.action"
+msgstr "Plantillas"
+
+#. module: sale_order_line_tree
+#: model:ir.model.fields,field_description:sale_order_line_tree.field_sale_order_line_template_group_sequence
+msgid "sequence"
+msgstr "Orden"
+
