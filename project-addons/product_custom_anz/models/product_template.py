@@ -8,11 +8,20 @@ class ProductTemplate(models.Model):
 
     _inherit = 'product.template'
 
-
-    #is_player_boot = fields.Boolean("Player boot", compute="get_is_player_boot", store=True)
-
     product_color = fields.Many2one('product.attribute.value', string="Color", domain="[('is_color','=', True)]")
     boot_type = fields.Many2one('product.attribute.value', string="Tipo de bota", domain="[('is_tboot','=', True)]")
+    variant_suffix = fields.Char('Variant suffix', compute="_get_variant_suffix", store=True)
+
+    @api.multi
+    @api.depends('attribute_line_ids')
+    def _get_variant_suffix(self):
+        for template in self:
+            print(template.name)
+            names = template.attribute_line_ids.mapped('value_ids').mapped('name')
+            if names:
+                template.variant_suffix = " ({})".format(", ".join([v for v in names]))
+            else:
+                template.variant_suffix = ''
 
     @api.model
     def _search(self, args, offset=0, limit=None, order=None, count=False, access_rights_uid=None):
