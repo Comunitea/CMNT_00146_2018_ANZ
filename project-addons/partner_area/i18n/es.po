@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-10-31 15:36+0000\n"
-"PO-Revision-Date: 2018-10-31 15:36+0000\n"
+"POT-Creation-Date: 2018-11-08 18:44+0000\n"
+"PO-Revision-Date: 2018-11-08 18:44+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -205,9 +205,10 @@ msgstr "Debes proporcionar un nombre para esta zona."
 #. module: partner_area
 #: model:ir.model,name:partner_area.model_product_brand
 msgid "product.brand"
-msgstr "product.brand"
+msgstr "Marcas"
 
 #. module: partner_area
 #: model:ir.model,name:partner_area.model_res_partner_area
 msgid "res.partner.area"
-msgstr "res.partner.area"
+msgstr "Area de cliente"
+

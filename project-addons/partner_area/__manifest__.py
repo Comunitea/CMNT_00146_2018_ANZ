@@ -11,6 +11,7 @@
         'product_brand',
     ],
     'data': [
+        'security/ir.model.access.csv',
         'views/partner_view.xml',
         'views/res_partner_area.xml',
         'views/product_brand.xml',
