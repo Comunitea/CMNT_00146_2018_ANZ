@@ -8,13 +8,12 @@
     'license': 'AGPL-3',
     'author': "Comunitea, ",
     'depends': [
-        'operating_unit',
-        'product_brand',
+        'product_custom_anz',
+        'sale_order_line_date',
         'sale_order_type',
-        'product_virtual_stock_conservative'
     ],
     'data': [
-        'views/operating_unit.xml',
+
         'views/sale_order.xml'
     ],
     'installable': True,
