@@ -14,7 +14,7 @@
         'product_brand',
         'partner_area',
         'product_custom_anz',
-        'partner_fax'
+        'partner_fax',
         'operating_unit'
     ],
     'data': [
