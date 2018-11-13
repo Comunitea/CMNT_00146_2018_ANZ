@@ -13,7 +13,8 @@
         'contract',
         'product_brand',
         'partner_area',
-        'product_custom_anz'
+        'product_custom_anz',
+        'partner_fax'
     ],
     'data': [
         'views/partner_view.xml',

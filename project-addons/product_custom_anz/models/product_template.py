@@ -13,6 +13,7 @@ class ProductTemplate(models.Model):
 
     product_color = fields.Many2one('product.attribute.value', string="Color", domain="[('is_color','=', True)]")
     boot_type = fields.Many2one('product.attribute.value', string="Tipo de bota", domain="[('is_tboot','=', True)]")
+    replication = fields.Boolean('Replication')
 
     @api.model
     def _search(self, args, offset=0, limit=None, order=None, count=False, access_rights_uid=None):
