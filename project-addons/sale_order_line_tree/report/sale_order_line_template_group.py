@@ -1,0 +1,192 @@
+# -*- coding: utf-8 -*-
+# Part of Odoo. See LICENSE file for full copyright and licensing details.
+
+from odoo import tools
+from odoo import api, fields, models
+from odoo.addons import decimal_precision as dp
+
+class SaleOrder(models.Model):
+    _inherit= "sale.order"
+
+    @api.multi
+    @api.depends('order_line')
+    def _compute_sale_order_line_count(self):
+        for order in self:
+            order.sale_order_line_count = len(order.order_line)
+            order.sale_order_line_template_count = len(order.order_line.mapped('product_tmpl_id'))
+
+
+    sale_order_line_template_count = fields.Integer('Template line count', compute='_compute_sale_order_line_count')
+
+    @api.multi
+    def action_view_order_lines_template_group(self):
+
+        model_data = self.env['ir.model.data']
+        tree_view = model_data.get_object_reference(
+            'sale_order_line_tree', 'view_sale_order_line_group_template_tree')
+
+        action = self.env.ref(
+            'sale_order_line_tree.view_sale_order_line_group_template_tree_action').read()[0]
+        action['views'] = {
+            (tree_view and tree_view[1] or False, 'tree'),}
+
+        ids = self.env['sale.order.line.template.group'].search([('order_id', '=', self.id)]).ids
+
+        action['domain'] = [('order_id', '=', self.id)]
+
+        action['context'] = {
+
+        }
+        return action
+
+
+class SaleOrderLineTemplateGroup(models.Model):
+
+    _name = "sale.order.line.template.group"
+    _description = "Sales order line group by template"
+    _auto = False
+    _rec_name = 'line_name'
+    _order = 'sequence, product_tmpl_id'
+
+    @api.multi
+    @api.depends('product_tmpl_id')
+    def get_line_name(self):
+        for line in self:
+            line.line_name = "{} {}".format(line.product_tmpl_id.name, line.variant_suffix)
+
+
+    name = fields.Char('Order Reference', readonly=True)
+    order_id = fields.Many2one('sale.order')
+    line_name = fields.Char('Line name', compute="get_line_name")
+
+    date = fields.Datetime(string='Date Order', readonly=True)
+    confirmation_date = fields.Datetime(string='Confirmation Date', readonly=True)
+    sequence = fields.Integer(string="sequence")
+
+    variant_suffix = fields.Char(related='product_tmpl_id.variant_suffix')
+    product_uom = fields.Many2one('product.uom', 'Unit of Measure', readonly=True)
+    product_uom_qty = fields.Float('Qty Ordered', readonly=True)
+    qty_delivered = fields.Float('Qty Delivered', readonly=True)
+    qty_to_invoice = fields.Float('Qty To Invoice', readonly=True)
+    qty_invoiced = fields.Float('Qty Invoiced', readonly=True)
+    company_id = fields.Many2one('res.company', 'Company', readonly=True)
+    price_total = fields.Float('Total', readonly=True)
+    price_subtotal = fields.Float('Untaxed Total', readonly=True)
+    discount = fields.Float(string='Discount (%)', digits=dp.get_precision('Discount'), readonly=True)
+    amt_to_invoice = fields.Float('Amount To Invoice', readonly=True)
+    amt_invoiced = fields.Float('Amount Invoiced', readonly=True)
+    product_tmpl_id = fields.Many2one('product.template', 'Product Template', readonly=True)
+    categ_id = fields.Many2one('product.category', 'Product Category', readonly=True)
+
+    nbr = fields.Integer('# of Lines', readonly=True)
+    pricelist_id = fields.Many2one('product.pricelist', 'Pricelist', readonly=True)
+    team_id = fields.Many2one('crm.team', 'Sales Channel', readonly=True, oldname='section_id')
+    state = fields.Selection([
+        ('draft', 'Draft Quotation'),
+        ('sent', 'Quotation Sent'),
+        ('sale', 'Sales Order'),
+        ('done', 'Sales Done'),
+        ('cancel', 'Cancelled'),
+        ], string='Status', readonly=True)
+    weight = fields.Float('Gross Weight', readonly=True)
+    volume = fields.Float('Volume', readonly=True)
+
+    def _select(self):
+        select_str = """
+        WITH currency_rate as (%s)
+             SELECT min(l.id) as id,
+                    min(l.sequence) as sequence,
+                    l.product_tmpl_id as product_tmpl_id,
+                    count(*) as nbr,
+                    l.product_uom as product_uom,
+                    COALESCE(l.discount, 0) as discount,
+                    l.order_id as order_id, 
+                    s.name as name,
+                    s.date_order as date,
+                    s.confirmation_date as confirmation_date,
+                    s.state as state,
+                    s.partner_id as partner_id,
+                    s.user_id as user_id,
+                    s.company_id as company_id,
+                    t.categ_id as categ_id,
+                    sum(l.product_uom_qty / u.factor * u2.factor) as product_uom_qty,
+                    sum(l.qty_delivered / u.factor * u2.factor) as qty_delivered,
+                    sum(l.qty_invoiced / u.factor * u2.factor) as qty_invoiced,
+                    sum(l.qty_to_invoice / u.factor * u2.factor) as qty_to_invoice,
+                    sum(l.price_total / COALESCE(cr.rate, 1.0)) as price_total,
+                    sum(l.price_subtotal / COALESCE(cr.rate, 1.0)) as price_subtotal,
+                    sum(l.amt_to_invoice / COALESCE(cr.rate, 1.0)) as amt_to_invoice,
+                    sum(l.amt_invoiced / COALESCE(cr.rate, 1.0)) as amt_invoiced,
+                    sum(p.weight * l.product_uom_qty / u.factor * u2.factor) as weight,
+                    sum(p.volume * l.product_uom_qty / u.factor * u2.factor) as volume,
+                    extract(epoch from avg(date_trunc('day',s.date_order)-date_trunc('day',s.create_date)))/(24*60*60)::decimal(16,2) as delay,
+                    s.pricelist_id as pricelist_id,
+                    s.analytic_account_id as analytic_account_id,
+                    s.team_id as team_id
+        """ % self.env['res.currency']._select_companies_rates()
+        return select_str
+
+    def _from(self):
+        from_str = """
+                sale_order_line l
+                    join sale_order s on (l.order_id=s.id)
+                    left join product_product p on (l.product_id=p.id)
+                    left join product_template t on (p.product_tmpl_id=t.id)
+                    left join product_uom u on (u.id=l.product_uom)
+                    left join product_uom u2 on (u2.id=t.uom_id)
+                    left join product_pricelist pp on (s.pricelist_id = pp.id)
+                    left join currency_rate cr on (cr.currency_id = pp.currency_id and
+                        cr.company_id = s.company_id and
+                        cr.date_start <= coalesce(s.date_order, now()) and
+                        (cr.date_end is null or cr.date_end > coalesce(s.date_order, now())))
+        """
+        return from_str
+    def _where(self):
+        where = """
+            l.order_id in {}
+        """.format(self._context('template_line_domain', []))
+        return where
+    def _group_by(self):
+        group_by_str = """
+            GROUP BY l.product_tmpl_id,
+                     l.discount,
+                     l.product_uom,
+                     t.uom_id,
+                     l.order_id,
+                     t.categ_id,
+                        s.name,
+                        s.date_order,
+                        s.confirmation_date,
+                        s.partner_id,
+                        s.user_id,
+                        s.state,
+                        s.company_id,
+                        s.pricelist_id,
+                        s.analytic_account_id,
+                        s.team_id
+        """
+        return group_by_str
+
+    @api.model_cr
+    def init(self):
+        # self._table = sale_report
+        tools.drop_view_if_exists(self.env.cr, self._table)
+        sql = """CREATE or REPLACE VIEW %s as (
+            %s
+            FROM ( %s )
+            %s
+            )""" % (self._table, self._select(), self._from(), self._group_by())
+
+        self.env.cr.execute(sql)
+
+    @api.multi
+    def write(self, vals):
+
+        if 'sequence' in vals:
+            tmpl_ids = self.mapped('product_tmpl_id').ids
+            self.env['sale.order.line'].search([('product_tmpl_id','in',tmpl_ids)]).write({'sequence': vals['sequence']})
+            vals.pop('sequence')
+        if vals:
+            return super(SaleOrderLineTemplateGroup, self).write(vals)
+
+

@@ -7,6 +7,14 @@ class SaleOrder(models.Model):
     _inherit = "sale.order"
 
     @api.multi
+    @api.depends('order_line')
+    def _compute_sale_order_line_count(self):
+        for order in self:
+            order.sale_order_line_count = len(order.order_line)
+
+    sale_order_line_count = fields.Integer('Order line count', compute='_compute_sale_order_line_count')
+
+    @api.multi
     def write(self, vals):
         res = super(SaleOrder, self).write(vals)
         if 'type_id' in vals:
@@ -21,6 +29,8 @@ class SaleOrderLine(models.Model):
     virtual_stock_conservative = fields.Float(related="product_id.virtual_stock_conservative",
                                               string='Virtual Stock Conservative')
 
+    requested_date = fields.Date('Requested Date')
+
     @api.multi
     @api.onchange('product_id')
     def product_id_change(self):
@@ -28,3 +38,4 @@ class SaleOrderLine(models.Model):
         if self.order_id.type_id:
             self.operating_unit_id = self.order_id.type_id.operating_unit_id
         return result
+

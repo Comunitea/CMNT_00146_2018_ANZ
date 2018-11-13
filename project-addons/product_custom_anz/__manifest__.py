@@ -9,11 +9,14 @@
     'author': "Comunitea, ",
     'depends': [
         'base',
-        'product_brand'
+        'partner_custom_anz',
+        'product_virtual_stock_conservative'
+
     ],
     'data': [
         'views/partner_view.xml',
-        'views/product_view.xml'
+        'views/product_view.xml',
+        'views/operating_unit.xml',
     ],
     'installable': True,
 }

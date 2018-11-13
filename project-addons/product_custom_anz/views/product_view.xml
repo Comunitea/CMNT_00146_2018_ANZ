@@ -42,9 +42,11 @@
         <field name="inherit_id" ref="product.product_template_only_form_view"/>
         <field name="arch" type="xml">
             <field name="attribute_line_ids" position="after">
-                <field name="boot_type"/>
-                <field name="product_color"/>
-
+                <group>
+                    <field name="boot_type"/>
+                    <field name="product_color"/>
+                    <field name="variant_suffix"/>
+                </group>
             </field>
         </field>
     </record>

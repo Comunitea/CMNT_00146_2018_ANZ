@@ -20,8 +20,6 @@ class SaleOrderLine(models.Model):
             self.is_player_boot = self.product_id.boot_type == partner.boot_type and (not partner.color_type or (partner.color_type and partner.color_type in self.attribute_value_ids))
 
             if self.is_player_boot:
-                print ("DESCUENTO 100%")
                 self.discount = 100.00
 
         return result
-

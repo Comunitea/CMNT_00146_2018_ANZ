@@ -18,12 +18,9 @@ class SaleManageVariant(models.TransientModel):
                 sale_order = record.order_id
             else:
                 sale_order = record
-
-
         res = super(SaleManageVariant, self).button_transfer_to_order()
 
         if sale_order:
-
             print ("Lineas: {}".format(sale_order.order_line.ids))
             res_tree = {'domain': [('id', 'in', sale_order.order_line.ids)]}
 

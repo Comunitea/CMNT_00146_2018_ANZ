@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-10-23 15:52+0000\n"
-"PO-Revision-Date: 2018-10-23 15:52+0000\n"
+"POT-Creation-Date: 2018-11-08 18:46+0000\n"
+"PO-Revision-Date: 2018-11-08 18:46+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -22,6 +22,23 @@ msgid "Affiliate"
 msgstr "Asociado"
 
 #. module: partner_custom_anz
+#: model:ir.ui.view,arch_db:partner_custom_anz.view_partner_form_anz_custom
+msgid "Allowed brand"
+msgstr "Marca permitida"
+
+#. module: partner_custom_anz
+#: model:ir.model.fields,field_description:partner_custom_anz.field_res_partner_allowed_brand_ids
+#: model:ir.model.fields,field_description:partner_custom_anz.field_res_users_allowed_brand_ids
+msgid "Allowed brands for this partner"
+msgstr "Marcas permitidas"
+
+#. module: partner_custom_anz
+#: model:ir.model.fields,field_description:partner_custom_anz.field_res_partner_allowed_categories_ids
+#: model:ir.model.fields,field_description:partner_custom_anz.field_res_users_allowed_categories_ids
+msgid "Allowed categories for this partner"
+msgstr "Categorías permitidas"
+
+#. module: partner_custom_anz
 #: model:ir.model,name:partner_custom_anz.model_account_analytic_account
 msgid "Analytic Account"
 msgstr "Cuenta analítica"
@@ -30,7 +47,12 @@ msgstr "Cuenta analítica"
 #: model:ir.model.fields,field_description:partner_custom_anz.field_res_partner_analytic_default_count
 #: model:ir.model.fields,field_description:partner_custom_anz.field_res_users_analytic_default_count
 msgid "Analytic Defaults"
-msgstr "Analytic Defaults"
+msgstr "Cuenta analica por defecto"
+
+#. module: partner_custom_anz
+#: model:ir.ui.view,arch_db:partner_custom_anz.view_partner_form_anz_custom
+msgid "Brands"
+msgstr "Marcas"
 
 #. module: partner_custom_anz
 #: model:ir.model.fields,help:partner_custom_anz.field_product_attribute_is_tboot
@@ -50,6 +72,29 @@ msgid "Contact"
 msgstr "Contacto"
 
 #. module: partner_custom_anz
+#: model:ir.model.fields,field_description:partner_custom_anz.field_res_partner_boot_ids
+#: model:ir.model.fields,field_description:partner_custom_anz.field_res_users_boot_ids
+msgid "Histórico"
+msgstr "Histórico"
+
+#. module: partner_custom_anz
+#: model:ir.model.fields,help:partner_custom_anz.field_res_partner_allowed_brand_ids
+#: model:ir.model.fields,help:partner_custom_anz.field_res_users_allowed_brand_ids
+msgid "If empty, all brands"
+msgstr "Marcas permitidas, todas si está vacío"
+
+#. module: partner_custom_anz
+#: model:ir.model.fields,help:partner_custom_anz.field_res_partner_allowed_categories_ids
+#: model:ir.model.fields,help:partner_custom_anz.field_res_users_allowed_categories_ids
+msgid "If empty, all categories"
+msgstr "Categorías permitidas, todas si está vacío"
+
+#. module: partner_custom_anz
+#: model:ir.model,name:partner_custom_anz.model_account_invoice
+msgid "Invoice"
+msgstr "Factura"
+
+#. module: partner_custom_anz
 #: model:ir.model.fields,field_description:partner_custom_anz.field_product_attribute_is_color
 #: model:ir.model.fields,field_description:partner_custom_anz.field_product_attribute_value_is_color
 msgid "Is color"
@@ -62,6 +107,16 @@ msgid "Is type of boot"
 msgstr "Es tipo de bota"
 
 #. module: partner_custom_anz
+#: model:ir.ui.view,arch_db:partner_custom_anz.view_partner_form_anz_custom
+msgid "Jugador"
+msgstr "Jugador"
+
+#. module: partner_custom_anz
+#: model:ir.ui.view,arch_db:partner_custom_anz.view_partner_form_anz_custom
+msgid "Patrocinio"
+msgstr "Patrocinio"
+
+#. module: partner_custom_anz
 #: model:ir.model.fields,field_description:partner_custom_anz.field_res_partner_player
 #: model:ir.model.fields,field_description:partner_custom_anz.field_res_users_player
 msgid "Player"
@@ -71,6 +126,40 @@ msgstr "Jugador"
 #: model:ir.model,name:partner_custom_anz.model_product_attribute
 msgid "Product Attribute"
 msgstr "Atributo de producto"
+
+#. module: partner_custom_anz
+#: model:ir.model.fields,field_description:partner_custom_anz.field_res_partner_boot_ids_count
+#: model:ir.model.fields,field_description:partner_custom_anz.field_res_users_boot_ids_count
+msgid "Quantity"
+msgstr "Cantidad"
+
+#. module: partner_custom_anz
+#: model:ir.ui.view,arch_db:partner_custom_anz.view_partner_form_anz_custom
+msgid "Restricted brand"
+msgstr "Marca no permitida"
+
+#. module: partner_custom_anz
+#: model:ir.model.fields,field_description:partner_custom_anz.field_res_partner_restricted_brand_ids
+#: model:ir.model.fields,field_description:partner_custom_anz.field_res_users_restricted_brand_ids
+msgid "Restricted brands for this partner"
+msgstr "Marcas no permitida"
+
+#. module: partner_custom_anz
+#: model:ir.model.fields,field_description:partner_custom_anz.field_res_partner_restricted_categories_ids
+#: model:ir.model.fields,field_description:partner_custom_anz.field_res_users_restricted_categories_ids
+msgid "Restricted categories for this partner"
+msgstr "Categorías no permitidas"
+
+#. module: partner_custom_anz
+#: model:ir.model.fields,field_description:partner_custom_anz.field_account_invoice_sponsored
+msgid "Sponsored"
+msgstr "Patrocinado"
+
+#. module: partner_custom_anz
+#: model:ir.model.fields,field_description:partner_custom_anz.field_res_partner_sponsorship_bag
+#: model:ir.model.fields,field_description:partner_custom_anz.field_res_users_sponsorship_bag
+msgid "Sponsorship Bag"
+msgstr "Bolsa patrocinio"
 
 #. module: partner_custom_anz
 #: model:ir.model.fields,field_description:partner_custom_anz.field_res_partner_boot_type
@@ -85,23 +174,18 @@ msgid "Type of color"
 msgstr "Tipo de color"
 
 #. module: partner_custom_anz
-#: model:ir.model,name:partner_custom_anz.model_product_attribute_value
-msgid "product.attribute.value"
-msgstr "product.attribute.value"
-
-#. module: partner_custom_anz
-#: model:ir.model.fields,field_description:partner_custom_anz.field_account_invoice_sponsored
-msgid "Sponsored"
-msgstr "Patrocinado"
-
-#. module: partner_custom_anz
-#: model:ir.model.fields,field_description:partner_custom_anz.field_res_partner_sponsorship_bag
-#: model:ir.model.fields,field_description:partner_custom_anz.field_res_users_sponsorship_bag
-msgid "Sponsorship Bag"
-msgstr "Bolsa patrocinio"
-
-#. module: partner_custom_anz
-#: code:addons/partner_custom_anz/models/res_partner.py:53
+#: code:addons/partner_custom_anz/models/res_partner.py:163
 #, python-format
 msgid "You try to sponsorship a quantity of %s and                 the rest of the bag is %s."
 msgstr "Trata de patrocinar una cantidad de %s y                   el resto de la bolsa es %s."
+
+#. module: partner_custom_anz
+#: model:ir.model,name:partner_custom_anz.model_product_attribute_value
+msgid "product.attribute.value"
+msgstr "Valores de los atributos"
+
+#. module: partner_custom_anz
+#: model:ir.model,name:partner_custom_anz.model_res_partner_area
+msgid "res.partner.area"
+msgstr "Area de cliente"
+

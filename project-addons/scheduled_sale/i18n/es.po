@@ -1,0 +1,321 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* scheduled_sale
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 11.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-11-08 18:35+0000\n"
+"PO-Revision-Date: 2018-11-08 18:35+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: scheduled_sale
+#: model:ir.model.fields,field_description:scheduled_sale.field_scheduled_sale_active
+#: model:ir.model.fields,field_description:scheduled_sale.field_scheduled_sale_period_active
+#: model:ir.ui.view,arch_db:scheduled_sale.view_scheduled_sale_search
+msgid "Active"
+msgstr "Activo"
+
+#. module: scheduled_sale
+#: model:ir.model.fields,field_description:scheduled_sale.field_scheduled_sale_product_brand_id
+#: model:ir.ui.view,arch_db:scheduled_sale.view_scheduled_sale_search
+msgid "Brand"
+msgstr "Marca"
+
+#. module: scheduled_sale
+#: selection:scheduled.sale,state:0
+#: selection:scheduled.sale.period,state:0
+msgid "Cancelled"
+msgstr "Cancelado"
+
+#. module: scheduled_sale
+#: model:ir.actions.act_window,help:scheduled_sale.action_scheduled_sale_period_form
+msgid "Click to add a schedule period."
+msgstr "Añade un periodo para pedidos de programación."
+
+#. module: scheduled_sale
+#: model:ir.actions.act_window,help:scheduled_sale.action_scheduled_sale_form
+msgid "Click to add a schedule sale."
+msgstr "Añade una programación."
+
+#. module: scheduled_sale
+#: model:ir.model.fields,field_description:scheduled_sale.field_scheduled_sale_code
+#: model:ir.ui.view,arch_db:scheduled_sale.view_scheduled_sale_search
+msgid "Code"
+msgstr "Código"
+
+#. module: scheduled_sale
+#: model:ir.model.fields,field_description:scheduled_sale.field_scheduled_sale_company_id
+#: model:ir.ui.view,arch_db:scheduled_sale.view_scheduled_sale_search
+msgid "Company"
+msgstr "Compañía"
+
+#. module: scheduled_sale
+#: model:ir.ui.view,arch_db:scheduled_sale.view_scheduled_sale_search
+#: selection:scheduled.sale,state:0
+#: selection:scheduled.sale.period,state:0
+msgid "Confirmed"
+msgstr "Confirmado"
+
+#. module: scheduled_sale
+#: model:ir.model,name:scheduled_sale.model_res_partner
+msgid "Contact"
+msgstr "Contacto"
+
+#. module: scheduled_sale
+#: model:ir.actions.act_window,help:scheduled_sale.action_scheduled_sale_orders_tree
+msgid "Create a new scheduled sale, the first step of a new schedule."
+msgstr "Crea un nuevo pedido de programación"
+
+#. module: scheduled_sale
+#: model:ir.model.fields,field_description:scheduled_sale.field_scheduled_sale_create_uid
+#: model:ir.model.fields,field_description:scheduled_sale.field_scheduled_sale_period_create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: scheduled_sale
+#: model:ir.model.fields,field_description:scheduled_sale.field_scheduled_sale_create_date
+#: model:ir.model.fields,field_description:scheduled_sale.field_scheduled_sale_period_create_date
+msgid "Created on"
+msgstr "Creado en"
+
+#. module: scheduled_sale
+#: model:ir.model.fields,field_description:scheduled_sale.field_sale_order_line_delivered_date
+msgid "Delivered date"
+msgstr "Fecha de entrega"
+
+#. module: scheduled_sale
+#: model:ir.model.fields,field_description:scheduled_sale.field_scheduled_sale_display_name
+#: model:ir.model.fields,field_description:scheduled_sale.field_scheduled_sale_period_display_name
+msgid "Display Name"
+msgstr "Nombre mostrado"
+
+#. module: scheduled_sale
+#: selection:scheduled.sale,state:0
+#: selection:scheduled.sale.period,state:0
+msgid "Draft"
+msgstr "Borrador"
+
+#. module: scheduled_sale
+#: selection:scheduled.sale,state:0
+#: selection:scheduled.sale.period,state:0
+msgid "Ended"
+msgstr "Finalizado"
+
+#. module: scheduled_sale
+#: model:ir.ui.view,arch_db:scheduled_sale.view_scheduled_sale_period_search
+msgid "From"
+msgstr "De"
+
+#. module: scheduled_sale
+#: model:ir.model.fields,field_description:scheduled_sale.field_scheduled_sale_period_from_date
+msgid "From date"
+msgstr "Desde"
+
+#. module: scheduled_sale
+#: model:ir.ui.view,arch_db:scheduled_sale.view_scheduled_sale_search
+msgid "Group By"
+msgstr "Agrupar por"
+
+#. module: scheduled_sale
+#: model:ir.model.fields,field_description:scheduled_sale.field_scheduled_sale_id
+#: model:ir.model.fields,field_description:scheduled_sale.field_scheduled_sale_period_id
+msgid "ID"
+msgstr "ID (identificación)"
+
+#. module: scheduled_sale
+#: model:ir.ui.view,arch_db:scheduled_sale.view_scheduled_sale_search
+msgid "Inactive"
+msgstr "Inactivo"
+
+#. module: scheduled_sale
+#: model:ir.model.fields,field_description:scheduled_sale.field_scheduled_sale___last_update
+#: model:ir.model.fields,field_description:scheduled_sale.field_scheduled_sale_period___last_update
+msgid "Last Modified on"
+msgstr "Última modificación en"
+
+#. module: scheduled_sale
+#: model:ir.model.fields,field_description:scheduled_sale.field_scheduled_sale_period_write_uid
+#: model:ir.model.fields,field_description:scheduled_sale.field_scheduled_sale_write_uid
+msgid "Last Updated by"
+msgstr "Última actualización de"
+
+#. module: scheduled_sale
+#: model:ir.model.fields,field_description:scheduled_sale.field_scheduled_sale_period_write_date
+#: model:ir.model.fields,field_description:scheduled_sale.field_scheduled_sale_write_date
+msgid "Last Updated on"
+msgstr "Última actualización en"
+
+#. module: scheduled_sale
+#: model:ir.model.fields,field_description:scheduled_sale.field_scheduled_sale_name
+#: model:ir.model.fields,field_description:scheduled_sale.field_scheduled_sale_period_name
+#: model:ir.ui.view,arch_db:scheduled_sale.view_scheduled_sale_period_search
+#: model:ir.ui.view,arch_db:scheduled_sale.view_scheduled_sale_search
+msgid "Name"
+msgstr "Nombre"
+
+#. module: scheduled_sale
+#: model:ir.actions.act_window,help:scheduled_sale.action_scheduled_sale_orders_tree
+msgid "Once the scheduled is confirmed, it becomes a sales order.\n"
+"                    You'll be able to invoice it and collect payments.\n"
+"                    From the <i>Sales Orders</i> menu, you can track delivery\n"
+"                    orders or services."
+msgstr "Una vez que el pedido de programación esta confirmado, creará una orden de venta\n"
+"                    Podrás facturar y cobrar.\n"
+"                    Desde el menú de <i>Ventas</i> , podrás seguir los envíos\n"
+"                    ordenes o servicios."
+
+#. module: scheduled_sale
+#: model:ir.model.fields,field_description:scheduled_sale.field_scheduled_sale_period_scheduled_sale_ids
+#: model:ir.model.fields,field_description:scheduled_sale.field_scheduled_sale_scheduled_orders_ids
+msgid "Orders"
+msgstr "Pedidos"
+
+#. module: scheduled_sale
+#: model:ir.model.fields,field_description:scheduled_sale.field_scheduled_sale_period_id_9499
+#: model:ir.ui.view,arch_db:scheduled_sale.view_scheduled_sale_search
+msgid "Period"
+msgstr "Período"
+
+#. module: scheduled_sale
+#: model:ir.model.fields,field_description:scheduled_sale.field_scheduled_sale_pricelist_id
+msgid "Pricelist"
+msgstr "Lista de precios"
+
+#. module: scheduled_sale
+#: model:ir.model.fields,help:scheduled_sale.field_scheduled_sale_pricelist_id
+msgid "Pricelist for scheduled sale."
+msgstr "Lista de precios para esta programación"
+
+#. module: scheduled_sale
+#: model:ir.model,name:scheduled_sale.model_product_product
+msgid "Product"
+msgstr "Producto"
+
+#. module: scheduled_sale
+#: model:ir.model,name:scheduled_sale.model_product_template
+msgid "Product Template"
+msgstr "Plantilla de producto"
+
+#. module: scheduled_sale
+#: model:ir.ui.view,arch_db:scheduled_sale.view_scheduled_sale_form
+msgid "Products"
+msgstr "Productos"
+
+#. module: scheduled_sale
+#: model:ir.model.fields,field_description:scheduled_sale.field_scheduled_sale_product_ids
+msgid "Products in this schedule"
+msgstr "Artículos de esta programación"
+
+#. module: scheduled_sale
+#: model:ir.model,name:scheduled_sale.model_sale_order
+msgid "Quotation"
+msgstr "Presupuesto"
+
+#. module: scheduled_sale
+#: model:ir.ui.view,arch_db:scheduled_sale.view_scheduled_sale_form
+msgid "Sale orders"
+msgstr "Pedidos de venta"
+
+#. module: scheduled_sale
+#: model:ir.model.fields,field_description:scheduled_sale.field_scheduled_sale_scheduled_orders_ids_count
+msgid "Sale orders count"
+msgstr "Nº de ventas"
+
+#. module: scheduled_sale
+#: model:ir.model,name:scheduled_sale.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Línea pedido de venta"
+
+#. module: scheduled_sale
+#: model:ir.model.fields,field_description:scheduled_sale.field_product_product_origin_scheduled_sale_id
+#: model:ir.model.fields,field_description:scheduled_sale.field_product_product_scheduled_sale_id
+#: model:ir.model.fields,field_description:scheduled_sale.field_product_template_origin_scheduled_sale_id
+#: model:ir.model.fields,field_description:scheduled_sale.field_product_template_scheduled_sale_id
+#: model:ir.model.fields,field_description:scheduled_sale.field_sale_order_line_scheduled_sale_id
+#: model:ir.model.fields,field_description:scheduled_sale.field_sale_order_origin_scheduled_sale_id
+#: model:ir.model.fields,field_description:scheduled_sale.field_sale_order_scheduled_sale_id
+msgid "Schedule order"
+msgstr "Pedidos de programación"
+
+#. module: scheduled_sale
+#: model:ir.ui.view,arch_db:scheduled_sale.view_scheduled_sale_period_search
+msgid "Schedule period"
+msgstr "Periodo de programación"
+
+#. module: scheduled_sale
+#: model:ir.actions.act_window,name:scheduled_sale.action_scheduled_sale_period_form
+#: model:ir.ui.menu,name:scheduled_sale.menu_action_scheduled_sale_period_form
+msgid "Schedule periods"
+msgstr "Periodos de programación"
+
+#. module: scheduled_sale
+#: model:ir.model,name:scheduled_sale.model_scheduled_sale
+#: model:ir.ui.menu,name:scheduled_sale.menu_scheduled_sale
+#: model:ir.ui.view,arch_db:scheduled_sale.view_scheduled_sale_form
+#: model:ir.ui.view,arch_db:scheduled_sale.view_scheduled_sale_period_form
+#: model:ir.ui.view,arch_db:scheduled_sale.view_scheduled_sale_search
+msgid "Schedule sale"
+msgstr "Programación"
+
+#. module: scheduled_sale
+#: model:ir.ui.view,arch_db:scheduled_sale.view_scheduled_sale_period_tree
+msgid "Schedule sale periods"
+msgstr "Periodos de programación"
+
+#. module: scheduled_sale
+#: model:ir.actions.act_window,name:scheduled_sale.action_scheduled_sale_form
+#: model:ir.ui.menu,name:scheduled_sale.menu_action_scheduled_sale_form
+#: model:ir.ui.view,arch_db:scheduled_sale.view_scheduled_sale_period_form
+#: model:ir.ui.view,arch_db:scheduled_sale.view_scheduled_sale_tree
+msgid "Schedule sales"
+msgstr "Programaciones"
+
+#. module: scheduled_sale
+#: model:ir.ui.view,arch_db:scheduled_sale.view_sales_order_filter
+msgid "Scheduled Order"
+msgstr "Peidos de progración"
+
+#. module: scheduled_sale
+#: model:ir.actions.act_window,name:scheduled_sale.action_scheduled_sale_orders_tree
+#: model:ir.ui.menu,name:scheduled_sale.menu_action_scheduled_sale_orders_form
+msgid "Scheduled Orders"
+msgstr "Pedidos de programación"
+
+#. module: scheduled_sale
+#: model:ir.ui.view,arch_db:scheduled_sale.view_sales_order_filter
+msgid "Scheduled Sale"
+msgstr "Programación"
+
+#. module: scheduled_sale
+#: model:ir.ui.view,arch_db:scheduled_sale.view_scheduled_sale_period_search
+msgid "State"
+msgstr "Estado"
+
+#. module: scheduled_sale
+#: model:ir.model.fields,field_description:scheduled_sale.field_scheduled_sale_period_state
+#: model:ir.model.fields,field_description:scheduled_sale.field_scheduled_sale_state
+msgid "Status"
+msgstr "Estado"
+
+#. module: scheduled_sale
+#: model:ir.ui.view,arch_db:scheduled_sale.view_scheduled_sale_period_search
+msgid "To"
+msgstr "Para"
+
+#. module: scheduled_sale
+#: model:ir.model.fields,field_description:scheduled_sale.field_scheduled_sale_period_to_date
+msgid "To date"
+msgstr "Hasta"
+
+#. module: scheduled_sale
+#: model:ir.model,name:scheduled_sale.model_scheduled_sale_period
+msgid "scheduled.sale.period"
+msgstr "Periodos"
+

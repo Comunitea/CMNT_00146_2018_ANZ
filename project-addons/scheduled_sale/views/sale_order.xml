@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="view_order_form_scheduled_sale" model="ir.ui.view">
+        <field name="name">sale_order_form.scheduled_sale</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='order_line']/form/group/group/field[@name='product_id']" position="attributes">
+                <field name="scheduled_sale_id"></field>
+            </xpath>
+            <xpath expr="//field[@name='order_line']/tree/field[@name='product_id']" position="attributes">
+                <field name="scheduled_sale_id"></field>
+            </xpath>
+            <field name="team_id" position="after">
+                <field name="scheduled_sale_id"></field>
+            </field>
+        </field>
+    </record>
+
+    <record id="view_order_tree_date" model="ir.ui.view">
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_tree"/>
+        <field name="arch" type="xml">
+            <field name="confirmation_date" position="after">
+                <field name="scheduled_sale_id" invisible="context.get('schedule_order_tree', True)"/>
+            </field>
+            <field name="state" position="attributes">
+                <attribute name="invisible">context.get('schedule_order_tree', True)</attribute>
+            </field>
+        </field>
+    </record>
+
+
+    <!--ASI NO FUNCIONA
+    <record id="action_orders" model="ir.actions.act_window">
+        <field name="name">Sales Orders</field>
+        <field name="res_model">sale.order</field>
+        <field name="inherit_id" ref="sale.action_orders"/>
+        <field name="domain">[('state', 'not in', ('draft', 'sent', 'cancel'), ('scheduled_sale_id','=', False)]</field>
+    </record>
+    <record id="action_quotations" model="ir.actions.act_window">
+        <field name="name">Quotations</field>
+        <field name="name">Sales Orders</field>
+        <field name="res_model">sale.order</field>
+        <field name="inherit_id" ref="sale.action_quotations"/>
+        <field name="domain">[('state', 'not in', ('draft', 'sent', 'cancel'), ('scheduled_sale_id','=', False)]</field>
+    </record>
+    <delete id="sale.action_orders" model="ir.actions.act_window"/>
+    <delete id="sale.action_quotations" model="ir.actions.act_window"/>
+    -->
+
+
+    <record id="sale.action_orders" model="ir.actions.act_window">
+            <field name="name">Sales Orders</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">sale.order</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,kanban,form,calendar,pivot,graph</field>
+            <field name="search_view_id" ref="sale.sale_order_view_search_inherit_sale"/>
+            <field name="context">{}</field>
+            <field name="domain">[('state', 'not in', ('draft', 'sent', 'cancel')),('scheduled_sale_id','=', False)]</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Create a Quotation, the first step of a new sale.
+                </p><p>
+                    Once the quotation is confirmed, it becomes a sales order.
+                    You'll be able to invoice it and collect payments.
+                    From the <i>Sales Orders</i> menu, you can track delivery
+                    orders or services.
+                </p>
+            </field>
+    </record>
+
+     <record id="sale.action_quotations" model="ir.actions.act_window">
+            <field name="name">Quotations</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">sale.order</field>
+            <field name="view_type">form</field>
+            <field name="view_id" ref="sale.view_quotation_tree"/>
+            <field name="view_mode">tree,kanban,form,calendar,pivot,graph</field>
+            <field name="search_view_id" ref="sale.sale_order_view_search_inherit_quotation"/>
+            <field name="domain">[('scheduled_sale_id','=', False)]</field>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Create a Quotation, the first step of a new sale.
+              </p><p>
+                Your next actions should flow efficiently: confirm the Quotation
+                to a Sales Order, then create the Invoice and collect the Payment.
+              </p>
+            </field>
+        </record>
+
+        <record id="view_sales_order_filter" model="ir.ui.view">
+            <field name="name">sale.order.search.scheduled_sale</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_sales_order_filter"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='product_id']" position="after">
+                    <separator/>
+                    <field name="scheduled_sale_id" string="Scheduled Order"
+                           filter_domain="[('scheduled_sale_id','!=', False),'|',('scheduled_sale_id','ilike',self),('origin','ilike',self)]"/>
+                </xpath>
+
+                 <xpath expr="//group[@expand='0']" position="inside">
+                    <filter name="scheduled_sales" string="Scheduled Sale" domain="[('scheduled_sale_id','!=', False)]" context="{'group_by':'scheduled_sale_id'}"/>
+                </xpath>
+            </field>
+        </record>
+
+</odoo>
+

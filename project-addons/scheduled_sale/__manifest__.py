@@ -1,20 +1,19 @@
 # -*- coding: utf-8 -*-
-# © 2018 Comunitea - Javier Colmenero <javier@comunitea.com>
+# © 2018 Comunitea - Kiko Sánchez <kiko@comunitea.com>
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
 {
-    'name': 'Partner Area',
+    'name': 'Scheduled sale anzamar',
     'version': '11.0.0.0.0',
     'category': 'Custom',
     'license': 'AGPL-3',
     'author': "Comunitea, ",
     'depends': [
-        'product_brand',
+        'sale'
     ],
     'data': [
         'security/ir.model.access.csv',
-        'views/partner_view.xml',
-        'views/res_partner_area.xml',
-        'views/product_brand.xml',
+        'views/sale_order.xml',
+        'views/scheduled_sale.xml',
     ],
     'installable': True,
 }
