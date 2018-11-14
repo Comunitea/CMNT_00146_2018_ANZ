@@ -36,7 +36,6 @@ class SaleOrder(models.Model):
         action.update({'tax_id':
                         {'domain': [('type_tax_use', '=', 'sale'), ('company_id', '=', self.company_id)]}
                        })
-        print (action)
         return action
 
 class SaleOrderLine(models.Model):
