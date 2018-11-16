@@ -47,7 +47,7 @@ msgstr "Comisión"
 #. module: custom_commission_anz
 #: model:ir.ui.view,arch_db:custom_commission_anz.view_partner_form_agent_brand
 msgid "Commissions by brand"
-msgstr "Comisiones por marcha"
+msgstr "Comisiones por marca"
 
 #. module: custom_commission_anz
 #: model:ir.model,name:custom_commission_anz.model_res_partner
