@@ -21,7 +21,7 @@
                 <field name="agent_brand_ids" nolabel="0" attrs="{'invisible': [('customer', '=', False)]}">
                     <tree string="Agents by brand" editable="bottom">
                         <field name="brand_id"/>
-                        <field name="agent_ids" widget="many2many_tags" context="{'default_agent': True}"//>
+                        <field name="agent_ids" widget="many2many_tags" context="{'default_agent': True}"/>
                     </tree>
                 </field>
             </field>

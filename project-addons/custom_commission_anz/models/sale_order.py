@@ -28,3 +28,17 @@ class SaleOrderLine(models.Model):
             agent_vals.append(values)
         self.update({'agents': agent_vals})
         return res
+
+
+class SaleOrderLineAgent(models.Model):
+    _inherit = "sale.order.line.agent"
+
+    @api.onchange('agent')
+    def onchange_agent(self):
+        super(SaleOrderLineAgent, self).onchange_agent()
+        if self.sale_line.product_id.product_brand_id:
+            brand = self.sale_line.product_id.product_brand_id
+            commission_id = self.agent.get_brand_commission(brand.id)
+            if not commission_id:
+                commission_id = self.agent.commission.id
+        self.commission = commission_id
