@@ -1,0 +1,119 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* custom_commission_anz
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 11.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-11-16 12:54+0000\n"
+"PO-Revision-Date: 2018-11-16 12:54+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: custom_commission_anz
+#: model:ir.model.fields,field_description:custom_commission_anz.field_agent_brand_agent_ids
+msgid "Agent"
+msgstr "Agente"
+
+#. module: custom_commission_anz
+#: model:ir.model.fields,field_description:custom_commission_anz.field_res_partner_agent_brand_ids
+#: model:ir.model.fields,field_description:custom_commission_anz.field_res_users_agent_brand_ids
+#: model:ir.ui.view,arch_db:custom_commission_anz.view_partner_form_agent_brand
+msgid "Agents by brand"
+msgstr "Agentes por marca"
+
+#. module: custom_commission_anz
+#: model:ir.model.fields,field_description:custom_commission_anz.field_agent_brand_brand_id
+#: model:ir.model.fields,field_description:custom_commission_anz.field_commission_brand_brand_id
+msgid "Brand"
+msgstr "Marca"
+
+#. module: custom_commission_anz
+#: model:ir.model.fields,field_description:custom_commission_anz.field_res_partner_commission_brand_ids
+#: model:ir.model.fields,field_description:custom_commission_anz.field_res_users_commission_brand_ids
+msgid "Comissions by brand"
+msgstr "Comisiones por marca"
+
+#. module: custom_commission_anz
+#: model:ir.model.fields,field_description:custom_commission_anz.field_commission_brand_commission_id
+msgid "Commission"
+msgstr "Comisión"
+
+#. module: custom_commission_anz
+#: model:ir.ui.view,arch_db:custom_commission_anz.view_partner_form_agent_brand
+msgid "Commissions by brand"
+msgstr "Comisiones por marcha"
+
+#. module: custom_commission_anz
+#: model:ir.model,name:custom_commission_anz.model_res_partner
+msgid "Contact"
+msgstr "Contacto"
+
+#. module: custom_commission_anz
+#: model:ir.model.fields,field_description:custom_commission_anz.field_agent_brand_create_uid
+#: model:ir.model.fields,field_description:custom_commission_anz.field_commission_brand_create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: custom_commission_anz
+#: model:ir.model.fields,field_description:custom_commission_anz.field_agent_brand_create_date
+#: model:ir.model.fields,field_description:custom_commission_anz.field_commission_brand_create_date
+msgid "Created on"
+msgstr "Creado en"
+
+#. module: custom_commission_anz
+#: model:ir.model.fields,field_description:custom_commission_anz.field_agent_brand_display_name
+#: model:ir.model.fields,field_description:custom_commission_anz.field_commission_brand_display_name
+msgid "Display Name"
+msgstr "Nombre mostrado"
+
+#. module: custom_commission_anz
+#: model:ir.model.fields,field_description:custom_commission_anz.field_agent_brand_id
+#: model:ir.model.fields,field_description:custom_commission_anz.field_commission_brand_id
+msgid "ID"
+msgstr "ID (identificación)"
+
+#. module: custom_commission_anz
+#: model:ir.model.fields,field_description:custom_commission_anz.field_agent_brand___last_update
+#: model:ir.model.fields,field_description:custom_commission_anz.field_commission_brand___last_update
+msgid "Last Modified on"
+msgstr "Última modificación en"
+
+#. module: custom_commission_anz
+#: model:ir.model.fields,field_description:custom_commission_anz.field_agent_brand_write_uid
+#: model:ir.model.fields,field_description:custom_commission_anz.field_commission_brand_write_uid
+msgid "Last Updated by"
+msgstr "Última actualización de"
+
+#. module: custom_commission_anz
+#: model:ir.model.fields,field_description:custom_commission_anz.field_agent_brand_write_date
+#: model:ir.model.fields,field_description:custom_commission_anz.field_commission_brand_write_date
+msgid "Last Updated on"
+msgstr "Última actualización en"
+
+#. module: custom_commission_anz
+#: model:ir.model.fields,field_description:custom_commission_anz.field_agent_brand_partner_id
+#: model:ir.model.fields,field_description:custom_commission_anz.field_commission_brand_partner_id
+msgid "Partner"
+msgstr "Empresa"
+
+#. module: custom_commission_anz
+#: model:ir.model,name:custom_commission_anz.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Línea de pedido de ventas"
+
+#. module: custom_commission_anz
+#: model:ir.model,name:custom_commission_anz.model_agent_brand
+msgid "agent.brand"
+msgstr "agent.brand"
+
+#. module: custom_commission_anz
+#: model:ir.model,name:custom_commission_anz.model_commission_brand
+msgid "commission.brand"
+msgstr "commission.brand"
+
