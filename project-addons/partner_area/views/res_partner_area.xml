@@ -37,7 +37,7 @@
                         </group>
                     </page>
                     <page string="Partners">
-                        <group string="Area">
+                        <group string="Partners">
                             <div>
                                 <field name="partner_ids">
                                     <tree>

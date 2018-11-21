@@ -3,10 +3,6 @@
 from odoo import api, fields, models, _
 from odoo.exceptions import UserError
 
-# © 2016 Comunitea - Javier Colmenero <javier@comunitea.com>
-# License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
-from odoo import api, fields, models,_
-from odoo.exceptions import UserError
 
 class ResPartnerArea(models.Model):
     _inherit = 'res.partner.area'
@@ -81,11 +77,12 @@ class ResPartner(models.Model):
                                             string="Restricted categories for this partner"
                                             )
 
-
     def get_partner_by_context(self):
         partner = self._context.get('partner_id', False) and \
-                  self.env['res.partner'].browse(self._context.get('partner_id')) or\
-                  self.env.user.partner_id
+                  self.env['res.partner'].\
+                  browse(self._context.get('partner_id')).\
+                  commercial_partner_id or \
+                  self.env.user.partner_id.commercial_partner_id
         return partner
 
     def add_args_to_product_search(self, args=[]):
@@ -146,7 +143,8 @@ class ResPartner(models.Model):
         if len(defaults) > 1:
             action['domain'] = [('id', 'in', defaults.ids)]
         elif len(defaults) == 1:
-            form_view_name = 'account.analytic.default.form'
+            form_view_name = \
+                'account_analytic_default.view_account_analytic_default_form'
             action['views'] = [
                 (self.env.ref(form_view_name).id, 'form')]
             action['res_id'] = defaults.ids[0]
