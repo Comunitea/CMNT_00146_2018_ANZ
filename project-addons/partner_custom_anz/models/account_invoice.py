@@ -13,6 +13,7 @@ class AccountInvoice(models.Model):
     def _onchange_partner_id(self):
         if self.partner_id.player:
             self.sponsored = True
+        super(AccountInvoice, self)._onchange_partner_id()
 
     @api.model
     def create(self, vals):
