@@ -86,12 +86,8 @@ class ResPartner(models.Model):
         return partner
 
     def add_args_to_product_search(self, args=[]):
-
-        # De momento no se usa las zonas en los productos
-        if self.area_id and False:
-            args.append((('allowed_area_ids', 'in', self.area_id.id)))
-            args.append((('restrict_area_ids', 'not in', self.area_id.id)))
-
+        if self.area_id:
+            args.extend([('product_brand_id.restricted_area_ids', 'not in', [self.area_id.id])])
 
         # Si el partner tiene marcas permitidas, se usan las del partner, si no las de la zona
         allowed_brand_ids = self.allowed_brand_ids.ids or self.area_id.allowed_brand_ids.ids or []
