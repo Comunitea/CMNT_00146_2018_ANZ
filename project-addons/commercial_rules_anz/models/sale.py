@@ -20,5 +20,7 @@ class SaleOrder(models.Model):
         Set delivery line, after Appling promotions
         """
         res = super(SaleOrder, self).apply_commercial_rules()
-        self.set_delivery_line()
+        if self. carrier_id:
+            self.get_delivery_price()
+            self.set_delivery_line()
         return res
