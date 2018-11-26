@@ -44,12 +44,26 @@ class PromotionsRulesConditionsExprs(models.Model):
         return super(PromotionsRulesConditionsExprs, self).serialise(
                 attribute, comparator, value)
 
+    def serialise_pos(self, attribute, comparator, value):
+        """
+        Using kwargs to evaluate if product has a specific mark
+        """
+        if attribute == 'brand':
+            if comparator == 'in':
+                return "%s %s product_brands" % (value, comparator)
+            else:
+                return "!(%s in product_brands)" % (value)
+        return super(PromotionsRulesConditionsExprs, self).serialise_pos(
+                attribute, comparator, value)
+
     def evaluate(self, order):
         # Get order lines products brands
         product_brands = []
         for line in order.order_line:
             if line.product_id.product_brand_id:
-                product_brands.append(line.product_id.product_brand_id.name)
+                if line.product_id.product_brand_id.name not in product_brands:
+                    product_brands.append(
+                        line.product_id.product_brand_id.name)
         # Using kwargs to evaluate the serialiced expression
         res = super(PromotionsRulesConditionsExprs, self).\
             evaluate(order, product_brands=product_brands)

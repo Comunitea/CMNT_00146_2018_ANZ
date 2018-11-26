@@ -9,9 +9,11 @@
     'author': "Comunitea, ",
     'depends': [
         'base',
-        'commercial_rules'
+        'commercial_rules',
+        'commercial_rules_pos',
     ],
     'data': [
+        'views/assets.xml',
     ],
     'installable': True,
 }
