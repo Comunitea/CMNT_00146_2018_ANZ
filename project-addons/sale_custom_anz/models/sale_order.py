@@ -7,7 +7,6 @@ class SaleOrder(models.Model):
     _inherit = "sale.order"
 
     @api.multi
-    @api.depends('order_line')
     def _compute_sale_order_line_count(self):
         for order in self:
             order.sale_order_line_count = len(order.order_line)

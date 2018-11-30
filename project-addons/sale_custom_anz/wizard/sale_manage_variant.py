@@ -10,10 +10,19 @@ class SaleManageVariant(models.TransientModel):
 
     @api.model
     def _get_default_partner(self):
-        if self._context.get('active_id'):
-            order = self.env['sale.order'].browse(self._context['active_id'])
-            return order.partner_id.commercial_partner_id.id
+        if self._context.get('active_id', False) and \
+                self._context.get('active_model', False):
+            if self._context['active_model'] == 'sale.order':
+                active_id = self._context['active_id']
+            elif self._context['active_model'] == 'sale.order.line':
+                line_id = self._context['active_id']
+                active_id = self.env['sale.order.line'].browse(line_id).\
+                    order_id.id
 
+            if active_id:
+                order = self.env['sale.order'].browse(active_id)
+                return order.partner_id.commercial_partner_id.id
+            return False
 
     partner_id = fields.Many2one("res.partner", "Customer",
                                  default=_get_default_partner)
