@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_reinvoice_wzd_form" model="ir.ui.view">
+        <field name="name">view.reinvoice.wzd.form</field>
+        <field name="model">reinvoice.wzd</field>
+        <field name="arch" type="xml">
+            <form string="Reinvoice">
+                <div name="help">
+                    <p>It will create invoices for the assocociated</p>
+                </div>
+                <!-- <group>
+                    <field name="group"/>
+                </group> -->
+                <footer>
+                    <button name="create_invoices" type="object" class="btn-primary" string="Create Associate Invoices"/>
+                    <button special="cancel" string="Cancel" class="oe_link"/>
+                </footer> 
+            </form>
+        </field>
+    </record>
+
+   
+   <record id="action_view_direct_invoice_wzd" model="ir.actions.act_window">
+            <field name="name">Create Associate Invoices</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">reinvoice.wzd</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+            <field name="binding_model_id" ref="account.model_account_invoice" />
+    </record>
+    
+    
+</odoo>

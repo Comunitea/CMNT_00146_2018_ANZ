@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Add fields for supplier invoices imported -->
+    <record id="purchase_order_form_custom_anz" model="ir.ui.view">
+        <field name="name">purchase.order.form.custom.anz</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form"/>
+        <field name="arch" type="xml">
+            <field name="partner_id" position="after">
+                <field name="associate_id"/>
+            </field>
+
+            <!-- Invisible picking button when associate setted -->
+            <xpath expr="//div[@name='button_box']/button[@name='action_view_picking']" position="attributes">
+               <attribute name="attrs">{'invisible':['|', ('state', 'in', ('draft','sent','to approve')), ('associate_id', '!=', False)]}</attribute>
+            </xpath>
+        </field>
+    </record>
+
+
+    <!-- purchase.order inherit search view -->
+    <record id="view_purchase_order_filter_custom_anz" model="ir.ui.view">
+        <field name="name">view.purchase.order.filter.custom.anz</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.view_purchase_order_filter"/>
+        <field name="arch" type="xml">
+            <filter name="activities_upcoming_all" position="after">
+                    <separator/>
+                     <filter name="associate" string="With Associate" domain="[('associate_id','!=', False)]"/>
+            </filter>
+            <xpath expr="//group[1]" position="inside">
+                <separator/>
+                <filter string="Associate" context="{'group_by':'associate_id'}"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
