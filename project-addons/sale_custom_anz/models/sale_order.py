@@ -68,6 +68,7 @@ class SaleOrderLine(models.Model):
                                               string='Virtual Stock Conservative')
 
     requested_date = fields.Date('Requested Date')
+    ref_change = fields.Boolean('Reference change')
 
     @api.multi
     @api.onchange('product_id')
@@ -75,5 +76,31 @@ class SaleOrderLine(models.Model):
         result = super(SaleOrderLine, self).product_id_change()
         if self.order_id.type_id:
             self.operating_unit_id = self.order_id.type_id.operating_unit_id
+        # Check if product added is restricted by brand.
+        # If restricted sets true ref_check field
+        if self._context.get('ref_change_partner_id', False):
+            partner_id = self._context.get('ref_change_partner_id', False)
+            partner = self.env['res.partner'].browse(partner_id)
+            if partner.allowed_brand_ids:
+                brand_id = self.product_id.product_brand_id.id if \
+                    self.product_id.product_brand_id else \
+                    self.product_tmpl_id.product_brand_id.id
+                if not brand_id:
+                    self.ref_change = True
+                    return result
+                if brand_id not in \
+                        partner.allowed_brand_ids.ids:
+                    self.ref_change = True
+                else:
+                    self.ref_change = False
         return result
 
+    @api.multi
+    def _prepare_invoice_line(self, qty):
+        """
+        Propagate ref_check field, to account_invoice_line
+        """
+        self.ensure_one()
+        res = super(SaleOrderLine, self)._prepare_invoice_line(qty)
+        res.update(ref_change=self.ref_change)
+        return res

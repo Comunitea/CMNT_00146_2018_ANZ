@@ -3,7 +3,9 @@
 from odoo import models, fields, api
 
 
-class AccountInvoice(models.Model):
+class AccountInvoiceLine(models.Model):
 
-    _inherit = 'account.invoice'
+    _inherit = 'account.invoice.line'
+
+    ref_change = fields.Boolean('Reference change')
 

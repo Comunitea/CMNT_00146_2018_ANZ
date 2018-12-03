@@ -11,6 +11,7 @@
         'partner_custom_anz',
         'product_custom_anz',
         'sale_order_variant_mgmt',
+        'sale_custom_anz'
 
     ],
     'data': [
