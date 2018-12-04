@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="account_invoice_line_template_view_form" model="ir.ui.view">
+        <field name="name">account.invoice.line.template.view.form</field>
+        <field name="model">account.invoice.line.template</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="nbr"/>
+                <field name="product_tmpl_id"/>
+                <field name="quantity"/>
+                <field name="product_uom"/>
+                <field name="price_unit"/>
+                <field name="price_subtotal"/>
+                <field name="price_total"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_account_invoice_line_template" model="ir.actions.act_window">
+        <field name="name">account.invoice.line.template.tree.action</field>
+        <field name="res_model">account.invoice.line.template</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="account_invoice_line_template_view_form"/>
+    </record>
+</odoo>

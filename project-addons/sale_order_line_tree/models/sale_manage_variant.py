@@ -1,8 +1,6 @@
 
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
-
-import odoo.addons.decimal_precision as dp
-from odoo import api, models, fields
+from odoo import api, models
 
 
 class SaleManageVariant(models.TransientModel):
@@ -13,7 +11,8 @@ class SaleManageVariant(models.TransientModel):
         sale_order = False
         if 'return_sale_order_line_tree' in self._context:
             context = self.env.context
-            record = self.env[context['active_model']].browse(context['active_id'])
+            record = self.env[context['active_model']].browse(
+                context['active_id'])
             if context['active_model'] == 'sale.order.line':
                 sale_order = record.order_id
             else:

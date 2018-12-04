@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="external_layout_custom" inherit_id="web.external_layout">
+        <xpath expr="//t[@t-set='company']/.." position="after">
+            <t t-if="o and 'operating_unit_id' in o">
+                <t t-set="operating_unit" t-value="o.operating_unit_id"/>
+                <t t-set="partner" t-value="operating_unit.partner_id"/>
+            </t>
+            <t t-if="o and 'operating_unit_id' not in o">
+                <t t-set="partner" t-value="company.partner_id"/>
+            </t>
+        </xpath>
+    </template>
+
+    <template id="external_layout_standard_custom" inherit_id="web.external_layout_standard">
+        <xpath expr="//div[hasclass('header')]" position="replace">
+            <div class="header">
+                <div class="row">
+                    <div class="col-xs-3 mb4">
+                        <img t-if="partner.image" t-att-src="'data:image/png;base64,%s' % to_text(partner.image)" style="max-height: 100px;"/>
+                    </div>
+                    <div class="col-xs-6" name="company_address">
+                        <span t-esc="partner"
+                            t-options='{"widget": "contact", "fields": ["address", "name", "phone", "mobile", "email", "website"], "no_marker": true, "no_tag_br": True, "vat": True, "vat_label": company.country_id.vat_label}'
+                        />
+                    </div>
+                </div>
+                <div t-if="company.logo or company.report_header" class="row zero_min_height">
+                    <div class="col-xs-12">
+                        <div style="border-bottom: 1px solid black;"/>
+                    </div>
+                </div>
+            </div>
+        </xpath>
+
+        <xpath expr="//div[hasclass('footer')]" position="replace">
+            <div class="footer">
+                <div class="text-center" style="border-top: 1px solid black;">
+                    <div name="financial_infos" style="font-size:10px;">
+                        <span t-field="company.report_footer"/>
+                    </div>
+
+                    <div class="text-muted">
+                        Page: <span class="page"/> / <span class="topage"/>
+                    </div>
+                </div>
+            </div>
+        </xpath>
+    </template>
+
+    <template id="contact" inherit_id="base.contact">
+        <xpath expr="//span[@t-esc='mobile']/.." position="replace"></xpath>
+        <xpath expr="//span[@t-esc='phone']" position="after">
+            <t t-if="mobile and 'mobile' in fields"> - <span t-esc="mobile"/></t>
+        </xpath>
+        <xpath expr="//span[@t-esc='website']/.." position="before">
+            <div t-if="'vat' in object and options.get('vat', False)">
+                <div t-if="object.vat"><t t-esc="options.get('vat_label', 'TIN')"/>: <span t-field="object.vat"/></div>
+            </div>
+        </xpath>
+    </template>
+</odoo>
