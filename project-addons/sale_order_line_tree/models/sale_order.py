@@ -6,6 +6,34 @@ from odoo import api, models, fields
 class SaleOrder(models.Model):
     _inherit = "sale.order"
 
+    @api.multi
+    @api.depends('order_line')
+    def _compute_sale_order_line_count(self):
+        for order in self:
+            order.sale_order_line_count = len(order.order_line)
+            order.sale_order_line_template_count = len(order.template_lines)
+
+    sale_order_line_template_count = fields.Integer(
+        'Template line count', compute='_compute_sale_order_line_count')
+    template_lines = fields.One2many('sale.order.line.template.group',
+                                     'order_id')
+
+    @api.multi
+    def action_view_order_lines_template_group(self):
+
+        model_data = self.env['ir.model.data']
+        tree_view = model_data.get_object_reference(
+            'sale_order_line_tree', 'view_sale_order_line_group_template_tree')
+
+        action = self.env.ref(
+            'sale_order_line_tree.view_sale_order_line_group_template_tree_action').read()[0]
+        action['views'] = {
+            (tree_view and tree_view[1] or False, 'tree')}
+
+        action['domain'] = [('order_id', '=', self.id)]
+
+        action['context'] = {}
+        return action
 
     @api.multi
     def action_view_order_lines(self):
@@ -13,9 +41,6 @@ class SaleOrder(models.Model):
         model_data = self.env['ir.model.data']
         tree_view = model_data.get_object_reference(
             'sale_order_line_tree', 'sale_order_line_tree_view')
-
-        form_view = model_data.get_object_reference(
-            'sale_order_line_tree', 'sale_order_line_form_view')
 
         action = self.env.ref(
             'sale_order_line_tree.sale_order_line_tree_view_action').read()[0]
@@ -59,8 +84,9 @@ class SaleOrderLine(models.Model):
         self.product_id = False
         result = super(SaleOrderLine, self).product_id_change() or []
         if self.product_tmpl_id:
-            result.update({'domain':
-                               {'product_id': [('product_tmpl_id', '=', self.product_tmpl_id.id)]}
+            result.update({'domain': {'product_id':
+                                      [('product_tmpl_id', '=',
+                                        self.product_tmpl_id.id)]}
                            })
         else:
             result.update({'domain':[]})
