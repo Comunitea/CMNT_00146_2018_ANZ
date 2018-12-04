@@ -57,11 +57,10 @@ class SaleOrder(models.Model):
             'company_id': self.company_id.id,
             'type_id': self.type_id.id
         }
-
-        action.update({'tax_id': {'domain':
-                                  [('type_tax_use', '=', 'sale'),
-                                   ('company_id', '=', self.company_id)]}
-                       })
+        # action['view_ids'] = [tree_view and tree_view[1]]
+        action.update(
+            {'tax_id': {'domain': [('type_tax_use', '=', 'sale'),
+                                   ('company_id', '=', self.company_id)]}})
         return action
 
 
@@ -70,7 +69,8 @@ class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"
 
     product_tmpl_id = fields.Many2one('product.template', string="Template")
-    variant_sequence = fields.Integer()
+    variant_sequence = fields.Integer(string="Variant sequence")
+
     _order = 'sequence, variant_sequence'
 
     @api.multi
@@ -93,7 +93,6 @@ class SaleOrderLine(models.Model):
 
         return result
 
-
     @api.multi
     @api.onchange('product_id')
     def product_id_change(self):
@@ -107,15 +106,14 @@ class SaleOrderLine(models.Model):
         else:
             self.variant_sequence = 0
             self.product_tmpl_id = False
-
         return result
 
     @api.model
     def create(self, vals):
 
-        if 'product_tmpl_id' not in vals and vals.get('product_id', False):
-            tmpl_id = self.env['product.product'].search_read(
-                [('id', '=', vals['product_id'])],
-                ['product_tmpl_id'])[0]['product_tmpl_id'][0]
+        if 'product_tmpl_id'not in vals and vals.get('product_id', False):
+            tmpl_id = self.env['product.product'].\
+                search_read([('id', '=', vals['product_id'])],
+                            ['product_tmpl_id'])[0]['product_tmpl_id'][0]
             vals.update({'product_tmpl_id': tmpl_id})
         return super(SaleOrderLine, self).create(vals)

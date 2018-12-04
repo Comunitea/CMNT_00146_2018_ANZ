@@ -15,6 +15,7 @@
     ],
     'data': [
         'views/sale_order.xml',
+        'views/account_invoice.xml',
         'wizard/sale_manage_variant_view.xml'
     ],
     'installable': True,
