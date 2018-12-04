@@ -76,10 +76,10 @@ class SaleOrder(models.Model):
         return res
 
     @api.onchange('partner_id')
-    def _onchange_partner_id(self):
+    def onchange_partner_id(self):
         if self.partner_id.player and self.partner_id.sponsorship_bag > 0:
             self.sponsored = True
-        return super(SaleOrder, self)._onchange_partner_id()
+        return super(SaleOrder, self).onchange_partner_id()
 
     @api.multi
     def post_message_bag(self, mode):
