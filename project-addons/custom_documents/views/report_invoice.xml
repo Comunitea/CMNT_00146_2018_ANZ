@@ -1,14 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <template id="report_invoice_document_custom" inherit_id="account.report_invoice_document">
+        <xpath expr="//div[@t-if='o.name']" position="after">
+            <div t-if="o.user_id.name" class="col-xs-2">
+                <strong>Salesperson:</strong>
+                <p t-field="o.user_id"/>
+            </div>
+        </xpath>
         <xpath expr="//table[@name='invoice_line_table']" position="replace">
 
             <table class="table table-condensed" name="invoice_line_table">
                 <thead>
                     <tr>
-                        <th>Reference</th>
+
+                        <t t-if="not expand_lines">
+                            <th>Reference</th>
+                        </t>
                         <th>Description</th>
                         <th class="text-right">Quantity</th>
+                        <t t-if="o.partner_id.country_id.intrastat">
+                            <th>Intrastat</th>
+                            <th>Weight</th>
+                        </t>
                         <th class="text-right">Unit Price</th>
                         <th t-if="display_discount" class="text-right">Disc.(%)</th>
                         <th class="text-right">Taxes</th>
@@ -20,21 +33,27 @@
                         <t t-set="lines_grouped" t-value="o.lines_grouped_by_sale(group_templates=False)"/>
                         <t t-foreach="lines_grouped.keys()" t-as="order">
                             <tr>
-                                <td></td>
                                 <td>Order number: <span t-esc="order.name"/></td>
                                 <td></td>
+                                <t t-if="o.partner_id.country_id.intrastat">
+                                    <td></td>
+                                    <td></td>
+                                </t>
                                 <td></td>
                                 <td></td>
                                 <td></td>
                                 <td></td>
                             </tr>
                             <tr t-foreach="lines_grouped[order]" t-as="l">
-                                <td></td>
                                 <td><span t-field="l.name"/></td>
                                 <td class="text-right">
                                     <span t-field="l.quantity"/>
                                     <span t-field="l.uom_id"  groups="product.group_uom"/>
                                 </td>
+                                <t t-if="o.partner_id.country_id.intrastat">
+                                    <td><span t-field="l.product_id.intrastat_id.name"/></td>
+                                    <td><span t-field="l.product_id.weight"/></td>
+                                </t>
                                 <td class="text-right">
                                     <span t-field="l.price_unit"/>
                                 </td>
@@ -60,6 +79,10 @@
                                 <td></td>
                                 <td>Order number: <span t-esc="order.name"/></td>
                                 <td></td>
+                                <t t-if="o.partner_id.country_id.intrastat">
+                                    <td></td>
+                                    <td></td>
+                                </t>
                                 <td></td>
                                 <td></td>
                                 <td></td>
@@ -74,6 +97,10 @@
                                     </t>
                                     <span t-field="l.product_uom" groups="product.group_uom"/>
                                 </td>
+                                <t t-if="o.partner_id.country_id.intrastat">
+                                    <td><span t-field="l.product_tmpl_id.intrastat_id.name"/></td>
+                                    <td><span t-field="l.product_tmpl_id.weight"/></td>
+                                </t>
                                 <td class="text-right">
                                     <span t-field="l.price_unit"/>
                                 </td>
@@ -93,8 +120,13 @@
                     <tr t-foreach="range(max(5-len(o.invoice_line_ids),0))" t-as="l">
                         <td t-translation="off">&amp;nbsp;</td>
                         <td></td>
+                        <t t-if="o.partner_id.country_id.intrastat">
+                            <td></td>
+                            <td></td>
+                        </t>
                         <td></td>
                         <td t-if="display_discount"></td>
+                        <td></td>
                         <td></td>
                         <td></td>
                     </tr>
@@ -102,6 +134,17 @@
             </table>
         </xpath>
 
+        <xpath expr="//div[@id='total']/div" position="before">
+            <div class="col-xs-6">
+                <t t-if="o.expiration_dates_str">
+                    <p>Expiration dates:</p>
+                    <span t-field="o.expiration_dates_str"/>
+                </t>
+                <br/>
+                <br/>
+                <p><strong>!!!  OPERACIÓN ASEGURADA EN SOLUNION  !!!</strong></p>
+            </div>
+        </xpath>
         <xpath expr="//div[@id='total']//table" position="inside">
             <tr t-if="o.from_supplier">
                 <td><strong>Discounted this year</strong></td>
@@ -111,15 +154,6 @@
 
         <xpath expr="//p[@t-if='o.comment']" position="before">
             <p style="font-size:12px;"><strong>EL ORIGINAL DE ESTA FACTURA NO ACREDITA EL PAGO DE LA MISMA. NO SE ADMITIRÁN RECLAMACIONES TRANSCURTRIDOS 15 DÍAS</strong></p>
-            <div class="row">
-                <div class="col-xs-6">
-                    <t t-if="o.expiration_dates_str">
-                        <p>Expiration dates:</p>
-                        <span t-field="o.expiration_dates_str"/>
-                    </t>
-                </div>
-                <div class="col-xs-6"><p><strong>!!!  OPERACIÓN ASEGURADA EN SOLUNION  !!!</strong></p></div>
-            </div>
         </xpath>
     </template>
 
@@ -130,5 +164,15 @@
                     <t t-call="account.report_invoice_document" t-lang="o.partner_id.lang"/>
                 </t>
             </t>
+    </template>
+
+
+    <template id="report_invoice_with_payments_custom">
+        <t t-call="web.html_container">
+            <t t-set="expand_lines" t-value="True"/>
+            <t t-foreach="docs" t-as="o">
+                <t t-call="account.report_invoice_document_with_payments" t-lang="o.partner_id.lang"/>
+            </t>
+        </t>
     </template>
 </odoo>

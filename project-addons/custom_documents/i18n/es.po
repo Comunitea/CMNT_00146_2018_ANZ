@@ -21,6 +21,11 @@ msgid "<strong>!!!  OPERACIÓN ASEGURADA EN SOLUNION  !!!</strong>"
 msgstr "<strong>!!!  OPERACIÓN ASEGURADA EN SOLUNION  !!!</strong>"
 
 #. module: custom_documents
+#: model:ir.ui.view,arch_db:custom_documents.report_invoice_document_custom
+msgid "Weight"
+msgstr "Peso"
+
+#. module: custom_documents
 #: model:ir.ui.view,arch_db:custom_documents.report_sale_order_custom
 msgid "<strong>Customer reference:</strong>"
 msgstr "<strong>Código de cliente:</strong>"
@@ -147,3 +152,7 @@ msgstr "Precio de Unidad"
 msgid "account.invoice.line.template"
 msgstr "account.invoice.line.template"
 
+#. module: custom_documents
+#: model:ir.ui.view,arch_db:custom_documents.report_invoice_document_custom
+msgid "<strong>Salesperson:</strong>"
+msgstr "<strong>Comercial:</strong>"

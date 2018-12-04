@@ -17,7 +17,8 @@
         'sale_order_line_tree',
         'account_invoice_line_template',
         'account_due_dates_str',
-        'account_reinvoice'
+        'account_reinvoice',
+        'report_intrastat'
     ],
     'data': [
         'views/report_templates.xml',
