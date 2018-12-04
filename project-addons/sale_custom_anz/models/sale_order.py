@@ -2,6 +2,7 @@
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
 from odoo import api, models, fields, _
 from odoo.osv import expression
+from odoo.exceptions import UserError
 
 
 class SaleOrder(models.Model):
@@ -12,14 +13,29 @@ class SaleOrder(models.Model):
         for order in self:
             order.sale_order_line_count = len(order.order_line)
 
-    sale_order_line_count = fields.Integer('Order line count', compute='_compute_sale_order_line_count')
+    sale_order_line_count = fields.Integer(
+        'Order line count', compute='_compute_sale_order_line_count')
+    sponsored = fields.Boolean(
+        'Sponsored', readonly=True, 
+        states={'draft': [('readonly', False)]}, copy=False)
+    bag_decreased = fields.Boolean('Bag decreased', readonly=True, copy=False)
 
     @api.multi
     def write(self, vals):
         res = super(SaleOrder, self).write(vals)
         if 'type_id' in vals:
-            sale_type = self.env['sale.order.type'].search_read([('id', '=', vals['type_id'])], fields=['operating_unit_id'])
-            self.order_line.write({'operating_unit_id': sale_type and sale_type[0]['operating_unit_id'][0]})
+            sale_type = self.env['sale.order.type'].search_read(
+                [('id', '=', vals['type_id'])], fields=['operating_unit_id'])
+            self.order_line.write(
+                {'operating_unit_id': sale_type and
+                 sale_type[0]['operating_unit_id'][0]})
+        return res
+
+    @api.model
+    def create(self, vals):
+        res = super(SaleOrder, self).create(vals)
+        if res.partner_id.player and res.partner_id.sponsorship_bag > 0:
+            res.sponsored = True
         return res
 
     @api.multi
@@ -59,13 +75,65 @@ class SaleOrder(models.Model):
             res['warning'] = warning
         return res
 
+    @api.onchange('partner_id')
+    def _onchange_partner_id(self):
+        if self.partner_id.player and self.partner_id.sponsorship_bag > 0:
+            self.sponsored = True
+        return super(SaleOrder, self)._onchange_partner_id()
+
+    @api.multi
+    def post_message_bag(self, mode):
+        mode_str = _('increased') if mode == 'increased' else _('decreased')
+        self.ensure_one()
+        error_msg = _('Bag has been %s in %s') % (mode_str, self.amount_total)
+        error_msg2 = _('Bag has been %s in %s due to %s') \
+            % (mode_str, self.amount_total, self.name)
+        self.message_post(body=error_msg)
+        self.partner_id.message_post(body=error_msg2)
+
+    @api.multi
+    def action_confirm(self):
+        res = super(SaleOrder, self).action_confirm()
+        if self.sponsored:
+            if self.amount_total >= self.partner_id.sponsorship_bag:
+                raise UserError(_('You can confirm this order casuse you \
+                    reach the sponsored bag'))
+
+            self.partner_id.decrease_bag(self.amount_total)
+            self.write({'bag_decreased': True})
+
+            # Posting
+            self.post_message_bag('decreased')
+        return res
+
+    @api.multi
+    def action_cancel(self):
+        res = super(SaleOrder, self).action_cancel()
+        if self.sponsored and self.bag_decreased:
+                self.partner_id.decrease_bag(-self.amount_total)
+                # Posting
+                self.post_message_bag('increased')
+        return res
+
+    @api.multi
+    def _prepare_invoice(self):
+        """
+        Propagate ref_check field, to account_invoice_line
+        """
+        self.ensure_one()
+        res = super(SaleOrder, self)._prepare_invoice()
+        res.update(sponsored=self.sponsored)
+        return res
+
 
 class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"
 
-    operating_unit_id = fields.Many2one('operating.unit', string="Operating unit")
-    virtual_stock_conservative = fields.Float(related="product_id.virtual_stock_conservative",
-                                              string='Virtual Stock Conservative')
+    operating_unit_id = fields.Many2one(
+        'operating.unit', string="Operating unit")
+    virtual_stock_conservative = fields.Float(
+        related="product_id.virtual_stock_conservative",
+        string='Virtual Stock Conservative')
 
     requested_date = fields.Date('Requested Date')
     ref_change = fields.Boolean('Reference change')
@@ -99,8 +167,12 @@ class SaleOrderLine(models.Model):
     def _prepare_invoice_line(self, qty):
         """
         Propagate ref_check field, to account_invoice_line
+        If sponsored, price 0
         """
         self.ensure_one()
         res = super(SaleOrderLine, self)._prepare_invoice_line(qty)
         res.update(ref_change=self.ref_change)
+        if self.order_id.sponsored:
+            res.update({'price_unit': self.product_id.standard_price,
+                        'discount': 0.0})
         return res

@@ -3,6 +3,15 @@
 from odoo import models, fields, api
 
 
+class AccountInvoice(models.Model):
+
+    _inherit = 'account.invoice'
+
+    sponsored = fields.Boolean(
+        'Sponsored',
+        readonly=True, states={'draft': [('readonly', False)]}, copy=False)
+
+
 class AccountInvoiceLine(models.Model):
 
     _inherit = 'account.invoice.line'

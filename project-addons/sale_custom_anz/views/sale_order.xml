@@ -37,6 +37,11 @@
             <xpath expr="//field[@name='order_line']/tree/field[@name='product_uom_qty']" position="before">
                 <field name="virtual_stock_conservative"></field>
             </xpath>
+
+            <field name="partner_id" position="after">
+                <field name="sponsored"/>
+                <field name="bag_decreased"/>
+            </field>
         </field>
     </record>
 

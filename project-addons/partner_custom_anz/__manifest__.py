@@ -18,7 +18,6 @@
     ],
     'data': [
         'views/partner_view.xml',
-        'views/account_invoice.xml'
     ],
     'installable': True,
 }
