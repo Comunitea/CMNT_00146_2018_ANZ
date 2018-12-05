@@ -16,7 +16,7 @@
     'data': [
         'views/partner_view.xml',
         'views/product_view.xml',
-        'views/product_pricelist_views.xml',
+        'views/product_pricelist_view.xml',
         'views/operating_unit.xml',
     ],
     'installable': True,
