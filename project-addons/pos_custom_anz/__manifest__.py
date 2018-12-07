@@ -11,10 +11,13 @@
         'base',
         'point_of_sale',
         'commercial_rules_anz',
-        'pos_order_mgmt'
+        'pos_order_return',
+        'pos_order_mgmt',
+        'pos_product_available'
     ],
     'data': [
         'views/assets.xml',
+        'views/pos_order_view.xml',
     ],
     'installable': True,
 }
