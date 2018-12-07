@@ -1,6 +1,6 @@
 # © 2016 Comunitea - Javier Colmenero <javier@comunitea.com>
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
-from odoo import api, fields, models
+from odoo import api, fields, models, _
 from odoo.exceptions import UserError
 
 
@@ -8,8 +8,7 @@ class PromotionsRulesConditionsExprs(models.Model):
 
     _inherit = 'promos.rules.conditions.exps'
 
-    attribute = fields.Selection(selection_add=[('brand',
-                                                 'Product Brand')])
+    attribute = fields.Selection(selection_add=[('brand', _('Product Brand'))])
 
     @api.onchange('attribute')
     def on_change_attribute(self):
