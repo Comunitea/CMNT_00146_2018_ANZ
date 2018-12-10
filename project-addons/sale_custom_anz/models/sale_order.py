@@ -1,7 +1,6 @@
 # © 2016 Comunitea - Kiko Sánchez <kiko@comunitea.com>
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
 from odoo import api, models, fields, _
-from odoo.osv import expression
 from odoo.exceptions import UserError
 
 
@@ -16,7 +15,7 @@ class SaleOrder(models.Model):
     sale_order_line_count = fields.Integer(
         'Order line count', compute='_compute_sale_order_line_count')
     sponsored = fields.Boolean(
-        'Sponsored', readonly=True, 
+        'Sponsored', readonly=True,
         states={'draft': [('readonly', False)]}, copy=False)
     bag_decreased = fields.Boolean('Bag decreased', readonly=True, copy=False)
 
@@ -26,7 +25,7 @@ class SaleOrder(models.Model):
         if 'type_id' in vals:
             sale_type = self.env['sale.order.type'].search_read(
                 [('id', '=', vals['type_id'])], fields=['operating_unit_id'])
-            self.order_line.write(
+            self.mapped('order_line').write(
                 {'operating_unit_id': sale_type and
                  sale_type[0]['operating_unit_id'][0]})
         return res
@@ -94,25 +93,28 @@ class SaleOrder(models.Model):
     @api.multi
     def action_confirm(self):
         res = super(SaleOrder, self).action_confirm()
-        if self.sponsored:
-            if self.amount_total >= self.partner_id.sponsorship_bag:
-                raise UserError(_('You can confirm this order casuse you \
-                    reach the sponsored bag'))
+        for order in self:
+            if order.sponsored:
+                if order.amount_total >= order.partner_id.sponsorship_bag:
+                    raise UserError(_('You can confirm this order casuse you \
+                        reach the sponsored bag'))
 
-            self.partner_id.decrease_bag(self.amount_total)
-            self.write({'bag_decreased': True})
+                order.partner_id.decrease_bag(self.amount_total)
+                order.write({'bag_decreased': True})
 
-            # Posting
-            self.post_message_bag('decreased')
+                # Posting
+                order.post_message_bag('decreased')
         return res
 
     @api.multi
     def action_cancel(self):
         res = super(SaleOrder, self).action_cancel()
-        if self.sponsored and self.bag_decreased:
-                self.partner_id.decrease_bag(-self.amount_total)
-                # Posting
-                self.post_message_bag('increased')
+        for order in self:
+            if order.sponsored and order.bag_decreased:
+                    order.partner_id.decrease_bag(-order.amount_total)
+                    order.bag_decreased = False
+                    # Posting
+                    order.post_message_bag('increased')
         return res
 
     @api.multi
