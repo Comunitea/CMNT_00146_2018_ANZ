@@ -50,7 +50,7 @@ class SaleOrder(models.Model):
             return
         if not res:
             res = {}
-        partner = self.partner_id
+        partner = self.partner_id.commercial_partner_id
         exception_msg = ''
         if partner.risk_exception:
             exception_msg += _("Financial risk exceeded.\n")
@@ -65,7 +65,7 @@ class SaleOrder(models.Model):
             exception_msg += _(
                 "This sale order exceeds the financial risk.\n")
         if exception_msg:
-            title = ("Risk exceded for %s") % partner.name
+            title = _("Risk exceded for %s") % partner.name
             message = exception_msg
             warning = {
                     'title': title,
