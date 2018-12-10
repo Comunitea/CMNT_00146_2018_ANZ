@@ -43,6 +43,8 @@ class AccountInvoice(models.Model):
                 ('state', 'not in', ['draft', 'cancel']),
                 ('date_invoice', '>=', start_date),
                 ('date_invoice', '<=', end_date),
+                ('commercial_partner_id', '=',
+                 invoice.commercial_partner_id.id)
             ]
             invoices = self.search(domain)
             invoice.amount_year_discount = \
