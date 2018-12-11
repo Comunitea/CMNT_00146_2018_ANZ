@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <template id="report_invoice_document_custom" inherit_id="account.report_invoice_document">
+    <template id="report_invoice_document_custom" inherit_id="cmnt_custom_documents.report_invoice_document_custom">
         <xpath expr="//div[@t-if='o.name']" position="after">
             <div t-if="o.user_id.name" class="col-xs-2">
                 <strong>Salesperson:</strong>
@@ -61,7 +61,7 @@
                                     <span t-field="l.discount"/>
                                 </td>
                                 <td class="text-right">
-                                    <span t-esc="', '.join(map(lambda x: (x.description or x.name), l.invoice_line_tax_ids))"/>
+                                    <span t-esc="', '.join(map(lambda x: (x.name), l.invoice_line_tax_ids))"/>
                                 </td>
                                 <td class="text-right" id="subtotal">
                                     <span t-field="l.price_subtotal"
@@ -108,7 +108,7 @@
                                     <span t-field="l.discount"/>
                                 </td>
                                 <td class="text-right">
-                                    <span t-esc="', '.join(map(lambda x: (x.description or x.name), l.invoice_line_tax_ids))"/>
+                                    <span t-esc="', '.join(map(lambda x: (x.name), l.invoice_line_tax_ids))"/>
                                 </td>
                                 <td class="text-right" id="subtotal">
                                     <span t-field="l.price_subtotal"

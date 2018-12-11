@@ -31,7 +31,7 @@
                         <td><span t-field="l.product_ref"/></td>
 
                         <t t-if="show_images">
-                            <td><img t-att-src="'data:image/png;base64,%s' % to_text(l.product_tmpl_id.image)" style="max-height: 50px;"/></td>
+                            <td><img t-att-src="'data:image/png;base64,%s' % to_text(l.product_tmpl_id.image_medium)" style="max-height: 50px;"/></td>
                         </t>
                         <td><span t-esc="l.get_name()"/></td>
                         <td class="text-right">

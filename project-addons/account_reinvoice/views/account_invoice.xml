@@ -48,7 +48,6 @@
 
             <field name="amount_total" position="after">
                 <field name="amount_discount"/>
-                <field name="amount_year_discount"/>
             </field>
         </field>
     </record>

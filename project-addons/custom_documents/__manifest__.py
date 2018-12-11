@@ -18,7 +18,8 @@
         'account_invoice_line_template',
         'account_due_dates_str',
         'account_reinvoice',
-        'report_intrastat'
+        'report_intrastat',
+        'cmnt_custom_documents'
     ],
     'data': [
         'views/report_templates.xml',
