@@ -7,4 +7,4 @@ from . import sale_order
 from . import res_partner
 from . import product_template
 from . import scheduled_sale
-
+from . import procurement, stock_move, stock_picking

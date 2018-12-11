@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record model="ir.ui.view" id="stock_picking_form_schedule_sale">
+        <field name="name">stock.picking.form.scheduled_sale</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form"/>
+        <field name="arch" type="xml">
+            <field name="group_id" position="after">
+                <field name="scheduled_sale_id" readonly="1" attrs="{'invisible': [('scheduled_sale_id', '=', False)]}"/>
+            </field>
+            <field name="scheduled_date" position="after">
+                <field name="deliver_month" readonly="1" attrs="{'invisible': [('deliver_month', '=', '')]}"/>
+            </field>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="view_picking_internal_search_schedule_sale">
+        <field name="name">stock.picking.form.search.scheduled_sale</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_internal_search"/>
+        <field name="arch" type="xml">
+
+            <field name="name" position="after">
+                <field name="scheduled_sale_id" string="Scheduled List" filter_domain="['|','|', ('scheduled_sale_id.product_brand_id.name','ilike', self), ('scheduled_sale_id.name','ilike', self),('scheduled_sale_id.code','ilike',self)]"/>
+            </field>
+            <filter name="backorder" position="after">
+                <filter name="scheduled_sale_id" string="Scheduled Sales" domain="[('scheduled_sale_id','!=', False)]" help="Picking from scheduled sale order"/>
+            </filter>
+            <filter name="picking_type" position="after">
+                <filter name="deliver_month" string="Delivery Month" domain="[('scheduled_sale_id','!=', False)]" context="{'group_by':'deliver_month'}"/>
+            </filter>
+        </field>
+    </record>
+
+
+
+</odoo>

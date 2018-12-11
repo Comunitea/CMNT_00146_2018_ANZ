@@ -76,7 +76,7 @@
                 <field name="product_updatable" invisible="1"/>
                 <field name="product_attribute_value_ids" invisible="1"/>
                 <field name="product_tmpl_id" options="{'no_create': True}"/>
-                 <button name="%(sale_order_variant_mgmt.action_sale_manage_variant)d"
+                <button name="%(sale_order_variant_mgmt.action_sale_manage_variant)d"
                         type="action"
                         string="Modify Variants"
                         icon="fa-th"
@@ -109,7 +109,7 @@
                 <field name="customer_lead" invisible="1"/>
                 <field name="currency_id" invisible="1"/>
                 <field name="order_id" invisible="1"/>
-                <field name="operating_unit_id" options="{'no_create': True}"/>
+                <!--field name="operating_unit_id" options="{'no_create': True}"/-->
 
             </tree>
         </field>

@@ -9,8 +9,9 @@
     'author': "Comunitea, ",
     'depends': [
         'base',
+        'product_virtual_stock_conservative',
         'partner_custom_anz',
-        'product_virtual_stock_conservative'
+
 
     ],
     'data': [

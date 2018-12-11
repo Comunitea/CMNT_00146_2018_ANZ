@@ -11,7 +11,6 @@
         'partner_custom_anz',
         'product_custom_anz',
         'sale_order_variant_mgmt',
-
     ],
     'data': [
         'views/sale_order_tree.xml',

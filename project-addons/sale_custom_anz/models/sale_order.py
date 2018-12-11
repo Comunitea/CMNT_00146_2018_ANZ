@@ -3,16 +3,9 @@
 from odoo import api, models, fields
 from odoo.osv import expression
 
+
 class SaleOrder(models.Model):
     _inherit = "sale.order"
-
-    @api.multi
-    @api.depends('order_line')
-    def _compute_sale_order_line_count(self):
-        for order in self:
-            order.sale_order_line_count = len(order.order_line)
-
-    sale_order_line_count = fields.Integer('Order line count', compute='_compute_sale_order_line_count')
 
     @api.multi
     def write(self, vals):
@@ -26,10 +19,9 @@ class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"
 
     operating_unit_id = fields.Many2one('operating.unit', string="Operating unit")
-    virtual_stock_conservative = fields.Float(related="product_id.virtual_stock_conservative",
-                                              string='Virtual Stock Conservative')
 
-    requested_date = fields.Date('Requested Date')
+
+    #requested_date = fields.Date('Requested Date')
 
     @api.multi
     @api.onchange('product_id')

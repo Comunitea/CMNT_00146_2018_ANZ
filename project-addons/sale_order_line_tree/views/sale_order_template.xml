@@ -15,8 +15,7 @@
             </div>
         </field>
     </record>
-
-     <record id="view_sale_order_line_group_template_tree" model="ir.ui.view">
+    <record id="view_sale_order_line_group_template_tree" model="ir.ui.view">
         <field name="name">sale.order.line.template.group.tree.view</field>
         <field name="model">sale.order.line.template.group</field>
         <field name="priority" eval="1"/>

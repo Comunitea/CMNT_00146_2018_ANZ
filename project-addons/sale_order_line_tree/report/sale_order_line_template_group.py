@@ -16,27 +16,21 @@ class SaleOrder(models.Model):
             order.sale_order_line_template_count = len(order.order_line.mapped('product_tmpl_id'))
 
 
+    sale_order_line_count = fields.Integer('Order line count', compute='_compute_sale_order_line_count')
     sale_order_line_template_count = fields.Integer('Template line count', compute='_compute_sale_order_line_count')
 
     @api.multi
     def action_view_order_lines_template_group(self):
-
         model_data = self.env['ir.model.data']
         tree_view = model_data.get_object_reference(
             'sale_order_line_tree', 'view_sale_order_line_group_template_tree')
-
         action = self.env.ref(
             'sale_order_line_tree.view_sale_order_line_group_template_tree_action').read()[0]
         action['views'] = {
             (tree_view and tree_view[1] or False, 'tree'),}
-
-        ids = self.env['sale.order.line.template.group'].search([('order_id', '=', self.id)]).ids
-
+        #ids = self.env['sale.order.line.template.group'].search([('order_id', '=', self.id)]).ids
         action['domain'] = [('order_id', '=', self.id)]
-
-        action['context'] = {
-
-        }
+        action['context'] = {}
         return action
 
 

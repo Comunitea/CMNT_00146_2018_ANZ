@@ -318,4 +318,4 @@ msgstr "Hasta"
 #: model:ir.model,name:scheduled_sale.model_scheduled_sale_period
 msgid "scheduled.sale.period"
 msgstr "Periodos"
-
+cmnt_info_2015

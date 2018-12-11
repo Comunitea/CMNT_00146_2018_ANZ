@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+     <record id="view_sale_order_line_group_template_tree_schedule" model="ir.ui.view">
+        <field name="name">sale.order.line.template.group.tree.view.schedule</field>
+        <field name="model">sale.order.line.template.group</field>
+         <field name="inherit_id" ref="sale_order_line_tree.view_sale_order_line_group_template_tree"/>
+        <field name="priority" eval="1"/>
+        <field name="arch" type="xml">
+            <field name="sequence" position="after">
+                <field name="deliver_month" invisible="context.get('show_deliver_month', True)"/>
+
+            </field>
+        </field>
+    </record>
+</odoo>

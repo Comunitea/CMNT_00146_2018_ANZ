@@ -7,6 +7,7 @@ from odoo.exceptions import UserError
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
 from odoo import api, fields, models,_
 from odoo.exceptions import UserError
+from odoo.osv import expression
 
 class ResPartnerArea(models.Model):
     _inherit = 'res.partner.area'
@@ -88,28 +89,27 @@ class ResPartner(models.Model):
                   self.env.user.partner_id
         return partner
 
+    @api.model
     def add_args_to_product_search(self, args=[]):
 
+        if not self.customer:
+            return args
         # De momento no se usa las zonas en los productos
         if self.area_id and False:
             args.append((('allowed_area_ids', 'in', self.area_id.id)))
             args.append((('restrict_area_ids', 'not in', self.area_id.id)))
 
-
         # Si el partner tiene marcas permitidas, se usan las del partner, si no las de la zona
         allowed_brand_ids = self.allowed_brand_ids.ids or self.area_id.allowed_brand_ids.ids or []
-
         # Las restriccionees de las marcas se suma SIEMPRE
         restricted_brand_ids = self.restricted_brand_ids.ids + self.area_id.restricted_brand_ids.ids
 
         if allowed_brand_ids and restricted_brand_ids:
             [allowed_brand_ids.remove(i) for i in restricted_brand_ids if i in allowed_brand_ids]
-
         if allowed_brand_ids:
-            args.append((('product_brand_id', 'in', allowed_brand_ids)))
+            args = expression.AND([args, [('product_brand_id', 'in', allowed_brand_ids)]])
         elif restricted_brand_ids:
-            args.append((('product_brand_id', 'not in', restricted_brand_ids)))
-
+            args = expression.AND([args, [('product_brand_id', 'not in', restricted_brand_ids)]])
 
         if self.allowed_categories_ids or self.restricted_categories_ids:
             a_categ = []
@@ -122,9 +122,9 @@ class ResPartner(models.Model):
             if a_categ and r_categ:
                 [a_categ.remove(i) for i in r_categ if i in a_categ]
             if a_categ:
-                args.append((('categ_id', 'in', a_categ)))
+                args = expression.AND([args, [('categ_id', 'in', a_categ)]])
             elif r_categ:
-                args.append((('categ_id', 'not in', r_categ)))
+                args = expression.AND([args, [('categ_id', 'not in', r_categ)]])
 
         return args
 

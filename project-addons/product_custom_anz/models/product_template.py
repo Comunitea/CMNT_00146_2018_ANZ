@@ -17,7 +17,6 @@ class ProductTemplate(models.Model):
     @api.depends('attribute_line_ids')
     def _get_variant_suffix(self):
         for template in self:
-            print(template.name)
             names = template.attribute_line_ids.mapped('value_ids').mapped('name')
             if names:
                 template.variant_suffix = " ({})".format(", ".join([v for v in names]))

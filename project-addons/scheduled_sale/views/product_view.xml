@@ -1,13 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
-    <record model="ir.ui.view" id="product_template_form_view_custom_anz">
-        <field name="name">product.template.form.view.custom_anz</field>
+     <record id="product_template_only_form_view_custom_anz" model="ir.ui.view">
+        <field name="name">product.template.view.custom.anz</field>
         <field name="model">product.template</field>
         <field name="inherit_id" ref="product.product_template_form_view"/>
         <field name="arch" type="xml">
-            <page name="type" position="inside">
-                <field name="scheduled_sale_id" readonly="1" attrs="{'invisible': [('scheduled_sale_id', '=', False)]}"/>
-                <field name="origin_scheduled_sale_id" readonly="1" attrs="{'invisible': [('origin_scheduled_sale_id', '=', False)]}"/>
+            <page name="sales" position="inside">
+                <group name="group_general">
+                    <field name="scheduled_sale_id"/><!-- readonly="1" attrs="{'invisible': [('scheduled_sale_id', '=', False)]}"/-->
+                </group>
+            </page>
+        </field>
+
+     </record>
+
+     <record id="product_product_for_view_anz" model="ir.ui.view">
+        <field name="name">product.product.view.custom.anz</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.product_normal_form_view"/>
+        <field name="arch" type="xml">
+           <page name="sales" position="inside">
+                <group name="group_general">
+                    <field name="scheduled_sale_id"/><!-- readonly="1" attrs="{'invisible': [('scheduled_sale_id', '=', False)]}"/-->
+                    <field name="origin_scheduled_sale_id" readonly="1" attrs="{'invisible': [('origin_scheduled_sale_id', '=', False)]}"/>
+                </group>
+
             </page>
         </field>
     </record>
