@@ -11,12 +11,13 @@ from odoo.exceptions import ValidationError
 class SaleOrder(models.Model):
     _inherit = "sale.order"
 
-    scheduled_sale_id = fields.Many2one('scheduled.sale', 'Schedule order', readonly=True)
-    origin_scheduled_sale_id = fields.Many2one('scheduled.sale', 'Schedule order', readonly=True)
+    scheduled_sale_id = fields.\
+        Many2one('scheduled.sale', 'Schedule order', readonly=True)
+    origin_scheduled_sale_id = fields.\
+        Many2one('scheduled.sale', 'Schedule order', readonly=True)
 
     @api.onchange('scheduled_sale_id')
     def scheduled_sale_id_change(self):
-
         if self.scheduled_sale_id:
             self.pricelist_id = self.scheduled_sale_id.pricelist_id
         else:
@@ -46,6 +47,7 @@ class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"
 
     scheduled_sale_id = fields.Many2one('scheduled.sale', 'Schedule order')
+    delivered_date = fields.Date("Delivered date")
     deliver_month = fields.Char('Requested month', help="Date format = day/month/year(2 digits)")
 
     @api.multi
@@ -56,6 +58,10 @@ class SaleOrderLine(models.Model):
             self.scheduled_sale_id = self.product_id.scheduled_sale_id
         return result
 
+    @api.onchange('delivered_date')
+    def onchange_delivered_date(self):
+        self.delivered_date = "01-{}-{}".format(self.delivered_date.month,
+                                                self.delivered_date.year)
     @api.multi
     @api.onchange('deliver_month')
     def onchange_deliver_month(self):
@@ -96,5 +102,4 @@ class SaleOrderLine(models.Model):
         if not self.order_id.scheduled_sale_id:
             return super(SaleOrderLine,self)._onchange_product_id_check_availability()
         return {}
-
 

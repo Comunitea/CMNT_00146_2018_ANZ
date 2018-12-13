@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- CUSTOMER LINES VIEWS -->
+    <record id="view_reinvoice_rule_tree" model="ir.ui.view">
+        <field name="name">"view.reinvoice.rule.tree</field>
+        <field name="model">reinvoice.rule</field>
+        <field name="arch" type="xml">
+            <tree string="Reinvoice Rule" editable="top">
+                <field name="brand_id"/>
+                <field name="partner_id"/>
+                <field name="supplier_discount"/>
+                <field name="customer_discount"/>
+            </tree>
+        </field>
+    </record>
+
+      <record id="view_reinvoice_rule_filter" model="ir.ui.view">
+            <field name="name">view.reinvoice.rule.filter</field>
+            <field name="model">reinvoice.rule</field>
+            <field name="arch" type="xml">
+                <search string="Search Rules">
+                    <field name="partner_id"/>
+                    <field name="brand_id"/>
+                    <separator/>
+                    <filter name="gobal" string="Global Rule" domain="[('partner_id','=', False)]"/>
+                    <filter name="specific" string="Specific Rule" domain="[('partner_id','!=', False)]"/>
+                
+                    <group expand="0" string="Group By">
+                        <filter string="Brand" domain="[]" context="{'group_by':'brand_id'}"/>
+                        <filter string="Customer" domain="[]" context="{'group_by':'partner_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+    <record id="action_reinvoice_rules" model="ir.actions.act_window">
+        <field name="name">Reinvoice Rules</field>
+        <field name="res_model">reinvoice.rule</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree</field>
+    </record>
+
+    <menuitem id="menu_reinvoice" name="Reinvoicing"  sequence="2" parent="account.menu_finance_configuration"/>
+    <menuitem id="menu_reinvoice_rules" name="Reinvoicing rules"  action="action_reinvoice_rules" sequence="0" parent="menu_reinvoice"/>
+
+</odoo>

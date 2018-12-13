@@ -6,9 +6,6 @@
         <field name="model">scheduled.sale.period</field>
         <field name="arch" type="xml">
             <form string="Schedule sale">
-                <header>
-                    <field name="state" widget="statusbar" nolabel="1"/>
-                </header>
                 <sheet>
                     <div class="oe_button_box" name="button_box">
                         <button name="toggle_active" type="object" class="oe_stat_button" icon="fa-archive">
@@ -112,7 +109,6 @@
                 <field name="name"/>
                 <field name="from_date"/>
                 <field name="to_date" />
-                <field name="state" />
             </tree>
         </field>
     </record>
@@ -167,7 +163,6 @@
                 <field name="name" string="Name"/>
                 <field name="from_date" string="From"/>
                 <field name="to_date" string="To"/>
-                <field name="state" string="State"/>
             </search>
         </field>
     </record>

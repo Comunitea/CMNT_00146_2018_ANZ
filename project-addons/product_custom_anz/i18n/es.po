@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-10-31 15:43+0000\n"
-"PO-Revision-Date: 2018-10-31 15:43+0000\n"
+"POT-Creation-Date: 2018-12-04 12:07+0000\n"
+"PO-Revision-Date: 2018-12-04 12:07+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,20 +16,42 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: product_custom_anz
-#: model:ir.ui.view,arch_db:product_custom_anz.view_partner_form_product_anz_custom
-#: model:ir.ui.view,arch_db:product_custom_anz.view_res_partner_area_custom_anz_form
-msgid "Allowed brand"
-msgstr "Marca permitida"
+#: model:ir.model.fields,field_description:product_custom_anz.field_sale_order_line_is_player_boot
+msgid "Bota de jugador"
+msgstr "Bota de jugador"
 
 #. module: product_custom_anz
-#: model:ir.model.fields,field_description:product_custom_anz.field_res_partner_area_allowed_brand_ids
-msgid "Allowed brands for this partner"
-msgstr "Marcas permitidas"
+#: model:ir.model.fields,field_description:product_custom_anz.field_product_pricelist_item_brand_id
+msgid "Brand"
+msgstr "Marca"
 
 #. module: product_custom_anz
-#: model:ir.ui.view,arch_db:product_custom_anz.view_res_partner_area_custom_anz_form
+#: code:addons/product_custom_anz/models/product_pricelist.py:198
+#, python-format
+msgid "Brand: %s"
+msgstr "Marca: %s"
+
+#. module: product_custom_anz
+#: model:ir.model.fields,field_description:product_custom_anz.field_operating_unit_brand_ids
 msgid "Brands"
 msgstr "Marcas"
+
+#. module: product_custom_anz
+#: model:ir.model.fields,help:product_custom_anz.field_product_attribute_is_tboot
+#: model:ir.model.fields,help:product_custom_anz.field_product_attribute_value_is_tboot
+msgid "Check it if attribute will contain                               type of boots"
+msgstr "Marcado si el atributo contendrá tipo de botas"
+#. module: product_custom_anz
+#: model:ir.model.fields,help:product_custom_anz.field_product_attribute_is_color
+#: model:ir.model.fields,help:product_custom_anz.field_product_attribute_value_is_color
+msgid "Check it if attribute will contain colors"
+msgstr "Marcado si el atributo contendrá colores"
+
+#. module: product_custom_anz
+#: model:ir.model.fields,field_description:product_custom_anz.field_product_product_product_color
+#: model:ir.model.fields,field_description:product_custom_anz.field_product_template_product_color
+msgid "Color"
+msgstr "Color"
 
 #. module: product_custom_anz
 #: model:ir.model,name:product_custom_anz.model_res_partner
@@ -37,9 +59,41 @@ msgid "Contact"
 msgstr "Contacto"
 
 #. module: product_custom_anz
-#: model:ir.model.fields,help:product_custom_anz.field_res_partner_area_allowed_brand_ids
+#: model:ir.model.fields,help:product_custom_anz.field_operating_unit_brand_ids
 msgid "If empty, all brands"
-msgstr "Marcas permitidas, si está vacío, todas"
+msgstr "Marcas permitidas, todas si está vacío"
+
+#. module: product_custom_anz
+#: model:ir.model.fields,field_description:product_custom_anz.field_product_attribute_is_color
+#: model:ir.model.fields,field_description:product_custom_anz.field_product_attribute_value_is_color
+msgid "Is color"
+msgstr "Es color"
+
+#. module: product_custom_anz
+#: model:ir.model.fields,field_description:product_custom_anz.field_product_attribute_is_tboot
+#: model:ir.model.fields,field_description:product_custom_anz.field_product_attribute_value_is_tboot
+msgid "Is type of boot"
+msgstr "Es tipo de bota"
+
+#. module: product_custom_anz
+#: model:ir.model,name:product_custom_anz.model_operating_unit
+msgid "Operating Unit"
+msgstr "Unidad operacional"
+
+#. module: product_custom_anz
+#: model:ir.model.fields,field_description:product_custom_anz.field_sale_order_line_date_order
+msgid "Order Date"
+msgstr "Fecha de pedido"
+
+#. module: product_custom_anz
+#: model:ir.model,name:product_custom_anz.model_product_pricelist
+msgid "Pricelist"
+msgstr "Lista de precios"
+
+#. module: product_custom_anz
+#: model:ir.model,name:product_custom_anz.model_product_pricelist_item
+msgid "Pricelist item"
+msgstr "Item de Lista de precios"
 
 #. module: product_custom_anz
 #: model:ir.model,name:product_custom_anz.model_product_product
@@ -57,23 +111,30 @@ msgid "Product Template"
 msgstr "Plantilla de producto"
 
 #. module: product_custom_anz
-#: model:ir.ui.view,arch_db:product_custom_anz.view_partner_form_product_anz_custom
-#: model:ir.ui.view,arch_db:product_custom_anz.view_res_partner_area_custom_anz_form
-msgid "Restricted brand"
-msgstr "Marca restringida"
+#: model:ir.model.fields,field_description:product_custom_anz.field_product_product_replication
+#: model:ir.model.fields,field_description:product_custom_anz.field_product_template_replication
+msgid "Replication"
+msgstr "Replication"
 
 #. module: product_custom_anz
-#: model:ir.model.fields,field_description:product_custom_anz.field_res_partner_area_restricted_brand_ids
-msgid "Restricted brands for this partner"
-msgstr "Marcas restringidas"
+#: model:ir.model,name:product_custom_anz.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Línea de pedido de ventas"
+
+#. module: product_custom_anz
+#: model:ir.model.fields,field_description:product_custom_anz.field_product_product_boot_type
+#: model:ir.model.fields,field_description:product_custom_anz.field_product_template_boot_type
+msgid "Tipo de bota"
+msgstr "Tipo de bota"
+
+#. module: product_custom_anz
+#: model:ir.model.fields,field_description:product_custom_anz.field_product_product_variant_suffix
+#: model:ir.model.fields,field_description:product_custom_anz.field_product_template_variant_suffix
+msgid "Variant suffix"
+msgstr "Sufijo de variante"
 
 #. module: product_custom_anz
 #: model:ir.model,name:product_custom_anz.model_product_attribute_value
 msgid "product.attribute.value"
 msgstr "product.attribute.value"
-
-#. module: product_custom_anz
-#: model:ir.model,name:product_custom_anz.model_res_partner_area
-msgid "res.partner.area"
-msgstr "res.partner.area"
 

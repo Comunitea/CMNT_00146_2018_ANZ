@@ -1,0 +1,266 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* account_reinvoice
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 11.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-11-30 13:59+0000\n"
+"PO-Revision-Date: 2018-11-30 13:59+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: account_reinvoice
+#: code:addons/account_reinvoice/wizard/reinvoice_wzd.py:126
+#, python-format
+msgid " (Reinvoice)"
+msgstr " (Refactura)"
+
+#. module: account_reinvoice
+#: model:ir.model.fields,field_description:account_reinvoice.field_product_brand_reinvoice_rules_count
+#: model:ir.model.fields,field_description:account_reinvoice.field_res_partner_reinvoice_rules_count
+#: model:ir.model.fields,field_description:account_reinvoice.field_res_users_reinvoice_rules_count
+msgid "# Rules"
+msgstr "# Reglas"
+
+#. module: account_reinvoice
+#: model:ir.model.fields,field_description:account_reinvoice.field_account_invoice_amount_discount
+msgid "Amount discounted"
+msgstr "Importe descontado"
+
+#. module: account_reinvoice
+#: model:ir.model.fields,field_description:account_reinvoice.field_account_invoice_associate_id
+#: model:ir.model.fields,field_description:account_reinvoice.field_purchase_order_associate_id
+#: model:ir.ui.view,arch_db:account_reinvoice.view_account_invoice_filter_custom
+#: model:ir.ui.view,arch_db:account_reinvoice.view_purchase_order_filter_custom_anz
+msgid "Associate"
+msgstr "Asociado"
+
+#. module: account_reinvoice
+#: model:ir.ui.view,arch_db:account_reinvoice.account_invoice_form_import_custom_anz
+msgid "Associate Info"
+msgstr "Información asociado"
+
+#. module: account_reinvoice
+#: model:ir.model.fields,field_description:account_reinvoice.field_reinvoice_rule_brand_id
+#: model:ir.ui.view,arch_db:account_reinvoice.view_reinvoice_rule_filter
+msgid "Brand"
+msgstr "Marca"
+
+#. module: account_reinvoice
+#: model:ir.ui.view,arch_db:account_reinvoice.view_reinvoice_wzd_form
+msgid "Cancel"
+msgstr "Cancelar"
+
+#. module: account_reinvoice
+#: model:ir.model,name:account_reinvoice.model_res_partner
+msgid "Contact"
+msgstr "Contacto"
+
+#. module: account_reinvoice
+#: model:ir.actions.act_window,name:account_reinvoice.action_view_direct_invoice_wzd
+#: model:ir.ui.view,arch_db:account_reinvoice.view_reinvoice_wzd_form
+msgid "Create Associate Invoices"
+msgstr "Crear facturas de asociado"
+
+#. module: account_reinvoice
+#: model:ir.model.fields,field_description:account_reinvoice.field_reinvoice_rule_create_uid
+#: model:ir.model.fields,field_description:account_reinvoice.field_reinvoice_wzd_create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: account_reinvoice
+#: model:ir.model.fields,field_description:account_reinvoice.field_reinvoice_rule_create_date
+#: model:ir.model.fields,field_description:account_reinvoice.field_reinvoice_wzd_create_date
+msgid "Created on"
+msgstr "Creado el"
+
+#. module: account_reinvoice
+#: model:ir.model.fields,field_description:account_reinvoice.field_reinvoice_rule_partner_id
+#: model:ir.ui.view,arch_db:account_reinvoice.view_reinvoice_rule_filter
+msgid "Customer"
+msgstr "Cliente"
+
+#. module: account_reinvoice
+#: model:ir.model.fields,field_description:account_reinvoice.field_reinvoice_rule_customer_discount
+msgid "Customer Discount"
+msgstr "Descuento en cliente"
+
+#. module: account_reinvoice
+#: model:ir.model.fields,field_description:account_reinvoice.field_account_invoice_customer_invoice_id
+msgid "Customer Invoice"
+msgstr "Factura cliente"
+
+#. module: account_reinvoice
+#: model:ir.ui.view,arch_db:account_reinvoice.view_account_invoice_filter_custom
+msgid "Customer Invoiced"
+msgstr "Cliente facturado"
+
+#. module: account_reinvoice
+#: model:ir.model.fields,field_description:account_reinvoice.field_account_invoice_amount_year_discount
+msgid "Discounted this year"
+msgstr "Descontado este año"
+
+#. module: account_reinvoice
+#: model:ir.model.fields,field_description:account_reinvoice.field_reinvoice_rule_display_name
+#: model:ir.model.fields,field_description:account_reinvoice.field_reinvoice_wzd_display_name
+msgid "Display Name"
+msgstr "Nombre mostrado"
+
+#. module: account_reinvoice
+#: model:ir.ui.view,arch_db:account_reinvoice.view_account_invoice_filter_custom
+msgid "From Supplier Invoice"
+msgstr "Desde factura proveedor"
+
+#. module: account_reinvoice
+#: model:ir.model.fields,field_description:account_reinvoice.field_account_invoice_from_supplier
+msgid "From supplier Invoice"
+msgstr "Desde factura proveedor"
+
+#. module: account_reinvoice
+#: model:ir.ui.view,arch_db:account_reinvoice.view_reinvoice_rule_filter
+msgid "Global Rule"
+msgstr "Regla global"
+
+#. module: account_reinvoice
+#: model:ir.ui.view,arch_db:account_reinvoice.view_reinvoice_rule_filter
+msgid "Group By"
+msgstr "Agrupar por"
+
+#. module: account_reinvoice
+#: model:ir.model.fields,field_description:account_reinvoice.field_reinvoice_wzd_group
+msgid "Group by associate"
+msgstr "Agrupar por asociado"
+
+#. module: account_reinvoice
+#: model:ir.model.fields,field_description:account_reinvoice.field_reinvoice_rule_id
+#: model:ir.model.fields,field_description:account_reinvoice.field_reinvoice_wzd_id
+msgid "ID"
+msgstr "ID (identificación)"
+
+#. module: account_reinvoice
+#: model:ir.model,name:account_reinvoice.model_account_invoice
+msgid "Invoice"
+msgstr "Factura"
+
+#. module: account_reinvoice
+#: code:addons/account_reinvoice/wizard/reinvoice_wzd.py:139
+#, python-format
+msgid "Invoice %s has not an associate."
+msgstr "La factura %s no tiene asociado"
+
+#. module: account_reinvoice
+#: model:ir.ui.view,arch_db:account_reinvoice.view_account_invoice_filter_custom
+msgid "Invoice Customer Pending"
+msgstr "Factura cliente pendiete"
+
+#. module: account_reinvoice
+#: model:ir.ui.view,arch_db:account_reinvoice.view_reinvoice_wzd_form
+msgid "It will create invoices for the assocociated"
+msgstr "Esto creará las facturas para los asociados"
+
+#. module: account_reinvoice
+#: model:ir.model.fields,field_description:account_reinvoice.field_reinvoice_rule___last_update
+#: model:ir.model.fields,field_description:account_reinvoice.field_reinvoice_wzd___last_update
+msgid "Last Modified on"
+msgstr "Última modificación en"
+
+#. module: account_reinvoice
+#: model:ir.model.fields,field_description:account_reinvoice.field_reinvoice_rule_write_uid
+#: model:ir.model.fields,field_description:account_reinvoice.field_reinvoice_wzd_write_uid
+msgid "Last Updated by"
+msgstr "Última actualización de"
+
+#. module: account_reinvoice
+#: model:ir.model.fields,field_description:account_reinvoice.field_reinvoice_rule_write_date
+#: model:ir.model.fields,field_description:account_reinvoice.field_reinvoice_wzd_write_date
+msgid "Last Updated on"
+msgstr "Última actualización en"
+
+#. module: account_reinvoice
+#: code:addons/account_reinvoice/models/product_brand.py:37
+#, python-format
+msgid "No reinvoice rule founded for discount of %s"
+msgstr "No se encontró regla de refacturación para un descuento de %s"
+
+#. module: account_reinvoice
+#: model:ir.model,name:account_reinvoice.model_purchase_order
+msgid "Purchase Order"
+msgstr "Pedido de compra"
+
+#. module: account_reinvoice
+#: model:ir.ui.view,arch_db:account_reinvoice.view_reinvoice_wzd_form
+msgid "Reinvoice"
+msgstr "Refactura"
+
+#. module: account_reinvoice
+#: model:ir.ui.view,arch_db:account_reinvoice.view_reinvoice_rule_tree
+msgid "Reinvoice Rule"
+msgstr "Regla refactura"
+
+#. module: account_reinvoice
+#: model:ir.actions.act_window,name:account_reinvoice.action_reinvoice_rules
+#: model:ir.model.fields,field_description:account_reinvoice.field_product_brand_reinvoice_rule_ids
+#: model:ir.model.fields,field_description:account_reinvoice.field_res_partner_reinvoice_rule_ids
+#: model:ir.model.fields,field_description:account_reinvoice.field_res_users_reinvoice_rule_ids
+#: model:ir.ui.view,arch_db:account_reinvoice.view_partner_form_add_rules
+#: model:ir.ui.view,arch_db:account_reinvoice.view_product_brand_form_custom_anz
+msgid "Reinvoice Rules"
+msgstr "Reglas refactura"
+
+#. module: account_reinvoice
+#: model:ir.ui.menu,name:account_reinvoice.menu_reinvoice
+msgid "Reinvoicing"
+msgstr "Refacturación"
+
+#. module: account_reinvoice
+#: model:ir.ui.menu,name:account_reinvoice.menu_reinvoice_rules
+msgid "Reinvoicing rules"
+msgstr "Reglas refacturación"
+
+#. module: account_reinvoice
+#: model:ir.ui.view,arch_db:account_reinvoice.view_reinvoice_rule_filter
+msgid "Search Rules"
+msgstr "Buscar reglas"
+
+#. module: account_reinvoice
+#: model:ir.ui.view,arch_db:account_reinvoice.view_reinvoice_rule_filter
+msgid "Specific Rule"
+msgstr "Regla específica"
+
+#. module: account_reinvoice
+#: model:ir.model.fields,field_description:account_reinvoice.field_reinvoice_rule_supplier_discount
+msgid "Supplier Discount"
+msgstr "Descuento en proveedor"
+
+#. module: account_reinvoice
+#: model:ir.model.fields,field_description:account_reinvoice.field_account_invoice_supplier_invoice_id
+msgid "Supplier Invoice"
+msgstr "Factura proveedor"
+
+#. module: account_reinvoice
+#: model:ir.ui.view,arch_db:account_reinvoice.view_account_invoice_filter_custom
+#: model:ir.ui.view,arch_db:account_reinvoice.view_purchase_order_filter_custom_anz
+msgid "With Associate"
+msgstr "Con asociado"
+
+#. module: account_reinvoice
+#: model:ir.model,name:account_reinvoice.model_product_brand
+msgid "product.brand"
+msgstr "product.brand"
+
+#. module: account_reinvoice
+#: model:ir.model,name:account_reinvoice.model_reinvoice_rule
+msgid "reinvoice.rule"
+msgstr "reinvoice.rule"
+
+#. module: account_reinvoice
+#: model:ir.model,name:account_reinvoice.model_reinvoice_wzd
+msgid "reinvoice.wzd"
+msgstr "reinvoice.wzd"
+

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Add fields for supplier invoices imported -->
+    <record id="account_invoice_form_import_custom_anz" model="ir.ui.view">
+        <field name="name">account_invoice_form_import.custom.anz</field>
+        <field name="model">account.invoice</field>
+        <field name="inherit_id" ref="account.invoice_supplier_form"/>
+        <field name="arch" type="xml">
+            <notebook position="inside">
+                <page string="Associate Info">
+                    <group col="4">
+                        <field name="associate_id"/>
+                        <field name="customer_invoice_id"/>
+                    </group>
+                </page>
+            </notebook>
+        </field>
+    </record>
+
+    <!-- Avoid refund invoice readonly and invisible -->
+    <!-- <record id="account_invoice_form_view_refund_always" model="ir.ui.view">
+        <field name="name">account.invoice.form.view.refund.always</field>
+        <field name="model">account.invoice</field>
+        <field name="inherit_id" ref="account_invoice_refund_link.view_customer_account_invoice_add_refunds_details_form"/>
+        <field name="arch" type="xml">
+            <field name="refund_invoice_id" position="attributes">
+                <attribute name="attrs"></attribute>
+                <attribute name="readonly">0</attribute>
+            </field>
+
+             <field name="refund_reason" position="attributes">
+                <attribute name="readonly">0</attribute>
+            </field>
+        </field>
+    </record> -->
+
+    <!-- Adds supplier invoice link in account invoice -->
+    <record id="invoice_form_custom_anz" model="ir.ui.view">
+        <field name="name">invoice.form.custom.anz</field>
+        <field name="model">account.invoice</field>
+        <field name="inherit_id" ref="account.invoice_form"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//page[@name='other_info']//field[@name='origin']" position="after">
+                <field name="supplier_invoice_id"/>
+            </xpath>
+
+            <field name="amount_total" position="after">
+                <field name="amount_discount"/>
+            </field>
+        </field>
+    </record>
+
+    <!-- account.invoice inherit search view -->
+    <record id="view_account_invoice_filter_custom" model="ir.ui.view">
+        <field name="name">account.invoice.inherit.view.search</field>
+        <field name="model">account.invoice</field>
+        <field name="inherit_id" ref="account.view_account_invoice_filter"/>
+        <field name="arch" type="xml">
+            <filter name="activities_upcoming_all" position="after">
+                    <separator/>
+                     <filter name="associate" string="With Associate" domain="[('associate_id','!=', False)]"/>
+                     <filter name="from_supplier" string="From Supplier Invoice" domain="[('from_supplier','=', True)]"/>
+                    <separator/>
+                    <filter name="customer_invoiced" string="Invoice Customer Pending" domain="[('associate_id','!=', False), ('customer_invoice_id','=', False)]"/>
+                    <filter name="customer_invoiced" string="Customer Invoiced" domain="[('associate_id','!=', False), ('customer_invoice_id','!=', False)]"/>
+            </filter>
+            <filter name="status" position="after">
+                <separator/>
+                <filter string="Associate" context="{'group_by':'associate_id'}"/>
+            </filter>
+        </field>
+    </record>
+
+</odoo>

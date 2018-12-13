@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Add fields for supplier invoices imported -->
+    <record id="view_product_brand_form_custom_anz" model="ir.ui.view">
+        <field name="name">view.product.brand.form.custom.anz</field>
+        <field name="model">product.brand</field>
+        <field name="inherit_id" ref="product_brand.view_product_brand_form"/>
+        <field name="arch" type="xml">
+
+            <!-- Invisible picking button when associate setted -->
+            <div name="button_box" position="inside">
+                <button name="action_view_reinvoice_rules" type="object" class="oe_stat_button" icon="fa-list">
+                    <field name="reinvoice_rules_count"  widget="statinfo" string="Reinvoice Rules"/>
+                </button>
+            </div>
+        </field>
+    </record>
+
+</odoo>

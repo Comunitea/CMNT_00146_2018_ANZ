@@ -11,10 +11,13 @@
         'product_custom_anz',
         'sale_order_line_date',
         'sale_order_type',
+        'sale_order_variant_mgmt',
         'sale_order_line_tree'
     ],
     'data': [
-        'views/sale_order.xml'
+        'views/sale_order.xml',
+        'views/account_invoice.xml',
+        'wizard/sale_manage_variant_view.xml'
     ],
     'installable': True,
 }

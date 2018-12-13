@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <report
+        id="account_invoices"
+        model="account.invoice"
+        string="Expanded invoices"
+        report_type="qweb-pdf"
+        name="custom_documents.report_invoice_with_payments_custom"
+        file="custom_documents.report_invoice_with_payments_custom"
+        print_report_name="(object._get_printed_report_name())"
+        groups="account.group_account_invoice"
+    />
+    <report
+        id="account_invoices_without_payments"
+        model="account.invoice"
+        string="Expanded invoices without payments"
+        report_type="qweb-pdf"
+        name="custom_documents.report_invoice_custom"
+        file="custom_documents.report_invoice_custom"
+        print_report_name="(object._get_printed_report_name())"
+        groups="account.group_account_invoice"
+    />
+</odoo>

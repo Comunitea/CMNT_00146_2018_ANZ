@@ -8,16 +8,11 @@ class ScheduleSalePeriod(models.Model):
     _name = 'scheduled.sale.period'
 
     active = fields.Boolean('Active', default=True)
-    name = fields.Char('Name')
-    from_date = fields.Date('From date')#, readonly=False)# , states={'end':[('readonly',True)],'confirm':[('readonly',True)]})
-    to_date = fields.Date('To date')# , readonly=False)#, states={'end':[('readonly',True)]})
-    state = fields.Selection([
-        ('draft', 'Draft'),
-        ('cancel', 'Cancelled'),
-        ('confirm', 'Confirmed'),
-        ('end', 'Ended')],
-        'Status', default='draft', index=True, required=True, track_visibility='always')
+    name = fields.Char('Name', required=True)
+    from_date = fields.Date('From date', required=True)
+    to_date = fields.Date('To date', required=True)
     scheduled_sale_ids = fields.One2many('scheduled.sale', 'period_id', string="Orders")
+
 
 class ScheduleSale(models.Model):
 

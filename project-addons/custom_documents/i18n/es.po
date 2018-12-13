@@ -1,0 +1,158 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* custom_documents
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 11.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-12-04 10:33+0000\n"
+"PO-Revision-Date: 2018-12-04 10:33+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: custom_documents
+#: model:ir.ui.view,arch_db:custom_documents.report_invoice_document_custom
+msgid "<strong>!!!  OPERACIÓN ASEGURADA EN SOLUNION  !!!</strong>"
+msgstr "<strong>!!!  OPERACIÓN ASEGURADA EN SOLUNION  !!!</strong>"
+
+#. module: custom_documents
+#: model:ir.ui.view,arch_db:custom_documents.report_invoice_document_custom
+msgid "Weight"
+msgstr "Peso"
+
+#. module: custom_documents
+#: model:ir.ui.view,arch_db:custom_documents.report_sale_order_custom
+msgid "<strong>Customer reference:</strong>"
+msgstr "<strong>Código de cliente:</strong>"
+
+#. module: custom_documents
+#: model:ir.ui.view,arch_db:custom_documents.report_invoice_document_custom
+msgid "<strong>Discounted this year</strong>"
+msgstr "<strong>Descontado este año</strong>"
+
+#. module: custom_documents
+#: model:ir.ui.view,arch_db:custom_documents.report_invoice_document_custom
+msgid "<strong>EL ORIGINAL DE ESTA FACTURA NO ACREDITA EL PAGO DE LA MISMA. NO SE ADMITIRÁN RECLAMACIONES TRANSCURTRIDOS 15 DÍAS</strong>"
+msgstr "<strong>EL ORIGINAL DE ESTA FACTURA NO ACREDITA EL PAGO DE LA MISMA. NO SE ADMITIRÁN RECLAMACIONES TRANSCURTRIDOS 15 DÍAS</strong>"
+
+#. module: custom_documents
+#: model:ir.ui.view,arch_db:custom_documents.report_invoice_document_custom
+#: model:ir.ui.view,arch_db:custom_documents.report_sale_order_custom
+msgid "Amount"
+msgstr "Importe"
+
+#. module: custom_documents
+#: model:ir.ui.view,arch_db:custom_documents.report_invoice_document_custom
+msgid "Description"
+msgstr "Descripción"
+
+#. module: custom_documents
+#: model:ir.ui.view,arch_db:custom_documents.report_invoice_document_custom
+#: model:ir.ui.view,arch_db:custom_documents.report_sale_order_custom
+msgid "Disc.(%)"
+msgstr "Desc.(%)"
+
+#. module: custom_documents
+#: model:ir.actions.report,name:custom_documents.account_invoices
+msgid "Expanded invoices"
+msgstr "Factura lineas desglosadas"
+
+#. module: custom_documents
+#: model:ir.ui.view,arch_db:custom_documents.report_invoice_document_custom
+msgid "Expiration dates:"
+msgstr "Vencimientos:"
+
+#. module: custom_documents
+#: model:ir.model,name:custom_documents.model_account_invoice
+msgid "Invoice"
+msgstr "Factura"
+
+#. module: custom_documents
+#: model:ir.model,name:custom_documents.model_account_invoice_line
+msgid "Invoice Line"
+msgstr "Linea de la Factura"
+
+#. module: custom_documents
+#: model:ir.model,name:custom_documents.model_operating_unit
+#: model:ir.model.fields,field_description:custom_documents.field_sale_order_operating_unit_id
+msgid "Operating Unit"
+msgstr "Unidad operacional"
+
+#. module: custom_documents
+#: model:ir.model.fields,field_description:custom_documents.field_account_invoice_line_template_order_id
+msgid "Order"
+msgstr "Orden"
+
+#. module: custom_documents
+#: model:ir.model.fields,field_description:custom_documents.field_account_invoice_line_order_id
+msgid "Order Reference"
+msgstr "Referencia del pedido"
+
+#. module: custom_documents
+#: model:ir.ui.view,arch_db:custom_documents.report_invoice_document_custom
+msgid "Order number:"
+msgstr "Pedido número:"
+
+#. module: custom_documents
+#: model:ir.ui.view,arch_db:custom_documents.external_layout_standard_custom
+msgid "Page: <span class=\"page\"/> / <span class=\"topage\"/>"
+msgstr "Página: <span class=\"page\"/>/<span class=\"topage\"/>"
+
+#. module: custom_documents
+#: model:ir.ui.view,arch_db:custom_documents.report_sale_order_custom
+msgid "Product"
+msgstr "Producto"
+
+#. module: custom_documents
+#: model:ir.ui.view,arch_db:custom_documents.report_invoice_document_custom
+#: model:ir.ui.view,arch_db:custom_documents.report_sale_order_custom
+msgid "Quantity"
+msgstr "Cantidad"
+
+#. module: custom_documents
+#: model:ir.model,name:custom_documents.model_sale_order
+msgid "Quotation"
+msgstr "Presupuesto"
+
+#. module: custom_documents
+#: model:ir.actions.report,name:custom_documents.action_report_saleorder
+msgid "Quotation / Order with images"
+msgstr "Presupuesto / Pedido con imágenes"
+
+#. module: custom_documents
+#: model:ir.ui.view,arch_db:custom_documents.report_invoice_document_custom
+#: model:ir.ui.view,arch_db:custom_documents.report_sale_order_custom
+msgid "Reference"
+msgstr "Referencia"
+
+#. module: custom_documents
+#: model:ir.ui.view,arch_db:custom_documents.report_invoice_document_custom
+#: model:ir.ui.view,arch_db:custom_documents.report_sale_order_custom
+msgid "Taxes"
+msgstr "Impuestos"
+
+#. module: custom_documents
+#: model:ir.ui.view,arch_db:custom_documents.report_sale_order_custom
+msgid "Total Price"
+msgstr "Precio total"
+
+#. module: custom_documents
+#: model:ir.ui.view,arch_db:custom_documents.report_invoice_document_custom
+#: model:ir.ui.view,arch_db:custom_documents.report_sale_order_custom
+msgid "Unit Price"
+msgstr "Precio de Unidad"
+
+#. module: custom_documents
+#: model:ir.model,name:custom_documents.model_account_invoice_line_template
+msgid "account.invoice.line.template"
+msgstr "account.invoice.line.template"
+
+#. module: custom_documents
+#: model:ir.ui.view,arch_db:custom_documents.report_invoice_document_custom
+msgid "<strong>Salesperson:</strong>"
+msgstr "<strong>Comercial:</strong>"

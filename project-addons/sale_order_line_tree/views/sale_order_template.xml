@@ -27,6 +27,7 @@
                 <field name="nbr"/>
                 <field name="product_uom_qty"/>
                 <field name="product_uom" />
+                <field name="price_unit" />
                 <field name="price_subtotal"/>
                 <field name="price_total"/>
             </tree>
