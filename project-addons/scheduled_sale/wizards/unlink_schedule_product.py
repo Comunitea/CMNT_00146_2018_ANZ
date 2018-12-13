@@ -7,7 +7,7 @@ from odoo import _, api, fields, models
 
 class UnlinkScheduleProductLine(models.TransientModel):
     _name = 'unlink.schedule.product.line'
-
+    _order = 'product_active'
 
     @api.multi
     def get_qty_ordered(self):
@@ -29,10 +29,11 @@ class UnlinkScheduleProductLine(models.TransientModel):
             #for line in self.env['unlink.schedule.product.line'].search([('unlink_schedule_product_id','=', self.unlink_schedule_product_id.id),
             #                                                             ('product_id','in', [id for id in sale_line_data.keys()])]):
                 line.product_qty_scheduled = sale_line_data[line.product_id.id]
-                print ('{} {}'.format(line.product_id.display_name, line.product_qty_scheduled))
+                #print ('{} {}'.format(line.product_id.display_name, line.product_qty_scheduled))
 
 
     product_id = fields.Many2one('product.product')
+    product_active = fields.Boolean(related="product_id.active", store=True)
     product_tmpl_id = fields.Many2one('product.template')
     to_cancel = fields.Boolean('To cancel', default=False)
     unlink_schedule_product_id = fields.Many2one('unlink.schedule.product.wzd')
@@ -62,7 +63,7 @@ class UnlinkScheduleProductLine(models.TransientModel):
         line = self.env['unlink.schedule.product.line'].browse(self._context.get('active_id', False))
         new = line and line.unlink_schedule_product_id
         action = {
-            'name': 'Unlink products Operations',
+            'name': _('Unlink products Operations'),
             'type': 'ir.actions.act_window',
             'view_type': 'form',
             'view_mode': 'form',
@@ -98,6 +99,7 @@ class UnlinkScheduleProductWzd(models.TransientModel):
 
         to_cancel_product = self.to_cancel_product_ids.mapped('product_id')
         to_cancel_product.unlink_scheduled_products(self.scheduled_sale_id.id)
+        self.origin_product_ids.filtered(lambda x: not x.product_active).write({'product_active': True})
 
         return {
             'name': 'Schedule sales',

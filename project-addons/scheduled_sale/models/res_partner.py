@@ -12,7 +12,6 @@ class ResPartner(models.Model):
     _inherit = 'res.partner'
 
     def add_args_to_product_search(self, args=[]):
-        #import ipdb; ipdb.set_trace()
         args = super(ResPartner, self).add_args_to_product_search(args=args)
         scheduled_sale_id = self._context.get('scheduled_sale_id', False)
         if scheduled_sale_id:

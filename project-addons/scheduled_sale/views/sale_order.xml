@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
-
+    <delete id="view_order_form_scheduled_sale" model="ir.ui.view"/>
     <record id="view_order_form_scheduled_sale" model="ir.ui.view">
         <field name="name">sale_order_form.scheduled_sale</field>
         <field name="model">sale.order</field>
@@ -24,6 +24,7 @@
                 <field name="scheduled_sale_id" attrs="{'invisible': [('scheduled_sale_id','=',False)]}"/>
             </xpath>
             <xpath expr="//field[@name='order_line']/tree/field[@name='product_id']" position="after">
+
                 <field name="scheduled_sale_id"  attrs="{'column_invisible': [('parent.scheduled_sale_id','=',False)]}"/>
             </xpath>
             <xpath expr="//field[@name='order_line']/tree/field[@name='requested_date']" position="after">
@@ -39,7 +40,13 @@
             <xpath expr="//field[@name='order_line']/form/group/group/field[@name='requested_date']" position="attributes">
                 <attribute name="context">{'from_requested_date':True}</attribute>
             </xpath>
+            <xpath expr="//field[@name='order_line']//tree/button[@type='action']" position="attributes">
+                <attribute name="context">
+                    {'default_product_tmpl_id': product_tmpl_id_sale_order_variant_mgmt,
+                    'scheduled_sale_id': scheduled_sale_id}
+                </attribute>
 
+            </xpath>
         </field>
     </record>
 

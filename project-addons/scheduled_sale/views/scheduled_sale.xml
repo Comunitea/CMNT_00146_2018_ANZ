@@ -11,14 +11,12 @@
                         <button name="toggle_active" type="object" class="oe_stat_button" icon="fa-archive">
                             <field name="active" widget="boolean_button" options='{"terminology": "archive"}'/>
                         </button>
-
                     </div>
                     <group>
                         <field name="name"/>
                     </group>
                     <group>
                         <group>
-
                             <field name="from_date"/>
                         </group>
                         <group>
@@ -53,7 +51,9 @@
                    <button name="action_show_schedule_orders" type="object" class="oe_stat_button" icon="fa-list">
                         <field name="scheduled_orders_ids_count" widget="statinfo" tring="Sale orders"/>
                     </button>
-
+                    <button name="open_all_product_to_cancel" type="object" class="oe_stat_button" icon="fa-archive" context="{'all_products':True}">
+                           <field name="product_ids_count" widget="statinfo" string="Products"/>
+                        </button>
                        <!--button name="open_product_to_cancel" type="object" class="oe_stat_button" icon="fa-list">
                            <label string="Cancel products"/>
                        </button-->
@@ -61,34 +61,64 @@
                 <group>
                     <group>
                         <field name="name"/>
-                        <field name="period_id" options="{'no_create': True}"/>
-                        <field name="code"/>
                     </group>
                     <group>
-                        <field name="company_id" options="{'no_create': True}"/>
                         <field name="pricelist_id" options="{'no_create': True}"/>
-                        <field name="product_brand_id" options="{'no_create': True}"/>
                     </group>
                 </group>
 
                 <notebook>
+                    <page string="Config">
+                        <group>
+                            <group>
+                                <field name="company_id" options="{'no_create': True}"/>
+                                <field name="period_id" options="{'no_create': True}"/>
+                                <field name="code"/>
+                            </group>
+                            <group>
+                                <field name="product_brand_id" options="{'no_create': True}"/>
+                                <field name="autounlink_products"/>
+                                <field name="autoconfirm_sales"/>
+                            </group>
+                        </group>
+                    </page>
                     <page string="Products">
+
+                        <group>
+                            <div>
+                                <field name="product_ids" readonly="1">
+                                    <tree>
+                                        <field name="default_code" readonly="1"/>
+                                        <field name="name" readonly="1"/>
+                                        <field name="barcode" readonly="1"/>
+                                        <!--field name="attribute_value_ids"/-->
+                                        <field name="lst_price" readonly="1"/>
+                                        <button name="action_unlink_product" string="Cancel product" type="object" icon="fa-sign-out"
+                                            context="{'scheduled_sale_id': parent.id}"/>
+                                    </tree>
+                                </field>
+                            </div>
+                        </group>
+                    </page>
+                    <page string="Archived products">
                         <div class="oe_button_box" name="button_box2">
-                           <button name="open_all_product_to_cancel" type="object" class="oe_stat_button" icon="fa-archive" context="{'all_products':True}">
+                           <!--button name="open_all_product_to_cancel" type="object" class="oe_stat_button" icon="fa-archive" context="{'all_products':True}">
                            <field name="product_ids_count" widget="statinfo" string="Products"/>
-                        </button>
+                        </button-->
                         </div>
                         <group>
                             <div>
-                                <field name="product_ids" options="{'no_create': True}">
-                                    <tree create="false">
-                                        <field name="default_code"/>
-                                        <field name="name"/>
-                                        <field name="barcode"/>
+                                <field name="product_ids_archived" readonly="1">
+                                    <tree decoration-danger="active==False">
+                                        <field name="default_code" readonly="1"/>
+                                        <field name="name" readonly="1"/>
+                                        <field name="barcode" readonly="1"/>
                                         <!--field name="attribute_value_ids"/-->
-                                        <field name="lst_price"/>
-                                        <button name="action_unlink_product" string="Cancel product" type="object" icon="fa-archive"
-                                            context="{'scheduled_sale_id': parent.id}"/>
+                                        <field name="lst_price" readonly="1"/>
+                                        <field name="active" invisible="1"/>
+                                        <button name="action_unlink_product" string="Schedule product product" type="object" icon="fa-sign-in"
+                                            context="{'scheduled_sale_id': parent.id, 're_order': True}"/>
+
                                     </tree>
                                 </field>
                             </div>
@@ -109,6 +139,7 @@
                 <field name="name"/>
                 <field name="from_date"/>
                 <field name="to_date" />
+
             </tree>
         </field>
     </record>
@@ -121,6 +152,7 @@
         <field name="arch" type="xml">
             <tree string="Schedule sales">
                 <field name="active" invisible="1"/>
+                <field name="state" invisible="1"/>
                 <field name="name"/>
                 <field name="code"/>
                 <field name="period_id" />
@@ -144,7 +176,7 @@
                 <separator/>
                 <filter name="confirmed" string="Confirmed" domain="[('state', '=', 'confirmed')]"/>
                 <filter string="Active" name="active" domain="[('active', '=',True)]"/>
-                <filter string="Inactive" domain="[('active', '=',False)]"/>
+                <filter string="Inactive" domain="[('active', '=', False)]"/>
 
                 <group expand="0" string="Group By">
                         <filter string="Period" domain="[]" context="{'group_by':'period_id'}"/>

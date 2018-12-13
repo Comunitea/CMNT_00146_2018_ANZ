@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record model="ir.ui.view" id="sale_manage_variant_form_scheduled">
+        <field name="model">sale.manage.variant</field>
+        <field name="inherit_id" ref="sale_order_variant_mgmt.sale_manage_variant_form"/>
+        <field name="arch" type="xml">
+            <field name="product_tmpl_id" position="before">
+                <field name="scheduled_sale_id" invisible="1"/>
+            </field>
+             <field name="product_tmpl_id" position="attributes">
+                <attribute name="context">{'partner_id': partner_id, 'scheduled_sale_id': scheduled_sale_id}</attribute>
+            </field>
+        </field>
+    </record>
+</odoo>

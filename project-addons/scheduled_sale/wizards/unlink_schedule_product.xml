@@ -73,22 +73,24 @@
                 <group>
                     <group string="Actual products">
                         <field name="origin_product_ids" nolabel="1">
-                            <tree decoration-danger="to_cancel==False" options="{'no_create': True}"  create="false" delete="false">
+                            <tree decoration-muted="to_cancel==False and product_active==False" options="{'no_create': True}"  create="false" delete="false">
+                                <field name="product_active"/>
                                 <field name="product_id"/>
                                 <field name="product_qty_scheduled"/>
                                 <field name="to_cancel" invisible="1"/>
-                                <button name="action_unlink_product" string="Cancel product" type="object" icon="fa-trash"
+                                <button name="action_unlink_product" string="Cancel product" type="object" icon="fa-sign-out"
                                             context="{'scheduled_sale_id': parent.id}"/>
                             </tree>
                         </field>
                     </group>
                     <group string="Products to cancel">
                         <field name="to_cancel_product_ids" nolabel="1">
-                            <tree decoration-danger="to_cancel!=False" options="{'no_create': True}"  create="false" delete="false">
+                            <tree decoration-muted="to_cancel!=False and product_active==False" decoration-danger="to_cancel!=False" options="{'no_create': True}"  create="false" delete="false">
+                                <field name="product_active"/>
                                 <field name="product_id"/>
                                 <field name="product_qty_scheduled"/>
                                 <field name="to_cancel" invisible="1"/>
-                                <button name="action_unlink_product" string="Cancel product" type="object" icon="fa-archive"
+                                <button name="action_unlink_product" string="Cancel product" type="object" icon="fa-sign-in"
                                             context="{'scheduled_sale_id': parent.id}"/>
                             </tree>
                         </field>

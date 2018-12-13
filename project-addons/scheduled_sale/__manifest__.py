@@ -9,7 +9,8 @@
     'author': "Comunitea, ",
     'depends': [
         'sale',
-        'sale_order_line_tree'
+        'sale_order_line_tree',
+        'sale_custom_anz'
     ],
     'data': [
         'security/ir.model.access.csv',
@@ -18,7 +19,8 @@
         'views/product_view.xml',
         'views/stock_picking.xml',
         'report/sale_order_template.xml',
-        'wizards/unlink_schedule_product.xml'
+        'wizards/unlink_schedule_product.xml',
+        'wizards/sale_manage_variant_view.xml'
     ],
     'installable': True,
 }
