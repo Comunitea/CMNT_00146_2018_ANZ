@@ -13,7 +13,8 @@
         'commercial_rules_anz',
         'pos_order_return',
         'pos_order_mgmt',
-        'pos_product_available'
+        'pos_product_available',
+        'pos_coupons_gift_voucher'
     ],
     'data': [
         'views/assets.xml',
