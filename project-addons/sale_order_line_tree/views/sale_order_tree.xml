@@ -72,12 +72,12 @@
         <field name="arch" type="xml">
             <tree string="Sales Order Lines" editable="bottom" decoration-info="invoice_status=='to invoice'">
                 <field name="sequence" widget="handle"/>
-                <field name="invoice_status" invisible="1"></field>
+                <field name="invoice_status" invisible="1"/>
                 <field name="product_updatable" invisible="1"/>
                 <field name="order_partner_id" invisible="1"/>
                 <field name="product_attribute_value_ids" invisible="1"/>
                 <field name="product_tmpl_id" options="{'no_create': True}" context="{'ref_change_partner_id': order_partner_id}"/>
-                 <button name="%(sale_order_variant_mgmt.action_sale_manage_variant)d"
+                <button name="%(sale_order_variant_mgmt.action_sale_manage_variant)d"
                         type="action"
                         string="Modify Variants"
                         icon="fa-th"
