@@ -5,15 +5,38 @@
         <field name="model">unlink.schedule.product.line</field>
         <field name="priority" eval="1"/>
         <field name="arch" type="xml">
-            <tree decoration-danger="to_cancel!=False">
-                <field name="product_tmpl_id" readonly="1"/>
+            <tree decoration-danger="not product_active">
+                <field name="product_tmpl_id" readonly="1" invisible="1"/>
                 <field name="product_id" readonly="1"/>
                 <field name="product_qty_scheduled"/>
-                <field name="to_cancel"/>
+                <field name="to_cancel" invisible="1"/>
+                <field name="product_active" invisible="1"/>
                 <field name="unlink_schedule_product_id" invisible="1"/>
-                <button name="action_unlink_product" string="Cancel product" type="object" icon="fa-archive"
-                                            context="{'unlink_schedule_product_id': unlink_schedule_product_id}"/>
+                <button name="action_unlink_product" string="Cancel product" type="object" icon="fa-sign-in"
+                                            attrs="{'invisible': [('product_active', '=', True)]}"
+                                            context="{'from_tree': True, 'unlink_schedule_product_id': unlink_schedule_product_id}"/>
+                <button name="action_unlink_product" string="Cancel product" type="object" icon="fa-sign-out"
+                                            attrs="{'invisible': [('product_active', '=', False)]}"
+                                            context="{'from_tree': True, 'unlink_schedule_product_id': unlink_schedule_product_id}"/>
             </tree>
+        </field>
+    </record>
+     <record id="unlink_scheduled_product_tree_search" model="ir.ui.view">
+        <field name="name">Unlink schedule product tree.search</field>
+        <field name="model">unlink.schedule.product.line</field>
+        <field name="arch" type="xml">
+            <search string="Schedule product lines">
+                <field name="product_tmpl_id" string="Template"/>
+                <field name="product_id" string="Product"/>
+                <separator/>
+                <filter name="product_qty_scheduled" string="Ordered" domain="[('product_qty_scheduled', '>', 0.00)]"/>
+                <filter string="Active" name="active" domain="[('product_active', '=',True)]"/>
+                <filter string="Inactive" domain="[('product_active', '=', False)]"/>
+                <group expand="0" string="Group By">
+                        <filter string="Template" domain="[]" context="{'group_by':'product_tmpl_id'}"/>
+                        <filter string="State" domain="[]" context="{'group_by':'product_active'}"/>
+                </group>
+            </search>
         </field>
     </record>
 

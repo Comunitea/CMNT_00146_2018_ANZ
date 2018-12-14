@@ -34,16 +34,23 @@ class ScheduleSale(models.Model):
     name = fields.Char('Name', required=True)
     code = fields.Char('Code')
     active = fields.Boolean('Active', default=True)
-    period_id = fields.Many2one('scheduled.sale.period', string="Period")
+    period_id = fields.Many2one('scheduled.sale.period', string="Period",
+                                states = {'confirm': [('readonly', True)], 'done': [('readonly', True)]})
     company_id = fields.Many2one('res.company', 'Company',
-                                 default=lambda self: self.env['res.company']._company_default_get('scheduled.sale'))
+                                 default=lambda self: self.env['res.company']._company_default_get('scheduled.sale'),
+                                 states={'confirm': [('readonly', True)], 'done': [('readonly', True)]})
+
     pricelist_id = fields.Many2one('product.pricelist', string='Pricelist', required=True, readonly=False,
                                    help="Pricelist for scheduled sale.",
-                                   states = {'confirm': [('readonly', True)], 'end': [('readonly', True)]})
+                                   states={'confirm': [('readonly', True)], 'done': [('readonly', True)]})
 
     product_brand_id = fields.Many2one('product.brand', string='Brand')
     product_ids = fields.One2many('product.product', 'scheduled_sale_id',
                      string="Products in this schedule")
+
+    product_ids_archived = fields.One2many('product.product', 'scheduled_sale_id',
+                                  string="Archived products in this schedule", domain=[('active', '=', False)])
+
     product_ids_count = fields.Integer('Product count', compute='_compute_product_count')
     state = fields.Selection([
         ('draft', 'Draft'),
@@ -54,6 +61,9 @@ class ScheduleSale(models.Model):
 
     scheduled_orders_ids = fields.One2many('sale.order', 'scheduled_sale_id', string="Orders")
     scheduled_orders_ids_count = fields.Integer('Sale orders count', compute='_compute_sale_orders_count')
+
+    autoconfirm_sales = fields.Boolean("Auto confirm sales", help="If checked, the associated sale orders are confirmed when this schedule is done")
+    autounlink_products = fields.Boolean("Auto unlink product", help="If checked, when done, unlink inactive product templates")
 
     @api.multi
     def _cancel_schedule(self):
@@ -83,13 +93,14 @@ class ScheduleSale(models.Model):
 
     @api.multi
     def _done_schedule(self):
-        for self_id in self:
-            self_id.state = 'done'
+        for schedule in self:
+            schedule.state = 'done'
             #COnfirmo los pedidos ????
-            self_id.scheduled_orders_ids.filtered(lambda x:x.state in ('draft', 'sent')).action_confirm()
-            self.product_ids.archive_scheduled_products(self.id)
-
-        self.env['product.product'].archive_from_scheduled_sale(self.ids)
+            if schedule.autoconfirm_sales:
+                schedule.scheduled_orders_ids.filtered(lambda x:x.state in ('draft', 'sent')).action_confirm()
+            if schedule.autounlink_products:
+                template_to_schedule = self.env['product.template'].search([('scheduled_sale_id', '=', schedule.id)])
+                template_to_schedule.filtered(lambda x: not x.active).unlink()
         return True
 
     @api.multi
@@ -154,13 +165,19 @@ class ScheduleSale(models.Model):
         return self.open_product_to_cancel(all_products=True)
 
     @api.multi
-    def open_product_to_cancel(self, cancel_ids=[], all_products=False):
+    def open_product_to_cancel(self, cancel_ids=[], all_products=False, re_order=False):
+
+        to_cancel_product_ids = [
+            (0, 0, dict(product_id=product.id, to_cancel=True, product_tmpl_id=product.product_tmpl_id.id)) for product
+            in self.product_ids_archived]
+        origin_product_ids = [
+            (0, 0, dict(product_id=product.id, to_cancel=False, product_tmpl_id=product.product_tmpl_id.id)) for product
+            in self.product_ids]
 
         wzd_vals = dict(scheduled_sale_id=self.id,
-                    origin_product_ids=[(0, 0, dict(
-                                            product_id=product.id,
-                                            product_tmpl_id=product.product_tmpl_id.id
-                                        )) for product in self.product_ids])
+                        to_cancel_product_ids=to_cancel_product_ids,
+                        origin_product_ids=origin_product_ids)
+
         new = self.env['unlink.schedule.product.wzd'].create(wzd_vals)
         if all_products:
             view = self.env.ref('scheduled_sale.unlink_scheduled_product_tree')
@@ -173,13 +190,15 @@ class ScheduleSale(models.Model):
                 'views': [(view.id, 'tree')],
                 'view_id': view.id,
                 'target': 'self',
-                'domain': [('id', 'in', new.origin_product_ids.ids)],
+                'domain': [('id', 'in', new.to_cancel_product_ids.ids + new.origin_product_ids.ids)],
                 'context': dict(self.env.context)}
 
         else:
             view = self.env.ref('scheduled_sale.unlink_schedule_product_form')
             if cancel_ids:
-                new.origin_product_ids.filtered(lambda x:x.product_id.id in cancel_ids).write({'to_cancel':True})
+                new.origin_product_ids.filtered(lambda x: x.product_id.id in cancel_ids).write({'to_cancel': True})
+            if re_order:
+                new.to_cancel_product_ids.filtered(lambda x: x.product_id.id in cancel_ids).write({'to_cancel': False})
             return {
                 'name': 'Unlink products Operations',
                 'type': 'ir.actions.act_window',
@@ -191,4 +210,5 @@ class ScheduleSale(models.Model):
                 'target': 'new',
                 'res_id': new.id,
                 'context': dict(self.env.context)}
+        return action
 

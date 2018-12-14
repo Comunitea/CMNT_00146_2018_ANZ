@@ -9,4 +9,5 @@ class ResPartner(models.Model):
 
     _inherit = 'res.partner'
 
-
+    def add_args_to_product_search(self, args=[]):
+        return super(ResPartner, self).add_args_to_product_search(args=args)

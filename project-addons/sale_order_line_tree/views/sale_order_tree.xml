@@ -76,7 +76,7 @@
                 <field name="product_updatable" invisible="1"/>
                 <field name="order_partner_id" invisible="1"/>
                 <field name="product_attribute_value_ids" invisible="1"/>
-                <field name="product_tmpl_id" options="{'no_create': True}" context="{'ref_change_partner_id': order_partner_id}"/>
+                <field name="product_tmpl_id" options="{'no_create': True}" invisible="1" context="{'from_template': True, 'ref_change_partner_id': order_partner_id}"/>
                 <button name="%(sale_order_variant_mgmt.action_sale_manage_variant)d"
                         type="action"
                         string="Modify Variants"
@@ -86,7 +86,7 @@
                         attrs="{'invisible': ['|', ('state', 'not in', ('draft', 'sent')), ('product_attribute_value_ids', '=', [])]}"
                 />
                 <field name="product_id" attrs="{'readonly': [('product_updatable', '=', False)]}" force_save="1"
-                       options="{'no_create': True}" context="{'ref_change_partner_id': order_partner_id}"/>
+                       options="{'no_create': True}" context="{'from_template': False, 'ref_change_partner_id': order_partner_id}"/>
                 <field name="variant_sequence" widget="handle"/>
                 <field name="layout_category_id" groups="sale.group_sale_layout" />
                 <field name="name"/>

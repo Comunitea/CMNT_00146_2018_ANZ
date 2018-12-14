@@ -4,7 +4,7 @@
 
 from odoo import _, api, models, fields
 from odoo.osv import expression
-from odoo.tools import DEFAULT_SERVER_DATE_FORMAT
+from odoo.tools import DEFAULT_SERVER_DATE_FORMAT, DEFAULT_SERVER_DATETIME_FORMAT
 from datetime import datetime
 from odoo.exceptions import ValidationError
 
@@ -40,14 +40,33 @@ class SaleOrder(models.Model):
     def _action_confirm(self):
         if self.mapped('scheduled_sale_id').filtered(lambda x:x.state=='draft'):
             raise ValidationError(_("You can't confirm sale order with scheduled sale in draft state"))
-
         return super(SaleOrder, self)._action_confirm()
+
+
+    def add_args_to_product_search(self, args):
+        args = super(SaleOrder, self).add_args_to_product_search(args)
+        if self.scheduled_sale_id:
+            args = expression.AND([args, [('scheduled_sale_id', '=', self.scheduled_sale_id.id)]])
+        elif self._context('scheduled_sale_id', False):
+            args = expression.AND([args, [('scheduled_sale_id', '=', self._context['scheduled_sale_id'])]])
+        return args
+
+    @api.multi
+    def action_view_order_lines(self):
+        action = super(SaleOrder, self).action_view_order_lines()
+        if self.scheduled_sale_id:
+
+            action['context'].update(default_scheduled_sale_id=self.scheduled_sale_id.id)
+        return action
+        #action.update(
+        #    {'tax_id': {'domain': [('type_tax_use', '=', 'sale'),
+        #                           ('company_id', '=', self.company_id)]}}
+        #)
 
 class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"
 
     scheduled_sale_id = fields.Many2one('scheduled.sale', 'Schedule order')
-    delivered_date = fields.Date("Delivered date")
     deliver_month = fields.Char('Requested month', help="Date format = day/month/year(2 digits)")
 
     @api.multi
@@ -58,30 +77,13 @@ class SaleOrderLine(models.Model):
             self.scheduled_sale_id = self.product_id.scheduled_sale_id
         return result
 
-    @api.onchange('delivered_date')
-    def onchange_delivered_date(self):
-        self.delivered_date = "01-{}-{}".format(self.delivered_date.month,
-                                                self.delivered_date.year)
-    @api.multi
-    @api.onchange('deliver_month')
-    def onchange_deliver_month(self):
-
-        if self._context.get('from_requested_date', False):
-            return
-        for line in self:
-            if line.scheduled_sale_id and line.deliver_month:
-                line.requested_date = datetime.strptime(line.deliver_month, '%d/%M/%y')
-                line.deliver_month = datetime.strptime(line.requested_date.split()[0], DEFAULT_SERVER_DATE_FORMAT).strftime('%B/%y')
-
 
     @api.multi
     @api.onchange('requested_date')
     def onchange_requested_date(self):
-        if self._context.get('from_deliver_month', False):
-            return
-        for line in self:
-            if line.scheduled_sale_id and line.requested_date:
-                line.deliver_month = datetime.strptime(line.requested_date.split()[0], DEFAULT_SERVER_DATE_FORMAT).strftime('%B/%y')
+        for line in self.filtered(lambda x: x.requested_date):
+
+            line.deliver_month = datetime.strptime(line.requested_date, DEFAULT_SERVER_DATETIME_FORMAT).strftime('%B/%y')
 
     @api.multi
     def _prepare_procurement_values(self, group_id=False):
@@ -94,7 +96,6 @@ class SaleOrderLine(models.Model):
         values.update({
             'scheduled_sale_id': self.order_id.scheduled_sale_id.id,
             'deliver_month': self.deliver_month})
-        print("Procurement values: {}".format(values))
         return values
 
     @api.onchange('product_uom_qty', 'product_uom', 'route_id')

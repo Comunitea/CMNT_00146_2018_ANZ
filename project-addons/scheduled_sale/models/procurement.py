@@ -18,6 +18,7 @@ class ProcurementRule(models.Model):
 
     def _get_stock_move_values(self, product_id, product_qty, product_uom, location_id, name, origin, values,
                                group_id):
+
         result = super(ProcurementRule, self)._get_stock_move_values(product_id, product_qty, product_uom,
                                                                      location_id, name, origin, values, group_id)
         result.update({'scheduled_sale_id': values.get('scheduled_sale_id', False),

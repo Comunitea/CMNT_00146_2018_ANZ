@@ -25,9 +25,11 @@
             </field>
             <filter name="backorder" position="after">
                 <filter name="scheduled_sale_id" string="Scheduled Sales" domain="[('scheduled_sale_id','!=', False)]" help="Picking from scheduled sale order"/>
+                <filter name="normal_sale_id" string="Regular Sales" domain="[('scheduled_sale_id','=', False)]" help="Picking from regular sale order"/>
             </filter>
             <filter name="picking_type" position="after">
                 <filter name="deliver_month" string="Delivery Month" domain="[('scheduled_sale_id','!=', False)]" context="{'group_by':'deliver_month'}"/>
+                <filter name="group_schedule_sale" string="Schedule sale" domain="[('scheduled_sale_id','!=', False)]" context="{'group_by':'scheduled_sale_id'}"/>
             </filter>
         </field>
     </record>

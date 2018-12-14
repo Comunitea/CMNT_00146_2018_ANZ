@@ -89,11 +89,11 @@
                                 <field name="product_ids" readonly="1">
                                     <tree>
                                         <field name="default_code" readonly="1"/>
-                                        <field name="name" readonly="1"/>
+                                        <field name="display_name" readonly="1"/>
                                         <field name="barcode" readonly="1"/>
                                         <!--field name="attribute_value_ids"/-->
                                         <field name="lst_price" readonly="1"/>
-                                        <button name="action_unlink_product" string="Cancel product" type="object" icon="fa-sign-out"
+                                        <button name="action_unlink_product" string="Cancel product" type="object" icon="fa-sign-in"
                                             context="{'scheduled_sale_id': parent.id}"/>
                                     </tree>
                                 </field>
@@ -111,7 +111,7 @@
                                 <field name="product_ids_archived" readonly="1">
                                     <tree decoration-danger="active==False">
                                         <field name="default_code" readonly="1"/>
-                                        <field name="name" readonly="1"/>
+                                        <field name="display_name" readonly="1"/>
                                         <field name="barcode" readonly="1"/>
                                         <!--field name="attribute_value_ids"/-->
                                         <field name="lst_price" readonly="1"/>
@@ -264,6 +264,8 @@
         parent="menu_scheduled_sale" sequence="2" />
     <menuitem action="action_scheduled_sale_period_form" id="menu_action_scheduled_sale_period_form"
         parent="menu_scheduled_sale" sequence="3" />
+
+
 
 </odoo>
 

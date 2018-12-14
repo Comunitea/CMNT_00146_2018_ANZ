@@ -8,6 +8,7 @@ class ProductTemplate(models.Model):
 
     _inherit = 'product.template'
 
+
     product_color = fields.Many2one('product.attribute.value', string="Color", domain="[('is_color','=', True)]")
     boot_type = fields.Many2one('product.attribute.value', string="Tipo de bota", domain="[('is_tboot','=', True)]")
     replication = fields.Boolean('Replication')
@@ -28,6 +29,10 @@ class ProductTemplate(models.Model):
         partner = self.env['res.partner'].get_partner_by_context()
         if partner and not partner.affiliate:
             args = partner.add_args_to_product_search(args)
+
+        sale_order = self.env['sale.order'].get_sale_order_by_context()
+        if sale_order:
+            args = sale_order.add_args_to_product_search(args)
         return super(ProductTemplate, self)._search(args, offset=offset, limit=limit, order=order, count=count, access_rights_uid=access_rights_uid)
 
 
@@ -41,4 +46,8 @@ class ProductProduct(models.Model):
         partner = self.env['res.partner'].get_partner_by_context()
         if partner and not partner.affiliate:
             args = partner.add_args_to_product_search(args)
+
+        sale_order = self.env['sale.order'].get_sale_order_by_context()
+        if sale_order:
+            args = sale_order.add_args_to_product_search(args)
         return super(ProductProduct, self)._search(args, offset=offset, limit=limit, order=order, count=count, access_rights_uid=access_rights_uid)

@@ -6,3 +6,4 @@ from . import res_partner # noqa
 from . import sale_order_line # noqa
 from . import operating_unit # noqa
 from . import product_pricelist # noqa
+from . import sale_order

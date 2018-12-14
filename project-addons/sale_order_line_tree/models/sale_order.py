@@ -48,14 +48,14 @@ class SaleOrder(models.Model):
         action['views'] = {
             (tree_view and tree_view[1] or False, 'tree')}
 
-        action['domain'] = [('order_id', '=', [self.id])]
+        action['domain'] = [('order_id', '=', self.id)]
 
         action['context'] = {
             'default_order_id': self.id,
             'partner_id': self.partner_id.id,
             'pricelist': self.pricelist_id,
             'company_id': self.company_id.id,
-            'type_id': self.type_id.id
+            'type_id': self.type_id.id,
         }
         # action['view_ids'] = [tree_view and tree_view[1]]
         action.update(
@@ -93,9 +93,7 @@ class SaleOrderLine(models.Model):
 
     @api.model
     def create(self, vals):
-
         if 'product_tmpl_id' not in vals and vals.get('product_id', False) and False:
-            import ipdb; ipdb.set_trace()
             tmpl_id = self.env['product.product'].\
                 search_read([('id', '=', vals['product_id'])],['product_tmpl_id'])[0]
             vals.update({'product_tmpl_id': tmpl_id})

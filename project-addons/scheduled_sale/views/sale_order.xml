@@ -8,13 +8,13 @@
         <field name="arch" type="xml">
             <xpath expr="//field[@name='order_line']/form/group/group/field[@name='product_id']" position="attributes">
                 <attribute name="context">
-                    {'scheduled_sale_id': parent.scheduled_sale_id, 'partner_id':parent.partner_id, 'quantity':product_uom_qty, 'pricelist':parent.pricelist_id, 'uom':product_uom, 'company_id': parent.company_id, 'sale_order_type_id': parent.type_id}
+                    {'sale_order_id': parent.id, 'scheduled_sale_id': parent.scheduled_sale_id, 'partner_id':parent.partner_id, 'quantity':product_uom_qty, 'pricelist':parent.pricelist_id, 'uom':product_uom, 'company_id': parent.company_id, 'sale_order_type_id': parent.type_id}
                 </attribute>
             </xpath>
 
             <xpath expr="//field[@name='order_line']/tree/field[@name='product_id']" position="attributes">
                 <attribute name="context">
-                    {'scheduled_sale_id': parent.scheduled_sale_id, 'partner_id':parent.partner_id, 'quantity':product_uom_qty, 'pricelist':parent.pricelist_id, 'uom':product_uom, 'company_id': parent.company_id, 'sale_order_type_id': parent.type_id}
+                    {'sale_order_id': parent.id, 'scheduled_sale_id': parent.scheduled_sale_id, 'partner_id':parent.partner_id, 'quantity':product_uom_qty, 'pricelist':parent.pricelist_id, 'uom':product_uom, 'company_id': parent.company_id, 'sale_order_type_id': parent.type_id}
                 </attribute>
             </xpath>
             <field name="team_id" position="after">
@@ -24,7 +24,6 @@
                 <field name="scheduled_sale_id" attrs="{'invisible': [('scheduled_sale_id','=',False)]}"/>
             </xpath>
             <xpath expr="//field[@name='order_line']/tree/field[@name='product_id']" position="after">
-
                 <field name="scheduled_sale_id"  attrs="{'column_invisible': [('parent.scheduled_sale_id','=',False)]}"/>
             </xpath>
             <xpath expr="//field[@name='order_line']/tree/field[@name='requested_date']" position="after">
@@ -43,7 +42,8 @@
             <xpath expr="//field[@name='order_line']//tree/button[@type='action']" position="attributes">
                 <attribute name="context">
                     {'default_product_tmpl_id': product_tmpl_id_sale_order_variant_mgmt,
-                    'scheduled_sale_id': scheduled_sale_id}
+                    'scheduled_sale_id': parent.scheduled_sale_id,
+                    'sale_order_type_id': parent.type_id}
                 </attribute>
 
             </xpath>
@@ -63,7 +63,63 @@
         </field>
     </record>
 
+    <record id="sale_order_line_form_view_schedule" model="ir.ui.view">
+        <field name="name">sale.order.line.form.scheduled</field>
+        <field name="model">sale.order.line</field>
+        <field name="inherit_id" ref="sale_order_line_tree.sale_order_line_form_view"/>
+        <field name="arch" type="xml">
+            <field name="product_id" position="after">
+                <field name="scheduled_sale_id" invisible="1"/>
+                <field name="order_id" invisible="1"/>
+                 <field name="order_partner_id" invisible="1"/>
+            </field>
+            <xpath expr="//field[@name='product_tmpl_id']" position="attributes">
+                 <attribute name="context">
+                    {'scheduled_sale_id': scheduled_sale_id,
+                     'ref_change_partner_id': order_partner_id,
+                     'order_id': order_id,
+                    'from_template': True}
 
+                </attribute>
+            </xpath>
+            <xpath expr="//field[@name='product_id']" position="attributes">
+                <attribute name="context">
+                    {'scheduled_sale_id': scheduled_sale_id,
+                     'ref_change_partner_id': order_partner_id,
+                     'order_id': order_id}
+
+                </attribute>
+            </xpath>
+        </field>
+    </record>
+    <record id="sale_order_line_tree_view_schedule" model="ir.ui.view">
+        <field name="name">sale.order.line.tree.scheduled</field>
+        <field name="model">sale.order.line</field>
+        <field name="inherit_id" ref="sale_order_line_tree.sale_order_line_tree_view"/>
+        <field name="arch" type="xml">
+            <field name="product_id" position="after">
+                <field name="scheduled_sale_id" invisible="1" />
+                <field name="order_id" invisible="1"/>
+            </field>
+            <xpath expr="//field[@name='product_tmpl_id']" position="attributes">
+                <attribute name="context">
+                    {'scheduled_sale_id': scheduled_sale_id,
+                     'ref_change_partner_id': order_partner_id,
+                     'order_id': order_id,
+                    'from_template': True}
+
+                </attribute>
+            </xpath>
+            <xpath expr="//field[@name='product_id']" position="attributes">
+                <attribute name="context">
+                    {'scheduled_sale_id': scheduled_sale_id,
+                     'ref_change_partner_id': order_partner_id,
+                     'order_id': order_id,
+                     'from_template': True}
+                </attribute>
+            </xpath>
+        </field>
+    </record>
     <!--ASI NO FUNCIONA
     <record id="action_orders" model="ir.actions.act_window">
         <field name="name">Sales Orders</field>

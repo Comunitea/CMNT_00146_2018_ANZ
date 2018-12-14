@@ -13,8 +13,4 @@ class ResPartner(models.Model):
 
     def add_args_to_product_search(self, args=[]):
         args = super(ResPartner, self).add_args_to_product_search(args=args)
-        scheduled_sale_id = self._context.get('scheduled_sale_id', False)
-        if scheduled_sale_id:
-            schedule_domain = [('scheduled_sale_id', '=', scheduled_sale_id)]
-            args = expression.AND([args, schedule_domain])
         return args
