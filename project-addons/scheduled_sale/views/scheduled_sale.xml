@@ -150,7 +150,7 @@
         <field name="model">scheduled.sale</field>
         <field name="priority" eval="1"/>
         <field name="arch" type="xml">
-            <tree string="Schedule sales">
+            <tree string="Schedule sales" decoration-muted="state=='cancel'" decoration-success="state in ('draft','confirm')">
                 <field name="active" invisible="1"/>
                 <field name="state" invisible="1"/>
                 <field name="name"/>
@@ -174,10 +174,12 @@
                 <field name="state"/>
                 <field name="active"/>
                 <separator/>
-                <filter name="confirmed" string="Confirmed" domain="[('state', '=', 'confirmed')]"/>
+                <filter name="canceled" string="Canceled" domain="[('state', '=', 'cancel')]"/>
+                <filter name="confirmed" string="Confirmed" domain="[('state', 'in', 'confirmed')]"/>
+                <filter name="current" string="Current" domain="[('state', 'in', ('draft', 'confirmed'))]"/>
+                <separator/>
                 <filter string="Active" name="active" domain="[('active', '=',True)]"/>
                 <filter string="Inactive" domain="[('active', '=', False)]"/>
-
                 <group expand="0" string="Group By">
                         <filter string="Period" domain="[]" context="{'group_by':'period_id'}"/>
                         <filter string="Company" domain="[]" context="{'group_by':'company_id'}"/>

@@ -36,7 +36,6 @@ class YesNoConfirmation(models.TransientModel):
                       ctx=ctx,
                       return_id=model.id,
                       model_id=model.env['ir.model'].search([('model', '=', model._name)]).id)
-        print (values)
         yesno = self.env['yesno.confirmation'].create(values)
         return {
             'name': values['name'],

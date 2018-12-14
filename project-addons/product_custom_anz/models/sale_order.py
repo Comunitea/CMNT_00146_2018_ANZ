@@ -5,7 +5,7 @@ from odoo import fields, models, api
 
 class SaleOrder(models.Model):
 
-    _inherit='sale.order'
+    _inherit = 'sale.order'
 
     def get_sale_order_by_context(self):
         sale_order_by_context =  self._context.get('sale_order_id', False) and self.browse(self._context['sale_order_id']) or self._context.get('order_id', False) and self.browse(self._context['order_id'])

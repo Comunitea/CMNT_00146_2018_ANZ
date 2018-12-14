@@ -31,6 +31,15 @@ class ProductTemplate(models.Model):
                 archive_vals = {'scheduled_sale_id': scheduled_sale_id, 'origin_scheduled_sale_id': False}
             template.write(archive_vals)
 
+    @api.model
+    def _search(self, args, offset=0, limit=None, order=None, count=False, access_rights_uid=None):
+
+        schedule_sale_id = self.env['scheduled.sale'].get_scheduled_sale_by_context()
+        if schedule_sale_id:
+            args = schedule_sale_id.add_args_to_product_search(args)
+        return super(ProductTemplate, self)._search(args, offset=offset, limit=limit, order=order, count=count,
+                                                   access_rights_uid=access_rights_uid)
+
 
 class ProductProduct(models.Model):
 
@@ -64,7 +73,7 @@ class ProductProduct(models.Model):
 
             #genero mensaje para sale_order
             message = _(
-                "This sale order has been modified and next lines are unlinked from the schedule sale: <a href=# data-oe-model=schedule.sale data-oe-id=%d>%s</a> <ul>") % (
+                "This sale order has been modified and next lines are unlinked from the schedule sale: <a href=# data-oe-model=scheduled.sale data-oe-id=%d>%s</a> <ul>") % (
                 scheduled_sale_id, sale_order.scheduled_sale_id.name)
             for line in lines:
                 message = _("{} {}".format(message, "<li>{} Qty: {} </li>".format(line.name, line.product_uom_qty)))
@@ -79,3 +88,11 @@ class ProductProduct(models.Model):
 
 
 
+    @api.model
+    def _search(self, args, offset=0, limit=None, order=None, count=False, access_rights_uid=None):
+
+        schedule_sale_id = self.env['scheduled.sale'].get_scheduled_sale_by_context()
+        if schedule_sale_id:
+            args = schedule_sale_id.add_args_to_product_search(args)
+        return super(ProductProduct, self)._search(args, offset=offset, limit=limit, order=order, count=count,
+                                                   access_rights_uid=access_rights_uid)

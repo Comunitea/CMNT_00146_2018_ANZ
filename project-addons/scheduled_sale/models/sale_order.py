@@ -43,14 +43,6 @@ class SaleOrder(models.Model):
         return super(SaleOrder, self)._action_confirm()
 
 
-    def add_args_to_product_search(self, args):
-        args = super(SaleOrder, self).add_args_to_product_search(args)
-        if self.scheduled_sale_id:
-            args = expression.AND([args, [('scheduled_sale_id', '=', self.scheduled_sale_id.id)]])
-        elif self._context('scheduled_sale_id', False):
-            args = expression.AND([args, [('scheduled_sale_id', '=', self._context['scheduled_sale_id'])]])
-        return args
-
     @api.multi
     def action_view_order_lines(self):
         action = super(SaleOrder, self).action_view_order_lines()

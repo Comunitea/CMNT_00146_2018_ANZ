@@ -3,6 +3,7 @@
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
 
 from odoo import _, api, fields, models
+from odoo.osv import expression
 
 class ScheduleSalePeriod(models.Model):
     _name = 'scheduled.sale.period'
@@ -53,8 +54,8 @@ class ScheduleSale(models.Model):
 
     product_ids_count = fields.Integer('Product count', compute='_compute_product_count')
     state = fields.Selection([
-        ('draft', 'Draft'),
         ('cancel', 'Cancelled'),
+        ('draft', 'Draft'),
         ('confirm', 'Confirmed'),
         ('done', 'Ended')
         ], 'Status', default='draft', index=True, required=True, track_visibility='always')
@@ -217,3 +218,12 @@ class ScheduleSale(models.Model):
                 'context': dict(self.env.context)}
         return action
 
+    def add_args_to_product_search(self, args):
+        args = expression.AND([args, [('scheduled_sale_id', '=', self.id)]])
+        return args
+
+
+    def get_scheduled_sale_by_context(self):
+
+        scheduled_order_by_context = self._context.get('scheduled_sale_id', False) and self.browse(self._context['scheduled_sale_id'])
+        return scheduled_order_by_context
