@@ -74,6 +74,11 @@ class ScheduleSale(models.Model):
 
     @api.multi
     def cancel_schedule(self):
+        return self._cancel_schedule()
+        for self_id in self:
+            self_id.state = 'cancel'
+            self_id.scheduled_orders_ids.action_cancel()
+        return True
 
         yes_confirmation = self._context.get('yes_confirmation', False)
         if not yes_confirmation:
@@ -105,7 +110,7 @@ class ScheduleSale(models.Model):
 
     @api.multi
     def done_schedule(self):
-
+        return self._done_schedule()
         yes_confirmation = self._context.get('yes_confirmation', False)
         if not yes_confirmation:
             vals = {'function': 'done_schedule()',

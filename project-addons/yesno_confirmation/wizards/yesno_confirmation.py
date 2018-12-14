@@ -17,6 +17,7 @@ class YesNoConfirmation(models.TransientModel):
 
     @api.multi
     def confirm(self):
+
         old_ctx = self.env.context.get('old_ctx', {})
         old_ctx.update(yes_confirmation=True, return_id=self.return_id)
         vals = {'name': 'name_wzd',
@@ -35,6 +36,7 @@ class YesNoConfirmation(models.TransientModel):
                       ctx=ctx,
                       return_id=model.id,
                       model_id=model.env['ir.model'].search([('model', '=', model._name)]).id)
+        print (values)
         yesno = self.env['yesno.confirmation'].create(values)
         return {
             'name': values['name'],
