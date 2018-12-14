@@ -16,9 +16,6 @@ class ProductTemplate(models.Model):
 
     @api.multi
     def write(self, vals):
-        if 'scheduled_sale_id' in vals:
-            self.product_variant_ids.write({'scheduled_sale_id': vals['scheduled_sale_id']})
-
         return super(ProductTemplate, self).write(vals)
 
 
