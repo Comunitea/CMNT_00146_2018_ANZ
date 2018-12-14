@@ -86,6 +86,7 @@ class ResPartner(models.Model):
         return partner
 
     def add_args_to_product_search(self, args=[]):
+
         if self.area_id:
             args.extend([('product_brand_id.restricted_area_ids', 'not in', [self.area_id.id])])
 
@@ -97,9 +98,9 @@ class ResPartner(models.Model):
         if allowed_brand_ids and restricted_brand_ids:
             [allowed_brand_ids.remove(i) for i in restricted_brand_ids if i in allowed_brand_ids]
         if allowed_brand_ids:
-            args = expression.AND([args, [('product_brand_id', 'in', allowed_brand_ids)]])
+            args = expression.AND([args, ['|', ('product_brand_id', '=', False), ('product_brand_id', 'in', allowed_brand_ids)]])
         elif restricted_brand_ids:
-            args = expression.AND([args, [('product_brand_id', 'not in', restricted_brand_ids)]])
+            args = expression.AND([args, ['|', ('product_brand_id', '=', False),('product_brand_id', 'not in', restricted_brand_ids)]])
 
         if self.allowed_categories_ids or self.restricted_categories_ids:
             a_categ = []
@@ -112,7 +113,7 @@ class ResPartner(models.Model):
             if a_categ and r_categ:
                 [a_categ.remove(i) for i in r_categ if i in a_categ]
             if a_categ:
-                args = expression.AND([args, [('categ_id', 'in', a_categ)]])
+                args = expression.AND([args, ['|', ('categ_id', '=', False), ('categ_id', 'in', a_categ)]])
             elif r_categ:
                 args = expression.AND([args, [('categ_id', 'not in', r_categ)]])
 
