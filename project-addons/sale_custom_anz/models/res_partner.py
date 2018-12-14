@@ -17,4 +17,5 @@ class ResPartner(models.Model):
             if brand_ids:
                 unit_domain = ['|', ('product_brand_id', '=', False), ('product_brand_id', 'in', brand_ids)]
                 args = expression.AND([args, unit_domain])
+
         return args

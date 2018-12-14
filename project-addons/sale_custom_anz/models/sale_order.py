@@ -136,8 +136,6 @@ class SaleOrderLine(models.Model):
     virtual_stock_conservative = fields.Float(
         related="product_id.virtual_stock_conservative",
         string='Virtual Stock Conservative')
-
-    requested_date = fields.Date('Requested Date')
     ref_change = fields.Boolean('Reference change')
 
     @api.multi

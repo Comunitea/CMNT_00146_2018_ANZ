@@ -12,7 +12,7 @@
         'sale_order_line_date',
         'sale_order_type',
         'sale_order_variant_mgmt',
-        'sale_order_line_tree'
+        #'sale_order_line_tree'
     ],
     'data': [
         'views/sale_order.xml',
