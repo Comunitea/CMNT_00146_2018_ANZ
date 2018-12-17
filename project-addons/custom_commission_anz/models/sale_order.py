@@ -19,7 +19,7 @@ class SaleOrderLine(models.Model):
         if not agents:
             agents = partner.agents
 
-        for agent in partner.agents:
+        for agent in agents:
             commission_id = agent.get_brand_commission(brand.id)
             if not commission_id:
                 commission_id = agent.commission.id

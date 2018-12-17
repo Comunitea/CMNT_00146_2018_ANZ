@@ -10,34 +10,23 @@ class UnlinkScheduleProductLine(models.TransientModel):
     _order = 'product_active desc, product_tmpl_id, product_id'
 
     @api.multi
+    @api.depends('product_id')
     def get_qty_ordered(self):
-        company_id = self.env.user.company_id.id
-
-        for scheduled_wzd in self.mapped('unlink_schedule_product_id'):
-
-            ids = scheduled_wzd.line_ids.mapped('product_id').ids
-            self._cr.execute(
-                "SELECT SOL.product_id, sum(SOL.product_uom_qty) as qty FROM "
-                "sale_order_line SOL "
-                "INNER JOIN sale_order  SO ON SO.id = SOL.order_id "
-                "WHERE SOL.product_id in %s and so.company_id = %s"
-                "AND SO.state not in ('done', 'cancel')"
-                "group BY SOL.product_id", [tuple(ids), company_id])
-
-            sale_line_data = dict(self._cr.fetchall())
-            for line in scheduled_wzd.line_ids.filtered(lambda x:x.product_id.id in [id for id in sale_line_data.keys()]):
-            #for line in self.env['unlink.schedule.product.line'].search([('unlink_schedule_product_id','=', self.unlink_schedule_product_id.id),
-            #                                                             ('product_id','in', [id for id in sale_line_data.keys()])]):
-                line.product_qty_scheduled = sale_line_data[line.product_id.id]
-                #print ('{} {}'.format(line.product_id.display_name, line.product_qty_scheduled))
-
+        sale_line_obj = self.env["sale.order.line"]
+        for line in self:
+            sale_lines = sale_line_obj.\
+                search([('scheduled_sale_id', '=',
+                         line.unlink_schedule_product_id.scheduled_sale_id.id),
+                        ('product_id', '=', line.product_id.id)])
+            line.product_qty_scheduled = \
+                sum(sale_lines.mapped('product_uom_qty'))
 
     product_id = fields.Many2one('product.product')
     product_active = fields.Boolean(related="product_id.active", store=True)
     product_tmpl_id = fields.Many2one('product.template')
     to_cancel = fields.Boolean('To cancel', default=False)
     unlink_schedule_product_id = fields.Many2one('unlink.schedule.product.wzd')
-    product_qty_scheduled = fields.Float("Qty ordered", compute="get_qty_ordered")
+    product_qty_scheduled = fields.Float("Qty ordered", compute="get_qty_ordered", store=True)
 
     @api.multi
     def set_product_as_cancel(self, to_cancel=False):
@@ -51,6 +40,8 @@ class UnlinkScheduleProductLine(models.TransientModel):
             archived_product_ids = to_cancel_product.filtered(lambda x: not x.active)
             active_product_ids and active_product_ids.unlink_scheduled_products(self.unlink_schedule_product_id.scheduled_sale_id.id)
             archived_product_ids.write({'active': True})
+            templates_unactive = archived_product_ids.mapped('product_tmpl_id').filtered(lambda x: not x.active)
+            templates_unactive.write({'active': True})
             return True
 
 

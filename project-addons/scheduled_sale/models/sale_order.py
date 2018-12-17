@@ -12,7 +12,7 @@ class SaleOrder(models.Model):
     _inherit = "sale.order"
 
     scheduled_sale_id = fields.\
-        Many2one('scheduled.sale', 'Schedule order', readonly=True)
+        Many2one('scheduled.sale', 'Schedule order')
     origin_scheduled_sale_id = fields.\
         Many2one('scheduled.sale', 'Schedule order', readonly=True)
 
@@ -58,8 +58,15 @@ class SaleOrder(models.Model):
 class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"
 
+    @api.multi
+    @api.depends('requested_date')
+    def _get_deliver_month(self):
+        for line in self.filtered(lambda x: x.requested_date):
+            line.deliver_month = datetime.strptime(line.requested_date, DEFAULT_SERVER_DATETIME_FORMAT).strftime('%B/%y')
+
     scheduled_sale_id = fields.Many2one('scheduled.sale', 'Schedule order')
-    deliver_month = fields.Char('Requested month', help="Date format = day/month/year(2 digits)")
+    deliver_month = fields.Char('Requested month', help="Date format = day/month/year(2 digits)",
+                                readonly=True, compute="_get_deliver_month", store=True)
 
     @api.multi
     @api.onchange('product_id')
@@ -68,14 +75,6 @@ class SaleOrderLine(models.Model):
         if self.product_id:
             self.scheduled_sale_id = self.product_id.scheduled_sale_id
         return result
-
-
-    @api.multi
-    @api.onchange('requested_date')
-    def onchange_requested_date(self):
-        for line in self.filtered(lambda x: x.requested_date):
-
-            line.deliver_month = datetime.strptime(line.requested_date, DEFAULT_SERVER_DATETIME_FORMAT).strftime('%B/%y')
 
     @api.multi
     def _prepare_procurement_values(self, group_id=False):

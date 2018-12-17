@@ -13,4 +13,5 @@ class ProductTemplate(models.Model):
         for template in unique_variants:
             template.weight = template.product_variant_ids.weight
         for template in (self - unique_variants):
-            template.weight = sum([x.weight for x in template.product_variant_ids]) / len(template.product_variant_ids)
+            if template.product_variant_ids:
+                template.weight = sum([x.weight for x in template.product_variant_ids]) / len(template.product_variant_ids)

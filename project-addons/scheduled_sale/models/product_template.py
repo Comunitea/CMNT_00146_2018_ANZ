@@ -65,7 +65,7 @@ class ProductProduct(models.Model):
         if not self or not scheduled_sale_id:
             raise ValidationError (_('No products to unlink, or not schedule sale'))
         ##ventas de estos productos.
-        sale_orders = self.env['sale.order.line'].search([('product_id', 'in', self.ids), ('order_id.scheduled_sale_id','=', scheduled_sale_id), ('state','!=', 'sale')]).mapped('order_id')
+        sale_orders = self.env['sale.order.line'].search([('product_id', 'in', self.ids), ('order_id.scheduled_sale_id','=', scheduled_sale_id), ('state','in', ['draft', 'sent'])]).mapped('order_id')
 
         for sale_order in sale_orders:
             #lineas de venta de estos productos
@@ -83,10 +83,11 @@ class ProductProduct(models.Model):
 
             lines.unlink()
 
-        self.write({'active': False})
+        if len(self.product_tmpl_id.filtered('active')) == 1:
+            self.product_tmpl_id.active = False
+        else:
+            self.write({'active': False})
         return True
-
-
 
     @api.model
     def _search(self, args, offset=0, limit=None, order=None, count=False, access_rights_uid=None):

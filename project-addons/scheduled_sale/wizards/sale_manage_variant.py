@@ -13,10 +13,10 @@ class SaleManageVariant(models.TransientModel):
         if self._context.get('scheduled_sale_id', False):
             return self._context['scheduled_sale_id']
         order = False
-        if self._context['active_model'] == 'sale.order':
+        if self._context.get('active_model') == 'sale.order':
             active_id = self._context['active_id']
             order = self.env['sale.order'].browse(active_id)
-        elif self._context['active_model'] == 'sale.order.line':
+        elif self._context.get('active_model') == 'sale.order.line':
             line_id = self._context['active_id']
             order = self.env['sale.order.line'].browse(line_id).\
                 order_id

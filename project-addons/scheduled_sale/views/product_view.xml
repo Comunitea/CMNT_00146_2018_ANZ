@@ -7,7 +7,7 @@
         <field name="arch" type="xml">
             <page name="sales" position="inside">
                 <group name="group_general">
-                    <field name="scheduled_sale_id" domain="[('state', 'in', ('draft', 'confirm'))]" attrs="{'invisible': [('origin_scheduled_sale_id', '!=', False)]}"/>
+                    <field name="scheduled_sale_id" domain="[('state', '=', 'draft')]" attrs="{'invisible': [('origin_scheduled_sale_id', '!=', False)]}"/>
                     <field name="origin_scheduled_sale_id" readonly="1" attrs="{'invisible': [('origin_scheduled_sale_id', '=', False)]}"/>
                 </group>
             </page>
@@ -22,7 +22,7 @@
         <field name="arch" type="xml">
            <page name="sales" position="inside">
                 <group name="group_general">
-                    <field name="scheduled_sale_id" readonly="1" attrs="{'invisible': [('scheduled_sale_id', '=', False)]}"/>/><!-- readonly="1" attrs="{'invisible': [('scheduled_sale_id', '=', False)]}"/-->
+                    <field name="scheduled_sale_id" domain="[('state', '=', 'draft')]" readonly="1" attrs="{'invisible': [('scheduled_sale_id', '=', False)]}"/><!-- readonly="1" attrs="{'invisible': [('scheduled_sale_id', '=', False)]}"/-->
                     <field name="origin_scheduled_sale_id" readonly="1" attrs="{'invisible': [('origin_scheduled_sale_id', '=', False)]}"/>
                 </group>
 

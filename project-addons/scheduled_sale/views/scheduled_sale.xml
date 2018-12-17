@@ -38,10 +38,10 @@
         <field name="arch" type="xml">
             <form string="Schedule sale">
                  <header>
-                     <button name="cancel_schedule" string="Cancel" type="object" class="btn-warning" states="draft,confirm"/>
-                     <button name="done_schedule" string="Done" type="object" class="btn-primary" states="confirm"/>
+                     <button name="cancel_schedule" string="Cancel" type="object" class="btn-warning" states="draft"/>
+                     <button name="done_schedule" string="Done" type="object" class="btn-primary" states="draft"/>
 
-                     <field name="state" widget="statusbar" clickable="True" statusbar_visible="draft,confirm,done"/>
+                     <field name="state" widget="statusbar" clickable="True" statusbar_visible="draft,done"/>
                 </header>
                 <div class="oe_button_box" name="button_box">
                    <button name="toggle_active" type="object" class="oe_stat_button" icon="fa-archive">
@@ -116,9 +116,6 @@
                                         <!--field name="attribute_value_ids"/-->
                                         <field name="lst_price" readonly="1"/>
                                         <field name="active" invisible="1"/>
-                                        <button name="action_unlink_product" string="Schedule product product" type="object" icon="fa-sign-in"
-                                            context="{'scheduled_sale_id': parent.id, 're_order': True}"/>
-
                                     </tree>
                                 </field>
                             </div>

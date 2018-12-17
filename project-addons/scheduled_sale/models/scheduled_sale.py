@@ -105,8 +105,8 @@ class ScheduleSale(models.Model):
             if schedule.autoconfirm_sales:
                 schedule.scheduled_orders_ids.filtered(lambda x:x.state in ('draft', 'sent')).action_confirm()
             if schedule.autounlink_products:
-                template_to_schedule = self.env['product.template'].search([('scheduled_sale_id', '=', schedule.id)])
-                template_to_schedule.filtered(lambda x: not x.active).unlink()
+                template_to_schedule = self.env['product.template'].search([('scheduled_sale_id', '=', schedule.id),('active', '=', False)])
+                template_to_schedule.unlink()
         return True
 
     @api.multi
