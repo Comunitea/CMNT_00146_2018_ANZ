@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <template id="report_sale_order_custom" inherit_id="sale.report_saleorder_document">
+    <template id="report_sale_order_custom" inherit_id="cmnt_custom_documents.report_saleorder_document_custom">
         <xpath expr="//div[@id='informations']" position="inside">
             <div t-if="doc.partner_id.ref" class="col-xs-3">
                 <strong>Customer reference:</strong>
