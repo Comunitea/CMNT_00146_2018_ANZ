@@ -14,7 +14,8 @@
         'base',
         'account',
         'purchase',
-        'product_brand'
+        'product_brand',
+        'sale_order_type'
     ],
     'data': [
         'security/ir.model.access.csv',

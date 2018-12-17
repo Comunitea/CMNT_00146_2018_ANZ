@@ -10,6 +10,8 @@ class ReinvoiceWzd(models.TransientModel):
     _name = 'reinvoice.wzd'
 
     group = fields.Boolean("Group by associate")
+    sale_type_id = fields.Many2one('sale.order.type', "Sale type",
+                                   required=True)
 
     # @api.model
     # def _get_invoice_vals(self, invoices):
@@ -149,6 +151,9 @@ class ReinvoiceWzd(models.TransientModel):
                 # 'date_invoice': fields.Date.today(),
                 'user_id': self._uid,
                 'from_supplier': True,
+                'journal_id': self.sale_type_id.journal_id.id,
+                'operating_unit_id': self.sale_type_id.operating_unit_id.id,
+                'sale_type_id': self.sale_type_id.id
             }
             inv_ass = inv.copy(copy_vals)
             inv.write({'customer_invoice_id': inv_ass.id})

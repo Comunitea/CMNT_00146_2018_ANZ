@@ -13,11 +13,14 @@ class AccountInvoice(models.Model):
         'res.partner', 'Associate',
         domain=[('customer', '=', True)]
     )
-    from_supplier = fields.Boolean('From supplier Invoice')
+    from_supplier = fields.Boolean('From supplier Invoice', copy=False,
+                                   default=False)
     customer_invoice_id = fields.Many2one('account.invoice',
-                                          'Customer Invoice', readonly=True)
+                                          'Customer Invoice', readonly=True,
+                                           copy=False)
     supplier_invoice_id = fields.Many2one('account.invoice',
-                                          'Supplier Invoice', readonly=True)
+                                          'Supplier Invoice', readonly=True,
+                                          copy=False)
     amount_discount = fields.Monetary(
         string='Amount discounted', store=False, readonly=True,
         compute='_compute_amount_discount')

@@ -8,18 +8,18 @@
                 <div name="help">
                     <p>It will create invoices for the assocociated</p>
                 </div>
-                <!-- <group>
-                    <field name="group"/>
-                </group> -->
+                <group>
+                    <field name="sale_type_id"/>
+                </group>
                 <footer>
                     <button name="create_invoices" type="object" class="btn-primary" string="Create Associate Invoices"/>
                     <button special="cancel" string="Cancel" class="oe_link"/>
-                </footer> 
+                </footer>
             </form>
         </field>
     </record>
 
-   
+
    <record id="action_view_direct_invoice_wzd" model="ir.actions.act_window">
             <field name="name">Create Associate Invoices</field>
             <field name="type">ir.actions.act_window</field>
@@ -29,6 +29,6 @@
             <field name="target">new</field>
             <field name="binding_model_id" ref="account.model_account_invoice" />
     </record>
-    
-    
+
+
 </odoo>
