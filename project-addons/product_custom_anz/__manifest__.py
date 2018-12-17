@@ -11,7 +11,7 @@
         'base',
         'product_virtual_stock_conservative',
         'partner_custom_anz',
-
+        'account'
 
     ],
     'data': [
