@@ -8,7 +8,6 @@ class SaleCommissionMixin(models.AbstractModel):
 
     @api.model
     def _prepare_agents_vals_by_brand(self, partner, product):
-        import ipdb; ipdb.set_trace()
         res = super()._prepare_agents_vals()
         brand = product.product_brand_id
         if not brand:
