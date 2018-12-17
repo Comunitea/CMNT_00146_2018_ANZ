@@ -39,4 +39,4 @@ class SaleOrderLineAgent(models.AbstractModel):
             commission_id = self.agent.get_brand_commission(brand.id)
             if not commission_id:
                 commission_id = self.agent.commission.id
-        self.commission = commission_id
+            self.commission = commission_id
