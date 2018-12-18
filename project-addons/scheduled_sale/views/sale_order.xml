@@ -120,6 +120,25 @@
             </xpath>
         </field>
     </record>
+    <record model="ir.ui.view" id="view_sales_order_line_filter_scheduled_sale">
+        <field name="model">sale.order.line</field>
+        <field name="inherit_id" ref="sale.view_sales_order_line_filter" />
+        <field name="arch" type="xml">
+            <field name="product_id" position="after">
+                <field name="product_tmpl_id" />
+                <field name="scheduled_sale_id" />
+                <field name="deliver_month" />
+            </field>
+            <filter context="{'group_by':'product_id'}" position="after">
+                <filter string="Scheduled order" name="scheduled_order_group"
+                        domain="[]"
+                        context="{'group_by':'scheduled_sale_id'}" />
+                 <filter string="Deliver month" name="deliver_month_group"
+                        domain="[]"
+                        context="{'group_by':'deliver_month'}" />
+            </filter>
+        </field>
+    </record>
     <!--ASI NO FUNCIONA
     <record id="action_orders" model="ir.actions.act_window">
         <field name="name">Sales Orders</field>
