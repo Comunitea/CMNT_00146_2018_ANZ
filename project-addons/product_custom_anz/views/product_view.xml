@@ -59,6 +59,9 @@
                     <field name="variant_suffix"/>
                 </group>
             </field>
+            <field name="list_price" position="after">
+                <field name="pvp" widget="monetary" options="{'currency_field': 'currency_id', 'field_digits': True}"/>
+            </field>
         </field>
     </record>
 

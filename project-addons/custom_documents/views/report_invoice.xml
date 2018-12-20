@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <template id="report_invoice_document_custom" inherit_id="cmnt_custom_documents.report_invoice_document_custom">
+    <template id="report_invoice_document_custom" inherit_id="account.report_invoice_document">
         <xpath expr="//div[@t-if='o.name']" position="after">
             <div t-if="o.user_id.name" class="col-xs-2">
                 <strong>Salesperson:</strong>
@@ -24,7 +24,6 @@
                         </t>
                         <th class="text-right">Unit Price</th>
                         <th t-if="display_discount" class="text-right">Disc.(%)</th>
-                        <th class="text-right">Taxes</th>
                         <th class="text-right">Amount</th>
                     </tr>
                 </thead>
@@ -42,10 +41,12 @@
                                 <td></td>
                                 <td></td>
                                 <td></td>
-                                <td></td>
                             </tr>
                             <tr t-foreach="lines_grouped[order]" t-as="l">
-                                <td><span t-field="l.name"/></td>
+                                <td>
+                                    <span t-if="not l.ref_change" t-field="l.name"/>
+                                    <span t-if="l.ref_change" t-field="l.product_id.ref_change_code"/>
+                                </td>
                                 <td class="text-right">
                                     <span t-field="l.quantity"/>
                                     <span t-field="l.uom_id"  groups="product.group_uom"/>
@@ -59,9 +60,6 @@
                                 </td>
                                 <td t-if="display_discount" class="text-right">
                                     <span t-field="l.discount"/>
-                                </td>
-                                <td class="text-right">
-                                    <span t-esc="', '.join(map(lambda x: (x.name), l.invoice_line_tax_ids))"/>
                                 </td>
                                 <td class="text-right" id="subtotal">
                                     <span t-field="l.price_subtotal"
@@ -86,10 +84,9 @@
                                 <td></td>
                                 <td></td>
                                 <td></td>
-                                <td></td>
                             </tr>
                             <tr t-foreach="templates_grouped[order]" t-as="l">
-                                <td><span t-field="l.product_ref"/></td>
+                                <td><span t-if="not l.ref_change" t-field="l.product_ref"/></td>
                                 <td><span t-esc="l.line_name"/></td>
                                 <td class="text-right">
                                     <t t-foreach="l.get_qties()" t-as="qty">
@@ -106,9 +103,6 @@
                                 </td>
                                 <td t-if="display_discount" class="text-right">
                                     <span t-field="l.discount"/>
-                                </td>
-                                <td class="text-right">
-                                    <span t-esc="', '.join(map(lambda x: (x.name), l.invoice_line_tax_ids))"/>
                                 </td>
                                 <td class="text-right" id="subtotal">
                                     <span t-field="l.price_subtotal"

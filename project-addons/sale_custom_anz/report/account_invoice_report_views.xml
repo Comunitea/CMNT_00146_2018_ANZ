@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- account.invoice.report inherit search view -->
+    <record id="view_account_invoice_report_search" model="ir.ui.view">
+        <field name="name">account.invoice.report.inherit.view.search</field>
+        <field name="model">account.invoice.report</field>
+        <field name="inherit_id" ref="account.view_account_invoice_report_search"/>
+        <field name="arch" type="xml">
+            <field name="account_analytic_id" position="after">
+                <filter name="ref_change" string="Ref change" domain="[('ref_change','=',True)]"/>
+            </field>
+
+        </field>
+    </record>
+</odoo>

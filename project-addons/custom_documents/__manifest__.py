@@ -19,7 +19,8 @@
         'account_due_dates_str',
         'account_reinvoice',
         'report_intrastat',
-        'cmnt_custom_documents'
+        'product_custom_anz',
+        'sale_custom_anz'
     ],
     'data': [
         'views/report_templates.xml',
