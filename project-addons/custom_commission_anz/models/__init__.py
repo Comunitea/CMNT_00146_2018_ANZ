@@ -3,3 +3,4 @@
 from . import res_partner  # noqa
 from . import sale_commission_mixin # noqa
 from . import sale_order # noqa
+from . import settlement
