@@ -85,6 +85,10 @@ l.ref_change
                 continue
             line = template_line._get_invoice_lines()
             if len(line) == 1:
+                if not template_line.product_tmpl_id or \
+                        template_line.product_tmpl_id.type == 'service':
+                    template_line.line_name = line.name
+                    continue
                 att_tag = line.product_id.attribute_value_ids
                 if att_tag:
                     template_line.line_name = template_line.product_tmpl_id.name + ' - ' + att_tag.name_get()[0][1]

@@ -207,9 +207,11 @@ class SaleOrderLineTemplateGroup(models.Model):
 
     def get_name(self):
         line = self._get_order_lines()
-        if self.ref_change: # La marca se establece a nivel de template
+        if self.ref_change:  # La marca se establece a nivel de template
             return self.product_tmpl_id.ref_change_code
         if len(line) == 1:
+            if self.product_tmpl_id.type == 'service':
+                return line.name
             att_tag = line.product_id.attribute_value_ids
             if att_tag:
                 return self.product_tmpl_id.name + ' - ' + att_tag.name_get()[0][1]
