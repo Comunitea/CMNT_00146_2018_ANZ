@@ -13,7 +13,8 @@
     ],
     'data': [
         'security/ir.model.access.csv',
-        'views/partner_view.xml'
+        'views/partner_view.xml',
+        'views/report_settlement_grouped_template.xml'
     ],
     'installable': True,
 }

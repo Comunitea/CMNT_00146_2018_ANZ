@@ -16,6 +16,31 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: custom_commission_anz
+#: model:ir.ui.view,arch_db:custom_commission_anz.report_settlement
+msgid "Amount settled"
+msgstr "Importe liquidado"
+
+#. module: custom_commission_anz
+#: model:ir.ui.view,arch_db:custom_commission_anz.report_settlement
+msgid "<strong>Agent:</strong>"
+msgstr "<strong>Agente:</strong>"
+
+#. module: custom_commission_anz
+#: model:ir.ui.view,arch_db:custom_commission_anz.report_settlement
+msgid "<strong>From:</strong>"
+msgstr "<strong>Desde:</strong>"
+
+#. module: custom_commission_anz
+#: model:ir.ui.view,arch_db:custom_commission_anz.report_settlement
+msgid "<strong>To:</strong>"
+msgstr "<strong>Hasta:</strong>"
+
+#. module: custom_commission_anz
+#: model:ir.ui.view,arch_db:custom_commission_anz.report_settlement
+msgid "<strong>Total</strong>"
+msgstr "<strong>Total</strong>"
+
+#. module: custom_commission_anz
 #: model:ir.model.fields,field_description:custom_commission_anz.field_agent_brand_agent_ids
 msgid "Agent"
 msgstr "Agente"
@@ -41,8 +66,24 @@ msgstr "Comisiones por marca"
 
 #. module: custom_commission_anz
 #: model:ir.model.fields,field_description:custom_commission_anz.field_commission_brand_commission_id
+#: model:ir.ui.view,arch_db:custom_commission_anz.report_settlement
 msgid "Commission"
 msgstr "Comisión"
+
+#. module: custom_commission_anz
+#: model:ir.ui.view,arch_db:custom_commission_anz.report_settlement
+msgid "Invoice"
+msgstr "Factura"
+
+#. module: custom_commission_anz
+#: model:ir.ui.view,arch_db:custom_commission_anz.report_settlement
+msgid "Invoice date"
+msgstr "Fecha de factura"
+
+#. module: custom_commission_anz
+#: model:ir.actions.report,name:custom_commission_anz.action_report_settlement
+msgid "Settlement report"
+msgstr "Informe de liquidación por factura"
 
 #. module: custom_commission_anz
 #: model:ir.ui.view,arch_db:custom_commission_anz.view_partner_form_agent_brand

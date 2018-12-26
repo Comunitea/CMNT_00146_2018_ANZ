@@ -144,3 +144,21 @@ msgstr "aumentada"
 msgid "sale.manage.variant"
 msgstr "sale.manage.variant"
 
+
+#. module: sale_custom_anz
+#: model:ir.model.fields,field_description:sale_custom_anz.field_account_invoice_report_ref_change
+#: model:ir.model.fields,field_description:sale_custom_anz.field_sale_report_ref_change
+msgid "Ref Change"
+msgstr "Cambio de referencia"
+
+#. module: sale_custom_anz
+#: model:ir.model.fields,field_description:sale_custom_anz.field_product_product_ref_change_code
+#: model:ir.model.fields,field_description:sale_custom_anz.field_product_template_ref_change_code
+msgid "Ref Change Code"
+msgstr "Código para cambio de referencia"
+
+#. module: sale_custom_anz
+#: model:ir.ui.view,arch_db:sale_custom_anz.view_account_invoice_report_search
+#: model:ir.ui.view,arch_db:sale_custom_anz.view_order_product_search
+msgid "Ref change"
+msgstr "Cambio de referencia"

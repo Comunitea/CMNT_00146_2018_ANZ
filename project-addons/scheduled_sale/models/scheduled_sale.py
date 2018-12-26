@@ -25,6 +25,8 @@ class ScheduleSale(models.Model):
     def _compute_sale_orders_count(self):
         for order in self:
             order.scheduled_orders_ids_count = len(order.scheduled_orders_ids)
+            order.scheduled_order_lines_ids_count = len(order.scheduled_order_lines_ids)
+
 
     @api.multi
     @api.depends('product_ids')
@@ -62,6 +64,8 @@ class ScheduleSale(models.Model):
 
     scheduled_orders_ids = fields.One2many('sale.order', 'scheduled_sale_id', string="Orders")
     scheduled_orders_ids_count = fields.Integer('Sale orders count', compute='_compute_sale_orders_count')
+    scheduled_order_lines_ids = fields.One2many('sale.order.line', 'scheduled_sale_id', string="Orders")
+    scheduled_order_lines_ids_count = fields.Integer('Sale orders count', compute='_compute_sale_orders_count')
 
     autoconfirm_sales = fields.Boolean("Auto confirm sales", help="If checked, the associated sale orders are confirmed when this schedule is done")
     autounlink_products = fields.Boolean("Auto unlink product", help="If checked, when done, unlink inactive product templates")
@@ -227,3 +231,32 @@ class ScheduleSale(models.Model):
 
         scheduled_order_by_context = self._context.get('scheduled_sale_id', False) and self.browse(self._context['scheduled_sale_id'])
         return scheduled_order_by_context
+
+    @api.multi
+    def action_view_order_lines(self):
+        self.ensure_one()
+        model_data = self.env['ir.model.data']
+        tree_view = model_data.get_object_reference(
+            'sale_order_line_tree', 'sale_order_line_tree_view')
+
+        action = self.env.ref(
+            'sale_order_line_tree.sale_order_line_tree_view_action').read()[0]
+
+        action['views'] = {
+            (tree_view and tree_view[1] or False, 'tree')}
+
+        action['domain'] = [('scheduled_sale_id', '=', self.id)]
+
+        action['context'] = {
+            'default_scheduled_sale_id': self.id,
+            'pricelist': self.pricelist_id,
+            'company_id': self.company_id.id,
+
+        }
+        # action['view_ids'] = [tree_view and tree_view[1]]
+        action.update(
+            {'tax_id': {'domain': [('type_tax_use', '=', 'sale'),
+                                   ('company_id', '=', self.company_id)]}}
+        )
+
+        return action

@@ -148,19 +148,13 @@ class SaleOrderLine(models.Model):
         # If restricted sets true ref_check field
         if self._context.get('ref_change_partner_id', False):
             partner_id = self._context.get('ref_change_partner_id', False)
-            partner = self.env['res.partner'].browse(partner_id)
-            if partner.allowed_brand_ids:
-                brand_id = self.product_id.product_brand_id.id if \
-                    self.product_id.product_brand_id else \
-                    self.product_tmpl_id.product_brand_id.id
-                if not brand_id:
-                    self.ref_change = True
-                    return result
-                if brand_id not in \
-                        partner.allowed_brand_ids.ids:
-                    self.ref_change = True
-                else:
-                    self.ref_change = False
+            restricted_product = self.with_context(
+                partner_id=partner_id).env['product.product'].search(
+                    [('id', '=', self.product_id.id)])
+            if not restricted_product:
+                self.ref_change = True
+            else:
+                self.ref_change = False
         return result
 
     @api.multi

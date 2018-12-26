@@ -8,6 +8,11 @@ class ProductTemplate(models.Model):
 
     _inherit = 'product.template'
 
+    def _default_ref_change_code(self):
+        return self.env['ir.sequence'].next_by_code('product.template.ref_change_code')
+
+    ref_change_code = fields.Char(default=_default_ref_change_code)
+
     @api.model
     def _search(self, args, offset=0, limit=None, order=None, count=False, access_rights_uid=None):
 

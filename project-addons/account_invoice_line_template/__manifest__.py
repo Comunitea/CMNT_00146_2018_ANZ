@@ -10,6 +10,7 @@
     'license': 'AGPL-3',
     'depends': [
         'account',
+        'sale_custom_anz'
     ],
     'data': [
         'views/account_invoice_line_template.xml',

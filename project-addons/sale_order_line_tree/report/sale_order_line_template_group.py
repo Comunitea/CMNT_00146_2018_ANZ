@@ -96,6 +96,7 @@ class SaleOrderLineTemplateGroup(models.Model):
     weight = fields.Float('Gross Weight', readonly=True)
     volume = fields.Float('Volume', readonly=True)
     idlist = fields.Char(readonly=True)
+    ref_change = fields.Boolean()
 
     def _select(self):
         select_str = """
@@ -130,7 +131,8 @@ class SaleOrderLineTemplateGroup(models.Model):
                     extract(epoch from avg(date_trunc('day',s.date_order)-date_trunc('day',s.create_date)))/(24*60*60)::decimal(16,2) as delay,
                     s.pricelist_id as pricelist_id,
                     s.analytic_account_id as analytic_account_id,
-                    s.team_id as team_id
+                    s.team_id as team_id,
+                    l.ref_change
         """ % self.env['res.currency']._select_companies_rates()
         return select_str
 
@@ -174,7 +176,8 @@ class SaleOrderLineTemplateGroup(models.Model):
                         s.company_id,
                         s.pricelist_id,
                         s.analytic_account_id,
-                        s.team_id
+                        s.team_id,
+                        l.ref_change
         """
         return group_by_str
 
@@ -204,7 +207,11 @@ class SaleOrderLineTemplateGroup(models.Model):
 
     def get_name(self):
         line = self._get_order_lines()
+        if self.ref_change:  # La marca se establece a nivel de template
+            return self.product_tmpl_id.ref_change_code
         if len(line) == 1:
+            if self.product_tmpl_id.type == 'service':
+                return line.name
             att_tag = line.product_id.attribute_value_ids
             if att_tag:
                 return self.product_tmpl_id.name + ' - ' + att_tag.name_get()[0][1]
