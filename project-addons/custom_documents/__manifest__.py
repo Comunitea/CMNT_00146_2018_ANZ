@@ -20,14 +20,17 @@
         'account_reinvoice',
         'report_intrastat',
         'product_custom_anz',
-        'sale_custom_anz'
+        'sale_custom_anz',
+        'sale_stock',
+        'account_payment_partner'
     ],
     'data': [
         'views/report_templates.xml',
         'views/sale_order_template.xml',
         'views/sale_report.xml',
         'views/report_invoice.xml',
-        'views/account_report.xml'
+        'views/account_report.xml',
+        'views/res_company.xml'
     ],
     'installable': True,
 }
