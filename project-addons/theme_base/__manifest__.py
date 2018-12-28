@@ -41,6 +41,10 @@
     'depends': [
         'ecommerce_base',
         'multi_company_base',
+        'website_blog',
+        'website_multi_company_blog',
+        'mass_mailing',
+        'website_form_builder'
     ],
     'data': [
     ],
