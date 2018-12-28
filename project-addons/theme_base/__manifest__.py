@@ -28,7 +28,7 @@
 {
     'name': 'Website base module',
     'version': '1.0',
-    'summary': 'Website base customization theme',
+    'summary': 'Website base customization module',
     'description': '',
     'category': 'Website',
     'author': 'Comunitea',
@@ -44,7 +44,8 @@
         'website_blog',
         'website_multi_company_blog',
         'mass_mailing',
-        'website_form_builder'
+        'website_form_builder',
+        'theme_base_frontend'
     ],
     'data': [
     ],

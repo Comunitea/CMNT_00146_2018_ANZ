@@ -1,8 +1,8 @@
 Website base module
 ===================
 
-Website base customization theme
---------------------------------
+Website base customization module
+---------------------------------
 
 This module contains styles and layout elements, bug fixes and translations.
 
