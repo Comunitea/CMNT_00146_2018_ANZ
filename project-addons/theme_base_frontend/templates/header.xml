@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <template id="tbf_website_layout" inherit_id="website.layout">
+        <xpath expr="//div[@id='wrapwrap']//div[hasclass('navbar')]" position="before">
+            <div class="wp-contact-navbar">
+                <div class="container contact-navbar">
+                    <div class="row">
+                        <div class="col-md-2">
+                            <div class="header-phone">
+                                <i class="fa fa-phone"/>
+                                <a t-field="res_company.phone" t-att-href="'tel:%s' %res_company.phone"/>
+                            </div>
+                            <div class="contact-separator"/>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="header-email">
+                                <i class="fa fa-envelope"/>
+                                <a t-field="res_company.email" t-att-href="'mailto:%s' %res_company.email"/>
+                            </div>
+                        </div>
+                        <div class="col-md-8"/>
+                    </div>
+                </div>
+            </div>
+        </xpath>
+    </template>
+
+</odoo>
