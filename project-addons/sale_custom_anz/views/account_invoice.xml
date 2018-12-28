@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="account_invoice_form_custom_anz" model="ir.ui.view">
+        <field name="name">account_invoice_form_custom_anz</field>
+        <field name="model">account.invoice</field>
+        <field name="inherit_id" ref="account.invoice_form"/>
+        <field name="arch" type="xml">
+            <!-- Add ref change -->
+            <xpath expr="//field[@name='invoice_line_ids']/tree/field[@name='product_id']" position="after">
+                <field name="ref_change"/>
+            </xpath>
+
+            <!-- Add sponsored -->
+            <field name="date_invoice" position="after">
+                <field name="sponsored"/>
+            </field>
+        </field>
+    </record>
+
+
+
+</odoo>

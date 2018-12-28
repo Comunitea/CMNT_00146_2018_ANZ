@@ -4,9 +4,11 @@ from odoo import api, fields, models
 from odoo.exceptions import UserError
 
 
-
 class ResPartner(models.Model):
 
     _inherit = 'res.partner'
 
+    show_pvp = fields.Boolean('Show PVP')
 
+    def add_args_to_product_search(self, args=[]):
+        return super(ResPartner, self).add_args_to_product_search(args=args)

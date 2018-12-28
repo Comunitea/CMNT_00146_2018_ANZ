@@ -13,7 +13,9 @@ class ResPartner(models.Model):
         args = super(ResPartner, self).add_args_to_product_search(args=args)
         if self._context.get('sale_order_type_id', False):
             sale_type = self.env['sale.order.type'].browse(self._context['sale_order_type_id'])
-            if sale_type.operating_unit_id.brand_ids:
-                unit_domain = [('product_brand_id', 'in', sale_type.operating_unit_id.brand_ids.ids)]
+            brand_ids = sale_type.operating_unit_id.brand_ids.ids
+            if brand_ids:
+                unit_domain = ['|', ('product_brand_id', '=', False), ('product_brand_id', 'in', brand_ids)]
                 args = expression.AND([args, unit_domain])
+
         return args

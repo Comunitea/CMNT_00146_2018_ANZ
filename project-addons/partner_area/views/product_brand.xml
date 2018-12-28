@@ -33,14 +33,14 @@
             <xpath expr="//group/field[@name='description']" position="after">
                 <group >
 
-                    <group string="Allowed areas">
+                    <!--<group string="Allowed areas">
                         <field nolabel="1" name="allowed_area_ids"/>
                         <group>
                             <button name="show_allowed_area_ids" type="action" class="oe_stat_button" icon="fa-ban">
                                 <field name="allowed_area_ids_count" widget="statinfo" string="Allowed areas"/>
                             </button>
                         </group>
-                    </group>
+                    </group>-->
                     <group string="Restricted areas">
                         <field nolabel="1" name="restricted_area_ids"/>
                          <group>

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_sale_order_custom" inherit_id="sale.report_saleorder_document">
+        <xpath expr="//div[@id='informations']" position="inside">
+            <div t-if="doc.partner_id.ref" class="col-xs-3">
+                <strong>Customer reference:</strong>
+                <p t-field="doc.partner_id.ref"/>
+            </div>
+        </xpath>
+        <xpath expr="//t[@t-foreach='doc.order_lines_layouted()']" position="replace">
+            <table class="table table-condensed">
+            <thead>
+                <tr>
+                    <th>EAN 13</th>
+                    <th>Reference</th>
+                    <t t-if="show_images">
+                        <th></th>
+                    </t>
+                    <th>Product</th>
+                    <th t-if="doc.partner_id.show_pvp" class="text-right">PVP</th>
+                    <th class="text-right">Quantity</th>
+                    <th class="text-right">Unit Price</th>
+                    <th t-if="display_discount" class="text-right" groups="sale.group_discount_per_so_line">Disc.(%)</th>
+                    <th class="text-right" groups="sale.group_show_price_subtotal">Amount</th>
+                    <th class="text-right price_tax_included" groups="sale.group_show_price_total">Total Price</th>
+                </tr>
+            </thead>
+            <tbody class="sale_tbody">
+
+                <t t-foreach="doc.template_lines" t-as="l">
+                    <tr>
+                        <td><span t-if="not l.ref_change"  t-field="l.product_tmpl_id.barcode"/></td>
+                        <td><span t-if="not l.ref_change" t-field="l.product_ref"/></td>
+
+                        <t t-if="show_images">
+                            <td>
+                                <img t-if="not l.ref_change" t-att-src="'data:image/png;base64,%s' % to_text(l.product_tmpl_id.image_medium)" style="max-height: 50px;"/>
+                            </td>
+                        </t>
+                        <td><span t-esc="l.get_name()"/></td>
+                        <td t-if="doc.partner_id.show_pvp" class="text-right"><span t-field="l.product_tmpl_id.pvp"/></td>
+                        <td class="text-right">
+                            <t t-foreach="l.get_qties()" t-as="qty">
+                                <span t-esc="qty"/><br/>
+                            </t>
+                            <span t-field="l.product_uom" groups="product.group_uom"/>
+                        </td>
+                        <td class="text-right">
+                            <span t-field="l.price_unit"/>
+                        </td>
+                        <td t-if="display_discount" class="text-right" groups="sale.group_discount_per_so_line">
+                            <span t-field="l.discount"/>
+                        </td>
+                        <td class="text-right" groups="sale.group_show_price_subtotal">
+                            <span t-field="l.price_subtotal" t-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: doc.pricelist_id.currency_id}"/>
+                        </td>
+                        <td class="text-right" groups="sale.group_show_price_total">
+                            <span t-field="l.price_total" t-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: doc.pricelist_id.currency_id}"/>
+                        </td>
+                    </tr>
+                </t>
+            </tbody>
+        </table>
+
+        </xpath>
+    </template>
+
+
+
+    <template id="report_saleorder_with_images">
+        <t t-call="web.html_container">
+            <t t-set="show_images" t-value="True"/>
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="sale.report_saleorder_document" t-lang="doc.partner_id.lang"/>
+            </t>
+        </t>
+    </template>
+</odoo>

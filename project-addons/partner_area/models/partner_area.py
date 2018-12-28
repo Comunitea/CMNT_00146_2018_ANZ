@@ -34,10 +34,6 @@ class ResPartnerArea(models.Model):
     parent_left = fields.Integer('Left Parent', index=True)
     parent_right = fields.Integer('Right Parent', index=True)
 
-
-
-
-
     @api.one
     @api.depends('name', 'area_id.complete_name')
     def _compute_complete_name(self):

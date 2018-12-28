@@ -1,0 +1,138 @@
+<?xml version="1.0"?>
+<odoo>
+    <record id="unlink_scheduled_product_tree" model="ir.ui.view">
+        <field name="name">Unlink schedule product tree wzd</field>
+        <field name="model">unlink.schedule.product.line</field>
+        <field name="priority" eval="1"/>
+        <field name="arch" type="xml">
+            <tree decoration-danger="not product_active">
+                <field name="product_tmpl_id" readonly="1" invisible="1"/>
+                <field name="product_id" readonly="1"/>
+                <field name="product_qty_scheduled"/>
+                <field name="to_cancel" invisible="1"/>
+                <field name="product_active" invisible="1"/>
+                <field name="unlink_schedule_product_id" invisible="1"/>
+                <button name="action_unlink_product" string="Cancel product" type="object" icon="fa-sign-in"
+                                            attrs="{'invisible': [('product_active', '=', True)]}"
+                                            context="{'from_tree': True, 'unlink_schedule_product_id': unlink_schedule_product_id}"/>
+                <button name="action_unlink_product" string="Cancel product" type="object" icon="fa-sign-out"
+                                            attrs="{'invisible': [('product_active', '=', False)]}"
+                                            context="{'from_tree': True, 'unlink_schedule_product_id': unlink_schedule_product_id}"/>
+            </tree>
+        </field>
+    </record>
+     <record id="unlink_scheduled_product_tree_search" model="ir.ui.view">
+        <field name="name">Unlink schedule product tree.search</field>
+        <field name="model">unlink.schedule.product.line</field>
+        <field name="arch" type="xml">
+            <search string="Schedule product lines">
+                <field name="product_tmpl_id" string="Template"/>
+                <field name="product_id" string="Product"/>
+                <separator/>
+                <filter name="product_qty_scheduled" string="Ordered" domain="[('product_qty_scheduled', '>', 0.00)]"/>
+                <filter string="Active" name="active" domain="[('product_active', '=',True)]"/>
+                <filter string="Inactive" domain="[('product_active', '=', False)]"/>
+                <group expand="0" string="Group By">
+                        <filter string="Template" domain="[]" context="{'group_by':'product_tmpl_id'}"/>
+                        <filter string="State" domain="[]" context="{'group_by':'product_active'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_set_product_to_unlink" model="ir.actions.server">
+        <field name="name">Marcar como to unlink</field>
+        <field name="type">ir.actions.server</field>
+        <field name="state">code</field>
+        <field name="model_id" ref="scheduled_sale.model_unlink_schedule_product_line"/>
+        <field name="binding_model_id" ref="model_unlink_schedule_product_line" />
+
+        <field name="code">
+            if records: action = model.set_product_as_cancel(True)
+        </field>
+    </record>
+    <!--record id="action_set_product_as_not_to_unlink" model="ir.actions.server">
+            <field name="name">Desmarcar</field>
+            <field name="type">ir.actions.server</field>
+            <field name="state">code</field>
+            <field name="model_id" ref="scheduled_sale.model_unlink_schedule_product_line"/>
+            <field name="binding_model_id" ref="model_unlink_schedule_product_line" />
+            <field name="code">
+    if records:
+       action = model.set_product_as_cancel(False)
+            </field>
+        </record-->
+    <!--record id="action_open_wzd" model="ir.actions.server">
+            <field name="name">Aplicar</field>
+            <field name="type">ir.actions.server</field>
+            <field name="state">code</field>
+            <field name="model_id" ref="scheduled_sale.model_unlink_schedule_product_line"/>
+            <field name="binding_model_id" ref="model_unlink_schedule_product_line" />
+            <field name="code">
+    if records:
+       action = model.open_wzd()
+            </field>
+        </record-->
+
+    <record id="unlink_schedule_product_form" model="ir.ui.view">
+        <field name="name">Unlink schedule product form</field>
+        <field name="model">unlink.schedule.product.wzd</field>
+        <field name="arch" type="xml">
+            <form string="Cancel scheduled product">
+                <field name="scheduled_sale_id" nolabel="1" readonly="1"/>
+                <group>
+                    <group>
+                        <field name="code" readonly="1"/>
+                        <field name="period_id" readonly="1"/>
+                    </group>
+                    <group>
+                        <field name="product_brand_id" readonly="1"/>
+                    </group>
+                </group>
+
+                <p>Check product to cancel</p>
+                <p>Product deleted from this list, will be deleted from the schedules order</p>
+
+                <group>
+                    <group string="Actual products">
+                        <field name="origin_product_ids" nolabel="1">
+                            <tree decoration-muted="to_cancel==False and product_active==False" options="{'no_create': True}"  create="false" delete="false">
+                                <field name="product_active"/>
+                                <field name="product_id"/>
+                                <field name="product_qty_scheduled"/>
+                                <field name="to_cancel" invisible="1"/>
+                                <button name="action_unlink_product" string="Cancel product" type="object" icon="fa-sign-out"
+                                            context="{'scheduled_sale_id': parent.id}"/>
+                            </tree>
+                        </field>
+                    </group>
+                    <group string="Products to cancel">
+                        <field name="to_cancel_product_ids" nolabel="1">
+                            <tree decoration-muted="to_cancel!=False and product_active==False" decoration-danger="to_cancel!=False" options="{'no_create': True}"  create="false" delete="false">
+                                <field name="product_active"/>
+                                <field name="product_id"/>
+                                <field name="product_qty_scheduled"/>
+                                <field name="to_cancel" invisible="1"/>
+                                <button name="action_unlink_product" string="Cancel product" type="object" icon="fa-sign-in"
+                                            context="{'scheduled_sale_id': parent.id}"/>
+                            </tree>
+                        </field>
+                    </group>
+                </group>
+                <footer>
+                    <button string="Unlink products"
+                            class="oe_highlight"
+                            name="unlink_product"
+                            type="object"
+                            />
+                    <button string="Cancel"
+                            class="oe_link"
+                            special="cancel"
+                            />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+</odoo>
+

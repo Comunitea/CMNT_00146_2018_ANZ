@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="sale_stock.report_invoice_document_inherit_sale_stock"  inherit_id="account.report_invoice_document">
+    </template>
+    <template id="report_invoice_document_custom" inherit_id="sale.report_invoice_document_inherit_sale">
+        <xpath expr="//div[hasclass('page')]" position="attributes">
+            <attribute name="style">font-family: Questrial</attribute>
+        </xpath>
+        <xpath expr="//div[@name='invoice_address']/.." position="before">
+            <div class="row">
+                <div class="col-xs-6" style="font-weight: bold">
+                    <p>Customer code: <span t-field="o.partner_id.ref"/></p>
+                    <p>Invoice number: <span t-field="o.number"/></p>
+                    <p>Invoice date: <span t-field="o.date_invoice"/></p>
+                    <p>Salesperson: <span t-field="o.user_id"/></p>
+                </div>
+            </div>
+        </xpath>
+        <xpath expr="//p[@t-if='o.fiscal_position_id.note']" position="replace"></xpath>
+        <xpath expr="//h2" position="replace">
+        </xpath>
+        <xpath expr="//div[@t-if='o.name']/.." position="replace">
+        </xpath>
+        <xpath expr="//table[@name='invoice_line_table']" position="replace">
+            <p t-if="o.fiscal_position_id.note">
+                <span t-field="o.fiscal_position_id.note"/>
+            </p>
+            <table class="table table-condensed" name="invoice_line_table">
+                <thead>
+                    <tr>
+                        <t t-if="not expand_lines">
+                            <th>Reference</th>
+                        </t>
+                        <th>Description</th>
+                        <th class="text-right">Quantity</th>
+                        <t t-if="o.partner_id.country_id.intrastat">
+                            <th>Intrastat</th>
+                            <th>Weight</th>
+                        </t>
+                        <th class="text-right">Unit Price</th>
+                        <th t-if="display_discount" class="text-right">Disc.(%)</th>
+                        <th class="text-right">Amount</th>
+                    </tr>
+                </thead>
+                <tbody class="invoice_tbody">
+                    <t t-if="expand_lines">
+                        <t t-set="lines_grouped" t-value="o.lines_grouped_by_sale(group_templates=False)"/>
+                        <t t-foreach="lines_grouped.keys()" t-as="order">
+                            <tr>
+                                <td>Order number: <span t-esc="order.name"/></td>
+                                <td></td>
+                                <t t-if="o.partner_id.country_id.intrastat">
+                                    <td></td>
+                                    <td></td>
+                                </t>
+                                <td></td>
+                                <td t-if="display_discount"></td>
+                                <td></td>
+                            </tr>
+                            <tr t-foreach="lines_grouped[order]" t-as="l">
+                                <td>
+                                    <span t-if="not l.ref_change" t-field="l.name"/>
+                                    <span t-if="l.ref_change" t-field="l.product_id.ref_change_code"/>
+                                </td>
+                                <td class="text-right">
+                                    <span t-field="l.quantity"/>
+                                    <span t-field="l.uom_id"  groups="product.group_uom"/>
+                                </td>
+                                <t t-if="o.partner_id.country_id.intrastat">
+                                    <td><span t-field="l.product_id.intrastat_id.name"/></td>
+                                    <td><span t-field="l.product_id.weight"/></td>
+                                </t>
+                                <td class="text-right">
+                                    <span t-field="l.price_unit"/>
+                                </td>
+                                <td t-if="display_discount" class="text-right">
+                                    <span t-field="l.discount"/>
+                                </td>
+                                <td class="text-right" id="subtotal">
+                                    <span t-field="l.price_subtotal"
+                                        t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                                </td>
+                            </tr>
+                        </t>
+                    </t>
+
+
+                    <t t-if="not expand_lines">
+                        <t t-set="templates_grouped" t-value="o.lines_grouped_by_sale(group_templates=True)"/>
+                        <t t-foreach="templates_grouped.keys()" t-as="order">
+                            <tr>
+                                <td></td>
+                                <td>Order number: <span t-esc="order.name"/></td>
+                                <td></td>
+                                <t t-if="o.partner_id.country_id.intrastat">
+                                    <td></td>
+                                    <td></td>
+                                </t>
+                                <td></td>
+                                <td t-if="display_discount" ></td>
+                                <td></td>
+                            </tr>
+                            <tr t-foreach="templates_grouped[order]" t-as="l">
+                                <td><span t-if="not l.ref_change" t-field="l.product_ref"/></td>
+                                <td><span t-esc="l.line_name"/></td>
+                                <td class="text-right">
+                                    <t t-foreach="l.get_qties()" t-as="qty">
+                                        <span t-esc="qty"/><br/>
+                                    </t>
+                                    <span t-field="l.product_uom" groups="product.group_uom"/>
+                                </td>
+                                <t t-if="o.partner_id.country_id.intrastat">
+                                    <td><span t-field="l.product_tmpl_id.intrastat_id.name"/></td>
+                                    <td><span t-field="l.product_tmpl_id.weight"/></td>
+                                </t>
+                                <td class="text-right">
+                                    <span t-field="l.price_unit"/>
+                                </td>
+                                <td t-if="display_discount" class="text-right">
+                                    <span t-field="l.discount"/>
+                                </td>
+                                <td class="text-right" id="subtotal">
+                                    <span t-field="l.price_subtotal"
+                                        t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                                </td>
+                            </tr>
+                        </t>
+                    </t>
+                    <tr t-foreach="range(max(5-len(o.invoice_line_ids),0))" t-as="l">
+                        <td t-translation="off">&amp;nbsp;</td>
+                        <td></td>
+                        <t t-if="o.partner_id.country_id.intrastat">
+                            <td></td>
+                            <td></td>
+                        </t>
+                        <td></td>
+                        <td t-if="display_discount"></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+        </xpath>
+
+        <xpath expr="//div[@id='total']//table/tr" position="attributes">
+            <attribute name="style"></attribute>
+            <attribute name="class"></attribute>
+        </xpath>
+        <xpath expr="//div[@id='total']//table/t/tr" position="attributes">
+            <attribute name="style"></attribute>
+            <attribute name="class"></attribute>
+        </xpath>
+        <xpath expr="//div[@id='total']//table" position="attributes">
+            <attribute name="class">table all_border clean_first</attribute>
+        </xpath>
+
+        <xpath expr="//div[@id='total']/div" position="before">
+            <div class="col-xs-6">
+                <p style="font-size:12px;"><strong>El original de esta factura no acredita el pago de la misma. No se admitirán reclamaciones transcurridos los 15 días. <br/>El poseedor final de estos residuos será el responsable de su correcta gestión.</strong></p>
+                <p t-if="not o.partner_id.affiliate and o.company_id.solunion">Operación asegurada por <strong>SOLUNION</strong></p>
+            </div>
+        </xpath>
+        <xpath expr="//div[@id='total']//table" position="inside">
+            <tr t-if="o.from_supplier">
+                <td><strong>Discounted this year</strong></td>
+                <td class="text-right"><span t-field="o.amount_year_discount"/></td>
+            </tr>
+        </xpath>
+    </template>
+
+    <template id="report_invoice_payment_mode" inherit_id="account_payment_partner.report_invoice_payment_mode">
+        <xpath expr="//p[@t-foreach='o.partner_banks_to_show()']/.." position="after">
+            <t t-if="o.expiration_dates_str">
+                <strong><p>Expiration dates:</p></strong>
+                <span t-field="o.expiration_dates_str"/>
+            </t>
+        </xpath>
+    </template>
+
+    <template id="report_invoice_custom">
+            <t t-call="web.html_container">
+                <t t-set="expand_lines" t-value="True"/>
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="account.report_invoice_document" t-lang="o.partner_id.lang"/>
+                </t>
+            </t>
+    </template>
+
+
+    <template id="report_invoice_with_payments_custom">
+        <t t-call="web.html_container">
+            <t t-set="expand_lines" t-value="True"/>
+            <t t-foreach="docs" t-as="o">
+                <t t-call="account.report_invoice_document_with_payments" t-lang="o.partner_id.lang"/>
+            </t>
+        </t>
+    </template>
+</odoo>

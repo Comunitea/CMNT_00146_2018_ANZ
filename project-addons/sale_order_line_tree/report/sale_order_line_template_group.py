@@ -4,6 +4,7 @@
 from odoo import tools
 from odoo import api, fields, models
 from odoo.addons import decimal_precision as dp
+from odoo.tools.misc import formatLang
 
 class SaleOrder(models.Model):
     _inherit= "sale.order"
@@ -16,27 +17,21 @@ class SaleOrder(models.Model):
             order.sale_order_line_template_count = len(order.order_line.mapped('product_tmpl_id'))
 
 
+    sale_order_line_count = fields.Integer('Order line count', compute='_compute_sale_order_line_count')
     sale_order_line_template_count = fields.Integer('Template line count', compute='_compute_sale_order_line_count')
 
     @api.multi
     def action_view_order_lines_template_group(self):
-
         model_data = self.env['ir.model.data']
         tree_view = model_data.get_object_reference(
             'sale_order_line_tree', 'view_sale_order_line_group_template_tree')
-
         action = self.env.ref(
             'sale_order_line_tree.view_sale_order_line_group_template_tree_action').read()[0]
         action['views'] = {
             (tree_view and tree_view[1] or False, 'tree'),}
-
-        ids = self.env['sale.order.line.template.group'].search([('order_id', '=', self.id)]).ids
-
+        #ids = self.env['sale.order.line.template.group'].search([('order_id', '=', self.id)]).ids
         action['domain'] = [('order_id', '=', self.id)]
-
-        action['context'] = {
-
-        }
+        action['context'] = {}
         return action
 
 
@@ -54,10 +49,18 @@ class SaleOrderLineTemplateGroup(models.Model):
         for line in self:
             line.line_name = "{} {}".format(line.product_tmpl_id.name, line.variant_suffix)
 
+    def _compute_line_reference(self):
+        for line in self:
+            lines = line._get_order_lines()
+            if len(lines) == 1:
+                line.product_ref = lines.product_id.default_code
+            else:
+                line.product_ref = lines[0].product_id.default_code[:-1]
 
     name = fields.Char('Order Reference', readonly=True)
     order_id = fields.Many2one('sale.order')
     line_name = fields.Char('Line name', compute="get_line_name")
+    product_ref = fields.Char('referenece', compute='_compute_line_reference')
 
     date = fields.Datetime(string='Date Order', readonly=True)
     confirmation_date = fields.Datetime(string='Confirmation Date', readonly=True)
@@ -73,10 +76,12 @@ class SaleOrderLineTemplateGroup(models.Model):
     price_total = fields.Float('Total', readonly=True)
     price_subtotal = fields.Float('Untaxed Total', readonly=True)
     discount = fields.Float(string='Discount (%)', digits=dp.get_precision('Discount'), readonly=True)
+    price_unit = fields.Float(digits=dp.get_precision('Product Price'), readonly=True)
     amt_to_invoice = fields.Float('Amount To Invoice', readonly=True)
     amt_invoiced = fields.Float('Amount Invoiced', readonly=True)
     product_tmpl_id = fields.Many2one('product.template', 'Product Template', readonly=True)
     categ_id = fields.Many2one('product.category', 'Product Category', readonly=True)
+    tax_id = fields.Many2many('account.tax', compute='_compute_taxes')
 
     nbr = fields.Integer('# of Lines', readonly=True)
     pricelist_id = fields.Many2one('product.pricelist', 'Pricelist', readonly=True)
@@ -90,17 +95,20 @@ class SaleOrderLineTemplateGroup(models.Model):
         ], string='Status', readonly=True)
     weight = fields.Float('Gross Weight', readonly=True)
     volume = fields.Float('Volume', readonly=True)
+    idlist = fields.Char(readonly=True)
+    ref_change = fields.Boolean()
 
     def _select(self):
         select_str = """
         WITH currency_rate as (%s)
              SELECT min(l.id) as id,
+                    string_agg(l.id::text, ',') as idlist,
                     min(l.sequence) as sequence,
                     l.product_tmpl_id as product_tmpl_id,
                     count(*) as nbr,
                     l.product_uom as product_uom,
                     COALESCE(l.discount, 0) as discount,
-                    l.order_id as order_id, 
+                    l.order_id as order_id,
                     s.name as name,
                     s.date_order as date,
                     s.confirmation_date as confirmation_date,
@@ -109,20 +117,22 @@ class SaleOrderLineTemplateGroup(models.Model):
                     s.user_id as user_id,
                     s.company_id as company_id,
                     t.categ_id as categ_id,
-                    sum(l.product_uom_qty / u.factor * u2.factor) as product_uom_qty,
-                    sum(l.qty_delivered / u.factor * u2.factor) as qty_delivered,
-                    sum(l.qty_invoiced / u.factor * u2.factor) as qty_invoiced,
-                    sum(l.qty_to_invoice / u.factor * u2.factor) as qty_to_invoice,
-                    sum(l.price_total / COALESCE(cr.rate, 1.0)) as price_total,
-                    sum(l.price_subtotal / COALESCE(cr.rate, 1.0)) as price_subtotal,
-                    sum(l.amt_to_invoice / COALESCE(cr.rate, 1.0)) as amt_to_invoice,
-                    sum(l.amt_invoiced / COALESCE(cr.rate, 1.0)) as amt_invoiced,
-                    sum(p.weight * l.product_uom_qty / u.factor * u2.factor) as weight,
-                    sum(p.volume * l.product_uom_qty / u.factor * u2.factor) as volume,
+                    sum(l.product_uom_qty) as product_uom_qty,
+                    sum(l.qty_delivered) as qty_delivered,
+                    sum(l.qty_invoiced) as qty_invoiced,
+                    sum(l.qty_to_invoice) as qty_to_invoice,
+                    sum(l.price_total) as price_total,
+                    sum(l.price_subtotal) as price_subtotal,
+                    sum(l.amt_to_invoice) as amt_to_invoice,
+                    sum(l.amt_invoiced) as amt_invoiced,
+                    sum(p.weight * l.product_uom_qty) as weight,
+                    sum(p.volume * l.product_uom_qty) as volume,
+                    l.price_unit as price_unit,
                     extract(epoch from avg(date_trunc('day',s.date_order)-date_trunc('day',s.create_date)))/(24*60*60)::decimal(16,2) as delay,
                     s.pricelist_id as pricelist_id,
                     s.analytic_account_id as analytic_account_id,
-                    s.team_id as team_id
+                    s.team_id as team_id,
+                    l.ref_change
         """ % self.env['res.currency']._select_companies_rates()
         return select_str
 
@@ -141,11 +151,13 @@ class SaleOrderLineTemplateGroup(models.Model):
                         (cr.date_end is null or cr.date_end > coalesce(s.date_order, now())))
         """
         return from_str
+
     def _where(self):
         where = """
             l.order_id in {}
         """.format(self._context('template_line_domain', []))
         return where
+
     def _group_by(self):
         group_by_str = """
             GROUP BY l.product_tmpl_id,
@@ -153,6 +165,7 @@ class SaleOrderLineTemplateGroup(models.Model):
                      l.product_uom,
                      t.uom_id,
                      l.order_id,
+                     l.price_unit,
                      t.categ_id,
                         s.name,
                         s.date_order,
@@ -163,7 +176,8 @@ class SaleOrderLineTemplateGroup(models.Model):
                         s.company_id,
                         s.pricelist_id,
                         s.analytic_account_id,
-                        s.team_id
+                        s.team_id,
+                        l.ref_change
         """
         return group_by_str
 
@@ -183,10 +197,44 @@ class SaleOrderLineTemplateGroup(models.Model):
     def write(self, vals):
 
         if 'sequence' in vals:
-            tmpl_ids = self.mapped('product_tmpl_id').ids
-            self.env['sale.order.line'].search([('product_tmpl_id','in',tmpl_ids)]).write({'sequence': vals['sequence']})
+            self._get_order_lines().write({'sequence': vals['sequence']})
             vals.pop('sequence')
         if vals:
             return super(SaleOrderLineTemplateGroup, self).write(vals)
 
+    def _get_order_lines(self):
+        return self.env['sale.order.line'].browse(list(map(int, self.idlist.split(','))))
 
+    def get_name(self):
+        line = self._get_order_lines()
+        if self.ref_change:  # La marca se establece a nivel de template
+            return self.product_tmpl_id.ref_change_code
+        if len(line) == 1:
+            if self.product_tmpl_id.type == 'service':
+                return line.name
+            att_tag = line.product_id.attribute_value_ids
+            if att_tag:
+                return self.product_tmpl_id.name + ' - ' + att_tag.name_get()[0][1]
+        return self.product_tmpl_id.name
+
+    def get_qties(self):
+        lines = self._get_order_lines()
+        if len(lines) == 1:
+            return [formatLang(self.env, lines.product_uom_qty)]
+        qties_list = []
+        for line in lines:
+            qty_str = ''
+            att_tag = line.product_id.attribute_value_ids
+            if att_tag:
+                qty_str = att_tag.name_get()[0][1]
+            qty_str += ' - ' + formatLang(self.env, line.product_uom_qty)
+            qties_list.append(qty_str)
+        return qties_list
+
+    def _compute_taxes(self):
+        for template_line in self:
+            line = template_line._get_order_lines()
+            if len(line) == 1:
+                template_line.tax_id = line.tax_id
+            else:
+                template_line.tax_id = line[0].tax_id

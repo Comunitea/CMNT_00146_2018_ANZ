@@ -6,22 +6,17 @@
         <field name="model">scheduled.sale.period</field>
         <field name="arch" type="xml">
             <form string="Schedule sale">
-                <header>
-                    <field name="state" widget="statusbar" nolabel="1"/>
-                </header>
                 <sheet>
                     <div class="oe_button_box" name="button_box">
                         <button name="toggle_active" type="object" class="oe_stat_button" icon="fa-archive">
                             <field name="active" widget="boolean_button" options='{"terminology": "archive"}'/>
                         </button>
-
                     </div>
                     <group>
                         <field name="name"/>
                     </group>
                     <group>
                         <group>
-
                             <field name="from_date"/>
                         </group>
                         <group>
@@ -43,42 +38,89 @@
         <field name="arch" type="xml">
             <form string="Schedule sale">
                  <header>
-                    <field name="state" widget="statusbar" nolabel="1"/>
+                     <button name="cancel_schedule" string="Cancel" type="object" class="btn-warning" states="draft"/>
+                     <button name="done_schedule" string="Done" type="object" class="btn-primary" states="draft"/>
+
+                     <field name="state" widget="statusbar" clickable="True" statusbar_visible="draft,done"/>
                 </header>
                 <div class="oe_button_box" name="button_box">
                    <button name="toggle_active" type="object" class="oe_stat_button" icon="fa-archive">
                         <field name="active" widget="boolean_button" options='{"terminology": "archive"}'/>
-                    </button>
+                   </button>
 
-                        <button name="action_show_schedule_orders" type="object" class="oe_stat_button"
-                            icon="fa-list">
-                        <field name="scheduled_orders_ids_count" widget="statinfo" string="Sale orders"/>
+                     <button name="action_view_order_lines" type="object" class="oe_stat_button"
+                    icon="fa-list" attrs="{'invisible': [('scheduled_order_lines_ids_count', '=', 0)]}">
+                        <field name="scheduled_order_lines_ids_count" widget="statinfo" string="Order lines"/>
+                </button>
+
+                   <button name="action_show_schedule_orders" type="object" class="oe_stat_button" icon="fa-list">
+                        <field name="scheduled_orders_ids_count" widget="statinfo" tring="Sale orders"/>
+                    </button>
+                    <button name="open_all_product_to_cancel" type="object" class="oe_stat_button" icon="fa-archive" context="{'all_products':True}">
+                           <field name="product_ids_count" widget="statinfo" string="Products"/>
                         </button>
+                       <!--button name="open_product_to_cancel" type="object" class="oe_stat_button" icon="fa-list">
+                           <label string="Cancel products"/>
+                       </button-->
                 </div>
                 <group>
                     <group>
                         <field name="name"/>
-                        <field name="period_id" options="{'no_create': True}"/>
-                        <field name="code"/>
                     </group>
                     <group>
-                        <field name="company_id" options="{'no_create': True}"/>
                         <field name="pricelist_id" options="{'no_create': True}"/>
-                        <field name="product_brand_id" options="{'no_create': True}"/>
                     </group>
                 </group>
 
                 <notebook>
+                    <page string="Config">
+                        <group>
+                            <group>
+                                <field name="company_id" options="{'no_create': True}"/>
+                                <field name="period_id" options="{'no_create': True}"/>
+                                <field name="code"/>
+                            </group>
+                            <group>
+                                <field name="product_brand_id" options="{'no_create': True}"/>
+                                <field name="autounlink_products"/>
+                                <field name="autoconfirm_sales"/>
+                            </group>
+                        </group>
+                    </page>
                     <page string="Products">
+
                         <group>
                             <div>
-                                <field name="product_ids" readonly="1" options="{'no_create': True}">
-                                    <tree >
-                                        <field name="default_code"/>
-                                        <field name="name"/>
-                                        <field name="barcode"/>
+                                <field name="product_ids" readonly="1">
+                                    <tree>
+                                        <field name="default_code" readonly="1"/>
+                                        <field name="display_name" readonly="1"/>
+                                        <field name="barcode" readonly="1"/>
                                         <!--field name="attribute_value_ids"/-->
-                                        <field name="lst_price"/>
+                                        <field name="lst_price" readonly="1"/>
+                                        <button name="action_unlink_product" string="Cancel product" type="object" icon="fa-sign-in"
+                                            context="{'scheduled_sale_id': parent.id}"/>
+                                    </tree>
+                                </field>
+                            </div>
+                        </group>
+                    </page>
+                    <page string="Archived products">
+                        <div class="oe_button_box" name="button_box2">
+                           <!--button name="open_all_product_to_cancel" type="object" class="oe_stat_button" icon="fa-archive" context="{'all_products':True}">
+                           <field name="product_ids_count" widget="statinfo" string="Products"/>
+                        </button-->
+                        </div>
+                        <group>
+                            <div>
+                                <field name="product_ids_archived" readonly="1">
+                                    <tree decoration-danger="active==False">
+                                        <field name="default_code" readonly="1"/>
+                                        <field name="display_name" readonly="1"/>
+                                        <field name="barcode" readonly="1"/>
+                                        <!--field name="attribute_value_ids"/-->
+                                        <field name="lst_price" readonly="1"/>
+                                        <field name="active" invisible="1"/>
                                     </tree>
                                 </field>
                             </div>
@@ -99,7 +141,7 @@
                 <field name="name"/>
                 <field name="from_date"/>
                 <field name="to_date" />
-                <field name="state" />
+
             </tree>
         </field>
     </record>
@@ -110,8 +152,9 @@
         <field name="model">scheduled.sale</field>
         <field name="priority" eval="1"/>
         <field name="arch" type="xml">
-            <tree string="Schedule sales">
+            <tree string="Schedule sales" decoration-muted="state=='cancel'" decoration-success="state in ('draft','confirm')">
                 <field name="active" invisible="1"/>
+                <field name="state" invisible="1"/>
                 <field name="name"/>
                 <field name="code"/>
                 <field name="period_id" />
@@ -133,10 +176,12 @@
                 <field name="state"/>
                 <field name="active"/>
                 <separator/>
-                <filter name="confirmed" string="Confirmed" domain="[('state', '=', 'confirmed')]"/>
+                <filter name="canceled" string="Canceled" domain="[('state', '=', 'cancel')]"/>
+                <filter name="confirmed" string="Confirmed" domain="[('state', 'in', 'confirmed')]"/>
+                <filter name="current" string="Current" domain="[('state', 'in', ('draft', 'confirmed'))]"/>
+                <separator/>
                 <filter string="Active" name="active" domain="[('active', '=',True)]"/>
-                <filter string="Inactive" domain="[('active', '=',False)]"/>
-
+                <filter string="Inactive" domain="[('active', '=', False)]"/>
                 <group expand="0" string="Group By">
                         <filter string="Period" domain="[]" context="{'group_by':'period_id'}"/>
                         <filter string="Company" domain="[]" context="{'group_by':'company_id'}"/>
@@ -154,7 +199,6 @@
                 <field name="name" string="Name"/>
                 <field name="from_date" string="From"/>
                 <field name="to_date" string="To"/>
-                <field name="state" string="State"/>
             </search>
         </field>
     </record>
@@ -203,7 +247,7 @@
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">sale.order</field>
             <field name="view_type">form</field>
-            <field name="view_mode">tree,kanban,form,calendar,pivot,graph</field>
+            <field name="view_mode">tree,form</field>
             <field name="search_view_id" ref="sale.sale_order_view_search_inherit_sale"/>
             <field name="context">{'schedule_order_tree': True}</field>
             <field name="domain">[('scheduled_sale_id','!=', False)]</field>
@@ -224,6 +268,8 @@
         parent="menu_scheduled_sale" sequence="2" />
     <menuitem action="action_scheduled_sale_period_form" id="menu_action_scheduled_sale_period_form"
         parent="menu_scheduled_sale" sequence="3" />
+
+
 
 </odoo>
 

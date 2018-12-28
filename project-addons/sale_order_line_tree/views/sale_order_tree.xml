@@ -72,11 +72,12 @@
         <field name="arch" type="xml">
             <tree string="Sales Order Lines" editable="bottom" decoration-info="invoice_status=='to invoice'">
                 <field name="sequence" widget="handle"/>
-                <field name="invoice_status" invisible="1"></field>
+                <field name="invoice_status" invisible="1"/>
                 <field name="product_updatable" invisible="1"/>
+                <field name="order_partner_id" invisible="1"/>
                 <field name="product_attribute_value_ids" invisible="1"/>
-                <field name="product_tmpl_id" options="{'no_create': True}"/>
-                 <button name="%(sale_order_variant_mgmt.action_sale_manage_variant)d"
+                <field name="product_tmpl_id" options="{'no_create': True}" invisible="1" context="{'from_template': True, 'ref_change_partner_id': order_partner_id}"/>
+                <button name="%(sale_order_variant_mgmt.action_sale_manage_variant)d"
                         type="action"
                         string="Modify Variants"
                         icon="fa-th"
@@ -85,7 +86,7 @@
                         attrs="{'invisible': ['|', ('state', 'not in', ('draft', 'sent')), ('product_attribute_value_ids', '=', [])]}"
                 />
                 <field name="product_id" attrs="{'readonly': [('product_updatable', '=', False)]}" force_save="1"
-                       options="{'no_create': True}"/>
+                       options="{'no_create': True}" context="{'from_template': False, 'ref_change_partner_id': order_partner_id}"/>
                 <field name="variant_sequence" widget="handle"/>
                 <field name="layout_category_id" groups="sale.group_sale_layout" />
                 <field name="name"/>
@@ -109,7 +110,8 @@
                 <field name="customer_lead" invisible="1"/>
                 <field name="currency_id" invisible="1"/>
                 <field name="order_id" invisible="1"/>
-                <field name="operating_unit_id" options="{'no_create': True}"/>
+                <!--field name="operating_unit_id" options="{'no_create': True}"/-->
+                <field name="ref_change"/>
 
             </tree>
         </field>

@@ -12,7 +12,6 @@ downloads/
 etc/
 bin/
 sandbox/
-src/
 .installed.cfg
 .idea
 upgrade.py

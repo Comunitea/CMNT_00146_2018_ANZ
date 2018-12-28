@@ -13,13 +13,11 @@
         'contract',
         'product_brand',
         'partner_area',
-        'product_custom_anz',
         'partner_fax',
         'operating_unit'
     ],
     'data': [
         'views/partner_view.xml',
-        'views/account_invoice.xml'
     ],
     'installable': True,
 }

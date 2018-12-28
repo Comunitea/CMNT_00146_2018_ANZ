@@ -9,13 +9,14 @@ from odoo import api, fields, models
 class SaleReport(models.Model):
     _inherit = "sale.report"
 
-
-    type_id = fields.Many2one(
-        comodel_name='sale.order.type', string='Type', readonly=True)
+    deliver_month = fields.Char('Requested month', readonly=1)
+    scheduled_sale_id = fields.Many2one('scheduled.sale', 'Schedule order', readonly=1)
 
     def _select(self):
-        return super(SaleReport, self)._select() + ", s.type_id as type_id"
+        return super(SaleReport, self)._select() + ",l.deliver_month as deliver_month," \
+                                                   "s.scheduled_sale_id as scheduled_sale_id "
 
     def _group_by(self):
-        return super(SaleReport, self)._group_by() + ", s.type_id "
+        return super(SaleReport, self)._group_by() + ", l.deliver_month, " \
+                                                     "s.scheduled_sale_id "
 

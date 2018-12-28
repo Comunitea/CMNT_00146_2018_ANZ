@@ -8,16 +8,17 @@ class ProductTemplate(models.Model):
 
     _inherit = 'product.template'
 
+
     product_color = fields.Many2one('product.attribute.value', string="Color", domain="[('is_color','=', True)]")
     boot_type = fields.Many2one('product.attribute.value', string="Tipo de bota", domain="[('is_tboot','=', True)]")
     replication = fields.Boolean('Replication')
     variant_suffix = fields.Char('Variant suffix', compute="_get_variant_suffix", store=True)
+    pvp = fields.Float('PVP', digits=(16, 2))
 
     @api.multi
     @api.depends('attribute_line_ids')
     def _get_variant_suffix(self):
         for template in self:
-            print(template.name)
             names = template.attribute_line_ids.mapped('value_ids').mapped('name')
             if names:
                 template.variant_suffix = " ({})".format(", ".join([v for v in names]))
@@ -30,7 +31,6 @@ class ProductTemplate(models.Model):
         if partner and not partner.affiliate:
             args = partner.add_args_to_product_search(args)
         return super(ProductTemplate, self)._search(args, offset=offset, limit=limit, order=order, count=count, access_rights_uid=access_rights_uid)
-
 
 
 class ProductProduct(models.Model):

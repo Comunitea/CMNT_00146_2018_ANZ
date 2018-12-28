@@ -12,6 +12,17 @@
         </field>
     </record>
 
+    <record id="product_product_tree_view_visible_price" model="ir.ui.view">
+        <field name="name">product.product.tree.visible_price</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.product_product_tree_view"/>
+        <field name="arch" type="xml">
+            <field name="price" position="attributes">
+                <attribute name="invisible">0</attribute>
+            </field>
+        </field>
+    </record>
+
     <record id="attribute_tree_view_add_custom" model="ir.ui.view">
         <field name="name">product.attribute.tree.add.custom</field>
         <field name="model">product.attribute</field>
@@ -47,6 +58,9 @@
                     <field name="product_color"/>
                     <field name="variant_suffix"/>
                 </group>
+            </field>
+            <field name="list_price" position="after">
+                <field name="pvp" widget="monetary" options="{'currency_field': 'currency_id', 'field_digits': True}"/>
             </field>
         </field>
     </record>
