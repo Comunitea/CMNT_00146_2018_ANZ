@@ -37,6 +37,8 @@ class ProductProduct(models.Model):
 
     _inherit = 'product.product'
 
+    oldname = fields.Char()
+
     @api.model
     def _search(self, args, offset=0, limit=None, order=None, count=False, access_rights_uid=None):
         partner = self.env['res.partner'].get_partner_by_context()
