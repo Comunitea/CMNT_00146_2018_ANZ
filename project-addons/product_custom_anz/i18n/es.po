@@ -16,6 +16,12 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: product_custom_anz
+#: model:ir.model.fields,field_description:product_custom_anz.field_res_partner_show_pvp
+#: model:ir.model.fields,field_description:product_custom_anz.field_res_users_show_pvp
+msgid "Show PVP"
+msgstr "Mostrar PVP"
+
+#. module: product_custom_anz
 #: model:ir.model.fields,field_description:product_custom_anz.field_sale_order_line_is_player_boot
 msgid "Bota de jugador"
 msgstr "Bota de jugador"

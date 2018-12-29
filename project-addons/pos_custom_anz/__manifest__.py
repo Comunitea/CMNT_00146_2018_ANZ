@@ -14,11 +14,15 @@
         'pos_order_return',
         'pos_order_mgmt',
         'pos_product_available',
-        'pos_coupons_gift_voucher'
+        'pos_coupons_gift_voucher',
+        'l10n_es_pos'
     ],
     'data': [
         'views/assets.xml',
         'views/pos_order_view.xml',
+    ],
+    "qweb": [
+        "static/src/xml/pos.xml",
     ],
     'installable': True,
 }

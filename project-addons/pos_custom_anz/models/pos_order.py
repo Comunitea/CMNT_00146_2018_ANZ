@@ -20,3 +20,9 @@ class PosOrder(models.Model):
                 pos_order.get('returned_order_id')):
             order.return_reason = pos_order.get('return_reason', '')
         return order
+
+    def create_picking(self):
+        res = super(PosOrder, self).create_picking()
+        for order in self.filtered('returned_order_id'):
+            order._force_picking_done(order.picking_id)
+        return res

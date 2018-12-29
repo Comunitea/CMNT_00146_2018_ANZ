@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_settlement">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.internal_layout">
+                    <div class="page">
+                        <div class="row mt32 mb32">
+                            <div class="col-xs-3" t-if="o.agent">
+                                <strong>Agent:</strong>
+                                <p t-field="o.agent"/>
+                            </div>
+                            <div class="col-xs-2" t-if="o.date_from">
+                                <strong>From:</strong>
+                                <p t-field="o.date_from"/>
+                            </div>
+                            <div class="col-xs-2" t-if="o.date_to">
+                                <strong>To:</strong>
+                                <p t-field="o.date_to"/>
+                            </div>
+                        </div>
+
+                        <table class="table table-condensed">
+                            <thead>
+                                <tr>
+                                    <th>Invoice date</th>
+                                    <th>Invoice</th>
+                                    <th>Commission</th>
+                                    <th class="text-right">Amount settled</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr t-foreach="o.lines.read_group([('id', 'in', o.lines._ids)], ['date', 'invoice', 'commission', 'settled_amount'], ['date:day', 'invoice', 'commission'], lazy=False)" t-as="l">
+                                    <td><span t-esc="l['date:day']"/></td>
+                                    <td><span t-esc="l['invoice'][1]"/></td>
+                                    <td><span t-esc="l['commission'][1]"/></td>
+                                    <td class="text-right"><span t-esc="l['settled_amount']"  t-esc-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: &quot;o.currency_id&quot;}"/></td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <div class="row">
+                            <div class="col-xs-4 pull-right">
+                                <table class="table table-condensed">
+                                    <tr>
+                                        <td><strong>Total</strong></td>
+                                        <td class="text-right">
+                                            <span t-field="o.total" t-field-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: &quot;o.currency_id&quot;}"/>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+    <report
+        id="action_report_settlement"
+        model="sale.commission.settlement"
+        string="Settlement report"
+        report_type="qweb-pdf"
+        name="custom_commission_anz.report_settlement"
+        file="custom_commission_anz.report_settlement"
+    />
+</odoo>

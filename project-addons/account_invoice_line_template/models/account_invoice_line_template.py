@@ -30,6 +30,7 @@ class AccountInvoiceLineTemplate(models.Model):
     discount = fields.Float(
         string='Discount (%)', digits=dp.get_precision('Discount'),
         readonly=True)
+    ref_change = fields.Boolean()
 
     def _select(self):
         select_str = """
@@ -43,7 +44,8 @@ select min(l.id) as id,
         sum(l.quantity) as quantity,
         sum(l.price_total) as price_total,
         sum(l.price_subtotal) as price_subtotal,
-        l.price_unit as price_unit
+        l.price_unit as price_unit,
+        l.ref_change
         """
         return select_str
 
@@ -59,7 +61,8 @@ l.product_tmpl_id,
 l.uom_id,
 l.discount,
 l.invoice_id,
-l.price_unit
+l.price_unit,
+l.ref_change
 
         """
         return group_by_str
@@ -77,8 +80,15 @@ l.price_unit
 
     def _compute_line_name(self):
         for template_line in self:
+            if template_line.ref_change:
+                template_line.line_name = template_line.product_tmpl_id.ref_change_code
+                continue
             line = template_line._get_invoice_lines()
             if len(line) == 1:
+                if not template_line.product_tmpl_id or \
+                        template_line.product_tmpl_id.type == 'service':
+                    template_line.line_name = line.name
+                    continue
                 att_tag = line.product_id.attribute_value_ids
                 if att_tag:
                     template_line.line_name = template_line.product_tmpl_id.name + ' - ' + att_tag.name_get()[0][1]

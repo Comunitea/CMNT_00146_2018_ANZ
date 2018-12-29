@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
+    <template id="report_assets_comon" inherit_id="web.report_assets_common">
+
+        <xpath expr="//link" position="after">
+            <link href="/custom_documents/static/src/css/custom_documents.css" rel="stylesheet" type="text/css"/>
+        </xpath>
+    </template>
+
     <template id="external_layout_custom" inherit_id="web.external_layout">
         <xpath expr="//t[@t-set='company']/.." position="after">
             <t t-if="o and 'operating_unit_id' in o">
@@ -15,15 +22,15 @@
 
     <template id="external_layout_standard_custom" inherit_id="web.external_layout_standard">
         <xpath expr="//div[hasclass('header')]" position="replace">
-            <div class="header">
+            <div class="header" style="font-family: Questrial">
                 <div class="row">
-                    <div class="col-xs-3 mb4">
-                        <img t-if="partner.image" t-att-src="'data:image/png;base64,%s' % to_text(partner.image)" style="max-height: 100px;"/>
-                    </div>
-                    <div class="col-xs-6" name="company_address">
+                    <div class="col-xs-9" name="company_address">
                         <span t-esc="partner"
-                            t-options='{"widget": "contact", "fields": ["address", "name", "phone", "mobile", "email", "website"], "no_marker": true, "no_tag_br": True, "vat": True, "vat_label": company.country_id.vat_label}'
+                            t-options='{"widget": "contact", "fields": ["address", "name", "phone", "mobile", "email", "website"], "no_marker": true, "no_tag_br": True, "vat": True, "vat_label": company.country_id.vat_label, "company_address": True}'
                         />
+                    </div>
+                    <div class="col-xs-3 mb4">
+                        <img class=" pull-right" t-if="partner.image" t-att-src="'data:image/png;base64,%s' % to_text(partner.image)" style="max-height: 100px;"/>
                     </div>
                 </div>
                 <div t-if="company.logo or company.report_header" class="row zero_min_height">
@@ -35,7 +42,7 @@
         </xpath>
 
         <xpath expr="//div[hasclass('footer')]" position="replace">
-            <div class="footer">
+            <div class="footer" style="font-family: Questrial">
                 <div class="text-center" style="border-top: 1px solid black;">
                     <div name="financial_infos" style="font-size:10px;">
                         <span t-field="company.report_footer"/>
@@ -50,14 +57,76 @@
     </template>
 
     <template id="contact" inherit_id="base.contact">
-        <xpath expr="//span[@t-esc='mobile']/.." position="replace"></xpath>
-        <xpath expr="//span[@t-esc='phone']" position="after">
-            <t t-if="mobile and 'mobile' in fields"> - <span t-esc="mobile"/></t>
+        <xpath expr="//address" position="attributes">
+            <attribute name="t-if">not options.get('company_address')</attribute>
         </xpath>
-        <xpath expr="//span[@t-esc='website']/.." position="before">
-            <div t-if="'vat' in object and options.get('vat', False)">
-                <div t-if="object.vat"><t t-esc="options.get('vat_label', 'TIN')"/>: <span t-field="object.vat"/></div>
+        <xpath expr="//address" position="after">
+            <address t-ignore="true" class="mb0" itemscope="itemscope" itemtype="http://schema.org/Organization" t-if="options.get('company_address')">
+                <div t-if="not (('name' in fields) or (address and 'address' in fields) or (city and 'city' in fields) or (mobile and 'mobile' in fields) or (website and 'website' in fields) or (email and 'email' in fields))" class="css_non_editable_mode_hidden">
+                    --<span class="text-muted" t-esc="name"/>--
+                </div>
+                <t t-if="object.country_id.name_position != 'after'">
+                    <t t-call="base.contact_name"/>
+                </t>
+                <div itemprop="address" itemscope="itemscope" itemtype="http://schema.org/PostalAddress">
+                    <div class="row">
+                        <div class="col-xs-5">
+                            <div t-if="address and 'address' in fields">
+                                <i t-if="not options.get('no_marker')" class='fa fa-map-marker fa-fw'/> <span itemprop="streetAddress" t-raw="address.replace('\n', options.get('no_tag_br') and ', ' or ('&lt;br/&gt;%s' % ('' if options.get('no_marker') else '&amp;nbsp; &amp;nbsp; ')))"/>
+                            </div>
+                            <div t-if="city and 'city' in fields">
+                                <i t-if="not options.get('no_marker')" class='fa fa-map-marker fa-fw'/>
+                                <span itemprop="addressLocality" t-raw="city"/>,
+                                <span itemprop="addressCountry" t-raw="country_id"/>
+                            </div>
+                        </div>
+                        <div class="col-xs-6">
+                            <div t-if="phone and 'phone' in fields">
+                                <i t-if="not options.get('no_marker') or options.get('phone_icons')" class='fa fa-phone fa-fw'/> <span itemprop="telephone" t-esc="phone"/>
+                                <div>
+                                <t t-if="mobile and 'mobile' in fields"><span t-esc="mobile"/></t>
+                                </div>
+                            </div>
+                            <div t-if="fax and 'fax' in fields"><i t-if="not options.get('no_marker') or options.get('phone_icons')" class='fa fa-fax fa-fw'/> <span itemprop="faxNumber" t-esc="fax"/></div>
+                            <div t-if="website and 'website' in fields">
+                                <i t-if="not options.get('no_marker')" class='fa fa-globe'/>
+                                <a t-att-href="website and '%s%s' % ('http://' if '://' not in website else '',website)"><span itemprop="website" t-esc="website"/></a>
+                            </div>
+                            <div t-if="email and 'email' in fields"><i t-if="not options.get('no_marker')" class='fa fa-envelope fa-fw'/> <span itemprop="email" t-esc="email"/></div>
+                        </div>
+                    </div>
+                </div>
+                <t t-if="object.country_id and object.country_id.name_position == 'after'">
+                    <t t-call="base.contact_name"/>
+                </t>
+            </address>
+        </xpath>
+    </template>
+
+    <template id="contact_name" inherit_id="base.contact_name">
+        <xpath expr="//div" position="attributes">
+            <attribute name="t-if">'name' in fields and not options.get('company_address')</attribute>
+        </xpath>
+        <xpath expr="//div" position="after">
+            <div class="row" t-if="'name' in fields and options.get('company_address')">
+                <div class="col-xs-5" style="font-weight: bold">
+                    <t t-if="object.name">
+                        <span itemprop="name" t-esc="name"/>
+                    </t>
+                    <t t-if="not object.name and object.parent_name">
+                        <span itemprop="name" t-esc="object.parent_name"/>
+                    </t>
+                    <t t-if="options.get('country_image') and 'country_id' in fields and object.country_id and object.country_id.image">
+                        <span t-field="object.country_id.image" t-options='{"widget": "image", "class": "country_flag"}'/>
+                    </t>
+                </div>
+                <div class="col-xs-6">
+                    <t t-if="'vat' in object and options.get('vat', False)">
+                        <t t-if="object.vat"><t t-esc="options.get('vat_label', 'TIN')"/>: <span t-field="object.vat"/></t>
+                    </t>
+                </div>
             </div>
         </xpath>
     </template>
+
 </odoo>

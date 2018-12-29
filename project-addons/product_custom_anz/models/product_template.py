@@ -13,6 +13,7 @@ class ProductTemplate(models.Model):
     boot_type = fields.Many2one('product.attribute.value', string="Tipo de bota", domain="[('is_tboot','=', True)]")
     replication = fields.Boolean('Replication')
     variant_suffix = fields.Char('Variant suffix', compute="_get_variant_suffix", store=True)
+    pvp = fields.Float('PVP', digits=(16, 2))
 
     @api.multi
     @api.depends('attribute_line_ids')
@@ -32,10 +33,11 @@ class ProductTemplate(models.Model):
         return super(ProductTemplate, self)._search(args, offset=offset, limit=limit, order=order, count=count, access_rights_uid=access_rights_uid)
 
 
-
 class ProductProduct(models.Model):
 
     _inherit = 'product.product'
+
+    oldname = fields.Char()
 
     @api.model
     def _search(self, args, offset=0, limit=None, order=None, count=False, access_rights_uid=None):
