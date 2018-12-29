@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- CUSTOMER LINES VIEWS -->
+    <record id="view_invoice_txt_import_tree" model="ir.ui.view">
+        <field name="name">invoice_txt.import.tree</field>
+        <field name="model">invoice.txt.import</field>
+        <field name="arch" type="xml">
+            <tree string="TXT Invoice">
+                <field name="supplier_invoice_num"/>
+                <field name="partner_id"/>
+                <field name="associate_id"/>
+                <field name="state"/>
+                <field name="invoice_id"/>
+                <field name="file_name" invisible="1"/>
+            </tree>
+        </field>
+    </record>
+
+
+    <record id="view_invoice_txt_import_form" model="ir.ui.view">
+        <field name="name">invoice_txt.import.form</field>
+        <field name="model">invoice.txt.import</field>
+        <field name="arch" type="xml">
+            <form string="Facturas TXT Importadas">
+                <header>
+                     <button name="create_invoice_from_invoice_txt" type="object" string="Facturar" class="oe_highlight"/>
+                     <field name="state" widget="statusbar" statusbar_visible="draft,invoiced,error"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+
+                    </div>
+
+                    <div class="oe_title">
+
+                        <field name="partner_id"/>
+                        <field name="partner_vat"/>
+                        <field name="type" />
+                        <field name="file_name"/>
+                        <field name="file_date"/>
+                        <field name="invoice_id"/>
+                    </div>
+
+                    <group>
+                        <group>
+                            <field name="associate_name"/>
+                            <field name="associate_id"/>
+                            <field name="supplier_partner_nif"/>
+                            <field name="supplier_partner_num"/>
+                            <field name="arancel"/>
+                            <field name="country"/>
+                            <field name="fecha_vencimiento"/>
+                        </group>
+                        <group>
+
+                            <field name="supplier_invoice_num"/>
+                            <field name="supplier_invoice_date"/>
+                            <field name="supplier_picking_num"/>
+                            <field name="supplier_picking_date"/>
+                            <field name="supplier_order_num"/>
+                            <field name="supplier_order_date"/>
+                            <field name="partner_bank"/>
+                            <field name="bank_id"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Lineas">
+                            <field name="invoice_line_txt_import_ids">
+                                <tree>
+                                    <field name="product_id"/>
+                                    <field name="codigo"/>
+                                    <field name="qty"/>
+                                    <field name="precio_articulo"/>
+                                    <field name="descuento"/>
+                                    <field name="valor_neto"/>
+
+                                </tree>
+                                <form>
+                                    <group>
+                                        <field name="product_id"/>
+                                        <field name="codigo"/>
+                                        <field name="descuento"/>
+
+                                    </group>
+                                    <group>
+                                        <field name="qty"/>
+                                        <field name="precio_articulo"/>
+                                        <field name="valor_neto"/>
+
+                                    </group>
+                                    <field name="descripcion"/>
+                                    <field name="descripcion_qty"/>
+                                </form>
+                            </field>
+
+                            <group>
+                                <group>
+                                    <group>
+
+                                        <field name="desc_p_p_per_cent"/>
+                                        <field name="equiv_per_cent"/>
+                                        <field name="iva_per_cent"/>
+
+
+                                    </group>
+                                    <group>
+
+                                        <field name="desc_p_p"/>
+                                        <field name="equiv"/>
+                                        <field name="iva"/>
+
+                                    </group>
+                                </group>
+                                <group>
+                                    <group>
+                                        <field name="recargos"/>
+                                        <field name="base_imponible"/>
+                                        <field name="valor_neto"/>
+
+                                    </group>
+                                    <group>
+                                        <field name="total_amount"/>
+
+                                    </group>
+                                </group>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+                  <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+
+    </record>
+      <!--record id="view_reinvoice_rule_filter" model="ir.ui.view">
+            <field name="name">view.reinvoice.rule.filter</field>
+            <field name="model">reinvoice.rule</field>
+            <field name="arch" type="xml">
+                <search string="Search Rules">
+                    <field name="partner_id"/>
+                    <field name="brand_id"/>
+                    <separator/>
+                    <filter name="gobal" string="Global Rule" domain="[('partner_id','=', False)]"/>
+                    <filter name="specific" string="Specific Rule" domain="[('partner_id','!=', False)]"/>
+
+                    <group expand="0" string="Group By">
+                        <filter string="Brand" domain="[]" context="{'group_by':'brand_id'}"/>
+                        <filter string="Customer" domain="[]" context="{'group_by':'partner_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record-->
+
+    <record id="action_reinvoice_import_txt" model="ir.actions.act_window">
+        <field name="name">Import Invoice Txt</field>
+        <field name="res_model">invoice.txt.import</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_reinvoice_import_txt" name="TXT Importadas"  action="action_reinvoice_import_txt" sequence="2" parent="account_reinvoice.menu_reinvoice"/>
+
+</odoo>
