@@ -15,7 +15,7 @@ class ResPartnerArea(models.Model):
             area.sub_partner_ids = area.child_ids.mapped('partner_ids')
             area.partner_ids = area.area_partner_ids + area.sub_partner_ids
 
-    name = fields.Char("Partner area")
+    name = fields.Char("Partner area", required=True)
     complete_name = fields.Char("Full area Name", compute='_compute_complete_name', store=True)
     code = fields.Char("Partner area code")
     state_ids = fields.Many2many('res.country.state',
