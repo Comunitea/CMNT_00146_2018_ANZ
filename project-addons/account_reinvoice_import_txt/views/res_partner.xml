@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record model="ir.ui.view" id="res_partner_sale_supplier_codes">
+        <field name="name">res.partner.supplier_codes</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+
+            <page name="sales_purchases" position="inside">
+                <group colspan="2" col="2">
+                    <separator string="Codigos de proveedores y clientes" colspan="2"/>
+                    <field name="supplier_code_ids" context="{'default_customer_id': active_id}" attrs="{'invisible':[('customer', '=', False)]}" nolabel="1"></field>
+                    <field name="customer_code_ids" context="{'default_supplier_id': active_id}" attrs="{'invisible':[('supplier', '=', False)]}" nolabel="1"></field>
+                </group>
+
+            </page>
+
+        </field>
+    </record>
+</odoo>
