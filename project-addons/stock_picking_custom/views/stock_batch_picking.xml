@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record model="ir.ui.view" id="stock_batch_picking_form_custom_anz">
+        <field name="name">stock.batch.picking.form.custom.anz</field>
+        <field name="model">stock.batch.picking</field>
+        <field name="inherit_id" ref="stock_batch_picking.stock_batch_picking_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='picker_id']" position="before">
+                <field name="picking_type_id" attrs="{'readonly': [('picking_ids', '!=', [])]}"/>
+
+            </xpath>
+            <xpath expr="//field[@name='picking_ids']" position="attributes">
+                <attribute name="domain">
+                    [('batch_picking_id', '=', False), ('picking_type_id','=', picking_type_id), ('state', 'not in', ('done', 'cancel'))]
+                </attribute>
+            </xpath>
+
+        </field>
+    </record>
+</odoo>
