@@ -18,3 +18,28 @@ class ReturnPicking(models.TransientModel):
         for line in res.get('product_return_moves', []):
             line[2]['to_refund'] = True
         return res
+
+
+class StockPicking(models.Model):
+
+    _inherit = "stock.picking"
+
+    @api.multi
+    def force_set_qty_done(self):
+        for picking in self:
+            for move in picking.move_lines:
+                if not move.quantity_done:
+                    move.quantity_done = move.product_uom_qty
+
+
+class StockMove(models.Model):
+
+    _inherit = "stock.move"
+
+    @api.multi
+    def force_set_qty_done(self):
+        for move in self:
+            if not move.quantity_done:
+                move.quantity_done = move.product_uom_qty
+
+
