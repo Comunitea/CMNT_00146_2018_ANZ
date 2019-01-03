@@ -9,7 +9,7 @@ class SaleOrderLine(models.Model):
     is_player_boot = fields.Boolean("Bota de jugador")
     date_order = fields.Datetime(related="order_id.date_order")
     virtual_stock_conservative = fields.Float(related="product_id.virtual_stock_conservative",
-                                              string='Virtual Stock Conservative')
+                                              string='Virtual Stock Conservative', related_sudo=True)
 
 
     @api.multi

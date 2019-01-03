@@ -135,7 +135,7 @@ class SaleOrderLine(models.Model):
         'operating.unit', string="Operating unit")
     virtual_stock_conservative = fields.Float(
         related="product_id.virtual_stock_conservative",
-        string='Virtual Stock Conservative')
+        string='Virtual Stock Conservative', related_sudo=True)
     ref_change = fields.Boolean('Reference change')
 
     @api.multi
