@@ -68,8 +68,8 @@ class ReinvoiceWzd(models.TransientModel):
                 'journal_id': self.sale_type_id.journal_id.id,
                 'operating_unit_id': self.sale_type_id.operating_unit_id.id,
                 'sale_type_id': self.sale_type_id.id,
-                'payment_mode_id': inv.associate_id.customer_payment_mode_id,
-                'payment_term_id': inv.associate_id.property_payment_term_id,
+                'payment_mode_id': inv.associate_id.customer_payment_mode_id.id,
+                'payment_term_id': inv.associate_id.property_payment_term_id.id,
             }
             inv_ass = inv.copy(copy_vals)
             inv.write({'customer_invoice_id': inv_ass.id})
