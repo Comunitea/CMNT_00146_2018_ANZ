@@ -10,7 +10,9 @@
             <xpath expr="//field[@name='invoice_line_ids']/tree/field[@name='product_id']" position="after">
                 <field name="ref_change"/>
             </xpath>
-
+            <xpath expr="//page[@name='other_info']//field[@name='origin']" position="attributes">
+                <attribute name="attrs"></attribute>
+            </xpath>
             <!-- Add sponsored -->
             <field name="date_invoice" position="after">
                 <field name="sponsored"/>
@@ -18,6 +20,15 @@
         </field>
     </record>
 
-
+    <record id="invoice_supplier_form" model="ir.ui.view">
+        <field name="name">account.invoice.supplier.form</field>
+        <field name="model">account.invoice</field>
+        <field name="inherit_id" ref="account.invoice_supplier_form"/>
+        <field name="arch" type="xml">
+            <field name="origin" position="attributes">
+                <attribute name="attrs"></attribute>
+            </field>
+        </field>
+    </record>
 
 </odoo>

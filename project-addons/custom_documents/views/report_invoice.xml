@@ -10,9 +10,16 @@
             <div class="row">
                 <div class="col-xs-6" style="font-weight: bold">
                     <p>Customer code: <span t-field="o.partner_id.ref"/></p>
-                    <p>Invoice number: <span t-field="o.number"/></p>
+                    <p>
+                        <span t-if="o.type == 'out_invoice' and (o.state == 'open' or o.state == 'paid')">Invoice:</span>
+                        <span t-if="o.type == 'out_invoice' and o.state == 'draft'">Draft Invoice:</span>
+                        <span t-if="o.type == 'out_invoice' and o.state == 'cancel'">Cancelled Invoice:</span>
+                        <span t-if="o.type == 'out_refund'">Credit Note:</span>
+                        <span t-if="o.type == 'in_refund'">Vendor Credit Note:</span>
+                        <span t-if="o.type == 'in_invoice'">Vendor Bill:</span> <span t-field="o.number"/></p>
                     <p>Invoice date: <span t-field="o.date_invoice"/></p>
                     <p>Salesperson: <span t-field="o.user_id"/></p>
+                    <p t-if="o.origin">Origin: <span t-field="o.origin"/></p>
                 </div>
             </div>
         </xpath>
@@ -47,7 +54,7 @@
                         <t t-set="lines_grouped" t-value="o.lines_grouped_by_sale(group_templates=False)"/>
                         <t t-foreach="lines_grouped.keys()" t-as="order">
                             <tr>
-                                <td>Order number: <span t-esc="order.name"/></td>
+                                <td t-if="order.name">Order number: <span t-esc="order.name"/></td>
                                 <td></td>
                                 <t t-if="o.partner_id.country_id.intrastat">
                                     <td></td>
@@ -90,7 +97,7 @@
                         <t t-foreach="templates_grouped.keys()" t-as="order">
                             <tr>
                                 <td></td>
-                                <td>Order number: <span t-esc="order.name"/></td>
+                                <td t-if="order.name">Order number: <span t-esc="order.name"/></td>
                                 <td></td>
                                 <t t-if="o.partner_id.country_id.intrastat">
                                     <td></td>

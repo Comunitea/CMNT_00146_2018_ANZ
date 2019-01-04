@@ -19,17 +19,6 @@ class SaleOrder(models.Model):
         states={'draft': [('readonly', False)]}, copy=False)
     bag_decreased = fields.Boolean('Bag decreased', readonly=True, copy=False)
 
-    @api.multi
-    def write(self, vals):
-        res = super(SaleOrder, self).write(vals)
-        if 'type_id' in vals:
-            sale_type = self.env['sale.order.type'].search_read(
-                [('id', '=', vals['type_id'])], fields=['operating_unit_id'])
-            self.mapped('order_line').write(
-                {'operating_unit_id': sale_type and
-                 sale_type[0]['operating_unit_id'][0]})
-        return res
-
     @api.model
     def create(self, vals):
         res = super(SaleOrder, self).create(vals)
@@ -131,8 +120,6 @@ class SaleOrder(models.Model):
 class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"
 
-    operating_unit_id = fields.Many2one(
-        'operating.unit', string="Operating unit")
     virtual_stock_conservative = fields.Float(
         related="product_id.virtual_stock_conservative",
         string='Virtual Stock Conservative', related_sudo=True)
@@ -142,8 +129,6 @@ class SaleOrderLine(models.Model):
     @api.onchange('product_id')
     def product_id_change(self):
         result = super(SaleOrderLine, self).product_id_change()
-        if self.order_id.type_id:
-            self.operating_unit_id = self.order_id.type_id.operating_unit_id
         # Check if product added is restricted by brand.
         # If restricted sets true ref_check field
         if self._context.get('ref_change_partner_id', False):
