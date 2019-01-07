@@ -11,10 +11,10 @@
         'delivery'
     ],
     'data': [
+        'data/res_partner_category.xml',
         #'views/stock_batch_picking.xml',
         'views/stock_location.xml',
         'views/stock_picking.xml',
-        'data/res_partner_category.xml',
         'report/stock_picking_delivery_tag.xml',
         'report/report_stock_picking_view.xml'
         #'wizard/sale_manage_variant_view.xml'
