@@ -45,3 +45,4 @@ class ProductProduct(models.Model):
         if partner and not partner.affiliate:
             args = partner.add_args_to_product_search(args)
         return super(ProductProduct, self)._search(args, offset=offset, limit=limit, order=order, count=count, access_rights_uid=access_rights_uid)
+

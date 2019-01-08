@@ -24,3 +24,4 @@ class ProductAttributeValue(models.Model):
     is_tboot = fields.Boolean("Is type of boot",
                               related="attribute_id.is_tboot",
                               readonly=True)
+

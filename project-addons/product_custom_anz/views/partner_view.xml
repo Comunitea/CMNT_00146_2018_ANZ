@@ -9,6 +9,21 @@
             <field name="user_id" position="before">
                 <field name="show_pvp"/>
             </field>
+            <field name="sponsorship_bag" position="after">
+                <field name="boot_type" ></field>
+                <field name="color_type"></field>
+                <field name="size_type_ids"  widget="many2many_tags" ></field>
+                <field name="allowed_boot_ids" widget="many2many_tags" domain="[('product_color', '=', color_type),('boot_type','=',boot_type)]"></field>
+                <field name="boot_ids_count"></field>
+                <field name="boot_ids" ><!--attrs="{'invisible': [('boot_ids_count', '=', 0)]}"-->
+                    <tree>
+                        <field name="name"></field>
+                        <field name="qty_delivered"></field>
+                        <!--field name="date_order"></field-->
+                    </tree>
+                </field>
+
+            </field>
         </field>
     </record>
 

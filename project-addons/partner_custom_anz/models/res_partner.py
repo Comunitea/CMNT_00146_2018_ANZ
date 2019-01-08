@@ -27,13 +27,6 @@ class ResPartner(models.Model):
 
     _inherit = 'res.partner'
 
-    @api.multi
-    def get_boot_ids(self):
-        order_line_ids = self.env['sale.order.line']
-        for player in self.filtered(lambda x: x.player):
-            domain = [('order_id.partner_id', '=', player.id), ('product_id.boot_type', '!=', False)]
-            player.boot_ids = [(6, 0, order_line_ids.search(domain).ids)]
-            player.boot_ids_count = sum(x.qty_delivered for x in player.boot_ids)
 
 
     affiliate = fields.Boolean('Affiliate')
@@ -41,12 +34,7 @@ class ResPartner(models.Model):
     sponsorship_bag = fields.Float()
     analytic_default_count = fields.Integer('Analytic Defaults',
                                             compute='_count_analytic_defaults')
-    boot_type = fields.Many2one('product.attribute.value', 'Type of boot',
-                                domain=[('is_tboot', '=', True)])
-    color_type = fields.Many2one('product.attribute.value', 'Type of color',
-                                 domain=[('is_color', '=', True)])
-    boot_ids = fields.One2many('sale.order.line', string="Histórico", compute="get_boot_ids")
-    boot_ids_count = fields.Integer(string="Quantity", compute="get_boot_ids")
+
 
 
     allowed_brand_ids = fields.Many2many('product.brand',

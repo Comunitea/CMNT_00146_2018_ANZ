@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
+
+
     <record id="product_attribute_view_form_add_custom" model="ir.ui.view">
         <field name="name">product.attribute.form.add.custom</field>
         <field name="inherit_id" ref="product.product_attribute_view_form"/>
