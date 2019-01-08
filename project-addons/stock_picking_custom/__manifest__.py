@@ -8,7 +8,8 @@
     'license': 'AGPL-3',
     'author': "Comunitea, ",
     'depends': [
-        'delivery'
+        'delivery',
+        'delivery_packing_list'
     ],
     'data': [
         'data/res_partner_category.xml',
