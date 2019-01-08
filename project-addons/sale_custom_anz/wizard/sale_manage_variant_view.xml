@@ -5,11 +5,18 @@
         <field name="model">sale.manage.variant</field>
         <field name="inherit_id" ref="sale_order_variant_mgmt.sale_manage_variant_form"/>
         <field name="arch" type="xml">
-            <field name="product_tmpl_id" position="before">
+            <xpath expr="//field[@name='product_tmpl_id']/.." position="after">
                 <field name="partner_id" invisible="1"/>
-            </field>
+                <h2><field name="default_variant_id" readonly="1"/></h2>
+            </xpath>
+
             <field name="product_tmpl_id" position="attributes">
-                <attribute name="context">{'partner_id': partner_id}</attribute>
+                <attribute name="context">{'qty_variant_name': True, 'partner_id': partner_id, 'default_product_tmpl_id': product_tmpl_id}</attribute>
+            </field>
+            <field name="variant_line_ids" postion="before">
+                <field name="default_variant_id"/>
+                           <!--attrs="{'readonly': [('default_variant_id', '!=', False)], 'invisible': [('default_variant_id','=', False)]}"
+                           /></h2>-->
             </field>
         </field>
     </record>
