@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+     <record id="action_product_account_invoice_line_tree" model="ir.actions.act_window">
+            <field name="name">Invoice lines</field>
+            <field name="res_model">account.invoice.line</field>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="invoice_line_tree_search.view_invoice_line_tree_search"/>
+         <field name="search_view_id" ref=   "invoice_line_tree_search.view_account_invoice__line_tree_filter"/>
+            <field name="context">{'search_default_product_id': [active_id], 'default_product_id': active_id}</field>
+            <field name="domain">[('invoice_id.state', 'in', ['open', 'paid'])]</field>
+        </record>
+
+        <record model="ir.ui.view" id="product_form_view_account_invoice_line_button">
+            <field name="name">product.product.sale.order</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="product.product_normal_form_view"/>
+            <field name="groups_id" eval="[(4, ref('account.group_account_user'))]"/>
+            <field name="arch" type="xml">
+                <button name="toggle_active" position="before">
+                    <button class="oe_stat_button" name="%(action_product_account_invoice_line_tree)d"
+                        type="action" icon="fa-usd" groups="account.group_account_user">
+                        <field string="Invoices" name="invoice_line_count" widget="statinfo" />
+                    </button>
+                </button>
+            </field>
+        </record>
+</odoo>
