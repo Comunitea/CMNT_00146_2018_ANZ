@@ -3,6 +3,7 @@
 from odoo import api, fields, models,_
 from odoo.exceptions import UserError
 from odoo.osv import expression
+from odoo.exceptions import UserError,ValidationError
 
 class ResPartnerArea(models.Model):
     _inherit = 'res.partner.area'
@@ -64,6 +65,33 @@ class ResPartner(models.Model):
                                             "product_category_id",
                                             string="Restricted categories for this partner"
                                             )
+    ref = fields.Char(default='[Auto]')
+
+    @api.multi
+    def refresh_partner_ref(self):
+        partner_sequence = self.env['ir.sequence'].search([('code', '=', 'auto_partner')])
+        if partner_sequence:
+            for partner in self:
+                seq = partner_sequence.next_by_id()
+                zip_str = partner.zip or partner.parent_id and partner.parent_id.zip or '00'
+                zip_str = zip_str[0:2]
+                type_str = partner.type[0:2].upper()
+                partner.ref = '{}{}{}'.format(type_str, zip_str, seq)
+
+    @api.model
+    def create(self, vals):
+        # Check if sequence exists for specific country, and get a new number
+        partner = super(ResPartner, self).create(vals)
+        if vals.get('ref', '[Auto]') == '[Auto]':
+            partner.refresh_partner_ref()
+        return partner
+
+    @api.multi
+    def write(self, vals):
+        res = super(ResPartner, self).write(vals)
+        if 'ref' in vals and not vals['ref']:
+            self.refresh_partner_ref()
+        return res
 
     def get_partner_by_context(self):
         partner = self._context.get('partner_id', False) and \
