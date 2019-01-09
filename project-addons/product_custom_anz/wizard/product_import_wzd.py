@@ -31,7 +31,8 @@ class ProductImportWzd(models.TransientModel):
             'attr_name': row[4],
             'attr_val': row[5],
             'ean': row[6],
-            'code_attr': row[7]
+            'code_attr': row[7],
+            'pvp': row[8] or 0.0
         }
 
         # Check mandatory values setted
@@ -123,7 +124,8 @@ class ProductImportWzd(models.TransientModel):
             'available_in_pos': False,
             'attribute_value_ids': [(4, attr_value.id)],
             'barcode': row_vals['ean'],
-            'importation_name': self.name
+            'importation_name': self.name,
+            'lst_price': row_vals['pvp'],
         }
         if template:
             vals.update(product_tmpl_id=template.id)
