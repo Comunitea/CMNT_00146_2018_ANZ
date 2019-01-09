@@ -467,6 +467,7 @@ class InvoiceTxtImport(models.Model):
             'equiv_per_cent': equiv_per_cent,
             'equiv': equiv,
             'fecha_vencimiento': fecha_vencimiento,
+            'fecha_valor': fecha_valor,
             'num_lineas': line_count,
             'total_amount': total,
             'type': type
