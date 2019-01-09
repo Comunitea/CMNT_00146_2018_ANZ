@@ -5,3 +5,4 @@ from . import sale_order  # noqa
 from . import res_partner  # noqa
 from . import account_invoice  # noqa
 from . import product_template
+from . import product_attribute

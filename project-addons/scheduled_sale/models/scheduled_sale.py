@@ -80,25 +80,6 @@ class ScheduleSale(models.Model):
     @api.multi
     def cancel_schedule(self):
         return self._cancel_schedule()
-        for self_id in self:
-            self_id.state = 'cancel'
-            self_id.scheduled_orders_ids.action_cancel()
-        return True
-
-        yes_confirmation = self._context.get('yes_confirmation', False)
-        if not yes_confirmation:
-            vals = {'function': 'cancel_schedule()',
-                    'name': 'Cancel schedule order',
-                    'question': _('Are you sure?. You will cancel all sale orders asociated to this schedules sale')}
-            return self.env['yesno.confirmation'].with_context(self._context).return_wzd(self, vals)
-        else:
-            return_id = self._context.get('return_id')
-            ctx = self._context.get('ctx', self._context)
-            ctx.update(yes_confirmation=False)
-            if return_id:
-                self_id = self.browse(return_id).with_context(ctx)
-                return self_id._cancel_schedule()
-            return False
 
 
     @api.multi
@@ -116,21 +97,6 @@ class ScheduleSale(models.Model):
     @api.multi
     def done_schedule(self):
         return self._done_schedule()
-        yes_confirmation = self._context.get('yes_confirmation', False)
-        if not yes_confirmation:
-            vals = {'function': 'done_schedule()',
-                    'name': 'Set as done',
-                    'question': _('Are you sure?. You will change this products, and change the pricelist')}
-            return self.env['yesno.confirmation'].with_context(self._context).return_wzd(self, vals)
-        else:
-            return_id = self._context.get('return_id')
-            ctx = self._context.get('ctx', self._context)
-            ctx.update(yes_confirmation=False)
-            if return_id:
-                self_id = self.browse(return_id).with_context(ctx)
-                return self_id._done_schedule()
-
-            return False
 
     @api.multi
     def write(self, vals):

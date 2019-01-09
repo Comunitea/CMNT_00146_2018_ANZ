@@ -8,15 +8,16 @@
     'license': 'AGPL-3',
     'author': "Comunitea, ",
     'depends': [
-        'stock'
-        #'stock_batch_picking',
-
-        #'sale_order_line_tree'
+        'delivery',
+        'delivery_packing_list'
     ],
     'data': [
+        'data/res_partner_category.xml',
         #'views/stock_batch_picking.xml',
         'views/stock_location.xml',
-
+        'views/stock_picking.xml',
+        'report/stock_picking_delivery_tag.xml',
+        'report/report_stock_picking_view.xml'
         #'wizard/sale_manage_variant_view.xml'
     ],
     'installable': True,

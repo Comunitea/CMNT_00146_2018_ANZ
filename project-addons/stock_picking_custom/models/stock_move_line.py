@@ -5,7 +5,7 @@ from odoo import api, models, fields
 
 class StockMoveLine(models.Model):
     _inherit = 'stock.move.line'
-    _order = "barcode asc, barcode_dest asc, result_package_id desc, id"
+    _order = "barcode, barcode_dest, result_package_id desc, id"
 
     barcode = fields.Char(related='location_id.barcode', store=True)
     barcode_dest = fields.Char(related='location_dest_id.barcode', store=True)

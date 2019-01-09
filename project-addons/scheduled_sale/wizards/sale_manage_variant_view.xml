@@ -8,7 +8,7 @@
                 <field name="scheduled_sale_id" invisible="1"/>
             </field>
              <field name="product_tmpl_id" position="attributes">
-                <attribute name="context">{'partner_id': partner_id, 'scheduled_sale_id': scheduled_sale_id}</attribute>
+                <attribute name="context">{'qty_variant_name': True, 'partner_id': partner_id, 'default_product_tmpl_id': product_tmpl_id, 'scheduled_sale_id': scheduled_sale_id}</attribute>
             </field>
         </field>
     </record>

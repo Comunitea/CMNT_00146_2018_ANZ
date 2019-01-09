@@ -16,12 +16,10 @@ class SaleOrderLine(models.Model):
     @api.onchange('product_id')
     def product_id_change(self):
         result = super(SaleOrderLine, self).product_id_change()
-        self.is_player_boot = False
-        if self.product_id and self.order_id.partner_id and self.order_id.partner_id.player and self.order_id.partner_id.boot_type and self.order_id.partner_id.color_type:
-            partner = self.order_id.partner_id
-            self.is_player_boot = self.product_id.boot_type == partner.boot_type and self.product_id.product_color == partner.color_type
-
-            if self.is_player_boot:
-                self.discount = 100.00
-
+        if self.product_id and self.order_id.partner_id and self.order_id.partner_id.player and self.order_id.product_id in self.order_id.partner_id.allowed_boot_ids:
+            self.is_player_boot = True
+            self.discount = 100.00
+        else:
+            self.is_player_boot = False
         return result
+

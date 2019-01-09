@@ -11,7 +11,13 @@ class ProductTemplate(models.Model):
     def _default_ref_change_code(self):
         return self.env['ir.sequence'].next_by_code('product.template.ref_change_code')
 
+    @api.multi
+    def _compute_attribute_line_ids_count(self):
+        for tmpl in self:
+            tmpl.attribute_line_ids_count = len(tmpl.attribute_line_ids.filtered(lambda x:x.value_ids))
+
     ref_change_code = fields.Char(default=_default_ref_change_code)
+    attribute_line_ids_count = fields.Integer(compute="_compute_attribute_line_ids_count")
 
     @api.model
     def _search(self, args, offset=0, limit=None, order=None, count=False, access_rights_uid=None):

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="view_invoice_line_tree_search" model="ir.ui.view">
+            <field name="name">account.invoice.line.tree</field>
+            <field name="model">account.invoice.line</field>
+            <field name="arch" type="xml">
+                <tree string="Invoice Line">
+
+                    <!--field name="type" readonly="1"/-->
+                    <field name="partner_id"  readonly="1"/>
+                    <field name="name" readonly="1"/>
+                    <field name="product_id" readonly="1"/>
+                    <field name="invoice_id" readonly="1"/>
+                    <field name ="origin"  readonly="1" invisible="1"/>
+                    <field name="account_id" groups="account.group_account_user"  readonly="1" invisible="1"/>
+                    <field name="quantity" readonly="1"/>
+                    <field name="price_unit" readonly="1"/>
+                    <field name="discount" groups="base.group_no_one" readonly="1"/>
+                    <field name="price_subtotal" readonly="1"/>
+                    <field name="currency_id" invisible="1"/>
+                    <field name="company_id" invisible="1"/>
+                </tree>
+            </field>
+        </record>
+
+          <record id="view_account_invoice__line_tree_filter" model="ir.ui.view">
+            <field name="name">account.invoice.line.tree.search</field>
+            <field name="model">account.invoice.line</field>
+            <field name="arch" type="xml">
+                <search string="Search Invoice Line">
+                    <field name="invoice_id" string="Invoice" filter_domain="['|', '|',  ('name','ilike',self), ('origin','ilike',self), ('invoice_id', 'ilike', self)]"/>
+                    <separator/>
+                    <field name="partner_id" operator="child_of"/>
+                    <field name="product_id" string="Product" filter_domain="[('product_id','ilike',self)]"/>
+                    <separator/>
+                    <group expand="0" string="Group By">
+                        <filter name="group_by_partner_id" string="Partner" context="{'group_by':'partner_id'}"/>
+                        <!--filter name="group_by_invoice_type" string="Type" context="{'group_by':'invoice_type'}"/-->
+                       </group>
+               </search>
+            </field>
+        </record>
+    <record id="action_invoice_line_tree_csearch" model="ir.actions.act_window">
+            <field name="name">Line Invoices</field>
+            <field name="res_model">account.invoice.line</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="invoice_line_tree_search.view_invoice_line_tree_search"/>
+            <field name="search_view_id" ref=   "invoice_line_tree_search.view_account_invoice__line_tree_filter"/>
+
+        </record>
+
+        <menuitem action="action_invoice_line_tree_csearch" id="menu_action_invoice_line_tree_csearch" parent="account.menu_finance_receivables_master_data" sequence="1000"/>
+
+
+    </data>
+</odoo>
