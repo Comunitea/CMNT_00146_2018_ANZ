@@ -1,13 +1,13 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* custom_documents
+#       * custom_documents
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-12-26 15:46+0000\n"
-"PO-Revision-Date: 2018-12-26 15:46+0000\n"
+"POT-Creation-Date: 2019-01-03 23:03+0000\n"
+"PO-Revision-Date: 2019-01-03 23:03+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -37,9 +37,19 @@ msgid "Amount"
 msgstr "Importe"
 
 #. module: custom_documents
+#: model:ir.ui.view,arch_db:custom_documents.report_invoice_document_custom
+msgid "Cancelled Invoice:"
+msgstr "Factura cancelada:"
+
+#. module: custom_documents
 #: model:ir.model,name:custom_documents.model_res_company
 msgid "Companies"
 msgstr "Compañías"
+
+#. module: custom_documents
+#: model:ir.ui.view,arch_db:custom_documents.report_invoice_document_custom
+msgid "Credit Note:"
+msgstr "Factura rectificativa:"
 
 #. module: custom_documents
 #: model:ir.ui.view,arch_db:custom_documents.report_invoice_document_custom
@@ -58,6 +68,11 @@ msgid "Disc.(%)"
 msgstr "Desc.(%)"
 
 #. module: custom_documents
+#: model:ir.ui.view,arch_db:custom_documents.report_invoice_document_custom
+msgid "Draft Invoice:"
+msgstr "Factura borrador:"
+
+#. module: custom_documents
 #: model:ir.ui.view,arch_db:custom_documents.report_sale_order_custom
 msgid "EAN 13"
 msgstr "EAN 13"
@@ -70,7 +85,7 @@ msgstr "Factura lineas desglosadas"
 #. module: custom_documents
 #: model:ir.actions.report,name:custom_documents.account_invoices_without_payments
 msgid "Expanded invoices without payments"
-msgstr "Expanded invoices without payments"
+msgstr "Factura desglosada sin pagos"
 
 #. module: custom_documents
 #: model:ir.ui.view,arch_db:custom_documents.report_invoice_payment_mode
@@ -88,6 +103,11 @@ msgid "Invoice"
 msgstr "Factura"
 
 #. module: custom_documents
+#: model:ir.model,name:custom_documents.model_account_invoice
+msgid "Invoice:"
+msgstr "Factura:"
+
+#. module: custom_documents
 #: model:ir.model,name:custom_documents.model_account_invoice_line
 msgid "Invoice Line"
 msgstr "Linea de la Factura"
@@ -99,16 +119,10 @@ msgstr "Fecha de factura:"
 
 #. module: custom_documents
 #: model:ir.ui.view,arch_db:custom_documents.report_invoice_document_custom
-msgid "Invoice number:"
-msgstr "Número de factura:"
-
-#. module: custom_documents
-#: model:ir.ui.view,arch_db:custom_documents.report_invoice_document_custom
 msgid "Operación asegurada por <strong>SOLUNION</strong>"
 msgstr "Operación asegurada por <strong>SOLUNION</strong>"
 
 #. module: custom_documents
-#: model:ir.model,name:custom_documents.model_operating_unit
 #: model:ir.model.fields,field_description:custom_documents.field_sale_order_operating_unit_id
 msgid "Operating Unit"
 msgstr "Unidad operacional"
@@ -116,7 +130,7 @@ msgstr "Unidad operacional"
 #. module: custom_documents
 #: model:ir.model.fields,field_description:custom_documents.field_account_invoice_line_template_order_id
 msgid "Order"
-msgstr "Pedir"
+msgstr "Pedido"
 
 #. module: custom_documents
 #: model:ir.model.fields,field_description:custom_documents.field_account_invoice_line_order_id
@@ -127,6 +141,11 @@ msgstr "Referencia del pedido"
 #: model:ir.ui.view,arch_db:custom_documents.report_invoice_document_custom
 msgid "Order number:"
 msgstr "Pedido número:"
+
+#. module: custom_documents
+#: model:ir.ui.view,arch_db:custom_documents.report_invoice_document_custom
+msgid "Origin:"
+msgstr "Origen:"
 
 #. module: custom_documents
 #: model:ir.ui.view,arch_db:custom_documents.report_sale_order_custom
@@ -190,6 +209,16 @@ msgstr "Precio total"
 #: model:ir.ui.view,arch_db:custom_documents.report_sale_order_custom
 msgid "Unit Price"
 msgstr "Precio unitario"
+
+#. module: custom_documents
+#: model:ir.ui.view,arch_db:custom_documents.report_invoice_document_custom
+msgid "Vendor Bill:"
+msgstr "Factura de proveedor:"
+
+#. module: custom_documents
+#: model:ir.ui.view,arch_db:custom_documents.report_invoice_document_custom
+msgid "Vendor Credit Note:"
+msgstr "Factura rectificativa de proveedor:"
 
 #. module: custom_documents
 #: model:ir.ui.view,arch_db:custom_documents.report_invoice_document_custom

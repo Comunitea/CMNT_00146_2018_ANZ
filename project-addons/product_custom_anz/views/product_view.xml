@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
+
+
     <record id="product_attribute_view_form_add_custom" model="ir.ui.view">
         <field name="name">product.attribute.form.add.custom</field>
         <field name="inherit_id" ref="product.product_attribute_view_form"/>
@@ -74,8 +76,19 @@
             <field name="categ_id" position="after">
                   <field name="boot_type"/>
                 <field name="product_color"/>
-
             </field>
+            <notebook position="inside">
+                <page string="Fix variants" attrs="{'invisible': [('oldname', '=', False)]}" groups="base.group_no_one">
+                    <field name="oldname"/>
+                    <field name="attribute_line_ids">
+                        <tree string="Variants" editable="bottom">
+                            <field name="attribute_id"/>
+                            <field name="value_ids" widget="many2many_tags" options="{'no_create_edit': True}" domain="[('attribute_id', '=', attribute_id)]" context="{'default_attribute_id': attribute_id}"/>
+                        </tree>
+                    </field>
+                    <field name="attribute_value_ids"/>
+                </page>
+            </notebook>
         </field>
     </record>
 

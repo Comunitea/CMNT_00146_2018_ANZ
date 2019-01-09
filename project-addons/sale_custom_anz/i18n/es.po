@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-12-04 09:50+0000\n"
-"PO-Revision-Date: 2018-12-04 09:50+0000\n"
+"POT-Creation-Date: 2019-01-08 19:43+0000\n"
+"PO-Revision-Date: 2019-01-08 19:43+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,18 +16,24 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: sale_custom_anz
+#: model:ir.model.fields,field_description:sale_custom_anz.field_product_product_attribute_line_ids_count
+#: model:ir.model.fields,field_description:sale_custom_anz.field_product_template_attribute_line_ids_count
+msgid "Attribute Line Ids Count"
+msgstr "Numerod e atributos"
+
+#. module: sale_custom_anz
 #: model:ir.model.fields,field_description:sale_custom_anz.field_sale_order_bag_decreased
 msgid "Bag decreased"
 msgstr "Bolsa disminuida"
 
 #. module: sale_custom_anz
-#: code:addons/sale_custom_anz/models/sale_order.py:88
+#: code:addons/sale_custom_anz/models/sale_order.py:76
 #, python-format
 msgid "Bag has been %s in %s"
 msgstr "La bolsa ha sido %s en %s"
 
 #. module: sale_custom_anz
-#: code:addons/sale_custom_anz/models/sale_order.py:89
+#: code:addons/sale_custom_anz/models/sale_order.py:77
 #, python-format
 msgid "Bag has been %s in %s due to %s"
 msgstr "La bolsa ha sido %s en %s debido al pedido: %s"
@@ -43,7 +49,13 @@ msgid "Customer"
 msgstr "Cliente"
 
 #. module: sale_custom_anz
-#: code:addons/sale_custom_anz/models/sale_order.py:57
+#: code:addons/sale_custom_anz/models/account_invoice.py:21
+#, python-format
+msgid "Financial risk exceeded."
+msgstr "Riesgo financiero excedido."
+
+#. module: sale_custom_anz
+#: code:addons/sale_custom_anz/models/sale_order.py:45
 #, python-format
 msgid "Financial risk exceeded.\n"
 ""
@@ -61,9 +73,9 @@ msgid "Invoice Line"
 msgstr "Linea de la Factura"
 
 #. module: sale_custom_anz
-#: model:ir.model.fields,field_description:sale_custom_anz.field_sale_order_line_operating_unit_id
-msgid "Operating unit"
-msgstr "Unidad operacional"
+#: model:ir.model,name:sale_custom_anz.model_account_invoice_report
+msgid "Invoices Statistics"
+msgstr "Estadísticas de facturación"
 
 #. module: sale_custom_anz
 #: model:ir.model.fields,field_description:sale_custom_anz.field_sale_order_sale_order_line_count
@@ -71,79 +83,19 @@ msgid "Order line count"
 msgstr "# líneas de venta"
 
 #. module: sale_custom_anz
+#: model:ir.model,name:sale_custom_anz.model_product_product
+msgid "Product"
+msgstr "Producto"
+
+#. module: sale_custom_anz
+#: model:ir.model,name:sale_custom_anz.model_product_template
+msgid "Product Template"
+msgstr "Plantilla de producto"
+
+#. module: sale_custom_anz
 #: model:ir.model,name:sale_custom_anz.model_sale_order
 msgid "Quotation"
 msgstr "Presupuesto"
-
-#. module: sale_custom_anz
-#: model:ir.model.fields,field_description:sale_custom_anz.field_account_invoice_line_ref_change
-msgid "Reference change"
-msgstr "Cambio de referencia"
-
-#. module: sale_custom_anz
-#: model:ir.model,name:sale_custom_anz.model_sale_order_line
-msgid "Sales Order Line"
-msgstr "Línea de pedido de ventas"
-
-#. module: sale_custom_anz
-#: model:ir.model,name:sale_custom_anz.model_sale_report
-msgid "Sales Orders Statistics"
-msgstr "Estadísticas pedidos de ventas"
-
-#. module: sale_custom_anz
-#: model:ir.model.fields,field_description:sale_custom_anz.field_sale_order_sponsored
-msgid "Sponsored"
-msgstr "Patrocinado"
-
-#. module: sale_custom_anz
-#: code:addons/sale_custom_anz/models/sale_order.py:66
-#, python-format
-msgid "This sale order exceeds the financial risk.\n"
-""
-msgstr "Este pedido excede el riesgo financiero.\n"
-""
-
-#. module: sale_custom_anz
-#: code:addons/sale_custom_anz/models/sale_order.py:61
-#, python-format
-msgid "This sale order exceeds the sales orders risk.\n"
-""
-msgstr "Este pedido excede el riesgo en pedidos.\n"
-""
-
-#. module: sale_custom_anz
-#: model:ir.model.fields,field_description:sale_custom_anz.field_sale_report_type_id
-msgid "Type"
-msgstr "Tipo"
-
-#. module: sale_custom_anz
-#: model:ir.model.fields,field_description:sale_custom_anz.field_sale_order_line_virtual_stock_conservative
-msgid "Virtual Stock Conservative"
-msgstr "Stock virtual conservativo"
-
-#. module: sale_custom_anz
-#: code:addons/sale_custom_anz/models/sale_order.py:99
-#, python-format
-msgid "You can confirm this order casuse you                     reach the sponsored bag"
-msgstr "No puedes confirmar este pedido porque se ha alcanzado la bolsa de esponsorización"
-
-#. module: sale_custom_anz
-#: code:addons/sale_custom_anz/models/sale_order.py:86
-#, python-format
-msgid "decreased"
-msgstr "disminuida"
-
-#. module: sale_custom_anz
-#: code:addons/sale_custom_anz/models/sale_order.py:86
-#, python-format
-msgid "increased"
-msgstr "aumentada"
-
-#. module: sale_custom_anz
-#: model:ir.model,name:sale_custom_anz.model_sale_manage_variant
-msgid "sale.manage.variant"
-msgstr "sale.manage.variant"
-
 
 #. module: sale_custom_anz
 #: model:ir.model.fields,field_description:sale_custom_anz.field_account_invoice_report_ref_change
@@ -162,3 +114,86 @@ msgstr "Código para cambio de referencia"
 #: model:ir.ui.view,arch_db:sale_custom_anz.view_order_product_search
 msgid "Ref change"
 msgstr "Cambio de referencia"
+
+#. module: sale_custom_anz
+#: model:ir.model.fields,field_description:sale_custom_anz.field_account_invoice_line_ref_change
+#: model:ir.model.fields,field_description:sale_custom_anz.field_sale_order_line_ref_change
+msgid "Reference change"
+msgstr "Cambio de referencia"
+
+#. module: sale_custom_anz
+#: code:addons/sale_custom_anz/models/account_invoice.py:19
+#: code:addons/sale_custom_anz/models/sale_order.py:57
+#, python-format
+msgid "Risk exceded for %s"
+msgstr "Riesgo excedido en %s"
+
+#. module: sale_custom_anz
+#: model:ir.model,name:sale_custom_anz.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Línea de pedido de ventas"
+
+#. module: sale_custom_anz
+#: model:ir.model,name:sale_custom_anz.model_sale_report
+msgid "Sales Orders Statistics"
+msgstr "Estadísticas pedidos de ventas"
+
+#. module: sale_custom_anz
+#: model:ir.model.fields,field_description:sale_custom_anz.field_sale_order_sponsored
+msgid "Sponsored"
+msgstr "Patrocinado"
+
+#. module: sale_custom_anz
+#: code:addons/sale_custom_anz/models/sale_order.py:54
+#, python-format
+msgid "This sale order exceeds the financial risk.\n"
+""
+msgstr "Este pedido excede el riesgo financiero.\n"
+""
+
+#. module: sale_custom_anz
+#: code:addons/sale_custom_anz/models/sale_order.py:49
+#, python-format
+msgid "This sale order exceeds the sales orders risk.\n"
+""
+msgstr "Este pedido excede el riesgo en pedidos.\n"
+""
+
+#. module: sale_custom_anz
+#: model:ir.model.fields,field_description:sale_custom_anz.field_sale_report_type_id
+msgid "Type"
+msgstr "Tipo"
+
+#. module: sale_custom_anz
+#: model:ir.model.fields,field_description:sale_custom_anz.field_sale_order_line_virtual_stock_conservative
+msgid "Virtual Stock Conservative"
+msgstr "Stock virtual conservativo"
+
+#. module: sale_custom_anz
+#: code:addons/sale_custom_anz/models/sale_order.py:88
+#, python-format
+msgid "You can confirm this order casuse you                         reach the sponsored bag"
+msgstr "No puedes confirmar esta order porque has excedido el patrocinio"
+
+#. module: sale_custom_anz
+#: code:addons/sale_custom_anz/models/sale_order.py:74
+#, python-format
+msgid "decreased"
+msgstr "disminuida"
+
+#. module: sale_custom_anz
+#: code:addons/sale_custom_anz/models/sale_order.py:74
+#, python-format
+msgid "increased"
+msgstr "aumentada"
+
+#. module: sale_custom_anz
+#: model:ir.model,name:sale_custom_anz.model_product_attribute_value
+msgid "product.attribute.value"
+msgstr "product.attribute.value"
+
+#. module: sale_custom_anz
+#: model:ir.model,name:sale_custom_anz.model_sale_manage_variant
+msgid "sale.manage.variant"
+msgstr "sale.manage.variant"
+

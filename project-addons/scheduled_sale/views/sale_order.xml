@@ -101,6 +101,10 @@
                 <field name="scheduled_sale_id" invisible="1" />
                 <field name="order_id" invisible="1"/>
             </field>
+            <field name="virtual_stock_conservative" position="after">
+                <field name="requested_date" />
+                <field name="deliver_month"/>
+            </field>
             <xpath expr="//field[@name='product_tmpl_id']" position="attributes">
                 <attribute name="context">
                     {'scheduled_sale_id': scheduled_sale_id,

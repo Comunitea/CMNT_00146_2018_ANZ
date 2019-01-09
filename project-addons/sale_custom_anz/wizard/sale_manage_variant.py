@@ -26,3 +26,18 @@ class SaleManageVariant(models.TransientModel):
 
     partner_id = fields.Many2one("res.partner", "Customer",
                                  default=_get_default_partner)
+
+    default_variant_id = fields.Many2one(comodel_name='product.attribute')
+
+    @api.onchange('product_tmpl_id')
+    def _onchange_product_tmpl_id(self):
+       if self.product_tmpl_id and len(self.product_tmpl_id.attribute_line_ids)==1:
+
+           self.default_variant_id = self.product_tmpl_id.attribute_line_ids.attribute_id
+           print (self.default_variant_id)
+       super(SaleManageVariant, self)._onchange_product_tmpl_id()
+
+    @api.model
+    def default_get(self, fields):
+        res = super(SaleManageVariant, self).default_get(fields)
+        return res

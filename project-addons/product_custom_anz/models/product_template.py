@@ -37,9 +37,12 @@ class ProductProduct(models.Model):
 
     _inherit = 'product.product'
 
+    oldname = fields.Char()
+
     @api.model
     def _search(self, args, offset=0, limit=None, order=None, count=False, access_rights_uid=None):
         partner = self.env['res.partner'].get_partner_by_context()
         if partner and not partner.affiliate:
             args = partner.add_args_to_product_search(args)
         return super(ProductProduct, self)._search(args, offset=offset, limit=limit, order=order, count=count, access_rights_uid=access_rights_uid)
+

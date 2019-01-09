@@ -3,6 +3,7 @@
 from odoo import api, fields, models,_
 from odoo.exceptions import UserError
 from odoo.osv import expression
+from odoo.exceptions import UserError,ValidationError
 
 class ResPartnerArea(models.Model):
     _inherit = 'res.partner.area'
@@ -27,13 +28,6 @@ class ResPartner(models.Model):
 
     _inherit = 'res.partner'
 
-    @api.multi
-    def get_boot_ids(self):
-        order_line_ids = self.env['sale.order.line']
-        for player in self.filtered(lambda x: x.player):
-            domain = [('order_id.partner_id', '=', player.id), ('product_id.boot_type', '!=', False)]
-            player.boot_ids = [(6, 0, order_line_ids.search(domain).ids)]
-            player.boot_ids_count = sum(x.qty_delivered for x in player.boot_ids)
 
 
     affiliate = fields.Boolean('Affiliate')
@@ -41,12 +35,7 @@ class ResPartner(models.Model):
     sponsorship_bag = fields.Float()
     analytic_default_count = fields.Integer('Analytic Defaults',
                                             compute='_count_analytic_defaults')
-    boot_type = fields.Many2one('product.attribute.value', 'Type of boot',
-                                domain=[('is_tboot', '=', True)])
-    color_type = fields.Many2one('product.attribute.value', 'Type of color',
-                                 domain=[('is_color', '=', True)])
-    boot_ids = fields.One2many('sale.order.line', string="Histórico", compute="get_boot_ids")
-    boot_ids_count = fields.Integer(string="Quantity", compute="get_boot_ids")
+
 
 
     allowed_brand_ids = fields.Many2many('product.brand',
@@ -76,6 +65,33 @@ class ResPartner(models.Model):
                                             "product_category_id",
                                             string="Restricted categories for this partner"
                                             )
+    ref = fields.Char(default='[Auto]')
+
+    @api.multi
+    def refresh_partner_ref(self):
+        partner_sequence = self.env['ir.sequence'].search([('code', '=', 'auto_partner')])
+        if partner_sequence:
+            for partner in self:
+                seq = partner_sequence.next_by_id()
+                zip_str = partner.zip or partner.parent_id and partner.parent_id.zip or '00'
+                zip_str = zip_str[0:2]
+                type_str = partner.type[0:2].upper()
+                partner.ref = '{}{}{}'.format(type_str, zip_str, seq)
+
+    @api.model
+    def create(self, vals):
+        # Check if sequence exists for specific country, and get a new number
+        partner = super(ResPartner, self).create(vals)
+        if vals.get('ref', '[Auto]') == '[Auto]':
+            partner.refresh_partner_ref()
+        return partner
+
+    @api.multi
+    def write(self, vals):
+        res = super(ResPartner, self).write(vals)
+        if 'ref' in vals and not vals['ref']:
+            self.refresh_partner_ref()
+        return res
 
     def get_partner_by_context(self):
         partner = self._context.get('partner_id', False) and \
