@@ -11,7 +11,8 @@
         'base',
         'product_virtual_stock_conservative',
         'partner_custom_anz',
-        'account'
+        'account',
+        'sale'
 
     ],
     'data': [
@@ -19,6 +20,7 @@
         'views/product_view.xml',
         'views/product_pricelist_view.xml',
         'views/operating_unit.xml',
+        'wizard/product_import_wzd_view.xml',
     ],
     'installable': True,
 }

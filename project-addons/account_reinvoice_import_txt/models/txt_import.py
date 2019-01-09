@@ -13,9 +13,10 @@ ODOO_READ_FOLDER = 'Send'
 ODOO_END_FOLDER = 'Receive'
 ODOO_WRITE_FOLDER = 'temp'
 
-ODOO_FOLDER_TXT = "/opt/odoo/txt"
-ODOO_FOLDER_ARCHIVE = "/opt/odoo/archive"
-ODOO_FOLDER_ERROR = "/opt/odoo/error"
+ODOO_FOLDER_TXT = "/opt/hotfolder/invoice_txt/txt"
+ODOO_FOLDER_ARCHIVE = "/opt/hotfolder/invoice_txt/archive"
+ODOO_FOLDER_ERROR = "/opt/hotfolder/invoice_txt/error"
+
 
 
 def get_odoo_date(str):
@@ -574,4 +575,4 @@ class InvoiceTxtImport(models.Model):
             txt.state = 'invoiced'
             new_invoice.message_post(body=message)
 
-        return True
+        return new_invoice

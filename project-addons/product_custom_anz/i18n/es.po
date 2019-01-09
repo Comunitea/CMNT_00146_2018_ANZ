@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-01-08 19:41+0000\n"
-"PO-Revision-Date: 2019-01-08 19:41+0000\n"
+"POT-Creation-Date: 2019-01-09 11:17+0000\n"
+"PO-Revision-Date: 2019-01-09 11:17+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -37,17 +37,21 @@ msgid "Brands"
 msgstr "Marcas"
 
 #. module: product_custom_anz
+#: model:ir.ui.view,arch_db:product_custom_anz.view_product_import_wzd_form
+msgid "Cancel"
+msgstr "Cancelar"
+
+#. module: product_custom_anz
 #: model:ir.model.fields,help:product_custom_anz.field_product_attribute_is_tboot
 #: model:ir.model.fields,help:product_custom_anz.field_product_attribute_value_is_tboot
 msgid "Check it if attribute will contain                               type of boots"
-msgstr "Marcado si el atributo contendrá tipo de botas."
-
+msgstr "Marcado si el atributo contendrá tipo de botas. module: product_custom_an: model:ir.model.fields,help:product_custom_anz.field_product_attribute_is_colo: model:ir.model.fields,help:product_custom_anz.field_product_attribute_value_is_colosgid \"Check it if attribute will contain colorssgstr \"Marcado si el atributo contendrá colores"
 
 #. module: product_custom_anz
 #: model:ir.model.fields,help:product_custom_anz.field_product_attribute_is_color
 #: model:ir.model.fields,help:product_custom_anz.field_product_attribute_value_is_color
 msgid "Check it if attribute will contain colors"
-msgstr "Marcar si el atributo es color"
+msgstr "Comprueba si el atributo contendrá colores"
 
 #. module: product_custom_anz
 #: model:ir.model.fields,field_description:product_custom_anz.field_product_product_product_color
@@ -61,19 +65,76 @@ msgid "Contact"
 msgstr "Contacto"
 
 #. module: product_custom_anz
-#: model:ir.model.fields,field_description:product_custom_anz.field_sale_manage_variant_default_variant_id
-msgid "Default Variant"
-msgstr "Variante por defecto"
+#: model:ir.model.fields,field_description:product_custom_anz.field_product_import_wzd_create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: product_custom_anz
+#: model:ir.model.fields,field_description:product_custom_anz.field_product_import_wzd_create_date
+msgid "Created on"
+msgstr "Creado en"
+
+#. module: product_custom_anz
+#: model:ir.model.fields,field_description:product_custom_anz.field_product_import_wzd_display_name
+msgid "Display Name"
+msgstr "Nombre mostrado"
+
+#. module: product_custom_anz
+#: code:addons/product_custom_anz/wizard/product_import_wzd.py:70
+#, python-format
+msgid "Error getting attribute %s in line %s:                    Not found"
+msgstr "Error obteniendo el atributo %s en la línea %s:                    No encontrado"
+
+#. module: product_custom_anz
+#: code:addons/product_custom_anz/wizard/product_import_wzd.py:80
+#, python-format
+msgid "Error getting attribute %s with value %s in line %s:                    Not found"
+msgstr "Error obteniendo el atributo %scon valor %s en la línea%s:                    No encontrado"
+
+#. module: product_custom_anz
+#: model:ir.model.fields,field_description:product_custom_anz.field_product_import_wzd_file
+msgid "File"
+msgstr "Archivo"
+
+#. module: product_custom_anz
+#: model:ir.model.fields,field_description:product_custom_anz.field_product_import_wzd_filename
+msgid "Filename"
+msgstr "Nombre de archivo"
 
 #. module: product_custom_anz
 #: model:ir.ui.view,arch_db:product_custom_anz.product_product_for_view_anz
 msgid "Fix variants"
-msgstr "Arreglar variantes"
+msgstr "Corregir variantes"
+
+#. module: product_custom_anz
+#: model:ir.model.fields,field_description:product_custom_anz.field_product_import_wzd_id
+msgid "ID"
+msgstr "ID (identificación)"
+
+#. module: product_custom_anz
+#: code:addons/product_custom_anz/wizard/product_import_wzd.py:175
+#, python-format
+msgid "IMPORTED PRODUCT %s / %s"
+msgstr "PRODUCTO IMPORTADO %s / %s"
 
 #. module: product_custom_anz
 #: model:ir.model.fields,help:product_custom_anz.field_operating_unit_brand_ids
 msgid "If empty, all brands"
 msgstr "Marcas permitidas, todas si está vacío"
+
+#. module: product_custom_anz
+#: model:ir.actions.act_window,name:product_custom_anz.action_import_products
+#: model:ir.ui.menu,name:product_custom_anz.menu_import_product
+#: model:ir.ui.view,arch_db:product_custom_anz.view_product_import_wzd_form
+msgid "Import Products"
+msgstr "Importar productos"
+
+#. module: product_custom_anz
+#: model:ir.model.fields,field_description:product_custom_anz.field_product_import_wzd_name
+#: model:ir.model.fields,field_description:product_custom_anz.field_product_product_importation_name
+#: model:ir.model.fields,field_description:product_custom_anz.field_product_template_importation_name
+msgid "Importation name"
+msgstr "Nombre importación"
 
 #. module: product_custom_anz
 #: model:ir.model,name:product_custom_anz.model_account_invoice
@@ -98,9 +159,24 @@ msgid "Journal Item"
 msgstr "Apunte contable"
 
 #. module: product_custom_anz
+#: model:ir.model.fields,field_description:product_custom_anz.field_product_import_wzd___last_update
+msgid "Last Modified on"
+msgstr "Última modificación en"
+
+#. module: product_custom_anz
+#: model:ir.model.fields,field_description:product_custom_anz.field_product_import_wzd_write_uid
+msgid "Last Updated by"
+msgstr "Última actualización de"
+
+#. module: product_custom_anz
+#: model:ir.model.fields,field_description:product_custom_anz.field_product_import_wzd_write_date
+msgid "Last Updated on"
+msgstr "Última actualización en"
+
+#. module: product_custom_anz
 #: model:ir.model.fields,field_description:product_custom_anz.field_product_product_oldname
 msgid "Oldname"
-msgstr "Oldname"
+msgstr "Viejo nombre"
 
 #. module: product_custom_anz
 #: model:ir.model,name:product_custom_anz.model_operating_unit
@@ -149,15 +225,32 @@ msgid "Quotation"
 msgstr "Presupuesto"
 
 #. module: product_custom_anz
+#: model:ir.model.fields,field_description:product_custom_anz.field_product_product_ref_template
+#: model:ir.model.fields,field_description:product_custom_anz.field_product_template_ref_template
+msgid "Ref Template"
+msgstr "Ref. Plantilla"
+
+#. module: product_custom_anz
 #: model:ir.model.fields,field_description:product_custom_anz.field_product_product_replication
 #: model:ir.model.fields,field_description:product_custom_anz.field_product_template_replication
 msgid "Replication"
 msgstr "Replication"
 
 #. module: product_custom_anz
+#: code:addons/product_custom_anz/wizard/product_import_wzd.py:154
+#, python-format
+msgid "STARTING PRODUCT IMPORTATION"
+msgstr "EMPEZANDO IMPORTACIÖN DE PRODUCTOS"
+
+#. module: product_custom_anz
 #: model:ir.model,name:product_custom_anz.model_sale_order_line
 msgid "Sales Order Line"
 msgstr "Línea de pedido de ventas"
+
+#. module: product_custom_anz
+#: model:ir.ui.view,arch_db:product_custom_anz.view_product_import_wzd_form
+msgid "Select file to import"
+msgstr "Selecciona el fichero para importar"
 
 #. module: product_custom_anz
 #: model:ir.model.fields,field_description:product_custom_anz.field_res_partner_show_pvp
@@ -166,10 +259,16 @@ msgid "Show PVP"
 msgstr "Mostrar PVP"
 
 #. module: product_custom_anz
-#: model:ir.model.fields,field_description:product_custom_anz.field_res_partner_size_type_ids
-#: model:ir.model.fields,field_description:product_custom_anz.field_res_users_size_type_ids
-msgid "Size"
-msgstr "Tamaño"
+#: code:addons/product_custom_anz/wizard/product_import_wzd.py:40
+#, python-format
+msgid "The row %s is missing some mandatory column"
+msgstr "A la fila %s le falta alguna columna obligatoria"
+
+#. module: product_custom_anz
+#: code:addons/product_custom_anz/wizard/product_import_wzd.py:171
+#, python-format
+msgid "The template %s already exists"
+msgstr "La plantilla %s ya existe"
 
 #. module: product_custom_anz
 #: model:ir.model.fields,field_description:product_custom_anz.field_product_product_boot_type
@@ -194,7 +293,7 @@ msgid "product.attribute.value"
 msgstr "product.attribute.value"
 
 #. module: product_custom_anz
-#: model:ir.model,name:product_custom_anz.model_sale_manage_variant
-msgid "sale.manage.variant"
-msgstr "sale.manage.variant"
+#: model:ir.model,name:product_custom_anz.model_product_import_wzd
+msgid "product.import.wzd"
+msgstr "product.import.wzd"
 
