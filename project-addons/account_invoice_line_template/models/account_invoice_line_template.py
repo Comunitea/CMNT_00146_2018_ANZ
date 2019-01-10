@@ -99,7 +99,7 @@ l.ref_change
         for line in self:
             lines = line._get_invoice_lines()
             if len(lines) == 1:
-                line.product_ref = lines.product_id.default_code
+                line.product_ref = lines.product_id and lines.product_id.default_code or lines.name
             else:
                 line.product_ref = lines[0].product_id.default_code[:-1]
 

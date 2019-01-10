@@ -71,13 +71,17 @@ class SaleOrderLine(models.Model):
 
     _inherit = "sale.order.line"
 
-    product_tmpl_id = fields.Many2one(related="product_id.product_tmpl_id", string="Template", store=True)
+    product_tmpl_id = fields.Many2one("product.template", string="Template")
     variant_sequence = fields.Integer(string="Variant sequence")
 
     _order = 'sequence, variant_sequence'
 
     @api.multi
     def write(self, vals):
+        if 'product_tmpl_id' not in vals and vals.get('product_id', False):
+            tmpl_id = self.env['product.product'].\
+                search_read([('id', '=', vals['product_id'])],['product_tmpl_id'])[0]
+            vals.update({'product_tmpl_id': tmpl_id})
         return super(SaleOrderLine, self).write(vals)
 
     @api.multi
@@ -85,6 +89,7 @@ class SaleOrderLine(models.Model):
     def product_id_change(self):
         result = super(SaleOrderLine, self).product_id_change()
         if self.product_id:
+            self.product_tmpl_id = self.product_id.product_tmpl_id
             self.variant_sequence = self.product_id.attribute_value_ids.\
                 sequence
         else:
@@ -93,7 +98,7 @@ class SaleOrderLine(models.Model):
 
     @api.model
     def create(self, vals):
-        if 'product_tmpl_id' not in vals and vals.get('product_id', False) and False:
+        if 'product_tmpl_id' not in vals and vals.get('product_id', False):
             tmpl_id = self.env['product.product'].\
                 search_read([('id', '=', vals['product_id'])],['product_tmpl_id'])[0]
             vals.update({'product_tmpl_id': tmpl_id})

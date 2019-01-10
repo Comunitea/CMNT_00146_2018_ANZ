@@ -28,5 +28,21 @@ class AccountInvoiceLine(models.Model):
     _inherit = 'account.invoice.line'
 
     product_tmpl_id = fields.Many2one(
-        'product.template', string="Template",
-        related='product_id.product_tmpl_id', store=True)
+        'product.template', string="Template")
+
+    @api.model
+    def write(self, vals):
+        if 'product_tmpl_id' not in vals and vals.get('product_id', False):
+            tmpl_id = self.env['product.product']. \
+                search_read([('id', '=', vals['product_id'])], ['product_tmpl_id'])[0]
+            vals.update({'product_tmpl_id': tmpl_id})
+        return super(AccountInvoiceLine, self).write(vals)
+
+    @api.model
+    def create(self, vals):
+        if 'product_tmpl_id' not in vals and vals.get('product_id', False):
+            tmpl_id = self.env['product.product']. \
+                search_read([('id', '=', vals['product_id'])], ['product_tmpl_id'])[0]
+            vals.update({'product_tmpl_id': tmpl_id})
+        return super(AccountInvoiceLine, self).create(vals)
+
