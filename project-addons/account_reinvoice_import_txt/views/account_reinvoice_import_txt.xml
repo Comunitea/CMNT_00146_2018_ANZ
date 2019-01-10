@@ -75,6 +75,7 @@
                                     <field name="descuento"/>
                                     <field name="valor_neto"/>
 
+
                                 </tree>
                                 <form>
                                     <group>
@@ -91,6 +92,7 @@
                                     </group>
                                     <field name="descripcion"/>
                                     <field name="descripcion_qty"/>
+                                    <field name="message_line"/>
                                 </form>
                             </field>
 
