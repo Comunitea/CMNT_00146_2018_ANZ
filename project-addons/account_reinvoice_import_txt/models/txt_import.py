@@ -187,13 +187,14 @@ class InvoiceTxtImport(models.Model):
     equiv = fields.Float(string='R. Equiv €', digits=dp.get_precision('Product Price'))
     recargos = fields.Float(string='Recargos €', digits=dp.get_precision('Product Price'))
     fecha_vencimiento = fields.Date("Fecha de vencimiento")
+    fecha_valor = fields.Date("Fecha VAlor")
     num_lineas = fields.Integer("Numero de lineas")
     total_amount = fields.Float(string='Total factura', digits=dp.get_precision('Product Price'))
     valor_neto = fields.Float(string='Valor neto', digits=dp.get_precision('Product Price'))
     base_imponible= fields.Float(string='Base imponible', digits=dp.get_precision('Product Price'))
     invoice_line_txt_import_ids = fields.One2many('invoice.txt.import.line', 'invoice_txt_import_id', string="Lineas")
-
-
+    refund_note = fields.Char("Nota/Motivo de abono")
+    original_rectificatica= fields.Char("Rectifica ...")
 
     def check_existing_txt(self):
         self.env['invoice.txt.import'].import_txt_invoice()
@@ -269,7 +270,7 @@ class InvoiceTxtImport(models.Model):
 
     def import_txt_invoice(self):
 
-        import io
+
         ts = ['adidas', 'nike']
         routes = [roots for roots in os.walk(ODOO_FOLDER_TXT, topdown=True)]
         for roots in routes:
@@ -330,6 +331,8 @@ class InvoiceTxtImport(models.Model):
         facturano = str[4][167:225].strip()
         fecha_factura=  str[5][167:200].strip()
         fecha_factura = get_odoo_date(fecha_factura)
+        original_rectificatica = ''
+        fecha_valor=fecha_factura
         if type=='in_invoice':
             fecha_valor = str[6][167:200].strip()
             fecha_valor = get_odoo_date(fecha_factura)
@@ -341,28 +344,34 @@ class InvoiceTxtImport(models.Model):
         ###DATOS DE ALBAŔAN
 
         index = 17
-        supplier_picking_num=albaran=partner_bank=fecha_albaran=associate_name=region=ref_pedido=fecha_vencimiento=fecha_pedido=False
-        if str[index].strip() and str[index].find('Albar') > 0:
-            albaran = str[index].split(':')[1].strip()
-            if albaran:
-                datos_albaran = albaran.split()
-                supplier_picking_num = datos_albaran[0]
-                fecha_albaran = datos_albaran[1]
-                fecha_albaran = get_odoo_date(fecha_albaran)
-                index += 2
-                if str[index].split(':')[1].strip() == 'Nombre':
-                    associate_name = str[index].split(':')[1].strip()
-                    index+=2
-                if str[index].split(':')[0].strip() == 'Regi':
-                    region = str[index].split(':')[1].strip()
+
+        supplier_picking_num = albaran = partner_bank = fecha_albaran = associate_name = region = ref_pedido = fecha_vencimiento = fecha_pedido = fecha_valor=refund_note=False
+        if type=='in_invoice':
+            if str[index].strip() and str[index].find('Albar') > 0:
+                albaran = str[index].split(':')[1].strip()
+                if albaran:
+                    datos_albaran = albaran.split()
+                    supplier_picking_num = datos_albaran[0]
+                    fecha_albaran = datos_albaran[1]
+                    fecha_albaran = get_odoo_date(fecha_albaran)
                     index += 2
-                if str[index].split(':')[0].strip() == 'Su pedido no.':
-                    pedido = str[index].split(':')
-                    ref_pedido = pedido[1].replace('Fecha','').strip()
-                    fecha_pedido = get_odoo_date(pedido[2])
+                    if str[index].split(':')[1].strip() == 'Nombre':
+                        associate_name = str[index].split(':')[1].strip()
+                        index+=2
+                    if str[index].split(':')[0].strip() == 'Regi':
+                        region = str[index].split(':')[1].strip()
+                        index += 2
+                    if str[index].split(':')[0].strip() == 'Su pedido no.':
+                        pedido = str[index].split(':')
+                        ref_pedido = pedido[1].replace('Fecha','').strip()
+                        fecha_pedido = get_odoo_date(pedido[2])
+            else:
+                self.message_post(body="No he encontrado los datos del albarán donde esperaba")
+                return False
         else:
-            self.message_post(body="No he encontrado los datos del albarán donde esperaba")
-            return False
+            refund_note = str[index].split()
+
+
         ### DATOS DE LAS LINEAS
         lineas=[]
 
@@ -470,7 +479,9 @@ class InvoiceTxtImport(models.Model):
             'fecha_valor': fecha_valor,
             'num_lineas': line_count,
             'total_amount': total,
-            'type': type
+            'type': type,
+            'refund_note': refund_note,
+            'original_rectificatica':original_rectificatica
 
         }
 
@@ -516,6 +527,13 @@ class InvoiceTxtImport(models.Model):
             if not txt.partner_id:
                 txt.message_post(body="No encuentro proveedor, asociado")
                 return False
+            if self.type == 'in_refund':
+                refund_invoice_id = self.env['account.invoice'].search([('reference', '=', self.original_rectificatica.split())])
+                if refund_invoice_id:
+                    txt.associate_id = refund_invoice_id.associate_id
+                    txt.associate_id = refund_invoice_id.associate_id.name
+
+
 
             currency_id = txt.associate_id.property_product_pricelist.currency_id and txt.associate_id.property_product_pricelist.currency_id.id or txt.partner_id.property_product_pricelist.currency_id.id
             if not currency_id:
@@ -538,7 +556,8 @@ class InvoiceTxtImport(models.Model):
                 'company_id': 1,
                 'operating_unit_id': journal_id.operating_unit_id.id,
                 'check_total': txt.total_amount,
-                'date_invoice_from_associate_order': txt.supplier_picking_date
+                'date_invoice_from_associate_order': txt.supplier_picking_date,
+                'refund_invoice_id': refund_invoice_id
             }
             invoice = self.env['account.invoice'].new(invoice_val)
 
