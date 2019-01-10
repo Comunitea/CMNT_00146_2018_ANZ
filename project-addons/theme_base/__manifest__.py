@@ -45,7 +45,8 @@
         'website_multi_company_blog',
         'mass_mailing',
         'website_form_builder',
-        'theme_base_frontend'
+        'theme_base_frontend',
+        'sitemap_base'
     ],
     'data': [
     ],
