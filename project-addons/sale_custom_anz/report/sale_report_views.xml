@@ -12,4 +12,42 @@
 
         </field>
     </record>
+
+    <record id="sale_order_report_tree" model="ir.ui.view">
+        <field name="model">sale.report</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree string="Sale order tree">
+                <field name="partner_id" readonly="1"/>
+                <field name="adidas_partner" readonly="1"/>
+                <field name="categ_id" readonly="1" invisible="1"/>
+                <field name="name" readonly="1"/>
+                <field name="date" readonly="1"/>
+                <field name="ref_change" readonly="1"/>
+                <field name="product_id" readonly="1"/>
+                <field name="product_tmpl_id" readonly="1" invisible="1"/>
+                <field name="qty_delivered" readonly="1"/>
+                <field name="qty_invoiced" readonly="1"/>
+                <field name="qty_to_invoice" readonly="1"/>
+                <field name="price_total" readonly="1"/>
+                <field name="state" readonly="1" invisible="1"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_order_report_all_tree" model="ir.actions.act_window">
+        <field name="name">Sales tree report</field>
+        <field name="res_model">sale.report</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree</field>
+        <!--field name="view_id">sale_custom_anz.sale_order_report_tree</field-->  <!-- force empty -->
+        <field name="search_view_id" ref="view_order_product_search"/>
+        <field name="context">{'search_default_Sales':1, 'group_by_no_leaf':1,'group_by':[]}</field>
+        <field name="help"></field>
+    </record>
+    <menuitem id="menu_sale_order_report_tree"
+            name="Listado"
+            action="action_order_report_all_tree"
+            parent="sale.menu_sale_report"
+            sequence="2"/>
 </odoo>

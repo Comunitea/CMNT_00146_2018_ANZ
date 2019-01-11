@@ -21,7 +21,6 @@
         'views/product_product.xml',
         'report/sale_report_views.xml',
         'report/account_invoice_report_views.xml',
-        'wizard/sale_manage_variant_view.xml'
     ],
     'installable': True,
     'post_init_hook': 'set_product_ref_change_code',

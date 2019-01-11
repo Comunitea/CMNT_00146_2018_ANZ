@@ -1,11 +1,20 @@
 # © 2016 Comunitea - Javier Colmenero <javier@comunitea.com>
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
 from odoo import api, fields, models
-
+from odoo.addons import decimal_precision as dp
 
 class ProductTemplate(models.Model):
 
     _inherit = 'product.template'
+
+    @api.depends('product_variant_ids', 'product_variant_ids.standard_price')
+    def _template_standard_price(self):
+        ##SOBRE ESCRIBO TODA LA FUNCION PARA NO REHACER EL CALCULO
+
+        for template in self:
+            template.template_standard_price = template.product_variant_ids and template.product_variant_ids[0].standard_price or 0.00
+
+
 
     product_color = fields.Many2one('product.attribute.value', string="Color",
                                     domain="[('is_color','=', True)]")
@@ -18,6 +27,8 @@ class ProductTemplate(models.Model):
     pvp = fields.Float('PVP', digits=(16, 2))
     ref_template = fields.Char('Ref Template')
     importation_name = fields.Char('Importation name')
+    template_standard_price = fields.Float('Precio de coste', compute=_template_standard_price,
+        digits=dp.get_precision('Product Price'))
 
     @api.multi
     @api.depends('attribute_line_ids')

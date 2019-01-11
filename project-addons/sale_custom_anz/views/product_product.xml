@@ -23,4 +23,17 @@
         </field>
     </record>
 
+
+     <record id="product_pricelist_action_tree" model="ir.actions.act_window">
+            <field name="name">Pricelists items</field>
+            <field name="res_model">product.pricelist.item</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree</field>
+        </record>
+    <menuitem id="menu_product_pricelist_tree" name="Pricelists items"
+              parent="sale.product_menu_catalog"
+              action="product_pricelist_action_tree"
+              groups="product.group_sale_pricelist"
+            sequence="4"/>
+
 </odoo>

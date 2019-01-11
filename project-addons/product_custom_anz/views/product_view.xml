@@ -36,7 +36,7 @@
             </field>
         </field>
     </record>
-
+    template_price_standar
     <record id="variants_tree_view_add_custom" model="ir.ui.view">
         <field name="name">variants.tree.view.add.custom</field>
         <field name="model">product.attribute.value</field>
@@ -64,6 +64,8 @@
             </field>
             <field name="list_price" position="after">
                 <field name="pvp" widget="monetary" options="{'currency_field': 'currency_id', 'field_digits': True}"/>
+                <field name="template_standard_price" widget="monetary" options="{'currency_field': 'currency_id', 'field_digits': True}" groups="base.group_user" attrs="{'invisible': [('product_variant_count', '&lt;', 2)]}"/>
+
             </field>
         </field>
     </record>
