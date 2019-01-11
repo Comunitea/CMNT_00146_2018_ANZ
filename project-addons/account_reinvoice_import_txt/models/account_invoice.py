@@ -15,7 +15,7 @@ class AccountInvoice(models.Model):
          readonly=True, states={'draft': [('readonly', False)]},
          help="Imported form txt import")
 
+    fecha_valor = fields.Date(string='Fecha valor', states={'draft': [('readonly', False)]}, index=True, copy=False)
 
     def check_existing_txt(self):
-
         self.env['invoice.txt.import'].import_txt_invoice()

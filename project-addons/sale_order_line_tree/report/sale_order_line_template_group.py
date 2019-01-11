@@ -195,7 +195,6 @@ class SaleOrderLineTemplateGroup(models.Model):
 
     @api.multi
     def write(self, vals):
-
         if 'sequence' in vals:
             self._get_order_lines().write({'sequence': vals['sequence']})
             vals.pop('sequence')

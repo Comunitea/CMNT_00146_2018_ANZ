@@ -8,7 +8,7 @@
 
             <page name="sales_purchases" position="inside">
                 <group colspan="2" col="2">
-                    <separator string="Codigos de proveedores y clientes" colspan="2"/>
+                    <separator string="Codigos de clientes en proveedores externos" colspan="2"/>
                     <field name="supplier_code_ids" context="{'default_customer_id': active_id}" attrs="{'invisible':[('customer', '=', False)]}" nolabel="1"></field>
                     <field name="customer_code_ids" context="{'default_supplier_id': active_id}" attrs="{'invisible':[('supplier', '=', False)]}" nolabel="1"></field>
                 </group>
