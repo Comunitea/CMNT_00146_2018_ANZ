@@ -25,13 +25,19 @@ class ProductBrand(models.Model):
         res = 0.0  # Todo, que pasa si no encuentro
         partner_id = line.invoice_id.partner_id.id
         # Search specific by customer first
+        product_id = line.product_id
+
+        scheduled_sale = product_id and product_id.scheduled_sale_id and True or False
+
         rule = self.reinvoice_rule_ids.filtered(
             lambda r: r.partner_id.id == partner_id and
-            r.supplier_discount == line.discount)
+            r.supplier_discount == line.discount and
+                      r.scheduled_sale == scheduled_sale)
         if not rule:
             rule = self.reinvoice_rule_ids.filtered(
                 lambda r: r.partner_id.id is False and
-                r.supplier_discount == line.discount)
+                r.supplier_discount == line.discountand and
+                          r.scheduled_sale == scheduled_sale)
         if not rule:
             raise UserError(
                 _('No reinvoice rule founded for discount of %s')

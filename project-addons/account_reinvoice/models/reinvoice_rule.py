@@ -9,5 +9,6 @@ class ReInvoiceRule(models.Model):
 
     brand_id = fields.Many2one('product.brand', 'Brand', required=True)
     partner_id = fields.Many2one('res.partner', 'Customer')
+    scheduled_sale = fields.Boolean('Scheduled sale', help="If checked, apply scheduled discount, else repos discount")
     supplier_discount = fields.Float('Supplier Discount')
     customer_discount = fields.Float('Customer Discount')

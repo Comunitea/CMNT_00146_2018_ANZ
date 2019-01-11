@@ -9,6 +9,7 @@
             <tree string="Reinvoice Rule" editable="top">
                 <field name="brand_id"/>
                 <field name="partner_id"/>
+                <field name="scheduled_sale"/>
                 <field name="supplier_discount"/>
                 <field name="customer_discount"/>
             </tree>
@@ -23,6 +24,8 @@
                     <field name="partner_id"/>
                     <field name="brand_id"/>
                     <separator/>
+                    <filter name="scheduled" string="Scheduled sales" domain="[('scheduled_sale','=', True)]"/>
+                    <filter name="reposition" string="Reposition sales" domain="[('scheduled_sale','!=', True)]"/>
                     <filter name="gobal" string="Global Rule" domain="[('partner_id','=', False)]"/>
                     <filter name="specific" string="Specific Rule" domain="[('partner_id','!=', False)]"/>
                 
