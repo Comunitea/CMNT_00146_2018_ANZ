@@ -523,6 +523,7 @@ class InvoiceTxtImport(models.Model):
     def create_invoice_from_invoice_txt(self):
         for txt in self:
             txt.get_partner_refs()
+            refund_invoice_id = False
             txt.state = 'error'
             if not txt.partner_id:
                 txt.message_post(body="No encuentro proveedor, asociado")
