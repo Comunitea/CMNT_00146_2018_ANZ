@@ -80,7 +80,7 @@ class SaleOrderLine(models.Model):
     def write(self, vals):
         if 'product_tmpl_id' not in vals and vals.get('product_id', False):
             tmpl_id = self.env['product.product'].\
-                search_read([('id', '=', vals['product_id'])],['product_tmpl_id'])[0]
+                search_read([('id', '=', vals['product_id'])],['product_tmpl_id'])
             vals.update({'product_tmpl_id': tmpl_id and tmpl_id[0]['product_tmpl_id'][0]})
         return super(SaleOrderLine, self).write(vals)
 
@@ -98,10 +98,8 @@ class SaleOrderLine(models.Model):
 
     @api.model
     def create(self, vals):
-
-
         if 'product_tmpl_id' not in vals and vals.get('product_id', False):
             tmpl_id = self.env['product.product'].\
-                search_read([('id', '=', vals['product_id'])],['product_tmpl_id'])[0]
+                search_read([('id', '=', vals['product_id'])],['product_tmpl_id'])
             vals.update({'product_tmpl_id': tmpl_id and tmpl_id[0]['product_tmpl_id'][0]})
         return super(SaleOrderLine, self).create(vals)
