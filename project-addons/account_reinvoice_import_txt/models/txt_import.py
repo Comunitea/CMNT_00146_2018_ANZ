@@ -8,7 +8,7 @@ from odoo.exceptions import AccessError, UserError, ValidationError
 from datetime import datetime, timedelta
 from odoo.addons import decimal_precision as dp
 import os
-
+import pprint
 ODOO_READ_FOLDER = 'Send'
 ODOO_END_FOLDER = 'Receive'
 ODOO_WRITE_FOLDER = 'temp'
@@ -65,39 +65,6 @@ def get_num(str, force_int=False):
     return 0.00
 
 
-def get_line(linea_pedido):
-
-    if linea_pedido[85:100].strip() != '':
-        descuento_str_total = linea_pedido[85:100].strip().strip()
-        descuento = 0.00
-        for d1 in descuento_str_total.split(' '):
-            descuento += get_num(d1.strip())
-    else:
-        descuento = 0.00
-
-
-    codigo = linea_pedido[4:14].strip()
-    num_linea = get_num(linea_pedido[0:4].strip())
-    descripcion = linea_pedido[14:82].replace(codigo, '').strip()
-    tallas = linea_pedido[110:190].strip()
-    qty = tallas.split(' ')[0]
-    euros = clear_str(linea_pedido).split(' ')
-    valor_neto = get_num(euros[len(euros)-1].strip())
-    precio_articulo = get_num(euros[len(euros)-2].strip())
-    articulo = '[{}] {}'.format(codigo, descripcion)
-
-    descripcion = articulo.strip()
-
-    val = {'num_linea': num_linea,
-           'codigo': codigo,
-           'descripcion': descripcion,
-           'qty': qty,
-           'descripcion_qty': tallas,
-           'precio_articulo': precio_articulo,
-           'descuento': descuento,
-           'valor_neto': valor_neto,
-           'message_line': clear_str(linea_pedido)}
-    return val
 
 class InvoiceTxtImportLine(models.Model):
 
@@ -218,7 +185,7 @@ class InvoiceTxtImport(models.Model):
             product_id = self.env['product.product'].search(product_domain, limit=1)
         # Busco en uno auxiliar
         if not product_id:
-            product_domain = ([('default_code', '=', 'AUX_IMPORT_TXT')])
+            product_domain = ([('default_code', '=', 'AD.00000')])
             product_id = self.env['product.product'].search(product_domain, limit=1)
         return product_id or False
 
@@ -267,6 +234,39 @@ class InvoiceTxtImport(models.Model):
 
             return False
 
+    def get_line(linea_pedido):
+
+        if linea_pedido[85:100].strip() != '':
+            descuento_str_total = linea_pedido[85:100].strip().strip()
+            descuento = 0.00
+            for d1 in descuento_str_total.split(' '):
+                descuento += get_num(d1.strip())
+        else:
+            descuento = 0.00
+
+
+        codigo = linea_pedido[4:14].strip()
+        num_linea = get_num(linea_pedido[0:4].strip())
+        descripcion = linea_pedido[14:82].replace(codigo, '').strip()
+        tallas = linea_pedido[110:190].strip()
+        qty = tallas.split(' ')[0]
+        euros = clear_str(linea_pedido).split(' ')
+        valor_neto = get_num(euros[len(euros)-1].strip())
+        precio_articulo = get_num(euros[len(euros)-2].strip())
+        articulo = '[{}] {}'.format(codigo, descripcion)
+
+        descripcion = articulo.strip()
+
+        val = {'num_linea': num_linea,
+               'codigo': codigo,
+               'descripcion': descripcion,
+               'qty': qty,
+               'descripcion_qty': tallas,
+               'precio_articulo': precio_articulo,
+               'descuento': descuento,
+               'valor_neto': valor_neto,
+               'message_line': clear_str(linea_pedido)}
+        return val
 
     def import_txt_invoice(self):
 
@@ -382,22 +382,22 @@ class InvoiceTxtImport(models.Model):
         while is_line:
 
             #ES LINEA #> 1 CARACTER ES NUMERICO
-            if str[index].strip() and len(str[index][:4].strip()) > 0 and get_num(str[index][:4].strip(), True) == line_count:
-                linea = get_line(str[index])
+            if str[index].strip() and len(str[index][:4].strip()) > 0 and get_num(str[index][:4].strip(), True) >= longitud_fichero:
+                linea = self.get_line(str[index])
                 line_count += 1
                 if str[index+2][19:38] == 'Partida arancelaria':
-                    index+=2
+                    index += 2
                     linea.update(partida_arancelaria=str[index][39:].strip())
                     index += 2
                     linea.update(state_country=str[index][34:].strip())
                 lineas.append(linea)
             index += 1
             if str[index].find('Valor neto total')>-1:
-                is_line=False
+                is_line = False
             if index>=longitud_fichero:
                 self.message_post('Error leyendo las líneas del fichero')
                 return False
-
+        pprint (lineas)
         ## saco cuadro de factura
         valor_neto = get_num(str[index][-8:])
         index+=1
@@ -454,6 +454,7 @@ class InvoiceTxtImport(models.Model):
             'eori': eori,
             'partner_id': False,
             'associate_name': associate_name,
+            'region': region,
             'partner_vat': eori,
             'supplier_partner_num': clienteno,
             'supplier_invoice_num': facturano,
@@ -522,6 +523,7 @@ class InvoiceTxtImport(models.Model):
     @api.multi
     def create_invoice_from_invoice_txt(self):
         for txt in self:
+
             txt.get_partner_refs()
             refund_invoice_id = False
             txt.state = 'error'
