@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<odoo>
+
+      <record id="pricelist_items_search_anz" model="ir.ui.view">
+        <field name="name">pricelist.tems.search.anz</field>
+        <field name="model">product.pricelist.item</field>
+        <field name="arch" type="xml">
+            <search string="Product">
+                <field name="name" string="Pricelist" filter_domain="[('name','ilike',self)]"/>
+                <field name="pricelist_id"/>
+                <field name="compute_price"/>
+                <separator/>
+                <!--field string="Product variant" filter_domain="[('applied_on', '=', '1_product')]"/>
+                <field string="Product template" filter_domain="[('applied_on', '=', '0_product_variant')]"/>
+                <field string="Product template" filter_domain="[('applied_on', '=', 'brand')]"/-->
+                <separator/>
+                <filter name="fixed" string="Fixed" domain="[('compute_price','=','fixed')]"/>
+                <filter name="percentage" string="Percentage" domain="[('compute_price','=','percentage')]"/>
+                <filter name="formula" string="Percentage" domain="[('compute_price','=','formula')]"/>
+                <separator/>
+
+                <filter string="Pricelist" name="groupby_pricelist" domain="[]" context="{'group_by' : 'pricelist_id'}"/>
+            </search>
+        </field>
+    </record>
+    <record id="product_pricelist_item_tree_view_anz" model="ir.ui.view">
+            <field name="name">product.pricelist.item.tree.anz</field>
+            <field name="model">product.pricelist.item</field>
+            <field name="arch" type="xml">
+                <tree string="Pricelist Items">
+                    <field colspan="4" name="name"/>
+                    <field name="product_id" groups="product.group_product_variant" invisible="1"/>
+                    <field name="product_tmpl_id" invisible="1"/>
+                    <field name="applied_on"/>
+                    <field name="percent_price"/>
+                    <field name="compute_price" invisible="1"/>
+                    <field name="pricelist_id" invisible="1"/>
+                </tree>
+            </field>
+    </record>
+     <record id="product_pricelist_action_tree" model="ir.actions.act_window">
+            <field name="name">Pricelists items</field>
+            <field name="res_model">product.pricelist.item</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree</field>
+             <field name="view_id" ref="product_pricelist_item_tree_view_anz"/>
+            <field name="search_view_id" ref="pricelist_items_search_anz"/>
+        </record>
+    <menuitem id="menu_product_pricelist_tree" name="Pricelists items"
+              parent="sale.product_menu_catalog"
+              action="product_pricelist_action_tree"
+              groups="product.group_sale_pricelist"
+            sequence="4"/>
+
+</odoo>

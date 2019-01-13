@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-12-14 17:37+0000\n"
-"PO-Revision-Date: 2018-12-14 17:37+0000\n"
+"POT-Creation-Date: 2019-01-13 20:06+0000\n"
+"PO-Revision-Date: 2019-01-13 20:06+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -25,9 +25,21 @@ msgid "Active"
 msgstr "Activo"
 
 #. module: scheduled_sale
+#: model:ir.model.fields,field_description:scheduled_sale.field_product_product_scheduled_sale_id
+#: model:ir.model.fields,field_description:scheduled_sale.field_product_template_scheduled_sale_id
+msgid "Active schedule order"
+msgstr "Programación"
+
+#. module: scheduled_sale
 #: model:ir.ui.view,arch_db:scheduled_sale.unlink_schedule_product_form
 msgid "Actual products"
 msgstr "Artículos en programación"
+
+#. module: scheduled_sale
+#: model:ir.model.fields,field_description:scheduled_sale.field_product_product_origin_scheduled_sale_id
+#: model:ir.model.fields,field_description:scheduled_sale.field_product_template_origin_scheduled_sale_id
+msgid "Archived Schedule order"
+msgstr "Programación (archivada)"
 
 #. module: scheduled_sale
 #: model:ir.ui.view,arch_db:scheduled_sale.view_scheduled_sale_form
@@ -38,18 +50,6 @@ msgstr "Artículos de archivados"
 #: model:ir.model.fields,field_description:scheduled_sale.field_scheduled_sale_product_ids_archived
 msgid "Archived products in this schedule"
 msgstr "Artículos de programación archivados"
-
-#. module: scheduled_sale
-#: code:addons/scheduled_sale/models/scheduled_sale.py:82
-#, python-format
-msgid "Are you sure?. You will cancel all sale orders asociated to this schedules sale"
-msgstr "Seguro?. Se cancelarán todas las ventas asociadas a esta programación"
-
-#. module: scheduled_sale
-#: code:addons/scheduled_sale/models/scheduled_sale.py:113
-#, python-format
-msgid "Are you sure?. You will change this products, and change the pricelist"
-msgstr "Seguro?. Cambiarás los ariculos y las tarifas de venta"
 
 #. module: scheduled_sale
 #: model:ir.model.fields,field_description:scheduled_sale.field_scheduled_sale_autoconfirm_sales
@@ -85,6 +85,11 @@ msgstr "Sacar de la programación"
 #: model:ir.ui.view,arch_db:scheduled_sale.unlink_schedule_product_form
 msgid "Cancel scheduled product"
 msgstr "Sacar de la programación"
+
+#. module: scheduled_sale
+#: model:ir.ui.view,arch_db:scheduled_sale.view_scheduled_sale_search
+msgid "Canceled"
+msgstr "Canceled"
 
 #. module: scheduled_sale
 #: selection:scheduled.sale,state:0
@@ -157,12 +162,22 @@ msgid "Created on"
 msgstr "Creado en"
 
 #. module: scheduled_sale
+#: model:ir.ui.view,arch_db:scheduled_sale.view_scheduled_sale_search
+msgid "Current"
+msgstr "Actual"
+
+#. module: scheduled_sale
 #: model:ir.model.fields,help:scheduled_sale.field_sale_order_line_deliver_month
 #: model:ir.model.fields,help:scheduled_sale.field_sale_order_line_template_group_deliver_month
 #: model:ir.model.fields,help:scheduled_sale.field_stock_move_deliver_month
 #: model:ir.model.fields,help:scheduled_sale.field_stock_picking_deliver_month
 msgid "Date format = day/month/year(2 digits)"
 msgstr "Formato de fecha = día/mes/año(2 digits)"
+
+#. module: scheduled_sale
+#: model:ir.ui.view,arch_db:scheduled_sale.view_sales_order_line_filter_scheduled_sale
+msgid "Deliver month"
+msgstr "Mes de entrega"
 
 #. module: scheduled_sale
 #: model:ir.ui.view,arch_db:scheduled_sale.view_picking_internal_search_schedule_sale
@@ -180,7 +195,7 @@ msgstr "Nombre mostrado"
 #. module: scheduled_sale
 #: model:ir.ui.view,arch_db:scheduled_sale.view_scheduled_sale_form
 msgid "Done"
-msgstr "Hecho"
+msgstr "Realizada"
 
 #. module: scheduled_sale
 #: selection:scheduled.sale,state:0
@@ -281,7 +296,7 @@ msgid "Name"
 msgstr "Nombre"
 
 #. module: scheduled_sale
-#: code:addons/scheduled_sale/models/product_template.py:60
+#: code:addons/scheduled_sale/models/product_template.py:66
 #, python-format
 msgid "No products to unlink, or not schedule sale"
 msgstr "NO hay venta asociadas o no hay artículos para eliminar"
@@ -298,12 +313,18 @@ msgstr "Una vez que el pedido de programación esta confirmado, creará una orde
 "                    ordenes o servicios."
 
 #. module: scheduled_sale
+#: model:ir.ui.view,arch_db:scheduled_sale.view_scheduled_sale_form
+msgid "Order lines"
+msgstr "Líneas de venta"
+
+#. module: scheduled_sale
 #: model:ir.ui.view,arch_db:scheduled_sale.unlink_scheduled_product_tree_search
 msgid "Ordered"
-msgstr "Ordered"
+msgstr "Ordenada"
 
 #. module: scheduled_sale
 #: model:ir.model.fields,field_description:scheduled_sale.field_scheduled_sale_period_scheduled_sale_ids
+#: model:ir.model.fields,field_description:scheduled_sale.field_scheduled_sale_scheduled_order_lines_ids
 #: model:ir.model.fields,field_description:scheduled_sale.field_scheduled_sale_scheduled_orders_ids
 msgid "Orders"
 msgstr "Pedidos"
@@ -314,7 +335,7 @@ msgid "Origin Product"
 msgstr "Artículos iniciales"
 
 #. module: scheduled_sale
-#: model:ir.model.fields,field_description:scheduled_sale.field_scheduled_sale_period_id_9499
+#: model:ir.model.fields,field_description:scheduled_sale.field_scheduled_sale_period_id_9421
 #: model:ir.model.fields,field_description:scheduled_sale.field_unlink_schedule_product_wzd_period_id
 #: model:ir.ui.view,arch_db:scheduled_sale.view_scheduled_sale_search
 msgid "Period"
@@ -417,6 +438,7 @@ msgid "Requested month"
 msgstr "Mes programado"
 
 #. module: scheduled_sale
+#: model:ir.model.fields,field_description:scheduled_sale.field_scheduled_sale_scheduled_order_lines_ids_count
 #: model:ir.model.fields,field_description:scheduled_sale.field_scheduled_sale_scheduled_orders_ids_count
 msgid "Sale orders count"
 msgstr "Nº de ventas"
@@ -424,12 +446,12 @@ msgstr "Nº de ventas"
 #. module: scheduled_sale
 #: model:ir.model,name:scheduled_sale.model_sale_order_line
 msgid "Sales Order Line"
-msgstr "Línea pedido de venta"
+msgstr "Línea de pedido de ventas"
 
 #. module: scheduled_sale
 #: model:ir.model,name:scheduled_sale.model_sale_report
 msgid "Sales Orders Statistics"
-msgstr "Estadísticas de pedidos de ventas"
+msgstr "Estadísticas pedidos de ventas"
 
 #. module: scheduled_sale
 #: model:ir.model,name:scheduled_sale.model_sale_order_line_template_group
@@ -437,15 +459,12 @@ msgid "Sales order line group by template"
 msgstr "Líneas agrupadas por plantilla"
 
 #. module: scheduled_sale
-#: model:ir.model.fields,field_description:scheduled_sale.field_product_product_origin_scheduled_sale_id
-#: model:ir.model.fields,field_description:scheduled_sale.field_product_product_scheduled_sale_id
-#: model:ir.model.fields,field_description:scheduled_sale.field_product_template_origin_scheduled_sale_id
-#: model:ir.model.fields,field_description:scheduled_sale.field_product_template_scheduled_sale_id
 #: model:ir.model.fields,field_description:scheduled_sale.field_sale_manage_variant_scheduled_sale_id
 #: model:ir.model.fields,field_description:scheduled_sale.field_sale_order_line_scheduled_sale_id
 #: model:ir.model.fields,field_description:scheduled_sale.field_sale_order_line_template_group_scheduled_sale_id
 #: model:ir.model.fields,field_description:scheduled_sale.field_sale_order_origin_scheduled_sale_id
 #: model:ir.model.fields,field_description:scheduled_sale.field_sale_order_scheduled_sale_id
+#: model:ir.model.fields,field_description:scheduled_sale.field_sale_report_scheduled_sale_id
 #: model:ir.model.fields,field_description:scheduled_sale.field_stock_move_scheduled_sale_id
 #: model:ir.model.fields,field_description:scheduled_sale.field_stock_picking_scheduled_sale_id
 msgid "Schedule order"
@@ -466,11 +485,6 @@ msgstr "Periodos de programación"
 #: model:ir.ui.view,arch_db:scheduled_sale.unlink_scheduled_product_tree_search
 msgid "Schedule product lines"
 msgstr "Lineas de programación"
-
-#. module: scheduled_sale
-#: model:ir.ui.view,arch_db:scheduled_sale.view_scheduled_sale_form
-msgid "Schedule product product"
-msgstr "Productos en programación"
 
 #. module: scheduled_sale
 #: model:ir.model,name:scheduled_sale.model_scheduled_sale
@@ -503,7 +517,7 @@ msgstr "Lista de ventas de programación"
 #. module: scheduled_sale
 #: model:ir.ui.view,arch_db:scheduled_sale.view_sales_order_filter
 msgid "Scheduled Order"
-msgstr "Peidos de progración"
+msgstr "Pedidos de programación"
 
 #. module: scheduled_sale
 #: model:ir.actions.act_window,name:scheduled_sale.action_scheduled_sale_orders_tree
@@ -523,6 +537,11 @@ msgid "Scheduled Sales"
 msgstr "Ventas de programación"
 
 #. module: scheduled_sale
+#: model:ir.ui.view,arch_db:scheduled_sale.view_sales_order_line_filter_scheduled_sale
+msgid "Scheduled order"
+msgstr "Programación"
+
+#. module: scheduled_sale
 #: model:ir.ui.view,arch_db:scheduled_sale.unlink_scheduled_product_tree_search
 msgid "State"
 msgstr "Estado"
@@ -535,7 +554,7 @@ msgstr "Estado"
 #. module: scheduled_sale
 #: model:ir.model,name:scheduled_sale.model_stock_move
 msgid "Stock Move"
-msgstr "Movimiento de stock"
+msgstr "Movimiento de Stock"
 
 #. module: scheduled_sale
 #: model:ir.ui.view,arch_db:scheduled_sale.unlink_scheduled_product_tree_search
@@ -543,10 +562,10 @@ msgid "Template"
 msgstr "Plantilla"
 
 #. module: scheduled_sale
-#: code:addons/scheduled_sale/models/product_template.py:69
+#: code:addons/scheduled_sale/models/product_template.py:75
 #, python-format
-msgid "This sale order has been modified and next lines are unlinked from the schedule sale: <a href=# data-oe-model=schedule.sale data-oe-id=%d>%s</a> <ul>"
-msgstr "Esta orden ha sido modificada y las siguientes lines serán eliminadas desde la programación: <a href=# data-oe-model=schedule.sale data-oe-id=%d>%s</a> <ul>"
+msgid "This sale order has been modified and next lines are unlinked from the schedule sale: <a href=# data-oe-model=scheduled.sale data-oe-id=%d>%s</a> <ul>"
+msgstr "Esta venta ha sido modificada y las siguientes líneas han sido elimiandas desde la programación asociada: <a href=# data-oe-model=scheduled.sale data-oe-id=%d>%s</a> <ul>"
 
 #. module: scheduled_sale
 #: model:ir.ui.view,arch_db:scheduled_sale.view_scheduled_sale_period_search
@@ -584,7 +603,7 @@ msgid "Unlink products"
 msgstr "Aplicar cambios"
 
 #. module: scheduled_sale
-#: code:addons/scheduled_sale/wizards/unlink_schedule_product.py:75
+#: code:addons/scheduled_sale/wizards/unlink_schedule_product.py:66
 #, python-format
 msgid "Unlink products Operations"
 msgstr "Asistente de programación: Gestión de artículos."
@@ -604,7 +623,7 @@ msgstr "No puedes re-ordenar un pedido de programación con la programación sin
 #. module: scheduled_sale
 #: model:ir.model,name:scheduled_sale.model_sale_manage_variant
 msgid "sale.manage.variant"
-msgstr "sale.manage.variant"
+msgstr "Variantes en venta"
 
 #. module: scheduled_sale
 #: model:ir.model,name:scheduled_sale.model_scheduled_sale_period
@@ -614,14 +633,10 @@ msgstr "Periodos"
 #. module: scheduled_sale
 #: model:ir.model,name:scheduled_sale.model_unlink_schedule_product_line
 msgid "unlink.schedule.product.line"
-msgstr "unlink.schedule.product.line"
-
-#. module: scheduled_sale
-#: model:ir.model,name:scheduled_sale.model_unlink_schedule_product_wiz
-msgid "unlink.schedule.product.wiz"
-msgstr "unlink.schedule.product.wiz"
+msgstr "Borrado de líneas de en programaciones"
 
 #. module: scheduled_sale
 #: model:ir.model,name:scheduled_sale.model_unlink_schedule_product_wzd
 msgid "unlink.schedule.product.wzd"
-msgstr "unlink.schedule.product.wzd"
+msgstr "Asistente de configuración de programación"
+
