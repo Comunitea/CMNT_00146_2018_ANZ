@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<odoo>
+<odoo noupdate="1">
 
-    <template id="tbf_website_footer_default" inherit_id="website.footer_custom" customize_show="True" active="True">
+    <template id="tbf_website_footer_default" inherit_id="website.footer_custom">
+    <!--<template id="tbf_website_footer_default" inherit_id="website_multi_theme.auto_view_1_836" customize_show="True" active="True">-->
         <xpath expr="//div[@id='footer']//div[hasclass('row')]" position="replace">
             <div class="row">
                 <div class="col-md-4">
