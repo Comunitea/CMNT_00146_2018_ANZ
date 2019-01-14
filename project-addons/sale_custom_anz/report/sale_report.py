@@ -9,9 +9,17 @@ class SaleReport(models.Model):
     type_id = fields.Many2one(
         comodel_name='sale.order.type', string='Type', readonly=True)
     ref_change = fields.Boolean()
+    adidas_partner = fields.Many2one('res.partner', string='Delivery address', readonly=True)
 
     def _select(self):
-        return super(SaleReport, self)._select() + ", s.type_id as type_id, l.ref_change"
+
+        tiendas_propias = self.env['res.partner'].search([('ref', '=', 'OT2900000')])
+
+        str = ", s.type_id as type_id, l.ref_change, " \
+                                                   "case when ref_change then %s else s.partner_id end as adidas_partner "%(tiendas_propias and tiendas_propias.id or 1)
+
+        return super(SaleReport, self)._select() + str
+
 
     def _group_by(self):
-        return super(SaleReport, self)._group_by() + ", s.type_id, l.ref_change"
+        return super(SaleReport, self)._group_by() + ", s.type_id, l.ref_change, adidas_partner"

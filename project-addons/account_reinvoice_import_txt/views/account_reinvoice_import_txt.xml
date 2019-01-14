@@ -37,6 +37,7 @@
                         <field name="partner_id"/>
                         <field name="partner_vat"/>
                         <field name="type" />
+
                         <field name="file_name"/>
                         <field name="file_date"/>
                         <field name="invoice_id"/>
@@ -48,20 +49,25 @@
                             <field name="associate_id"/>
                             <field name="supplier_partner_nif"/>
                             <field name="supplier_partner_num"/>
-                            <field name="arancel"/>
-                            <field name="country"/>
                             <field name="fecha_vencimiento"/>
-                        </group>
-                        <group>
-
+                            <field name="fecha_valor"/>
+                            <field name="type"/>
+                            <field name="partner_bank"/>
+                            <field name="bank_id"/>
                             <field name="supplier_invoice_num"/>
                             <field name="supplier_invoice_date"/>
+                        </group>
+                        <group string="Abono" attrs="{'invisible': [('type', '=', 'in_invoice')]}">
+
+                            <field name="original_rectificatica"/>
+                            <field name="refund_note"/>
+                        </group>
+                        <group string="Factura" attrs="{'invisible': [('type', '=', 'in_refund')]}">
+
                             <field name="supplier_picking_num"/>
                             <field name="supplier_picking_date"/>
                             <field name="supplier_order_num"/>
                             <field name="supplier_order_date"/>
-                            <field name="partner_bank"/>
-                            <field name="bank_id"/>
                         </group>
                     </group>
                     <notebook>
@@ -74,6 +80,7 @@
                                     <field name="precio_articulo"/>
                                     <field name="descuento"/>
                                     <field name="valor_neto"/>
+
 
                                 </tree>
                                 <form>
@@ -91,6 +98,7 @@
                                     </group>
                                     <field name="descripcion"/>
                                     <field name="descripcion_qty"/>
+                                    <field name="message_line"/>
                                 </form>
                             </field>
 

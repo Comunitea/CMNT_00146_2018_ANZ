@@ -11,8 +11,8 @@ class ProductTemplate(models.Model):
 
     _inherit = 'product.template'
 
-    scheduled_sale_id = fields.Many2one('scheduled.sale', 'Schedule order')
-    origin_scheduled_sale_id = fields.Many2one('scheduled.sale', 'Schedule order')
+    scheduled_sale_id = fields.Many2one('scheduled.sale', string='Active schedule order')
+    origin_scheduled_sale_id = fields.Many2one('scheduled.sale', string='Archived Schedule order')
 
     @api.multi
     def write(self, vals):

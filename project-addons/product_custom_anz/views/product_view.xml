@@ -36,7 +36,6 @@
             </field>
         </field>
     </record>
-
     <record id="variants_tree_view_add_custom" model="ir.ui.view">
         <field name="name">variants.tree.view.add.custom</field>
         <field name="model">product.attribute.value</field>
@@ -59,10 +58,13 @@
                     <field name="boot_type"/>
                     <field name="product_color"/>
                     <field name="variant_suffix"/>
+                    <field name="ref_template"/>
                 </group>
             </field>
             <field name="list_price" position="after">
                 <field name="pvp" widget="monetary" options="{'currency_field': 'currency_id', 'field_digits': True}"/>
+                <field name="template_standard_price" widget="monetary" options="{'currency_field': 'currency_id', 'field_digits': True}" groups="base.group_user" attrs="{'invisible': [('product_variant_count', '&lt;', 2)]}"/>
+
             </field>
         </field>
     </record>
@@ -74,8 +76,9 @@
         <field name="inherit_id" ref="product.product_normal_form_view"/>
         <field name="arch" type="xml">
             <field name="categ_id" position="after">
-                  <field name="boot_type"/>
+                <field name="boot_type"/>
                 <field name="product_color"/>
+                <field name="importation_name"/>
             </field>
             <notebook position="inside">
                 <page string="Fix variants" attrs="{'invisible': [('oldname', '=', False)]}" groups="base.group_no_one">
@@ -89,6 +92,18 @@
                     <field name="attribute_value_ids"/>
                 </page>
             </notebook>
+        </field>
+    </record>
+
+    <record id="product_template_search_view_custom_anz" model="ir.ui.view">
+        <field name="name">product.template.search.view.custom.anz</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_search_view"/>
+        <field name="arch" type="xml">
+            <field name="categ_id" position="after">
+                <field name="ref_template"/>
+                <field name="importation_name"/>
+            </field>
         </field>
     </record>
 
