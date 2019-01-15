@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+    <report
+        id="export_catalog_xlsx"
+        model="export.catalog.wzd"
+        string="Export Catalog"
+        report_type="xlsx"
+        name="product_export_anz.export_catalog_xls.xlsx"
+        file="product_export_anz.export_catalog_xls.xlsx"
+        menu="False"
+        attachment_use="False"/>
+</odoo>

@@ -1,0 +1,75 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* product_export_anz
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 11.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-01-15 12:28+0000\n"
+"PO-Revision-Date: 2019-01-15 12:28+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: product_export_anz
+#: model:ir.ui.view,arch_db:product_export_anz.view_export_catalog_wzd_form
+msgid "Cancel"
+msgstr "Cancelar"
+
+#. module: product_export_anz
+#: model:ir.model.fields,field_description:product_export_anz.field_report_product_export_anz_export_catalog_xls_xlsx_display_name
+msgid "Display Name"
+msgstr "Nombre mostrado"
+
+#. module: product_export_anz
+#: model:ir.actions.act_window,name:product_export_anz.action_export_catalog
+#: model:ir.actions.report,name:product_export_anz.export_catalog_xlsx
+#: model:ir.ui.menu,name:product_export_anz.menu_export_catalog
+msgid "Export Catalog"
+msgstr "Exportar catálogo"
+
+#. module: product_export_anz
+#: model:ir.ui.view,arch_db:product_export_anz.view_export_catalog_wzd_form
+msgid "Export Catalog Excel"
+msgstr "Exportar catálogo a Excel"
+
+#. module: product_export_anz
+#: model:ir.model.fields,field_description:product_export_anz.field_report_product_export_anz_export_catalog_xls_xlsx_id
+msgid "ID"
+msgstr "ID (identificación)"
+
+#. module: product_export_anz
+#: model:ir.ui.view,arch_db:product_export_anz.view_export_catalog_wzd_form
+msgid "Import Products"
+msgstr "Importar productos"
+
+#. module: product_export_anz
+#: model:ir.model.fields,field_description:product_export_anz.field_report_product_export_anz_export_catalog_xls_xlsx___last_update
+msgid "Last Modified on"
+msgstr "Última modificación en"
+
+#. module: product_export_anz
+#: code:addons/product_export_anz/wizard/export_catalog_wzd.py:60
+#, python-format
+msgid "No templates founded to export"
+msgstr "No se encontraron plantillas para exportar"
+
+#. module: product_export_anz
+#: model:ir.model,name:product_export_anz.model_export_catalog_wzd
+msgid "export.catalog.wzd"
+msgstr "export.catalog.wzd"
+
+#. module: product_export_anz
+#: model:ir.model,name:product_export_anz.model_report_product_custom_anz_export_catalog_xls_xlsx
+msgid "report.product_custom_anz.export_catalog_xls.xlsx"
+msgstr "report.product_custom_anz.export_catalog_xls.xlsx"
+
+#. module: product_export_anz
+#: model:ir.model,name:product_export_anz.model_report_product_export_anz_export_catalog_xls_xlsx
+msgid "report.product_export_anz.export_catalog_xls.xlsx"
+msgstr "report.product_export_anz.export_catalog_xls.xlsx"
+

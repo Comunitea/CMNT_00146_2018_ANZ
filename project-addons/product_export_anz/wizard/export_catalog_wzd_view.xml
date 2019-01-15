@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_export_catalog_wzd_form" model="ir.ui.view">
+        <field name="name">view.export.catalog.wzd.form</field>
+        <field name="model">export.catalog.wzd</field>
+        <field name="arch" type="xml">
+            <form string="Import Products">
+                <group>
+                    <group >
+                        <field name="brand_id"/>
+                        <field name="scheduled_id"/>
+                    </group>
+                    <group >
+                        <field name="date_start"/>
+                        <field name="date_end"/>
+                    </group>
+                </group>
+
+                <footer>
+                    <!-- <button name="export_catalog" type="object" class="btn-primary" string="Export Catalog"/> -->
+                    <button name="export_catalog_xls" type="object" class="btn-primary" string="Export Catalog Excel" context="{'xls_export':1}" icon="fa-download"/>
+                    <button special="cancel" string="Cancel" class="oe_link"/>
+                </footer> 
+            </form>
+        </field>
+    </record>
+
+   
+    <record id="action_export_catalog" model="ir.actions.act_window">
+        <field name="name">Export Catalog</field>
+        <field name="res_model">export.catalog.wzd</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem id="menu_export_catalog" name="Export Catalog" action="action_export_catalog" parent="sale.product_menu_catalog" sequence="99"/>
+    
+    
+</odoo>
