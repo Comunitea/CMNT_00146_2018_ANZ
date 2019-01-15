@@ -10,10 +10,10 @@ class ExportCatalogtWzd(models.TransientModel):
 
     _name = 'export.catalog.wzd'
 
-    scheduled_id = fields.Many2one('scheduled.sale', 'Scheduled')
+    scheduled_id = fields.Many2one('scheduled.sale', string='Scheduled')
     brand_id = fields.Many2one('product.brand', string='Brand')
-    date_start = fields.Date('Date Start')
-    date_end = fields.Date('Date End')
+    date_start = fields.Date(string='Date Start')
+    date_end = fields.Date(string='Date End')
 
     def get_variant_sales(self, variant):
         domain = [

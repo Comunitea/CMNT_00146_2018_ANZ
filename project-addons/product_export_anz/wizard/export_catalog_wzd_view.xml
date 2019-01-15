@@ -6,13 +6,13 @@
         <field name="arch" type="xml">
             <form string="Import Products">
                 <group>
-                    <group >
-                        <field name="brand_id"/>
-                        <field name="scheduled_id"/>
+                    <group>
+                        <field name="brand_id" string="Brand"/>
+                        <field name="scheduled_id" string="Schedule"/>
                     </group>
-                    <group >
-                        <field name="date_start"/>
-                        <field name="date_end"/>
+                    <group>
+                        <field name="date_start" string="Date Start"/>
+                        <field name="date_end" string="Date End"/>
                     </group>
                 </group>
 
