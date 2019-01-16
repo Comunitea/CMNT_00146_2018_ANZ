@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<odoo noupdate="1">
+<odoo>
 
-    <template id="tbf_website_footer_default" inherit_id="website.footer_custom">
-    <!--<template id="tbf_website_footer_default" inherit_id="website_multi_theme.auto_view_1_836" customize_show="True" active="True">-->
+    <template id="tbf_website_footer_default" inherit_id="website_multi_theme.auto_view_1_website_footer_default">
         <xpath expr="//div[@id='footer']//div[hasclass('row')]" position="replace">
             <div class="row">
                 <div class="col-md-4">
                     <h4>Quiénes somos</h4>
+                    <p><span t-esc="'website_multi_theme.auto_view_%s_%s' % (website.id, request.env['ir.ui.view'].search([('website_id', '=', website.id), ('arch_db', 'like', 'website.footer_custom')]).origin_view_id.id)"></span></p>
                     <ul class="list-unstyled">
                         <li><a href="#">Grupo Anzamar</a></li>
                         <li><a href="#">Presencia nacional</a></li>
