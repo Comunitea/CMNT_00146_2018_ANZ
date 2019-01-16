@@ -17,6 +17,9 @@
             <t t-if="o and 'operating_unit_id' not in o">
                 <t t-set="partner" t-value="company.partner_id"/>
             </t>
+            <t t-if="o and 'operating_unit_id' in o and not o.operating_unit_id">
+                <t t-set="partner" t-value="company.partner_id"/>
+            </t>
         </xpath>
     </template>
 
