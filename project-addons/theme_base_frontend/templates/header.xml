@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
 
-    <template id="tbf_website_layout" inherit_id="website.layout">
+    <template id="tbf_website_layout" inherit_id="website_multi_theme.auto_layout_website_1">
         <xpath expr="//div[@id='wrapwrap']//div[hasclass('navbar')]" position="before">
             <div class="wp-contact-navbar">
                 <div class="container contact-navbar">
@@ -19,7 +19,25 @@
                                 <a t-field="res_company.email" t-att-href="'mailto:%s' %res_company.email"/>
                             </div>
                         </div>
-                        <div class="col-md-8"/>
+                        <div class="col-md-6"/>
+                        <div class="col-md-2">
+                            <!--<t t-call="website.language_selector"/>-->
+                            <div class="header-language pull-right">
+                                <t t-foreach="languages" t-as="lg">
+                                    <a t-att-href="url_for(request.httprequest.path + '?' + keep_query(), lang=lg[0])"
+                                       t-att-data-default-lang="(editable or translatable) and 'true' if website and lg[0] == website.default_lang_code else None"
+                                       t-att-data-lang="lg[0]"
+                                       class="js_change_lang"
+                                       rel="nofollow">
+                                        <img t-att-src="'/theme_base/static/img/flag_%s.png' % lg[0].split('_')[0]"
+                                             t-att-title="lg[1].split('/').pop()"
+                                             t-att-alt="lg[1].split('/').pop()"
+                                             t-att-href="url_for(request.httprequest.path + '?' + keep_query(), lang=lg[0])"
+                                             style="max-height: 24px;"/>
+                                    </a>
+                                </t>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

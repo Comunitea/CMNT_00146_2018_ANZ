@@ -39,7 +39,7 @@
         'Rubén Seijas <ruben@comunitea.com>',
     ],
     'depends': [
-        'website'
+        'website_multi_theme'
     ],
     'data': [
         'templates/head.xml',
