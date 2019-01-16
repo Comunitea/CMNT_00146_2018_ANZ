@@ -5,6 +5,10 @@
 from odoo import models, fields, _
 from odoo.exceptions import UserError
 
+import logging
+
+_logger = logging.getLogger(__name__)
+
 
 class ExportCatalogtWzd(models.TransientModel):
 
@@ -66,7 +70,12 @@ class ExportCatalogtWzd(models.TransientModel):
         stock_info = all_variants._compute_quantities_dict(
             False, False, False,
             from_date=self.date_start, to_date=self.date_end)
+
+        idx = 0
+        tot = len(templates)
         for tmp in templates:
+            idx += 1
+            _logger.info("Export template %s / %s" % (str(idx), str(tot)))
             res[tmp.name] = {
                 'image': tmp.image_medium or False,
                 'cost': tmp.standard_price,
