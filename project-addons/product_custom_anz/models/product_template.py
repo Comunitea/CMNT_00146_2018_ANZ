@@ -52,7 +52,7 @@ class ProductTemplate(models.Model):
                     template.variant_suffix = 'Sin variantes'
                 else:
                     template.variant_suffix = 'Sin valores en variantes'
-            print ("{} de {}  -> {}:  {}".format(idx, total, template.name, template.variant_suffix ))
+            #print ("{} de {}  -> {}:  {}".format(idx, total, template.name, template.variant_suffix ))
 
     @api.model
     def _search(self, args, offset=0, limit=None, order=None,
@@ -79,6 +79,57 @@ class ProductTemplate(models.Model):
             if data:
                 data.unlink()
 
+    @api.multi
+    def create_variant_ids(self):
+        if self._context.get('no_create_variants', False):
+            return True
+        return super(ProductTemplate, self).create_variant_ids()
+
+    @api.multi
+    def fix_variant_attributes(self):
+        ctx = self._context.copy()
+        ctx.update(no_create_variants=True)
+        tmpl_ids = self.filtered(lambda x: x.attribute_id)
+        for tmpl in tmpl_ids:
+            change_template = False
+            values = tmpl.attribute_id.value_ids
+            variant_ids = tmpl.product_variant_ids.filtered(lambda x: not x.attribute_value_ids and x.oldname)
+            print ("\n\nBusco \n{} en \n{}".format(values.mapped('name'), variant_ids.mapped('oldname')))
+            for variant in variant_ids.sorted(key=lambda l: len(l.oldname), reverse=True):
+                print ("\n -------------> {}".format(variant.oldname))
+                val_id = False
+                if not variant.force_attribute_value:
+                    for val in values.sorted(key=lambda l: len(l.name), reverse=True):
+                        print ('{} -> {}'.format(val.name, variant.oldname))
+                        if val.name in variant.oldname or (val.name_normalizado and val.name_normalizado in variant.oldname_normalizado):
+                            print('-------------> ---> Encuentro {} la variante {}'.format(variant.oldname, val.name))
+                            if val_id:
+                                val_id = False
+                                variant.need_fix = True
+                                print ('-------------> XXX> Duplicado {} -> {}'.format(val.name, variant.oldname))
+                            else:
+                                val_id = val
+                else:
+                    val_id = variant.force_attribute_value
+                if val_id:
+                    variant.need_fix = False
+                    change_template = True
+                    print('-------------> ---> ---> Escribo en {} la variante {}'.format(variant.oldname, val_id.name))
+                    variant.write({'attribute_value_ids': [(6,0,[val_id.id])]})
+                    tmpl.attribute_line_ids[0].with_context(ctx).write({'value_ids': [(4, val_id.id)]})
+                else:
+                    print('-------------> ---> La variante {} no tiene talla'.format(variant.oldname))
+                #else:
+                #    variant.write({'attribute_value_ids': [(5)]})
+
+            if change_template:
+                tmpl._get_variant_suffix()
+
+
+
+
+
+
 
 class ProductProduct(models.Model):
 
@@ -90,7 +141,10 @@ class ProductProduct(models.Model):
             product.attribute_id = product.product_tmpl_id.attribute_line_ids and product.product_tmpl_id.attribute_line_ids[0].attribute_id or False
 
     oldname = fields.Char()
-    #attribute_id = fields.Many2one('product.attribute', compute="_get_attribute_id")
+    oldname_normalizado = fields.Char()
+    tmpl_attribute_id = fields.Many2one(related="product_tmpl_id.attribute_id")
+    need_fix = fields.Boolean(default=False)
+    force_attribute_value = fields.Many2one('product.attribute.value', string="Forzar esta talla")
 
     @api.model
     def _search(self, args, offset=0, limit=None, order=None,
@@ -101,3 +155,4 @@ class ProductProduct(models.Model):
         return super(ProductProduct, self)._search(
             args, offset=offset, limit=limit, order=order,
             count=count, access_rights_uid=access_rights_uid)
+

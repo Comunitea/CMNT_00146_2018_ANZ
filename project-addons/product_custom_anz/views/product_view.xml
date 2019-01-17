@@ -29,6 +29,23 @@
         </field>
     </record>
 
+    <record id="product_variant_easy_edit_view_fix_variant" model="ir.ui.view">
+        <field name="name">product.product.easy_view_fix_variant</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.product_variant_easy_edit_view"/>
+        <field name="arch" type="xml">
+            <field name="attribute_value_ids" position="after">
+                <field name="product_variant_count" invisible="1"/>
+                <field name="tmpl_attribute_id" readonly="1" attrs="{'invisible': [('product_variant_count', '&lt;', 2)]}"/>
+                <field name="need_fix" attrs="{'invisible': [('product_variant_count', '&lt;', 2)]}"/>
+                <field name="oldname" attrs="{'invisible': [('product_variant_count', '&lt;', 2)]}"/>
+                <field name="force_attribute_value"
+                       domain="[('attribute_id', '=', tmpl_attribute_id)]"
+                       attrs="{'invisible': ['|',('product_variant_count', '&lt;', 2),('tmpl_attribute_id', '=', False)]}"/>
+            </field>
+        </field>
+    </record>
+
     <record id="attribute_tree_view_add_custom" model="ir.ui.view">
         <field name="name">product.attribute.tree.add.custom</field>
         <field name="model">product.attribute</field>
