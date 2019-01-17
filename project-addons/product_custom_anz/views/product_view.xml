@@ -7,6 +7,10 @@
         <field name="inherit_id" ref="product.product_attribute_view_form"/>
         <field name="model">product.attribute</field>
         <field name="arch" type="xml">
+            <field name="name" position="after">
+                <field name="product_brand_id"/>
+                <field name="attribute_category_id"/>
+            </field>
             <field name="create_variant" position="after">
                 <field name="is_tboot"/>
                 <field name="is_color"/>
@@ -30,6 +34,10 @@
         <field name="model">product.attribute</field>
         <field name="inherit_id" ref="product.attribute_tree_view"/>
         <field name="arch" type="xml">
+            <field name="name" position="after">
+                <field name="product_brand_id"/>
+                <field name="attribute_category_id"/>
+            </field>
             <field name="create_variant" position="after">
                 <field name="is_tboot"/>
                 <field name="is_color"/>
@@ -42,6 +50,7 @@
         <field name="inherit_id" ref="product.variants_tree_view"/>
         <field name="arch" type="xml">
             <field name="name" position="after">
+                <field name="supplier_code"/>
                 <field name="is_tboot"/>
                 <field name="is_color"/>
             </field>
@@ -56,7 +65,9 @@
             <field name="attribute_line_ids" position="after">
                 <group>
                     <field name="boot_type"/>
+
                     <field name="product_color"/>
+                    <field name="attribute_id"/>
                     <field name="variant_suffix"/>
                     <field name="ref_template"/>
                 </group>
@@ -83,13 +94,17 @@
             <notebook position="inside">
                 <page string="Fix variants" attrs="{'invisible': [('oldname', '=', False)]}" groups="base.group_no_one">
                     <field name="oldname"/>
+                    <field name="attribute_id"/>
                     <field name="attribute_line_ids">
                         <tree string="Variants" editable="bottom">
                             <field name="attribute_id"/>
-                            <field name="value_ids" widget="many2many_tags" options="{'no_create_edit': True}" domain="[('attribute_id', '=', attribute_id)]" context="{'default_attribute_id': attribute_id}"/>
+                            <field name="value_ids" widget="many2many_tags"
+                                   options="{'no_create_edit': True}"
+                                   domain="[('attribute_id', '=', attribute_id)]"
+                                   context="{'default_attribute_id': attribute_id}"/>
                         </tree>
                     </field>
-                    <field name="attribute_value_ids"/>
+                    <field name="attribute_value_ids" domain="[('attribute_id', '=', attribute_id)]"/>
                 </page>
             </notebook>
         </field>

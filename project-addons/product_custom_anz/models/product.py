@@ -2,6 +2,10 @@
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
 from odoo import fields, models
 
+class ProductAttributeCategory(models.Model):
+    _name = 'product.attribute.category'
+
+    name = fields.Char(string='Category')
 
 class ProductAttribute(models.Model):
 
@@ -12,6 +16,9 @@ class ProductAttribute(models.Model):
     is_tboot = fields.Boolean("Is type of boot",
                               help="Check it if attribute will contain \
                               type of boots")
+
+    product_brand_id = fields.Many2one('product.brand', 'Brand')
+    attribute_category_id = fields.Many2one('product.attribute.category', 'Category')
 
 
 class ProductAttributeValue(models.Model):
@@ -25,3 +32,4 @@ class ProductAttributeValue(models.Model):
                               related="attribute_id.is_tboot",
                               readonly=True)
 
+    supplier_code = fields.Char("Supplier name")
