@@ -8,8 +8,20 @@
         <field name="arch" type="xml">
             <filter name="Sales" position="after">
                 <filter name="ref_change" string="Ref change" domain="[('ref_change','=',True)]"/>
+                <separator/>
+                <filter string="Última quincena" name="last_last_15"
+                        domain="[('date','&gt;=', (context_today() - datetime.timedelta(days=31)).strftime('%Y-%m-16 00:00:00')),('date','&lt;',context_today().strftime('%Y-%m-01 00:00:00'))]"/>
+                <filter string="1º Quincena" name="this_first_15"
+                        domain="[('date','&gt;=', context_today().strftime('%Y-%m-01 00:00:00')),('date','&lt;',context_today().strftime('%Y-%m-15 23:59:59'))]"/>
+                <filter string="2º Quincena" name="this_last_15"
+                        domain="[('date','&gt;=', context_today().strftime('%Y-%m-16 00:00:00')),('date','&lt;',(context_today() + datetime.timedelta(days=31)).strftime('%Y-%m-01 00:00:00'))]"/>
             </filter>
-
+            <field name="product_id" position="after">
+                <field name="product_tmpl_id"/>
+            </field>
+            <field name="product_id" position="before">
+                <field name="product_brand_id"/>
+            </field>
         </field>
     </record>
 
@@ -19,7 +31,7 @@
         <field name="arch" type="xml">
             <tree string="Sale order tree">
                 <field name="partner_id" readonly="1"/>
-                <field name="adidas_partner" readonly="1"/>
+                <field name="ref_change_partner" readonly="1"/>
                 <field name="categ_id" readonly="1" invisible="1"/>
                 <field name="name" readonly="1"/>
                 <field name="date" readonly="1"/>
