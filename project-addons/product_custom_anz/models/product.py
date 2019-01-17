@@ -18,7 +18,7 @@ class ProductAttribute(models.Model):
                               type of boots")
 
     product_brand_id = fields.Many2one('product.brand', 'Brand')
-    attribute_category_id = fields.Many2one('product.attribute.category', 'Category')
+    attribute_category_id = fields.Many2one('product.category', 'Category')
 
 
 class ProductAttributeValue(models.Model):
