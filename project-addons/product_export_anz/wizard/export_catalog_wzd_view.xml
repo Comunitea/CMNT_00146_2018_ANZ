@@ -7,12 +7,16 @@
             <form string="Import Products">
                 <group>
                     <group>
-                        <field name="brand_id" string="Brand"/>
+                        <field name="catalog_type_id" string="Catalog type"/>
                         <field name="scheduled_id" string="Schedule"/>
+                        <field name="brand_id" string="Brand"/>
+                        <field name="categ_id" string="Category"/>
+                        <field name="pricelist_id" string="Pricelist"/>
                     </group>
                     <group>
                         <field name="date_start" string="Date Start"/>
                         <field name="date_end" string="Date End"/>
+                        <field name="limit" string="Limit"/>
                     </group>
                 </group>
 

@@ -15,6 +15,7 @@
     ],
     'data': [
         'views/report_view.xml',
+        'security/ir.model.access.csv',
         'wizard/export_catalog_wzd_view.xml',
     ],
     'installable': True,
