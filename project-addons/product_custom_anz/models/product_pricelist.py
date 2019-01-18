@@ -175,16 +175,16 @@ class ProductPricelistItem(models.Model):
     _inherit = "product.pricelist.item"
 
     applied_on = fields.Selection(selection_add=[
-         ('brand', 'Brand'),
+         ('11_brand', 'Brand'),
     ])
     brand_id = fields.Many2one('product.brand', 'Brand')
 
     @api.onchange('applied_on')
     def _onchange_applied_on(self):
         super(ProductPricelistItem, self)._onchange_applied_on()
-        if self.applied_on != 'brand':
+        if self.applied_on != '11_brand':
             self.brand_id = False
-    
+
     @api.one
     @api.depends('categ_id', 'product_tmpl_id', 'product_id', 'compute_price', 
                  'fixed_price', 'pricelist_id', 'percent_price', 
@@ -196,4 +196,3 @@ class ProductPricelistItem(models.Model):
         super(ProductPricelistItem, self)._get_pricelist_item_name_price()
         if self.brand_id:
             self.name = _("Brand: %s") % (self.brand_id.name)
-      
