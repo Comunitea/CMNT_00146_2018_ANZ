@@ -17,6 +17,7 @@
                         <field name="date_start" string="Date Start"/>
                         <field name="date_end" string="Date End"/>
                         <field name="limit" string="Limit"/>
+                        <field name="scale"/>
                     </group>
                 </group>
 

@@ -40,6 +40,13 @@ class ExportCatalogtWzd(models.TransientModel):
     date_end = fields.Date(string='Date End')
     catalog_type_id = fields.Many2one('export.catalog.type', 'Catalog type', required=True)
     limit = fields.Integer('Limit', default=50)
+    scale = fields.Selection ([('25', '25%'),
+                               ('50', '50%'),
+                               ('60', '60%'),
+                               ('75', '75%'),
+                               ('100', '100%')], string="Scale")
+
+
 
     def get_variant_sales(self, variant):
         domain = [
