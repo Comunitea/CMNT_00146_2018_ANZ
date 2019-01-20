@@ -1,0 +1,130 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* partner_supplier_data
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 11.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-01-20 20:45+0000\n"
+"PO-Revision-Date: 2019-01-20 20:45+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: partner_supplier_data
+#: model:ir.ui.view,arch_db:partner_supplier_data.view_partner_supplier_data_search
+msgid "Archived"
+msgstr "Archivado"
+
+#. module: partner_supplier_data
+#: model:ir.actions.act_window,help:partner_supplier_data.action_view_supplier_customer_ranking_tree
+msgid "Click to add a partner area."
+msgstr "Añadir una zona."
+
+#. module: partner_supplier_data
+#: model:ir.ui.view,arch_db:partner_supplier_data.view_partner_supplier_data_search
+msgid "Code"
+msgstr "Código"
+
+#. module: partner_supplier_data
+#: model:ir.model,name:partner_supplier_data.model_res_partner
+msgid "Contact"
+msgstr "Contacto"
+
+#. module: partner_supplier_data
+#: model:ir.model.fields,field_description:partner_supplier_data.field_res_partner_customer_data_count
+#: model:ir.model.fields,field_description:partner_supplier_data.field_res_partner_supplier_data_count
+#: model:ir.model.fields,field_description:partner_supplier_data.field_res_users_customer_data_count
+#: model:ir.model.fields,field_description:partner_supplier_data.field_res_users_supplier_data_count
+msgid "Count"
+msgstr "Count"
+
+#. module: partner_supplier_data
+#: model:ir.ui.view,arch_db:partner_supplier_data.view_partner_form_supplier_data
+msgid "Customer data"
+msgstr "Datos de clientes externos"
+
+#. module: partner_supplier_data
+#: model:ir.model.fields,field_description:partner_supplier_data.field_res_partner_import_from
+#: model:ir.model.fields,field_description:partner_supplier_data.field_res_users_import_from
+msgid "Import from"
+msgstr "Impotado desde"
+
+#. module: partner_supplier_data
+#: model:ir.ui.view,arch_db:partner_supplier_data.view_partner_supplier_data_search
+msgid "Local customer"
+msgstr "Cliente propio"
+
+#. module: partner_supplier_data
+#: model:ir.model.fields,field_description:partner_supplier_data.field_res_partner_partner_customer_data_ids
+#: model:ir.model.fields,field_description:partner_supplier_data.field_res_users_partner_customer_data_ids
+msgid "Partner supplier data"
+msgstr "Datos de clientes externos"
+
+#. module: partner_supplier_data
+#: model:ir.ui.view,arch_db:partner_supplier_data.view_partner_supplier_data_search
+msgid "Supplier"
+msgstr "Proveedor"
+
+#. module: partner_supplier_data
+#: code:addons/partner_supplier_data/models/partner_supplier_data.py:65
+#: sql_constraint:partner.supplier.data:0
+#, python-format
+msgid "Supplier code must be unique"
+msgstr "El código de cliente en el proveedor debe ser único"
+
+#. module: partner_supplier_data
+#: model:ir.ui.view,arch_db:partner_supplier_data.view_partner_supplier_data_search
+msgid "Supplier customer"
+msgstr "Cliente externo"
+
+#. module: partner_supplier_data
+#: model:ir.actions.act_window,name:partner_supplier_data.action_view_partner_supplier_data_tree
+#: model:ir.ui.menu,name:partner_supplier_data.menu_action_view_partner_supplier_data_tree
+msgid "Supplier customer data"
+msgstr "Clientes externos"
+
+#. module: partner_supplier_data
+#: model:ir.actions.act_window,name:partner_supplier_data.action_view_supplier_customer_ranking_tree
+#: model:ir.ui.menu,name:partner_supplier_data.menu_action_view_supplier_customer_ranking_tree
+#: model:ir.ui.view,arch_db:partner_supplier_data.view_supplier_customer_ranking_tree
+msgid "Supplier customer ranking"
+msgstr "Categorías de clientes externos"
+
+#. module: partner_supplier_data
+#: model:ir.ui.menu,name:partner_supplier_data.menu_partner_supplier_data
+#: model:ir.ui.view,arch_db:partner_supplier_data.view_partner_form_supplier_data
+#: model:ir.ui.view,arch_db:partner_supplier_data.view_partner_supplier_data_search
+msgid "Supplier data"
+msgstr "Clientes externos"
+
+#. module: partner_supplier_data
+#: model:ir.ui.view,arch_db:partner_supplier_data.view_partner_supplier_data_tree
+msgid "Supplier data area"
+msgstr "Clientes externos"
+
+#. module: partner_supplier_data
+#: model:ir.model.fields,help:partner_supplier_data.field_res_partner_partner_customer_data_ids
+#: model:ir.model.fields,help:partner_supplier_data.field_res_users_partner_customer_data_ids
+msgid "Supplier data for this customer"
+msgstr "Clientes externos asociados"
+
+#. module: partner_supplier_data
+#: model:ir.ui.view,arch_db:partner_supplier_data.view_partner_supplier_data_form
+msgid "Supplier partner data"
+msgstr "Clietnes externos de este proveedor"
+
+#. module: partner_supplier_data
+#: model:ir.model,name:partner_supplier_data.model_partner_supplier_data
+msgid "partner.supplier.data"
+msgstr "Datos de clientes externos"
+
+#. module: partner_supplier_data
+#: model:ir.model,name:partner_supplier_data.model_supplier_customer_ranking
+msgid "supplier.customer.ranking"
+msgstr "Categorías de clientes en proveedores"
+

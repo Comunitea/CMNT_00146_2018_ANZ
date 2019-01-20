@@ -5,6 +5,7 @@ from odoo.exceptions import UserError
 from odoo.osv import expression
 from odoo.exceptions import UserError,ValidationError
 
+
 class ResPartnerArea(models.Model):
     _inherit = 'res.partner.area'
 
@@ -22,22 +23,15 @@ class ResPartnerArea(models.Model):
                                             string="Restricted brands for this partner"
                                             )
 
-
-
 class ResPartner(models.Model):
 
     _inherit = 'res.partner'
-
-
 
     affiliate = fields.Boolean('Affiliate')
     player = fields.Boolean('Player')
     sponsorship_bag = fields.Float()
     analytic_default_count = fields.Integer('Analytic Defaults',
                                             compute='_count_analytic_defaults')
-
-
-
     allowed_brand_ids = fields.Many2many('product.brand',
                                         "allowed_res_partner_product_brand_rel",
                                         "res_partner_id",
@@ -66,6 +60,7 @@ class ResPartner(models.Model):
                                             string="Restricted categories for this partner"
                                             )
     ref = fields.Char(default='[Auto]')
+
 
     @api.multi
     def refresh_partner_ref(self):
