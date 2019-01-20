@@ -6,14 +6,25 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-01-20 20:45+0000\n"
-"PO-Revision-Date: 2019-01-20 20:45+0000\n"
+"POT-Creation-Date: 2019-01-20 21:12+0000\n"
+"PO-Revision-Date: 2019-01-20 21:12+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
+
+#. module: partner_supplier_data
+#: model:ir.model.fields,field_description:partner_supplier_data.field_partner_supplier_data_active
+msgid "Active"
+msgstr "Activo"
+
+#. module: partner_supplier_data
+#: model:ir.model.fields,field_description:partner_supplier_data.field_partner_supplier_data_supplier_id
+#: model:ir.model.fields,field_description:partner_supplier_data.field_supplier_customer_ranking_supplier_id
+msgid "Anzamar Supplier"
+msgstr "Proveedor"
 
 #. module: partner_supplier_data
 #: model:ir.ui.view,arch_db:partner_supplier_data.view_partner_supplier_data_search
@@ -26,9 +37,15 @@ msgid "Click to add a partner area."
 msgstr "Añadir una zona."
 
 #. module: partner_supplier_data
+#: model:ir.model.fields,field_description:partner_supplier_data.field_supplier_customer_ranking_code
 #: model:ir.ui.view,arch_db:partner_supplier_data.view_partner_supplier_data_search
 msgid "Code"
 msgstr "Código"
+
+#. module: partner_supplier_data
+#: model:ir.model.fields,field_description:partner_supplier_data.field_partner_supplier_data_partner_id
+msgid "Commercial Entity"
+msgstr "Entidad comercial"
 
 #. module: partner_supplier_data
 #: model:ir.model,name:partner_supplier_data.model_res_partner
@@ -41,12 +58,47 @@ msgstr "Contacto"
 #: model:ir.model.fields,field_description:partner_supplier_data.field_res_users_customer_data_count
 #: model:ir.model.fields,field_description:partner_supplier_data.field_res_users_supplier_data_count
 msgid "Count"
-msgstr "Count"
+msgstr "Cuenta"
+
+#. module: partner_supplier_data
+#: model:ir.model.fields,field_description:partner_supplier_data.field_partner_supplier_data_create_uid
+#: model:ir.model.fields,field_description:partner_supplier_data.field_supplier_customer_ranking_create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: partner_supplier_data
+#: model:ir.model.fields,field_description:partner_supplier_data.field_partner_supplier_data_create_date
+#: model:ir.model.fields,field_description:partner_supplier_data.field_supplier_customer_ranking_create_date
+msgid "Created on"
+msgstr "Creado en"
 
 #. module: partner_supplier_data
 #: model:ir.ui.view,arch_db:partner_supplier_data.view_partner_form_supplier_data
 msgid "Customer data"
 msgstr "Datos de clientes externos"
+
+#. module: partner_supplier_data
+#: model:ir.model.fields,help:partner_supplier_data.field_res_partner_partner_supplier_data_ids
+#: model:ir.model.fields,help:partner_supplier_data.field_res_users_partner_supplier_data_ids
+msgid "Customer data in our supplier data"
+msgstr "Clientes externos (de proveedores)"
+
+#. module: partner_supplier_data
+#: model:ir.model.fields,field_description:partner_supplier_data.field_supplier_customer_ranking_description
+msgid "Description"
+msgstr "Descripción"
+
+#. module: partner_supplier_data
+#: model:ir.model.fields,field_description:partner_supplier_data.field_partner_supplier_data_display_name
+#: model:ir.model.fields,field_description:partner_supplier_data.field_supplier_customer_ranking_display_name
+msgid "Display Name"
+msgstr "Nombre mostrado"
+
+#. module: partner_supplier_data
+#: model:ir.model.fields,field_description:partner_supplier_data.field_partner_supplier_data_id
+#: model:ir.model.fields,field_description:partner_supplier_data.field_supplier_customer_ranking_id
+msgid "ID"
+msgstr "ID (identificación)"
 
 #. module: partner_supplier_data
 #: model:ir.model.fields,field_description:partner_supplier_data.field_res_partner_import_from
@@ -55,20 +107,60 @@ msgid "Import from"
 msgstr "Impotado desde"
 
 #. module: partner_supplier_data
+#: model:ir.model.fields,field_description:partner_supplier_data.field_partner_supplier_data___last_update
+#: model:ir.model.fields,field_description:partner_supplier_data.field_supplier_customer_ranking___last_update
+msgid "Last Modified on"
+msgstr "Última modificación en"
+
+#. module: partner_supplier_data
+#: model:ir.model.fields,field_description:partner_supplier_data.field_partner_supplier_data_write_uid
+#: model:ir.model.fields,field_description:partner_supplier_data.field_supplier_customer_ranking_write_uid
+msgid "Last Updated by"
+msgstr "Última actualización de"
+
+#. module: partner_supplier_data
+#: model:ir.model.fields,field_description:partner_supplier_data.field_partner_supplier_data_write_date
+#: model:ir.model.fields,field_description:partner_supplier_data.field_supplier_customer_ranking_write_date
+msgid "Last Updated on"
+msgstr "Última actualización en"
+
+#. module: partner_supplier_data
 #: model:ir.ui.view,arch_db:partner_supplier_data.view_partner_supplier_data_search
 msgid "Local customer"
 msgstr "Cliente propio"
 
 #. module: partner_supplier_data
+#: model:ir.model.fields,field_description:partner_supplier_data.field_supplier_customer_ranking_name
+msgid "Name"
+msgstr "Nombre"
+
+#. module: partner_supplier_data
 #: model:ir.model.fields,field_description:partner_supplier_data.field_res_partner_partner_customer_data_ids
+#: model:ir.model.fields,field_description:partner_supplier_data.field_res_partner_partner_supplier_data_ids
 #: model:ir.model.fields,field_description:partner_supplier_data.field_res_users_partner_customer_data_ids
+#: model:ir.model.fields,field_description:partner_supplier_data.field_res_users_partner_supplier_data_ids
 msgid "Partner supplier data"
 msgstr "Datos de clientes externos"
+
+#. module: partner_supplier_data
+#: model:ir.model.fields,field_description:partner_supplier_data.field_supplier_customer_ranking_sequence
+msgid "Sequence"
+msgstr "Secuencia"
 
 #. module: partner_supplier_data
 #: model:ir.ui.view,arch_db:partner_supplier_data.view_partner_supplier_data_search
 msgid "Supplier"
 msgstr "Proveedor"
+
+#. module: partner_supplier_data
+#: model:ir.model.fields,field_description:partner_supplier_data.field_partner_supplier_data_supplier_customer_ranking_id
+msgid "Supplier class"
+msgstr "Tipo de cliente para el proveedor"
+
+#. module: partner_supplier_data
+#: model:ir.model.fields,field_description:partner_supplier_data.field_partner_supplier_data_supplier_code
+msgid "Supplier code"
+msgstr "Codigo en proveedor"
 
 #. module: partner_supplier_data
 #: code:addons/partner_supplier_data/models/partner_supplier_data.py:65
@@ -78,6 +170,7 @@ msgid "Supplier code must be unique"
 msgstr "El código de cliente en el proveedor debe ser único"
 
 #. module: partner_supplier_data
+#: model:ir.model.fields,field_description:partner_supplier_data.field_partner_supplier_data_customer_supplier_id
 #: model:ir.ui.view,arch_db:partner_supplier_data.view_partner_supplier_data_search
 msgid "Supplier customer"
 msgstr "Cliente externo"
@@ -116,7 +209,12 @@ msgstr "Clientes externos asociados"
 #. module: partner_supplier_data
 #: model:ir.ui.view,arch_db:partner_supplier_data.view_partner_supplier_data_form
 msgid "Supplier partner data"
-msgstr "Clietnes externos de este proveedor"
+msgstr "Clientes externos de este proveedor"
+
+#. module: partner_supplier_data
+#: model:ir.model.fields,help:partner_supplier_data.field_partner_supplier_data_customer_supplier_id
+msgid "Type=Other, must be child of parrner_id"
+msgstr "Tipo 'Otra dirección' , debería tener un padre"
 
 #. module: partner_supplier_data
 #: model:ir.model,name:partner_supplier_data.model_partner_supplier_data

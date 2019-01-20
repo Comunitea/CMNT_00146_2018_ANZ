@@ -5,26 +5,6 @@ from odoo.exceptions import UserError
 from odoo.osv import expression
 from odoo.exceptions import UserError,ValidationError
 
-class ResPartner(models.Model):
-
-    _inherit = 'res.partner'
-
-    partner_supplier_data_ids = fields.One2many('partner.supplier.data', 'partner_id', string="Partner supplier data", help ="Customer data in our supplier data")
-
-    @api.multi
-    def get_supplier_partner(self, supplier_code=False, supplier_id=False, brand_id=False):
-        domain = []
-        if supplier_code:
-            domain += [('supplier_code', '=', supplier_code)]
-        if supplier_id:
-            domain += [('supplier_id', '=', supplier_id)]
-        if brand_id:
-            domain += [('brand_id', '=', brand_id)]
-        partner_id = self.env['partner.supplier.data'].search(domain)
-        if len(partner_id)==1:
-            return partner_id.partner_id
-        return False
-
 
 
 class SupplierClass(models.Model):
@@ -33,10 +13,10 @@ class SupplierClass(models.Model):
     _order = 'sequence, supplier_id, code'
 
     sequence = fields.Integer('Sequence')
-    supplier_id = fields.Many2one('res.partner', 'Anzamar Supplier', domain="[('supplier', '=', True)]", required='1')
-    name = fields.Char("Name", required="1")
-    code = fields.Char('Code')
-    description = fields.Char('Description')
+    supplier_id = fields.Many2one('res.partner', 'Proveedor', domain="[('supplier', '=', True)]", required='1')
+    name = fields.Char("Nombre", required="1")
+    code = fields.Char('Código externo')
+    description = fields.Char('Descripción')
 
 class ResPartnerSupplierData(models.Model):
     _name = 'partner.supplier.data'
@@ -51,13 +31,13 @@ class ResPartnerSupplierData(models.Model):
 
 
     partner_id = fields.Many2one(related='customer_supplier_id.commercial_partner_id')
-    supplier_id = fields.Many2one('res.partner', 'Anzamar Supplier', domain="[('supplier', '=', True)]", required=1)
-    customer_supplier_id = fields.Many2one('res.partner', "Supplier customer",
+    supplier_id = fields.Many2one('res.partner', 'Proveedor', domain="[('supplier', '=', True)]", required=1)
+    customer_supplier_id = fields.Many2one('res.partner', "Cliente externo",
                                            domain="[('type', '=', 'other'), ('supplier', '=', False)]",
                                           help="Type=Other, must be child of parrner_id", required=1)
     #brand_id = fields.Many2one('product.brand', 'Brand')
-    supplier_code = fields.Char("Supplier code", required=1)
-    supplier_customer_ranking_id = fields.Many2one('supplier.customer.ranking', string="Supplier class")
+    supplier_code = fields.Char("Código externo", required=1)
+    supplier_customer_ranking_id = fields.Many2one('supplier.customer.ranking', string="Clasificación")
     active = fields.Boolean('Active', default=True)
 
     _sql_constraints = [
