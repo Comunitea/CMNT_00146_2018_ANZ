@@ -209,7 +209,7 @@ msgstr "Clientes externos asociados"
 #. module: partner_supplier_data
 #: model:ir.ui.view,arch_db:partner_supplier_data.view_partner_supplier_data_form
 msgid "Supplier partner data"
-msgstr "Clientes externos de este proveedor"
+msgstr "Clientes externos (de proveedor)"
 
 #. module: partner_supplier_data
 #: model:ir.model.fields,help:partner_supplier_data.field_partner_supplier_data_customer_supplier_id
