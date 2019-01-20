@@ -1,6 +1,1 @@
 "id","name","model_id:id","group_id:id","perm_read","perm_write","perm_create","perm_unlink"
-"access_supplier_customer_ranking_user","access_supplier_customer_ranking_user","model_supplier_customer_ranking","base.group_user",1,0,0,0
-"access_supplier_customer_ranking_manager","access_supplier_customer_ranking_manager","model_supplier_customer_ranking","base.group_partner_manager",1,1,1,1
-
-"access_partner_supplier_data_user","access_partner_supplier_data_user","model_partner_supplier_data","base.group_user",1,0,0,0
-"access_partner_supplier_data_manager","access_partner_supplier_data_manager","model_partner_supplier_data","base.group_partner_manager",1,1,1,1
