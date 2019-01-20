@@ -11,8 +11,9 @@
         'base',
     ],
     'data': [
-        'views/partner_view.xml',
+
         'views/partner_supplier_data.xml',
+        'views/partner_view.xml',
         'security/ir.model.access.csv'
     ],
     'installable': True,
