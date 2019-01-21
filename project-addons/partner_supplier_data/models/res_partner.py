@@ -38,9 +38,9 @@ class ResPartner(models.Model):
 
     @api.multi
     def act_location_dates_from_zip(self):
-        self._compute_commercial_partner()
+        #self._compute_commercial_partner()
         for partner in self:
-            better_zip = self.env['res.batter.zip'].search([('name', '=', partner.zip)], limit=1)
+            better_zip = self.env['res.better.zip'].search([('name', '=', partner.zip)], limit=1)
             if better_zip:
                 partner.write({'zip_id': better_zip.id,
                                'state_id': better_zip.state_id.id,
