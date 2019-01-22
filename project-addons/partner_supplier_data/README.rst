@@ -6,7 +6,7 @@
 Empty
 =================================
 
-Supplier custoemr data for our customer
+Supplier customer data for our customer
 
 Configuration
 =============

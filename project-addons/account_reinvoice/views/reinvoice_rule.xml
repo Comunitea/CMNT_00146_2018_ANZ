@@ -12,6 +12,9 @@
                 <field name="scheduled_sale"/>
                 <field name="supplier_discount"/>
                 <field name="customer_discount"/>
+                <field name="affiliate"/>
+                <field name="supplier_customer_ranking_id"/>
+                <field name="supplier_id"/>
             </tree>
         </field>
     </record>

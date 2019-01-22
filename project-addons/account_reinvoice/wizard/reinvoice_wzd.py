@@ -26,7 +26,7 @@ class ReinvoiceWzd(models.TransientModel):
                 tax_ids.append(taxes.id)
         return tax_ids
 
-    def _get_associated_invoice_lines(self, inv_ass):
+    def _get_associated_invoice_lines(self, inv_ass, supplier=False):
         # Get account
         cat = self.env['product.category'].search([], limit=1)
         account_id = cat.property_account_income_categ_id.id
@@ -34,10 +34,7 @@ class ReinvoiceWzd(models.TransientModel):
             # Get new taxes
             new_tax_ids = self._get_purchase_tax(line.invoice_line_tax_ids)
             # get new discount
-            new_discount = line.discount
-            if line.product_id.product_brand_id:
-                new_discount = line.product_id.product_brand_id.\
-                    get_reinvoice_discount(line)
+            new_discount = self.env['reinvoice.rule'].get_reinvoice_discount(line, supplier)
             line_vals = {
                 'name': line.name + _(' (Reinvoice)'),
                 'account_id': account_id,
@@ -74,7 +71,7 @@ class ReinvoiceWzd(models.TransientModel):
             inv_ass = inv.copy(copy_vals)
             inv.write({'customer_invoice_id': inv_ass.id})
             inv_ass.write({'supplier_invoice_id': inv.id})
-            self._get_associated_invoice_lines(inv_ass)
+            self._get_associated_invoice_lines(inv_ass, supplier=inv.partner_id)
             created_invoices += inv_ass
         return created_invoices
 
