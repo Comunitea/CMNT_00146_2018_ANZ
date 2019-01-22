@@ -28,12 +28,12 @@ class SaleCommissionMixin(models.AbstractModel):
         return res
 
 
-class SaleOrderLineAgent(models.AbstractModel):
+class SaleCommissionLineMixin(models.AbstractModel):
     _inherit = "sale.commission.line.mixin"
 
     @api.onchange('agent')
     def onchange_agent(self):
-        super(SaleOrderLineAgent, self).onchange_agent()
+        super(SaleCommissionLineMixin, self).onchange_agent()
         if self.object_id.product_id.product_brand_id:
             brand = self.object_id.product_id.product_brand_id
             commission_id = self.agent.get_brand_commission(brand.id)
