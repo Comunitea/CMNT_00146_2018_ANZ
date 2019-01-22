@@ -5,10 +5,46 @@
 from odoo import models, fields, _
 from odoo.exceptions import UserError
 from odoo.addons import decimal_precision as dp
+from odoo.tools.float_utils import float_round
 
 import logging
 
 _logger = logging.getLogger(__name__)
+
+class ProductProduct(models.Model):
+
+    _inherit = 'product.product'
+
+    def _compute_move_quantities_dict(self, lot_id, owner_id, package_id, from_date=False, to_date=False):
+
+        domain_quant_loc, domain_move_in_loc, domain_move_out_loc = self._get_domain_locations()
+        if to_date and to_date < fields.Datetime.now(): #Only to_date as to_date will correspond to qty_available
+            dates_in_the_past = True
+        if not to_date:
+            to_date = fields.Datetime.now()
+        domain_move_in = [('product_id', 'in', self.ids)] + domain_move_in_loc
+        domain_move_out = [('product_id', 'in', self.ids)] + domain_move_out_loc
+        if from_date:
+            domain_move_in += [('date', '>=', from_date)]
+            domain_move_out += [('date', '>=', from_date)]
+        if to_date:
+            domain_move_in += [('date', '<=', to_date)]
+            domain_move_out += [('date', '<=', to_date)]
+
+        Move = self.env['stock.move']
+        domain_move_in_todo = [('state', '=', 'done')] + domain_move_in
+        domain_move_out_todo = [('state', '=', 'done')] + domain_move_out
+        moves_in_res = dict((item['product_id'][0], item['product_qty']) for item in Move.read_group(domain_move_in_todo, ['product_id', 'product_qty'], ['product_id'], orderby='id'))
+        moves_out_res = dict((item['product_id'][0], item['product_qty']) for item in Move.read_group(domain_move_out_todo, ['product_id', 'product_qty'], ['product_id'], orderby='id'))
+
+        res = dict()
+        for product in self.with_context(prefetch_fields=False):
+            product_id = product.id
+            rounding = product.uom_id.rounding
+            res[product_id] = {}
+            res[product_id]['incoming'] = float_round(moves_in_res.get(product_id, 0.0), precision_rounding=rounding)
+            res[product_id]['outgoing'] = float_round(moves_out_res.get(product_id, 0.0), precision_rounding=rounding)
+        return res
 
 class CatalogType(models.Model):
     _name = 'export.catalog.type'
@@ -45,6 +81,8 @@ class ExportCatalogtWzd(models.TransientModel):
                                ('60', '60%'),
                                ('75', '75%'),
                                ('100', '100%')], string="Scale")
+
+    product_template_ids = fields.Many2many('product.template', string="Lista de plantillas")
 
 
 
@@ -90,24 +128,25 @@ class ExportCatalogtWzd(models.TransientModel):
         return res[0]
 
     def get_templates(self):
-        tmp_pool = self.env['product.template']
-        templates = tmp_pool
         domain = []
         if self.scheduled_id:
             domain += [('scheduled_sale_id', '=', self.scheduled_id.id)]
         if self.brand_id:
             domain += [('product_brand_id', '=', self.brand_id.id)]
         if self.categ_id:
-            domain += [('categ_id', '=', self.categ_id.id)]
+            domain += [('categ_id', 'child_of', self.categ_id.id)]
+        if self.product_template_ids:
+            domain += [('id', '=', self.product_template_ids.ids)]
+        if self.pricelist_id:
 
-        templates = tmp_pool.search(domain, limit = self.limit)
-        if self.scheduled_id:
-            templates = self.scheduled_id.product_ids.mapped('product_tmpl_id')
-        elif self.brand_id:
-            templates = tmp_pool.search([
-                    ('product_brand_id', '=', self.brand_id.id),
-                ])
+            template_domain = [('pricelist_id','=', self.pricelist_id.id), ('applied_on', '=', '1_product')]
+            price_template_ids = self.env['product.pricelist.item'].search(template_domain).mapped('product_tmpl_id')
 
+            product_domain = [('pricelist_id', '=', self.pricelist_id.id), ('applied_on', '=', '0_product_variant')]
+            price_product_ids = self.env['product.pricelist.item'].search(product_domain).mapped('product_id').mapped('product_tmpl_id')
+
+            domain += [('id', 'in ', price_template_ids.ids + price_product_ids.ids)]
+        templates = self.env['product.template'].search(domain, limit=self.limit)
         return templates
 
     def get_report_vals(self):
@@ -122,6 +161,9 @@ class ExportCatalogtWzd(models.TransientModel):
         ]
         all_variants = self.env['product.product'].search(domain)
         stock_info = all_variants._compute_quantities_dict(
+            False, False, False,
+            from_date=self.date_start, to_date=self.date_end)
+        stock_info_moves = all_variants._compute_move_quantities_dict(
             False, False, False,
             from_date=self.date_start, to_date=self.date_end)
 
@@ -159,11 +201,11 @@ class ExportCatalogtWzd(models.TransientModel):
                     res[tmp.name]['purchases'].append(purchases)
 
                 if self.catalog_type_id.incomings:
-                    incomings = stock_info[variant.id]['incoming_qty']
+                    incomings = stock_info_moves[variant.id]['incoming']
                     res[tmp.name]['incomings'].append(incomings)
 
                 if self.catalog_type_id.outgoings:
-                    outgoings = stock_info[variant.id]['outgoing_qty']
+                    outgoings = stock_info_moves[variant.id]['outgoing']
                     res[tmp.name]['outgoings'].append(outgoings)
 
                 if self.catalog_type_id.stocks:

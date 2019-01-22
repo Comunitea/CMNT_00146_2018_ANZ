@@ -18,7 +18,18 @@
                         <field name="date_end" string="Date End"/>
                         <field name="limit" string="Limit"/>
                         <field name="scale"/>
+
                     </group>
+
+                    <group string="Lista de artículos">
+                        <field name ="product_template_ids" nnolabel="1" options="{'no_create': True}">
+                            <tree>
+                                <field name="display_name"/>
+                            </tree>
+                        </field>
+
+                    </group>
+
                 </group>
 
                 <footer>

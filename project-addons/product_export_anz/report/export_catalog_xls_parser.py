@@ -39,27 +39,47 @@ class ExportCatalogXlsParser(models.AbstractModel):
         sheet.set_column('E:Z', 10)
 
         # FORMAT DECLARATIONS
-        f_header = workbook.add_format({
-            'bold': True,
-            'bg_color': '#cccccc',
-            'border': True
-        })
-        f_header2 = workbook.add_format({
-            'bg_color': '#eeeeee',
-            'border': True
-        })
+        f_header = workbook.add_format({'bold': True,
+                                        'bg_color': '#cccccc',
+                                        'border': True})
+        f_header_right = workbook.add_format({'bg_color': '#eeeeee',
+                                              'border': True,
+                                              'align': 'right'})
+        f_header_min = workbook.add_format({'bold': True,
+                                            'bg_color': '#cccccc',
+                                            'border': True,
+                                            'font_size': 10})
+        f_product = workbook.add_format({'font_size': 12,
+                                         'text_wrap': True})
         f_border = workbook.add_format({'border': True})
-        money = workbook.add_format({'num_format': '#,##0.00€'})
         title = workbook.add_format({'font_size': 14,
+                                     'border':True,
                                      'bold': True,
-                                     'font_color': 'cyan',
-                                     'bg_color': 'navy'})
+                                     'bg_color': '#cccccc'})
+        money_with_border = workbook.add_format({'border': True,
 
-
-        money_with_border = workbook.add_format({'border': True, 'num_format': '#,##0.00€'})
-        percent_with_border = workbook.add_format({'border': True, 'num_format': '#,##0.00%'})
+                                                 'num_format': '#,##0.00€'})
+        percent_with_border = workbook.add_format({'border': True,
+                                                   'num_format': '0.00%'})
+        format_header_tallas =  workbook.add_format({'font_size': 8,
+                                                     'bold': True,
+                                                     'bg_color': '#cccccc',
+                                                     'border': 1,
+                                                     'align': 'center'})
+        format_header_row_tallas = workbook.add_format({'font_size': 10,
+                                                        'bold': True,
+                                                        'bg_color': '#cccccc',
+                                                        'border': 1,
+                                                        'align': 'left'})
+        format_body_tallas = workbook.add_format({'font_size': 10,
+                                                  'bold': True,
+                                                  'border': 1,
+                                                  'align': 'center'})
         # REPORT HEADE LINES
+
         if catalog_id.company_header:
+            sheet.write(0, 1, '', title)
+            sheet.write(0, 2, '', title)
             sheet.write(0, 0, catalog_id.company_header, title)
 
         sheet.write(1, 0, catalog_id.name, title)
@@ -99,40 +119,40 @@ class ExportCatalogXlsParser(models.AbstractModel):
         col = 3
         resumen_initial_col = col +1
         resumen_initial_row = row_header + 1
-        sheet.write(row_header, col + 1, 'TALLAS', f_header2)
+        sheet.write(row_header, col + 1, 'TALLAS', f_header)
         if catalog_id.total:
-            sheet.write(row_header, col + 2, 'TOTAL', f_header2)
+            sheet.write(row_header, col + 2, 'TOTAL', f_header_right)
         if catalog_id.euros:
-            sheet.write(row_header, col + 3, '€', f_header)
+            sheet.write(row_header, col + 3, '€', f_header_right)
         #sheet.write(row_header, col + 4, '', f_header)
         row_header += 1
 
         if catalog_id.purchases:
-            sheet.write(row_header, col + 1, 'COMPRAS', f_header2)
+            sheet.write(row_header, col + 1, 'COMPRAS', f_header)
             sheet.write(row_header, col + 2, '', f_border)
             sheet.write(row_header, col + 3, '', f_border)
             row_header +=1
 
         if catalog_id.incomings:
-            sheet.write(row_header, col + 1, 'ENTRADAS', f_header2)
+            sheet.write(row_header, col + 1, 'ENTRADAS', f_header)
             sheet.write(row_header, col + 2, '', f_border)
             sheet.write(row_header, col + 3, '', f_border)
             row_header+=1
 
         if catalog_id.sales:
-            sheet.write(row_header, col + 1, 'VENTAS', f_header2)
+            sheet.write(row_header, col + 1, 'VENTAS', f_header)
             sheet.write(row_header, col + 2, '', f_border)
             sheet.write(row_header, col + 3, '', f_border)
             row_header += 1
 
         if catalog_id.outgoings:
-            sheet.write(row_header, col + 1, 'SALIDAS', f_header2)
+            sheet.write(row_header, col + 1, 'SALIDAS', f_header)
             sheet.write(row_header, col + 2, '', f_border)
             sheet.write(row_header, col + 3, '', f_border)
             row_header += 1
 
         if catalog_id.stocks:
-            sheet.write(row_header, col + 1, 'STOCKS', f_header2)
+            sheet.write(row_header, col + 1, 'STOCKS', f_header)
             sheet.write(row_header, col + 2, '', f_border)
             sheet.write(row_header, col + 3, '', f_border)
 
@@ -146,20 +166,29 @@ class ExportCatalogXlsParser(models.AbstractModel):
         for tmp_name in report_vals:
 
             tmp_dic = report_vals[tmp_name]
+            c1 = xl_rowcol_to_cell(row+1, 0)
+            c2 = xl_rowcol_to_cell(row+1, 2)
+
+
             sheet.write(row, 0, 'MODELO', f_header)
-            sheet.write(row+1, 0, tmp_name)
-            cols = 1
+            #sheet.write(row + 1, 0, tmp_name, f_product)
+            sheet.merge_range('{}:{}'.format(c1, c2), tmp_name, f_product)
+            cols = 3
+
+            pvp_cell = cost_cell = xl_rowcol_to_cell(row + 1, 5)
+
             if catalog_id.cost:
                 sheet.write(row, cols, 'COSTE', f_header)
-                sheet.write(row + 1, 1, tmp_dic['cost'])
+                sheet.write(row + 1, cols, tmp_dic['cost'], money_with_border)
+                cost_cell = xl_rowcol_to_cell(row + 1, cols)
                 cols+=1
             if catalog_id.pvp:
                 sheet.write(row, cols, 'PVP', f_header)
-                sheet.write(row + 1, 2, tmp_dic['pvp'])
+                sheet.write(row + 1, cols, tmp_dic['pvp'], money_with_border)
+                pvp_cell = xl_rowcol_to_cell(row + 1, cols)
             row += 1
 
             # First row Values
-            pvp_cell = xl_rowcol_to_cell(row, 2)
             row += 2
 
 
@@ -177,7 +206,7 @@ class ExportCatalogXlsParser(models.AbstractModel):
 
             col = 3
             # Write attributes table
-            sheet.write(row, col, 'TALLAS', f_header)
+            sheet.write(row, col, 'TALLAS', format_header_row_tallas)
             tmpl_row = row
             attr_names = tmp_dic['attr_names']
             attr_values = []
@@ -186,31 +215,31 @@ class ExportCatalogXlsParser(models.AbstractModel):
             if catalog_id.purchases:
                 tmpl_row +=1
                 purchases_row = tmpl_row
-                sheet.write(purchases_row, col, 'PURCHASES', f_border)
+                sheet.write(purchases_row, col, 'COMPRAS', format_header_row_tallas)
                 attr_values += [tmp_dic['purchases']]
 
             if catalog_id.incomings:
                 tmpl_row +=1
                 incomings_row = tmpl_row
-                sheet.write(incomings_row, col, 'ENTRADAS', f_border)
+                sheet.write(incomings_row, col, 'ENTRADAS', format_header_row_tallas)
                 attr_values += [tmp_dic['incomings']]
 
             if catalog_id.sales:
                 tmpl_row +=1
                 sales_row = tmpl_row
-                sheet.write(sales_row, col, 'VENTAS', f_border)
+                sheet.write(sales_row, col, 'VENTAS', format_header_row_tallas)
                 attr_values += [tmp_dic['sales']]
 
             if catalog_id.outgoings:
                 tmpl_row +=1
                 outgoings_row = tmpl_row
-                sheet.write(outgoings_row, col, 'SALIDAS', f_border)
+                sheet.write(outgoings_row, col, 'SALIDAS', format_header_row_tallas)
                 attr_values += [tmp_dic['outgoings']]
 
             if catalog_id.stocks:
                 tmpl_row +=1
                 stocks_row = tmpl_row
-                sheet.write(stocks_row, col, 'STOCKS', f_border)
+                sheet.write(stocks_row, col, 'STOCKS', format_header_row_tallas)
                 attr_values += [tmp_dic['stocks']]
 
 
@@ -221,18 +250,18 @@ class ExportCatalogXlsParser(models.AbstractModel):
             sum_col = 0
             #MARCO LAS TALLAS
             for attr_name in attr_names:
-                sheet.write(row, col + sum_col, attr_name, f_header)
+                sheet.write(row, col + sum_col, attr_name, format_header_tallas)
                 sum_col += 1
 
 
             if catalog_id.total:
-                sheet.write(row, col + sum_col, 'TOTAL', f_header)
+                sheet.write(row, col + sum_col, 'TOTAL', f_header_right)
                 if catalog_id.euros:
                     sum_col += 1
-                    sheet.write(row, col + sum_col, '€', f_header)
+                    sheet.write(row, col + sum_col, '€', f_header_right)
                 if catalog_id.show_per_cent and catalog_id.incomings and catalog_id.outgoings:
                     sum_col += 1
-                    sheet.write(row, col + sum_col, '%', f_header)
+                    sheet.write(row, col + sum_col, '%', f_header_right)
             sum_row = 0
             sum_col = 0
             row += 1
@@ -243,7 +272,7 @@ class ExportCatalogXlsParser(models.AbstractModel):
                 init = xl_rowcol_to_cell(row_val, col + sum_col)
                 # RECORRO horizontalmente los valores y los asignao a las tallas
                 for value in value_list:
-                    sheet.write_number(row_val, col + sum_col, value, f_border)
+                    sheet.write_number(row_val, col + sum_col, value, format_body_tallas)
                     sum_col += 1
 
                 end = xl_rowcol_to_cell(row_val, col + sum_col - 1)
@@ -268,7 +297,7 @@ class ExportCatalogXlsParser(models.AbstractModel):
 
             if catalog_id.show_per_cent and catalog_id.incomings and catalog_id.outgoings:
                 form_per_cent = '={}/{}'.format(total_out, total_in)
-                sheet.write_formula(row + sum_row - 1 , total_col + 1, form_per_cent, f_border)
+                sheet.write_formula(row + sum_row - 1 , total_col + 1, form_per_cent, percent_with_border)
                 sum_row += 1
 
 
@@ -286,4 +315,3 @@ class ExportCatalogXlsParser(models.AbstractModel):
         #sheet.fit_to_pages(1, 0)
         sheet.set_h_pagebreaks(page_breakers)
         sheet.set_v_pagebreaks([25])
-        print (page_breakers)
