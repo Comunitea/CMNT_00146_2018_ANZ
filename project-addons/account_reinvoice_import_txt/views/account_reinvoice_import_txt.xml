@@ -16,7 +16,7 @@
             </tree>
         </field>
     </record>
-
+    <delete id = "view_invoice_txt_import_form" model="ir.ui.view"/>
 
     <record id="view_invoice_txt_import_form" model="ir.ui.view">
         <field name="name">invoice_txt.import.form</field>
@@ -32,15 +32,16 @@
 
                     </div>
 
-                    <div class="oe_title">
+                    <div >
+                        <group colspan="4">
+                            <field name="partner_id"/>
+                            <field name="partner_vat"/>
+                            <field name="type" />
 
-                        <field name="partner_id"/>
-                        <field name="partner_vat"/>
-                        <field name="type" />
-
-                        <field name="file_name"/>
-                        <field name="file_date"/>
-                        <field name="invoice_id"/>
+                            <field name="file_name"/>
+                            <field name="file_date"/>
+                            <field name="invoice_id"/>
+                        </group>
                     </div>
 
                     <group>
@@ -50,8 +51,9 @@
                             <field name="supplier_partner_nif"/>
                             <field name="supplier_partner_num"/>
                             <field name="fecha_vencimiento"/>
-                            <field name="fecha_valor"/>
+                            <field name="value_date"/>
                             <field name="type"/>
+                            <field name="account_position_id"/>
                             <field name="partner_bank"/>
                             <field name="bank_id"/>
                             <field name="supplier_invoice_num"/>
@@ -71,13 +73,23 @@
                         </group>
                     </group>
                     <notebook>
+                        <page string="Pedidos">
+                            <field name="order_ids">
+                                <tree>
+                                    <field name="name"/>
+                                    <field name="fecha"/>
+                                </tree>
+                            </field>
+                        </page>
                         <page string="Lineas">
                             <field name="invoice_line_txt_import_ids">
                                 <tree>
                                     <field name="product_id"/>
-                                    <field name="codigo"/>
+                                    <field name="articulo"/>
+                                    <field name="descripcion_qty"/>
                                     <field name="qty"/>
                                     <field name="precio_articulo"/>
+                                    <field name="descuento_str_total"/>
                                     <field name="descuento"/>
                                     <field name="valor_neto"/>
 

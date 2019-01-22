@@ -14,7 +14,7 @@ ODOO_END_FOLDER = 'Receive'
 ODOO_WRITE_FOLDER = 'temp'
 
 ODOO_FOLDER_TXT = "/opt/hotfolder/invoice_txt/txt"
-ODOO_FOLDER_ARCHIVE = "/opt/hotfolder/invoice_txt/archive"
+ODOO_FOLDER_ARCHIVE = "/opt/hotfolder/invoice_txt/done"
 ODOO_FOLDER_ERROR = "/opt/hotfolder/invoice_txt/error"
 
 
@@ -45,6 +45,15 @@ def clear_str(str):
 
     return clear.strip()
 
+def is_number_line(str, num_actual_linea=False):
+    num = str.strip()
+    if num:
+        num = num.isdigit() and int(num) or 0
+    return num == num_actual_linea
+
+
+
+
 
 def get_num(str, force_int=False):
 
@@ -72,9 +81,11 @@ class InvoiceTxtImportLine(models.Model):
 
     num_linea = fields.Integer('Linea')
     product_id = fields.Many2one('product.product')
+    articulo = fields.Char('Articulo')
     codigo = fields.Char("Articulo")
     descripcion = fields.Char("Description")
     descuento = fields.Char("Descuentos %")
+    descuento_str_total = fields.Char("Descuento en cadena")
     qty = fields.Integer ('Cantidad total')
     descripcion_qty = fields.Char('Tallas')
     precio_articulo = fields.Float(string='Precio artículo', required=True, digits=dp.get_precision('Product Price'))
@@ -83,6 +94,8 @@ class InvoiceTxtImportLine(models.Model):
     message_line = fields.Char("Txt de la linea")
     state_country = fields.Char("Pais de origen")
     partida_arancelaria = fields.Char("Partida arancelaria")
+    order_id = fields.Many2one('invoice.txt.import.order')
+
 
     def get_line_vals(self, invoice_id=False):
         return {'product_id': self.product_id or False,
@@ -91,6 +104,14 @@ class InvoiceTxtImportLine(models.Model):
                 'discount': self.descuento,
                 'name': self.descripcion + self.descripcion_qty,
                 'invoice_id': invoice_id}
+
+class InvoiceTXTImportOrder(models.Model):
+
+    _name ="invoice.txt.import.order"
+
+    name = fields.Char("Nombre")
+    fecha = fields.Date("Fecha")
+    invoice_txt_import_id = fields.Many2one('invoice.txt.import')
 
 
 class InvoiceTxtImport(models.Model):
@@ -109,8 +130,6 @@ class InvoiceTxtImport(models.Model):
 
 
         return res
-
-
 
 
     file_name = fields.Char('File name')
@@ -145,7 +164,9 @@ class InvoiceTxtImport(models.Model):
     country = fields.Char('Pais de origen')
     partner_bank = fields.Char("Banco")
     bank_id = fields.Many2one('res.partner.bank', string='Partner Bank Account', required=False)
-
+    account_position_id = fields.Many2one('account.fiscal.position',
+                                                   string="Fiscal Position",
+                                                   help="The fiscal position will determine taxes and accounts used for the partner.")
     desc_p_p = fields.Float(string='Descuento pp €', digits=dp.get_precision('Product Price'))
     desc_p_p_per_cent = fields.Float(string='Descuento pp %', digits=dp.get_precision('Product Price'))
     iva_per_cent = fields.Float(string='IVA %', digits=dp.get_precision('Product Price'))
@@ -154,7 +175,7 @@ class InvoiceTxtImport(models.Model):
     equiv = fields.Float(string='R. Equiv €', digits=dp.get_precision('Product Price'))
     recargos = fields.Float(string='Recargos €', digits=dp.get_precision('Product Price'))
     fecha_vencimiento = fields.Date("Fecha de vencimiento")
-    fecha_valor = fields.Date("Fecha VAlor")
+    value_date = fields.Date("Fecha VAlor")
     num_lineas = fields.Integer("Numero de lineas")
     total_amount = fields.Float(string='Total factura', digits=dp.get_precision('Product Price'))
     valor_neto = fields.Float(string='Valor neto', digits=dp.get_precision('Product Price'))
@@ -162,6 +183,7 @@ class InvoiceTxtImport(models.Model):
     invoice_line_txt_import_ids = fields.One2many('invoice.txt.import.line', 'invoice_txt_import_id', string="Lineas")
     refund_note = fields.Char("Nota/Motivo de abono")
     original_rectificatica= fields.Char("Rectifica ...")
+    order_ids = fields.One2many('invoice.txt.import.order', 'invoice_txt_import_id', string="Pedidos")
 
     def check_existing_txt(self):
         self.env['invoice.txt.import'].import_txt_invoice()
@@ -190,6 +212,18 @@ class InvoiceTxtImport(models.Model):
         return product_id or False
 
 
+    @api.multi
+    def get_associate_id_from_associate_name(self):
+
+        for txt in self.filtered(lambda x:x.associate_name and not x.associate_id):
+            obj = self.env['partner.supplier.data'].get_associate_id_from_str(txt.associate_name)
+
+            if obj:
+                txt.associate_id = obj
+            else:
+                txt.associate_id = False
+
+
     def get_partner_refs(self):
         if not self.partner_vat:
             self.message_post(body='No hay NIF del proveedor')
@@ -202,19 +236,11 @@ class InvoiceTxtImport(models.Model):
             message = "{} <li>{}</li>".format(message, 'No hay proveedor')
 
         if self.associate_name:
-            domain = [('code', '=', self.associate_name), ('supplier_id', '=', self.partner_id.id)]
-            obj = self.env['supplier.code.txt.import'].search(domain, limit=1)
-            if obj and obj.customer_id:
-                self.associate_id = obj.customer_id
-            else:
-                message = "{} <li>{}</li>".format(message, 'No hay encuentro al asociado por codigo')
+            self.get_associate_id_from_associate_name()
+            if not self.associate_id:
+                message = "{} <li>{} {}</li>".format(message, 'No hay encuentro al asociado para el nombre ', self.associate_name)
 
-                associate_domain = [('name', '=', self.associate_name)]
-                self.associate_id = self.env['res.partner'].search(associate_domain, limit=1)
-                if not self.associate_id:
-                    message = "{} <li>{}</li>".format(message, 'No hay encuentro al asociado por nombre')
-                    message = "{} <li>{}</li>".format(message,'</ul>')
-
+        message = "{} <li>{}</li>".format(message,'</ul>')
         if not(self.partner_id and self.associate_id):
             self.message_post(body=message)
 
@@ -234,10 +260,24 @@ class InvoiceTxtImport(models.Model):
 
             return False
 
-    def get_line(linea_pedido):
+    def get_pedido(self, str, type='adidas'):
+        if type == 'adidas':
+            pedido = str.split(':')
+            ref_pedido = pedido[1].replace('Fecha', '').strip()
+            fecha_pedido = get_odoo_date(pedido[2])
+            new_pedido_vals = {'invoice_txt_import_id': self.id,
+                               'name': ref_pedido,
+                               'fecha': fecha_pedido}
+            pedido = self.env['invoice.txt.import.order'].create(new_pedido_vals)
+            print('Encuentrp pedido {}'.format(ref_pedido))
+            return pedido
 
-        if linea_pedido[85:100].strip() != '':
-            descuento_str_total = linea_pedido[85:100].strip().strip()
+
+    def get_line(self, linea_pedido):
+
+        descuento_str_total = linea_pedido[85:100].strip()
+
+        if descuento_str_total != '':
             descuento = 0.00
             for d1 in descuento_str_total.split(' '):
                 descuento += get_num(d1.strip())
@@ -253,30 +293,34 @@ class InvoiceTxtImport(models.Model):
         euros = clear_str(linea_pedido).split(' ')
         valor_neto = get_num(euros[len(euros)-1].strip())
         precio_articulo = get_num(euros[len(euros)-2].strip())
-        articulo = '[{}] {}'.format(codigo, descripcion)
 
-        descripcion = articulo.strip()
+        articulo = '[{}] {}'.format(codigo, descripcion)
+        descripcion = '{} {}'.format(articulo.strip(), tallas)
 
         val = {'num_linea': num_linea,
                'codigo': codigo,
+               'articulo': articulo,
                'descripcion': descripcion,
                'qty': qty,
                'descripcion_qty': tallas,
                'precio_articulo': precio_articulo,
                'descuento': descuento,
+               'descuento_str_total': descuento_str_total,
                'valor_neto': valor_neto,
                'message_line': clear_str(linea_pedido)}
         return val
 
+    @api.multi
     def import_txt_invoice(self):
 
 
-        ts = ['adidas', 'nike']
+        ts = ['adidas', 'nike', 'joma']
         routes = [roots for roots in os.walk(ODOO_FOLDER_TXT, topdown=True)]
         for roots in routes:
             fold = roots[0]
             for file_name in roots[2]:
                 origin = os.path.join(fold, file_name)
+                print ('Fichero: {}'.format(origin))
                 type = fold.replace(ODOO_FOLDER_TXT + '/', '')
                 enconding = self.predict_encoding(origin) or 'utf8'
                 if type in ts:
@@ -297,15 +341,19 @@ class InvoiceTxtImport(models.Model):
 
 
     def check(self, str, file_name, type='NO'):
+
         domain= [('file_name', '=', file_name)]
         val = {'file_name': file_name,
                'supplier_invoice_num': file_name}
         txt_obj = self.search(domain, limit=1)
+        option = "create"
         if txt_obj:
-            txt_obj.message_post(body="Nueva lectura {}".format(datetime.now()))
-        else:
-            txt_obj = self.create(val)
+            txt_obj.unlink()
+            option = "rewrite"
 
+
+        txt_obj = self.create(val)
+        txt_obj.message_post(body="{} {}".format(option =='create' and "Nuevo" or "Actualizado", datetime.now()))
         if txt_obj:
 
             if type=='nike':
@@ -319,35 +367,41 @@ class InvoiceTxtImport(models.Model):
 
     def check_adidas(self, str, file_name):
 
+
         print ("\nFichero de factura: {}".format(file_name))
         longitud_fichero = len(str)
+
         if str[1].find('ABONO') > -1:
             type='in_refund'
         else:
             type = 'in_invoice'
 
-
+        original_rectificatica = ''
         clienteno = str[3][167:225].strip()
         facturano = str[4][167:225].strip()
         fecha_factura=  str[5][167:200].strip()
         fecha_factura = get_odoo_date(fecha_factura)
-        original_rectificatica = ''
-        fecha_valor=fecha_factura
+
         if type=='in_invoice':
-            fecha_valor = str[6][167:200].strip()
-            fecha_valor = get_odoo_date(fecha_factura)
+            value_date = str[6][167:200].strip()
+            value_date = get_odoo_date(value_date)
+            pay_notes = str[9][167:].strip()
         else:
+            value_date = fecha_factura
             original_rectificatica = str[6][167:225].strip()
+
+
         partner_nif  = str[7][167:225].strip()
         pay_notes = str[9][167:].strip()
         eori = str[10][233:].strip()
         ###DATOS DE ALBAŔAN
 
         index = 17
+        print ("Linea: {} > {} ".format(index, str[index].strip()))
+        supplier_picking_num = albaran = partner_bank = fecha_albaran = associate_name = region = ref_pedido = fecha_vencimiento = fecha_pedido = value_date=refund_note=False
 
-        supplier_picking_num = albaran = partner_bank = fecha_albaran = associate_name = region = ref_pedido = fecha_vencimiento = fecha_pedido = fecha_valor=refund_note=False
-        if type=='in_invoice':
-            if str[index].strip() and str[index].find('Albar') > 0:
+        if type == 'in_invoice':
+            if str[index].strip() and str[index].strip().find('Albar') >-1:
                 albaran = str[index].split(':')[1].strip()
                 if albaran:
                     datos_albaran = albaran.split()
@@ -355,52 +409,66 @@ class InvoiceTxtImport(models.Model):
                     fecha_albaran = datos_albaran[1]
                     fecha_albaran = get_odoo_date(fecha_albaran)
                     index += 2
-                    if str[index].split(':')[1].strip() == 'Nombre':
+                    if str[index].strip().find('Nombre') >-1:
                         associate_name = str[index].split(':')[1].strip()
-                        index+=2
-                    if str[index].split(':')[0].strip() == 'Regi':
+                        index += 2
+                    if str[index].strip().find('Regi') >-1:
                         region = str[index].split(':')[1].strip()
                         index += 2
-                    if str[index].split(':')[0].strip() == 'Su pedido no.':
-                        pedido = str[index].split(':')
-                        ref_pedido = pedido[1].replace('Fecha','').strip()
-                        fecha_pedido = get_odoo_date(pedido[2])
             else:
                 self.message_post(body="No he encontrado los datos del albarán donde esperaba")
                 return False
-        else:
-            refund_note = str[index].split()
-
 
         ### DATOS DE LAS LINEAS
         lineas=[]
 
         line_count = 1
         is_line = True
-
-
+        index = 17
+        pedido = False
+        print ("Busco líneas: {} > {} para una factura {}".format(index, str[index].strip(), type))
         while is_line:
+            print("Linea: {} > {} ".format(index, str[index].strip()))
+            if not str[index].strip():
+                index += 1
+                continue
 
-            #ES LINEA #> 1 CARACTER ES NUMERICO
-            if str[index].strip() and len(str[index][:4].strip()) > 0 and get_num(str[index][:4].strip(), True) >= longitud_fichero:
-                linea = self.get_line(str[index])
-                line_count += 1
-                if str[index+2][19:38] == 'Partida arancelaria':
-                    index += 2
-                    linea.update(partida_arancelaria=str[index][39:].strip())
-                    index += 2
-                    linea.update(state_country=str[index][34:].strip())
-                lineas.append(linea)
-            index += 1
-            if str[index].find('Valor neto total')>-1:
+            if str[index].find('Valor neto total') > -1:
                 is_line = False
-            if index>=longitud_fichero:
+                continue
+            if type == 'in_invoice' and str[index].find('Su pedido no.') > -1:# str[index].split(':')[0].strip() == 'Su pedido no.':
+                pedido = self.get_pedido(str[index].strip(), 'adidas')
+                print('Encuentro y creo pedido {}'.format(pedido.name))
+                index += 1
+            elif type == 'in_refund' and line_count == 1 and not is_number_line(str[index][:4], line_count):
+                refund_note = str[index].strip()
+                print('Refund note {}'.format(refund_note))
+                index += 1
+            else:
+                print ("Busco una linea con indice {} en {}:".format(line_count, str[index]))
+                if is_number_line(str[index][:4], line_count):
+                    print("--->Encuentro: {}:".format(str[index]))
+                    linea = self.get_line(str[index])
+                    if pedido:
+                        linea.update(order_id=pedido.id)
+                    line_count += 1
+                    if str[index].find('Partida arancelaria') > -1:# str[index+2][19:38] == 'Partida arancelaria':
+                        index += 2
+                        linea.update(partida_arancelaria=str[index][39:].strip())
+                        if str[index+2].find('s de origen:') > -1:
+                            index += 2
+                            linea.update(state_country=str[index][34:].strip())
+                    lineas.append(linea)
+                index += 1
+
+            if index >= longitud_fichero:
                 self.message_post('Error leyendo las líneas del fichero')
                 return False
-        pprint (lineas)
+
         ## saco cuadro de factura
+        print ("FIN LINEAS en linea {}: {}".format(index, str[index]))
         valor_neto = get_num(str[index][-8:])
-        index+=1
+        index += 1
         recargos = get_num(str[index][-8:])
 
         index += 1
@@ -412,7 +480,7 @@ class InvoiceTxtImport(models.Model):
             partner_bank = get_split(str[index])[1]
         base_imponible = get_num(str[index][-8:].strip())
 
-        index+=1
+        index += 1
         iva = get_num(str[index][-8:])
         iva_per_cent = get_num(get_split(str[index])[0].strip().split(' ')[0])
         if str[index].find('Fecha vencimiento')>-1:
@@ -433,7 +501,7 @@ class InvoiceTxtImport(models.Model):
         index += 1
         equiv = get_num(str[index][-8:])
         equiv_per_cent = get_num(get_split(str[index])[0].strip().split(' ')[0])
-        inc=index
+        inc = index
         is_total = False
         while not is_total:
             if str[inc].find('TOTAL FACTURA')>-1 or str[inc].find('TOTAL ABONO')>-1:
@@ -477,7 +545,7 @@ class InvoiceTxtImport(models.Model):
             'equiv_per_cent': equiv_per_cent,
             'equiv': equiv,
             'fecha_vencimiento': fecha_vencimiento,
-            'fecha_valor': fecha_valor,
+            'value_date': value_date or fecha_albaran,
             'num_lineas': line_count,
             'total_amount': total,
             'type': type,
@@ -496,7 +564,7 @@ class InvoiceTxtImport(models.Model):
             self.message_post(body="No se ha encontrado un partner")
             return False
         else:
-
+            return True
             new_invoice = self.create_invoice_from_invoice_txt()
             if not new_invoice:
                 self.message_post(body="Error al crear la factura asociada en odoo")
@@ -536,8 +604,6 @@ class InvoiceTxtImport(models.Model):
                     txt.associate_id = refund_invoice_id.associate_id
                     txt.associate_id = refund_invoice_id.associate_id.name
 
-
-
             currency_id = txt.associate_id.property_product_pricelist.currency_id and txt.associate_id.property_product_pricelist.currency_id.id or txt.partner_id.property_product_pricelist.currency_id.id
             if not currency_id:
                 txt.message_post(body="No encuentro moneda")
@@ -562,38 +628,41 @@ class InvoiceTxtImport(models.Model):
                 'date_invoice_from_associate_order': txt.supplier_picking_date,
                 'refund_invoice_id': refund_invoice_id
             }
-            invoice = self.env['account.invoice'].new(invoice_val)
+            ## TODO NO ENTIENDO ESTO
 
+            if not txt.account_position_id:
+                txt.account_position_id =  txt.partner_id.property_account_position_id or txt.associate_id.property_account_position_id
+
+            invoice = self.env['account.invoice'].new(invoice_val)
             invoice._onchange_partner_id()
             inv = invoice._convert_to_write(invoice._cache)
-            inv.update(journal_id = journal_id.id, fiscal_position_id= txt.associate_id.property_account_position_id.id or txt.partner_id.property_account_position_id.id , )
+            inv.update(journal_id = journal_id.id,
+                       fiscal_position_id = txt.account_position_id.id )
             new_invoice = self.env['account.invoice'].create(inv)
             new_invoice.journal_id = journal_id
             new_invoice.date_due = txt.fecha_vencimiento
             txt.invoice_id = new_invoice
-            property_account_position_id = txt.associate_id.property_account_position_id or txt.partner_id.property_account_position_id
-            if 'Recargo' in property_account_position_id:
-                new_invoice.fiscal_position_id = False
-            else:
-                new_invoice.fiscal_position_id = property_account_position_id
+            property_account_position_id = txt.account_position_id
 
-
+            #if 'Recargo' in property_account_position_id:
+            #    new_invoice.fiscal_position_id = False
+            #else:
+            #    new_invoice.fiscal_position_id = property_account_position_id
 
             print ("\n------------\nFACTURA PARA : {}\n------------\n".format(new_invoice.associate_id.name or self.partner_id.name))
+
             for linea in txt.invoice_line_txt_import_ids:
+
                 vals = linea.get_line_vals(new_invoice.id)
                 invoice_line = self.env['account.invoice.line'].new(vals)
                 invoice_line._onchange_product_id()
                 invoice_line.invoice_line_tax_ids = new_invoice.fiscal_position_id.map_tax(invoice_line.invoice_line_tax_ids, invoice_line.product_id,
                                                                                            new_invoice.associate_id)
                 invoice_line.invoice_line_tax_ids = invoice_line.invoice_line_tax_ids.ids
-
                 inv_line = invoice_line._convert_to_write(invoice_line._cache)
                 inv_line.update(name=vals['name'], price_unit=linea['precio_articulo'], discount=linea['descuento'])
                 self.env['account.invoice.line'].create(inv_line)
-
             new_invoice.compute_taxes()
-
             message = _("Esta factura ha sido creada desde el fichero: <a href=# data-oe-model=invoice.txt.import data-oe-id=%d>%s</a>") % (txt.id, txt.file_name)
             txt.state = 'invoiced'
             new_invoice.message_post(body=message)
