@@ -139,13 +139,14 @@ class ExportCatalogtWzd(models.TransientModel):
             domain += [('id', '=', self.product_template_ids.ids)]
         if self.pricelist_id:
 
-            template_domain = [('pricelist_id','=', self.pricelist_id.id), ('applied_on', '=', '1_product')]
+            template_domain = [('pricelist_id', '=', self.pricelist_id.id), ('applied_on', '=', '1_product')]
             price_template_ids = self.env['product.pricelist.item'].search(template_domain).mapped('product_tmpl_id')
 
             product_domain = [('pricelist_id', '=', self.pricelist_id.id), ('applied_on', '=', '0_product_variant')]
             price_product_ids = self.env['product.pricelist.item'].search(product_domain).mapped('product_id').mapped('product_tmpl_id')
 
-            domain += [('id', 'in ', price_template_ids.ids + price_product_ids.ids)]
+            domain += [('id', 'in', price_template_ids.ids + price_product_ids.ids)]
+        print (domain)
         templates = self.env['product.template'].search(domain, limit=self.limit)
         return templates
 

@@ -22,13 +22,13 @@
                     </group>
 
                     <group string="Lista de artículos">
-                        <field name ="product_template_ids" nnolabel="1" options="{'no_create': True}">
-                            <tree>
-                                <field name="display_name"/>
-                            </tree>
-                        </field>
-
                     </group>
+
+                    <field name="product_template_ids" nolabel="1" options="{'no_create': True}">
+                      <tree>
+                        <field name="display_name"/>
+                      </tree>
+                    </field>
 
                 </group>
 
