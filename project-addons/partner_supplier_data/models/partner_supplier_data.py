@@ -37,8 +37,10 @@ class ResPartnerSupplierData(models.Model):
                                           help="Type=Other, must be child of parrner_id", required=1)
     #brand_id = fields.Many2one('product.brand', 'Brand')
     supplier_code = fields.Char("Código externo", required=1)
+    supplier_str = fields.Char("Nombre en factura")
     supplier_customer_ranking_id = fields.Many2one('supplier.customer.ranking', string="Clasificación")
     active = fields.Boolean('Active', default=True)
+
 
     _sql_constraints = [
         ('name_supplier_code', 'unique(supplier_code)',
@@ -93,7 +95,6 @@ class ResPartnerSupplierData(models.Model):
             self._cr.execute('INSERT INTO ir_model_data (module, name, res_id, model) VALUES (%s, %s, %s, %s)',
                              ('rp', '{}_{}'.format(supplier_xml_id, data.supplier_code), data.customer_supplier_id.id, 'res.partner'))
 
-
     @api.multi
     def search_partner_id(self):
         for partner in self.filtered(lambda x: not x.customer_supplier_id.parent_id):
@@ -103,3 +104,16 @@ class ResPartnerSupplierData(models.Model):
             if len(new_partner) == 1:
                 partner.customer_supplier_id.parent_id = new_partner.id
                 partner.customer_supplier_id.message_post(body="Se ha añadido un nuevo parent automaticamente")
+
+    def get_associate_id_from_str(self, str):
+        domain = ['|', ('supplier_code', '=', str), ('supplier_str', '=', str)]
+        a_id = self.search(domain, limit=1)
+        if a_id:
+            return a_id.customer_supplier_id
+        if not a_id:
+            a_id = self.env['partner.supplier.data'].search([('id', '>', 1)]).mapped('partner_id').filtered(lambda x:x.name == str).mapped('name')
+            if a_id and len(a_id) == 1:
+                return a_id.customer_supplier_id
+        return False
+
+
