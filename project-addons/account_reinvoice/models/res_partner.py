@@ -13,7 +13,6 @@ class ProductBrand(models.Model):
 
     @api.multi
     def get_reinvoice_discount(self, line):
-        import ipdb; ipdb.set_trace()
         self.ensure_one()
 
         partner_id = line.invoice_id.partner_id
