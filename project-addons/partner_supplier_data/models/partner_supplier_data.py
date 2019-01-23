@@ -111,7 +111,7 @@ class ResPartnerSupplierData(models.Model):
         if a_id:
             return a_id.customer_supplier_id
         if not a_id:
-            a_id = self.env['partner.supplier.data'].search([('id', '>', 1)]).mapped('partner_id').filtered(lambda x:x.name == str).mapped('name')
+            a_id = self.env['partner.supplier.data'].search([('id', '>', 1)]).mapped('partner_id').filtered(lambda x:x.name == str)
             if a_id and len(a_id) == 1:
                 return a_id.customer_supplier_id
         return False
