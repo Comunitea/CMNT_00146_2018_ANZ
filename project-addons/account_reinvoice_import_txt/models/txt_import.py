@@ -191,6 +191,9 @@ class InvoiceTxtImport(models.Model):
     def get_product(self, linea, partner_id=False):
 
         product_id = False
+        product_domain = ([('default_code', '=', 'AD.00000')])
+        product_id = self.env['product.product'].search(product_domain, limit=1)
+        return product_id or False
         # Busco en product suplier info
         if partner_id:
             domain = [('product_code', '=', linea['codigo']), ('name', '=', partner_id)]
@@ -335,7 +338,6 @@ class InvoiceTxtImport(models.Model):
                     dst = os.path.join(ODOO_FOLDER_ARCHIVE, file_name)
                 else:
                     dst = os.path.join(ODOO_FOLDER_ERROR, file_name)
-
                 os.rename(origin, dst)
 
 
@@ -350,7 +352,6 @@ class InvoiceTxtImport(models.Model):
         if txt_obj:
             txt_obj.unlink()
             option = "rewrite"
-
 
         txt_obj = self.create(val)
         txt_obj.message_post(body="{} {}".format(option =='create' and "Nuevo" or "Actualizado", datetime.now()))
