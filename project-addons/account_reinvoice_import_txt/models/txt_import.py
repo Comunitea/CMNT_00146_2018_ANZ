@@ -631,7 +631,7 @@ class InvoiceTxtImport(models.Model):
             ## TODO NO ENTIENDO ESTO
 
             if not txt.account_position_id:
-                txt.account_position_id =  txt.partner_id.property_account_position_id or txt.associate_id.property_account_position_id
+                txt.account_position_id =  txt.associate_id.property_account_position_id or txt.partner_id.property_account_position_id
 
             invoice = self.env['account.invoice'].new(invoice_val)
             invoice._onchange_partner_id()
