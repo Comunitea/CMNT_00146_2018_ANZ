@@ -1,7 +1,7 @@
 # © 2016 Comunitea - Kiko Sánchez <kiko@comunitea.com>
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
 from odoo import api, models, fields
-
+from odoo.exceptions import ValidationError
 
 class SaleOrder(models.Model):
     _inherit = "sale.order"
@@ -37,7 +37,11 @@ class SaleOrder(models.Model):
 
     @api.multi
     def action_view_order_lines(self):
+
         self.ensure_one()
+        if not self.partner_id or not self.pricelist_id or not self.company_id.id or not self.type_id:
+            raise ValidationError('Revisa los campos cliente, tarifa, compañia y tipo de venta')
+
         model_data = self.env['ir.model.data']
         tree_view = model_data.get_object_reference(
             'sale_order_line_tree', 'sale_order_line_tree_view')
