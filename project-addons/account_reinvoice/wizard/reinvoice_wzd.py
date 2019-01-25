@@ -34,7 +34,9 @@ class ReinvoiceWzd(models.TransientModel):
             # Get new taxes
             new_tax_ids = self._get_purchase_tax(line.invoice_line_tax_ids)
             # get new discount
-            new_discount = self.env['reinvoice.rule'].get_reinvoice_discount(line, supplier)
+            new_discount, rule_id = self.env['reinvoice.rule'].get_reinvoice_discount(line, supplier)
+            if not rule_id:
+                return False
             line_vals = {
                 'name': line.name + _(' (Reinvoice)'),
                 'account_id': account_id,
@@ -42,6 +44,7 @@ class ReinvoiceWzd(models.TransientModel):
                 'discount': new_discount
             }
             line.write(line_vals)
+        return True
 
     def get_invoices(self, invoices):
         created_invoices = self.env['account.invoice']
@@ -59,7 +62,7 @@ class ReinvoiceWzd(models.TransientModel):
                 'account_id': inv.associate_id.
                 property_account_receivable_id.id,
                 # 'reference': reference,
-                # 'date_invoice': fields.Date.today(),
+                # 'date_invoice': fields.Date.today(),,
                 'user_id': self._uid,
                 'from_supplier': True,
                 'journal_id': self.sale_type_id.journal_id.id,
@@ -70,10 +73,14 @@ class ReinvoiceWzd(models.TransientModel):
                 'fiscal_position_id': inv.associate_id.property_account_position_id.id
             }
             inv_ass = inv.copy(copy_vals)
-            inv.write({'customer_invoice_id': inv_ass.id})
             inv_ass.write({'supplier_invoice_id': inv.id})
-            self._get_associated_invoice_lines(inv_ass, supplier=inv.partner_id)
-            created_invoices += inv_ass
+            lineas = self._get_associated_invoice_lines(inv_ass, supplier=inv.partner_id)
+            if not lineas:
+                self.message_post(body="Error al crear las líneas de factura. Comprueba las reglas de refactura")
+                inv_ass.unlink()
+            else:
+                created_invoices += inv_ass
+                inv.write({'customer_invoice_id': inv_ass.id})
         return created_invoices
 
     @api.multi
