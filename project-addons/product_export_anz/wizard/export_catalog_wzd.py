@@ -168,6 +168,7 @@ class ExportCatalogtWzd(models.TransientModel):
             False, False, False,
             from_date=self.date_start, to_date=self.date_end)
 
+
         idx = 0
         tot = len(templates)
         for tmp in templates:

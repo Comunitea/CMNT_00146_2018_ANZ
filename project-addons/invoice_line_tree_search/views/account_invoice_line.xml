@@ -6,7 +6,7 @@
             <field name="name">account.invoice.line.tree</field>
             <field name="model">account.invoice.line</field>
             <field name="arch" type="xml">
-                <tree string="Invoice Line">
+                <tree string="Invoice Line" create="0">
 
                     <!--field name="type" readonly="1"/-->
                     <field name="partner_id"  readonly="1"/>

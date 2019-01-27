@@ -302,7 +302,7 @@ class ExportCatalogXlsParser(models.AbstractModel):
 
 
 
-            row += sum_row + row_margin
+            row += min(sum_row,3) + row_margin
             if not template_len:
                 template_len = row - page_row
             if template_len:

@@ -14,6 +14,7 @@ class AccountInvoice(models.Model):
     date_invoice_from_associate_order = fields.Date(string='Due Date',
          readonly=True, states={'draft': [('readonly', False)]},
          help="Imported form txt import")
+    invoice_tx_import_id_= fields.Many2one('invoice.txt.import', string="Importado desde ")
 
     def check_existing_txt(self):
         self.env['invoice.txt.import'].import_txt_invoice()

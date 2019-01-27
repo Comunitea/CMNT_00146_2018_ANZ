@@ -24,7 +24,10 @@
         <field name="arch" type="xml">
             <form string="Facturas TXT Importadas">
                 <header>
-                     <button name="create_invoice_from_invoice_txt" type="object" string="Facturar" class="oe_highlight"/>
+                     <button name="create_invoice_from_invoice_txt" type="object" string="Facturar" class="oe_highlight"
+                     attrs="{'invisible': [('associate_id','!=', False), ('invoice_id', '!=', False)]}"/>
+                    <button name="get_partner_refs" type="object" string="Buscar asociado" class="oe_highlight"
+                     attrs="{'invisible': [('associate_id','!=', False)]}"/>
                      <field name="state" widget="statusbar" statusbar_visible="draft,invoiced,error"/>
                 </header>
                 <sheet>
@@ -101,6 +104,7 @@
                                     <group>
                                         <field name="product_id"/>
                                         <field name="codigo"/>
+                                        <field name="descuento_str_total"/>
                                         <field name="descuento"/>
 
                                     </group>
@@ -110,9 +114,11 @@
                                         <field name="valor_neto"/>
 
                                     </group>
+                                    <group>
                                     <field name="descripcion"/>
                                     <field name="descripcion_qty"/>
                                     <field name="message_line"/>
+                                    </group>
                                 </form>
                             </field>
 

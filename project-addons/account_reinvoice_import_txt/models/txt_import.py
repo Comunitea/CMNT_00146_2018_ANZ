@@ -74,6 +74,34 @@ def get_num(str, force_int=False):
         return entero + dec
     return 0.00
 
+class InvoiceWzd(models.TransientModel):
+
+    _inherit = 'reinvoice.wzd'
+
+    def get_invoices_values(self, inv):
+        payment_term_id = \
+            inv.import_txt_id and inv.import_txt_id.payment_term_id or inv.associate_id.property_payment_term_id or False
+
+        sale_type_id = inv.associate_id.sale_type or self.sale_type_id
+        vals = {
+                'partner_id': inv.associate_id.id,
+                'origin': inv.number or inv.reference,
+                'type': 'out_invoice' if inv.type == 'in_invoice' else 'out_refund',
+                'account_id': inv.associate_id.property_account_receivable_id.id,
+                # 'reference': reference,
+                # 'date_invoice': fields.Date.today(),,
+                'user_id': self._uid,
+                'name': inv.name,
+                'from_supplier': True,
+                'journal_id': sale_type_id.journal_id.id,
+                'operating_unit_id': sale_type_id.operating_unit_id.id,
+                'sale_type_id': sale_type_id.id,
+                'date_value': inv.date_value,
+                'payment_mode_id': inv.associate_id.customer_payment_mode_id.id,
+                'payment_term_id': payment_term_id and payment_term_id.id,
+                'fiscal_position_id': inv.associate_id.property_account_position_id.id
+                }
+        return vals
 
 
 class InvoiceTxtImportLine(models.Model):
@@ -95,7 +123,7 @@ class InvoiceTxtImportLine(models.Model):
     message_line = fields.Char("Txt de la linea")
     state_country = fields.Char("Pais de origen")
     partida_arancelaria = fields.Char("Partida arancelaria")
-    order_id = fields.Many2one('invoice.txt.import.order')
+    order_id = fields.Many2one('invoice.txt.import.order', 'Importado de ...')
 
 
     def get_line_vals(self, invoice_id=False):
@@ -105,6 +133,21 @@ class InvoiceTxtImportLine(models.Model):
                 'discount': self.descuento,
                 'name': self.descripcion + self.descripcion_qty,
                 'invoice_id': invoice_id}
+
+
+    @api.onchange('descuento_str_total')
+    def onchenge_descuento_str_total(self):
+        self.descuento = self.get_descuento_from_str(self.descuento_str_total)
+
+    def get_descuento_from_str(self, descuento_str_total):
+        if descuento_str_total != '':
+            descuento = 0.00
+            for d1 in descuento_str_total.split(' '):
+                descuento += get_num(d1.strip())
+        else:
+            descuento = 0.00
+
+        return descuento
 
 class InvoiceTXTImportOrder(models.Model):
 
@@ -126,10 +169,11 @@ class InvoiceTxtImport(models.Model):
             super(InvoiceTxtImport, self).name_get()
         res=[]
         for txt in self:
-            name = "{} -> {} : {}".format(txt.partner_id and txt.partner_id.name or txt.partner_vat, txt.associate_id and txt.associate_id.name or txt.associate_name,  txt.supplier_invoice_num)
+
+            name = "{} -> {} : {}".format(txt.partner_id and txt.partner_id.name or "Sin asociado",
+                                          txt.associate_id and txt.associate_id.name or txt.associate_name,
+                                          txt.supplier_invoice_num)
             res.append((txt.id, name))
-
-
         return res
 
     file_name = fields.Char('Fichero')
@@ -189,67 +233,79 @@ class InvoiceTxtImport(models.Model):
     original_rectificatica= fields.Char("Rectifica ...")
     order_ids = fields.One2many('invoice.txt.import.order', 'invoice_txt_import_id', string="Pedidos")
 
+    @api.multi
+    def write(self, vals):
+        for txt in self:
+            if txt.invoice_id:
+                return ValidationError("No puedes modificar este rgistro porque ya has creado la factura")
+
+        return super().write(vals)
+
+    @api.onchange('associate_id')
+    def onchange_associate_id(self):
+        if self.associate_id:
+            self.account_position_id = self.associate_id.property_account_position_id
+
     def check_existing_txt(self):
         self.env['invoice.txt.import'].import_txt_invoice()
 
     def get_product(self, linea, partner_id=False):
-
-        product_id = False
-        product_domain = ([('default_code', '=', 'AD.00000')])
+        product_domain = ([('default_code', '=', '01')])
         product_id = self.env['product.product'].search(product_domain, limit=1)
-        return product_id or False
-        # Busco en product suplier info
-        if partner_id:
-            domain = [('product_code', '=', linea['codigo']), ('name', '=', partner_id)]
-            product_supplierinfo = self.env['product.supplierinfo'].search(domain, limit=1)
-            if product_supplierinfo:
-                product_id = product_supplierinfo.product_id
-        # Busco en default_code
-        if not product_id:
-            product_domain = ([('default_code', '=', linea['codigo'])])
-            product_id = self.env['product.product'].search(product_domain, limit=1)
-        # Busco en el nombre
-        if not product_id:
-            product_domain = ([('name', 'ilike', '%{}%'.format(linea['codigo']))])
-            product_id = self.env['product.product'].search(product_domain, limit=1)
-        # Busco en uno auxiliar
-        if not product_id:
-            product_domain = ([('default_code', '=', 'AD.00000')])
-            product_id = self.env['product.product'].search(product_domain, limit=1)
         return product_id or False
 
 
     @api.multi
     def get_associate_id_from_associate_name(self):
-
         for txt in self.filtered(lambda x:x.associate_name and not x.associate_id):
             obj = self.env['partner.supplier.data'].get_associate_id_from_str(txt.associate_name)
 
             if obj:
                 txt.associate_id = obj
             else:
-                txt.associate_id = False
-
+                domain = [('name','=', txt.associate_name)]
+                partner = self.env['res.partner'].search(domain, limit=1)
+                txt = partner and partner.commercial_partner_id or False
 
     def get_partner_refs(self):
+
         if not self.partner_vat:
             self.message_post(body='No hay NIF del proveedor')
             return
+        is_message = False
         p = self.partner_vat.replace('ES', '')
         message = "<ul>"
         domain = [('vat', 'ilike', '%{}%'.format(p))]
         self.partner_id = self.env['res.partner'].search(domain, limit=1)
         if not self.partner_id:
             message = "{} <li>{}</li>".format(message, 'No hay proveedor')
+            is_message = True
 
-        if self.associate_name:
+        if self.associate_name and self.type=='in_invoice':
             self.get_associate_id_from_associate_name()
             if not self.associate_id:
                 message = "{} <li>{} {}</li>".format(message, 'No hay encuentro al asociado para el nombre ', self.associate_name)
+        else:
+            if self.type == 'in_refund':
+                domain = ['|', ('supplier_invoice_number', 'ilike', '%{}%'.format(self.original_rectificatica)), ('reference', 'ilike', '%{}%'.format(self.original_rectificatica))]
+                refund_inv = self.env['account.invoice'].search(domain, limit=1)
+                if refund_inv:
+                    self.associate_id = refund_inv.partner_id
 
-        message = "{} <li>{}</li>".format(message,'</ul>')
-        if not(self.partner_id and self.associate_id):
+        if not self.associate_id:
+            if self.associate_name:
+                message = "{} <li>{} {}</li>".format(message, 'No hay encuentro al asociado para el nombre ', self.associate_name)
+            if self.original_rectificatica:
+                message = "{} <li>{} {}</li>".format(message, 'No hay encuentro la factura {} para este abono',
+                                                     self.original_rectificatica)
+            is_message = True
+
+        message = "{}</ul>".format(message)
+        if is_message:
             self.message_post(body=message)
+        if self.associate_id:
+            self.account_position_id = self.associate_id.property_account_position_id
+
 
     def predict_encoding(self, file_path, n_lines=30):
         '''Predict a file's encoding using chardet'''
@@ -280,18 +336,13 @@ class InvoiceTxtImport(models.Model):
             return pedido
 
 
+
     def get_line(self, linea_pedido):
 
         descuento_str_total = linea_pedido[85:100].strip()
-
-        if descuento_str_total != '':
-            descuento = 0.00
-            for d1 in descuento_str_total.split(' '):
-                descuento += get_num(d1.strip())
-        else:
-            descuento = 0.00
-
-
+        descuento = self.env['invoice.txt.import.line'].get_descuento_from_str(descuento_str_total)
+        if descuento > 100:
+            self.message_post(body="Error en descuento: {} obtenido de {}".format(descuento, descuento_str_total))
         codigo = linea_pedido[4:14].strip()
         num_linea = get_num(linea_pedido[0:4].strip())
         descripcion = linea_pedido[14:82].replace(codigo, '').strip()
@@ -452,7 +503,9 @@ class InvoiceTxtImport(models.Model):
             else:
                 self.message_post(body="No he encontrado los datos del albarán donde esperaba")
                 return False
-
+        if type == 'in_refund':
+            if str[index].strip():
+                self.message_post(body="Referencia del abono: {}".format(str[index].strip()))
         ### DATOS DE LAS LINEAS
         lineas=[]
 
@@ -625,9 +678,6 @@ class InvoiceTxtImport(models.Model):
 
         return True
 
-
-
-
     def write_invoice_from_txt(self, txt_invoice_val, lineas):
         self.write(txt_invoice_val)
         self.get_partner_refs()
@@ -639,38 +689,64 @@ class InvoiceTxtImport(models.Model):
             self.env['invoice.txt.import.line'].create(linea)
         return True
 
-
     @api.multi
     def create_invoice_from_invoice_txt(self):
+        new_invoice = self.env['account.invoice']
         for txt in self:
-            message = ''
+            txt.state = 'error'
+            txt_message = '<ul>'
+            inv_message = '<ul>'
             txt.get_partner_refs()
             refund_invoice_id = False
             txt.state = 'error'
+            payment_term_id = False
+            create_inv = True
             if not txt.partner_id:
-                txt.message_post(body="No encuentro proveedor, asociado")
-                return False
+                txt_message ='{} <li>{}</li>'.format(txt_message, "No encuentro proveedor")
+                create_inv=False
+            if not txt.associate_id:
+                txt_message = '{} <li>{}</li>'.format(txt_message, "No encuentro asociado")
+                create_inv = False
             if txt.pay_notes:
                 payment_term_id = self.env['account.payment.term'].search([('name','=', txt.pay_notes)], limit=1)
                 if txt.pay_notes and not payment_term_id:
-                    message ="No se ha encontrado un plazo de pago para %s<br/>"%txt.pay_notes
+                    txt_message = '{} <li>{}</li>'.format(txt_message, "No se ha encontrado un plazo de pago para %s"%txt.pay_notes)
+                    inv_message = '{} <li>{}</li>'.format(inv_message, "No se ha encontrado un plazo de pago para %s"%txt.pay_notes)
+
+
             if self.type == 'in_refund':
                 refund_invoice_id = self.env['account.invoice'].search([('reference', '=', txt.original_rectificatica)])
                 if refund_invoice_id:
                     txt.associate_id = refund_invoice_id.associate_id
                     txt.associate_id = refund_invoice_id.associate_id.name
                 else:
-                    message = "{}<br/>No encuentro la factura original {} para esta rectificativa".format(message, txt.original_rectificatica)
+                    message = "No encuentro la factura original {} para esta rectificativa".format(txt.original_rectificatica)
+                    txt_message = '{} <li>{}</li>'.format(txt_message, message)
+                    inv_message = '{} <li>{}</li>'.format(inv_message, message)
 
             currency_id = txt.associate_id.property_product_pricelist.currency_id and txt.associate_id.property_product_pricelist.currency_id.id or txt.partner_id.property_product_pricelist.currency_id.id
             if not currency_id:
-                txt.message_post(body="No encuentro moneda")
-                return False
+                create_inv = False
+                message ="No encuentro moneda"
+                txt_message = '{} <li>{}</li>'.format(txt_message, message)
             journal_id = txt.env['account.journal'].search([('name', '=', 'Refacturas')])
             if not journal_id:
+                create_inv = False
+                message ="No encuentro diario de refacturas"
+                txt_message = '{} <li>{}</li>'.format(txt_message, message)
 
-                txt.message_post(body="No encuentro diario de refacturas")
-                return False
+            if not txt.account_position_id:
+                txt.account_position_id = txt.associate_id.property_account_position_id
+            if not txt.account_position_id:
+                create_inv = False
+                message = "No posición fiscal para el asociado {}".format(txt.associate_id and txt.associate_id.display_name or "Sin asociado")
+                txt_message = '{} <li>{}</li>'.format(txt_message, message)
+
+            if not create_inv:
+                txt_message = "</ul>{}".format(txt_message, "Este fichero no ha generado la factura")
+                txt.message_post(body=txt_message)
+                continue
+
             invoice_val = {
                 'type': self.type or 'in_invoice',
                 'partner_id': txt.partner_id.id or False,
@@ -686,14 +762,12 @@ class InvoiceTxtImport(models.Model):
                 'check_total': txt.total_amount,
                 'date_invoice_from_associate_order': txt.supplier_picking_date,
                 'refund_invoice_id': refund_invoice_id,
-                'payment_term_id': payment_term_id and payment_term_id.id
+                'payment_term_id': payment_term_id and payment_term_id.id,
+                'invoice_tx_import_id': txt.id,
+                'name': txt.display_name
             }
             ## TODO NO ENTIENDO ESTO
 
-            if not txt.account_position_id:
-                txt.account_position_id = txt.associate_id.property_account_position_id
-            if not txt.account_position_id:
-                message = "{}<br/>No posición fiscal para el asociado".format(message, txt.associate_id.display_name)
 
             invoice = self.env['account.invoice'].new(invoice_val)
             invoice._onchange_partner_id()
@@ -701,27 +775,33 @@ class InvoiceTxtImport(models.Model):
             inv.update(journal_id = journal_id.id,
                        fiscal_position_id = txt.account_position_id.id,
                        payment_term_id=payment_term_id and payment_term_id.id)
+            if not inv.get('operating_unit_id', False) and txt.associate_id.sale_type_id.operating_unit_id:
+                inv.update(operating_unit_id = txt.associate_id.sale_type.operating_unit_id.id)
+
             new_invoice = self.env['account.invoice'].create(inv)
             new_invoice.journal_id = journal_id
             new_invoice.date_due = txt.fecha_vencimiento
             txt.invoice_id = new_invoice
-            property_account_position_id = txt.account_position_id
-            print ("\n------------\nFACTURA PARA : {}\n------------\n".format(new_invoice.associate_id.name or self.partner_id.name))
 
             for linea in txt.invoice_line_txt_import_ids:
-
                 vals = linea.get_line_vals(new_invoice.id)
                 invoice_line = self.env['account.invoice.line'].new(vals)
                 invoice_line._onchange_product_id()
                 invoice_line.invoice_line_tax_ids = new_invoice.fiscal_position_id.map_tax(invoice_line.invoice_line_tax_ids, invoice_line.product_id,
-                                                                                           new_invoice.associate_id)
+                                                                                          new_invoice.associate_id)
                 invoice_line.invoice_line_tax_ids = invoice_line.invoice_line_tax_ids.ids
                 inv_line = invoice_line._convert_to_write(invoice_line._cache)
                 inv_line.update(name=vals['name'], price_unit=linea['precio_articulo'], discount=linea['descuento'])
                 self.env['account.invoice.line'].create(inv_line)
             new_invoice.compute_taxes()
-            message = "{}<br/>{}".format(message, "Esta factura ha sido creada desde el fichero: <a href=# data-oe-model=invoice.txt.import data-oe-id=%d>%s</a>"% (txt.id, txt.file_name))
-            txt.state = 'invoiced'
-            new_invoice.message_post(body=message)
 
-        return new_invoice
+            print("\n------------\nFACTURA PARA : {}\n------------\n".format(
+                new_invoice.associate_id.name or self.partner_id.name))
+            inv_message = "{}</ul>{}".format(inv_message, "Esta factura ha sido creada desde el fichero: <a href=# data-oe-model=invoice.txt.import data-oe-id=%d>%s</a>"% (txt.id, txt.file_name))
+            new_invoice.message_post(body=inv_message)
+            txt.state = 'invoiced'
+            txt_message = "{}</ul>{}".format(txt_message,
+                                     "Este fichero ha generado la factura: <a href=# data-oe-model=account.invoice data-oe-id=%d>%s</a>" % (
+                                     new_invoice.id, new_invoice.name))
+            txt.message_post(body=txt_message)
+        return new_invoice.ids

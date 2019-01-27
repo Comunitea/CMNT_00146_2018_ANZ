@@ -1,8 +1,10 @@
 # Copyright 2016 Acsone SA/NV
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
-from odoo import fields, models
+from odoo import fields, models, api
 import datetime
 import time
+
+
 
 
 class AccountInvoice(models.Model):
@@ -52,3 +54,9 @@ class AccountInvoice(models.Model):
             invoices = self.search(domain)
             invoice.amount_year_discount = \
                 sum([x.amount_discount for x in invoices])
+
+    @api.multi
+    def proccess_reinvoice(self):
+        #wzd_id = self.env['reinvoice.wzd'].create({'':})
+
+        return
