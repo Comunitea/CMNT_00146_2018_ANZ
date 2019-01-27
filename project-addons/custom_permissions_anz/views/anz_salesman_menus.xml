@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+        <menuitem id="sale_menu_root_salesman_anz"
+        name="Salesman Sales"
+        web_icon="sale,static/description/icon.png"
+        sequence="7"
+        groups="anz_salesman"/>
+
+        <menuitem id="sale_order_menu_salesman_anz"
+           name="Salesman Access"
+           parent="sale_menu_root_salesman_anz"
+           sequence="2"/>
+        
+ 
+        <!-- Res.Partner -->
+        <menuitem action="action_partner_form_salesman_anz" id="menu_commercial_sales_anz" parent="sale_order_menu_salesman_anz" sequence="1"/>
+        <!-- Orders -->
+        <menuitem action="action_orders_view_salesman_anz" id="menu_sales_salesman_anz" parent="sale_order_menu_salesman_anz" sequence="2"/>
+        <!-- Products -->
+        <menuitem action="action_products_view_salesman_anz" id="menu_product_salesman_anz" parent="sale_order_menu_salesman_anz" sequence="2"/>
+
+
+    
+</odoo>
