@@ -2,24 +2,35 @@
 <odoo>
 
         <menuitem id="sale_menu_root_salesman_anz"
-        name="Salesman Sales"
+        name="Salesman Access"
         web_icon="sale,static/description/icon.png"
         sequence="7"
         groups="anz_salesman"/>
 
         <menuitem id="sale_order_menu_salesman_anz"
-           name="Salesman Access"
+           name="Salesman Sales"
            parent="sale_menu_root_salesman_anz"
            sequence="2"/>
         
- 
-        <!-- Res.Partner -->
-        <menuitem action="action_partner_form_salesman_anz" id="menu_commercial_sales_anz" parent="sale_order_menu_salesman_anz" sequence="1"/>
         <!-- Orders -->
-        <menuitem action="action_orders_view_salesman_anz" id="menu_sales_salesman_anz" parent="sale_order_menu_salesman_anz" sequence="2"/>
-        <!-- Products -->
-        <menuitem action="action_products_view_salesman_anz" id="menu_product_salesman_anz" parent="sale_order_menu_salesman_anz" sequence="2"/>
+        <menuitem id="menu_orders_anz" name="Orders" parent="sale_order_menu_salesman_anz" sequence="1"/>
+        <menuitem action="action_orders_view_salesman_anz" id="menu_sales_salesman_anz" parent="menu_orders_anz" sequence="1"/>
 
+        <!-- Res.Partner -->
+        <menuitem id="menu_contacts_anz" parent="sale_order_menu_salesman_anz" sequence="2" name="Contacts"/>
+        <menuitem action="action_partner_form_salesman_anz" id="menu_commercial_sales_anz" parent="menu_contacts_anz" sequence="2"/>
+
+        <!-- Products -->
+        <menuitem id="menu_products_anz" name="Products" parent="sale_order_menu_salesman_anz" sequence="3"/>
+        <menuitem action="action_products_view_salesman_anz" id="menu_product_salesman_anz" parent="menu_products_anz" sequence="3"/>
+
+        <!-- Avoid contacts menu, move to Sale Own documents group -->
+         <menuitem id="contacts.res_partner_menu_contacts"
+        name="Contacts"
+        action="contacts.action_contacts"
+        parent="contacts.menu_contacts"
+        sequence="2"
+        groups="sales_team.group_sale_salesman"/>
 
     
 </odoo>
