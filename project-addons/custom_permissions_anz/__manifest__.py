@@ -18,7 +18,8 @@
         'stock',
         'sale_commission',
         'commercial_rules',
-        'sale_mrp'
+        'sale_mrp',
+        'contacts'
     ],
     'data': [
         'security/custom_groups_rules.xml',

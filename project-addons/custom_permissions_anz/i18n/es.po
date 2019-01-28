@@ -1,0 +1,356 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* custom_permissions_anz
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 11.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-01-28 11:02+0000\n"
+"PO-Revision-Date: 2019-01-28 11:02+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: custom_permissions_anz
+#: model:ir.ui.view,arch_db:custom_permissions_anz.view_partner_anz_salesman_form
+msgid "(edit)"
+msgstr "(editar)"
+
+#. module: custom_permissions_anz
+#: model:ir.ui.view,arch_db:custom_permissions_anz.view_partner_anz_salesman_form
+msgid "Address"
+msgstr "Dirección"
+
+#. module: custom_permissions_anz
+#: model:ir.ui.view,arch_db:custom_permissions_anz.view_sale_salesman_form
+msgid "Cancel"
+msgstr "Cancelar"
+
+#. module: custom_permissions_anz
+#: model:ir.ui.view,arch_db:custom_permissions_anz.view_partner_anz_salesman_form
+msgid "City"
+msgstr "Ciudad"
+
+#. module: custom_permissions_anz
+#: model:ir.actions.act_window,help:custom_permissions_anz.action_partner_form_salesman_anz
+msgid "Click to add a contact in your address book."
+msgstr "Pulse aquí para agregar un contacto en su directorio."
+
+#. module: custom_permissions_anz
+#: model:ir.actions.act_window,help:custom_permissions_anz.action_products_view_salesman_anz
+msgid "Click to define a new product."
+msgstr "Clic para definir un nuevo producto."
+
+#. module: custom_permissions_anz
+#: model:ir.ui.view,arch_db:custom_permissions_anz.view_partner_anz_salesman_form
+msgid "Company"
+msgstr "Compañía"
+
+#. module: custom_permissions_anz
+#: model:ir.ui.view,arch_db:custom_permissions_anz.view_sale_salesman_form
+msgid "Confirm Sale"
+msgstr "Confirmar venta"
+
+#. module: custom_permissions_anz
+#: model:ir.model,name:custom_permissions_anz.model_res_partner
+msgid "Contact"
+msgstr "Contacto"
+
+#. module: custom_permissions_anz
+#: model:ir.ui.view,arch_db:custom_permissions_anz.view_partner_anz_salesman_form
+msgid "Contact / Address"
+msgstr "Contacto/dirección"
+
+#. module: custom_permissions_anz
+#: model:ir.ui.view,arch_db:custom_permissions_anz.view_partner_anz_salesman_form
+msgid "Contact Name"
+msgstr "Nombre del contacto"
+
+#. module: custom_permissions_anz
+#: model:ir.ui.menu,name:custom_permissions_anz.menu_contacts_anz
+msgid "Contacts"
+msgstr "Contactos"
+
+#. module: custom_permissions_anz
+#: model:ir.ui.view,arch_db:custom_permissions_anz.view_partner_anz_salesman_form
+msgid "Contacts & Addresses"
+msgstr "Contactos y direcciones"
+
+#. module: custom_permissions_anz
+#: model:ir.ui.view,arch_db:custom_permissions_anz.view_partner_anz_salesman_form
+msgid "Country"
+msgstr "País"
+
+#. module: custom_permissions_anz
+#: model:ir.actions.act_window,help:custom_permissions_anz.action_orders_view_salesman_anz
+msgid "Create a Quotation, the first step of a new sale."
+msgstr "Crea un Presupuesto, el primer paso de una nueva venta."
+
+#. module: custom_permissions_anz
+#: model:ir.ui.view,arch_db:custom_permissions_anz.view_partner_anz_salesman_form
+msgid "Create company"
+msgstr "Crear compañía"
+
+#. module: custom_permissions_anz
+#: model:ir.actions.act_window,name:custom_permissions_anz.action_partner_form_salesman_anz
+#: model:ir.ui.menu,name:custom_permissions_anz.menu_commercial_sales_anz
+msgid "Customers"
+msgstr "Clientes"
+
+#. module: custom_permissions_anz
+#: model:ir.ui.view,arch_db:custom_permissions_anz.view_sale_salesman_form
+msgid "Delivered Quantity"
+msgstr "Cantidad Entregada"
+
+#. module: custom_permissions_anz
+#: model:ir.ui.view,arch_db:custom_permissions_anz.view_sale_salesman_form
+msgid "If the sale is locked, you can not modify it anymore. However, you will still be able to invoice or deliver."
+msgstr "Si la venta está bloqueada, no puede modificarla. Sin embargo, todavía podrá facturarla o entregarla."
+
+#. module: custom_permissions_anz
+#: model:ir.ui.view,arch_db:custom_permissions_anz.view_sale_salesman_form
+msgid "Invoiced Quantity"
+msgstr "Cantidad Facturada"
+
+#. module: custom_permissions_anz
+#: model:ir.ui.view,arch_db:custom_permissions_anz.view_sale_salesman_form
+msgid "Invoices"
+msgstr "Facturas"
+
+#. module: custom_permissions_anz
+#: model:ir.ui.view,arch_db:custom_permissions_anz.view_sale_salesman_form
+msgid "Lock"
+msgstr "Bloquear"
+
+#. module: custom_permissions_anz
+#: model:ir.ui.view,arch_db:custom_permissions_anz.view_partner_anz_salesman_form
+msgid "Mobile:"
+msgstr "Móvil:"
+
+#. module: custom_permissions_anz
+#: model:ir.ui.view,arch_db:custom_permissions_anz.view_partner_anz_salesman_form
+msgid "Name"
+msgstr "Nombre"
+
+#. module: custom_permissions_anz
+#: model:ir.actions.act_window,help:custom_permissions_anz.action_partner_form_salesman_anz
+msgid "Odoo helps you easily track all activities related to\n"
+"            a customer: discussions, history of business opportunities,\n"
+"            documents, etc."
+msgstr "Odoo le ayuda a rastrear fácilmente toda la actividad relacionada a\n"
+"un cliente: discusiones, historia de las oportunidades de negocio,\n"
+"documentos, etc."
+
+#. module: custom_permissions_anz
+#: model:ir.actions.act_window,help:custom_permissions_anz.action_orders_view_salesman_anz
+msgid "Once the quotation is confirmed, it becomes a sales order.\n"
+"                    You'll be able to invoice it and collect payments.\n"
+"                    From the <i>Sales Orders</i> menu, you can track delivery\n"
+"                    orders or services."
+msgstr "Una vez confirmado el presupuesto, se convierte en un pedido de venta.\n"
+"                    Podrá facturarlo y cobrar los pagos.\n"
+"                   En el menú <i>Pedidos de venta</i>, puede realizar el seguimiento de los albaranes\n"
+"                    o servicios."
+
+#. module: custom_permissions_anz
+#: model:ir.ui.view,arch_db:custom_permissions_anz.view_sale_salesman_form
+msgid "Order Lines"
+msgstr "Líneas del pedido"
+
+#. module: custom_permissions_anz
+#: model:ir.ui.view,arch_db:custom_permissions_anz.view_sale_salesman_form
+msgid "Ordered Qty"
+msgstr "Ctdad pedida"
+
+#. module: custom_permissions_anz
+#: model:ir.ui.view,arch_db:custom_permissions_anz.view_sale_salesman_form
+msgid "Ordered Quantity"
+msgstr "Cantidad pedida"
+
+#. module: custom_permissions_anz
+#: model:ir.ui.menu,name:custom_permissions_anz.menu_orders_anz
+msgid "Orders"
+msgstr "Pedidos"
+
+#. module: custom_permissions_anz
+#: model:ir.ui.view,arch_db:custom_permissions_anz.view_partner_anz_salesman_form
+msgid "Partners"
+msgstr "Empresas"
+
+#. module: custom_permissions_anz
+#: model:ir.ui.view,arch_db:custom_permissions_anz.view_partner_anz_salesman_form
+msgid "Phone:"
+msgstr "Teléfono:"
+
+#. module: custom_permissions_anz
+#: model:ir.ui.view,arch_db:custom_permissions_anz.view_sale_salesman_form
+msgid "Print"
+msgstr "Imprimir"
+
+#. module: custom_permissions_anz
+#: model:ir.ui.view,arch_db:custom_permissions_anz.product_product_form_view_salesman_anz
+msgid "Product"
+msgstr "Producto"
+
+#. module: custom_permissions_anz
+#: model:ir.ui.view,arch_db:custom_permissions_anz.product_product_form_view_salesman_anz
+msgid "Product Name"
+msgstr "Nombre del producto"
+
+#. module: custom_permissions_anz
+#: model:ir.actions.act_window,name:custom_permissions_anz.action_products_view_salesman_anz
+#: model:ir.ui.menu,name:custom_permissions_anz.menu_product_salesman_anz
+#: model:ir.ui.view,arch_db:custom_permissions_anz.product_product_tree_view_salesman_anz
+msgid "Product Variants"
+msgstr "Variantes de producto"
+
+#. module: custom_permissions_anz
+#: model:ir.ui.menu,name:custom_permissions_anz.menu_products_anz
+msgid "Products"
+msgstr "Productos"
+
+#. module: custom_permissions_anz
+#: model:ir.ui.view,arch_db:custom_permissions_anz.view_sale_salesman_form
+msgid "Quantity:"
+msgstr "Cantidad:"
+
+#. module: custom_permissions_anz
+#: model:ir.ui.view,arch_db:custom_permissions_anz.view_sale_salesman_form
+msgid "Sales Order"
+msgstr "Pedido de ventas"
+
+#. module: custom_permissions_anz
+#: model:ir.ui.view,arch_db:custom_permissions_anz.view_sale_salesman_form
+msgid "Sales Order Lines"
+msgstr "Líneas pedido de ventas"
+
+#. module: custom_permissions_anz
+#: model:ir.actions.act_window,name:custom_permissions_anz.action_orders_view_salesman_anz
+#: model:ir.ui.menu,name:custom_permissions_anz.menu_sales_salesman_anz
+msgid "Sales Orders"
+msgstr "Pedidos de ventas"
+
+#. module: custom_permissions_anz
+#: model:ir.ui.menu,name:custom_permissions_anz.sale_order_menu_salesman_anz
+msgid "Salesman Sales"
+msgstr "Ventas Comerciales"
+
+#. module: custom_permissions_anz
+#: model:ir.ui.menu,name:custom_permissions_anz.sale_menu_root_salesman_anz
+msgid "Salesman Access"
+msgstr "Acceso Comerciales"
+
+#. module: custom_permissions_anz
+#: model:res.groups,name:custom_permissions_anz.anz_salesman
+msgid "Salesman: Restricted"
+msgstr "Comercial: Restringido"
+
+#. module: custom_permissions_anz
+#: model:ir.ui.view,arch_db:custom_permissions_anz.view_sale_salesman_form
+msgid "Send PRO-FORMA Invoice"
+msgstr "Enviar Factura PROFORMA"
+
+#. module: custom_permissions_anz
+#: model:ir.ui.view,arch_db:custom_permissions_anz.view_sale_salesman_form
+msgid "Send by Email"
+msgstr "Enviar por correo electrónico"
+
+#. module: custom_permissions_anz
+#: model:ir.ui.view,arch_db:custom_permissions_anz.view_sale_salesman_form
+msgid "Set to Quotation"
+msgstr "Convertir a presupuesto"
+
+#. module: custom_permissions_anz
+#: model:ir.ui.view,arch_db:custom_permissions_anz.view_sale_salesman_form
+msgid "Setup default terms and conditions in your sales settings ..."
+msgstr "Configure los términos y condiciones predeterminados en su configuración de ventas..."
+
+#. module: custom_permissions_anz
+#: model:ir.ui.view,arch_db:custom_permissions_anz.view_partner_anz_salesman_form
+msgid "State"
+msgstr "Estado"
+
+#. module: custom_permissions_anz
+#: model:ir.ui.view,arch_db:custom_permissions_anz.view_partner_anz_salesman_form
+msgid "Street 2..."
+msgstr "Calle 2..."
+
+#. module: custom_permissions_anz
+#: model:ir.ui.view,arch_db:custom_permissions_anz.view_partner_anz_salesman_form
+msgid "Street..."
+msgstr "Calle..."
+
+#. module: custom_permissions_anz
+#: model:ir.ui.view,arch_db:custom_permissions_anz.view_partner_anz_salesman_form
+msgid "Tags..."
+msgstr "Etiquetas..."
+
+#. module: custom_permissions_anz
+#: model:res.groups,comment:custom_permissions_anz.anz_salesman
+msgid "The Salesman has customized restricted access"
+msgstr "The Salesman has customized restricted access"
+
+#. module: custom_permissions_anz
+#: model:ir.actions.act_window,help:custom_permissions_anz.action_products_view_salesman_anz
+msgid "The product form contains information to simplify the sale\n"
+"                process: price, notes in the quotation, accounting data,\n"
+"                procurement methods, etc."
+msgstr "El formulario de producto contiene información para simplificar el proceso de venta: precio, notas en el presupuesto, datos contables, modos de contrato, etc."
+
+#. module: custom_permissions_anz
+#: model:ir.ui.view,arch_db:custom_permissions_anz.view_sale_salesman_form
+msgid "Unit Price:"
+msgstr "Precio de Unidad:"
+
+#. module: custom_permissions_anz
+#: model:ir.ui.view,arch_db:custom_permissions_anz.view_sale_salesman_form
+msgid "Unlock"
+msgstr "Desbloquear"
+
+#. module: custom_permissions_anz
+#: model:ir.actions.act_window,help:custom_permissions_anz.action_products_view_salesman_anz
+msgid "You must define a product for everything you sell, whether it's\n"
+"                a physical product, a consumable or a service you offer to\n"
+"                customers."
+msgstr "Debe definir un producto para todo lo que venda, ya sea un producto\n"
+"físico, un consumible o servicios que usted subcontrate."
+
+#. module: custom_permissions_anz
+#: model:ir.ui.view,arch_db:custom_permissions_anz.view_partner_anz_salesman_form
+msgid "ZIP"
+msgstr "C.P."
+
+#. module: custom_permissions_anz
+#: model:ir.ui.view,arch_db:custom_permissions_anz.view_sale_salesman_form
+msgid "days"
+msgstr "días"
+
+#. module: custom_permissions_anz
+#: model:ir.ui.view,arch_db:custom_permissions_anz.view_partner_anz_salesman_form
+msgid "e.g. BE0477472701"
+msgstr "Por ejemplo, ESA00000000"
+
+#. module: custom_permissions_anz
+#: model:ir.ui.view,arch_db:custom_permissions_anz.view_partner_anz_salesman_form
+msgid "e.g. Mr."
+msgstr "Por ejemplo, Mr."
+
+#. module: custom_permissions_anz
+#: model:ir.ui.view,arch_db:custom_permissions_anz.view_partner_anz_salesman_form
+msgid "e.g. Sales Director"
+msgstr "Por ejemplo, Director de Ventas"
+
+#. module: custom_permissions_anz
+#: model:ir.ui.view,arch_db:custom_permissions_anz.view_partner_anz_salesman_form
+msgid "e.g. www.odoo.com"
+msgstr "Por ejemplo, www.odoo.com"
+
+#. module: custom_permissions_anz
+#: model:ir.ui.view,arch_db:custom_permissions_anz.view_partner_anz_salesman_form
+msgid "internal note..."
+msgstr "Nota interna..."
+
