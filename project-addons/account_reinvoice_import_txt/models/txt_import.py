@@ -771,10 +771,10 @@ class InvoiceTxtImport(models.Model):
                 invoice_line._onchange_product_id()
                 invoice_line.invoice_line_tax_ids = new_invoice.fiscal_position_id.map_tax(invoice_line.invoice_line_tax_ids, invoice_line.product_id,
                                                                                           new_invoice.associate_id)
-                invoice_line.invoice_line_tax_ids = invoice_line.invoice_line_tax_ids.ids
                 inv_line = invoice_line._convert_to_write(invoice_line._cache)
                 inv_line.update(name=vals['name'], price_unit=linea['precio_articulo'], discount=linea['descuento'])
                 self.env['account.invoice.line'].create(inv_line)
+
             new_invoice.compute_taxes()
 
             print("\n------------\nFACTURA PARA : {}\n------------\n".format(

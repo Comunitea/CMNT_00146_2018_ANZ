@@ -40,19 +40,20 @@ class ReinvoiceWzd(models.TransientModel):
         account_id = cat.property_account_income_categ_id.id
         for line in lines:
             # Get new taxes
-            new_tax_ids = self._get_purchase_tax(line.invoice_line_tax_ids)
             # get new discount
+
             rule = self.env['reinvoice.rule'].get_reinvoice_discount(line, supplier)
             if not rule:
                 inv_ass.message_post(body="No se ha encontrado una regla de descuento para %s"%line.display_name)
-
             line_vals = {
                 'name': line.name + _(' (Reinvoice)'),
                 'account_id': account_id,
-                'invoice_line_tax_ids': [(6, 0, new_tax_ids)],
                 'discount': rule and rule.customer_discount or 0.00,
             }
             line.write(line_vals)
+            line.invoice_line_tax_ids = inv_ass.fiscal_position_id.map_tax(
+                line.product_id.taxes_id, line.product_id,
+                inv_ass.partner_id)
         return True
 
     def get_invoices_values(self, inv):
@@ -96,8 +97,10 @@ class ReinvoiceWzd(models.TransientModel):
             # No debemos copiar por que podríamos arrastrar valores no
             # desados (como las lineas de impuestos)
             #inv_ass = created_invoices.create(copy_vals)
+
             inv_ass.write({'supplier_invoice_id': inv.id})
-            lineas = self._get_associated_invoice_lines(inv_ass, inv.invoice_line_ids, supplier=inv.partner_id)
+            lineas = self._get_associated_invoice_lines(inv_ass, inv_ass.invoice_line_ids, supplier=inv.partner_id)
+
             if not lineas:
                 self.message_post(body="Error al crear las líneas de factura. Comprueba las reglas de refactura")
                 inv_ass.unlink()
