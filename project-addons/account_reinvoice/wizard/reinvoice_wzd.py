@@ -90,13 +90,19 @@ class ReinvoiceWzd(models.TransientModel):
                     _('Invoice %s has not an associate.') % inv.number or inv.reference)
 
             copy_vals = self.get_invoices_values(inv)
-            inv_ass = inv.copy(copy_vals)
+            # inv_ass = inv.copy(copy_vals)
+            # No debemos copiar por que podríamos arrastrar valores no
+            # desados (como las lineas de impuestos)
+            inv_ass = created_invoices.create(copy_vals)
             inv_ass.write({'supplier_invoice_id': inv.id})
-            lineas = self._get_associated_invoice_lines(inv_ass, supplier=inv.partner_id)
+            lineas = self._get_associated_invoice_lines(inv_ass,
+                                                        supplier=inv.partner_id)
             if not lineas:
                 self.message_post(body="Error al crear las líneas de factura. Comprueba las reglas de refactura")
                 inv_ass.unlink()
             else:
+                # Calculamos impuestos
+                inv_ass.compute_taxes()
                 created_invoices += inv_ass
                 inv.write({'customer_invoice_id': inv_ass.id})
         return created_invoices
