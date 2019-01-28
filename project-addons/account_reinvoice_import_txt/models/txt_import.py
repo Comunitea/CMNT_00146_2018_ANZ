@@ -79,28 +79,10 @@ class InvoiceWzd(models.TransientModel):
     _inherit = 'reinvoice.wzd'
 
     def get_invoices_values(self, inv):
+        vals = super().get_invoices_values(inv)
         payment_term_id = \
             inv.import_txt_id and inv.import_txt_id.payment_term_id or inv.associate_id.property_payment_term_id or False
-
-        sale_type_id = inv.associate_id.sale_type or self.sale_type_id
-        vals = {
-                'partner_id': inv.associate_id.id,
-                'origin': inv.number or inv.reference,
-                'type': 'out_invoice' if inv.type == 'in_invoice' else 'out_refund',
-                'account_id': inv.associate_id.property_account_receivable_id.id,
-                # 'reference': reference,
-                # 'date_invoice': fields.Date.today(),,
-                'user_id': self._uid,
-                'name': inv.name,
-                'from_supplier': True,
-                'journal_id': sale_type_id.journal_id.id,
-                'operating_unit_id': sale_type_id.operating_unit_id.id,
-                'sale_type_id': sale_type_id.id,
-                'date_value': inv.date_value,
-                'payment_mode_id': inv.associate_id.customer_payment_mode_id.id,
-                'payment_term_id': payment_term_id and payment_term_id.id,
-                'fiscal_position_id': inv.associate_id.property_account_position_id.id
-                }
+        vals.update(payment_term_id=payment_term_id and payment_term_id.id)
         return vals
 
 
