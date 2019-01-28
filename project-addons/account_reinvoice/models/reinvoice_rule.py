@@ -18,7 +18,7 @@ class ReInvoiceRule(models.Model):
                     rule.supplier_discount, rule.customer_discount)
 
             else:
-                name_2 = "Descuento: {} {}".format(rule.order_type)
+                name_2 = "Descuento: {}".format(rule.order_type)
 
             res.append((rule.id, "{} >> {}".format(name, name_2)))
         return res
