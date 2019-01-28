@@ -14,7 +14,6 @@ class ProductBrand(models.Model):
     @api.multi
     def get_reinvoice_discount(self, line):
         self.ensure_one()
-
         partner_id = line.invoice_id.partner_id
         product_id = line.product_id
         scheduled_sale = product_id and product_id.scheduled_sale_id and True or False
@@ -25,12 +24,10 @@ class ProductBrand(models.Model):
                   ('affiliate', '=', partner_id.affiliate),
                   ('supplier_discount', '=', line.discount)]
         rule = self.env['reinvoice.rule'].search(domain, order='partner_id desc, brand_id desc')
-        print (rule.mapped('id'))
         if not rule:
             print ('No encuentro regla')
             return line.discount
         res = rule[0]
-        print ('Regla {} para {} :{} '.format(res.id, res.partner_id, res.customer_discount))
         return res.customer_discount
 
     @api.multi

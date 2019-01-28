@@ -57,7 +57,6 @@ class ReInvoiceRule(models.Model):
                 domain +=[('supplier_customer_ranking_id', '=', supplier_data.supplier_customer_ranking_id.id)]
 
         rule = self.search(domain, order='partner_id asc, brand_id asc, supplier_customer_ranking_id asc, supplier_discount desc', limit=1)
-        print (rule)
         if not rule:
             raise UserError((
                                 'No se ha encontrado una regla de refactura para este descuento {}, de este proveedor {}, y que {}sea asociado'.format(

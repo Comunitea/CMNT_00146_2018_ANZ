@@ -15,7 +15,6 @@ class ReinvoiceWzd(models.TransientModel):
     @api.model
     def default_get(self, fields_list):
         res = super(ReinvoiceWzd, self).default_get(fields_list)
-        print (self._context)
         active_id = self._context.get('active_id', False)
         if active_id:
             a_id = self.env['account.invoice'].browse(active_id)
@@ -35,12 +34,11 @@ class ReinvoiceWzd(models.TransientModel):
                 tax_ids.append(taxes.id)
         return tax_ids
 
-    def _get_associated_invoice_lines(self, inv_ass, supplier=False):
+    def _get_associated_invoice_lines(self, inv_ass, lines, supplier=False):
         # Get account
-
         cat = self.env['product.category'].search([], limit=1)
         account_id = cat.property_account_income_categ_id.id
-        for line in inv_ass.invoice_line_ids:
+        for line in lines:
             # Get new taxes
             new_tax_ids = self._get_purchase_tax(line.invoice_line_tax_ids)
             # get new discount
@@ -73,7 +71,7 @@ class ReinvoiceWzd(models.TransientModel):
                 'journal_id': sale_type_id.journal_id.id,
                 'operating_unit_id': sale_type_id.operating_unit_id.id,
                 'sale_type_id': sale_type_id.id,
-                'date_value': inv.date_value,
+                'value_date': inv.value_date,
                 'payment_mode_id': inv.associate_id.customer_payment_mode_id.id,
                 'payment_term_id': inv.associate_id.property_payment_term_id.id,
                 'fiscal_position_id': inv.associate_id.property_account_position_id.id
@@ -81,26 +79,30 @@ class ReinvoiceWzd(models.TransientModel):
         return vals
 
     def get_invoices(self, invoices):
+
         created_invoices = self.env['account.invoice']
 
         for inv in invoices:
+            if inv.customer_invoice_id:
+                raise UserError(
+                    _('Invoice %s has related customer invoice') % inv.number or inv.reference)
 
             if not inv.associate_id:
                 raise UserError(
                     _('Invoice %s has not an associate.') % inv.number or inv.reference)
 
             copy_vals = self.get_invoices_values(inv)
-            # inv_ass = inv.copy(copy_vals)
+            inv_ass = inv.copy(copy_vals)
             # No debemos copiar por que podríamos arrastrar valores no
             # desados (como las lineas de impuestos)
-            inv_ass = created_invoices.create(copy_vals)
+            #inv_ass = created_invoices.create(copy_vals)
             inv_ass.write({'supplier_invoice_id': inv.id})
-            lineas = self._get_associated_invoice_lines(inv_ass,
-                                                        supplier=inv.partner_id)
+            lineas = self._get_associated_invoice_lines(inv_ass, inv.invoice_line_ids, supplier=inv.partner_id)
             if not lineas:
                 self.message_post(body="Error al crear las líneas de factura. Comprueba las reglas de refactura")
                 inv_ass.unlink()
             else:
+
                 # Calculamos impuestos
                 inv_ass.compute_taxes()
                 created_invoices += inv_ass
