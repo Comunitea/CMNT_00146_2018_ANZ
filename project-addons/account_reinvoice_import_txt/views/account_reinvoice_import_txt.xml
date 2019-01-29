@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
+
     <!-- CUSTOMER LINES VIEWS -->
     <record id="view_invoice_txt_import_tree" model="ir.ui.view">
         <field name="name">invoice_txt.import.tree</field>
@@ -12,7 +13,12 @@
                 <field name="associate_id"/>
                 <field name="state"/>
                 <field name="invoice_id"/>
-                <field name="file_name" invisible="1"/>
+                <field name="supplier_invoice_num" invisible="1"/>
+                <field name="supplier_picking_num" invisible="1"/>
+                <field name="associate_name" invisible="1"/>
+                <field name="type" invisible="1"/>
+                <field name="value_date" invisible="1"/>
+                <field name="supplier_invoice_date"/>
             </tree>
         </field>
     </record>
@@ -167,24 +173,40 @@
         </field>
 
     </record>
-      <!--record id="view_reinvoice_rule_filter" model="ir.ui.view">
-            <field name="name">view.reinvoice.rule.filter</field>
-            <field name="model">reinvoice.rule</field>
+
+
+
+      <record id="view_invoice_txt_import_filter" model="ir.ui.view">
+            <field name="name">view.invoice.txt.import.filter</field>
+            <field name="model">invoice.txt.import</field>
             <field name="arch" type="xml">
-                <search string="Search Rules">
-                    <field name="partner_id"/>
-                    <field name="brand_id"/>
+                <search string="Search txt invoices">
+
+                    <field name="associate_id" string="Nombre" filter_domain="['|', ('associate_id','ilike',self), ('associate_name','ilike',self)]" />
+                    <field name="supplier_invoice_num" string="Nº proveedor"/>
+                    <field name="supplier_picking_num" string="Albarán"/>
                     <separator/>
-                    <filter name="gobal" string="Global Rule" domain="[('partner_id','=', False)]"/>
-                    <filter name="specific" string="Specific Rule" domain="[('partner_id','!=', False)]"/>
+                    <filter string="Error" domain="[('state','=','error')]"/>
+                    <filter string="Borrador" domain="[('state','=','draft')]"/>
+                    <separator/>
+                    <filter string="Facturas" domain="[('type','=','in_invoice')]"/>
+                    <filter string="Abonos" domain="[('type','=','in_refund')]"/>
+                    <separator/>
+
+                    <filter string="Facturada" domain="[('invoice_id','!=',False)]"/>
+                    <filter string="No facturada" domain="[('invoice_id','=',False)]"/>
+
 
                     <group expand="0" string="Group By">
-                        <filter string="Brand" domain="[]" context="{'group_by':'brand_id'}"/>
-                        <filter string="Customer" domain="[]" context="{'group_by':'partner_id'}"/>
+                        <filter string="Asociado" domain="[]" context="{'group_by':'associate_id'}"/>
+                        <filter string="Proveedor" domain="[]" context="{'group_by':'partner_id'}"/>
+
+                        <filter string="Fecha valor" context="{'group_by':'value_date:month'}" help="Month of claim"/>
+                        <filter string="Fecha factura" context="{'group_by':'supplier_invoice_date:month'}" help="Month of claim"/>
                     </group>
                 </search>
             </field>
-        </record-->
+        </record>
 
     <record id="action_reinvoice_import_txt" model="ir.actions.act_window">
         <field name="name">Import Invoice Txt</field>
@@ -196,3 +218,4 @@
     <menuitem id="menu_reinvoice_import_txt" name="TXT Importadas"  action="action_reinvoice_import_txt" sequence="2" parent="account_reinvoice.menu_reinvoice"/>
 
 </odoo>
+

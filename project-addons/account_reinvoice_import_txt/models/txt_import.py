@@ -61,7 +61,6 @@ def get_num(str, force_int=False):
         str = str.replace('.', '')
         num_str = str.strip().replace(',', '.').split('.')
         entero = num_str[0].isdigit() and int(num_str[0]) or 0
-
         if len(num_str) == 1 or force_int:
             return entero
         decimales = num_str[1].isdigit() and int(num_str[1]) or 0.00
@@ -95,7 +94,7 @@ class InvoiceTxtImportLine(models.Model):
     articulo = fields.Char('Artículo')
     codigo = fields.Char("Código")
     descripcion = fields.Char("Description")
-    descuento = fields.Char("Descuentos %")
+    descuento = fields.Float("Descuentos %", digits=dp.get_precision('Product Price'))
     descuento_str_total = fields.Char("Descuento en cadena")
     qty = fields.Integer ('Cantidad total')
     descripcion_qty = fields.Char('Tallas')
@@ -124,8 +123,12 @@ class InvoiceTxtImportLine(models.Model):
     def get_descuento_from_str(self, descuento_str_total):
         if descuento_str_total != '':
             descuento = 0.00
+            descuento_str_total = descuento_str_total.replace('.', ',')
+
             for d1 in descuento_str_total.split(' '):
                 descuento += get_num(d1.strip())
+
+            print ("Descuento {} >> {}".format(descuento_str_total, descuento))
         else:
             descuento = 0.00
 
@@ -236,18 +239,24 @@ class InvoiceTxtImport(models.Model):
         product_id = self.env['product.product'].search(product_domain, limit=1)
         return product_id or False
 
+    def map_account_possition(self, account_position_id):
+        if account_position_id and account_position_id.id == 4:
+            account_position_id = self.env['account.fiscal.position'].browse(1)
+        return account_position_id and account_position_id.id
 
     @api.multi
     def get_associate_id_from_associate_name(self):
+        ## Busco primero en partner supplier data
+        ## si no lo encuentro busco en res partner
         for txt in self.filtered(lambda x:x.associate_name and not x.associate_id):
             obj = self.env['partner.supplier.data'].get_associate_id_from_str(txt.associate_name)
 
             if obj:
                 txt.associate_id = obj
             else:
-                domain = [('name','=', txt.associate_name)]
+                domain = [('parent_id', '=', False), '|', ('name','=', txt.associate_name), ('comercial', '=', txt.associate_name)]
                 partner = self.env['res.partner'].search(domain, limit=1)
-                txt = partner and partner.commercial_partner_id or False
+                txt.associate_id = partner and partner.commercial_partner_id or False
 
     def get_partner_refs(self):
 
@@ -263,7 +272,8 @@ class InvoiceTxtImport(models.Model):
             message = "{} <li>{}</li>".format(message, 'No hay proveedor')
             is_message = True
 
-        if self.associate_name and self.type=='in_invoice':
+
+        if self.associate_name and self.type == 'in_invoice':
             self.get_associate_id_from_associate_name()
             if not self.associate_id:
                 message = "{} <li>{} {}</li>".format(message, 'No hay encuentro al asociado para el nombre ', self.associate_name)
@@ -527,6 +537,7 @@ class InvoiceTxtImport(models.Model):
                             index += 2
                             linea.update(state_country=str[index][34:].strip())
                     lineas.append(linea)
+                    print (linea)
                 index += 1
 
             if index >= longitud_fichero:
@@ -680,7 +691,6 @@ class InvoiceTxtImport(models.Model):
             inv_message = '<ul>'
             txt.get_partner_refs()
             refund_invoice_id = False
-            txt.state = 'error'
             payment_term_id = False
             create_inv = True
             if not txt.partner_id:
@@ -707,6 +717,18 @@ class InvoiceTxtImport(models.Model):
                     inv_message = '{} <li>{}</li>'.format(inv_message, message)
 
             currency_id = txt.associate_id.property_product_pricelist.currency_id and txt.associate_id.property_product_pricelist.currency_id.id or txt.partner_id.property_product_pricelist.currency_id.id
+
+            same_supplier_inv_num = self.env['account.invoice'].search([
+                ('commercial_partner_id', '=', txt.partner_id.commercial_partner_id.id),
+                ('type', 'in', ('in_invoice', 'in_refund')),
+                ('supplier_invoice_number', '=ilike', txt.supplier_invoice_num),
+            ], limit=1)
+            if same_supplier_inv_num:
+                create_inv = False
+                message ="Se ha encontrado una factura para este numero de factura de proveedor"
+                txt_message = '{} <li>{}</li>'.format(txt_message, message)
+                txt.invoice_id = same_supplier_inv_num
+
             if not currency_id:
                 create_inv = False
                 message ="No encuentro moneda"
@@ -719,6 +741,7 @@ class InvoiceTxtImport(models.Model):
 
             if not txt.account_position_id:
                 txt.account_position_id = txt.associate_id.property_account_position_id
+
             if not txt.account_position_id:
                 create_inv = False
                 message = "No posición fiscal para el asociado {}".format(txt.associate_id and txt.associate_id.display_name or "Sin asociado")
@@ -749,39 +772,35 @@ class InvoiceTxtImport(models.Model):
                 'name': txt.display_name
             }
             ## TODO NO ENTIENDO ESTO
-
-
             invoice = self.env['account.invoice'].new(invoice_val)
             invoice._onchange_partner_id()
             inv = invoice._convert_to_write(invoice._cache)
-            inv.update(journal_id = journal_id.id,
-                       fiscal_position_id = txt.account_position_id.id,
+            inv.update(journal_id=journal_id.id,
+                       fiscal_position_id=self.map_account_possition(txt.account_position_id),
                        payment_term_id=payment_term_id and payment_term_id.id)
             if not inv.get('operating_unit_id', False) and txt.associate_id.sale_type_id.operating_unit_id:
-                inv.update(operating_unit_id = txt.associate_id.sale_type.operating_unit_id.id)
+                inv.update(operating_unit_id=txt.associate_id.sale_type.operating_unit_id.id)
 
             new_invoice = self.env['account.invoice'].create(inv)
             new_invoice.journal_id = journal_id
             new_invoice.date_due = txt.fecha_vencimiento
             txt.invoice_id = new_invoice
-
+            txt.state = 'invoiced'
             for linea in txt.invoice_line_txt_import_ids:
                 vals = linea.get_line_vals(new_invoice.id)
                 invoice_line = self.env['account.invoice.line'].new(vals)
                 invoice_line._onchange_product_id()
-                invoice_line.invoice_line_tax_ids = new_invoice.fiscal_position_id.map_tax(invoice_line.invoice_line_tax_ids, invoice_line.product_id,
-                                                                                          new_invoice.associate_id)
+                invoice_line.invoice_line_tax_ids = new_invoice.fiscal_position_id.map_tax(
+                    invoice_line.invoice_line_tax_ids, invoice_line.product_id, new_invoice.associate_id)
                 inv_line = invoice_line._convert_to_write(invoice_line._cache)
                 inv_line.update(name=vals['name'], price_unit=linea['precio_articulo'], discount=linea['descuento'])
                 self.env['account.invoice.line'].create(inv_line)
-
             new_invoice.compute_taxes()
 
             print("\n------------\nFACTURA PARA : {}\n------------\n".format(
                 new_invoice.associate_id.name or self.partner_id.name))
             inv_message = "{}</ul>{}".format(inv_message, "Esta factura ha sido creada desde el fichero: <a href=# data-oe-model=invoice.txt.import data-oe-id=%d>%s</a>"% (txt.id, txt.file_name))
             new_invoice.message_post(body=inv_message)
-            txt.state = 'invoiced'
             txt_message = "{}</ul>{}".format(txt_message,
                                      "Este fichero ha generado la factura: <a href=# data-oe-model=account.invoice data-oe-id=%d>%s</a>" % (
                                      new_invoice.id, new_invoice.name))
