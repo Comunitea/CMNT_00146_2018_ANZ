@@ -18,8 +18,11 @@
         
         <!-- Hay que quitar manualmente el grupo de contabilidad analítica -->
         <!-- groups="analytic.group_analytic_accounting"/> -->
+        <!-- Por eso hagop el delete, porque sino, al pisar el id, me añade el grupo, no lo sobrescrtibe -->
+        <!-- Añado la acción en español poruqe al darle el mismo id no me coge las traducciones -->
+        <delete id="account_analytic_default.analytic_rule_action_partner" model="ir.actions.act_window"/>
         <act_window
-            name="Analytic Rules"
+            name="Reglas analíticas"
             id="account_analytic_default.analytic_rule_action_partner"
             res_model="account.analytic.default"
             src_model="res.partner"

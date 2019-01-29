@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-01-28 11:02+0000\n"
-"PO-Revision-Date: 2019-01-28 11:02+0000\n"
+"POT-Creation-Date: 2019-01-29 15:41+0000\n"
+"PO-Revision-Date: 2019-01-29 15:41+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -19,6 +19,11 @@ msgstr ""
 #: model:ir.ui.view,arch_db:custom_permissions_anz.view_partner_anz_salesman_form
 msgid "(edit)"
 msgstr "(editar)"
+
+#. module: custom_permissions_anz
+#: model:ir.ui.view,arch_db:custom_permissions_anz.view_sale_salesman_form_add_matrix
+msgid "Add or Modify Variants"
+msgstr "Añadir o modificar variantes"
 
 #. module: custom_permissions_anz
 #: model:ir.ui.view,arch_db:custom_permissions_anz.view_partner_anz_salesman_form
@@ -49,16 +54,6 @@ msgstr "Clic para definir un nuevo producto."
 #: model:ir.ui.view,arch_db:custom_permissions_anz.view_partner_anz_salesman_form
 msgid "Company"
 msgstr "Compañía"
-
-#. module: custom_permissions_anz
-#: model:ir.ui.view,arch_db:custom_permissions_anz.view_sale_salesman_form
-msgid "Confirm Sale"
-msgstr "Confirmar venta"
-
-#. module: custom_permissions_anz
-#: model:ir.model,name:custom_permissions_anz.model_res_partner
-msgid "Contact"
-msgstr "Contacto"
 
 #. module: custom_permissions_anz
 #: model:ir.ui.view,arch_db:custom_permissions_anz.view_partner_anz_salesman_form
@@ -108,11 +103,6 @@ msgstr "Cantidad Entregada"
 
 #. module: custom_permissions_anz
 #: model:ir.ui.view,arch_db:custom_permissions_anz.view_sale_salesman_form
-msgid "If the sale is locked, you can not modify it anymore. However, you will still be able to invoice or deliver."
-msgstr "Si la venta está bloqueada, no puede modificarla. Sin embargo, todavía podrá facturarla o entregarla."
-
-#. module: custom_permissions_anz
-#: model:ir.ui.view,arch_db:custom_permissions_anz.view_sale_salesman_form
 msgid "Invoiced Quantity"
 msgstr "Cantidad Facturada"
 
@@ -122,14 +112,14 @@ msgid "Invoices"
 msgstr "Facturas"
 
 #. module: custom_permissions_anz
-#: model:ir.ui.view,arch_db:custom_permissions_anz.view_sale_salesman_form
-msgid "Lock"
-msgstr "Bloquear"
-
-#. module: custom_permissions_anz
 #: model:ir.ui.view,arch_db:custom_permissions_anz.view_partner_anz_salesman_form
 msgid "Mobile:"
 msgstr "Móvil:"
+
+#. module: custom_permissions_anz
+#: model:ir.ui.view,arch_db:custom_permissions_anz.view_sale_salesman_form_add_matrix
+msgid "Modify Variants"
+msgstr "Modificar variantes"
 
 #. module: custom_permissions_anz
 #: model:ir.ui.view,arch_db:custom_permissions_anz.view_partner_anz_salesman_form
@@ -235,14 +225,14 @@ msgid "Sales Orders"
 msgstr "Pedidos de ventas"
 
 #. module: custom_permissions_anz
-#: model:ir.ui.menu,name:custom_permissions_anz.sale_order_menu_salesman_anz
-msgid "Salesman Sales"
-msgstr "Ventas Comerciales"
-
-#. module: custom_permissions_anz
 #: model:ir.ui.menu,name:custom_permissions_anz.sale_menu_root_salesman_anz
 msgid "Salesman Access"
 msgstr "Acceso Comerciales"
+
+#. module: custom_permissions_anz
+#: model:ir.ui.menu,name:custom_permissions_anz.sale_order_menu_salesman_anz
+msgid "Salesman Sales"
+msgstr "Ventas Comerciales"
 
 #. module: custom_permissions_anz
 #: model:res.groups,name:custom_permissions_anz.anz_salesman
@@ -305,11 +295,6 @@ msgstr "El formulario de producto contiene información para simplificar el proc
 #: model:ir.ui.view,arch_db:custom_permissions_anz.view_sale_salesman_form
 msgid "Unit Price:"
 msgstr "Precio de Unidad:"
-
-#. module: custom_permissions_anz
-#: model:ir.ui.view,arch_db:custom_permissions_anz.view_sale_salesman_form
-msgid "Unlock"
-msgstr "Desbloquear"
 
 #. module: custom_permissions_anz
 #: model:ir.actions.act_window,help:custom_permissions_anz.action_products_view_salesman_anz
