@@ -10,10 +10,17 @@ class StockMoveLine(models.Model):
 
     @api.multi
     def _get_product_default_location_id(self):
+        reserved_moves = self.filtered(lambda x: x.product_uom_qty != 0)
 
-        for move in self:
-            move.default_product_dest_location_id = move.location_dest_id.get_putaway_strategy(move.product_id).id
-            move.default_product_location_id = move.location_id.get_putaway_strategy(move.product_id).id
+        for move in reserved_moves:
+            move.default_product_dest_location_id = move.location_dest_id
+            move.default_product_location_id = move.location_id
+
+        for move in (self - reserved_moves):
+            domain = [('putaway_id', '=', 1), ('product_product_id', '=', move.product_id.id)]
+            spps = self.env['stock.product.putaway.strategy'].search(domain, limit=1)
+            move.default_product_dest_location_id = spps.fixed_location_id or move.location_dest_id
+            move.default_product_location_id = spps.fixed_location_id or move.location_id
 
 
     barcode = fields.Char(related='location_id.barcode', store=True)
