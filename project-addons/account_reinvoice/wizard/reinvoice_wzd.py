@@ -42,13 +42,11 @@ class ReinvoiceWzd(models.TransientModel):
             # Get new taxes
             # get new discount
 
-            rule = self.env['reinvoice.rule'].get_reinvoice_discount(line, supplier)
-            if not rule:
-                inv_ass.message_post(body="No se ha encontrado una regla de descuento para %s"%line.display_name)
+            rule_discount = self.env['reinvoice.rule'].get_reinvoice_discount(line, supplier)
             line_vals = {
                 'name': line.name + _(' (Reinvoice)'),
                 'account_id': account_id,
-                'discount': rule and rule.customer_discount or 0.00,
+                'discount': rule_discount,
             }
             line.write(line_vals)
             line.invoice_line_tax_ids = inv_ass.fiscal_position_id.map_tax(

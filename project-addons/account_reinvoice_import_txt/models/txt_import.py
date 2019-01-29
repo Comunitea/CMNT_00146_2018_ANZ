@@ -174,7 +174,7 @@ class InvoiceTxtImport(models.Model):
     partner_id = fields.Many2one('res.partner', 'Proveedor')
 
     supplier_partner_num = fields.Char("Numero de cliente")
-    state = fields.Selection([('draft', 'Borrador'), ('invoiced', 'Facturado'), ('error', 'Error')], string="Estado")
+    state = fields.Selection([('draft', 'Borrador'), ('invoiced', 'Facturado'), ('error', 'Error')], default='draft', string="Estado")
 
     state_country = fields.Char("Región")
 
@@ -666,7 +666,6 @@ class InvoiceTxtImport(models.Model):
             new_invoice = self.create_invoice_from_invoice_txt()
             if not new_invoice:
                 self.message_post(body="Error al crear la factura asociada en odoo")
-                self.state = 'error'
                 return False
 
         return True
@@ -685,8 +684,9 @@ class InvoiceTxtImport(models.Model):
     @api.multi
     def create_invoice_from_invoice_txt(self):
         new_invoice = self.env['account.invoice']
+
         for txt in self:
-            txt.state = 'error'
+            txt.state = 'invoiced'
             txt_message = '<ul>'
             inv_message = '<ul>'
             txt.get_partner_refs()
@@ -750,6 +750,7 @@ class InvoiceTxtImport(models.Model):
             if not create_inv:
                 txt_message = "</ul>{}".format(txt_message, "Este fichero no ha generado la factura")
                 txt.message_post(body=txt_message)
+                txt.state = 'error'
                 continue
 
             invoice_val = {
@@ -785,7 +786,6 @@ class InvoiceTxtImport(models.Model):
             new_invoice.journal_id = journal_id
             new_invoice.date_due = txt.fecha_vencimiento
             txt.invoice_id = new_invoice
-            txt.state = 'invoiced'
             for linea in txt.invoice_line_txt_import_ids:
                 vals = linea.get_line_vals(new_invoice.id)
                 invoice_line = self.env['account.invoice.line'].new(vals)
@@ -797,8 +797,8 @@ class InvoiceTxtImport(models.Model):
                 self.env['account.invoice.line'].create(inv_line)
             new_invoice.compute_taxes()
 
-            print("\n------------\nFACTURA PARA : {}\n------------\n".format(
-                new_invoice.associate_id.name or self.partner_id.name))
+            print("\n------------\nFACTURA PARA : {}\n------------\n".format(new_invoice.associate_id.name or self.partner_id.name))
+
             inv_message = "{}</ul>{}".format(inv_message, "Esta factura ha sido creada desde el fichero: <a href=# data-oe-model=invoice.txt.import data-oe-id=%d>%s</a>"% (txt.id, txt.file_name))
             new_invoice.message_post(body=inv_message)
             txt_message = "{}</ul>{}".format(txt_message,
