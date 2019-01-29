@@ -48,7 +48,7 @@
                         <group>
                             <field name="partner_id" domain="[('customer','=',True)]" context="{'search_default_customer':1, 'show_address': 1, 'form_view_ref': 'custom_permissions_anz.view_partner_anz_salesman_form'}" options='{"always_reload": True}'/>
                             <!-- <field name="partner_invoice_id" groups="sale.group_delivery_invoice_address" context="{'default_type':'invoice'}" options='{"always_reload": True}'/> -->
-                            <field name="partner_shipping_id" groups="sale.group_delivery_invoice_address" context="{'default_type':'delivery'}" options='{"always_reload": True}'/>
+                            <field name="partner_shipping_id" groups="sale.group_delivery_invoice_address" context="{'form_view_ref': 'custom_permissions_anz.view_partner_anz_salesman_form', 'default_type':'delivery'}" options='{"always_reload": True}'/>
                         </group>
                         <group>
                             <field name="validity_date" attrs="{'invisible': [('state', 'in', ['sale', 'done'])]}"/>
