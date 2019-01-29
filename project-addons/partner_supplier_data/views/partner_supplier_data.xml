@@ -55,7 +55,8 @@
         <field name="arch" type="xml">
             <tree string="Supplier data area">
                 <field name="active" invisible="1"/>
-                <field name="customer_supplier_id" options="{'no_create': True}"/>
+                <field name="name"/>
+                <field name="customer_supplier_id" options="{'no_create': True}" invisible="1"/>
                 <field name="supplier_id" options="{'no_create': True}" />
                 <field name="supplier_code"/>
                 <field name="supplier_str"/>
