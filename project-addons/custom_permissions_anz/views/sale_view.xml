@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     
-     <record id="view_sale_salesman_form" model="ir.ui.view">
+    <!-- Vista base para comerciales con acceso restringido -->
+    <record id="view_sale_salesman_form" model="ir.ui.view">
             <field name="name">view_sale_salesman_form</field>
             <field name="priority" eval="99"/>
             <field name="model">sale.order</field>
@@ -11,20 +12,21 @@
                     <button name="action_quotation_send" string="Send by Email" type="object" states="draft" class="btn-primary"/>
                     <button name="action_quotation_send" type="object" string="Send PRO-FORMA Invoice" groups="sale.group_proforma_sales" class="btn-primary" attrs="{'invisible': ['|', ('state', '!=', 'draft'), ('invoice_count','&gt;=',1)]}" context="{'proforma': True}"/>
                     <button name="print_quotation" string="Print" type="object" states="draft" class="btn-primary o_sale_print"/>
-                    <button name="action_confirm" id="action_confirm"
+                    <!-- Evitar confirmar venta -->
+                    <!-- <button name="action_confirm" id="action_confirm"
                         string="Confirm Sale" class="btn-primary" type="object"
                         attrs="{'invisible': [('state', 'not in', ['sent'])]}"/>
                     <button name="action_confirm"
                         string="Confirm Sale" type="object"
-                        attrs="{'invisible': [('state', 'not in', ['draft'])]}"/>
+                        attrs="{'invisible': [('state', 'not in', ['draft'])]}"/> -->
                     <button name="action_quotation_send" type="object" string="Send PRO-FORMA Invoice" groups="sale.group_proforma_sales" attrs="{'invisible': ['|', ('state', '=', 'draft'), ('invoice_count','&gt;=',1)]}" context="{'proforma': True}"/>
                     <button name="print_quotation" string="Print" type="object" states="sent,sale" class="o_sale_print"/>
                     <button name="action_quotation_send" string="Send by Email" type="object" states="sent,sale"/>
                     <button name="action_cancel" states="draft,sent,sale" type="object" string="Cancel"/>
                     <button name="action_draft" states="cancel" type="object" string="Set to Quotation"/>
-                    <button name="action_done" type="object" string="Lock" states="sale"
+                    <!-- <button name="action_done" type="object" string="Lock" states="sale"
                         help="If the sale is locked, you can not modify it anymore. However, you will still be able to invoice or deliver."/>
-                    <button name="action_unlock" type="object" string="Unlock" states="done" groups="sales_team.group_sale_manager"/>
+                    <button name="action_unlock" type="object" string="Unlock" states="done" groups="sales_team.group_sale_manager"/> -->
                     <field name="state" widget="statusbar" statusbar_visible="draft,sent,sale"/>
                 </header>
                 <sheet>
@@ -44,16 +46,16 @@
                     </div>
                     <group>
                         <group>
-                            <field name="partner_id" domain="[('customer','=',True)]" context="{'search_default_customer':1, 'show_address': 1}" options='{"always_reload": True}'/>
-                            <field name="partner_invoice_id" groups="sale.group_delivery_invoice_address" context="{'default_type':'invoice'}" options='{"always_reload": True}'/>
+                            <field name="partner_id" domain="[('customer','=',True)]" context="{'search_default_customer':1, 'show_address': 1, 'form_view_ref': 'custom_permissions_anz.view_partner_anz_salesman_form'}" options='{"always_reload": True}'/>
+                            <!-- <field name="partner_invoice_id" groups="sale.group_delivery_invoice_address" context="{'default_type':'invoice'}" options='{"always_reload": True}'/> -->
                             <field name="partner_shipping_id" groups="sale.group_delivery_invoice_address" context="{'default_type':'delivery'}" options='{"always_reload": True}'/>
                         </group>
                         <group>
                             <field name="validity_date" attrs="{'invisible': [('state', 'in', ['sale', 'done'])]}"/>
                             <field name="confirmation_date" attrs="{'invisible': [('state', 'in', ['draft', 'sent', 'cancel'])]}"/>
-                            <field name="pricelist_id" groups="product.group_sale_pricelist"/>
+                            <field name="pricelist_id" groups="product.group_sale_pricelist" invisible="1"/>
                             <field name="currency_id" invisible="1"/>
-                            <field name="payment_term_id" options="{'no_create': True}"/>
+                            <!-- <field name="payment_term_id" options="{'no_create': True}"/> -->
                             <field name="company_id" options="{'no_create': True}" groups="base.group_multi_company"/>
                         </group>
                     </group>
@@ -66,7 +68,7 @@
                                         <group>
                                             <field name="product_updatable" invisible="1"/>
                                             <field name="product_id"
-                                                context="{'partner_id':parent.partner_id, 'quantity':product_uom_qty, 'pricelist':parent.pricelist_id, 'uom':product_uom, 'company_id': parent.company_id}"
+                                                context="{'form_view_ref': 'custom_permissions_anz.product_product_form_view_salesman_anz', 'partner_id':parent.partner_id, 'quantity':product_uom_qty, 'pricelist':parent.pricelist_id, 'uom':product_uom, 'company_id': parent.company_id}"
                                                 attrs="{'readonly': [('product_updatable', '=', False)]}"
                                                 force_save="1"
                                                />
@@ -126,7 +128,7 @@
                                     <field name="product_id"
                                         attrs="{'readonly': [('product_updatable', '=', False)]}"
                                         force_save="1"
-                                        context="{'partner_id':parent.partner_id, 'quantity':product_uom_qty, 'pricelist':parent.pricelist_id, 'uom':product_uom, 'company_id': parent.company_id}"
+                                        context="{'form_view_ref': 'custom_permissions_anz.product_product_form_view_salesman_anz', 'partner_id':parent.partner_id, 'quantity':product_uom_qty, 'pricelist':parent.pricelist_id, 'uom':product_uom, 'company_id': parent.company_id}"
                                        />
                                     <field name="layout_category_id" groups="sale.group_sale_layout"/>
                                     <field name="name"/>
@@ -159,7 +161,7 @@
                                     <field name="currency_id" invisible="1"/>
                                 </tree>
                                 <kanban class="o_kanban_mobile">
-                                    <field name="product_id"/>
+                                    <field name="product_id" context="{'form_view_ref': 'custom_permissions_anz.product_product_form_view_salesman_anz'}"/>
                                     <field name="product_uom_qty"/>
                                     <field name="product_uom" groups="product.group_uom"/>
                                     <field name="price_subtotal"/>
@@ -215,6 +217,42 @@
             </field>
     </record>
 
+    <!-- Herencia de la vista base para añadir lo de las variantes -->
+    <record id="view_sale_salesman_form_add_matrix" model="ir.ui.view">
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="view_sale_salesman_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='order_line']" position="before">
+                <button name="%(sale_order_variant_mgmt.action_sale_manage_variant)d"
+                        type="action"
+                        string="Add or Modify Variants"
+                        class="oe_edit_only oe_right"
+                        states="draft,sent"
+                />
+            </xpath>
+            <xpath expr="//field[@name='order_line']//form" position="inside">
+                <field name="product_attribute_value_ids" invisible="1"/>
+            </xpath>
+            <xpath expr="//field[@name='order_line']//tree" position="inside">
+                <field name="product_tmpl_id_sale_order_variant_mgmt" invisible="1"/>
+                <field name="product_attribute_value_ids" invisible="1"/>
+                <button name="%(sale_order_variant_mgmt.action_sale_manage_variant)d"
+                        type="action"
+                        string="Modify Variants"
+                        icon="fa-th"
+                        class="oe_edit_only"
+                        context="{'default_product_tmpl_id': product_tmpl_id_sale_order_variant_mgmt}"
+                        attrs="{'invisible': ['|', ('state', 'not in', ('draft', 'sent')), ('product_attribute_value_ids', '=', [])]}"
+                />
+            </xpath>
+
+            <xpath expr="//field[@name='order_line']" position="attributes">
+                <attribute name="options">{'reload_on_button': true}</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- ACCIÓN DE VENTAS PARA COMERCIALES -->
     <record id="action_orders_view_salesman_anz" model="ir.actions.act_window">
             <field name="name">Sales Orders</field>
             <field name="type">ir.actions.act_window</field>
@@ -234,12 +272,15 @@
             </field>
     </record>
 
+    <!-- ENLAZADA ALA ACCIÓN PRINCIPAL PARA LANZAR VISTA FORM PROPIA -->
     <record id="action_orders_salesman_anz_form" model="ir.actions.act_window.view">
         <field eval="2" name="sequence"/>
         <field name="view_mode">form</field>
         <field name="view_id" ref="view_sale_salesman_form"/>
         <field name="act_window_id" ref="action_orders_view_salesman_anz"/>
     </record>
+
+     <!-- ENLAZADA ALA ACCIÓN PRINCIPAL PARA LANZAR VISTA TREE DEL MODULO SALE -->
     <record id="action_orders_salesman_anz_tree" model="ir.actions.act_window.view">
         <field name="sequence" eval="1"/>
         <field name="view_mode">tree</field>

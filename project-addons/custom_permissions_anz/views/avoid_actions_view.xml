@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+        <act_window
+            id="account.action_all_partner_invoices"
+            name="All Invoices"
+            res_model="account.invoice"
+            domain="[('partner_id', 'child_of', active_id)]"
+            src_model="res.partner"
+            groups="account.group_account_invoice"/>
+        
+         <act_window
+            id="account.action_move_line_select_by_partner"
+            name="Journal Items"
+            context="{'search_default_partner_id': [active_id]}"
+            res_model="account.move.line"
+            src_model="res.partner"
+            groups="account.group_account_invoice"/>
+        
+        <!-- Hay que quitar manualmente el grupo de contabilidad analítica -->
+        <!-- groups="analytic.group_analytic_accounting"/> -->
+        <act_window
+            name="Analytic Rules"
+            id="account_analytic_default.analytic_rule_action_partner"
+            res_model="account.analytic.default"
+            src_model="res.partner"
+            context="{'search_default_partner_id': [active_id], 'default_partner_id': active_id}"
+            groups="account.group_account_invoice"/> 
+        
+         <act_window id="sms.send_sms_action"
+            name="Send SMS"
+            src_model="res.partner"
+            res_model="sms.send_sms"
+            view_type="form"
+            view_mode="form"
+            key2="client_action_multi"
+            target="new"
+            groups="base.group_partner_manager"/>
+            
+</odoo>

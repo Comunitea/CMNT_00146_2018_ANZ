@@ -68,6 +68,9 @@ access_mrp_production_workcenter_line_salesman,mrp.workorder salesman,mrp.model_
 access_mrp_bom_salesman,mrp.bom,mrp.model_mrp_bom,anz_salesman,1,0,0,0
 access_mrp_bom_line_salesman,mrp.bom.line,mrp.model_mrp_bom_line,anz_salesman,1,0,0,0
 
+"access_commission_brand","access_commission_brand","custom_commission_anz.model_commission_brand","anz_salesman",1,0,0,0
+"access_agent_brand","access_agent_brand","custom_commission_anz.model_agent_brand","anz_salesman",1,0,0,0
+
 
 
 
