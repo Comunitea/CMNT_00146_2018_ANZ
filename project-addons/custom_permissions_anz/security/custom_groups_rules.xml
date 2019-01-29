@@ -9,6 +9,7 @@
     </record>
 
     <!-- Esta regla asociada al grupo de empleado me impide que ae apique la regla restrictiva de abajo, ya que se aplican con un OR, la hago global quitándole el grupo -->
+    <delete id="base.res_partner_rule_private_employee" model="ir.rule"/>
     <record id="base.res_partner_rule_private_employee" model="ir.rule">
             <field name="name">res.partner.rule.private.employee</field>
             <field name="model_id" ref="base.model_res_partner"/>

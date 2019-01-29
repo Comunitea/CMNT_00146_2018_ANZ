@@ -19,7 +19,9 @@
         'sale_commission',
         'commercial_rules',
         'sale_mrp',
-        'contacts'
+        'contacts',
+        'sale_order_variant_mgmt',
+        'account_analytic_default'
     ],
     'data': [
         'security/custom_groups_rules.xml',
@@ -28,6 +30,7 @@
         'views/sale_view.xml',
         'views/product_view.xml',
         'views/anz_salesman_menus.xml',
+        'views/avoid_actions_view.xml',
     ],
     'installable': True,
 }
