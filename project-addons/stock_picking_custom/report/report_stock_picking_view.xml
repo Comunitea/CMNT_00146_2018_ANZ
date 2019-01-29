@@ -7,14 +7,27 @@
             </span>
         </template>
         <template id="location_name">
-             <t t-if="object.posx>0">
+             <t t-if="object.posx > 0">
                 <span t-field="object.name"/>
             </t>
             <t t-if="not object.posx">
-                <span t-field="object.display_name"/>
+                <span t-field="putaway.name"/>
             </t>
 
         </template>
+        <template id="quantity_template">
+
+            <t t-if="o.state == 'done'">
+            <span t-field="ml.qty_done"/>
+            </t>
+            <t t-if="o.state != 'done'">
+            <span t-field="ml.product_uom_qty"/>
+            </t>
+        </template>
+        <template id="quantity_template_move">
+            <span t-field="move.product_uom_qty"/>
+        </template>
+
         <template id="report_table_move_line_ids_orig">
             <table class="table table-condensed" t-if="o.move_line_ids">
                               <t t-set="has_barcode" t-value="any([move_lines.product_id and move_lines.product_id.sudo().barcode or move_lines.package_id for move_lines in o.move_line_ids])"/>
@@ -117,7 +130,8 @@
                                 </tr>
                               </thead>
                               <tbody>
-                                    <tr t-foreach="o.move_lines.sorted(key=lambda m: m.product_id.id)" t-as="move">
+                                    <!--tr t-foreach="o.move_lines.sorted(key=lambda m: m.product_id.id)" t-as="move"-->
+                                    <tr t-foreach="o.move_lines.sorted(key=lambda m: m.default_product_dest_location_id.barcode)" t-as="move">
                                         <td>
                                             <span t-field="move.product_id.display_name"/><br/>
                                             <span t-field="move.product_id.description_picking"/>
@@ -135,7 +149,7 @@
                                         <td colspan="2">
                                             <t t-if="move.move_line_ids">
                                                 <table width="100%">
-                                                    <tr t-foreach="move.move_line_ids.sorted(key=lambda ml: ml.location_id.id)" t-as="ml">
+                                                    <tr t-foreach="move.move_line_ids.sorted(key=lambda ml: ml.default_product_dest_location_id.barcode)" t-as="ml">
                                                         <!--td width="20%">
                                                             <t t-if="o.picking_type_id.code != 'incoming'">
                                                                 <span t-esc="ml.location_id.display_name"/>
@@ -145,22 +159,17 @@
                                                             </t>
                                                         </td-->
                                                         <td align="left" width="50%">
-                                                            <!--t t-if="has_serial_number and ml.product_id.tracking != 'none'">
-                                                                <div class="col-xs-4">
-                                                                    <span t-field="ml.lot_id"/>
-                                                                    <span t-if="not ml.lot_id" t-field="ml.lot_name"/>
-                                                                </div>
-                                                            </t-->
                                                             <div >
-                                                                <span t-field="ml.qty_done"/>
-                                                                <t t-if="o.state!='done'">
-                                                                    / <span t-field="ml.product_uom_qty"/>
+                                                                <t t-call="stock_picking_custom.quantity_template">
+                                                                    <t t-set="o" t-value="o"/>
+                                                                    <t t-set="ml" t-value="ml"/>
                                                                 </t>
                                                             </div>
                                                         </td>
                                                         <td class="text-right" width="50%">
                                                             <t t-call="stock_picking_custom.location_name">
                                                                 <t t-set="object" t-value="ml.location_dest_id"/>
+                                                                <t t-set="putaway" t-value="ml.default_product_dest_location_id"/>
                                                             </t>
 
                                                         </td>
@@ -168,7 +177,24 @@
                                                 </table>
                                             </t>
                                             <t t-else="">
-                                                <span>No reservation or quantity done yet.</span>
+                                                <table width="100%">
+                                                    <tr>
+                                                        <td align="left" width="50%">
+                                                            <div >
+                                                                <t t-call="stock_picking_custom.quantity_template_move">
+                                                                    <t t-set="move" t-value="move"/>
+                                                                </t>
+                                                            </div>
+                                                        </td>
+                                                        <td class="text-right" width="50%">
+                                                            <t t-call="stock_picking_custom.location_name">
+                                                                <t t-set="object" t-value="move.location_dest_id"/>
+                                                                <t t-set="putaway" t-value="move.default_product_dest_location_id"/>
+                                                            </t>
+
+                                                        </td>
+                                                    </tr>
+                                                </table>
                                             </t>
                                         </td>
                                     </tr>
@@ -193,7 +219,8 @@
 
                               </thead>
                               <tbody>
-                                    <tr t-foreach="o.move_lines.sorted(key=lambda m: m.product_id.id)" t-as="move">
+                                    <!--tr t-foreach="o.move_lines.sorted(key=lambda m: m.product_id.id)" t-as="move"-->
+                                    <tr t-foreach="o.move_lines.sorted(key=lambda m: m.default_product_location_id.barcode)" t-as="move">
                                         <td>
                                             <span t-field="move.product_id.display_name"/><br/>
                                             <span t-field="move.product_id.description_picking"/>
@@ -211,62 +238,59 @@
                                         <td colspan="3">
                                             <t t-if="move.move_line_ids">
                                                 <table width="100%">
-                                                    <tr t-foreach="move.move_line_ids.sorted(key=lambda ml: ml.location_id.id)" t-as="ml">
+                                                    <tr t-foreach="move.move_line_ids.sorted(key=lambda ml: ml.default_product_location_id.barcode)" t-as="ml">
                                                         <td width="40%">
                                                             <t t-call="stock_picking_custom.location_name">
                                                                 <t t-set="object" t-value="ml.location_id"/>
+                                                                <t t-set="putaway" t-value="ml.default_product_location_id"/>
                                                             </t>
-                                                                <!--t t-if="ml.location_id.posx>0">
-                                                                <span t-field="ml.location_id.name"/>
-                                                                </t>
-                                                                <t t-if="not ml.location_id.posx">
-                                                                <span t-field="ml.location_id"/>
-                                                                </t-->
-
-
-
-                                                                <!--t t-if="ml.package_id">
-                                                                    - <span t-field="ml.package_id"/>
-                                                                </t-->
-
                                                         </td>
                                                         <td width="20%" align="center">
-                                                            <!--t t-if="has_serial_number and ml.product_id.tracking != 'none'">
-                                                                <div class="col-xs-4">
-                                                                    <span t-field="ml.lot_id"/>
-                                                                    <span t-if="not ml.lot_id" t-field="ml.lot_name"/>
-                                                                </div>
-                                                            </t-->
                                                             <div >
-                                                                <span t-field="ml.qty_done"/>
-                                                                <t t-if="o.state!='done'">
-                                                                    / <span t-field="ml.product_uom_qty"/>
+                                                              <t t-call="stock_picking_custom.quantity_template">
+                                                                    <t t-set="o" t-value="o"/>
+                                                                    <t t-set="ml" t-value="ml"/>
                                                                 </t>
+
                                                             </div>
                                                         </td>
                                                         <td width="40%" align="right">
-                                                            <div>
+
                                                             <t t-call="stock_picking_custom.location_name">
                                                                 <t t-set="object" t-value="ml.location_dest_id"/>
+                                                                <t t-set="putaway" t-value="ml.default_product_dest_location_id"/>
                                                             </t>
 
-                                                                <!--t t-if="ml.location_dest_id.posx">
-                                                                <span t-field="ml.location_dest_id.name"/>
-                                                                </t>
-                                                                <t t-if="not ml.location_dest_id.posx">
-                                                                <span t-field="ml.location_dest_id"/>
-                                                                </t-->
-                                                                <!--t t-if="ml.result_package_id">
-                                                                    - <span t-field="ml.result_package_id"/>
-                                                                </t-->
-
-                                                            </div>
                                                         </td>
                                                     </tr>
                                                 </table>
                                             </t>
                                             <t t-else="">
-                                                <span>No reservation or quantity done yet.</span>
+                                                   <table width="100%">
+                                                       <tr>
+                                                       <td width="40%">
+                                                            <t t-call="stock_picking_custom.location_name">
+                                                                 <t t-set="object" t-value="move.location_id"/>
+                                                                <t t-set="putaway" t-value="move.default_product_location_id"/>
+                                                            </t>
+                                                        </td>
+
+                                                        <td align="left" width="20%">
+
+                                                                <t t-call="stock_picking_custom.quantity_template_move">
+                                                                    <t t-set="move" t-value="move"/>
+                                                                </t>
+
+                                                        </td>
+                                                        <td class="text-right" width="40%" >
+                                                            <t t-call="stock_picking_custom.location_name">
+                                                                <t t-set="object" t-value="move.location_dest_id"/>
+                                                                <t t-set="putaway" t-value="move.default_product_dest_location_id"/>
+                                                            </t>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+
                                             </t>
                                         </td>
                                     </tr>
@@ -294,10 +318,11 @@
 
                               </thead>
                               <tbody>
-                                    <tr t-foreach="o.move_lines.sorted(key=lambda m: m.product_id.id)" t-as="move">
+                                    <tr t-foreach="o.move_lines.sorted(key=lambda m: m.default_product_location_id.barcode)" t-as="move">
                                         <td>
                                             <span t-field="move.product_id.display_name"/><br/>
                                             <span t-field="move.product_id.description_picking"/>
+
                                         </td>
                                         <!--td>
                                             <span t-if="move.product_qty" t-field="move.product_qty"/>
@@ -305,6 +330,7 @@
                                             <span t-field="move.product_id.uom_id" groups="product.group_uom"/>
                                         </td-->
                                         <td>
+                                            <span t-field="move.default_product_location_id.barcode"/>
                                             <t t-if="has_barcode">
                                                 <t t-call="stock_picking_custom.template_product_barcode"/>
                                             </t>
@@ -312,29 +338,21 @@
                                         <td colspan="2">
                                             <t t-if="move.move_line_ids">
                                                 <table width="100%">
-                                                    <tr t-foreach="move.move_line_ids.sorted(key=lambda ml: ml.location_id.id)" t-as="ml">
+                                                    <tr t-foreach="move.move_line_ids.sorted(key=lambda ml: ml.default_product_location_id.barcode)" t-as="ml">
                                                         <td width="60%">
                                                             <t t-call="stock_picking_custom.location_name">
                                                                 <t t-set="object" t-value="ml.location_id"/>
+                                                                <t t-set="putaway" t-value="ml.default_product_location_id"/>
                                                             </t>
 
 
                                                         </td>
                                                         <td>
-                                                            <!--t t-if="has_serial_number and ml.product_id.tracking != 'none'">
-                                                                <div class="col-xs-4">
-                                                                    <span t-field="ml.lot_id"/>
-                                                                    <span t-if="not ml.lot_id" t-field="ml.lot_name"/>
-                                                                </div>
-                                                            </t-->
                                                             <div class="col-xs-8 text-right">
-                                                                <span t-field="ml.qty_done"/>
-                                                                <t t-if="o.state!='done'">
-                                                                    / <span t-field="ml.product_uom_qty"/>
+                                                                <t t-call="stock_picking_custom.quantity_template">
+                                                                    <t t-set="o" t-value="o"/>
+                                                                    <t t-set="ml" t-value="ml"/>
                                                                 </t>
-                                                                <!--t t-if="move.packing_list_id">
-                                                                <span> Pack: <span t-field="move.packing_list_id.name"/></span>
-                                                                </t-->
                                                             </div>
                                                         </td>
 
@@ -342,7 +360,25 @@
                                                 </table>
                                             </t>
                                             <t t-else="">
-                                                <span>No reservation or quantity done yet.</span>
+                                               <table width="100%">
+                                                    <tr>
+                                                        <td width="60%">
+                                                            <t t-call="stock_picking_custom.location_name">
+                                                                 <t t-set="object" t-value="move.location_id"/>
+                                                                <t t-set="putaway" t-value="move.default_product_location_id"/>
+                                                            </t>
+                                                        </td>
+                                                        <td>
+                                                            <div class="col-xs-8 text-right">
+                                                               <t t-call="stock_picking_custom.quantity_template_move">
+                                                                    <t t-set="move" t-value="move"/>
+                                                                </t>
+
+                                                            </div>
+                                                        </td>
+
+                                                    </tr>
+                                                </table>
                                             </t>
                                         </td>
                                     </tr>

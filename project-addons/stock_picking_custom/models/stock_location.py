@@ -12,12 +12,18 @@ class StockLocation(models.Model):
     @api.multi
     def set_barcode_field(self):
         for location in self:
+            barcode = ''
             if location.posx or location.posy or location.posz:
-
                 barcode = "{:02d}.{:02d}.{:02d}".format(location.posx, location.posy, location.posz)
-                if location.location_id:
-                    barcode_location = "{:05d}".format(location.location_id.id)
-                    location.barcode = "{}.{}".format(barcode_location, barcode)
-                else:
-                    location.barcode = "{:05d}".format(location.id)
+                location.name = "{:02d}-{:02d}-{:02d}".format(location.posx, location.posy, location.posz)
+            loc = location.location_id
+            while loc:
+                if loc.barcode:
+                    barcode = "{}.{}".format(loc.barcode, barcode)
+                loc = loc.location_id
+            print (barcode)
+            location.barcode = barcode
+
+
+
 
