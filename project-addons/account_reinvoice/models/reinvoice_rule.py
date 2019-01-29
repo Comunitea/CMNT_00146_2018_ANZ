@@ -42,8 +42,6 @@ class ReInvoiceRule(models.Model):
 
         partner_id = line.invoice_id.partner_id
         product_id = line.product_id
-
-
         domain = ['|', ('partner_id', '=', partner_id.id), ('partner_id', '=', False),
                   '|', ('brand_id', '=', product_id.product_brand_id.id), ('brand_id', '=', False),
                   '|', ('supplier_discount', '=', 0.00), ('supplier_discount', '=', line.discount),
@@ -55,12 +53,12 @@ class ReInvoiceRule(models.Model):
                 limit=1)
             if supplier_data and supplier_data.supplier_customer_ranking_id:
                 domain +=[('supplier_customer_ranking_id', '=', supplier_data.supplier_customer_ranking_id.id)]
-
+        print (domain)
         rule = self.search(domain, order='partner_id asc, brand_id asc, supplier_customer_ranking_id asc, supplier_discount desc', limit=1)
         if not rule:
             raise UserError((
                                 'No se ha encontrado una regla de refactura para este descuento {}, de este proveedor {}, y que {}sea asociado'.format(
-                                    line.discount, supplier.display_name, 'no ' if partner_id.affiliate else '')))
+                                    line.discount, supplier.display_name, 'no ' if not partner_id.affiliate else '')))
         if rule.order_type == 'all_discount':
             return line.discount, False
         if rule.order_type == '0_discount':

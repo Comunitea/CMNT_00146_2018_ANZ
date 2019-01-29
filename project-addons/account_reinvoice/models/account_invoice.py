@@ -56,7 +56,11 @@ class AccountInvoice(models.Model):
                 sum([x.amount_discount for x in invoices])
 
     @api.multi
-    def proccess_reinvoice(self):
-        #wzd_id = self.env['reinvoice.wzd'].create({'':})
-
-        return
+    def process_remap_taxes(self):
+        for inv in self.filtered(lambda x: x.state == 'draft'):
+            for line in inv.invoice_line_ids:
+                txes_id = line.product_id.taxes_id if inv.type in ('out_invoice', 'out_refund') else line.product_id.supplier_taxes_id
+                account_income_id = line.product_id.property_account_income_id or line.product_id.categ_id.property_account_income_categ_id
+                account_expense_id = line.product_id.property_account_expense_id or line.product_id.categ_id.property_account_expense_categ_id
+                line.account_id = account_income_id if inv.type in ('out_invoice', 'out_refund') else account_expense_id
+                line.invoice_line_tax_ids = inv.fiscal_position_id.map_tax(txes_id, line.product_id, inv.partner_id)
