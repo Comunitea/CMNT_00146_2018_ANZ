@@ -37,14 +37,14 @@ class ResPartnerSupplierData(models.Model):
                                            domain="[('type', '=', 'other'), ('supplier', '=', False)]",
                                           help="Type=Other, must be child of partner_id", required=1)
     #brand_id = fields.Many2one('product.brand', 'Brand')
-    supplier_code = fields.Char("Código externo", required=1)
+    supplier_code = fields.Char("Código externo")
     supplier_str = fields.Char("Nombre en factura")
     supplier_customer_ranking_id = fields.Many2one('supplier.customer.ranking', string="Clasificación")
     active = fields.Boolean('Active', default=True)
 
 
     _sql_constraints = [
-        ('name_supplier_code', 'unique(supplier_code)',
+        ('name_supplier_code', 'unique(supplier_code, supplier_id)',
          _('Supplier code must be unique')),
     ]
     @api.onchange('supplier_id')
@@ -115,6 +115,6 @@ class ResPartnerSupplierData(models.Model):
             a_id = self.env['partner.supplier.data'].search([('id', '>', 1)]).mapped('partner_id').filtered(lambda x: not x.parent_id and x.name == str)
             if a_id and len(a_id) == 1:
                 return a_id
-        return False
+        return self.env['res.partner']
 
 
