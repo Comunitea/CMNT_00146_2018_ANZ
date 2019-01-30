@@ -26,3 +26,23 @@ class StockMove(models.Model):
                                                   string="Default location")
     default_product_dest_location_id = fields.Many2one('stock.location', compute="_get_product_default_location_id",
                                                        string="Default destination location")
+
+    @api.multi
+    def force_set_qty_done(self):
+        for move in self.filtered(lambda x: not x.reserved_availability and not x.quantity_done):
+            move.quantity_done = move.product_uom_qty
+
+    @api.multi
+    def force_set_assigned_qty_done(self):
+        for move in self.filtered(lambda x: x.reserved_availability and not x.quantity_done):
+            move.quantity_done = move.reserved_availability
+
+    @api.depends('state', 'picking_id')
+    def _compute_is_initial_demand_editable(self):
+        for move in self:
+            if False and self._context.get('planned_picking'):
+                move.is_initial_demand_editable = True
+            elif not move.picking_id.is_locked and move.state != 'done' and move.picking_id:
+                move.is_initial_demand_editable = True
+            else:
+                move.is_initial_demand_editable = False

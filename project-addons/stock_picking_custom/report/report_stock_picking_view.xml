@@ -401,7 +401,7 @@
                 <t t-if="o.picking_type_id.code=='mrp_operation'" t-call="stock_picking_custom.report_table_move_line_ids_orig"/>
             </xpath>
         </template>
-        
+
 
         <report
             string="Albarán de cliente"

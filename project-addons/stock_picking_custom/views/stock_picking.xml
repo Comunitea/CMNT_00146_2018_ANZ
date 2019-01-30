@@ -1,11 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-
-    <record id="view_picking_delivery_note" model="ir.ui.view">
+    d<delete id="view_picking_delivery_note" model="ir.ui.view"/>
+    <record id="view_picking_form_custom" model="ir.ui.view">
             <field name="name">view.picking.delivery_note</field>
             <field name="model">stock.picking</field>
             <field name="inherit_id" ref="stock.view_picking_form"/>
             <field name="arch" type="xml">
+                <xpath expr="//button[@name='action_confirm']" position="after">
+                <button name="action_re_confirm"
+                        attrs="{'invisible': [('state', '!=', 'cancel')]}"
+                        string="Mark as Todo" type="object" class="oe_highlight"
+                        groups="base.group_user"/>
+                </xpath>
+
                 <xpath expr="//div[@name='tracking']" position="after">
                     <label for="need_packing_list"/>
                         <div name="packing_list">
@@ -17,6 +24,21 @@
                 <xpath expr="//field[@name='move_lines']/tree/field[@name='product_id']" position="before">
                     <field name="packing_list_id" attrs="{'column_invisible': [('parent.need_packing_list','=',False)]}"/>
                 </xpath>
+
+
+            <field name="move_lines" position="after">
+                <button class="oe_link oe_right" name="force_set_qty_done" type="object" string="↳Copy qty. to done" states="confirmed,assigned"/>
+                <button class="oe_link oe_right" name="force_set_assigned_qty_done" type="object" string="↳Copy assigned to done" states="confirmed,assigned"/>
+                <button class="oe_link oe_right" name="force_reset_qties" type="object" string="↳Reset qties" states="confirmed,assigned"/>
+            </field>
+            <xpath expr="//field[@name='move_lines']/tree/field[@name='quantity_done']" position="after">
+                <button name="force_set_qty_done" type="object" class="fa fa-copy"
+                        attrs="{'invisible': ['|', '|', ('state', 'not in', ('confirmed', 'partially_available')), ('reserved_availability', '>', 0), ('quantity_done', '!=', 0)]}"
+                        help="Copy qty to qty done"/>
+                <button name="force_set_assigned_qty_done" type="object" class="fa fa-download"
+                        attrs="{'invisible': ['|', '|', ('state', 'not in', ('confirmed', 'assigned')), ('reserved_availability', '=', 0), ('quantity_done', '!=', 0)]}"
+                        help="Copy availability to qty done"/>
+            </xpath>
             </field>
         </record>
 
@@ -29,6 +51,7 @@
             file="delivery_packing_list.picking_packing_list"
             print_report_name="'Delivery packing list- %s - %s' % (object.partner_id.name or '', object.name)"
         />
+
 
     <record id="view_picking_delivery_note" model="ir.ui.view">
             <field name="name">view.picking.delivery_note</field>
