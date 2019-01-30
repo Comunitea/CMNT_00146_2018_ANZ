@@ -9,8 +9,6 @@ class ProductTemplate(models.Model):
 
     @api.depends('product_variant_ids', 'product_variant_ids.standard_price')
     def _template_standard_price(self):
-        ##SOBRE ESCRIBO TODA LA FUNCION PARA NO REHACER EL CALCULO
-
         for template in self:
             template.template_standard_price = template.product_variant_ids and template.product_variant_ids[0].standard_price or 0.00
 
@@ -34,16 +32,14 @@ class ProductTemplate(models.Model):
     @api.multi
     @api.onchange("attribute_line_ids")
     def _get_variant_suffix(self):
-        total = len(self)
-        idx=0
 
+        total = len(self)
+        idx = 0
         for template in self:
-            idx+=1
+            idx += 1
             template.attribute_id = template.attribute_line_ids and template.attribute_line_ids[0].attribute_id or False
             template.numero_de_variantes = template.product_variant_count
-            names = template.attribute_line_ids.mapped('value_ids').\
-                mapped('name')
-
+            names = template.attribute_line_ids.mapped('value_ids').mapped('name')
             if names:
                 template.variant_suffix = \
                     " ({})".format(", ".join([v for v in names]))
@@ -52,7 +48,7 @@ class ProductTemplate(models.Model):
                     template.variant_suffix = 'Sin variantes'
                 else:
                     template.variant_suffix = 'Sin valores en variantes'
-            #print ("{} de {}  -> {}:  {}".format(idx, total, template.name, template.variant_suffix ))
+            print("{} de {}  -> {}: Variantes: {} Sufijo: {}".format(idx, total, template.name, template.numero_de_variantes, template.variant_suffix))
 
     @api.model
     def _search(self, args, offset=0, limit=None, order=None,
