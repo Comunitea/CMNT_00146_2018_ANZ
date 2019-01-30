@@ -58,6 +58,7 @@ class ReinvoiceWzd(models.TransientModel):
         sale_type_id = inv.associate_id.sale_type or self.sale_type_id
         vals = {
                 'partner_id': inv.associate_id.id,
+                'partner_shipping_id': inv and inv.import_txt_id and inv.import_txt_id.partner_shipping_id.id,
                 'origin': inv.number or inv.reference,
                 'type':
                 'out_invoice' if inv.type == 'in_invoice' else 'out_refund',
@@ -70,18 +71,21 @@ class ReinvoiceWzd(models.TransientModel):
                 'journal_id': sale_type_id.journal_id.id,
                 'operating_unit_id': sale_type_id.operating_unit_id.id,
                 'sale_type_id': sale_type_id.id,
-                'value_date': inv.value_date,
                 'payment_mode_id': inv.associate_id.customer_payment_mode_id.id,
                 'payment_term_id': inv.associate_id.property_payment_term_id.id,
-                'fiscal_position_id': inv.associate_id.property_account_position_id.id
+                'fiscal_position_id': inv.associate_id.property_account_position_id.id,
                 }
         return vals
+
+
 
     def get_invoices(self, invoices):
 
         created_invoices = self.env['account.invoice']
-
-        for inv in invoices:
+        inv_ids = invoices.filtered(lambda x: x.type in ('in_invoice', 'in_refund'))
+        if not inv_ids:
+             raise UserError('No hay ninguna factura para refacturar')
+        for inv in inv_ids:
             if inv.customer_invoice_id:
                 raise UserError(
                     _('Invoice %s has related customer invoice') % inv.number or inv.reference)
@@ -92,11 +96,11 @@ class ReinvoiceWzd(models.TransientModel):
 
             copy_vals = self.get_invoices_values(inv)
             inv_ass = inv.copy(copy_vals)
-            # No debemos copiar por que podríamos arrastrar valores no
-            # desados (como las lineas de impuestos)
-            #inv_ass = created_invoices.create(copy_vals)
+            inv_ass._onchange_partner_id()
 
-            inv_ass.write({'supplier_invoice_id': inv.id})
+            inv_ass.write({'supplier_invoice_id': inv.id,
+                           'value_date': inv.value_date,
+                           })
             lineas = self._get_associated_invoice_lines(inv_ass, inv_ass.invoice_line_ids, supplier=inv.partner_id)
 
             if not lineas:

@@ -147,7 +147,7 @@ class InvoiceTxtImport(models.Model):
 
     _name ="invoice.txt.import"
     _inherit = ['mail.thread']
-
+    _order = 'create_date desc'
     @api.multi
     def name_get(self):
         if not self:
@@ -217,6 +217,7 @@ class InvoiceTxtImport(models.Model):
     refund_note = fields.Char("Nota/Motivo de abono")
     original_rectificatica= fields.Char("Rectifica ...")
     order_ids = fields.One2many('invoice.txt.import.order', 'invoice_txt_import_id', string="Pedidos")
+    partner_shipping_id = fields.Many2one('res.partner', string='Delivery adress', readonly=True)
 
     @api.multi
     def write(self, vals):
@@ -246,17 +247,16 @@ class InvoiceTxtImport(models.Model):
 
     @api.multi
     def get_associate_id_from_associate_name(self):
-        ## Busco primero en partner supplier data
-        ## si no lo encuentro busco en res partner
-        for txt in self.filtered(lambda x:x.associate_name and not x.associate_id):
-            obj = self.env['partner.supplier.data'].get_associate_id_from_str(txt.associate_name)
 
-            if obj:
-                txt.associate_id = obj
-            else:
+        for txt in self.filtered(lambda x:x.associate_name and not x.associate_id):
+            partner = self.env['partner.supplier.data'].get_associate_id_from_str(txt.associate_name)
+
+            if not partner:
                 domain = [('parent_id', '=', False), '|', ('name','=', txt.associate_name), ('comercial', '=', txt.associate_name)]
                 partner = self.env['res.partner'].search(domain, limit=1)
-                txt.associate_id = partner and partner.commercial_partner_id or False
+
+            txt.associate_id = partner and partner.commercial_partner_id or False
+            txt.partner_shipping_id = partner
 
     def get_partner_refs(self):
 
@@ -770,7 +770,8 @@ class InvoiceTxtImport(models.Model):
                 'refund_invoice_id': refund_invoice_id,
                 'payment_term_id': payment_term_id and payment_term_id.id,
                 'invoice_tx_import_id': txt.id,
-                'name': txt.display_name
+                'name': txt.display_name,
+                'partner_shipping_id': txt.partner_shipping_id
             }
             ## TODO NO ENTIENDO ESTO
             invoice = self.env['account.invoice'].new(invoice_val)

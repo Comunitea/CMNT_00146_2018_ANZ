@@ -39,7 +39,6 @@ class ReInvoiceRule(models.Model):
                                        "Aplicar regla: Aplica el descuento de la regla que se obtenga")
 
     def get_reinvoice_discount(self, line, supplier):
-
         partner_id = line.invoice_id.partner_id
         product_id = line.product_id
         domain = [('affiliate', '=', partner_id.affiliate)]
@@ -57,6 +56,7 @@ class ReInvoiceRule(models.Model):
             domain += ['|', ('brand_id', '=', product_id.product_brand_id.id), ('brand_id', '=', False)]
 
         domain += ['|', ('supplier_discount', '=', 0.00), ('supplier_discount', '=', line.discount)]
+
         rule = self.search(domain, order='partner_id asc, brand_id asc, supplier_discount desc, customer_discount desc, order_type asc')
         print ("{} >> {}".format(domain, rule))
         if not rule:
