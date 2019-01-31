@@ -432,7 +432,7 @@
                 <t t-if="o.picking_type_id.code=='mrp_operation'" t-call="stock_picking_custom.report_table_move_line_ids_orig"/>
             </xpath>
         </template>
-        <template id="report_shipping_custom_anz" inherit_id="stock.report_picking">
+        <!--template id="report_shipping_custom_anz" inherit_id="stock.report_picking">
             <xpath expr="//th[@t-if='o.origin']" position="after">
                 <th t-if="o.partner_id.ref"><strong>Code</strong></th>
             </xpath>
@@ -454,6 +454,6 @@
             name="stock_picking_custom.report_shipping_custom_anz"
             file="stock_picking_custom.report_shipping_custom_anz"
             print_report_name="'Stock picking customer- %s - %s' % (object.partner_id.name or '', object.name)"
-            />
+            /-->
 
 </odoo>
