@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_account_invoice_report_pivot_anz" model="ir.ui.view">
+         <field name="name">account.invoice.report.pivot.anz</field>
+         <field name="model">account.invoice.report</field>
+         <field name="inherit_id" ref="account.view_account_invoice_report_pivot"/>
+         <field name="arch" type="xml">
+
+             <field name="price_total" position="after">
+                 <field name="discount" type="measure"/>
+                 <!--field name="total_with_discount" type="measure"/-->
+                 <field name="average_discount" type="measure"/>
+            </field>
+         </field>
+    </record>
+    <record id="view_account_invoice_report_search_inherit_anz" model="ir.ui.view">
+            <field name="name">account.invoice.report.search.inherit.anz</field>
+            <field name="model">account.invoice.report</field>
+            <field name="inherit_id" ref="account.view_account_invoice_report_search"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//field[@name='categ_id']" position="before">
+                    <field name="product_id"
+                    filter_domain="['|','|',('product_id.default_code','ilike',self),('product_id.name','ilike',self),('product_id.barcode','ilike',self)]"/>
+                </xpath>
+            </field>
+        </record>
+</odoo>
