@@ -1,4 +1,23 @@
 <?xml version="1.0"?>
 <odoo>
     <delete id="invoice_form_fecha_valor" model="ir.ui.view"/>
+     <record id="view_payment_term_form" model="ir.ui.view">
+        <field name="name">account.payment.term.form.date_value</field>
+        <field name="model">account.payment.term</field>
+        <field name="inherit_id" ref="account.view_payment_term_form"/>
+        <field name="arch" type="xml">
+            <field name="line_ids" position="after">
+                <separator string="Nombres en los proveedores"/>
+                <p class="text-muted">
+                    Nombres asociados a este pago en las facturas de los proveedores
+                </p>
+                <field name="brand_name_ids" groups="account.group_account_manager" >
+                    <tree editable="top">
+                        <field name="supplier_id" options="{'no_create': True}"/>
+                        <field name="name"/>
+                    </tree>
+                </field>
+            </field>
+        </field>
+    </record>
 </odoo>

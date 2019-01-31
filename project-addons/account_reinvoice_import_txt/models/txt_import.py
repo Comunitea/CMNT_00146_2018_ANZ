@@ -42,7 +42,6 @@ def clear_str(str):
     clear = ''
     for s in str:
         clear = '{} {}'.format(clear, s)
-
     return clear.strip()
 
 def is_number_line(str, num_actual_linea=False):
@@ -56,22 +55,13 @@ def is_number_line(str, num_actual_linea=False):
 
 
 def get_num(str, force_int=False):
+    str = str.strip()
+    try:
+        res = float(str.replace('.', '').replace(',', '.'))
+        return res
+    except Exception:
+        return 0.00
 
-    if str.strip():
-        str = str.replace('.', '')
-        num_str = str.strip().replace(',', '.').split('.')
-        entero = num_str[0].isdigit() and int(num_str[0]) or 0
-        if len(num_str) == 1 or force_int:
-            return entero
-        decimales = num_str[1].isdigit() and int(num_str[1]) or 0.00
-        if decimales < 10:
-            dec = decimales / 10
-        elif decimales < 100:
-            dec = decimales / 100
-        else:
-            dec = decimales / 1000
-        return entero + dec
-    return 0.00
 
 class InvoiceWzd(models.TransientModel):
 
@@ -126,7 +116,7 @@ class InvoiceTxtImportLine(models.Model):
             descuento_str_total = descuento_str_total.replace('.', ',')
 
             for d1 in descuento_str_total.split(' '):
-                descuento += get_num(d1.strip())
+                descuento += get_num(d1)
 
             print ("Descuento {} >> {}".format(descuento_str_total, descuento))
         else:
@@ -336,13 +326,13 @@ class InvoiceTxtImport(models.Model):
         if descuento > 100:
             self.message_post(body="Error en descuento: {} obtenido de {}".format(descuento, descuento_str_total))
         codigo = linea_pedido[4:14].strip()
-        num_linea = get_num(linea_pedido[0:4].strip())
+        num_linea = get_num(linea_pedido[0:4])
         descripcion = linea_pedido[14:82].replace(codigo, '').strip()
         tallas = linea_pedido[110:190].strip()
         qty = tallas.split(' ')[0]
         euros = clear_str(linea_pedido).split(' ')
-        valor_neto = get_num(euros[len(euros)-1].strip())
-        precio_articulo = get_num(euros[len(euros)-2].strip())
+        valor_neto = get_num(euros[len(euros)-1])
+        precio_articulo = get_num(euros[len(euros)-2])
 
         articulo = '[{}] {}'.format(codigo, descripcion)
         descripcion = '{} {}'.format(articulo.strip(), tallas)
@@ -425,9 +415,9 @@ class InvoiceTxtImport(models.Model):
             if str_strip.find('Fecha vencimiento') >-1:
                 line += 2
             else:
-                date = get_odoo_date(str[line][36:50].strip())
+                date = get_odoo_date(str[line][36:50])
                 if date:
-                    money = get_num(str[line][80:100].strip())
+                    money = get_num(str[line][80:100])
                 line+=1
             inc+=1
             if date and money:
@@ -453,12 +443,12 @@ class InvoiceTxtImport(models.Model):
         original_rectificatica = ''
         clienteno = str[3][167:225].strip()
         facturano = str[4][167:225].strip()
-        fecha_factura=  str[5][167:200].strip()
+        fecha_factura=  str[5][167:200]
         fecha_factura = get_odoo_date(fecha_factura)
 
 
         if type=='in_invoice':
-            value_date = str[6][167:200].strip()
+            value_date = str[6][167:200]
             value_date = get_odoo_date(value_date)
             pay_notes = str[9][167:].strip()
         else:
@@ -700,13 +690,25 @@ class InvoiceTxtImport(models.Model):
                 txt_message = '{} <li>{}</li>'.format(txt_message, "No encuentro asociado")
                 create_inv = False
             if txt.pay_notes:
-                payment_term_id = self.env['account.payment.term'].search([('name','=', txt.pay_notes)], limit=1)
+
+
+                payment_term_id = self.env['account.payment.term'].search([('name', '=', txt.pay_notes)], limit=1)
+                if not payment_term_id and txt.partner_id:
+                    term_domain = [('supplier_id', '=', txt.partner_id.id), ('name', '=', txt.pay_notes)]
+                    payment_term_brand_id = self.env['payment.term.brand.name'].search(term_domain,limit=1)
+                    if payment_term_brand_id:
+                        payment_term_id = payment_term_brand_id.payment_term_id
+
                 if txt.pay_notes and not payment_term_id:
                     txt_message = '{} <li>{}</li>'.format(txt_message, "No se ha encontrado un plazo de pago para %s"%txt.pay_notes)
                     inv_message = '{} <li>{}</li>'.format(inv_message, "No se ha encontrado un plazo de pago para %s"%txt.pay_notes)
 
 
             if self.type == 'in_refund':
+
+                comment = 'Corresponde a la factura rectificativa nº {}, de fecha: {}. Factura original: {}'.format(txt.supplier_invoice_num,
+                                                                      txt.supplier_invoice_date, txt.original_rectificatica)
+
                 refund_invoice_id = self.env['account.invoice'].search([('reference', '=', txt.original_rectificatica)])
                 if refund_invoice_id:
                     txt.associate_id = refund_invoice_id.associate_id
@@ -715,6 +717,11 @@ class InvoiceTxtImport(models.Model):
                     message = "No encuentro la factura original {} para esta rectificativa".format(txt.original_rectificatica)
                     txt_message = '{} <li>{}</li>'.format(txt_message, message)
                     inv_message = '{} <li>{}</li>'.format(inv_message, message)
+            else:
+                comment = "Corresponde a la factura nº {}, de fecha: {}. Albarán nº: {}".format(txt.supplier_invoice_num,
+                                                                      txt.supplier_invoice_date,
+                                                                      txt.supplier_picking_num)
+
 
             currency_id = txt.associate_id.property_product_pricelist.currency_id and txt.associate_id.property_product_pricelist.currency_id.id or txt.partner_id.property_product_pricelist.currency_id.id
 
@@ -771,8 +778,12 @@ class InvoiceTxtImport(models.Model):
                 'payment_term_id': payment_term_id and payment_term_id.id,
                 'invoice_tx_import_id': txt.id,
                 'name': txt.display_name,
-                'partner_shipping_id': txt.partner_shipping_id
+                'partner_shipping_id': txt.partner_shipping_id,
+                'origin': txt.supplier_picking_num,
+                'comment': comment,
+                'value_date': txt.supplier_picking_date
             }
+
             ## TODO NO ENTIENDO ESTO
             invoice = self.env['account.invoice'].new(invoice_val)
             invoice._onchange_partner_id()
