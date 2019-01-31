@@ -384,7 +384,98 @@
 
         </template>
         <template id="report_table_move_line_ids_customer_outgoing">
-            <table class="table table-condensed" t-if="o.move_line_ids" width="100%">
+
+
+
+        </template>
+
+        <template id="report_shipping_custom_anz" inherit_id="stock.report_picking">
+            <xpath expr="//th[@t-if='o.origin']" position="after">
+                <th t-if="o.partner_id.ref"><strong>Code</strong></th>
+            </xpath>
+            <xpath expr="//td[@t-if='o.origin']" position="after">
+                <td t-if="o.partner_id.ref">
+                    <span t-field="o.partner_id.ref"/>
+                </td>
+            </xpath>
+            <xpath expr="//table[@t-if='o.move_line_ids']" position="replace">
+                <t t-if="o.picking_type_id.code=='incoming'" t-call="stock_picking_custom.report_table_move_line_ids_incoming"/>
+                <t t-if="o.picking_type_id.code=='outgoing'" t-call="stock_picking_custom.report_table_move_line_ids_outgoing"/>
+                <t t-if="o.picking_type_id.code=='internal'" t-call="stock_picking_custom.report_table_move_line_ids_internal"/>
+                <t t-if="o.picking_type_id.code=='mrp_operation'" t-call="stock_picking_custom.report_table_move_line_ids_orig"/>
+            </xpath>
+        </template>
+        <template id="report_shipping_custom_customer_anz">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="web.external_layout">
+                        <div class="page">
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    <div t-if="o.move_lines and o.move_lines[0].partner_id and o.move_lines[0].partner_id.id != o.partner_id.id">
+                                        <span><strong>Delivery Address:</strong></span>
+                                        <div t-field="o.move_lines[0].partner_id"
+                                            t-options='{"widget": "contact", "fields": ["address", "name", "phone"], "no_marker": True, "phone_icons": True}'/>
+                                    </div>
+                                    <div t-if="o.picking_type_id.code != 'internal' and (not o.move_lines or not o.move_lines[0].partner_id) and o.picking_type_id.warehouse_id.partner_id">
+                                        <span><strong>Warehouse Address:</strong></span>
+                                        <div t-field="o.picking_type_id.warehouse_id.partner_id"
+                                            t-options='{"widget": "contact", "fields": ["address", "name", "phone"], "no_marker": True, "phone_icons": True}'/>
+                                    </div>
+                                </div>
+                                <div class="col-xs-5 col-xs-offset-1">
+                                    <div t-if="o.picking_type_id.code=='incoming' and o.partner_id">
+                                        <span><strong>Partner Address:</strong></span>
+                                    </div>
+                                    <div t-if="o.picking_type_id.code=='internal' and o.partner_id">
+                                        <span><strong>Warehouse Address:</strong></span>
+                                    </div>
+                                    <div t-if="o.picking_type_id.code=='outgoing' and o.partner_id">
+                                        <span><strong>Customer Address:</strong></span>
+                                    </div>
+                                    <div t-if="o.partner_id" name="partner_header">
+                                        <div t-field="o.partner_id"
+                                           t-options='{"widget": "contact", "fields": ["name", "phone"], "no_marker": True, "phone_icons": True}'/>
+                                        <p t-if="o.sudo().partner_id.vat"><t t-esc="o.company_id.country_id.vat_label or 'TIN'"/>: <span t-field="o.sudo().partner_id.vat"/></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <br/>
+                            <img
+                                t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('Code128', o.name, 600, 100)"
+                                style="width:300px;height:50px" class="pull-right mb16"
+                                />
+                            <h1 t-field="o.name" class="mt0 pull-left"/>
+                            <div class="clearfix"/>
+                            <table class="table table-condensed">
+                            <thead>
+                                <tr>
+                                    <th t-if="o.partner_id.ref"><strong>Code</strong></th>
+                                    <th t-if="o.origin"><strong>Order (Origin)</strong></th>
+
+                                    <th><strong>Commitment Date</strong></th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td t-if="o.partner_id.ref">
+                                        <span t-field="o.partner_id.ref"/>
+                                    </td>
+                                    <td t-if="o.origin">
+                                        <span t-field="o.origin"/>
+                                    </td>
+
+                                    <td>
+                                        <span t-field="o.date"/>
+                                    </td>
+
+                                </tr>
+                            </tbody>
+                            </table>
+                            <br/>
+                            <br/>
+                            <table class="table table-condensed" t-if="o.move_line_ids" width="100%">
                               <!--t t-set="has_barcode" t-value="any([move_lines.product_id and move_lines.product_id.sudo().barcode or move_lines.package_id for move_lines in o.move_line_ids])"/-->
                               <thead>
                                    <tr>
@@ -409,51 +500,24 @@
                                     </tr>
                               </tbody>
                             </table>
-
-
+                            <p t-if="o.state in ['draft', 'waiting', 'confirmed']">
+                                You do not have any products reserved for this picking.  Please click the 'Reserve' button
+                                to check if products are available.
+                            </p>
+                            <p t-field="o.note"/>
+                        </div>
+                    </t>
+                 </t>
+             </t>
         </template>
-
-        <template id="report_shipping_custom_anz" inherit_id="stock.report_picking">
-
-
-
-            <xpath expr="//th[@t-if='o.origin']" position="after">
-                <th t-if="o.partner_id.ref"><strong>Code</strong></th>
-            </xpath>
-            <xpath expr="//td[@t-if='o.origin']" position="after">
-                <td t-if="o.partner_id.ref">
-                    <span t-field="o.partner_id.ref"/>
-                </td>
-            </xpath>
-            <xpath expr="//table[@t-if='o.move_line_ids']" position="replace">
-                <t t-if="o.picking_type_id.code=='incoming'" t-call="stock_picking_custom.report_table_move_line_ids_incoming"/>
-                <t t-if="o.picking_type_id.code=='outgoing'" t-call="stock_picking_custom.report_table_move_line_ids_outgoing"/>
-                <t t-if="o.picking_type_id.code=='internal'" t-call="stock_picking_custom.report_table_move_line_ids_internal"/>
-                <t t-if="o.picking_type_id.code=='mrp_operation'" t-call="stock_picking_custom.report_table_move_line_ids_orig"/>
-            </xpath>
-        </template>
-        <!--template id="report_shipping_custom_anz" inherit_id="stock.report_picking">
-            <xpath expr="//th[@t-if='o.origin']" position="after">
-                <th t-if="o.partner_id.ref"><strong>Code</strong></th>
-            </xpath>
-            <xpath expr="//td[@t-if='o.origin']" position="after">
-                <td t-if="o.partner_id.ref">
-                    <span t-field="o.partner_id.ref"/>
-                </td>
-            </xpath>
-            <xpath expr="//table[@t-if='o.move_line_ids']" position="replace">
-                <t t-if="o.picking_type_id.code=='outgoing'" t-call="stock_picking_custom.report_table_move_line_ids_customer_outgoing"/>
-            </xpath>
-        </template>
-
         <report
             string="Albarán de cliente"
             id="action_delivery_stock_picking_customer_report"
             model="stock.picking"
             report_type="qweb-pdf"
-            name="stock_picking_custom.report_shipping_custom_anz"
-            file="stock_picking_custom.report_shipping_custom_anz"
+            name="stock_picking_custom.report_shipping_custom_customer_anz"
+            file="stock_picking_custom.report_shipping_custom_customer_anz"
             print_report_name="'Stock picking customer- %s - %s' % (object.partner_id.name or '', object.name)"
-            /-->
+            />
 
 </odoo>

@@ -2,7 +2,7 @@
 <odoo>
     d<delete id="view_picking_delivery_note" model="ir.ui.view"/>
     <record id="view_picking_form_custom" model="ir.ui.view">
-            <field name="name">view.picking.delivery_note</field>
+            <field name="name">view.picking.form.custom</field>
             <field name="model">stock.picking</field>
             <field name="inherit_id" ref="stock.view_picking_form"/>
             <field name="arch" type="xml">
@@ -27,10 +27,19 @@
 
 
             <field name="move_lines" position="after">
-                <button class="oe_link oe_right" name="force_set_qty_done" type="object" string="↳Copy qty. to done" states="confirmed,assigned"/>
-                <button class="oe_link oe_right" name="force_set_assigned_qty_done" type="object" string="↳Copy assigned to done" states="confirmed,assigned"/>
-                <button class="oe_link oe_right" name="force_reset_qties" type="object" string="↳Reset qties" states="confirmed,assigned"/>
+                <div>
+                    <button class="oe_link oe_right" context="{'model_dest': 'stock.move'}" name="force_set_qty_done" type="object" string="↳Copy qty. to done" states="confirmed,assigned"/>
+                    <button class="oe_link oe_right" context="{'model_dest': 'stock.move'}" name="force_set_assigned_qty_done" type="object" string="↳Copy assigned to done" states="confirmed,assigned"/>
+                    <button class="oe_link oe_right" context="{'model_dest': 'stock.move'}" name="force_reset_qties" type="object" string="↳Reset qties" states="confirmed,assigned"/>
+                </div>
             </field>
+            <!--field name="move_lines_ids" position="after">
+                <div>
+                    <button class="oe_link oe_right" context="{'model_dest': 'stock.move.line'}" name="force_set_qty_done" type="object" string="↳Copy qty. to done" states="confirmed,assigned"/>
+                    <button class="oe_link oe_right" context="{'model_dest': 'stock.move.line'}" name="force_set_assigned_qty_done" type="object" string="↳Copy assigned to done" states="confirmed,assigned"/>
+                    <button class="oe_link oe_right" context="{'model_dest': 'stock.move.line'}" name="force_reset_qties" type="object" string="↳Reset qties" states="confirmed,assigned"/>
+                </div>
+            </field-->
             <xpath expr="//field[@name='move_lines']/tree/field[@name='quantity_done']" position="after">
                 <button name="force_set_qty_done" type="object" class="fa fa-copy"
                         attrs="{'invisible': ['|', '|', ('state', 'not in', ('confirmed', 'partially_available')), ('reserved_availability', '>', 0), ('quantity_done', '!=', 0)]}"
@@ -39,6 +48,7 @@
                         attrs="{'invisible': ['|', '|', ('state', 'not in', ('confirmed', 'assigned')), ('reserved_availability', '=', 0), ('quantity_done', '!=', 0)]}"
                         help="Copy availability to qty done"/>
             </xpath>
+
             </field>
         </record>
 
