@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-11-16 12:54+0000\n"
-"PO-Revision-Date: 2018-11-16 12:54+0000\n"
+"POT-Creation-Date: 2019-02-01 14:03+0000\n"
+"PO-Revision-Date: 2019-02-01 14:03+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,9 +16,11 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: custom_commission_anz
-#: model:ir.ui.view,arch_db:custom_commission_anz.report_settlement
-msgid "Amount settled"
-msgstr "Importe liquidado"
+#: model:ir.model.fields,field_description:custom_commission_anz.field_product_brand_commission_rules_count
+#: model:ir.model.fields,field_description:custom_commission_anz.field_res_partner_commission_rules_count
+#: model:ir.model.fields,field_description:custom_commission_anz.field_res_users_commission_rules_count
+msgid "# Commissions"
+msgstr "Nº Comisiones"
 
 #. module: custom_commission_anz
 #: model:ir.ui.view,arch_db:custom_commission_anz.report_settlement
@@ -42,6 +44,8 @@ msgstr "<strong>Total</strong>"
 
 #. module: custom_commission_anz
 #: model:ir.model.fields,field_description:custom_commission_anz.field_agent_brand_agent_ids
+#: model:ir.model.fields,field_description:custom_commission_anz.field_commission_brand_partner_id
+#: model:ir.ui.view,arch_db:custom_commission_anz.view_commission_by_brand_search
 msgid "Agent"
 msgstr "Agente"
 
@@ -53,8 +57,14 @@ msgid "Agents by brand"
 msgstr "Agentes por marca"
 
 #. module: custom_commission_anz
+#: model:ir.ui.view,arch_db:custom_commission_anz.report_settlement
+msgid "Amount settled"
+msgstr "Importe liquidado"
+
+#. module: custom_commission_anz
 #: model:ir.model.fields,field_description:custom_commission_anz.field_agent_brand_brand_id
 #: model:ir.model.fields,field_description:custom_commission_anz.field_commission_brand_brand_id
+#: model:ir.ui.view,arch_db:custom_commission_anz.view_commission_by_brand_search
 msgid "Brand"
 msgstr "Marca"
 
@@ -67,27 +77,29 @@ msgstr "Comisiones por marca"
 #. module: custom_commission_anz
 #: model:ir.model.fields,field_description:custom_commission_anz.field_commission_brand_commission_id
 #: model:ir.ui.view,arch_db:custom_commission_anz.report_settlement
+#: model:ir.ui.view,arch_db:custom_commission_anz.view_commission_by_brand_search
 msgid "Commission"
 msgstr "Comisión"
 
 #. module: custom_commission_anz
-#: model:ir.ui.view,arch_db:custom_commission_anz.report_settlement
-msgid "Invoice"
-msgstr "Factura"
+#: model:ir.actions.act_window,name:custom_commission_anz.action_commission_by_brand
+msgid "Commission by brand"
+msgstr "Comisiones por marca"
 
 #. module: custom_commission_anz
-#: model:ir.ui.view,arch_db:custom_commission_anz.report_settlement
-msgid "Invoice date"
-msgstr "Fecha de factura"
+#: model:ir.ui.view,arch_db:custom_commission_anz.view_product_brand_by_discount_form
+msgid "Commissions"
+msgstr "Comisiones"
 
 #. module: custom_commission_anz
-#: model:ir.actions.report,name:custom_commission_anz.action_report_settlement
-msgid "Settlement report"
-msgstr "Informe de liquidación por factura"
-
-#. module: custom_commission_anz
+#: model:ir.ui.view,arch_db:custom_commission_anz.view_commission_by_brand_tree
 #: model:ir.ui.view,arch_db:custom_commission_anz.view_partner_form_agent_brand
 msgid "Commissions by brand"
+msgstr "Comisiones por marca"
+
+#. module: custom_commission_anz
+#: model:ir.ui.menu,name:custom_commission_anz.menu_commission_by_brand
+msgid "Commission by brand"
 msgstr "Comisiones por marca"
 
 #. module: custom_commission_anz
@@ -108,16 +120,46 @@ msgid "Created on"
 msgstr "Creado en"
 
 #. module: custom_commission_anz
+#: model:ir.model.fields,field_description:custom_commission_anz.field_agent_brand_partner_id
+msgid "Customer"
+msgstr "Cliente"
+
+#. module: custom_commission_anz
 #: model:ir.model.fields,field_description:custom_commission_anz.field_agent_brand_display_name
 #: model:ir.model.fields,field_description:custom_commission_anz.field_commission_brand_display_name
 msgid "Display Name"
 msgstr "Nombre mostrado"
 
 #. module: custom_commission_anz
+#: model:ir.model.fields,field_description:custom_commission_anz.field_commission_brand_discount
+msgid "From Discount"
+msgstr "Desde descuento"
+
+#. module: custom_commission_anz
+#: model:ir.ui.view,arch_db:custom_commission_anz.view_commission_by_brand_search
+msgid "Generic Rules"
+msgstr "Reglas genéricas"
+
+#. module: custom_commission_anz
+#: model:ir.ui.view,arch_db:custom_commission_anz.view_commission_by_brand_search
+msgid "Group By"
+msgstr "Agrupar por"
+
+#. module: custom_commission_anz
 #: model:ir.model.fields,field_description:custom_commission_anz.field_agent_brand_id
 #: model:ir.model.fields,field_description:custom_commission_anz.field_commission_brand_id
 msgid "ID"
 msgstr "ID (identificación)"
+
+#. module: custom_commission_anz
+#: model:ir.ui.view,arch_db:custom_commission_anz.report_settlement
+msgid "Invoice"
+msgstr "Factura"
+
+#. module: custom_commission_anz
+#: model:ir.ui.view,arch_db:custom_commission_anz.report_settlement
+msgid "Invoice date"
+msgstr "Fecha de factura"
 
 #. module: custom_commission_anz
 #: model:ir.model.fields,field_description:custom_commission_anz.field_agent_brand___last_update
@@ -138,15 +180,61 @@ msgid "Last Updated on"
 msgstr "Última actualización en"
 
 #. module: custom_commission_anz
-#: model:ir.model.fields,field_description:custom_commission_anz.field_agent_brand_partner_id
-#: model:ir.model.fields,field_description:custom_commission_anz.field_commission_brand_partner_id
-msgid "Partner"
-msgstr "Empresa"
+#: model:ir.model,name:custom_commission_anz.model_sale_commission_settlement_line
+msgid "Line of a commission settlement"
+msgstr "Línea d euna liquidación de comisión"
+
+#. module: custom_commission_anz
+#: model:ir.model,name:custom_commission_anz.model_sale_commission_mixin
+msgid "Mixin model for applying to any object that wants to handle commissions"
+msgstr "Modelo mixin para aplicar a cualquier objeto que quiera manejar comisiones"
+
+#. module: custom_commission_anz
+#: model:ir.model,name:custom_commission_anz.model_sale_commission_line_mixin
+msgid "Mixin model for having commission agent lines in any object inheriting from this one"
+msgstr "Modelo mixin para tener líneas de agente de comisiones en cualquier objeto heredando de éste"
+
+#. module: custom_commission_anz
+#: model:ir.model,name:custom_commission_anz.model_sale_order
+msgid "Quotation"
+msgstr "Presupuesto"
 
 #. module: custom_commission_anz
 #: model:ir.model,name:custom_commission_anz.model_sale_order_line
 msgid "Sales Order Line"
 msgstr "Línea de pedido de ventas"
+
+#. module: custom_commission_anz
+#: model:ir.ui.view,arch_db:custom_commission_anz.view_commission_by_brand_search
+msgid "Settlement lines search"
+msgstr "Búsqueda de líneas de liquidación"
+
+#. module: custom_commission_anz
+#: model:ir.actions.report,name:custom_commission_anz.action_report_settlement
+msgid "Settlement report"
+msgstr "Informe de liquidación"
+
+#. module: custom_commission_anz
+#: model:ir.ui.view,arch_db:custom_commission_anz.view_commission_by_brand_search
+msgid "Specific rules by agent"
+msgstr "Reglas específicas por agente"
+
+#. module: custom_commission_anz
+#: model:ir.ui.view,arch_db:custom_commission_anz.view_commission_by_brand_search
+msgid "Specific rules by brand"
+msgstr "eglas específicas por marca"
+
+#. module: custom_commission_anz
+#: model:ir.ui.view,arch_db:custom_commission_anz.view_partner_form_agent_brand
+msgid "View Commission Rules"
+msgstr "Ver reglas de comisiones"
+
+#. module: custom_commission_anz
+#: code:addons/custom_commission_anz/models/agent_commission_brand.py:35
+#: sql_constraint:commission.brand:0
+#, python-format
+msgid "You can not define same, agent, brand and from discount rule"
+msgstr "No puedes definir el mismo agente, marca y desde descuento que uno ya existente"
 
 #. module: custom_commission_anz
 #: model:ir.model,name:custom_commission_anz.model_agent_brand
@@ -157,4 +245,9 @@ msgstr "agent.brand"
 #: model:ir.model,name:custom_commission_anz.model_commission_brand
 msgid "commission.brand"
 msgstr "commission.brand"
+
+#. module: custom_commission_anz
+#: model:ir.model,name:custom_commission_anz.model_product_brand
+msgid "product.brand"
+msgstr "product.brand"
 
