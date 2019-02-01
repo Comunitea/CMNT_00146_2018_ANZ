@@ -45,7 +45,8 @@
     <menuitem name="Commission by brand"
               id="menu_commission_by_brand"
               parent="sale_commission.menu_sale_commissions_management"
-              action="action_commission_by_brand" />
+              action="action_commission_by_brand"
+              sequence="2" />
 
 </odoo>
 

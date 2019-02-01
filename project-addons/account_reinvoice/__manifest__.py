@@ -19,6 +19,7 @@
     ],
     'data': [
         'security/ir.model.access.csv',
+        'security/commission_security.xml',
         'views/account_invoice.xml',
         'views/purchase_order.xml',
         'views/product_brand.xml',

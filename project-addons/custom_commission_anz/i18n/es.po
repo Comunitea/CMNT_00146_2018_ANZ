@@ -222,7 +222,7 @@ msgstr "Reglas específicas por agente"
 #. module: custom_commission_anz
 #: model:ir.ui.view,arch_db:custom_commission_anz.view_commission_by_brand_search
 msgid "Specific rules by brand"
-msgstr "eglas específicas por marca"
+msgstr "Reglas específicas por marca"
 
 #. module: custom_commission_anz
 #: model:ir.ui.view,arch_db:custom_commission_anz.view_partner_form_agent_brand
