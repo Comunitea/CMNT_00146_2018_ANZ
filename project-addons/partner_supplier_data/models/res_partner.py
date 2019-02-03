@@ -38,7 +38,6 @@ class ResPartner(models.Model):
 
     @api.multi
     def act_location_dates_from_zip(self):
-        #self._compute_commercial_partner()
         for partner in self:
             better_zip = self.env['res.better.zip'].search([('name', '=', partner.zip)], limit=1)
             if better_zip:
@@ -47,8 +46,3 @@ class ResPartner(models.Model):
                                'country_id': better_zip.country_id.id,
                                'city': better_zip.city})
 
-    @api.multi
-    def _compute_commercial_partner(self):
-        no_comercial = self.filtered(lambda x:x.is_company==False and not x.parent_id)
-        no_comercial.comercial_partner_id = False
-        return super(ResPartner, self-no_comercial)._compute_commercial_partner()

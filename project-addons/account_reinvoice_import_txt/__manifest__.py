@@ -15,7 +15,8 @@
         'account',
         'account_reinvoice',
         'account_invoice_check_total',
-        'partner_supplier_data'
+        'partner_supplier_data',
+        'partner_paydays'
 
     ],
     'data': [

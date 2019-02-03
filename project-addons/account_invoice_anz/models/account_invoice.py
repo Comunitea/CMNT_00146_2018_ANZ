@@ -8,13 +8,30 @@ class AccountInvoice(models.Model):
 
     @api.model
     def create(self, vals):
-
         res = super(AccountInvoice, self).create(vals)
-        if res.amount_untaxed < 100:
-            payment_term_id = self.env['account.payment.term'].search([('name', '=', '57')], limit=1)
-            if payment_term_id:
-                res.payment_term_id = payment_term_id
-                res.message_post(body="Se aplicado la regla de menos 100 €. Recuerda que no se actualiza al cambiar el importe")
+        res.check_payment_term()
+        return res
+
+
+    @api.multi
+    def check_payment_term(self, payment_term_id=False):
+        limit = float(self.env['ir.config_parameter'].sudo().get_param('account_invoice.amount_untaxed_limit', 100))
+        greater = payment_term_id or int(self.env['ir.config_parameter'].sudo().get_param('account_invoice.amount_untaxed_greater', 9))
+        less = int(self.env['ir.config_parameter'].sudo().get_param('account_invoice.amount_untaxed_less', 16))
+        for inv in self.filtered(lambda x: x.type == 'out_invoice'):
+            if inv.amount_untaxed > limit:
+                term = greater
+            else:
+                term = less
+
+            inv.payment_term_id = self.env['account.payment.term'].browse(term)
+
+    @api.multi
+    def write(self, vals):
+        res = super().write(vals)
+        if 'amount_untaxed' in vals:
+            for inv in self.filtered(lambda x: x.type == 'out_invoice'):
+                inv.check_payment_term()
         return res
 
 

@@ -85,6 +85,14 @@
                         </group>
                     </group>
                     <notebook>
+                        <page string="Vencimientos">
+                            <field name="payment_day_ids">
+                                <tree>
+                                    <field name="date"/>
+                                    <field name="amount"/>
+                                </tree>
+                            </field>
+                        </page>
                         <page string="Pedidos">
                             <field name="order_ids">
                                 <tree>

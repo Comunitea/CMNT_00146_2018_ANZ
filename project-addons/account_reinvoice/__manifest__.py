@@ -13,9 +13,10 @@
     'depends': [
         'base',
         'account',
+        'partner_paydays',
         'purchase',
         'product_brand',
-        'sale_order_type'
+        'sale_order_type',
     ],
     'data': [
         'security/ir.model.access.csv',

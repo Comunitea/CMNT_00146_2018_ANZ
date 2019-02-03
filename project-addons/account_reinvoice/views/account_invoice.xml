@@ -9,33 +9,19 @@
         <field name="arch" type="xml">
             <notebook position="inside">
                 <page string="Associate Info">
-                    <group col="4">
-                        <field name="associate_id"/>
-                        <field name="customer_invoice_id"/>
+                    <group>
+                        <group>
+                            <field name="associate_id"/>
+                            </group>
+                        <group>
+                            <field name="customer_invoice_id"/>
+                        </group>
                     </group>
                 </page>
             </notebook>
         </field>
     </record>
 
-    <!-- Avoid refund invoice readonly and invisible -->
-    <!-- <record id="account_invoice_form_view_refund_always" model="ir.ui.view">
-        <field name="name">account.invoice.form.view.refund.always</field>
-        <field name="model">account.invoice</field>
-        <field name="inherit_id" ref="account_invoice_refund_link.view_customer_account_invoice_add_refunds_details_form"/>
-        <field name="arch" type="xml">
-            <field name="refund_invoice_id" position="attributes">
-                <attribute name="attrs"></attribute>
-                <attribute name="readonly">0</attribute>
-            </field>
-
-             <field name="refund_reason" position="attributes">
-                <attribute name="readonly">0</attribute>
-            </field>
-        </field>
-    </record> -->
-
-    <!-- Adds supplier invoice link in account invoice -->
     <record id="invoice_form_custom_anz" model="ir.ui.view">
         <field name="name">invoice.form.custom.anz</field>
         <field name="model">account.invoice</field>

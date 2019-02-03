@@ -4,8 +4,11 @@ from odoo import fields, models, api
 import datetime
 import time
 
+class AccountInvoiceLine(models.Model):
 
+    _inherit = 'account.invoice.line'
 
+    rule_id = fields.Many2one('reinvoice.rule', string="Regla")
 
 class AccountInvoice(models.Model):
 
@@ -64,3 +67,27 @@ class AccountInvoice(models.Model):
                 account_expense_id = line.product_id.property_account_expense_id or line.product_id.categ_id.property_account_expense_categ_id
                 line.account_id = account_income_id if inv.type in ('out_invoice', 'out_refund') else account_expense_id
                 line.invoice_line_tax_ids = inv.fiscal_position_id.map_tax(txes_id, line.product_id, inv.partner_id)
+
+    @api.multi
+    def do_reinvoice(self):
+        new_invoices = []
+        for inv in self:
+            sale_type = inv.associate_id.sale_type and inv.associate_id.sale_type.id or False
+            if sale_type:
+                wzd_id = self.env['reinvoice.wzd'].create({'sale_type_id': sale_type})
+                new_invoice = wzd_id.get_invoices(inv)
+                if new_invoice:
+                    print("\n------------\nFACTURA DE ASOCIADO PARA : {}\n------------\n".format(
+                        new_invoice.partner_id.name))
+                    new_invoices += new_invoice
+
+        return self.browse(new_invoices)
+
+    @api.multi
+    def unlink(self):
+        inv_ass_ids = self.mapped('customer_invoice_id').filtered(lambda x:x.state=='draft')
+        if inv_ass_ids:
+            inv_ass_ids.unlink()
+        res = super().unlink()
+
+        return res

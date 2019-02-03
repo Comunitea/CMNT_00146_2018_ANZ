@@ -12,6 +12,7 @@
                 <!--field name="scheduled_sale"/-->
                 <field name="supplier_discount"/>
                 <field name="customer_discount"/>
+                <field name="customer_charge"/>
                 <field name="affiliate"/>
                 <field name="order_type"/>
                 <field name="supplier_customer_ranking_id"/>
