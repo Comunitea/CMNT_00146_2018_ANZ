@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_commission_by_brand_tree" model="ir.ui.view">
+        <field name="name">Commissions by brand</field>
+        <field name="model">commission.brand</field>
+        <field name="arch" type="xml">
+             <tree string="Commissions by brand" editable="bottom">
+                    <field name="partner_id"/>
+                    <field name="brand_id"/>
+                    <field name="discount"/>
+                    <field name="commission_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_commission_by_brand_search" model="ir.ui.view">
+        <field name="name">view_commission_by_brand_search</field>
+        <field name="model">commission.brand</field>
+        <field name="arch" type="xml">
+            <search string="Settlement lines search">
+                <field name="partner_id"/>
+                <field name="brand_id"/>
+                <field name="commission_id"/>
+                <separator/>
+                <filter string="Specific rules by agent" name="rules_by_agent" domain="[('partner_id','!=',False)]"/>
+                <filter string="Specific rules by brand" name="rules_by_brand" domain="[('brand_id','!=',False)]"/>
+                <filter string="Generic Rules" name="filter_to_sell" domain="[('partner_id','=',False), ('brand_id','=',False)]"/>
+                <group expand="1" string="Group By">
+                    <filter string="Agent" name="group_agent" context="{'group_by': 'partner_id'}"/>
+                    <filter string="Brand" name="group_brand" context="{'group_by': 'brand_id'}"/>
+                    <filter string="Commission" name="group_commission" context="{'group_by': 'commissio_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_commission_by_brand" model="ir.actions.act_window" >
+        <field name="name">Commission by brand</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">commission.brand</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree</field>
+    </record>
+
+    <menuitem name="Commission by brand"
+              id="menu_commission_by_brand"
+              parent="sale_commission.menu_sale_commissions_management"
+              action="action_commission_by_brand"
+              sequence="2" />
+
+</odoo>
+

@@ -9,11 +9,14 @@
     'author': "Comunitea, ",
     'depends': [
         'base',
+        'product_brand',
         'sale_commission'
     ],
     'data': [
         'security/ir.model.access.csv',
+        'views/agent_commission_brand_view.xml',
         'views/partner_view.xml',
+        'views/product_brand_view.xml',
         'views/report_settlement_grouped_template.xml'
     ],
     'installable': True,
