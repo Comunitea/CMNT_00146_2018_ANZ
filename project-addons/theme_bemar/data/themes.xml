@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record model="website.theme" id="tbf_bemar_multi">
+        <field name="name">Multiwebsite Bemar Theme</field>
+        <field name="converted_theme_addon">theme_bemar</field>
+    </record>
+
+</odoo>

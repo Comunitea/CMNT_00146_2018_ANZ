@@ -26,11 +26,11 @@
 ##############################################################################
 
 {
-    'name': 'Website base module',
+    'name': 'Anzamar Theme',
     'version': '1.0',
-    'summary': 'Website base customization module',
-    'description': '',
-    'category': 'Website',
+    'summary': 'FrontEnd customization for Anzamar Website',
+    'description': 'This is a theme module that contains styles and layout elements for front-end part.',
+    'category': 'Theme/Ecommerce',
     'author': 'Comunitea',
     'website': 'http://www.comunitea.com',
     'license': 'AGPL-3',
@@ -39,16 +39,14 @@
         'Rubén Seijas <ruben@comunitea.com>',
     ],
     'depends': [
-        'ecommerce_base',
         'multi_company_base',
-        'website_blog',
-        'website_multi_company_blog',
-        'mass_mailing',
-        'website_form_builder',
-        'theme_base_frontend',
-        'seo_base'
+        'module_base'
     ],
     'data': [
+        'data/themes.xml',
+        'templates/head.xml',
+        'templates/header.xml',
+        'templates/footer.xml',
     ],
     'images': [
         '/static/description/icon.png',
