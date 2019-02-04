@@ -837,7 +837,7 @@ class InvoiceTxtImport(models.Model):
                 inv_line.update(name=vals['name'], price_unit=linea['precio_articulo'], discount=linea['descuento'])
                 self.env['account.invoice.line'].create(inv_line)
             new_invoice.compute_taxes()
-            new_invoice.check_txt_amount_total(txt.total_amount)
+            txt.check_txt_amount_total(new_invoice)
 
             print("\n------------\nFACTURA PARA : {}\n------------\n".format(new_invoice.associate_id.name or self.partner_id.name))
 
@@ -862,3 +862,31 @@ class InvoiceTxtImport(models.Model):
         return super().unlink()
 
 
+
+    def check_txt_amount_total(self, invoice):
+        def get_adjust_line(price):
+            product_id = self.env['product.product'].seaarch([('default_code', '=', 'REDONDEO.000')], limit=1)
+            return {'product_id': product_id.id,
+                'quantity': 1,
+                'price_unit': price,
+                'discount': 0,
+                'name': 'AJUSTE REDONDEO',
+                'imported_price_subtotal': 0.00,
+                }
+
+        if invoice.amount_total != self.total_amount:
+
+            if invoice.amount_tax and invoice.tax_line_ids:
+                invoice.tax_line_ids[0].amount_total = invoice.amount_total -  self.total_amount
+            else:
+                linea = self.invoice.tax_line_ids[0]
+                vals = get_adjust_line(invoice.amount_total -  self.total_amount)
+
+                invoice_line = self.env['account.invoice.line'].new(vals)
+                invoice_line._onchange_product_id()
+                invoice_line.invoice_line_tax_ids = invoice.fiscal_position_id.map_tax(
+                    invoice_line.invoice_line_tax_ids, invoice_line.product_id, invoice.associate_id)
+                inv_line = invoice_line._convert_to_write(invoice_line._cache)
+                inv_line.update(name=vals['name'], price_unit=linea['precio_articulo'], discount=linea['descuento'])
+                self.env['account.invoice.line'].create(inv_line)
+        return
