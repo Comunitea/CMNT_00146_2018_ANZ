@@ -348,7 +348,7 @@ class InvoiceTxtImport(models.Model):
 
     def get_line(self, linea_pedido):
 
-        descuento_str_total = linea_pedido[85:100].strip()
+        descuento_str_total = linea_pedido[80:115].strip()
         descuento = self.env['invoice.txt.import.line'].get_descuento_from_str(descuento_str_total)
         if descuento > 100:
             self.message_post(body="Error en descuento: {} obtenido de {}".format(descuento, descuento_str_total))
@@ -837,7 +837,7 @@ class InvoiceTxtImport(models.Model):
                 inv_line.update(name=vals['name'], price_unit=linea['precio_articulo'], discount=linea['descuento'])
                 self.env['account.invoice.line'].create(inv_line)
             new_invoice.compute_taxes()
-            txt.check_txt_amount_total(new_invoice)
+            #txt.check_txt_amount_total(new_invoice)
 
             print("\n------------\nFACTURA PARA : {}\n------------\n".format(new_invoice.associate_id.name or self.partner_id.name))
 
@@ -875,12 +875,11 @@ class InvoiceTxtImport(models.Model):
                 }
 
         if invoice.amount_total != self.total_amount:
-
             if invoice.amount_tax and invoice.tax_line_ids:
-                invoice.tax_line_ids[0].amount_total = invoice.amount_total -  self.total_amount
+                invoice.tax_line_ids[0].amount_total = invoice.amount_total - self.total_amount
             else:
                 linea = self.invoice.tax_line_ids[0]
-                vals = get_adjust_line(invoice.amount_total -  self.total_amount)
+                vals = get_adjust_line(invoice.amount_total - self.total_amount)
 
                 invoice_line = self.env['account.invoice.line'].new(vals)
                 invoice_line._onchange_product_id()
