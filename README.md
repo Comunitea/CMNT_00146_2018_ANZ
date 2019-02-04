@@ -39,7 +39,8 @@ $ virtualenv -p python3 sandbox
 ```
 - Ahora procedemos a ejecutar el buildout en nuestro entorno virtual
 ```
-$ sandbox/bin/python3 bootstrap.py -c [archivo_buildout]
+$ sandbox/bin/python3 bootstrap.py -c [archivo_buildout] 
+Recomendable: --setuptools-version=40.0.0
 ```
 - Lanzar buildout (el -c [archivo_buildout] se usa cuando no tiene el nombre por defecto buildout.cfg)
 ```
