@@ -88,13 +88,17 @@ class AccountPaymentTerm(models.Model):
 
     _inherit = "account.payment.term"
 
-    @api.one
+    @api.multi
     def compute(self, value, date_ref=False):
         invoice = self.env['account.invoice'].browse(self._context.get('invoice_id', False))
+        self.ensure_one()
+
+
         if not invoice or not invoice.payment_day_ids or invoice.type not in ('in_invoice', 'in_refund'):
             original = super(AccountPaymentTerm, self).compute(value, date_ref)
             print ("-----ORIGINAL--------")
-            return original[0][0]
+            return original
+
         res = []
         last_amount = invoice.amount_total
         prec = invoice.currency_id.decimal_places
@@ -103,4 +107,4 @@ class AccountPaymentTerm(models.Model):
             res.append((pay.date, -pay.amount))
         if not float_is_zero(last_amount, 4):
             res[-1] = (res[-1][0], invoice.currency_id.round(-last_amount + res[-1][1]))
-        return res
+        return [res]

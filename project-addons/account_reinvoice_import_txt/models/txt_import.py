@@ -837,6 +837,7 @@ class InvoiceTxtImport(models.Model):
                 inv_line.update(name=vals['name'], price_unit=linea['precio_articulo'], discount=linea['descuento'])
                 self.env['account.invoice.line'].create(inv_line)
             new_invoice.compute_taxes()
+            new_invoice.check_txt_amount_total(txt.total_amount)
 
             print("\n------------\nFACTURA PARA : {}\n------------\n".format(new_invoice.associate_id.name or self.partner_id.name))
 
@@ -859,3 +860,5 @@ class InvoiceTxtImport(models.Model):
         self.mapped('invoice_id').filtered(lambda x
                                            :x.state=='draft').unlink()
         return super().unlink()
+
+

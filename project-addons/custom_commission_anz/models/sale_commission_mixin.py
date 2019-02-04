@@ -1,7 +1,13 @@
 # -*- coding: utf-8 -*-
 
-from odoo import api, models
+from odoo import api, models, fields
 
+
+
+class SaleCommission(models.Model):
+    _inherit = "sale.commission"
+
+    company_id = fields.Many2one('res.company', 'Company', readonly=True)
 
 class SaleCommissionMixin(models.AbstractModel):
     _inherit = "sale.commission.mixin"
