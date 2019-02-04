@@ -26,11 +26,11 @@
 ##############################################################################
 
 {
-    'name': 'Base Front-end theme',
+    'name': 'Bemar Theme',
     'version': '1.0',
-    'summary': 'Front-end customization module',
+    'summary': 'FrontEnd customization for Bemar Website',
     'description': 'This is a theme module that contains styles and layout elements for front-end part.',
-    'category': 'Theme',
+    'category': 'Theme/Ecommerce',
     'author': 'Comunitea',
     'website': 'http://www.comunitea.com',
     'license': 'AGPL-3',
@@ -39,9 +39,11 @@
         'Rubén Seijas <ruben@comunitea.com>',
     ],
     'depends': [
-        'website_multi_theme'
+        'multi_company_base',
+        'module_base'
     ],
     'data': [
+        'data/themes.xml',
         'templates/head.xml',
         'templates/header.xml',
         'templates/footer.xml',
