@@ -21,7 +21,6 @@ class ProductTemplate(models.Model):
 
     @api.model
     def _search(self, args, offset=0, limit=None, order=None, count=False, access_rights_uid=None):
-
         sale_order = self.env['sale.order'].get_sale_order_by_context()
         if sale_order:
             args = sale_order.add_args_to_product_search(args)
@@ -35,7 +34,6 @@ class ProductProduct(models.Model):
 
     @api.model
     def _search(self, args, offset=0, limit=None, order=None, count=False, access_rights_uid=None):
-
         sale_order = self.env['sale.order'].get_sale_order_by_context()
         if sale_order:
             args = sale_order.add_args_to_product_search(args)

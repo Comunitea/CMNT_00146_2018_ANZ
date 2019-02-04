@@ -5,7 +5,7 @@
 
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError, ValidationError
-
+from odoo.osv import expression
 
 class ProductTemplate(models.Model):
 
@@ -37,6 +37,7 @@ class ProductTemplate(models.Model):
         schedule_sale_id = self.env['scheduled.sale'].get_scheduled_sale_by_context()
         if schedule_sale_id:
             args = schedule_sale_id.add_args_to_product_search(args)
+
         return super(ProductTemplate, self)._search(args, offset=offset, limit=limit, order=order, count=count,
                                                    access_rights_uid=access_rights_uid)
 
@@ -91,7 +92,6 @@ class ProductProduct(models.Model):
 
     @api.model
     def _search(self, args, offset=0, limit=None, order=None, count=False, access_rights_uid=None):
-
         schedule_sale_id = self.env['scheduled.sale'].get_scheduled_sale_by_context()
         if schedule_sale_id:
             args = schedule_sale_id.add_args_to_product_search(args)

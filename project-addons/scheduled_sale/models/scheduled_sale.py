@@ -189,7 +189,7 @@ class ScheduleSale(models.Model):
         return action
 
     def add_args_to_product_search(self, args):
-        args = expression.AND([args, [('scheduled_sale_id', '=', self.id)]])
+        args = expression.AND([expression.normalize_domain(args), [('scheduled_sale_id', '=', self.id)]])
         return args
 
 

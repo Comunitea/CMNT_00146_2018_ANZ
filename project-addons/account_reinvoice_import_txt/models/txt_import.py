@@ -341,14 +341,13 @@ class InvoiceTxtImport(models.Model):
                                'name': ref_pedido,
                                'fecha': fecha_pedido}
             pedido = self.env['invoice.txt.import.order'].create(new_pedido_vals)
-            print('Encuentrp pedido {}'.format(ref_pedido))
             return pedido
 
 
 
-    def get_line(self, linea_pedido):
+    def get_line(self, linea_pedido, descuentos_index):
 
-        descuento_str_total = linea_pedido[80:115].strip()
+        descuento_str_total = linea_pedido[descuentos_index - 7:descuentos_index +7].strip()
         descuento = self.env['invoice.txt.import.line'].get_descuento_from_str(descuento_str_total)
         if descuento > 100:
             self.message_post(body="Error en descuento: {} obtenido de {}".format(descuento, descuento_str_total))
@@ -488,6 +487,9 @@ class InvoiceTxtImport(models.Model):
             pay_notes = str[9][166:220].strip()
         eori = str[10][-12:].strip()
         ###DATOS DE ALBAŔAN
+        descuentos_index = str[14].find('%')
+        if descuentos_index< 75:
+            descuentos_index = 92
 
         index = 17
         supplier_picking_num = albaran = partner_bank = fecha_albaran = associate_name = region = ref_pedido = fecha_vencimiento = fecha_pedido = refund_note=False
@@ -532,16 +534,14 @@ class InvoiceTxtImport(models.Model):
                 continue
             if type == 'in_invoice' and str[index].find('Su pedido no.') > -1:# str[index].split(':')[0].strip() == 'Su pedido no.':
                 pedido = self.get_pedido(str[index].strip(), 'adidas')
-                print('Encuentro y creo pedido {}'.format(pedido.name))
                 index += 1
             elif type == 'in_refund' and line_count == 1 and not is_number_line(str[index][:4], line_count):
                 refund_note = str[index].strip()
-                print('Refund note {}'.format(refund_note))
                 index += 1
             else:
                 if is_number_line(str[index][:4], line_count):
 
-                    linea = self.get_line(str[index])
+                    linea = self.get_line(str[index], descuentos_index)
                     if pedido:
                         linea.update(order_id=pedido.id)
                     line_count += 1
@@ -552,7 +552,6 @@ class InvoiceTxtImport(models.Model):
                             index += 2
                             linea.update(state_country=str[index][34:].strip())
                     lineas.append(linea)
-                    print (linea)
                 index += 1
 
             if index >= longitud_fichero:
@@ -819,7 +818,7 @@ class InvoiceTxtImport(models.Model):
             inv = invoice._convert_to_write(invoice._cache)
             inv.update(journal_id=journal_id.id,
                        fiscal_position_id=self.map_account_possition(txt.account_position_id),
-                       payment_term_id=payment_term_id and payment_term_id.id)
+                       payment_term_id=payment_term_id and payment_term_id.id or 1)
             if not inv.get('operating_unit_id', False) and txt.associate_id.commercial_partner_id.sale_type_id.operating_unit_id:
                 inv.update(operating_unit_id=txt.associate_id.commercial_partner_id.sale_type.operating_unit_id.id)
 
@@ -837,7 +836,8 @@ class InvoiceTxtImport(models.Model):
                 inv_line.update(name=vals['name'], price_unit=linea['precio_articulo'], discount=linea['descuento'])
                 self.env['account.invoice.line'].create(inv_line)
             new_invoice.compute_taxes()
-            #txt.check_txt_amount_total(new_invoice)
+            import ipdb; ipdb.set_trace()
+            txt.check_txt_amount_total(new_invoice)
 
             print("\n------------\nFACTURA PARA : {}\n------------\n".format(new_invoice.associate_id.name or self.partner_id.name))
 
@@ -857,35 +857,43 @@ class InvoiceTxtImport(models.Model):
 
     @api.multi
     def unlink(self):
-        self.mapped('invoice_id').filtered(lambda x
+        try:
+            self.mapped('invoice_id').filtered(lambda x
                                            :x.state=='draft').unlink()
+        except Exception:
+            pass
         return super().unlink()
 
 
 
     def check_txt_amount_total(self, invoice):
-        def get_adjust_line(price):
-            product_id = self.env['product.product'].seaarch([('default_code', '=', 'REDONDEO.000')], limit=1)
-            return {'product_id': product_id.id,
-                'quantity': 1,
-                'price_unit': price,
-                'discount': 0,
-                'name': 'AJUSTE REDONDEO',
-                'imported_price_subtotal': 0.00,
-                }
 
-        if invoice.amount_total != self.total_amount:
-            if invoice.amount_tax and invoice.tax_line_ids:
-                invoice.tax_line_ids[0].amount_total = invoice.amount_total - self.total_amount
+        iat = round(invoice.amount_total, 2)
+        tat = round(self.total_amount, 2)
+        price = round(tat - iat,2)
+        if iat != tat:
+            if invoice.amount_tax and invoice.tax_line_ids and abs(iat-tat) <= 1.00:
+                new_tax = round(invoice.tax_line_ids[0].amount_total + price, 2)
+                invoice.tax_line_ids[0].amount = new_tax
+                message = "Cambio impuestos de {} a {}".format(invoice.tax_line_ids[0].amount_total, new_tax)
             else:
-                linea = self.invoice.tax_line_ids[0]
-                vals = get_adjust_line(invoice.amount_total - self.total_amount)
+                import ipdb; ipdb.set_trace()
+                product_id = self.env['product.product'].search([('default_code', '=', 'REDONDEO.000')], limit=1)
+                vals = {'product_id': product_id and product_id.id,
+                    'quantity': 1,
+                    'price_unit': price,
+                    'discount': 0,
+                    'name': 'AJUSTE REDONDEO',
+                    'imported_price_subtotal': 0.00,
+                    'invoice_id': invoice.id}
 
                 invoice_line = self.env['account.invoice.line'].new(vals)
                 invoice_line._onchange_product_id()
                 invoice_line.invoice_line_tax_ids = invoice.fiscal_position_id.map_tax(
                     invoice_line.invoice_line_tax_ids, invoice_line.product_id, invoice.associate_id)
                 inv_line = invoice_line._convert_to_write(invoice_line._cache)
-                inv_line.update(name=vals['name'], price_unit=linea['precio_articulo'], discount=linea['descuento'])
+                inv_line.update(name='AJUSTE REDONDEO', price_unit=price, discount=0.00)
                 self.env['account.invoice.line'].create(inv_line)
+                message = "Añado línea de redondeo por valor {}".format(price)
+            self.message_post(message)
         return

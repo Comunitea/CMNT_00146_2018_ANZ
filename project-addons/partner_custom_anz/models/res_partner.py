@@ -97,9 +97,9 @@ class ResPartner(models.Model):
         return partner
 
     def add_args_to_product_search(self, args=[]):
-
+        args = expression.normalize_domain(args)
         if self.area_id:
-            args.extend([('product_brand_id.restricted_area_ids', 'not in', [self.area_id.id])])
+            args = expression.AND(args, [('product_brand_id.restricted_area_ids', 'not in', [self.area_id.id])])
 
         # Si el partner tiene marcas permitidas, se usan las del partner, si no las de la zona
         allowed_brand_ids = self.allowed_brand_ids.ids or self.area_id.allowed_brand_ids.ids or []
@@ -112,7 +112,7 @@ class ResPartner(models.Model):
             args = expression.AND([args, ['|', ('product_brand_id', '=', False), ('product_brand_id', 'in', allowed_brand_ids)]])
         elif restricted_brand_ids:
             args = expression.AND([args, ['|', ('product_brand_id', '=', False),('product_brand_id', 'not in', restricted_brand_ids)]])
-
+        args = expression.normalize_domain(args)
         if self.allowed_categories_ids or self.restricted_categories_ids:
             a_categ = []
             r_categ = []
@@ -127,7 +127,8 @@ class ResPartner(models.Model):
                 args = expression.AND([args, ['|', ('categ_id', '=', False), ('categ_id', 'in', a_categ)]])
             elif r_categ:
                 args = expression.AND([args, [('categ_id', 'not in', r_categ)]])
-
+            args = expression.normalize_domain(args)
+        print (args)
         return args
 
     @api.multi
