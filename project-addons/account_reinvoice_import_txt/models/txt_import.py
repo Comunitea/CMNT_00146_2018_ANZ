@@ -701,7 +701,6 @@ class InvoiceTxtImport(models.Model):
 
     @api.multi
     def create_invoice_from_invoice_txt(self, create_associate=False):
-
         new_invoice_ids = self.env['account.invoice']
         for txt in self:
             txt.state = 'invoiced'
@@ -836,7 +835,6 @@ class InvoiceTxtImport(models.Model):
                 inv_line.update(name=vals['name'], price_unit=linea['precio_articulo'], discount=linea['descuento'])
                 self.env['account.invoice.line'].create(inv_line)
             new_invoice.compute_taxes()
-            import ipdb; ipdb.set_trace()
             txt.check_txt_amount_total(new_invoice)
 
             print("\n------------\nFACTURA PARA : {}\n------------\n".format(new_invoice.associate_id.name or self.partner_id.name))
