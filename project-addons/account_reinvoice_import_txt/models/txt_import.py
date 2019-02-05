@@ -875,7 +875,6 @@ class InvoiceTxtImport(models.Model):
                 invoice.tax_line_ids[0].amount = new_tax
                 message = "Cambio impuestos de {} a {}".format(invoice.tax_line_ids[0].amount_total, new_tax)
             else:
-                import ipdb; ipdb.set_trace()
                 product_id = self.env['product.product'].search([('default_code', '=', 'REDONDEO.000')], limit=1)
                 vals = {'product_id': product_id and product_id.id,
                     'quantity': 1,
