@@ -16,6 +16,40 @@
             </t>
 
         </template>
+        <template id="report_table_picking_qties">
+
+                <table class="table table-condensed" width="100%">
+
+                  <thead>
+                                <tr>
+                                    <th width="55%">
+                                        <t align="right">Totales</t>
+                                    </th>
+                                    <!--th width="0%">Quantity</th-->
+                                    <th width="15%" class="text-center">
+                                        <t align="right">Demanda</t>
+                                    </th>
+                                    <th width="15%">
+                                        <t align="right">Reservada</t>
+                                    </th>
+                                    <th width="15%">
+                                        <t align="right">Hecha</t>
+                                    </th>
+                                </tr>
+                              </thead>
+                              <tbody>
+
+                                    <tr>
+                                            <td></td>
+                    <td class="text-right"><span t-field="o.product_uom_qty"/></td>
+                    <td class="text-right"><span t-field="o.reserved_availability"/></td>
+                    <td class="text-right"><span t-field="o.quantity_done"/></td>
+                                    </tr>
+                              </tbody>
+                </table>
+
+
+        </template>
         <template id="location_name">
             <span t-field="putaway.name"/>
         </template>
@@ -403,6 +437,7 @@
                 <t t-if="o.picking_type_id.code=='outgoing'" t-call="stock_picking_custom.report_table_move_line_ids_outgoing"/>
                 <t t-if="o.picking_type_id.code=='internal'" t-call="stock_picking_custom.report_table_move_line_ids_internal"/>
                 <t t-if="o.picking_type_id.code=='mrp_operation'" t-call="stock_picking_custom.report_table_move_line_ids_orig"/>
+                <t t-call="stock_picking_custom.report_table_picking_qties"/>
             </xpath>
         </template>
         <template id="report_shipping_custom_customer_anz">
