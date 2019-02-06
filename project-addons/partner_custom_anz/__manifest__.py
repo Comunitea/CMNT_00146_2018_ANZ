@@ -19,6 +19,7 @@
     ],
     'data': [
         'views/partner_view.xml',
+'views/res_company.xml',
         'security/ir.model.access.csv'
     ],
     'installable': True,

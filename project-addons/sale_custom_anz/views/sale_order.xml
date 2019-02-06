@@ -7,6 +7,11 @@
         <field name="inherit_id" ref="sale.view_order_form"/>
         <field name="arch" type="xml">
 
+             <xpath expr="//button[@name='%(sale_order_variant_mgmt.action_sale_manage_variant)d']" position="attributes">
+                  <attribute name="context">
+                    {'qty_variant_name': True}
+                 </attribute>
+             </xpath>
 
             <xpath expr="//field[@name='order_line']/form/group/group/field[@name='product_id']" position="attributes">
                 <attribute name="context">
@@ -37,7 +42,7 @@
             </field>
         </field>
     </record>
-options="{'no_create': True}"
+
 
      <!--record id="view_sale_order_line_group_template_tree" model="ir.ui.view">
         <field name="name">sale.order.line.template.group.tree.view</field>
