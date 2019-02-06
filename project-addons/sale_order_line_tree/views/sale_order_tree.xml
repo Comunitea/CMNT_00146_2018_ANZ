@@ -82,7 +82,7 @@
                         string="Modify Variants"
                         icon="fa-th"
                         class="oe_edit_only"
-                        context="{'default_product_tmpl_id': product_tmpl_id, 'return_sale_order_line_tree': True}"
+                        context="{'default_product_tmpl_id': product_tmpl_id, 'qty_variant_name': True, 'return_sale_order_line_tree': True}"
                         attrs="{'invisible': ['|', ('state', 'not in', ('draft', 'sent')), ('product_attribute_value_ids', '=', [])]}"
                 />
                 <field name="product_id" attrs="{'readonly': [('product_updatable', '=', False)]}" force_save="1"

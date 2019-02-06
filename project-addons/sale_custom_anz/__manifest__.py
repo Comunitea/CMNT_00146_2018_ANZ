@@ -20,6 +20,7 @@
         'views/account_invoice.xml',
         'views/account_invoice.xml',
         'views/pricelist.xml',
+        'wizard/sale_manage_variant_view.xml',
         'report/sale_report_views.xml',
         'report/account_invoice_report_views.xml',
     ],
