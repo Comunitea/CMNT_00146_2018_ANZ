@@ -33,15 +33,24 @@ class StockMoveLine(models.Model):
     @api.depends('product_id', 'location_id')
     @api.multi
     def get_qty_available(self):
+        code = self.mapped('picking_id').picking_type_code
         for line in self:
-            line.qty_available = line.product_id.with_context(location=line.location_id.id).qty_available
+            if code == 'incoming':
+                line.qty_available = line.ordered_qty
+            else:
+                line.qty_available = line.product_id.with_context(location=line.location_id.id).qty_available
 
     @api.multi
     def force_set_assigned_qty_done(self):
-        for move in self.filtered(lambda x: x.reserved_availability and not x.quantity_done):
-            move.quantity_done = move.product_uom_qty
+        for move in self.filtered(lambda x: x.product_qty and not x.qty_done):
+            move.qty_done = move.product_qty
 
     @api.multi
     def force_set_available_qty_done(self):
-        for move in self.filtered(lambda x: x.qty_available and not x.quantity_done):
-            move.quantity_done = move.qty_available
+        for move in self.filtered(lambda x: x.qty_available and not x.qty_done):
+            move.qty_done = move.qty_available
+
+    @api.multi
+    def force_set_qty_done(self):
+        for move in self.filtered(lambda x: x.ordered_qty and not x.qty_done):
+            move.qty_done = move.ordered_qty

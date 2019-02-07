@@ -76,6 +76,8 @@ class StockPicking(models.Model):
         for picking in self:
             if model == 'move.line':
                 picking.move_lines.force_set_qty_done()
+            else:
+                picking.move_line_ids.force_set_qty_done()
 
 
     @api.multi
@@ -89,12 +91,14 @@ class StockPicking(models.Model):
 
     @api.multi
     def force_reset_qties(self):
-        model = self._context.get('model_dest','stock.move')
+        model = self._context.get('model_dest', 'stock.move')
         for picking in self:
+            picking.move_line_ids.filtered(lambda x: x.state != 'done').write({'qty_done': 0})
+            continue
             if model == 'move.line':
-                picking.move_lines.mapped('move_line_ids').write({'qty_done': 0})
+                picking.move_lines.filtered(lambda x: x.state != 'done').write({'qty_done': 0})
             else:
-                picking.move_line_ids.mapped('move_line_ids').write({'qty_done': 0})
+                picking.move_line_ids.write({'qty_done': 0})
 
     @api.multi
     def force_set_available_qty_done(self):

@@ -37,7 +37,7 @@ class StockMove(models.Model):
 
     @api.multi
     def force_set_qty_done(self):
-        for move in self.filtered(lambda x: not x.reserved_availability and not x.quantity_done):
+        for move in self.filtered(lambda x: not x.quantity_done):
             move.quantity_done = move.product_uom_qty
 
     @api.multi
