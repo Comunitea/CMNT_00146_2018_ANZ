@@ -4,50 +4,22 @@
     <template id="tbf_bem_website_footer_custom" inherit_id="website_multi_theme.auto_view_bem_website_footer_custom">
         <xpath expr="//div[@id='footer']//div[hasclass('row')]" position="replace">
             <div class="row">
+                <div class="col-md-2"/>
                 <div class="col-md-4">
                     <h4>Quiénes somos</h4>
                     <ul class="list-unstyled">
                         <li><a href="#">Grupo Anzamar</a></li>
-                        <li><a href="#">Presencia nacional</a></li>
-                    </ul>
-                    <h4>Prensa</h4>
-                    <ul class="list-unstyled">
-                        <li><a href="#">Noticias</a></li>
-                    </ul>
-                    <h4>Síguenos</h4>
-                    <ul class="list-unstyled">
-                        <li><a href="#">Newsletter</a></li>
-                        <li><a href="https://es.linkedin.com/company/grupo-anzamar" target="_blank" rel="nofollow">LinkedIn</a></li>
                     </ul>
                 </div>
                 <div class="col-md-4">
-                    <h4>Marcas del grupo</h4>
+                    <h4>Información / franquicias</h4>
                     <ul class="list-unstyled">
-                        <li><a href="#">Umbro</a></li>
-                        <li><a href="#">Point Sport</a></li>
-                        <li><a href="#">Black Laces</a></li>
-                        <li><a href="#">Goalkers</a></li>
-                        <li><a href="#">Feel Point</a></li>
-                        <li><a href="#">Skipping</a></li>
+                        <li><a href="#">Abre tu tienda</a></li>
+                        <li><a href="#">Pasos para abrir tu tienda</a></li>
+                        <li><a href="#">Solicitud de apertura</a></li>
                     </ul>
                 </div>
-                <div class="col-md-4">
-                    <h4>Contacto</h4>
-                    <ul class="list-unstyled">
-                        <li>Grupo Anzamar</li>
-                        <li>
-                            <i class="fa fa-map-marker"/>
-                            <a href="https://goo.gl/maps/Hm78jxSEG5B2" target="_blank" rel="nofollow">
-                                <t t-esc="res_company.street"/>,
-                                <t t-esc="res_company.zip"/>,
-                                <t t-esc="res_company.city"/>
-                            </a>
-                        </li>
-                        <li><i class="fa fa-phone"/><a t-field="res_company.phone" t-att-href="'tel:%s' %res_company.phone"/></li>
-                        <li><i class="fa fa-envelope"/><a t-field="res_company.email" t-att-href="'mailto:%s' %res_company.email"/></li>
-                    </ul>
-                    <h4><a href="#">Trabaja con nosotros</a></h4>
-                </div>
+                <div class="col-md-2"/>
             </div>
         </xpath>
     </template>
