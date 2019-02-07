@@ -50,6 +50,6 @@
     </record>
 
     <menuitem id="menu_reinvoice" name="Reinvoicing"  sequence="2" parent="account.menu_finance_configuration"/>
-    <menuitem id="menu_reinvoice_rules" name="Reinvoicing rules"  action="action_reinvoice_rules" sequence="0" parent="menu_reinvoice"/>
+    <menuitem id="menu_reinvoice_rules" name="Reinvoicing rules"  action="action_reinvoice_rules" sequence="0" parent="account_reinvoice.menu_reinvoice"/>
 
 </odoo>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- CUSTOMER LINES VIEWS -->
+    <record id="view_payment_term_rule_tree" model="ir.ui.view">
+        <field name="name">"view.payment_term.rule.tree</field>
+        <field name="model">payment.term.rule</field>
+        <field name="arch" type="xml">
+            <tree string="Payment term rule" editable="top">
+                <field name="partner_id"/>
+                <field name="old_payment_term_id"/>
+                <field name="new_payment_term_id"/>
+                <field name="amount"/>
+                <field name="company_id"/>
+            </tree>
+        </field>
+    </record>
+
+      <record id="view_payment_term_rule_filter" model="ir.ui.view">
+            <field name="name">view.payment_term.rule.filter</field>
+            <field name="model">payment.term.rule</field>
+            <field name="arch" type="xml">
+                <search string="Search Rules">
+                    <field name="partner_id"/>
+                    <field name="company_id"/>
+                    <!--separator/>
+                    <filter name="amount" string="Amount" filter_domain="[('amount','&lt;=', self)]"/-->
+                </search>
+            </field>
+        </record>
+
+    <record id="action_payment_term_rules" model="ir.actions.act_window">
+        <field name="name">Payment term rules</field>
+        <field name="res_model">payment.term.rule</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree</field>
+    </record>
+
+
+    <menuitem id="menu_payment_term_rules" name="Payment term rules"  action="action_payment_term_rules" sequence="1" parent="account.account_management_menu"/>
+
+</odoo>

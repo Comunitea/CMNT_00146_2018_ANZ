@@ -21,7 +21,9 @@
         'sale_mrp',
         'contacts',
         'sale_order_variant_mgmt',
-        'account_analytic_default'
+        'account_analytic_default',
+        'sale_custom_anz',
+        'sale_order_line_tree'
     ],
     'data': [
         'security/custom_groups_rules.xml',

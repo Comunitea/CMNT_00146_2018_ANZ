@@ -117,3 +117,9 @@ class StockPicking(models.Model):
             self.env['procurement.group'].run_procurement_for_stock_move(moves,False, moves[0].company_id.id)
         return res
 
+
+    @api.multi
+    def action_assign_batch(self):
+        domain = [('picking_id.picking_type_code', '=', 'outgoing'), ('state', 'in', ('confirmed', 'partially_available'))]
+        self.env['stock.move'].search(domain)._action_assign()
+

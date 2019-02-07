@@ -246,8 +246,20 @@ msgstr "Enviar Factura PROFORMA"
 
 #. module: custom_permissions_anz
 #: model:ir.ui.view,arch_db:custom_permissions_anz.view_sale_salesman_form
+msgid "Order lines"
+msgstr "Líneas"
+
+#. module: custom_permissions_anz
+#: model:ir.ui.view,arch_db:custom_permissions_anz.view_sale_salesman_form
+msgid "Template lines"
+msgstr "Plantillas"
+
+
+#. module: custom_permissions_anz
+#: model:ir.ui.view,arch_db:custom_permissions_anz.view_sale_salesman_form
 msgid "Send by Email"
 msgstr "Enviar por correo electrónico"
+
 
 #. module: custom_permissions_anz
 #: model:ir.ui.view,arch_db:custom_permissions_anz.view_sale_salesman_form

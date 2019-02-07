@@ -11,7 +11,7 @@ class ProductAttributeValue(models.Model):
 
     @api.multi
     def name_get(self):
-        
+
         #Heredo el nombre de la plantilla y si en el contexto viene qty_variant_name y una plantilla entonces ....
         if self._context.get('active_model', False) in ('sale.order', 'sale.order.line') and self._context.get('default_product_tmpl_id'):
             p_ids = self.env['product.product'].search([('product_tmpl_id','=', self._context['default_product_tmpl_id'])])

@@ -17,6 +17,7 @@
         'purchase',
         'product_brand',
         'sale_order_type',
+        'account_invoice_anz'
     ],
     'data': [
         'security/ir.model.access.csv',

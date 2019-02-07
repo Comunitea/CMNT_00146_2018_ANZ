@@ -71,6 +71,8 @@ access_mrp_bom_line_salesman,mrp.bom.line,mrp.model_mrp_bom_line,anz_salesman,1,
 "access_commission_brand","access_commission_brand","custom_commission_anz.model_commission_brand","anz_salesman",1,0,0,0
 "access_agent_brand","access_agent_brand","custom_commission_anz.model_agent_brand","anz_salesman",1,0,0,0
 
+"access_sale_order_line_template_group_user","sale_order_line_template_group_user","sale_order_line_tree.model_sale_order_line_template_group","anz_salesman",1,1,1,1
+
 
 
 

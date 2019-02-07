@@ -12,23 +12,20 @@ class AccountInvoice(models.Model):
         res.check_payment_term()
         return res
 
+    @api.multi
+    def action_invoice_open(self):
+        self.check_payment_term()
+        return super().action_invoice_open()
 
     @api.multi
-    def check_payment_term(self, payment_term_id=False):
-        limit = float(self.env['ir.config_parameter'].sudo().get_param('account_invoice.amount_untaxed_limit', 100))
-        greater = payment_term_id or int(self.env['ir.config_parameter'].sudo().get_param('account_invoice.amount_untaxed_greater', 9))
-        less = int(self.env['ir.config_parameter'].sudo().get_param('account_invoice.amount_untaxed_less', 16))
-        for inv in self.filtered(lambda x: x.type == 'out_invoice' and self.payment_term_id.id == greater):
-            if inv.amount_untaxed < limit:
-                inv.payment_term_id = self.env['account.payment.term'].browse(less)
-
-    @api.multi
-    def write(self, vals):
-        res = super().write(vals)
-        if 'amount_untaxed' in vals:
-            for inv in self.filtered(lambda x: x.type == 'out_invoice'):
-                inv.check_payment_term()
-        return res
+    def check_payment_term(self):
+        rule_ids = self.env['payment.term.rule']
+        for inv in self:
+            rule = rule_ids.get_payment_term_rule(inv)
+            if rule:
+                message = "Change {} to {}".format(inv.payment_term_id.name, rule.new_payment_term_id.name)
+                inv.payment_term_id = rule.new_payment_term_id
+                inv.message_post(message)
 
 
 class AccountInvoiceLine(models.Model):

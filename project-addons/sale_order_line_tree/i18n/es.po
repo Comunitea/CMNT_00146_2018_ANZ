@@ -124,7 +124,7 @@ msgstr "Nº de líneas"
 #: model:ir.actions.act_window,name:sale_order_line_tree.sale_order_line_tree_view_action
 #: model:ir.ui.view,arch_db:sale_order_line_tree.sale_order_form_order_line_tree
 msgid "Order lines"
-msgstr "Líneas de venta"
+msgstr "Líneas"
 
 #. module: sale_order_line_tree
 #: model:ir.ui.view,arch_db:sale_order_line_tree.sale_order_line_tree_view
@@ -231,7 +231,7 @@ msgstr "Nº de plantillas"
 #. module: sale_order_line_tree
 #: model:ir.ui.view,arch_db:sale_order_line_tree.sale_order_form_order_line_template
 msgid "Template lines"
-msgstr "Líneas de plantillla"
+msgstr "Plantillas"
 
 #. module: sale_order_line_tree
 #: model:ir.model.fields,field_description:sale_order_line_tree.field_sale_order_line_template_group_price_total

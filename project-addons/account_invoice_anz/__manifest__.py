@@ -12,8 +12,9 @@
         'account',
     ],
     'data': [
-
+        'security/ir.model.access.csv',
         'views/account_invoice.xml',
+        'views/payment_term_rule.xml'
     ],
     'installable': True,
 }

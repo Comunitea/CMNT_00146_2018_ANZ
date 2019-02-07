@@ -125,7 +125,7 @@ class ReinvoiceWzd(models.TransientModel):
                 inv_ass.compute_taxes()
                 created_invoices += inv_ass
                 inv.write({'customer_invoice_id': inv_ass.id})
-                inv_ass.check_payment_term(inv.partner_id.commercial_partner_id.property_payment_term_id.id)
+                inv_ass.check_payment_term()
 
         if not created_invoices:
             return False
