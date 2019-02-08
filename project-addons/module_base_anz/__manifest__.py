@@ -26,7 +26,7 @@
 ##############################################################################
 
 {
-    'name': 'Website Base module',
+    'name': 'Website Base Module Anzamar',
     'version': '1.0',
     'summary': 'BackEnd customization for All Websites',
     'description': '',
