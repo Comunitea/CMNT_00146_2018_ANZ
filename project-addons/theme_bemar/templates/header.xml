@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
 
-    <template id="tbf_bem_website_layout" inherit_id="website_multi_theme.auto_layout_website_bem">
+    <template id="theme_bem_website_layout" inherit_id="website_multi_theme.auto_layout_website_bem">
         <xpath expr="//div[@id='wrapwrap']//div[hasclass('navbar')]" position="before">
             <div class="wp-contact-navbar">
                 <div class="container contact-navbar">

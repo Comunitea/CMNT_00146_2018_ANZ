@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <template id="theme_anz_page_open_shop" inherit_id="theme_anzamar.anzamar_page_open_shop">
+        <xpath expr="//div[@class='container']" position="inside">
+            <section id="open_section">
+                <h1>Open Your Shop</h1>
+                <h2>Instructions to open your shop with Anzamar Group</h2>
+                <p>These are the instructions:</p>
+                <p>...</p>
+            </section>
+            <section id="step_section">
+                <h1>Open Your Shop Steps</h1>
+                <h2>Steps to open your shop with Anzamar Group</h2>
+                <p>These are the instructions:</p>
+                <p>...</p>
+            </section>
+            <section id="request_section">
+                <h1>Open Request</h1>
+                <h2>Form to open your shop with Anzamar Group</h2>
+                <p>These are the requirements:</p>
+                <p>...</p>
+            </section>
+            <!-- Snippets' area -->
+            <div class="oe_structure" />
+        </xpath>
+    </template>
+
+</odoo>

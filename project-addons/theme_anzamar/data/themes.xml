@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<odoo>
-
-    <record model="website.theme" id="tbf_anazamar_multi">
-        <field name="name">Multiwebsite Anzamar Theme</field>
-        <field name="converted_theme_addon">theme_anzamar</field>
-    </record>
-
-</odoo>

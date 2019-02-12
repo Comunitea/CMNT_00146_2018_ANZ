@@ -1,10 +1,10 @@
-Anzamar Theme
-=============
+MMultiWebsite Base Module Anzamar
+=================================
 
-FrontEnd customization for Anzamar Website
-------------------------------------------
+BackEnd customization for All Websites
+--------------------------------------
 
-This is a theme module that contains styles and layout elements for front-end part.
+This module contains all common base configuration for all websites, including their Themes.
 
 Author
 ------

@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo noupdate="1">
+
+    <!-- ======================================= Page Open Your Shop ======================================= -->
+    <template id="bemar_page_open_shop_menu">
+        <t t-call="website.layout">
+            <div id="wrap">
+                <div class="container">
+                    <section id="open_section">
+                        <h1>Open Your Shop</h1>
+                        <h2>Instructions to open your shop with Bemar Group</h2>
+                        <p>These are the instructions:</p>
+                        <p>...</p>
+                    </section>
+                    <section id="step_section">
+                        <h1>Open Your Shop Steps</h1>
+                        <h2>Steps to open your shop with Bemar Group</h2>
+                        <p>These are the instructions:</p>
+                        <p>...</p>
+                    </section>
+                    <section id="request_section">
+                        <h1>Open Request</h1>
+                        <h2>Form to open your shop with Bemar Group</h2>
+                        <p>These are the requirements:</p>
+                        <p>...</p>
+                    </section>
+                    <!-- Snippets' area -->
+                    <div class="oe_structure" />
+                </div>
+            </div>
+        </t>
+    </template>
+
+    <record id="bemar_id_page_open_shop_menu" model="website.page">
+         <field name="name">Open Your Shop</field>
+        <field name="website_id" ref="module_multi_base_anz.anzamar_website"/>
+         <field name="website_published">True</field>
+         <field name="url">/page/open_shop</field>
+         <field name="view_id" ref="bemar_page_open_shop_menu"/>
+     </record>
+
+    <!-- Open Shop Menu -->
+    <record id="bemar_open_shop_menu" model="website.menu">
+        <field name="name">Open Your Shop</field>
+        <field name="url">/page/open_shop</field>
+        <field name="page_id" ref="bemar_id_page_open_shop_menu"/>
+        <field name="parent_id" ref="bemar_main_menu"/>
+        <field name="sequence" type="int">20</field>
+        <field name="website_id" ref="module_multi_base_anz.bemar_website"/>
+        <field name="website_published">True</field>
+    </record>
+
+    <!-- Open Shop Submenu -->
+    <record id="bemar_open_shop_submenu_open" model="website.menu">
+        <field name="name">Open Your Shop</field>
+        <field name="url">/page/open_shop#opensection</field>
+        <field name="parent_id" ref="bemar_open_shop_menu"/>
+        <field name="sequence" type="int">10</field>
+        <field name="website_id" ref="module_multi_base_anz.bemar_website"/>
+        <field name="website_published">True</field>
+    </record>
+    <record id="bemar_open_shop_submenu_steps" model="website.menu">
+        <field name="name">Open Your Shop Steps</field>
+        <field name="url">/page/open_shop#step_section</field>
+        <field name="parent_id" ref="bemar_open_shop_menu"/>
+        <field name="sequence" type="int">20</field>
+        <field name="website_id" ref="module_multi_base_anz.bemar_website"/>
+        <field name="website_published">True</field>
+    </record>
+    <record id="bemar_open_shop_submenu_request" model="website.menu">
+        <field name="name">Open Request</field>
+        <field name="url">/page/open_shop#request_section</field>
+        <field name="parent_id" ref="bemar_open_shop_menu"/>
+        <field name="sequence" type="int">30</field>
+        <field name="website_id" ref="module_multi_base_anz.bemar_website"/>
+        <field name="website_published">True</field>
+    </record>
+
+    <!-- ======================================= Page Bemar Group ======================================= -->
+    <template id="bemar_page_bemar_group">
+        <t t-call="website.layout">
+            <div id="wrap">
+                <div class="container">
+                    <section id="who_section">
+                        <h1>Who we are?</h1>
+                        <h2>We are Bemar Group</h2>
+                        <p>We are a great company that ...</p>
+                        <p>...</p>
+                    </section>
+                    <section id="group_section">
+                        <h1>Bemar Group</h1>
+                        <h2>Bemar Group is ...</h2>
+                        <p>The Bemar companies are ...</p>
+                        <p>...</p>
+                    </section>
+                    <section id="nation_section">
+                        <h1>Nation Presence</h1>
+                        <h2>Form to open your shop with Bemar Group</h2>
+                        <p>These are the requirements:</p>
+                        <p>...</p>
+                    </section>
+                    <!-- Snippets' area -->
+                    <div class="oe_structure" />
+                </div>
+            </div>
+        </t>
+    </template>
+
+    <record id="id_page_bemar_group" model="website.page">
+         <field name="name">Bemar Group</field>
+        <field name="website_id" ref="module_multi_base_anz.anzamar_website"/>
+         <field name="website_published">True</field>
+         <field name="url">/page/bemar_group</field>
+         <field name="view_id" ref="bemar_page_bemar_group"/>
+     </record>
+
+    <!-- Bemar Group Menu -->
+    <record id="bemar_group_menu" model="website.menu">
+        <field name="name">Bemar</field>
+        <field name="url">/page/bemar_group</field>
+        <field name="page_id" ref="id_page_bemar_group"/>
+        <field name="parent_id" ref="bemar_main_menu"/>
+        <field name="sequence" type="int">20</field>
+        <field name="website_id" ref="module_multi_base_anz.bemar_website"/>
+        <field name="website_published">True</field>
+    </record>
+
+
+    <!--Blog Menu-->
+            <!--<record id="bemar_menu_news" model="website.menu">-->
+                <!--<field name="name">Blog</field>-->
+                <!--<field name="url" eval="'/blog/'+str(ref('website_blog.blog_blog_1'))"/>-->
+                <!--<field name="parent_id" ref="bemar_main_menu"/>-->
+                <!--<field name="sequence" type="int">40</field>-->
+                <!--<field name="website_id" ref="module_multi_base_anz.bemar_website"/>-->
+            <!--</record>-->
+
+            <!--&lt;!&ndash;Contactus&ndash;&gt;-->
+            <!--<record id="bemar_menu_contactus" model="website.menu">-->
+                <!--<field name="name">Contact us</field>-->
+                <!--<field name="url">/contactus</field>-->
+                <!--<field name="parent_id" ref="bemar_main_menu"/>-->
+                <!--<field name="sequence" type="int">60</field>-->
+                <!--<field name="website_id" ref="module_multi_base_anz.bemar_website"/>-->
+            <!--</record>-->
+
+            <!--&lt;!&ndash; Menu in website for Brand &ndash;&gt;-->
+            <!--<record id="menu_website_sale_brand" model="website.menu">-->
+                <!--<field name="name">Shop by Brand</field>-->
+                <!--<field name="url">/page/product_brands</field>-->
+                <!--<field name="sequence" type="int">25</field>-->
+                <!--<field name="parent_id" ref="bemar_main_menu" />-->
+                <!--<field name="website_id" ref="module_multi_base_anz.bemar_website"/>-->
+            <!--</record>-->
+
+ </odoo>
