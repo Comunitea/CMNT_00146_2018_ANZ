@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+        <data noupdate="0">
+
+            <!--Delete default website-->
+            <delete id="website.default_website" model="website"/>
+
+            <!--Create Website Anzamar-->
+            <record id="anzamar_website" model="website">
+                <field name="name">Anzamar</field>
+                <field name="domain">anzamar</field>
+                <field name="company_id" ref="base.main_company"/>
+                <field name="user_id" ref="base.public_user"/>
+                <field name="multi_theme_id"/>
+                <field name="favicon" type="base64" file="module_multi_base_anz/static/img/favicon_anz.png"/>
+            </record>
+
+            <!--Create Website Bemar-->
+            <record id="bemar_website" model="website">
+                <field name="name">Bemar</field>
+                <field name="domain">bemar</field>
+                <!--ATENTION: Change company_id in Backend Interface-->
+                <field name="company_id" ref="base.main_company"/>
+                <field name="user_id" ref="base.public_user"/>
+                <field name="multi_theme_id"/>
+                <field name="favicon" type="base64" file="module_multi_base_anz/static/img/favicon_bemar.png"/>
+            </record>
+
+        </data>
+</odoo>

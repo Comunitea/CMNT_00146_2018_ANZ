@@ -26,7 +26,7 @@
 ##############################################################################
 
 {
-    'name': 'Website Base Module Anzamar',
+    'name': 'MultiWebsite Base Module Anzamar',
     'version': '1.0',
     'summary': 'BackEnd customization for All Websites',
     'description': '',
@@ -48,6 +48,9 @@
         'seo_base'
     ],
     'data': [
+        'data/menu_data.xml',
+        'data/page_data.xml',
+        'data/website_data.xml',
     ],
     'images': [
         '/static/description/icon.png',
