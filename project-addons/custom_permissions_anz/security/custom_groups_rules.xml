@@ -27,7 +27,7 @@
     <record id="anz_salesman_own_partners" model="ir.rule">
         <field name="name">Own Comercial Customers</field>
         <field name="model_id" ref="base.model_res_partner"/>
-        <field name="domain_force">['|', ('user_id', '=', user.id), ('commercial_partner_id.user_id', '=', user.id)]</field>
+        <field name="domain_force">['|', '|', '|', ('user_id', '=', user.id), ('commercial_partner_id.user_id', '=', user.id), ('id', 'child_of', [user.company_id.partner_id.id]),('id', '=', user.partner_id.id)]</field>
         <field name="groups" eval="[(4, ref('anz_salesman'))]"/>
     </record>
 
@@ -40,6 +40,6 @@
     </record>
 
 
-   
+
 
 </odoo>
