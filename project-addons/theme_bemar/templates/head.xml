@@ -2,7 +2,7 @@
 <odoo>
 
     <!-- Add custom styles -->
-    <template id="tbf_bem_website_assets_frontend" inherit_id="website_multi_theme.auto_assets_website_bem">
+    <template id="theme_bem_website_assets_frontend" inherit_id="website_multi_theme.auto_assets_website_bem">
         <xpath expr="link[last()]" position="after">
             <link href="/theme_bemar/static/css/_general.less" rel="stylesheet" type="text/less"/>
             <link href="/theme_bemar/static/css/header.less" rel="stylesheet" type="text/less"/>
