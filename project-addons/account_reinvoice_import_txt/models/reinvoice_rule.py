@@ -15,14 +15,19 @@ class ReInvoiceRule(models.Model):
 
         domain =[('affiliate', '=', shipping_id.affiliate), ('supplier_id', '=', supplier_id.id)]
 
-        supplier_data = self.env['partner.supplier.data'].search([('supplier_id', '=', supplier_id.id),
-                                                                  ('customer_supplier_id', '=', shipping_id.id)], limit=1)
+        domain_data = [('supplier_id', '=', supplier_id.id), '|', ('supplier_code', '=', shipping_id.supplier_code),
+                       ('supplier_str', '=', shipping_id.supplier_str)]
+        supplier_data = self.env['res.partner'].search(domain_data, limit=1)
         if supplier_data:
             if supplier_data.supplier_customer_ranking_id:
                 domain = expression.normalize_domain(domain)
-                domain = expression.AND([domain, [('supplier_customer_ranking_id', '=', supplier_data.supplier_customer_ranking_id.id)]])
+                domain = expression.AND(
+                    [domain, [('supplier_customer_ranking_id', '=', supplier_data.supplier_customer_ranking_id.id)]])
             domain = expression.normalize_domain(domain)
-            domain = expression.AND([domain, ['|', ('partner_id', '=', txt.associate_id.id), ('partner_id', '=', False)]])
+            domain = expression.AND([domain, ['|', ('partner_id', '=', shipping_id.id), ('partner_id', '=', False)]])
+        else:
+            domain = expression.normalize_domain(domain)
+            domain = expression.AND([domain, [('partner_id', '=', False)]])
 
         discount_ids = txt.invoice_line_txt_import_ids.mapped('descuento')
         if discount_ids:

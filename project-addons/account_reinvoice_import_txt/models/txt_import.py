@@ -459,6 +459,7 @@ class InvoiceTxtImport(models.Model):
 
 
     def check_adidas(self, str, file_name):
+
         print ("\nFichero de factura: {}".format(file_name))
         longitud_fichero = len(str)
         if str[1].find('ABONO') > -1:
@@ -523,6 +524,7 @@ class InvoiceTxtImport(models.Model):
         index = 17
         pedido = False
         value_date = value_date or fecha_albaran or fecha_factura
+
         while is_line:
             if not str[index].strip():
                 index += 1
@@ -628,7 +630,6 @@ class InvoiceTxtImport(models.Model):
             'eori': eori,
             'partner_id': False,
             'associate_name': associate_name,
-            'region': region,
             'partner_vat': eori,
             'supplier_partner_num': clienteno,
             'supplier_invoice_num': facturano,

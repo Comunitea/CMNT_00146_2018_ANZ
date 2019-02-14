@@ -15,7 +15,7 @@ class ReinvoiceWzd(models.TransientModel):
     @api.model
     def default_get(self, fields_list):
         res = super(ReinvoiceWzd, self).default_get(fields_list)
-        active_id = self._context.get('active_id', False)
+        active_id = self._context.get('invoice_id', False) or self._context.get('active_id', False)
         if active_id:
             a_id = self.env['account.invoice'].browse(active_id)
             res['sale_type_id'] = a_id.associate_id.commercial_partner_id.sale_type and a_id.associate_id.commercial_partner_id.sale_type.id or False

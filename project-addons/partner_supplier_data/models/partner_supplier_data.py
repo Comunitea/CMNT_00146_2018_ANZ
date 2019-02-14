@@ -110,6 +110,7 @@ class ResPartnerSupplierData(models.Model):
     @api.multi
     def update_partner_from_res_partner(self):
         for data in self.browse(self._context.get('active_ids', [])):
+            print ('{} {}'.format(data.name, data.id))
             data.customer_supplier_id.write({
                 'external': True,
                 'supplier_id': data.supplier_id.id,
@@ -118,4 +119,3 @@ class ResPartnerSupplierData(models.Model):
                 'supplier_customer_ranking_id': data.supplier_customer_ranking_id.id,
                 'parent_id': data.partner_id.id
             })
-

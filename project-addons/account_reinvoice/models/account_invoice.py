@@ -72,10 +72,12 @@ class AccountInvoice(models.Model):
     @api.multi
     def do_reinvoice(self):
         new_invoices = []
+        ctx = self._context
         for inv in self:
             sale_type = inv.associate_id.sale_type and inv.associate_id.sale_type.id or False
             if sale_type:
-                wzd_id = self.env['reinvoice.wzd'].create({'sale_type_id': sale_type})
+                ctx.update(invoice_id=inv.id)
+                wzd_id = self.with_context(ctx).env['reinvoice.wzd'].create({'sale_type_id': sale_type})
                 new_invoice = wzd_id.get_invoices(inv)
                 if new_invoice:
                     print("\n------------\nFACTURA DE ASOCIADO PARA : {}\n------------\n".format(

@@ -12,7 +12,8 @@ class ResPartner(models.Model):
     @api.multi
     def get_supplier_customer_count(self, customer_domain = []):
         for partner in self:
-            partner.supplier_data_count = partner.supplier and self.env['partner.supplier.data'].search_count(customer_domain + [('supplier_id', '=', partner.id)]) or 0
+            partner.supplier_data_count = self.env['res.partner'].search_count(customer_domain + [('supplier_id', '=', partner.id)]) or 0
+            partner.customer_data_count = self.env['res.partner'].search_count(customer_domain + [('external','=',True), ('parent_id',  '=', partner.id)]) or 0
 
     partner_supplier_data_ids = fields.One2many('res.partner', 'supplier_id', string="Partner supplier data", help ="Customers for this supplier")
 
@@ -20,15 +21,12 @@ class ResPartner(models.Model):
     customer_data_count = fields.Integer('Count', compute='get_supplier_customer_count')
     import_from = fields.Char('Import from')
 
-    external = fields.Boolean('Externo')
 
+    external = fields.Boolean('Externo')
     supplier_id = fields.Many2one('res.partner', 'Proveedor', domain="[('supplier', '=', True)]")
     supplier_code = fields.Char("Código externo")
     supplier_str = fields.Char("Nombre en factura")
     supplier_customer_ranking_id = fields.Many2one('supplier.customer.ranking', string="Clasificación")
-
-
-
 
 
     @api.multi
@@ -38,8 +36,6 @@ class ResPartner(models.Model):
             domain += [('supplier_code', '=', supplier_code)]
         if supplier_id:
             domain += [('supplier_id', '=', supplier_id)]
-        #if brand_id:
-        #    domain += [('brand_id', '=', brand_id)]
         partner_id = self.env['partner.supplier.data'].search(domain)
         if len(partner_id)==1:
             return partner_id.partner_id

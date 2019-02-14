@@ -64,6 +64,7 @@ class ReInvoiceRule(models.Model):
 
 
     def get_reinvoice_rule(self, line, supplier):
+
         partner_id = line.invoice_id.partner_shipping_id or line.invoice_id.partner_id
         product_id = line.product_id
 
@@ -78,15 +79,17 @@ class ReInvoiceRule(models.Model):
             domain = expression.normalize_domain(domain)
             domain = expression.AND([domain, [('supplier_id', '=', supplier.id)]])
 
-        supplier_data = self.env['partner.supplier.data'].search([('supplier_id', '=', supplier.id),
-                                                                  ('customer_supplier_id', '=', partner_id.id)], limit=1)
+        domain_data = [('supplier_id', '=', supplier.id), '|', ('supplier_code', '=', partner_id.supplier_code), ('supplier_str', '=', partner_id.supplier_str)]
+        supplier_data = self.env['res.partner'].search(domain_data, limit=1)
         if supplier_data:
             if supplier_data.supplier_customer_ranking_id:
                 domain = expression.normalize_domain(domain)
                 domain = expression.AND([domain, [('supplier_customer_ranking_id', '=', supplier_data.supplier_customer_ranking_id.id)]])
             domain = expression.normalize_domain(domain)
             domain = expression.AND([domain, ['|', ('partner_id', '=', partner_id.id), ('partner_id', '=', False)]])
-
+        else:
+            domain = expression.normalize_domain(domain)
+            domain = expression.AND([domain, [('partner_id', '=', False)]])
 
         rule = self.search(domain, order='partner_id asc, brand_id asc, supplier_discount desc, customer_discount desc, order_type asc')
         print ('{} \n {}'.format(domain, rule.mapped('id')))
