@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
 
-    <template id="tbf_anz_website_layout" inherit_id="website_multi_theme.auto_layout_website_anz">
+    <!--Header Template-->
+    <template id="theme_anz_website_layout" inherit_id="website_multi_theme.auto_layout_website_anz">
         <xpath expr="//div[@id='wrapwrap']//div[hasclass('navbar')]" position="before">
             <div class="wp-contact-navbar">
                 <div class="container contact-navbar">

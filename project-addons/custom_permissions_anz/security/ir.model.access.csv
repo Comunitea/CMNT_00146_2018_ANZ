@@ -29,7 +29,7 @@ access_report_all_channels_sales_salesman,report.all.channels.sales,sale.model_r
 access_crm_team_manager,crm.team.manager,sales_team.model_crm_team,anz_salesman,1,1,1,1
 
 
-access_sale_order_type_manager,access_sale_order_type_manager,sale_order_type.model_sale_order_type,anz_salesman,1,1,1,1
+access_sale_order_type_manager,access_sale_order_type_manager,sale_order_type.model_sale_order_type,anz_salesman,1,0,0,0
 
 access_crm_lead_manager,crm.lead.manager,crm.model_crm_lead,anz_salesman,1,1,1,1
 access_crm_stage_manager,crm.stage,crm.model_crm_stage,anz_salesman,1,1,1,1

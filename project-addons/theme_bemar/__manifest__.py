@@ -40,13 +40,15 @@
     ],
     'depends': [
         'multi_company_base',
-        'module_base'
+        'module_multi_base_anz'
     ],
     'data': [
-        'data/themes.xml',
+        'data/theme_data.xml',
+        'data/menu_data.xml',
         'templates/head.xml',
         'templates/header.xml',
         'templates/footer.xml',
+        'templates/pages.xml',
     ],
     'images': [
         '/static/description/icon.png',
