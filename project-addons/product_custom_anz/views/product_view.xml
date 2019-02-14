@@ -26,6 +26,9 @@
             <field name="price" position="attributes">
                 <attribute name="invisible">0</attribute>
             </field>
+            <field name="price" position="after">
+                <field name="qty_available_global"/>
+            </field>
         </field>
     </record>
 

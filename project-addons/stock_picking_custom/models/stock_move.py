@@ -33,7 +33,7 @@ class StockMove(models.Model):
     @api.multi
     def get_qty_available(self):
         for line in self:
-            line.qty_available = line.product_id.with_context(location=line.picking_id.location_id.id).qty_available
+            line.qty_available = line.product_id.with_context(location=line.picking_id.location_id.id).qty_available_global
 
     @api.multi
     def force_set_qty_done(self):

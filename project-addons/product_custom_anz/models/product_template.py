@@ -121,12 +121,6 @@ class ProductTemplate(models.Model):
             if change_template:
                 tmpl._get_variant_suffix()
 
-
-
-
-
-
-
 class ProductProduct(models.Model):
 
     _inherit = 'product.product'

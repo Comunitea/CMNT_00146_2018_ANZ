@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <odoo>
-    <delete id="invoice_form_fecha_valor" model="ir.ui.view"/>
+
      <record id="view_payment_term_form" model="ir.ui.view">
         <field name="name">account.payment.term.form.date_value</field>
         <field name="model">account.payment.term</field>

@@ -33,12 +33,12 @@ class StockMoveLine(models.Model):
     @api.depends('product_id', 'location_id')
     @api.multi
     def get_qty_available(self):
-        code = self.mapped('picking_id').picking_type_code
-        for line in self:
-            if code == 'incoming':
-                line.qty_available = line.ordered_qty
-            else:
-                line.qty_available = line.product_id.with_context(location=line.location_id.id).qty_available
+        for code in self.mapped('picking_id').mapped('picking_type_code'):
+            for line in self:
+                if code == 'incoming':
+                    line.qty_available = line.ordered_qty
+                else:
+                    line.qty_available = line.product_id.with_context(location=line.location_id.id).qty_available_global
 
     @api.multi
     def force_set_assigned_qty_done(self):
@@ -54,3 +54,21 @@ class StockMoveLine(models.Model):
     def force_set_qty_done(self):
         for move in self.filtered(lambda x: x.ordered_qty and not x.qty_done):
             move.qty_done = move.ordered_qty
+
+    @api.multi
+    def force_reset_qty_done(self):
+        for move in self.filtered(lambda x: x.qty_done):
+            move.qty_done = 0
+
+    @api.multi
+    def find_product_location(self):
+
+        for move in self:
+            put_ids = self.product_id.product_putaway_ids.filtered(lambda x:x.putaway_id.name == 'Put away')
+            if put_ids:
+                move.location_id = put_ids[0].fixed_location_id
+            else:
+                quants = self.env['stock.quant']._gather(move.product_id, move.move_id.location_id)
+                if quants:
+                    move.location_id = quants[0].location_id
+

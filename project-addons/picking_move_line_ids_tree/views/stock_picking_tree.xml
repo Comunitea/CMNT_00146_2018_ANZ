@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+
+    <record id="pick_move_line_ids_tree_view" model="ir.ui.view">
+        <field name="name">stock.move.line.ids.tree</field>
+        <field name="model">stock.move.line</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree editable="bottom" decoration-muted="(state == 'done' and is_locked == True)"
+                  decoration-danger="qty_done&gt;product_uom_qty and state!='done'"
+                  decoration-success="qty_done==product_uom_qty and state!='done' and not result_package_id">
+                <field name="product_id" required="1" attrs="{'readonly': ['|', ('state', '=', 'done'), ('move_id', '!=', False)]}"/>
+                <field name="move_id" invisible="1"/>
+                <field name="state" invisible="1"/>
+
+                <field name="in_entire_package" invisible="1"/>
+                <field name="product_uom_id" force_save="1" attrs="{'readonly': [('state', '!=', 'draft')]}" groups="product.group_uom"/>
+                <field name="package_id" attrs="{'readonly': [('in_entire_package', '=', True)]}" groups="stock.group_tracking_lot" domain="[('location_id', '=', location_id)]"/>
+                <field name="location_id"
+                       attrs="{'readonly': [('in_entire_package', '=', True)]}"
+                       invisible = "context.get('picking_type_code', '') == 'incoming'"
+                       groups="stock.group_stock_multi_locations,stock.group_tracking_lot" domain="[('id', 'child_of', 12)]"/>
+
+                <button name="find_product_location"
+                        type="object"
+                        icon="fa-search"
+                        string="↳Search product location"
+                        context="{'model_dest': 'stock.move.line'}"
+                        invisible = "context.get('picking_type_code', '') == 'incoming'"
+                        attrs="{'invisible': ['|', ('state', 'not in', ('confirmed', 'assigned')),('qty_done', '!=', 0)]}"
+                        />
+                <field name="location_dest_id"
+                       attrs="{'readonly': [('in_entire_package', '=', True)]}"
+                       invisible = "context.get('picking_type_code', '') == 'outgoing'"
+                       groups="stock.group_stock_multi_locations,stock.group_tracking_lot" domain="[('id', 'child_of', context.get('default_location_dest_id', ''))]"/>
+                <field name="result_package_id" attrs="{'readonly': [('in_entire_package', '=', True)]}"
+                       groups="stock.group_tracking_lot" domain="['|', '|', ('location_id', '=', False), ('location_id', '=', location_dest_id), ('id', '=', package_id)]"/>
+
+                <field name="lots_visible" invisible="1"/>
+                <field name="owner_id" groups="stock.group_tracking_owner"/>
+                <field name="is_locked" invisible="1"/>
+                <!--field name="lot_id" groups="stock.group_production_lot"
+                       attrs="{'readonly': [('in_entire_package', '=', True)]}"
+                       invisible = "context.get('show_lots', True)"
+                       domain="[('product_id', '=', product_id)]" context="{'default_product_id': product_id}"/-->
+                <field name="is_initial_demand_editable" invisible="1"/>
+                <field name="qty_available"
+                       invisible = "context.get('picking_type_code', '') == 'incoming'"/>
+                <button name="force_set_available_qty_done"
+                        type="object"
+                        icon="fa-download"
+                        string="↳Copy available to done"
+                        context="{'model_dest': 'stock.move.line'}"
+                        invisible = "context.get('picking_type_code', '') == 'incoming'"
+                        attrs="{'invisible': ['|', ('state', 'not in', ('confirmed', 'assigned')),('qty_done', '!=', 0)]}"
+                        />
+                <field name="product_uom_qty" readonly="1"/>
+                <button name="force_set_qty_done"
+                            string="↳Copy qty. to done"
+                            type="object"
+                            icon="fa-download"
+                            context="{'model_dest': 'stock.move.line'}"
+                            attrs="{'invisible': ['|',('state', '!=', 'assigned'), ('qty_done', '!=', 0)]}"
+                            />
+
+                <field name="qty_done" attrs="{'readonly': ['|', ('state', 'in', ('done', 'cancel')), ('is_locked', '=', True), ('in_entire_package', '=', True)]}" force_save="1"/>
+                <button name="force_reset_qty_done"
+                            string="↳Reset qties"
+                            type="object"
+                            icon="fa-upload"
+                            context="{'model_dest': 'stock.move.line'}"
+                            attrs="{'invisible': ['|',('state', '=', 'done'), ('qty_done', '=', 0)]}"
+                            />
+            </tree>
+
+        </field>
+    </record>
+ <record id="pick_move_line_ids_tree_filter" model="ir.ui.view">
+        <field name="name">stock.move.line.tree.filter</field>
+        <field name="model">stock.move.line</field>
+        <field name="arch" type="xml">
+            <search string="Search stock move line">
+                <field name="product_id" domain = "[('product_id', 'ilike', self)]"/>
+                <field name="picking_id" domain = "[('picking_id', 'ilike', self)]"/>
+                <separator/>
+                <field name ="qty_done" string="Done" domain ="[('qty_done', '!=', 0)]"/>
+                <field name ="qty_done" string="Pending" domain ="[('qty_done', '==', 0)]"/>
+                <group expand="0" string="Group By">
+                    <filter string="Picking" domain="[]" context="{'group_by':'picking_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+    <record id="pick_move_line_ids_tree_view_action" model="ir.actions.act_window">
+        <field name="name">Stock move line ids</field>
+        <field name="res_model">stock.move.line</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="pick_move_line_ids_tree_view"/>
+        <field name="search_view_id" ref="pick_move_line_ids_tree_filter"/>
+    </record>
+
+    <record id="picking_form_stock_move_lines" model="ir.ui.view">
+        <field name="name">picking.form.stock.move.lines.tree</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form"/>
+        <field name="arch" type="xml">
+            <div name="button_box" position="inside">
+                <button name="action_view_move_lines" type="object" class="oe_stat_button"
+                    icon="fa-list">
+                        <field name="move_line_ids_count" widget="statinfo" string="Order lines"/>
+                </button>
+            </div>
+        </field>
+    </record>
+
+
+</odoo>
+

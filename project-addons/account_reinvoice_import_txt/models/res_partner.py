@@ -27,3 +27,11 @@ class ResPartner(models.Model):
 
     supplier_code_ids = fields.One2many('supplier.code.txt.import', 'customer_id', string="Codigo en clientes")
     customer_code_ids = fields.One2many('supplier.code.txt.import', 'supplier_id', string="Codigo en proveedores")
+
+    external = fields.Boolean('Externo')
+
+    supplier_id = fields.Many2one('res.partner', 'Proveedor', domain="[('supplier', '=', True)]")
+    supplier_code = fields.Char("Código externo")
+    supplier_str = fields.Char("Nombre en factura")
+    supplier_customer_ranking_id = fields.Many2one('supplier.customer.ranking', string="Clasificación")
+

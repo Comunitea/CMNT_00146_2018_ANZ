@@ -62,6 +62,7 @@ class AccountInvoiceLine(models.Model):
     pvp_supplier = fields.Monetary(string='Precio importado', copy=False)
     imported_price_subtotal = fields.Monetary(string='Total importado', copy=False)
 
+
     @api.one
     @api.depends('price_unit', 'discount', 'invoice_line_tax_ids', 'quantity',
         'product_id', 'invoice_id.partner_id', 'invoice_id.currency_id', 'invoice_id.company_id',

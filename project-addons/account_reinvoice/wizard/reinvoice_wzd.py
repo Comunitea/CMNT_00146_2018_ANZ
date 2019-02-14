@@ -71,7 +71,6 @@ class ReinvoiceWzd(models.TransientModel):
         txt_value_date = inv.import_txt_id and inv.import_txt_id.value_date or inv.value_date or inv.date_invoice
         vals = {
                 'partner_id': inv.associate_id.id,
-                'partner_shipping_id': inv and inv.import_txt_id and inv.import_txt_id.partner_shipping_id.id,
                 'origin': inv.number or inv.reference,
                 'type':
                 'out_invoice' if inv.type == 'in_invoice' else 'out_refund',
@@ -101,7 +100,7 @@ class ReinvoiceWzd(models.TransientModel):
         for inv in inv_ids:
             if inv.customer_invoice_id:
                 raise UserError(
-                    _('Invoice %s has related customer invoice') % inv.number or inv.reference)
+                    _('Invoice %s has related customer invoice') % inv.number or inv.reference or inv.name)
 
             if not inv.associate_id:
                 raise UserError(
@@ -118,7 +117,7 @@ class ReinvoiceWzd(models.TransientModel):
             lineas = self._get_associated_invoice_lines(inv_ass, inv)
 
             if not lineas:
-                self.message_post(body="Error al crear las líneas de factura. Comprueba las reglas de refactura")
+                inv.message_post(body="Error al crear las líneas de factura. Comprueba las reglas de refactura")
                 inv_ass.unlink()
             else:
                 # Calculamos impuestos
@@ -126,6 +125,7 @@ class ReinvoiceWzd(models.TransientModel):
                 created_invoices += inv_ass
                 inv.write({'customer_invoice_id': inv_ass.id})
                 inv_ass.check_payment_term()
+                inv_ass.message_post(body="Esta factura ha sido creada desde el fichero: <a href=# data-oe-model=invoice.txt.import data-oe-id=%d>%s</a>"% (inv.id, inv.name))
 
         if not created_invoices:
             return False

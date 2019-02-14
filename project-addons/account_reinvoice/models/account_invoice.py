@@ -10,6 +10,7 @@ class AccountInvoiceLine(models.Model):
 
     rule_id = fields.Many2one('reinvoice.rule', string="Regla")
 
+
 class AccountInvoice(models.Model):
 
     _inherit = 'account.invoice'
@@ -87,7 +88,10 @@ class AccountInvoice(models.Model):
     def unlink(self):
         inv_ass_ids = self.mapped('customer_invoice_id').filtered(lambda x:x.state=='draft')
         if inv_ass_ids:
-            inv_ass_ids.unlink()
+            try:
+                inv_ass_ids.unlink()
+            except:
+                pass
         res = super().unlink()
 
         return res
