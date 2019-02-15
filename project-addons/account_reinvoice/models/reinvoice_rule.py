@@ -64,7 +64,6 @@ class ReInvoiceRule(models.Model):
 
 
     def get_reinvoice_rule(self, line, supplier):
-
         partner_id = line.invoice_id.partner_shipping_id or line.invoice_id.partner_id
         product_id = line.product_id
 
@@ -79,8 +78,9 @@ class ReInvoiceRule(models.Model):
             domain = expression.normalize_domain(domain)
             domain = expression.AND([domain, [('supplier_id', '=', supplier.id)]])
 
-        domain_data = [('supplier_id', '=', supplier.id), '|', ('supplier_code', '=', partner_id.supplier_code), ('supplier_str', '=', partner_id.supplier_str)]
-        supplier_data = self.env['res.partner'].search(domain_data, limit=1)
+        domain_data = [('external', '=', True), ('supplier_id', '=', supplier.id), '|', ('supplier_code', '=', partner_id.supplier_code), ('supplier_str', '=', partner_id.supplier_str)]
+
+        supplier_data = self.env['res.partner'].search(domain_data, limit=1, order='supplier_str desc')
         if supplier_data:
             if supplier_data.supplier_customer_ranking_id:
                 domain = expression.normalize_domain(domain)
