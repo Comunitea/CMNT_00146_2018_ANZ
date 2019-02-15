@@ -7,28 +7,28 @@
                 <div class="col-md-4">
                     <h4>Quiénes somos</h4>
                     <ul class="list-unstyled">
-                        <li><a href="#">Grupo Anzamar</a></li>
-                        <li><a href="#">Presencia nacional</a></li>
+                        <li><a href="/page/anzamar_group#group_section" alt="Anzamar Group Link" title="Anzamar Group" rel="nofollow">Grupo Anzamar</a></li>
+                        <li><a href="/page/anzamar_group#presence_section" alt="Presence Link" title="Presence" rel="nofollow">Presencia nacional</a></li>
                     </ul>
                     <h4>Prensa</h4>
                     <ul class="list-unstyled">
-                        <li><a href="#">Noticias</a></li>
+                        <li><a href="/blog">Noticias</a></li>
                     </ul>
                     <h4>Síguenos</h4>
                     <ul class="list-unstyled">
-                        <li><a href="#">Newsletter</a></li>
-                        <li><a href="https://es.linkedin.com/company/grupo-anzamar" target="_blank" rel="nofollow">LinkedIn</a></li>
+                        <li><a href="/page_newsletter" alt="Blog Link" title="Blog" rel="nofollow">Newsletter</a></li>
+                        <li><a href="https://es.linkedin.com/company/grupo-anzamar" target="_blank" alt="LinkedIn Link" title="LinkedIn" rel="nofollow">LinkedIn</a></li>
                     </ul>
                 </div>
                 <div class="col-md-4">
                     <h4>Marcas del grupo</h4>
                     <ul class="list-unstyled">
-                        <li><a href="#">Umbro</a></li>
-                        <li><a href="#">Point Sport</a></li>
-                        <li><a href="#">Black Laces</a></li>
-                        <li><a href="#">Goalkers</a></li>
-                        <li><a href="#">Feel Point</a></li>
-                        <li><a href="#">Skipping</a></li>
+                        <li><a href="/page/brands/umbro" alt="Umbro Link" title="Umbro" rel="nofollow">Umbro</a></li>
+                        <li><a href="/page/brands/point_sport" alt="Point Sport Link" title="Point Sport" rel="nofollow">Point Sport</a></li>
+                        <li><a href="/page/brands/black_laces" alt="LinkedIn Link" title="Black Laces" rel="nofollow">Black Laces</a></li>
+                        <li><a href="/page/brands/goalkers" alt="Goalkers Link" title="Goalkers" rel="nofollow">Goalkers</a></li>
+                        <li><a href="/page/brands/feel_point" alt="Feel Point Link" title="Feel Point" rel="nofollow">Feel Point</a></li>
+                        <li><a href="/page/brands/skipping" alt="Skipping Link" title="Skipping" rel="nofollow">Skipping</a></li>
                     </ul>
                 </div>
                 <div class="col-md-4">
@@ -37,7 +37,7 @@
                         <li>Grupo Anzamar</li>
                         <li>
                             <i class="fa fa-map-marker"/>
-                            <a href="https://goo.gl/maps/Hm78jxSEG5B2" target="_blank" rel="nofollow">
+                            <a href="https://goo.gl/maps/Hm78jxSEG5B2" target="_blank" alt="Company Link" title="Company" rel="nofollow">
                                 <t t-esc="res_company.street"/>,
                                 <t t-esc="res_company.zip"/>,
                                 <t t-esc="res_company.city"/>
@@ -46,7 +46,7 @@
                         <li><i class="fa fa-phone"/><a t-field="res_company.phone" t-att-href="'tel:%s' %res_company.phone"/></li>
                         <li><i class="fa fa-envelope"/><a t-field="res_company.email" t-att-href="'mailto:%s' %res_company.email"/></li>
                     </ul>
-                    <h4><a href="#">Trabaja con nosotros</a></h4>
+                    <h4><a href="/page/page_work_with_us" alt="Work with Us Link" title="Work with Us" rel="nofollow">Trabaja con nosotros</a></h4>
                 </div>
             </div>
         </xpath>
