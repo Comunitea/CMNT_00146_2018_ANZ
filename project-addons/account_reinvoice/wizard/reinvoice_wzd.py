@@ -71,6 +71,7 @@ class ReinvoiceWzd(models.TransientModel):
         txt_value_date = inv.import_txt_id and inv.import_txt_id.value_date or inv.value_date or inv.date_invoice
         vals = {
                 'partner_id': inv.associate_id.id,
+                'partner_shipping_id': inv.associate_shipping_id.id,
                 'origin': inv.number or inv.reference,
                 'type':
                 'out_invoice' if inv.type == 'in_invoice' else 'out_refund',
@@ -89,10 +90,7 @@ class ReinvoiceWzd(models.TransientModel):
                 }
         return vals
 
-
-
     def get_invoices(self, invoices):
-
         created_invoices = self.env['account.invoice']
         inv_ids = invoices.filtered(lambda x: x.type in ('in_invoice', 'in_refund'))
         if not inv_ids:

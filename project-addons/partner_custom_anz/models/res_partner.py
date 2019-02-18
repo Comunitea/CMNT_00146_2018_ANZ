@@ -97,9 +97,12 @@ class ResPartner(models.Model):
         return partner
 
     def add_args_to_product_search(self, args=[]):
+
         args = expression.normalize_domain(args)
+
         if self.area_id:
-            args = expression.AND(args, [('product_brand_id.restricted_area_ids', 'not in', [self.area_id.id])])
+            area_domain = [('product_brand_id.restricted_area_ids', 'not in', [self.area_id.id])]
+            args = expression.AND([args, area_domain])
 
         # Si el partner tiene marcas permitidas, se usan las del partner, si no las de la zona
         allowed_brand_ids = self.allowed_brand_ids.ids or self.area_id.allowed_brand_ids.ids or []

@@ -11,6 +11,7 @@
                 <page string="Associate Info">
                     <group>
                         <group>
+                            <field name="associate_shipping_id"/>
                             <field name="associate_id"/>
                             </group>
                         <group>

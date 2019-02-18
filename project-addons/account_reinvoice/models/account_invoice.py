@@ -15,10 +15,15 @@ class AccountInvoice(models.Model):
 
     _inherit = 'account.invoice'
 
+    associate_shipping_id = fields.Many2one(
+        'res.partner', 'Associate shipping',
+        domain=[('|', ('customer', '=', True), '|', ('external', '=', True))]
+    )
     associate_id = fields.Many2one(
         'res.partner', 'Associate',
         domain=[('customer', '=', True)]
     )
+
     from_supplier = fields.Boolean('From supplier Invoice', copy=False,
                                    default=False)
     customer_invoice_id = fields.Many2one('account.invoice',
@@ -33,6 +38,11 @@ class AccountInvoice(models.Model):
     amount_year_discount = fields.Monetary(
         string='Discounted this year', store=False, readonly=True,
         compute='_compute_amount_year_discount')
+
+    @api.onchange('associate_shipping_id')
+    def associate_shipping_id_onchange(self):
+        self.associate_id = self.associate_shipping_id.commercial_partner_id
+
 
     def _compute_amount_discount(self):
         for invoice in self:

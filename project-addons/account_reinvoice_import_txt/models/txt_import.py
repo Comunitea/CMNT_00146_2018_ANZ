@@ -263,7 +263,7 @@ class InvoiceTxtImport(models.Model):
 
 
     @api.multi
-    def get_associate_id_from_associate_name(self):
+    def get_partner_shipping_id_from_associate_name(self):
 
         for txt in self.filtered(lambda x: x.associate_name and not x.partner_shipping_id):
             str = txt.associate_name
@@ -290,7 +290,7 @@ class InvoiceTxtImport(models.Model):
 
 
         if self.associate_name and self.type == 'in_invoice':
-            self.get_associate_id_from_associate_name()
+            self.get_partner_shipping_id_from_associate_name()
             if not self.partner_shipping_id:
                 message = "{} <li>{} {}</li>".format(message, 'No hay encuentro al asociado para el nombre ', self.associate_name)
         else:
@@ -306,10 +306,13 @@ class InvoiceTxtImport(models.Model):
             if self.original_rectificatica:
                 message = "{} <li>{} {}</li>".format(message, 'No hay encuentro la factura {} para este abono', self.original_rectificatica)
             is_message = True
+
         message = "{}</ul>".format(message)
         if is_message:
             self.message_post(body=message)
+
         if self.partner_shipping_id:
+            self.associate_id = self.partner_shipping_id.commercial_partner_id
             self.account_position_id = self.associate_id.property_account_position_id
 
 
