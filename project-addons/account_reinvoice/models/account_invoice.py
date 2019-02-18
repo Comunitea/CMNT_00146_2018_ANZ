@@ -81,11 +81,9 @@ class AccountInvoice(models.Model):
     @api.multi
     def do_reinvoice(self):
         new_invoices = []
-        ctx = self._context
+        ctx = self._context.copy()
         for inv in self:
-
             sale_type = inv.get_invoice_sale_type()
-
             if sale_type:
                 ctx.update(invoice_id=inv.id)
                 wzd_id = self.with_context(ctx).env['reinvoice.wzd'].create({'sale_type_id': sale_type.id})
