@@ -17,7 +17,7 @@ class AccountInvoice(models.Model):
 
     associate_shipping_id = fields.Many2one(
         'res.partner', 'Associate shipping',
-        domain=[('|', ('customer', '=', True), '|', ('external', '=', True))]
+        domain=[('|', ('customer', '=', True), ('external', '=', True))]
     )
     associate_id = fields.Many2one(
         'res.partner', 'Associate',
