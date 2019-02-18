@@ -36,7 +36,7 @@ class ReInvoiceRule(models.Model):
 
     affiliate = fields.Boolean('Asociado', default=True)
     supplier_customer_ranking_id = fields.Many2one('supplier.customer.ranking', string="Clasificación")
-    order_type = fields.Selection([('2_all_discount', 'Mantener descuento'), ('1_0_discount', 'Descuento a 0'), ('0_apply_discount', 'Aplicar regla')],
+    order_type = fields.Selection([('3_central_discount', 'Descuento fijo en central'), ('2_all_discount', 'Mantener descuento'), ('1_0_discount', 'Descuento a 0'), ('0_apply_discount', 'Aplicar regla')],
                                   string="Tipo de regla",
                                   default='0_apply_discount',
                                   help="Mantener descuento: No aplica ninguna regla\n"
@@ -55,11 +55,10 @@ class ReInvoiceRule(models.Model):
             rule_discount = line.discount
         elif self.order_type == '1_0_discount':
             rule_discount = 0.00
+        elif self.order_type == '3_central_discount':
+            rule_discount = max(line.discount - self.central_discount, 0)
         elif self.order_type == '0_apply_discount':
-            if self.central_discount > 0:
-                rule_discount = max(line.discount - self.central_discount, 0)
-            else:
-                rule_discount = self.customer_discount
+            rule_discount = self.customer_discount
         return rule_discount
 
 

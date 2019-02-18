@@ -16,13 +16,9 @@ class AccountInvoice(models.Model):
     _inherit = 'account.invoice'
 
     associate_shipping_id = fields.Many2one(
-        'res.partner', 'Associate shipping',
-        domain=[('|', ('customer', '=', True), ('external', '=', True))]
-    )
+        'res.partner', 'Asociado / Externo', domain=[('customer', '=', True)])
     associate_id = fields.Many2one(
-        'res.partner', 'Associate',
-        domain=[('customer', '=', True)]
-    )
+        'res.partner', 'Asociado / Empresa', domain=[('customer', '=', True)])
 
     from_supplier = fields.Boolean('From supplier Invoice', copy=False,
                                    default=False)
@@ -43,6 +39,9 @@ class AccountInvoice(models.Model):
     def associate_shipping_id_onchange(self):
         self.associate_id = self.associate_shipping_id.commercial_partner_id
 
+    def get_invoice_sale_type(self):
+        sale_type = self.associate_shipping_id.sale_type or self.associate_id.commercial_partner_id.sale_type or False
+        return sale_type or False
 
     def _compute_amount_discount(self):
         for invoice in self:
@@ -84,10 +83,12 @@ class AccountInvoice(models.Model):
         new_invoices = []
         ctx = self._context
         for inv in self:
-            sale_type = inv.associate_id.sale_type and inv.associate_id.sale_type.id or False
+
+            sale_type = inv.get_invoice_sale_type()
+
             if sale_type:
                 ctx.update(invoice_id=inv.id)
-                wzd_id = self.with_context(ctx).env['reinvoice.wzd'].create({'sale_type_id': sale_type})
+                wzd_id = self.with_context(ctx).env['reinvoice.wzd'].create({'sale_type_id': sale_type.id})
                 new_invoice = wzd_id.get_invoices(inv)
                 if new_invoice:
                     print("\n------------\nFACTURA DE ASOCIADO PARA : {}\n------------\n".format(

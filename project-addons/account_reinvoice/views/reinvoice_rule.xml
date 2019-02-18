@@ -32,6 +32,7 @@
             <search string="Search Rules">
                 <field name="partner_id"/>
                 <field name="brand_id"/>
+                <field name="supplier_id"/>
                 <separator/>
                 <filter name="customer_charge" string="Recargos" domain="[('customer_charge','>', 0)]"/>
                 <filter name="central_discount" string="Fijo central" domain="[('central_discount','>', 0)]"/>

@@ -176,9 +176,9 @@ class InvoiceTxtImport(models.Model):
     file_date = fields.Char("F. fichero")
     invoice_id = fields.Many2one('account.invoice', 'Factura')
     customer_invoice_id = fields.Many2one(related="invoice_id.customer_invoice_id")
-    associate_name = fields.Char("Nombre importado")
+    associate_name = fields.Char("Nombre importado", help="Nombre que aparece en la factura importada. Debe conincidir con el nombre del cliente externo, si lo hubiera")
     associate_id = fields.Many2one(related='partner_shipping_id.commercial_partner_id', string='Empresa asociado')
-    partner_shipping_id = fields.Many2one('res.partner', string='Asociado')
+    partner_shipping_id = fields.Many2one('res.partner', string='Asociado', help="Cliente externo que se asocia al nombre que se importad de la factura")
     partner_vat = fields.Char("NIF Cliente")
     partner_id = fields.Many2one('res.partner', 'Proveedor')
 
@@ -798,6 +798,7 @@ class InvoiceTxtImport(models.Model):
                 txt.message_post(body=txt_message)
                 txt.state = 'error'
                 continue
+            sale_type_id = txt.mapped('partner_shipping_id').mapped('sale_type') or  txt.mapped('associate_id').mapped('sale_type')
 
             invoice_val = {
                 'type': self.type or 'in_invoice',
@@ -829,8 +830,10 @@ class InvoiceTxtImport(models.Model):
             inv.update(journal_id=journal_id.id,
                        fiscal_position_id=self.map_account_possition(txt.account_position_id),
                        payment_term_id=payment_term_id and payment_term_id.id or 1)
-            if not inv.get('operating_unit_id', False) and txt.associate_id.commercial_partner_id.sale_type_id.operating_unit_id:
-                inv.update(operating_unit_id=txt.associate_id.commercial_partner_id.sale_type.operating_unit_id.id)
+
+            if not inv.get('operating_unit_id', False) and sale_type_id:
+                inv.update(operating_unit_id=sale_type_id.operating_unit_id and sale_type_id.operating_unit_id.id)
+
 
             new_invoice = self.env['account.invoice'].create(inv)
             new_invoice.journal_id = journal_id

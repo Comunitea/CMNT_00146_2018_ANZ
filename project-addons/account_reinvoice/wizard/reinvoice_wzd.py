@@ -12,13 +12,14 @@ class ReinvoiceWzd(models.TransientModel):
     group = fields.Boolean("Group by associate")
     sale_type_id = fields.Many2one('sale.order.type', "Sale type",
                                    required=True)
+
     @api.model
     def default_get(self, fields_list):
         res = super(ReinvoiceWzd, self).default_get(fields_list)
         active_id = self._context.get('invoice_id', False) or self._context.get('active_id', False)
         if active_id:
-            a_id = self.env['account.invoice'].browse(active_id)
-            res['sale_type_id'] = a_id.associate_id.commercial_partner_id.sale_type and a_id.associate_id.commercial_partner_id.sale_type.id or False
+            a_id = self.env['account.invoice'].browse(active_id).get_invoice_sale_type()
+            res['sale_type_id'] = a_id and a_id.id
 
         return res
 
@@ -67,23 +68,26 @@ class ReinvoiceWzd(models.TransientModel):
         return True
 
     def get_invoices_values(self, inv):
-        sale_type_id = inv.associate_id.sale_type or self.sale_type_id
+        sale_type_id = inv.get_invoice_sale_type()
+        partner_id = inv.associate_id
+        partner_shipping_id = inv.associate_shipping_id or inv.associate_id.commercial_partner_id
+
         txt_value_date = inv.import_txt_id and inv.import_txt_id.value_date or inv.value_date or inv.date_invoice
         vals = {
-                'partner_id': inv.associate_id.id,
-                'partner_shipping_id': inv.associate_shipping_id.id,
+                'partner_id': partner_id.id,
+                'partner_shipping_id': partner_shipping_id.id,
                 'origin': inv.number or inv.reference,
                 'type':
                 'out_invoice' if inv.type == 'in_invoice' else 'out_refund',
-                'account_id': inv.associate_id.commercial_partner_id.property_account_receivable_id.id,
+                'account_id': partner_id.commercial_partner_id.property_account_receivable_id.id,
                 'user_id': self._uid,
                 'name': inv.name,
                 'from_supplier': True,
-                'journal_id': sale_type_id.journal_id.id,
+                'journal_id': sale_type_id and sale_type_id.journal_id.id,
                 'operating_unit_id': inv.operating_unit_id.id,
-                'sale_type_id': sale_type_id.id,
-                'payment_mode_id': inv.associate_id.commercial_partner_id.customer_payment_mode_id.id,
-                'fiscal_position_id': inv.associate_id.commercial_partner_id.property_account_position_id.id,
+                'sale_type_id': sale_type_id and sale_type_id.id,
+                'payment_mode_id': partner_id.commercial_partner_id.customer_payment_mode_id.id,
+                'fiscal_position_id': partner_id.commercial_partner_id.property_account_position_id.id,
                 'customer_invoice_id': False,
                 'value_date': txt_value_date,
 
