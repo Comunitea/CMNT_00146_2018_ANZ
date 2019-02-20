@@ -7,6 +7,7 @@
             <link href="/theme_anzamar/static/css/_general.less" rel="stylesheet" type="text/less"/>
             <link href="/theme_anzamar/static/css/header.less" rel="stylesheet" type="text/less"/>
             <link href="/theme_anzamar/static/css/footer.less" rel="stylesheet" type="text/less"/>
+            <link href="/theme_anzamar/static/css/map.less" rel="stylesheet" type="text/less"/>
         </xpath>
     </template>
 
