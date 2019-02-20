@@ -3,6 +3,9 @@
 from odoo import api, fields, models, _
 from odoo.exceptions import UserError
 from odoo.osv import expression
+
+
+
 class ReInvoiceRule(models.Model):
 
     _name = 'reinvoice.rule'
