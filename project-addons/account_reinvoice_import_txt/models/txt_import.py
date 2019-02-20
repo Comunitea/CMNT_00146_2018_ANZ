@@ -240,9 +240,14 @@ class InvoiceTxtImport(models.Model):
 
         return super().write(vals)
 
+    @api.onchange('partner_shipping_id')
+    def onchange_partner_shipping_id(self):
+        self.associate_id = self.partner_shipping_id.commercial_partner_id
+
+
     @api.onchange('associate_id')
     def onchange_associate_id(self):
-        if self.partner_shipping_id:
+        if self.associate_id:
             self.account_position_id = self.associate_id.property_account_position_id
 
     def check_existing_txt(self):
@@ -266,6 +271,7 @@ class InvoiceTxtImport(models.Model):
 
     @api.multi
     def get_partner_shipping_id_from_associate_name(self):
+
         for txt in self.filtered(lambda x: x.associate_name and not x.partner_shipping_id):
             str = txt.associate_name
             domain = ['|', ('supplier_code', '=', str), ('supplier_str', '=', str)]
@@ -687,7 +693,8 @@ class InvoiceTxtImport(models.Model):
 
     def write_invoice_from_txt(self, txt_invoice_val, lineas):
         self.write(txt_invoice_val)
-        self.get_partner_refs()
+        if not self.partner_shipping_id:
+            self.get_partner_refs()
         self.invoice_line_txt_import_ids.unlink()
         for linea in lineas:
             product_id = self.get_product(linea, self.partner_id.id)

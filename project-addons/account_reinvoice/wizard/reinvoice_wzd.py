@@ -91,8 +91,11 @@ class ReinvoiceWzd(models.TransientModel):
                 'fiscal_position_id': partner_id.commercial_partner_id.property_account_position_id.id,
                 'customer_invoice_id': False,
                 'value_date': txt_value_date,
-
-                }
+                'comment': "Corresponde a la factura de {}, nº {}, de fecha: {}. Albarán nº: {}".format(
+                    inv.partner_id.name,
+                    inv.supplier_invoice_number,
+                    inv.date_invoice,
+                    inv.origin)}
         return vals
 
     def get_invoices(self, invoices):
@@ -127,7 +130,7 @@ class ReinvoiceWzd(models.TransientModel):
                 created_invoices += inv_ass
                 inv.write({'customer_invoice_id': inv_ass.id})
                 inv_ass.check_payment_term()
-                inv_ass.message_post(body="Esta factura ha sido creada desde el fichero: <a href=# data-oe-model=invoice.txt.import data-oe-id=%d>%s</a>"% (inv.id, inv.name))
+                inv_ass.message_post(body="Esta factura ha sido creada desde la factura: <a href=# data-oe-model=account.invoice data-oe-id=%d>%s</a>"% (inv.id, inv.number))
 
         if not created_invoices:
             return False
