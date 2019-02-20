@@ -45,7 +45,8 @@
         'website_multi_company_blog',
         'mass_mailing',
         'website_form_builder',
-        'seo_base'
+        'seo_base',
+        'breadcrumbs_base'
     ],
     'data': [
         'data/menu_data.xml',
