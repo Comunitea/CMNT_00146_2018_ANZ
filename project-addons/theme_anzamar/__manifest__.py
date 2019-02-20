@@ -44,6 +44,7 @@
     'data': [
         'data/theme_data.xml',
         'data/menu_data.xml',
+        'data/page_data.xml',
         'templates/head.xml',
         'templates/header.xml',
         'templates/footer.xml',
