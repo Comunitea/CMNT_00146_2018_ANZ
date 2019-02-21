@@ -4,7 +4,7 @@ MultiWebsite Base Module Anzamar
 BackEnd customization for All Websites
 --------------------------------------
 
-This module contains all common base configuration for all websites, including their Themes.
+This module contains all common base configuration for all companies and their websites, including their Themes.
 
 Author
 ------

@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+        <data noupdate="0">
+
+            <!--Delete default website-->
+            <delete id="website.default_website" model="website"/>
+
+            <!--Create Website Anzamar-->
+            <record id="anzamar_website" model="website">
+                <field name="name">Anzamar</field>
+                <field name="domain">anzamar</field>
+                <field name="company_id" ref="base.main_company"/>
+                <field name="user_id" ref="base.public_user"/>
+                <field name="multi_theme_id"/>
+                <field name="favicon" type="base64" file="website_base_multi_anz/static/img/favicon_anz.png"/>
+                <!--<field name="social_twitter"></field>-->
+                <!--<field name="social_facebook"></field>-->
+                <!--<field name="social_googleplus"></field>-->
+                <!--<field name="social_linkedin"></field>-->
+                <!--<field name="social_instagram"></field>-->
+            </record>
+
+            <!--Create Website Point Sport-->
+            <record id="point_sport_website" model="website">
+                <field name="name">Point Sport</field>
+                <field name="domain">point-sport</field>
+                <field name="company_id" ref="base.main_company"/>
+                <field name="user_id" ref="base.public_user"/>
+                <field name="multi_theme_id"/>
+                <field name="favicon" type="base64" file="website_base_multi_anz/static/img/favicon_point_sport.png"/>
+                <!--<field name="social_twitter"></field>-->
+                <field name="social_facebook">https://www.facebook.com/POINTSPORT</field>
+                <!--Facebook Franquicias-->
+                <!--<field name="social_facebook">https://www.facebook.com/blacklaces2</field>-->
+                <!--<field name="social_googleplus"></field>-->
+                <!--<field name="social_linkedin"></field>-->
+                <!--<field name="social_instagram"></field>-->
+            </record>
+
+            <!--Create Website Umbro-->
+            <record id="umbro_website" model="website">
+                <field name="name">Umbro</field>
+                <field name="domain">umbro</field>
+                <field name="company_id" ref="base.main_company"/>
+                <field name="user_id" ref="base.public_user"/>
+                <field name="multi_theme_id"/>
+                <field name="favicon" type="base64" file="website_base_multi_anz/static/img/favicon_umbro.jpg"/>
+                <!--<field name="social_twitter"></field>-->
+                <field name="social_facebook">https://www.facebook.com/UmbroIberia</field>
+                <!--<field name="social_googleplus"></field>-->
+                <!--<field name="social_linkedin"></field>-->
+                <field name="social_instagram">https://www.instagram.com/umbro</field>
+            </record>
+
+            <!--Create Website Black Laces-->
+            <record id="blacklaces_website" model="website">
+                <field name="name">Blacklaces</field>
+                <field name="domain">blacklaces</field>
+                <field name="company_id" ref="base.main_company"/>
+                <field name="user_id" ref="base.public_user"/>
+                <field name="multi_theme_id"/>
+                <field name="favicon" type="base64" file="website_base_multi_anz/static/img/favicon_blacklaces.png"/>
+                <!--<field name="social_twitter"></field>-->
+                <field name="social_facebook">https://www.facebook.com/blacklaces.es</field>
+                <!--<field name="social_googleplus"></field>-->
+                <!--<field name="social_linkedin"></field>-->
+                <field name="social_instagram">https://www.instagram.com/blacklaces.es</field>
+            </record>
+
+            <!--Create Website Goalkers-->
+            <record id="goalkers_website" model="website">
+                <field name="name">Goalkers</field>
+                <field name="domain">goalkers</field>
+                <field name="company_id" ref="base.main_company"/>
+                <field name="user_id" ref="base.public_user"/>
+                <field name="multi_theme_id"/>
+                <field name="favicon" type="base64" file="website_base_multi_anz/static/img/favicon_goalkers.jpeg"/>
+                <!--<field name="social_twitter"></field>-->
+                <field name="social_facebook">https://www.facebook.com/goalkers</field>
+                <!--<field name="social_googleplus"></field>-->
+                <!--<field name="social_linkedin"></field>-->
+                <field name="social_instagram">https://www.instagram.com/goalkers.es</field>
+            </record>
+
+            <!--Create Website Feel Point-->
+            <record id="feel_point_website" model="website">
+                <field name="name">Feel Point</field>
+                <field name="domain">feel-point</field>
+                <field name="company_id" ref="website_base_multi_anz.bemar_company"/>
+                <field name="user_id" ref="base.public_user"/>
+                <field name="multi_theme_id"/>
+                <field name="favicon" type="base64" file="website_base_multi_anz/static/img/favicon_feel_point.jpeg"/>
+                <!--<field name="social_twitter"></field>-->
+                <field name="social_facebook">https://www.facebook.com/FeelPoint.es</field>
+                <!--<field name="social_googleplus"></field>-->
+                <!--<field name="social_linkedin"></field>-->
+                <field name="social_instagram">https://www.instagram.com/feelpoint.es</field>
+            </record>
+
+            <!--Create Website Skipping-->
+            <record id="skipping_website" model="website">
+                <field name="name">Skipping</field>
+                <field name="domain">skipping</field>
+                <field name="company_id" ref="base.main_company"/>
+                <field name="user_id" ref="base.public_user"/>
+                <field name="multi_theme_id"/>
+                <field name="favicon" type="base64" file="website_base_multi_anz/static/img/favicon_skipping.jpg"/>
+                <!--<field name="social_twitter"></field>-->
+                <field name="social_facebook">https://www.facebook.com/Skipping.es</field>
+                <!--<field name="social_googleplus"></field>-->
+                <!--<field name="social_linkedin"></field>-->
+                <field name="social_instagram">https://www.instagram.com/skipping.es</field>
+            </record>
+
+        </data>
+</odoo>

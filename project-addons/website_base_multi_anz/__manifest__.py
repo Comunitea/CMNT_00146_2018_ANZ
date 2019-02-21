@@ -28,7 +28,7 @@
 {
     'name': 'MultiWebsite Base Module Anzamar',
     'version': '1.0',
-    'summary': 'BackEnd customization for All Websites',
+    'summary': 'BackEnd customization for all companies and their websites.',
     'description': '',
     'category': 'Website',
     'author': 'Comunitea',
@@ -53,6 +53,8 @@
         'data/menu_data.xml',
         'data/page_data.xml',
         'data/website_data.xml',
+        'views/res_company_views.xml',
+        'views/website_views.xml',
     ],
     'images': [
         '/static/description/icon.png',
