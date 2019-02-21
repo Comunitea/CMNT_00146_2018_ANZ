@@ -9,3 +9,21 @@
         top: 0;
     }
 }
+
+/* Breadcrumbs */
+.wp_breadcrumbs_base {
+    background-color: @color-bg;
+}
+.breadcrumbs_base {
+
+    & ol.breadcrumb {
+        background-color: @color-bg;
+        margin-bottom: 0;
+        & a {
+            color: @color-href;
+        }
+        & span {
+            color: @color-current;
+        }
+    }
+}

@@ -44,9 +44,11 @@
     'data': [
         'data/theme_data.xml',
         'data/menu_data.xml',
+        'data/page_data.xml',
         'templates/head.xml',
         'templates/header.xml',
         'templates/footer.xml',
+        'templates/breadcrumbs_bar.xml',
         'templates/pages.xml',
         'templates/page_anzamar_group.xml',
         'templates/page_brand_black_laces.xml',
