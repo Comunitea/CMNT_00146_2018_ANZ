@@ -83,11 +83,11 @@ class ProductProduct(models.Model):
             sale_order.message_post(body=message)
 
             lines.unlink()
-
-        if len(self.product_tmpl_id.filtered('active')) == 1:
-            self.product_tmpl_id.active = False
-        else:
-            self.write({'active': False})
+        for product in self:
+            if len(product.product_tmpl_id.filtered('active')) == 1:
+                product.product_tmpl_id.active = False
+            else:
+                product.write({'active': False})
         return True
 
     @api.model
