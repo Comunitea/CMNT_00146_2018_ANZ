@@ -49,6 +49,7 @@
         'breadcrumbs_base'
     ],
     'data': [
+        'data/company_data.xml',
         'data/menu_data.xml',
         'data/page_data.xml',
         'data/website_data.xml',
