@@ -32,11 +32,11 @@ class ResPartnerSupplierData(models.Model):
 
     partner_id = fields.Many2one(related='customer_supplier_id.commercial_partner_id')
     name = fields.Char(related="customer_supplier_id.name", string="Nombre")
-    supplier_id = fields.Many2one('res.partner', 'Proveedor', domain="[('supplier', '=', True)]", required=1)
     customer_supplier_id = fields.Many2one('res.partner', "Cliente externo",
-                                           domain="[('type', '=', 'other'), ('supplier', '=', False)]",
-                                          help="Type=Other, must be child of partner_id", required=1)
+                                          domain="[('type', '=', 'other'), ('supplier', '=', False)]",
+                                          help="Type=Other, must be child of partner_id")
     #brand_id = fields.Many2one('product.brand', 'Brand')
+    supplier_id = fields.Many2one('res.partner', 'Proveedor', domain="[('supplier', '=', True)]")
     supplier_code = fields.Char("Código externo")
     supplier_str = fields.Char("Nombre en factura")
     supplier_customer_ranking_id = fields.Many2one('supplier.customer.ranking', string="Clasificación")
@@ -106,15 +106,16 @@ class ResPartnerSupplierData(models.Model):
                 partner.customer_supplier_id.parent_id = new_partner.id
                 partner.customer_supplier_id.message_post(body="Se ha añadido un nuevo parent automaticamente")
 
-    def get_associate_id_from_str(self, str):
-        domain = ['|', '|', ('customer_supplier_id.name', '=', str), ('supplier_code', '=', str), ('supplier_str', '=', str)]
-        a_id = self.search(domain, limit=1)
-        if a_id:
-            return a_id.customer_supplier_id
-        if not a_id:
-            a_id = self.env['partner.supplier.data'].search([('id', '>', 1)]).mapped('partner_id').filtered(lambda x: not x.parent_id and x.name == str)
-            if a_id and len(a_id) == 1:
-                return a_id
-        return self.env['res.partner']
 
-
+    @api.multi
+    def update_partner_from_res_partner(self):
+        for data in self.browse(self._context.get('active_ids', [])):
+            print ('{} {}'.format(data.name, data.id))
+            data.customer_supplier_id.write({
+                'external': True,
+                'supplier_id': data.supplier_id.id,
+                'supplier_code': data.supplier_code,
+                'supplier_str': data.supplier_str,
+                'supplier_customer_ranking_id': data.supplier_customer_ranking_id.id,
+                'parent_id': data.partner_id.id
+            })

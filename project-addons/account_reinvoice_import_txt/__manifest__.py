@@ -15,14 +15,13 @@
         'account',
         'account_reinvoice',
         'account_invoice_check_total',
-        'partner_supplier_data',
         'partner_paydays'
 
     ],
     'data': [
         'views/account_reinvoice_import_txt.xml',
         'security/ir.model.access.csv',
-        #'views/res_partner.xml',
+        'views/res_partner.xml',
         'views/account_invoice.xml'
     ],
 }

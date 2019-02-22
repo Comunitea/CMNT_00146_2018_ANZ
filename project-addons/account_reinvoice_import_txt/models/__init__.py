@@ -4,3 +4,4 @@
 from . import account_invoice
 from . import txt_import
 from . import res_partner
+from . import reinvoice_rule

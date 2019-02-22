@@ -12,13 +12,14 @@ class ReinvoiceWzd(models.TransientModel):
     group = fields.Boolean("Group by associate")
     sale_type_id = fields.Many2one('sale.order.type', "Sale type",
                                    required=True)
+
     @api.model
     def default_get(self, fields_list):
         res = super(ReinvoiceWzd, self).default_get(fields_list)
-        active_id = self._context.get('active_id', False)
+        active_id = self._context.get('invoice_id', False) or self._context.get('active_id', False)
         if active_id:
-            a_id = self.env['account.invoice'].browse(active_id)
-            res['sale_type_id'] = a_id.associate_id.commercial_partner_id.sale_type and a_id.associate_id.commercial_partner_id.sale_type.id or False
+            a_id = self.env['account.invoice'].browse(active_id).get_invoice_sale_type()
+            res['sale_type_id'] = a_id and a_id.id
 
         return res
 
@@ -67,33 +68,37 @@ class ReinvoiceWzd(models.TransientModel):
         return True
 
     def get_invoices_values(self, inv):
-        sale_type_id = inv.associate_id.sale_type or self.sale_type_id
+        sale_type_id = self.sale_type_id
+        partner_id = inv.associate_id
+        partner_shipping_id = inv.associate_shipping_id or inv.associate_id.commercial_partner_id
+        if inv.associate_shipping_id and not inv.associate_shipping_id.sale_type:
+            inv.associate_shipping_id.sale_type = sale_type_id
         txt_value_date = inv.import_txt_id and inv.import_txt_id.value_date or inv.value_date or inv.date_invoice
         vals = {
-                'partner_id': inv.associate_id.id,
-                'partner_shipping_id': inv and inv.import_txt_id and inv.import_txt_id.partner_shipping_id.id,
+                'partner_id': partner_id.id,
+                'partner_shipping_id': partner_shipping_id.id,
                 'origin': inv.number or inv.reference,
                 'type':
                 'out_invoice' if inv.type == 'in_invoice' else 'out_refund',
-                'account_id': inv.associate_id.commercial_partner_id.property_account_receivable_id.id,
+                'account_id': partner_id.commercial_partner_id.property_account_receivable_id.id,
                 'user_id': self._uid,
                 'name': inv.name,
                 'from_supplier': True,
-                'journal_id': sale_type_id.journal_id.id,
+                'journal_id': sale_type_id and sale_type_id.journal_id.id,
                 'operating_unit_id': inv.operating_unit_id.id,
-                'sale_type_id': sale_type_id.id,
-                'payment_mode_id': inv.associate_id.commercial_partner_id.customer_payment_mode_id.id,
-                'fiscal_position_id': inv.associate_id.commercial_partner_id.property_account_position_id.id,
+                'sale_type_id': sale_type_id and sale_type_id.id,
+                'payment_mode_id': partner_id.commercial_partner_id.customer_payment_mode_id.id,
+                'fiscal_position_id': partner_id.commercial_partner_id.property_account_position_id.id,
                 'customer_invoice_id': False,
                 'value_date': txt_value_date,
-
-                }
+                'comment': "Corresponde a la factura de {}, nº {}, de fecha: {}. Albarán nº: {}".format(
+                    inv.partner_id.name,
+                    inv.supplier_invoice_number,
+                    inv.date_invoice,
+                    inv.origin)}
         return vals
 
-
-
     def get_invoices(self, invoices):
-
         created_invoices = self.env['account.invoice']
         inv_ids = invoices.filtered(lambda x: x.type in ('in_invoice', 'in_refund'))
         if not inv_ids:
@@ -101,11 +106,11 @@ class ReinvoiceWzd(models.TransientModel):
         for inv in inv_ids:
             if inv.customer_invoice_id:
                 raise UserError(
-                    _('Invoice %s has related customer invoice') % inv.number or inv.reference)
-
+                    _('La factura {} ya tiene una factura de cliente: {}'
+                      .format(inv.number or inv.reference or inv.name, inv.customer_invoice_id.name)))
             if not inv.associate_id:
                 raise UserError(
-                    _('Invoice %s has not an associate.') % inv.number or inv.reference)
+                    _('La factura {} no tiene asociado.') .format(inv.number or inv.reference))
 
             copy_vals = self.get_invoices_values(inv)
             inv_ass = inv.copy(copy_vals)
@@ -116,9 +121,8 @@ class ReinvoiceWzd(models.TransientModel):
                            'customer_invoice_id': False
                            })
             lineas = self._get_associated_invoice_lines(inv_ass, inv)
-
             if not lineas:
-                self.message_post(body="Error al crear las líneas de factura. Comprueba las reglas de refactura")
+                inv.message_post(body="Error al crear las líneas de factura. Comprueba las reglas de refactura")
                 inv_ass.unlink()
             else:
                 # Calculamos impuestos
@@ -126,6 +130,7 @@ class ReinvoiceWzd(models.TransientModel):
                 created_invoices += inv_ass
                 inv.write({'customer_invoice_id': inv_ass.id})
                 inv_ass.check_payment_term()
+                inv_ass.message_post(body="Esta factura ha sido creada desde la factura: <a href=# data-oe-model=account.invoice data-oe-id=%d>%s</a>"% (inv.id, inv.number))
 
         if not created_invoices:
             return False
@@ -152,5 +157,6 @@ class ReinvoiceWzd(models.TransientModel):
             browse(self._context.get('active_ids', []))
 
         created_invoices = self.get_invoices(invoices)
+
         if created_invoices:
             return self.action_view_invoice(created_invoices)

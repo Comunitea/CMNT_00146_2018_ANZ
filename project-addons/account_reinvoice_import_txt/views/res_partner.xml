@@ -1,5 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
+    <record id="view_res_partner_filter_anz" model="ir.ui.view">
+       <field name="name">res.partner.search_player</field>
+       <field name="model">res.partner</field>
+       <field name="inherit_id" ref="base.view_res_partner_filter"/>
+       <field name="arch" type="xml">
+           <filter name="supplier" position="after">
+               <filter string="External" name="external" domain="[('external', '=', 1)]" help="Externals"/>
+           </filter>
+        </field>
+   </record>
     <record model="ir.ui.view" id="res_partner_sale_supplier_codes">
         <field name="name">res.partner.supplier_codes</field>
         <field name="model">res.partner</field>
@@ -14,7 +24,24 @@
                 </group>
 
             </page>
+            <field name="category_id" position="after">
+                <field name="external"/>
+            </field>
+            <page name="internal_notes" position="after">
+                <page name="external_page" string="Externos" attrs="{'invisible': [('external', '=', False)]}">
+                    <group>
+                        <group string="Proveedor">
+                            <field name="supplier_id"/>
+                            <field name="supplier_customer_ranking_id"/>
+                        </group>
+                        <group string="Datos de busqueda">
 
+                            <field name="supplier_str"/>
+                            <field name="supplier_code"/>
+                        </group>
+                    </group>
+                </page>
+            </page>
         </field>
     </record>
 </odoo>

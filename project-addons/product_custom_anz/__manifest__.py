@@ -9,12 +9,12 @@
     'author': "Comunitea, ",
     'depends': [
         'base',
+        'account',
+        'sale',
+        'stock_available_global',
         'product_virtual_stock_conservative',
         'stock_available_global',
         'partner_custom_anz',
-        'account',
-        'sale'
-
     ],
     'data': [
         'views/partner_view.xml',

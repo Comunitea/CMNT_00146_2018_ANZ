@@ -6,10 +6,15 @@
         <field name="name">"view.reinvoice.rule.tree</field>
         <field name="model">reinvoice.rule</field>
         <field name="arch" type="xml">
-            <tree string="Reinvoice Rule" editable="top">
+            <tree string="Reinvoice Rule" editable="top"
+                  decoration-danger="partner_id != False"
+                  decoration-info="central_discount > 0"
+                  decoration-primary="order_type != '0_apply_discount'"
+            >
                 <field name="brand_id"/>
                 <field name="partner_id"/>
                 <!--field name="scheduled_sale"/-->
+                <field name="central_discount"/>
                 <field name="supplier_discount"/>
                 <field name="customer_discount"/>
                 <field name="customer_charge"/>
@@ -20,27 +25,31 @@
             </tree>
         </field>
     </record>
+    <record id="view_reinvoice_rule_filter" model="ir.ui.view">
+        <field name="name">view.reinvoice.rule.filter</field>
+        <field name="model">reinvoice.rule</field>
+        <field name="arch" type="xml">
+            <search string="Search Rules">
+                <field name="partner_id"/>
+                <field name="brand_id"/>
+                <field name="supplier_id"/>
+                <separator/>
+                <filter name="customer_charge" string="Recargos" domain="[('customer_charge','>', 0)]"/>
+                <filter name="central_discount" string="Fijo central" domain="[('central_discount','>', 0)]"/>
+                <separator/>
+                <!--filter name="scheduled" string="Scheduled sales" domain="[('scheduled_sale','=', True)]"/-->
+                <!--filter name="reposition" string="Reposition sales" domain="[('scheduled_sale','!=', True)]"/-->
+                <filter name="gobal" string="Global Rule" domain="[('partner_id','=', False)]"/>
+                <filter name="specific" string="Specific Rule" domain="[('partner_id','!=', False)]"/>
 
-      <record id="view_reinvoice_rule_filter" model="ir.ui.view">
-            <field name="name">view.reinvoice.rule.filter</field>
-            <field name="model">reinvoice.rule</field>
-            <field name="arch" type="xml">
-                <search string="Search Rules">
-                    <field name="partner_id"/>
-                    <field name="brand_id"/>
-                    <separator/>
-                    <!--filter name="scheduled" string="Scheduled sales" domain="[('scheduled_sale','=', True)]"/-->
-                    <filter name="reposition" string="Reposition sales" domain="[('scheduled_sale','!=', True)]"/>
-                    <filter name="gobal" string="Global Rule" domain="[('partner_id','=', False)]"/>
-                    <filter name="specific" string="Specific Rule" domain="[('partner_id','!=', False)]"/>
-                
-                    <group expand="0" string="Group By">
-                        <filter string="Brand" domain="[]" context="{'group_by':'brand_id'}"/>
-                        <filter string="Customer" domain="[]" context="{'group_by':'partner_id'}"/>
-                    </group>
-                </search>
-            </field>
-        </record>
+                <group expand="0" string="Group By">
+                    <filter string="Supplier" domain="[]" context="{'group_by':'supplier_id'}"/>
+                    <filter string="Brand" domain="[]" context="{'group_by':'brand_id'}"/>
+                    <filter string="Customer" domain="[]" context="{'group_by':'partner_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
 
     <record id="action_reinvoice_rules" model="ir.actions.act_window">
         <field name="name">Reinvoice Rules</field>

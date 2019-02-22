@@ -30,6 +30,7 @@ class AccountInvoice(models.Model):
 
     @api.onchange('payment_term_id', 'date_invoice', 'value_date')
     def _onchange_payment_term_date_invoice(self):
+
         ctx = self._context.copy()
         ctx.update(invoice_id=self.id)
         return super(AccountInvoice, self.with_context(ctx))._onchange_payment_term_date_invoice()
@@ -39,7 +40,7 @@ class AccountInvoice(models.Model):
         if not(self.import_txt_id and self.env['ir.config_parameter'].sudo().get_param(
             'import_account.overwrite_odoo_amount', 'False').lower() == 'true'):
             return super()._compute_amount()
-        print("-------> IMPORTES ORIGINALES")
+
         round_curr = self.currency_id.round
         self.amount_untaxed = self.import_txt_id.valor_neto
         self.amount_tax = self.import_txt_id.total_amount - self.import_txt_id.valor_neto
@@ -61,6 +62,7 @@ class AccountInvoiceLine(models.Model):
 
     pvp_supplier = fields.Monetary(string='Precio importado', copy=False)
     imported_price_subtotal = fields.Monetary(string='Total importado', copy=False)
+
 
     @api.one
     @api.depends('price_unit', 'discount', 'invoice_line_tax_ids', 'quantity',

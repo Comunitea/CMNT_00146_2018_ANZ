@@ -1,19 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
+
+
    <record id="min_partner_form" model="ir.ui.view">
         <field name="name">Supplier customer</field>
         <field name="model">res.partner</field>
         <field name="arch" type="xml">
-
-                <form>
-                    <group>
-                        <field name="name" required="1"/>
-                        <field name="parent_id" required="1" domain="[('parent_id', '=', False), ('customer','=', True)]"/>
-                        <field name="type" invisible="1"/>
-                        <field name="customer" invisible="1"/>
-                        <field name="supplier" invisible="1"/>
-                    </group>
-                </form>
+            <form>
+                <group>
+                    <field name="name" required="1" readonly="1"/>
+                    <field name="parent_id" required="1" domain="[('parent_id', '=', False), ('customer','=', True)]" readonly="1"/>
+                    <field name="type" invisible="1"/>
+                    <field name="customer" invisible="1"/>
+                    <field name="supplier" invisible="1"/>
+                </group>
+            </form>
         </field>
     </record>
      <record id="view_partner_form_supplier_data" model="ir.ui.view">
@@ -34,7 +35,8 @@
                 </button>
                 </div>
             </xpath>
-            <xpath expr="//group[@name='sale']/field[@name='customer']" position="before">
+
+            <!--xpath expr="//group[@name='sale']/field[@name='customer']" position="before">
                 <div>
                     <button type="action" class="btn-link"
                             name="%(partner_supplier_data.action_view_partner_supplier_data_tree)d"
@@ -43,7 +45,7 @@
                         <field string="Supplier data" name="customer_data_count" widget="statinfo"/>
                     </button>
                 </div>
-            </xpath>
+            </xpath-->
             <field name="comment" position="before">
                 <field name="import_from" invisible="1" readonly="1"/>
             </field>

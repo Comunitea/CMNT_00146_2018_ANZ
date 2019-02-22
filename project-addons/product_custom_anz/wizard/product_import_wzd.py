@@ -20,7 +20,10 @@ class ProductImportWzd(models.TransientModel):
 
     name = fields.Char('Importation name', required=True)
     file = fields.Binary(string='File', required=True)
+    brand_id = fields.Many2one('product.brand', 'Brand', required=True)
     filename = fields.Char(string='Filename')
+    categ_id = fields.Many2one('product.category','Default product category')
+    create_attributes = fields.Boolean('Create attributes/values if neccesary')
 
     def _parse_row_vals(self, row, idx):
         res = {
@@ -32,7 +35,8 @@ class ProductImportWzd(models.TransientModel):
             'attr_val': row[5],
             'ean': row[6],
             'code_attr': row[7],
-            'pvp': row[8] or 0.0
+            'XML_ID': row[8] or 0.0,
+            'category': row[9],
         }
 
         # Check mandatory values setted
@@ -48,6 +52,18 @@ class ProductImportWzd(models.TransientModel):
             VALUES (%s, %s, %s, %s)',
                         (virual_module_name, xml_id, res_id, model))
 
+
+    def _get_category_id(self, category_name = False, idx=0):
+        categ_id = False
+        if category_name:
+            categ_id = self.env['product.category'].search([('name', '=', category_name)])
+
+        categ_id = categ_id or self.categ_id
+        if not categ_id:
+            raise UserError(
+                _('The row %s has wrong category (%s) and not default category') % (str(idx), category_name))
+
+
     def _get_existing_template_obj(self, row_vals):
         """
         Get an existing template by xml id or return false
@@ -60,26 +76,43 @@ class ProductImportWzd(models.TransientModel):
             res = False
         return res
 
-    def _get_attr_value(self, row_vals, idx):
+    def _get_attr_value(self, row_vals, idx, categ_id):
         """
         Get an Existing attribute or raise an error
         """
-        domain = [('name', '=', row_vals['attr_name'])]
+
+        if not categ_id:
+            categ_id = self._get_category_id(row_vals['category'], idx)
+
+        domain = [('attribute_category_id', '=', categ_id.id), ('product_brand_id', '=', self.brand_id.id), '|', ('name', '=', row_vals['attr_name']), ('supplier_code', '=', row_vals['attr_name'])]
         attr = self.env['product.attribute'].search(domain)
         if not attr:
-            raise UserError(
-                _('Error getting attribute %s in line %s: \
-                   Not found') % (row_vals['attr_name'], str(idx)))
+            if self.create_attributes:
+                vals = {'attribute_category_id': categ_id.id, 'product_brand_id': self.brand_id.id, 'name': row_vals['attr_name']}
+                attr = self.env['product.attribute'].create(vals)
+            else:
+                raise UserError(
+                    _('Error getting attribute %s in line %s: \
+                       Not found') % (row_vals['attr_name'], str(idx)))
 
         domain = [
             ('attribute_id', '=', attr.id),
-            ('name', '=', row_vals['attr_val'])
+            '|', ('supplier_code', '=', row_vals['code_attr']), ('name', '=', row_vals['attr_val'])
         ]
         attr_value = self.env['product.attribute.value'].search(domain)
         if not attr_value:
-            raise UserError(
-                _('Error getting attribute %s with value %s in line %s: \
-                   Not found') % (attr.name, row_vals['attr_val'], str(idx)))
+            if self.create_attributes:
+
+                vals = {'attribute_id': attr.id,
+                        'name': row_vals['attr_val'],
+                        'supplier_code': row_vals['code_attr']}
+
+
+                attr_value = self.env['product.attribute.value'].create(vals)
+            else:
+                raise UserError(
+                    _('Error getting attribute %s with value %s in line %s: \
+                        Not found') % (attr.name, row_vals['attr_val'], str(idx)))
         return attr_value
 
     def _update_template_attributes(self, template, attr_value):
@@ -113,8 +146,9 @@ class ProductImportWzd(models.TransientModel):
         product_name = row_vals['name_temp'] + ' ' + row_vals['name_color'] + \
             row_vals['name_extra']
 
-        attr_value = self._get_attr_value(row_vals, idx)
-        code_attr = str(int(row_vals['code_attr'])) or str(attr_value.id)
+        categ_id = self._get_category_id(row_vals['category'], idx)
+        attr_value = self._get_attr_value(row_vals, idx, categ_id)
+        code_attr = str(int(row_vals['code_attr'])) or '%04d'%str(attr_value.id)
         default_code = row_vals['code_temp'] + '-' + code_attr
 
         # CREATE PRODUCT
@@ -140,7 +174,9 @@ class ProductImportWzd(models.TransientModel):
             template = product.product_tmpl_id
             template.write({
                 'ref_template': row_vals['code_temp'],
-                'importation_name': self.name
+                'importation_name': self.name,
+                'product_brand_id': self.product_brand_id.id,
+                'categ_id': categ_id.id
             })
 
             xml_id = row_vals['code_temp']

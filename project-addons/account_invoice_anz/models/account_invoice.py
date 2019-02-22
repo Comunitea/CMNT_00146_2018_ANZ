@@ -23,7 +23,7 @@ class AccountInvoice(models.Model):
         for inv in self:
             rule = rule_ids.get_payment_term_rule(inv)
             if rule:
-                message = "Change {} to {}".format(inv.payment_term_id.name, rule.new_payment_term_id.name)
+                message = "Se han cambiado los plazos de pago de {} a {}".format(inv.payment_term_id.name, rule.new_payment_term_id.name)
                 inv.payment_term_id = rule.new_payment_term_id
                 inv.message_post(message)
 

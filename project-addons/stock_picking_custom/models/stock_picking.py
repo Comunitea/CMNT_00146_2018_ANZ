@@ -4,6 +4,8 @@
 
 from odoo import _, api, models, fields
 from odoo.addons import decimal_precision as dp
+from odoo.exceptions import UserError
+
 
 class StockReturnPickingLine(models.TransientModel):
     _inherit = "stock.return.picking.line"
@@ -72,7 +74,7 @@ class StockPicking(models.Model):
 
     @api.multi
     def force_set_qty_done(self):
-        model = self._context.get('model_dest','stock.move')
+        model = self._context.get('model_dest', 'stock.move')
         for picking in self:
             if model == 'move.line':
                 picking.move_lines.force_set_qty_done()
@@ -82,7 +84,7 @@ class StockPicking(models.Model):
 
     @api.multi
     def force_set_assigned_qty_done(self):
-        model = self._context.get('model_dest','stock.move')
+        model = self._context.get('model_dest', 'stock.move')
         for picking in self:
             if model == 'move.line':
                 picking.move_lines.force_set_assigned_qty_done()
@@ -95,14 +97,10 @@ class StockPicking(models.Model):
         for picking in self:
             picking.move_line_ids.filtered(lambda x: x.state != 'done').write({'qty_done': 0})
             continue
-            if model == 'move.line':
-                picking.move_lines.filtered(lambda x: x.state != 'done').write({'qty_done': 0})
-            else:
-                picking.move_line_ids.write({'qty_done': 0})
 
     @api.multi
     def force_set_available_qty_done(self):
-        model = self._context.get('model_dest','stock.move')
+        model = self._context.get('model_dest', 'stock.move')
         for picking in self:
             if model == 'move.line':
                 picking.move_lines.force_set_available_qty_done()
@@ -111,12 +109,11 @@ class StockPicking(models.Model):
 
     @api.multi
     def action_done(self):
-        return super().action_done()
-        moves = self.filtered(lambda x: x.company_id.id == 3).mapped('move_lines').filtered(lambda x: x.state == 'done')
-        if moves:
-            self.env['procurement.group'].run_procurement_for_stock_move(moves,False, moves[0].company_id.id)
-        return res
 
+        if any(x.location_dest_id.name == 'Stock' for x in self.move_line_ids):
+            raise UserError ("No puedes colocar mercancía en stock")
+
+        return super().action_done()
 
     @api.multi
     def action_assign_batch(self):

@@ -10,8 +10,14 @@
                 </div>
                 <group>
                     <field name="name"/>
+
+                    <field name="brand_id"/>
+                    <field name="categ_id"/>
+                    <field name="create_attributes"/>
                     <field name="file" filename="filename"/>
                 </group>
+
+
 
                 <footer>
                     <button name="import_products" type="object" class="btn-primary" string="Import Products"/>
