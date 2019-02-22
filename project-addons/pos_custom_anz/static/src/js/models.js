@@ -38,5 +38,27 @@ odoo.define('pos.custom_anz.models', function (require) {
             return res;
         }
     });
-    
+
+    // Avoid load products with no stock
+    var rpc = require('web.rpc');
+    var PosModelSuper = models.PosModel.prototype;
+    models.PosModel = models.PosModel.extend({
+        load_server_data: function(){
+            var self = this;
+
+            var loaded = PosModelSuper.load_server_data.call(this);
+
+            var prod_model = _.find(this.models, function(model){
+                return model.model === 'product.product';
+            });
+            if (prod_model) {
+                prod_model.domain.push(['qty_available','>', 0]);
+                var loaded_super = prod_model.loaded;
+                prod_model.loaded = function(that, products){
+                    loaded_super(that, products);
+                };
+                return loaded;
+            }
+        },
+    });
 });
