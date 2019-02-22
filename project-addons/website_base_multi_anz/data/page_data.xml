@@ -5,9 +5,9 @@
             <!--Delete Default Pages-->
             <delete id="website.homepage_page" model="website.page"/>
             <delete id="website.aboutus_page" model="website.page"/>
-            <delete id="terms_page" model="website.page"/>
-            <delete id="privacy_page" model="website.page"/>
-            <delete id="advise_page" model="website.page"/>
+            <delete id="website_legal_page.terms_page" model="website.page"/>
+            <delete id="website_legal_page.privacy_page" model="website.page"/>
+            <delete id="website_legal_page.advise_page" model="website.page"/>
 
         </data>
 </odoo>
