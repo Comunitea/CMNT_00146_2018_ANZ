@@ -11,6 +11,7 @@
             <field name="arch" type="xml">
                 <group name="social_media" position="inside">
                     <field name="social_instagram"/>
+                    <field name="email"/>
                 </group>
             </field>
         </record>

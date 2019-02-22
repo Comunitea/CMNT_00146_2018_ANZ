@@ -12,21 +12,22 @@ from odoo.addons.seo_base.models.settings import _default_website
 class Website(models.Model):
     _inherit = 'website'
 
-    social_twitter = fields.Char(related=False)
-    social_facebook = fields.Char(elated=False)
-    social_github = fields.Char(related=False)
-    social_linkedin = fields.Char(related=False)
-    social_youtube = fields.Char(related=False)
-    social_googleplus = fields.Char(related=False)
-    social_instagram = fields.Char(related=False)
-    email = fields.Char(string='Website Email', related=False)
+    social_twitter = fields.Char(related=False, store=True)
+    social_facebook = fields.Char(related=False, store=True)
+    social_github = fields.Char(related=False, store=True)
+    social_linkedin = fields.Char(related=False, store=True)
+    social_youtube = fields.Char(related=False, store=True)
+    social_googleplus = fields.Char(related=False, store=True)
+    social_instagram = fields.Char(string='Instagram Account')
+    email = fields.Char(string='Website Email')
 
 
 class ResConfigSettings(models.TransientModel):
     _inherit = 'res.config.settings'
 
     website_id = fields.Many2one('website', string="website", default=_default_website, required=True)
-    social_instagram = fields.Char(string='Website Email', related='website_id.social_instagram')
+    social_instagram = fields.Char(related='website_id.social_instagram')
+    email = fields.Char(related='website_id.email')
 
 
 
