@@ -117,9 +117,38 @@ class ProductTemplate(models.Model):
                     print('-------------> ---> La variante {} no tiene talla'.format(variant.oldname))
                 #else:
                 #    variant.write({'attribute_value_ids': [(5)]})
-
             if change_template:
                 tmpl._get_variant_suffix()
+
+    @api.multi
+    def refresh_xml_id_product_template(self):
+        def delete_xml_id(model):
+            sql = "delete from ir_model_data where model = '{}'".format(model)
+            self._cr.execute(sql)
+
+        def create_xml_id(xml_id, res_id, model):
+            virual_module_name = 'PT' if model == 'product.template' else 'PP'
+            vals = {
+                'module': virual_module_name,
+                'name': xml_id.lower(),
+                'res_id': res_id,
+                'model': model
+            }
+            self.env['ir.model.data'].create(vals)
+
+
+        model = 'product.template'
+        product_ids = self.env[model].search(['|', ('ref_template','=', ''), ('default_code', '!=', '')])
+        len_p = len(product_ids)
+        print("Actualizando {} registros".format(len_p))
+        i = 0
+        delete_xml_id(model)
+        for p in product_ids:
+            i += 1
+            print("Van {} de {}".format(i, len_p))
+            d_c = p.default_code or p.ref_template
+            create_xml_id(d_c, p.id, model)
+
 
 class ProductProduct(models.Model):
 
@@ -145,4 +174,34 @@ class ProductProduct(models.Model):
         return super(ProductProduct, self)._search(
             args, offset=offset, limit=limit, order=order,
             count=count, access_rights_uid=access_rights_uid)
+
+
+    @api.multi
+    def refresh_xml_id_product_product(self):
+        def delete_xml_id(model):
+            sql = "delete from ir_model_data where model = '{}'".format(model)
+            self._cr.execute(sql)
+
+        def create_xml_id(xml_id, res_id, model):
+            virual_module_name = 'PT' if model == 'product.template' else 'PP'
+            vals = {
+                'module': virual_module_name,
+                'name': xml_id.lower(),
+                'res_id': res_id,
+                'model': model
+            }
+            self.env['ir.model.data'].create(vals)
+
+
+
+        model = 'product.product'
+        product_ids = self.env['product.product'].search([('default_code','!=','')])
+        len_p = len(product_ids)
+        print ("Actualizando {} productos".format(len_p))
+        i=0
+        delete_xml_id(model)
+        for p in product_ids:
+            i+=1
+            print("Van {} de {}".format(i, len_p))
+            create_xml_id(p.default_code, p.id, model)
 
