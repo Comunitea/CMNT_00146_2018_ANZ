@@ -24,7 +24,7 @@
     <!-- Open Shop Menu -->
     <record id="open_shop_menu" model="website.menu">
         <field name="name">Open Your Shop</field>
-        <field name="url" rel="id_page_open_shop"/>
+        <field name="url">/page/open_shop</field>
         <field name="page_id" ref="id_page_open_shop"/>
         <field name="parent_id" ref="anzamar_main_menu"/>
         <field name="sequence" type="int">20</field>
@@ -35,7 +35,7 @@
     <!-- Open Shop Submenu -->
     <record id="open_shop_submenu_open" model="website.menu">
         <field name="name">Open Your Shop</field>
-        <field name="url" rel="id_page_open_shop.join('#open_section')"/>
+        <field name="url">/page/open_shop#open_section')"</field>
         <field name="parent_id" ref="open_shop_menu"/>
         <field name="sequence" type="int">10</field>
         <field name="website_id" ref="website_base_multi_anz.anzamar_website"/>
@@ -43,7 +43,7 @@
     </record>
     <record id="open_shop_submenu_steps" model="website.menu">
         <field name="name">Open Your Shop Steps</field>
-        <field name="url" rel="id_page_open_shop.join('#step_section')"/>
+        <field name="url">/page/open_shop#step_section</field>
         <field name="parent_id" ref="open_shop_menu"/>
         <field name="sequence" type="int">20</field>
         <field name="website_id" ref="website_base_multi_anz.anzamar_website"/>
@@ -51,7 +51,7 @@
     </record>
     <record id="open_shop_submenu_request" model="website.menu">
         <field name="name">Open Request</field>
-        <field name="url" rel="id_page_open_shop.join('#request_section')"/>
+        <field name="url">/page/open_shop#request_section</field>
         <field name="parent_id" ref="open_shop_menu"/>
         <field name="sequence" type="int">30</field>
         <field name="website_id" ref="website_base_multi_anz.anzamar_website"/>
@@ -91,7 +91,7 @@
     <!-- Anzamar Group Submenu -->
     <record id="group_submenu_group" model="website.menu">
         <field name="name">Anzamar Group</field>
-        <field name="url" rel="id_page_anzamar_group.join('#group_section')"/>
+        <field name="url">/page/anzamar_group#group_section</field>
         <field name="parent_id" ref="group_menu"/>
         <field name="sequence" type="int">10</field>
         <field name="website_id" ref="website_base_multi_anz.anzamar_website"/>
@@ -100,7 +100,7 @@
 
     <record id="group_submenu_presence" model="website.menu">
         <field name="name">National presence</field>
-        <field name="url" rel="id_page_anzamar_group.join('#presence_section')"/>
+        <field name="url">/page/anzamar_group#presence_section</field>
         <field name="parent_id" ref="group_menu"/>
         <field name="sequence" type="int">20</field>
         <field name="website_id" ref="website_base_multi_anz.anzamar_website"/>
@@ -219,7 +219,7 @@
     <!-- Anzamar Brands Submenus -->
     <record id="brand_submenu_umbro" model="website.menu">
         <field name="name">Umbro</field>
-        <field name="url" rel="id_page_brand_umbro"/>
+        <field name="url">/page/brands/umbro</field>
         <field name="page_id" ref="id_page_brand_umbro"/>
         <field name="parent_id" ref="brands_menu"/>
         <field name="sequence" type="int">10</field>
@@ -228,7 +228,7 @@
     </record>
     <record id="brand_submenu_point_sport" model="website.menu">
         <field name="name">Point Sport</field>
-        <field name="url" rel="id_page_brand_point_sport"/>
+        <field name="url">/page/brands/point-sport</field>
         <field name="page_id" ref="id_page_brand_point_sport"/>
         <field name="parent_id" ref="brands_menu"/>
         <field name="sequence" type="int">20</field>
@@ -237,7 +237,7 @@
     </record>
     <record id="brand_submenu_black_laces" model="website.menu">
         <field name="name">Black Laces</field>
-        <field name="url" rel="id_page_brand_black_laces"/>
+        <field name="url">/page/brands/blacklaces</field>
         <field name="page_id" ref="id_page_brand_black_laces"/>
         <field name="parent_id" ref="brands_menu"/>
         <field name="sequence" type="int">30</field>
@@ -246,7 +246,7 @@
     </record>
     <record id="brand_submenu_goalkers" model="website.menu">
         <field name="name">Goalkers</field>
-        <field name="url" rel="id_page_brand_goalkers"/>
+        <field name="url">/page/brands/goalkers</field>
         <field name="page_id" ref="id_page_brand_goalkers"/>
         <field name="parent_id" ref="brands_menu"/>
         <field name="sequence" type="int">40</field>
@@ -255,7 +255,7 @@
     </record>
     <record id="brand_submenu_feel_point" model="website.menu">
         <field name="name">Field Point</field>
-        <field name="url" rel="id_page_brand_feel_point"/>
+        <field name="url">/page/brands/feel-point</field>
         <field name="page_id" ref="id_page_brand_feel_point"/>
         <field name="parent_id" ref="brands_menu"/>
         <field name="sequence" type="int">50</field>
@@ -264,7 +264,7 @@
     </record>
     <record id="brand_submenu_skipping" model="website.menu">
         <field name="name">Skipping</field>
-        <field name="url" rel="id_page_brand_skipping"/>
+        <field name="url">/page/brands/skipping</field>
         <field name="page_id" ref="id_page_brand_skipping"/>
         <field name="parent_id" ref="brands_menu"/>
         <field name="sequence" type="int">60</field>
