@@ -176,9 +176,11 @@ class InvoiceTxtImport(models.Model):
     file_date = fields.Char("F. fichero")
     invoice_id = fields.Many2one('account.invoice', 'Factura')
     customer_invoice_id = fields.Many2one(related="invoice_id.customer_invoice_id")
+
     associate_name = fields.Char("Nombre importado", help="Nombre que aparece en la factura importada. Debe conincidir con el nombre del cliente externo, si lo hubiera")
     associate_id = fields.Many2one(related='partner_shipping_id.commercial_partner_id', string='Empresa asociado')
     partner_shipping_id = fields.Many2one('res.partner', string='Asociado', help="Cliente externo que se asocia al nombre que se importad de la factura")
+
     partner_vat = fields.Char("NIF Cliente")
     partner_id = fields.Many2one('res.partner', 'Proveedor')
 
@@ -238,9 +240,14 @@ class InvoiceTxtImport(models.Model):
 
         return super().write(vals)
 
+    @api.onchange('partner_shipping_id')
+    def onchange_partner_shipping_id(self):
+        self.associate_id = self.partner_shipping_id.commercial_partner_id
+
+
     @api.onchange('associate_id')
     def onchange_associate_id(self):
-        if self.partner_shipping_id:
+        if self.associate_id:
             self.account_position_id = self.associate_id.property_account_position_id
 
     def check_existing_txt(self):
@@ -315,6 +322,7 @@ class InvoiceTxtImport(models.Model):
             self.associate_id = self.partner_shipping_id.commercial_partner_id
             self.account_position_id = self.associate_id.property_account_position_id
 
+        self.get_reinvoice_rule_ids()
 
     def predict_encoding(self, file_path, n_lines=30):
         '''Predict a file's encoding using chardet'''
@@ -685,7 +693,8 @@ class InvoiceTxtImport(models.Model):
 
     def write_invoice_from_txt(self, txt_invoice_val, lineas):
         self.write(txt_invoice_val)
-        self.get_partner_refs()
+        if not self.partner_shipping_id:
+            self.get_partner_refs()
         self.invoice_line_txt_import_ids.unlink()
         for linea in lineas:
             product_id = self.get_product(linea, self.partner_id.id)
@@ -757,11 +766,11 @@ class InvoiceTxtImport(models.Model):
                     txt_message = '{} <li>{}</li>'.format(txt_message, message)
                     inv_message = '{} <li>{}</li>'.format(inv_message, message)
             else:
-                comment = "Corresponde a la factura nº {}, de fecha: {}. Albarán nº: {}".format(txt.supplier_invoice_num,
+                comment = "Corresponde a la factura de {}, nº {}, de fecha: {}. Albarán nº: {}".format(
+                                                                      txt.partner_id.name,
+                                                                      txt.supplier_invoice_num,
                                                                       txt.supplier_invoice_date,
                                                                       txt.supplier_picking_num)
-
-
             currency_id = txt.associate_id.property_product_pricelist.currency_id and txt.associate_id.property_product_pricelist.currency_id.id or txt.partner_id.property_product_pricelist.currency_id.id
 
             same_supplier_inv_num = self.env['account.invoice'].search([
@@ -802,6 +811,8 @@ class InvoiceTxtImport(models.Model):
 
             invoice_val = {
                 'type': self.type or 'in_invoice',
+                'partner_shipping_id': txt.partner_shipping_id.id,
+                'associate_shipping_id': txt.partner_shipping_id.id,
                 'partner_id': txt.partner_id.id or False,
                 'supplier_invoice_number': txt.supplier_invoice_num,
                 'reference': txt.supplier_invoice_num,
@@ -816,7 +827,6 @@ class InvoiceTxtImport(models.Model):
                 'refund_invoice_id': refund_invoice_id,
                 'payment_term_id': payment_term_id and payment_term_id.id,
                 'name': txt.supplier_invoice_num,
-                'partner_shipping_id': txt.partner_shipping_id.id,
                 'origin': txt.supplier_picking_num,
                 'comment': comment,
                 'value_date': txt.value_date,

@@ -29,10 +29,8 @@ class ReInvoiceRule(models.Model):
             domain = expression.normalize_domain(domain)
             domain = expression.AND([domain, [('partner_id', '=', False)]])
 
-        discount_ids = txt.invoice_line_txt_import_ids.mapped('descuento')
-        if discount_ids:
-            domain = expression.normalize_domain(domain)
-            domain = expression.AND(
-                [domain, [('supplier_discount', 'in', tuple(discount_ids))]])
         rule_ids = self.search(domain, order='partner_id asc, brand_id asc, supplier_discount desc, customer_discount desc, order_type asc')
+        discount_ids = txt.invoice_line_txt_import_ids.mapped('descuento')
+        rule_ids = rule_ids.filtered(lambda x:x.supplier_discount in discount_ids)
+        print ("{} {}".format(domain, rule_ids))
         return rule_ids

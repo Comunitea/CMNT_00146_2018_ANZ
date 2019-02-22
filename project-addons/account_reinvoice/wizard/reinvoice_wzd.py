@@ -68,10 +68,11 @@ class ReinvoiceWzd(models.TransientModel):
         return True
 
     def get_invoices_values(self, inv):
-        sale_type_id = inv.get_invoice_sale_type()
+        sale_type_id = self.sale_type_id
         partner_id = inv.associate_id
         partner_shipping_id = inv.associate_shipping_id or inv.associate_id.commercial_partner_id
-
+        if inv.associate_shipping_id and not inv.associate_shipping_id.sale_type:
+            inv.associate_shipping_id.sale_type = sale_type_id
         txt_value_date = inv.import_txt_id and inv.import_txt_id.value_date or inv.value_date or inv.date_invoice
         vals = {
                 'partner_id': partner_id.id,
@@ -90,8 +91,11 @@ class ReinvoiceWzd(models.TransientModel):
                 'fiscal_position_id': partner_id.commercial_partner_id.property_account_position_id.id,
                 'customer_invoice_id': False,
                 'value_date': txt_value_date,
-
-                }
+                'comment': "Corresponde a la factura de {}, nº {}, de fecha: {}. Albarán nº: {}".format(
+                    inv.partner_id.name,
+                    inv.supplier_invoice_number,
+                    inv.date_invoice,
+                    inv.origin)}
         return vals
 
     def get_invoices(self, invoices):
@@ -102,11 +106,11 @@ class ReinvoiceWzd(models.TransientModel):
         for inv in inv_ids:
             if inv.customer_invoice_id:
                 raise UserError(
-                    _('Invoice %s has related customer invoice') % inv.number or inv.reference or inv.name)
-
+                    _('La factura {} ya tiene una factura de cliente: {}'
+                      .format(inv.number or inv.reference or inv.name, inv.customer_invoice_id.name)))
             if not inv.associate_id:
                 raise UserError(
-                    _('Invoice %s has not an associate.') % inv.number or inv.reference)
+                    _('La factura {} no tiene asociado.') .format(inv.number or inv.reference))
 
             copy_vals = self.get_invoices_values(inv)
             inv_ass = inv.copy(copy_vals)
@@ -117,7 +121,6 @@ class ReinvoiceWzd(models.TransientModel):
                            'customer_invoice_id': False
                            })
             lineas = self._get_associated_invoice_lines(inv_ass, inv)
-
             if not lineas:
                 inv.message_post(body="Error al crear las líneas de factura. Comprueba las reglas de refactura")
                 inv_ass.unlink()
@@ -127,7 +130,7 @@ class ReinvoiceWzd(models.TransientModel):
                 created_invoices += inv_ass
                 inv.write({'customer_invoice_id': inv_ass.id})
                 inv_ass.check_payment_term()
-                inv_ass.message_post(body="Esta factura ha sido creada desde el fichero: <a href=# data-oe-model=invoice.txt.import data-oe-id=%d>%s</a>"% (inv.id, inv.name))
+                inv_ass.message_post(body="Esta factura ha sido creada desde la factura: <a href=# data-oe-model=account.invoice data-oe-id=%d>%s</a>"% (inv.id, inv.number))
 
         if not created_invoices:
             return False
@@ -154,5 +157,6 @@ class ReinvoiceWzd(models.TransientModel):
             browse(self._context.get('active_ids', []))
 
         created_invoices = self.get_invoices(invoices)
+
         if created_invoices:
             return self.action_view_invoice(created_invoices)
