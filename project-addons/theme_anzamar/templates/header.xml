@@ -17,7 +17,7 @@
                         <div class="col-md-2">
                             <div class="header-email">
                                 <i class="fa fa-envelope"/>
-                                <a t-field="res_company.email" t-att-href="'mailto:%s' %res_company.email"/>
+                                <a t-field="res_company.email" t-att-href="'mailto:%s' % website.email"/>
                             </div>
                         </div>
                         <div class="col-md-6"/>

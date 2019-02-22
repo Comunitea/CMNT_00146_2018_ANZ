@@ -39,7 +39,8 @@
         'Rubén Seijas <ruben@comunitea.com>',
     ],
     'depends': [
-        'module_multi_base_anz'
+        'portal',
+        'website_base_multi_anz'
     ],
     'data': [
         'data/theme_data.xml',
