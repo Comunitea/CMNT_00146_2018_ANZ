@@ -26,10 +26,7 @@
                 <field name="key">website.homepage</field>
                 <field name="arch" type="xml">
                     <t name="Home" priority="29" t-name="anzamar_homepage">
-                        <t t-call="website.layout">
-                            <t t-set="pageName" t-value="'homepage'"/>
-                            <div id="wrap" class="oe_structure oe_empty"/>
-                        </t>
+                        <t t-call="theme_anzamar.anzamar_homepage_content"/>
                     </t>
                 </field>
             </record>
@@ -37,6 +34,7 @@
                 <field name="website_published">True</field>
                 <field name="url">/</field>
                 <field name="view_id" ref="anzamar_homepage" />
+                <field name="website_ids" eval="[(6, 0, [ref('website_base_multi_anz.anzamar_website')])]"/>
             </record>
             <record id="anzamar_website" model="website">
                 <field name="homepage_id" ref="anzamar_homepage_page" />
