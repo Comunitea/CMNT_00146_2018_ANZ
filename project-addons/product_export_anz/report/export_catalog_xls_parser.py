@@ -15,12 +15,9 @@ class ExportCatalogXlsParser(models.AbstractModel):
     _inherit = 'report.report_xlsx.abstract'
 
     def generate_xlsx_report(self, workbook, data, objs):
-
         row_margin = 2
-
         page_rows = 50
         wzd = self.env['export.catalog.wzd'].browse(data['wzd_id'])
-
         scheduled_id = wzd.scheduled_id
         brand_id = wzd.brand_id or scheduled_id and scheduled_id.product_brand_id or False
         categ_id = wzd.categ_id
@@ -165,6 +162,7 @@ class ExportCatalogXlsParser(models.AbstractModel):
         template_len = 0
         for tmp_name in report_vals:
 
+
             tmp_dic = report_vals[tmp_name]
             c1 = xl_rowcol_to_cell(row+1, 0)
             c2 = xl_rowcol_to_cell(row+1, 2)
@@ -191,7 +189,6 @@ class ExportCatalogXlsParser(models.AbstractModel):
             # First row Values
             row += 2
 
-
             # Write template image
             tmp_obj = self.env['product.template'].browse(tmp_dic['tmp_id'])
             if catalog_id.image and tmp_obj.image_medium:
@@ -202,7 +199,6 @@ class ExportCatalogXlsParser(models.AbstractModel):
                     'y_scale': 0.2,
                     'x_offset': 60}
                 sheet.insert_image(row, 0, 'image_medium.png', img_dic)
-
 
             col = 3
             # Write attributes table
@@ -241,10 +237,6 @@ class ExportCatalogXlsParser(models.AbstractModel):
                 stocks_row = tmpl_row
                 sheet.write(stocks_row, col, 'STOCKS', format_header_row_tallas)
                 attr_values += [tmp_dic['stocks']]
-
-
-
-
 
             col = 4
             sum_col = 0
@@ -290,15 +282,27 @@ class ExportCatalogXlsParser(models.AbstractModel):
                         form_euros = '=' + total_cell + '*' + pvp_cell
                         total_col += 1
                         sheet.write_formula(row_val, total_col, form_euros, money_with_border)
-
                 sum_row += 1
                 sum_col = 0
                     # total %
 
             if catalog_id.show_per_cent and catalog_id.incomings and catalog_id.outgoings:
                 form_per_cent = '={}/{}'.format(total_out, total_in)
-                sheet.write_formula(row + sum_row - 1 , total_col + 1, form_per_cent, percent_with_border)
+                sheet.write_formula(row + sum_row - 1, total_col + 1, form_per_cent, percent_with_border)
                 sum_row += 1
+
+
+            if catalog_id.grouped:
+                grouped_purchase = tmp_dic['grouped_purchase']
+                grouped_sale = tmp_dic['grouped_sale']
+                grouped_months = tmp_dic['grouped_months']
+                grouped_col = col
+                grouped_row = sum_row
+                month_count = len(grouped_months)
+                for month in grouped_months:
+                    grouped_row+=1
+                    sheet.write_number(grouped_row, grouped_col, int(month), f_border)
+
 
 
 
@@ -309,7 +313,7 @@ class ExportCatalogXlsParser(models.AbstractModel):
                 page_row += template_len
                 if page_row + template_len > page_rows:
                     page_row = 1
-                    page_breakers.append(row -1)
+                    page_breakers.append(row - 1)
 
 
         #sheet.fit_to_pages(1, 0)
