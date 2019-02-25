@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <template id="umbro_homepage_content">
+        <t t-call="website.layout">
+            <div id="wrap">
+                <div class="container">
+
+                </div>
+            </div>
+        </t>
+    </template>
+
+</odoo>
