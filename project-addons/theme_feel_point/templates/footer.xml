@@ -13,10 +13,8 @@
                 <div class="col-md-4">
                     <h4>Our Group</h4>
                     <ul class="list-unstyled">
-                        <li><a href="${base.main_company.anzamar_website.base_url}">Anzamar Group - base_url</a></li>
-                        <li><a href="${base.main_company.anzamar_website.website}">Anzamar Group - website</a></li>
-                        <li><a href="${anzamar_website.base_url}">Anzamar Group - website - base_url</a></li>
-                        <li><a href="${object.company_id.website}">Anzamar Group - website - company</a></li>
+                        <t t-set="group_anz" t-value="request.env['res.company'].search([('name', 'ilike', 'Anzamar')])"/>
+                        <li><a t-att-href="group_anz.website" target="_blank" t-esc="group_anz.name"/></li>
                     </ul>
                 </div>
                 <div class="col-md-4">
