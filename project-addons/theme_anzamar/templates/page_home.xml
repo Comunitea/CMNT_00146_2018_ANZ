@@ -72,21 +72,8 @@
                         </div>
                     </div>
                     <!-- Latest news section -->
-                    <t t-set="latest_posts" t-value="website.latest_posts(website, 3, 3)"/>
-                    <div class="row mt32 mb32 latest_posts-wrap" t-if="latest_posts">
-                        <div class="col-md-12 latest_posts-title">
-                            <h2 class="text-center mt32 mb32">Our latest news</h2>
-                        </div>
-                        <t t-set="col_md" t-value="latest_posts['col_md']"/>
-                        <t t-foreach="latest_posts['posts']" t-as="post">
-                            <t t-call="website_blog_base.wbb_latest_post"/>
-                        </t>
-                        <div class="col-md-12 latest_posts-all-posts">
-                            <div class="text-center">
-                                <a href="/blog" class="mt32 mb32 btn btn-default" style="font-size: 140%; font-weight: 600;">Read all our news</a>
-                            </div>
-                        </div>
-                    </div>
+                    <t t-set="latest_posts" t-value="website.latest_posts(3, 3, 'Our latest news', 'Read all our news')"/>
+                    <t t-call="website_blog_base.wbb_latest_post_wrap"/>
                 </div>
             </div>
         </t>
