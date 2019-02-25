@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <template id="theme_feel_point_website_footer_custom" inherit_id="website_multi_theme.auto_view_fee_website_footer_custom">
+        <xpath expr="//div[@id='footer']//div[hasclass('row')]" position="replace">
+            <div class="row">
+                <div class="col-md-4">
+                    <h4>Who we Are?</h4>
+                    <ul class="list-unstyled">
+                        <li><a href="#">Feel Point</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h4>Our Group</h4>
+                    <ul class="list-unstyled">
+                        <li><a href="${base.main_company.anzamar_website.base_url}">Anzamar Group - base_url</a></li>
+                        <li><a href="${base.main_company.anzamar_website.website}">Anzamar Group - website</a></li>
+                        <li><a href="${anzamar_website.base_url}">Anzamar Group - website - base_url</a></li>
+                        <li><a href="${object.company_id.website}">Anzamar Group - website - company</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h4>Information / Franchises</h4>
+                    <ul class="list-unstyled">
+                        <li><a href="#">Open Your Shop</a></li>
+                        <li><a href="#">Steps to Open Your Shop</a></li>
+                        <li><a href="#">Open Request</a></li>
+                    </ul>
+                </div>
+            </div>
+        </xpath>
+    </template>
+
+</odoo>

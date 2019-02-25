@@ -26,10 +26,10 @@
 ##############################################################################
 
 {
-    'name': 'Bemar Theme',
+    'name': 'Feel Point Theme',
     'version': '1.0',
-    'summary': 'FrontEnd customization for Bemar Website',
-    'description': 'This is a theme module that contains styles and layout elements for front-end part.',
+    'summary': 'FrontEnd customization for Feel Point Website',
+    'description': '',
     'category': 'Theme/Ecommerce',
     'author': 'Comunitea',
     'website': 'http://www.comunitea.com',
@@ -39,8 +39,7 @@
         'Rubén Seijas <ruben@comunitea.com>',
     ],
     'depends': [
-        'multi_company_base',
-        'module_multi_base_anz'
+        'website_base_multi_anz'
     ],
     'data': [
         'data/theme_data.xml',
@@ -49,6 +48,10 @@
         'templates/header.xml',
         'templates/footer.xml',
         'templates/pages.xml',
+        'templates/page_home.xml',
+        'templates/page_newsletter.xml',
+        'templates/page_open_shop.xml',
+        'templates/page_work_with_us.xml',
     ],
     'images': [
         '/static/description/icon.png',

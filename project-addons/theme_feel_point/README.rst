@@ -1,8 +1,8 @@
-Bemar Theme
-===========
+Feel Point Theme
+================
 
-FFrontEnd customization for Bemar Website
-------------------------------------------
+FrontEnd customization for Feel Point Website
+---------------------------------------------
 
 This is a theme module that contains styles and layout elements for front-end part.
 
