@@ -16,9 +16,9 @@ class AccountInvoice(models.Model):
     _inherit = 'account.invoice'
 
     associate_shipping_id = fields.Many2one(
-        'res.partner', 'Asociado / Externo', domain=[('customer', '=', True)])
+        'res.partner', 'Asociado / Externo', domain=[('customer', '=', True), ('external', '=', True)])
     associate_id = fields.Many2one(
-        'res.partner', 'Asociado / Empresa', domain=[('customer', '=', True)])
+        'res.partner', 'Asociado / Empresa', domain=[('customer', '=', True), ('company','=', True)])
 
     from_supplier = fields.Boolean('From supplier Invoice', copy=False,
                                    default=False)

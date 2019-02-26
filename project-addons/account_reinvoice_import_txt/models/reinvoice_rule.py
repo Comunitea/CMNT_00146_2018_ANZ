@@ -10,11 +10,10 @@ class ReInvoiceRule(models.Model):
 
 
     def get_reinvoice_rule_for_txt(self, txt):
+
         shipping_id = txt.partner_shipping_id
         supplier_id = txt.partner_id
-
         domain =[('affiliate', '=', shipping_id.affiliate), ('supplier_id', '=', supplier_id.id)]
-
         domain_data = [('supplier_id', '=', supplier_id.id), '|', ('supplier_code', '=', shipping_id.supplier_code),
                        ('supplier_str', '=', shipping_id.supplier_str)]
         supplier_data = self.env['res.partner'].search(domain_data, limit=1)
