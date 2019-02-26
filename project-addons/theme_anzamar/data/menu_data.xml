@@ -36,9 +36,6 @@
                 <field name="view_id" ref="anzamar_homepage" />
                 <field name="website_ids" eval="[(6, 0, [ref('website_base_multi_anz.anzamar_website')])]"/>
             </record>
-            <record id="anzamar_website" model="website">
-                <field name="homepage_id" ref="anzamar_homepage_page" />
-            </record>
 
         </data>
 </odoo>
