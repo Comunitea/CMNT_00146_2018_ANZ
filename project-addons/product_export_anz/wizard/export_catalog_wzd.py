@@ -62,7 +62,7 @@ class CatalogType(models.Model):
     total = fields.Boolean('Total')
     euros = fields.Boolean('€')
     show_per_cent = fields.Boolean('% en resumen')
-
+    grouped = fields.Boolean('Agrupar por meses compras y ventas')
 
 class ExportCatalogtWzd(models.TransientModel):
 
@@ -85,6 +85,50 @@ class ExportCatalogtWzd(models.TransientModel):
     product_template_ids = fields.Many2many('product.template', string="Lista de plantillas")
 
 
+    def get_grouped_moves(self, variant, company= False, done_qty = True):
+
+        if done_qty:
+            s_qty = 'product_uom_qty'
+            p_qty = 'product_qty'
+        else:
+            s_qty = 'qty_delivered'
+            p_qty = 'qty_received'
+
+        where = " and sol.product_id = {}".format(variant.id)
+        if self.date_start:
+            where = ' and {} and so.order_date >= {}'.format(where, self.date_start)
+        if self.date_end:
+            where = ' and {} and so.order_date < {}'.format(where, self.date_end)
+        if company:
+            where = ' and {} and so.company_id = {}'.format(where, company )
+        sql = "select extract(month from so.date_order) as month, sum(sol.{}) from sale_order_line sol join sale_order so on so.id = sol.order_id where so.state in ('sale', 'done') {} " \
+              "group by extract(month from so.date_order), product_id".format(s_qty, where)
+
+        self._cr.execute(sql)
+        sale_lines = self._cr.fetchall()
+
+        where = " and pol.product_id = {}".format(variant.id)
+        if self.date_start:
+            where = ' and {} and po.order_date >= {}'.format(where, self.date_start)
+        if self.date_end:
+            where = ' and {} and po.order_date < {}'.format(where, self.date_end)
+        if company:
+            where = ' and {} and po.company_id = {}'.format(where, company)
+        sql = "select extract(month from po.date_order) as month, sum(pol.{}) from purchase_order_line pol join purchase_order po on po.id = pol.order_id where po.state in ('purchase', 'done') {} " \
+              "group by extract(month from po.date_order), product_id".format(p_qty, where)
+
+        self._cr.execute(sql)
+        purchase_lines = self._cr.fetchall()
+        months =[]
+        for row in purchase_lines:
+            months.append(row[0])
+        for row in sale_lines:
+            months.append(row[0])
+
+
+        months = list(set(months))
+        print("Meses: {}".format(months))
+        return sale_lines, purchase_lines, months
 
     def get_variant_sales(self, variant):
         domain = [
@@ -99,6 +143,7 @@ class ExportCatalogtWzd(models.TransientModel):
         lines = self.env['sale.order.line'].search(domain)
         res = 0
         for l in lines:
+
             res += l.product_uom_qty
         return res
 
@@ -168,7 +213,6 @@ class ExportCatalogtWzd(models.TransientModel):
             False, False, False,
             from_date=self.date_start, to_date=self.date_end)
 
-
         idx = 0
         tot = len(templates)
         for tmp in templates:
@@ -186,6 +230,9 @@ class ExportCatalogtWzd(models.TransientModel):
                 'outgoings': [],
                 'stocks': [],
                 'percent': 0.00,
+                'grouped_sale': [],
+                'grouped_purchase': [],
+                'grouped_months': []
 
             }
             sales=purchases=incomings=outgoings=stocks=0
@@ -194,6 +241,9 @@ class ExportCatalogtWzd(models.TransientModel):
                 if variant.attribute_value_ids:
                     attr_name = variant.attribute_value_ids[0].name
                 res[tmp.name]['attr_names'].append(attr_name)
+                if self.catalog_type_id.grouped:
+                    res[tmp.name]['grouped_sale'], res[tmp.name]['grouped_purchase'], res[tmp.name]['grouped_months'] = self.get_grouped_moves(variant)
+
                 if self.catalog_type_id.sales:
                     sales = self.get_variant_sales(variant)
                     res[tmp.name]['sales'].append(sales)
