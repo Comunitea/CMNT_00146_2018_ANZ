@@ -3,29 +3,7 @@
 
     <template id="theme_feel_point_website_footer_custom" inherit_id="website_multi_theme.auto_view_fee_website_footer_custom">
         <xpath expr="//div[@id='footer']//div[hasclass('row')]" position="replace">
-            <div class="row">
-                <div class="col-md-4">
-                    <h4>Who we Are?</h4>
-                    <ul class="list-unstyled">
-                        <li><a href="#">Feel Point</a></li>
-                    </ul>
-                </div>
-                <div class="col-md-4">
-                    <h4>Our Group</h4>
-                    <ul class="list-unstyled">
-                        <t t-set="group_anz" t-value="request.env['res.company'].search([('name', 'ilike', 'Anzamar')])"/>
-                        <li><a t-att-href="group_anz.website" target="_blank" t-esc="group_anz.name"/></li>
-                    </ul>
-                </div>
-                <div class="col-md-4">
-                    <h4>Information / Franchises</h4>
-                    <ul class="list-unstyled">
-                        <li><a href="#">Open Your Shop</a></li>
-                        <li><a href="#">Steps to Open Your Shop</a></li>
-                        <li><a href="#">Open Request</a></li>
-                    </ul>
-                </div>
-            </div>
+            <t t-call="theme_anzamar.custom_footer"/>
         </xpath>
     </template>
 

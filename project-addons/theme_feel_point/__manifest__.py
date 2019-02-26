@@ -30,7 +30,7 @@
     'version': '1.0',
     'summary': 'FrontEnd customization for Feel Point Website',
     'description': '',
-    'category': 'Theme/Ecommerce',
+    'category': 'Theme',
     'author': 'Comunitea',
     'website': 'http://www.comunitea.com',
     'license': 'AGPL-3',
@@ -39,8 +39,7 @@
         'Rubén Seijas <ruben@comunitea.com>',
     ],
     'depends': [
-        'website_base_multi_anz',
-        'website_blog_base',
+        'website_base_multi_anz'
     ],
     'data': [
         'data/theme_data.xml',
