@@ -1,4 +1,12 @@
 footer {
+    background: url("/theme_anzamar/static/img/anzamar/footer-bg.jpg") no-repeat center center /cover #000;
+    color: @white;
+    & a {
+        color: @white;
+        &:hover {
+            color: @color-dark;
+        }
+    }
     & #footer {
         & ul.list-unstyled {
             & li {
@@ -17,5 +25,8 @@ footer {
                 }
             }
         }
+    }
+    & .text-muted {
+        color: @white;
     }
 }
