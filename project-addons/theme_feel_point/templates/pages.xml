@@ -2,48 +2,30 @@
 <odoo noupdate="1">
 
     <!-- ======================================= Page Open Your Shop ======================================= -->
+
+    <!--Template Open Your Shop-->
     <template id="page_open_shop">
         <t t-call="website.layout">
             <div id="wrap">
-                <div class="container">
-                    <section id="open_section">
-                        <h1>Open Your Shop</h1>
-                        <h2>Instructions to open your shop with Anzamar Group</h2>
-                        <p>These are the instructions:</p>
-                        <p>...</p>
-                    </section>
-                    <section id="step_section">
-                        <h1>Open Your Shop Steps</h1>
-                        <h2>Steps to open your shop with Anazamar Group</h2>
-                        <p>These are the instructions:</p>
-                        <p>...</p>
-                    </section>
-                    <section id="request_section">
-                        <h1>Open Request</h1>
-                        <h2>Form to open your shop with Anzamar Group</h2>
-                        <p>These are the requirements:</p>
-                        <p>...</p>
-                    </section>
-                    <!-- Snippets' area -->
-                    <div class="oe_structure" />
-                </div>
+                <div class="container"/>
             </div>
         </t>
     </template>
 
-    <record id="page_open_shop_menu" model="website.page">
-         <field name="name">Open Your Shop</field>
-        <field name="website_id" ref="website_base_multi_anz.point_sport_website"/>
-         <field name="website_published">True</field>
-         <field name="url">/page/open_shop</field>
-         <field name="view_id" ref="page_open_shop"/>
+    <!--Page Open Your Shop-->
+    <record id="id_page_open_shop" model="website.page">
+        <field name="name">Open Your Shop</field>
+        <field name="website_published">True</field>
+        <field name="website_ids" eval="[(6, 0, [ref('website_base_multi_anz.feel_point_website')])]"/>
+        <field name="url">/page/open_shop</field>
+        <field name="view_id" ref="page_open_shop"/>
      </record>
 
     <!-- Open Shop Menu -->
     <record id="open_shop_menu" model="website.menu">
         <field name="name">Open Your Shop</field>
         <field name="url">/page/open_shop</field>
-        <field name="page_id" ref="page_open_shop_menu"/>
+        <field name="page_id" ref="id_page_open_shop"/>
         <field name="parent_id" ref="feel_point_main_menu"/>
         <field name="sequence" type="int">20</field>
         <field name="website_id" ref="website_base_multi_anz.feel_point_website"/>
@@ -53,7 +35,7 @@
     <!-- Open Shop Submenu -->
     <record id="open_shop_submenu_open" model="website.menu">
         <field name="name">Open Your Shop</field>
-        <field name="url">/page/open_shop#opensection</field>
+        <field name="url">/page/open_shop#open_section</field>
         <field name="parent_id" ref="open_shop_menu"/>
         <field name="sequence" type="int">10</field>
         <field name="website_id" ref="website_base_multi_anz.feel_point_website"/>
@@ -100,7 +82,7 @@
     </template>
 
     <!-- Work with Us Page -->
-    <record id="page_work_with_us" model="website.page">
+    <record id="id_page_work_with_us" model="website.page">
          <field name="name">Work with Us</field>
          <field name="website_ids" eval="[(6, 0, [ref('website_base_multi_anz.feel_point_website')])]"/>
          <field name="website_published">True</field>
