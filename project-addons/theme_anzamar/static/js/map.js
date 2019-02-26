@@ -17,11 +17,11 @@ function presenceInitMap() {
     // Add markers
     var marker1 = new google.maps.Marker({
             position: anzamar, map: map, label: 'A',
-            icon: 'http://localhost:8069/web/image/127945/32x32',
+            icon: '/theme_anzamar/static/img/place-marker.png',
             title: 'Anzamar, S.L.'})
         marker2 = new google.maps.Marker({
             position: comunitea, map: map, label: 'C',
-            icon: 'http://localhost:8069/web/image/127945/32x32',
+            icon: '/theme_anzamar/static/img/place-marker.png',
             title: 'Comunitea S.L.'})
 
     // Add marker click action
