@@ -13,21 +13,21 @@
                     </ol>
                     <div class="carousel-inner" role="listbox">
                         <div class="item active">
-                            <img class="img-responsive" src="/theme_feel_point/static/img/feel_point/first_slide.svg" alt="First slide"/>
+                            <img class="img-responsive" src="/theme_feel_point/static/img/feel_point/first_slide.png" alt="First slide"/>
                             <div class="carousel-caption">
                                 <h1>Abre tú tienda</h1>
                                 <h3>Revisa los pasos para abrir tu tienda</h3>
                             </div>
                         </div>
                         <div class="item">
-                            <img class="img-responsive" src="/theme_feel_point/static/img/feel_point/second_slide.svg" alt="Second slide"/>
+                            <img class="img-responsive" src="/theme_feel_point/static/img/feel_point/second_slide.png" alt="Second slide"/>
                             <div class="carousel-caption">
                                 <h1>Pasos para abrir tú tienda</h1>
                                 <h3>Fácil y sencillo</h3>
                             </div>
                         </div>
                         <div class="item">
-                            <img class="img-responsive" src="/theme_feel_point/static/img/feel_point/third_slide.svg" alt="Third slide"/>
+                            <img class="img-responsive" src="/theme_feel_point/static/img/feel_point/third_slide.png" alt="Third slide"/>
                             <div class="carousel-caption">
                                 <h1>Solicitud de Apertura</h1>
                                 <h3>Rellena nuestro formulario</h3>

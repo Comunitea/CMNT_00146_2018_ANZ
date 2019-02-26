@@ -11,21 +11,21 @@
                 </ol>
                 <div class="carousel-inner" role="listbox">
                     <div class="item active">
-                        <img class="img-responsive" src="/theme_feel_point/static/img/feel_point/first_slide.svg" alt="First slide"/>
+                        <img class="img-responsive" src="/theme_feel_point/static/img/feel_point/first_slide.png" alt="First slide"/>
                         <div class="carousel-caption">
                             <h1>Trabaja con nosotros</h1>
                             <h3>Hacemos equipo</h3>
                         </div>
                     </div>
                     <div class="item">
-                        <img class="img-responsive" src="/theme_feel_point/static/img/feel_point/second_slide.svg" alt="Second slide"/>
+                        <img class="img-responsive" src="/theme_feel_point/static/img/feel_point/second_slide.png" alt="Second slide"/>
                         <div class="carousel-caption">
                             <h1>Únete al equipo</h1>
                             <h3>Te sentirás como en casa</h3>
                         </div>
                     </div>
                     <div class="item">
-                        <img class="img-responsive" src="/theme_feel_point/static/img/feel_point/third_slide.svg" alt="Third slide"/>
+                        <img class="img-responsive" src="/theme_feel_point/static/img/feel_point/third_slide.png" alt="Third slide"/>
                         <div class="carousel-caption">
                             <h1>Expansión</h1>
                             <h3>Un nuevo mundo para tí</h3>

@@ -13,21 +13,21 @@
                         </ol>
                         <div class="carousel-inner" role="listbox">
                             <div class="item active">
-                                <img class="img-responsive" src="/theme_feel_point/static/img/feel_point/first_slide.svg" alt="First slide"/>
+                                <img class="img-responsive" src="/theme_feel_point/static/img/feel_point/first_slide.png" alt="First slide"/>
                                 <div class="carousel-caption">
                                     <h1>Team Wear</h1>
                                     <h3>Pensado especialmente para equipos</h3>
                                 </div>
                             </div>
                             <div class="item">
-                                <img class="img-responsive" src="/theme_feel_point/static/img/feel_point/second_slide.svg" alt="Second slide"/>
+                                <img class="img-responsive" src="/theme_feel_point/static/img/feel_point/second_slide.png" alt="Second slide"/>
                                 <div class="carousel-caption">
                                     <h1>Zapatillas</h1>
                                     <h3>Adaptadas a todas las necesidades</h3>
                                 </div>
                             </div>
                             <div class="item">
-                                <img class="img-responsive" src="/theme_feel_point/static/img/feel_point/third_slide.svg" alt="Third slide"/>
+                                <img class="img-responsive" src="/theme_feel_point/static/img/feel_point/third_slide.png" alt="Third slide"/>
                                 <div class="carousel-caption">
                                     <h1>Testil</h1>
                                     <h3>Nuevas lineas pensadas para tí</h3>
