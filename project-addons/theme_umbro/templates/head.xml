@@ -4,9 +4,7 @@
     <!-- Add custom styles -->
     <template id="theme_umb_website_assets_frontend" inherit_id="website_multi_theme.auto_assets_website_umb">
         <xpath expr="link[last()]" position="after">
-            <link href="/theme_umbro/static/css/_general.less" rel="stylesheet" type="text/less"/>
-            <link href="/theme_umbro/static/css/header.less" rel="stylesheet" type="text/less"/>
-            <link href="/theme_umbro/static/css/footer.less" rel="stylesheet" type="text/less"/>
+            <t t-call="theme_anzamar.custom_css"/>
         </xpath>
     </template>
 
