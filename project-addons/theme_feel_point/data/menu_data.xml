@@ -35,9 +35,6 @@
                 <field name="url">/</field>
                 <field name="view_id" ref="feel_point_homepage" />
             </record>
-            <record id="feel_point_website" model="website">
-                <field name="homepage_id" ref="feel_point_homepage_page" />
-            </record>
 
         </data>
 </odoo>

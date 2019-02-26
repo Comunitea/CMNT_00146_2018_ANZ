@@ -39,14 +39,17 @@
         'Rubén Seijas <ruben@comunitea.com>',
     ],
     'depends': [
-        'website_base_multi_anz'
+        'website_base_multi_anz',
+        'website_blog_base',
     ],
     'data': [
         'data/theme_data.xml',
         'data/menu_data.xml',
+        'data/page_data.xml',
         'templates/head.xml',
         'templates/header.xml',
         'templates/footer.xml',
+        'templates/breadcrumbs_bar.xml',
         'templates/pages.xml',
         'templates/page_home.xml',
         'templates/page_newsletter.xml',
