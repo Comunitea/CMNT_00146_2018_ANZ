@@ -24,10 +24,12 @@ class ProductTemplate(models.Model):
     pvp = fields.Float('PVP', digits=(16, 2))
     ref_template = fields.Char('Ref Template')
     importation_name = fields.Char('Importation name')
-    template_standard_price = fields.Float('Precio de coste', compute=_template_standard_price,
-        digits=dp.get_precision('Product Price'))
+    fields.Many2one('product.attribute')
     numero_de_variantes = fields.Integer('Numero de variantes')
-
+    sql_constraints = [
+        ("unique_template_ref", "UNIQUE(ref_template)",
+         "Cannot have more than one template with same code.")
+    ]
 
     @api.multi
     @api.onchange("attribute_line_ids")

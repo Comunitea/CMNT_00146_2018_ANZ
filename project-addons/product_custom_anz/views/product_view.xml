@@ -94,7 +94,7 @@
             </field>
             <field name="list_price" position="after">
                 <field name="pvp" widget="monetary" options="{'currency_field': 'currency_id', 'field_digits': True}"/>
-                <field name="template_standard_price" widget="monetary" options="{'currency_field': 'currency_id', 'field_digits': True}" groups="base.group_user" attrs="{'invisible': [('product_variant_count', '&lt;', 2)]}"/>
+                <!--field name="template_standard_price" widget="monetary" options="{'currency_field': 'currency_id', 'field_digits': True}" groups="base.group_user" attrs="{'invisible': [('product_variant_count', '&lt;', 2)]}"/-->
 
             </field>
         </field>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="view_product_tag_tag_ids" model="ir.ui.view">
+        <field name="name">product.tag.tag_ids</field>
+        <field name="model">product.tag</field>
+        <field name="inherit_id" ref="product_tags.product_tag_form"/>
+        <field name="arch" type="xml">
+            <field name="parent_id" position="after">
+                <field name="sup_tag_ids">
+                    <tree editable="bottom">
+                        <field name="name"/>
+                        <field name="partner_id"/>
+                    </tree>
+                </field>
+            </field>
+        </field>
+    </record>
+
+</odoo>
+
+
