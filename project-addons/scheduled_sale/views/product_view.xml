@@ -8,26 +8,26 @@
             <page name="sales" position="inside">
                 <group name="group_general">
                     <field name="scheduled_sale_id" domain="[('state', '=', 'draft')]" attrs="{'invisible': [('origin_scheduled_sale_id', '!=', False)]}"/>
-                    <field name="origin_scheduled_sale_id" readonly="1" attrs="{'invisible': [('origin_scheduled_sale_id', '=', False)]}"/>
+                    <field name="origin_scheduled_sale_id" string="Prog. inicial" readonly="1" attrs="{'invisible': [('origin_scheduled_sale_id', '=', False)]}"/>
                 </group>
             </page>
         </field>
 
      </record>
-
-     <record id="product_product_for_view_anz" model="ir.ui.view">
+    <delete id="scheduled_sale.product_product_for_view_anz" model="ir.ui.view"/>
+     <!--record id="product_product_for_view_anz" model="ir.ui.view">
         <field name="name">product.product.view.custom.anz</field>
         <field name="model">product.product</field>
         <field name="inherit_id" ref="product.product_normal_form_view"/>
         <field name="arch" type="xml">
            <page name="sales" position="inside">
                 <group name="group_general">
-                    <field name="scheduled_sale_id" domain="[('state', '=', 'draft')]" readonly="1" attrs="{'invisible': [('scheduled_sale_id', '=', False)]}"/><!-- readonly="1" attrs="{'invisible': [('scheduled_sale_id', '=', False)]}"/-->
-                    <field name="origin_scheduled_sale_id" readonly="1" attrs="{'invisible': [('origin_scheduled_sale_id', '=', False)]}"/>
+                    <field name="scheduled_sale_id" domain="[('state', '=', 'draft')]" readonly="1" attrs="{'invisible': [('scheduled_sale_id', '=', False)]}"/>
+                    <field name="origin_scheduled_sale_id" string="Prog. inicial"  readonly="1" attrs="{'invisible': [('origin_scheduled_sale_id', '=', False)]}"/>
                 </group>
 
             </page>
         </field>
-    </record>
+    </record-->
 </odoo>
 
