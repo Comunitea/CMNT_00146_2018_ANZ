@@ -4,9 +4,9 @@
     <template id="anzamar_homepage_content">
         <t t-call="website.layout">
             <div id="wrap">
+                <!-- Slider section -->
+                <t t-call="theme_anzamar.carousel_homepage"/>
                 <div class="container">
-                    <!-- Slider section -->
-                    <t t-call="theme_anzamar.carousel_homepage"/>
                     <!-- Brands section -->
                     <div class="row mt32 mb32">
                         <h2 class="text-center mt32 mb32">Brands of our group</h2>
