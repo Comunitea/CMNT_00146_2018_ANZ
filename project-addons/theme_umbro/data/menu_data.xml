@@ -36,8 +36,15 @@
                 <field name="view_id" ref="umbro_homepage" />
                 <field name="website_ids" eval="[(6, 0, [ref('website_base_multi_anz.umbro_website')])]"/>
             </record>
-            <record id="umbro_website" model="website">
-                <field name="homepage_id" ref="umbro_homepage_page" />
+
+            <!-- Contact us menu-->
+            <record id="umbro_menu_contactus" model="website.menu">
+                <field name="name">Contactus</field>
+                <field name="url">/contactus</field>
+                <field name="parent_id" ref="umbro_main_menu"/>
+                <field name="sequence" type="int">50</field>
+                <field name="website_id" ref="website_base_multi_anz.umbro_website"/>
+                <field name="website_published">True</field>
             </record>
 
         </data>

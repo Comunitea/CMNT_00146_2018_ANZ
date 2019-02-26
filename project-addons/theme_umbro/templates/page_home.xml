@@ -5,7 +5,7 @@
         <t t-call="website.layout">
             <div id="wrap">
                 <div class="container">
-
+                    <t t-call="theme_anzamar.carousel_homepage"/>
                 </div>
             </div>
         </t>
