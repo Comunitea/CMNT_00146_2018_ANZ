@@ -32,6 +32,7 @@
             </record>
             <record id="feel_point_homepage_page" model="website.page">
                 <field name="website_published">True</field>
+                <field name="website_ids" eval="[(6, 0, [ref('website_base_multi_anz.anzamar_website')])]"/>
                 <field name="url">/</field>
                 <field name="view_id" ref="feel_point_homepage" />
             </record>
