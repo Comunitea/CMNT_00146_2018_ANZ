@@ -3,24 +3,24 @@
     'name': "custom_documents_anz",
 
     'summary': """
-        Short (1 phrase/line) summary of the module's purpose, used as
-        subtitle on modules listing or apps.openerp.com""",
+        A futuro, añade unas pocas views
+	""",
 
     'description': """
-        Long description of module's purpose
+        POS.xml - Modify simplify invoice for POS
     """,
 
-    'author': "My Company",
-    'website': "http://www.yourcompany.com",
+    'author': "Juan Vázquez Moreno",
+    'website': "http://www.anzamar.com",
 
     # Categories can be used to filter modules in modules listing
     # Check https://github.com/odoo/odoo/blob/11.0/odoo/addons/base/module/module_data.xml
     # for the full list
     'category': 'Uncategorized',
-    'version': '0.1',
+    'version': '0.2',
 
     # any module necessary for this one to work correctly
-    'depends': ['base'],
+    'depends': ['point_of_sale'],
 
     # always loaded
     'data': [
@@ -32,4 +32,10 @@
     'demo': [
         'demo/demo.xml',
     ],
+	# add receipt
+	'qweb': [
+		'static/pos.xml',
+	],
+	
+	'installable': True,
 }
