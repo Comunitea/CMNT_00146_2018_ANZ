@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
 
+    <!-- Custom CSS -->
+    <template id="custom_css">
+        <link href="/theme_anzamar/static/css/_general.less" rel="stylesheet" type="text/less"/>
+        <link href="/theme_anzamar/static/css/header.less" rel="stylesheet" type="text/less"/>
+        <link href="/theme_anzamar/static/css/footer.less" rel="stylesheet" type="text/less"/>
+        <link href="/theme_anzamar/static/css/map.less" rel="stylesheet" type="text/less"/>
+    </template>
+
     <!-- Custom carousel for demo child-pages -->
     <template id="carousel_homepage">
         <div id="carousel_demo" class="carousel slide" data-ride="carousel">
@@ -75,7 +83,7 @@
                                    t-att-data-lang="lg[0]"
                                    class="js_change_lang"
                                    rel="nofollow">
-                                    <img t-att-src="'/theme_umbro/static/img/flags/flag_%s.png' % lg[0].split('_')[0]"
+                                    <img t-att-src="'/theme_anzamar/static/img/flags/flag_%s.png' % lg[0].split('_')[0]"
                                          t-att-title="lg[1].split('/').pop()"
                                          t-att-alt="lg[1].split('/').pop()"
                                          t-att-href="url_for(request.httprequest.path + '?' + keep_query(), lang=lg[0])"
