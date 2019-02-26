@@ -1,13 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <templates id="template" xml:space="preserve">
 
-    <!-- Barcode of sequence pos order to easy scan for a return -->
     <t t-extend="XmlReceipt">
+        <!-- Barcode of sequence pos order to easy scan for a return -->
         <t t-jquery="div.after-footer" t-operation="after">
              <t t-if='order.simplified_invoice'>
                 <barcode encoding="CODE39"><t t-esc="order.to_upper_case()"/></barcode>
             </t>
         </t>
+
+        <!-- Código de Juan para añaditr al footer -->
+		<t t-jquery='div.after-footer' t-operation='inner'>
+			<br/>
+			<span>
+Cambios y devoluciones maximo 15 dias
+excepto tara o defecto.
+No se admiten cambios y devoluciones en
+ropa interior y baño.
+Ticket regalo no admite devolucion en efectivo,
+consultar condiciones de cambio en el establecimiento.
+			</span>
+		</t>
     </t>
 
     <!-- Same changes a l10n_es_pos un Gift Ticket -->
