@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <!-- Add custom styles -->
+    <template id="theme_feel_point_website_assets_frontend" inherit_id="website_multi_theme.auto_assets_website_fee">
+        <xpath expr="link[last()]" position="after">
+            <t t-call="theme_anzamar.custom_css"/>
+        </xpath>
+    </template>
+
+</odoo>

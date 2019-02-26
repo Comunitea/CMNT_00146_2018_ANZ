@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+        <data noupdate="1">
+
+            <!--Create Company Grupo-->
+            <record id="group_company" model="res.company">
+                <field name="name">Grupo 2</field>
+                <field name="currency_id" ref="base.EUR"/>
+            </record>
+
+            <!--Create Company Anzamar-->
+            <!--No es necesario crearla ya que referencia como: ref="base.main_company"-->
+            <!--Pero si le añadimos datos fijos-->
+            <record id="base.main_company" model="res.company">
+                <field name="logo" type="base64" file="website_base_multi_anz/static/img/anzamar_logo.jpeg"/>
+                <field name="email">info@anzamar.com</field>
+                <field name="phone">952 23 90 00</field>
+            </record>
+
+
+            <!--Create Company Bemar-->
+            <record id="bemar_company" model="res.company">
+                <field name="name">Bemar Sport S.L. 2</field>
+                <field name="currency_id" ref="base.EUR"/>
+                <field name="parent_id" ref="group_company"/>
+                <field name="logo" type="base64" file="website_base_multi_anz/static/img/bemar_logo.png"/>
+                <field name="email">info@bemar.com</field>
+                <field name="phone">952 23 90 00</field>
+            </record>
+
+        </data>
+</odoo>

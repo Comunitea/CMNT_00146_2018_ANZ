@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <!-- Remove the product breadcrumb's bar -->
+    <template id="breadcrumbs_product_remove" inherit_id="website_multi_theme.auto_view_fee_website_sale_product">
+        <xpath expr="//ol[hasclass('breadcrumb')]" position="attributes">
+            <attribute name="t-if">True == False</attribute>
+        </xpath>
+    </template>
+
+</odoo>

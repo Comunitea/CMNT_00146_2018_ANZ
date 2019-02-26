@@ -1,13 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <templates id="template" xml:space="preserve">
 
-    <!-- Barcode of sequence pos order to easy scan for a return -->
     <t t-extend="XmlReceipt">
+        <!-- Barcode of sequence pos order to easy scan for a return -->
         <t t-jquery="div.after-footer" t-operation="after">
              <t t-if='order.simplified_invoice'>
                 <barcode encoding="CODE39"><t t-esc="order.to_upper_case()"/></barcode>
             </t>
         </t>
+
+        <!-- Código de Juan para añaditr al footer -->
+		<t t-jquery='div.after-footer' t-operation='inner'>
+			<br/>
+			<span>
+Cambios y devoluciones maximo 15 dias
+excepto tara o defecto.
+No se admiten cambios y devoluciones en
+ropa interior y baño.
+Ticket regalo no admite devolucion en efectivo,
+consultar condiciones de cambio en el establecimiento.
+			</span>
+		</t>
     </t>
 
     <!-- Same changes a l10n_es_pos un Gift Ticket -->
@@ -36,4 +49,67 @@
             </t>
         </t>
     </t>
+
+    <!-- Button to load more products -->
+    <t t-name="ListProductsButtonWidget">
+        <t t-if="widget.pos.config.iface_load_done_order">
+            <div class="header-button order-list-button">
+                <i class='fa fa-fw fa-search-plus'/>
+            </div>
+        </t>
+    </t>
+
+    <t t-name="ProductListScreenWidget">
+        <div class="clientlist-screen screen">
+            <div class="screen-content">
+                <section class="top-content">
+                    <span class='button back'>
+                        <i class='fa fa-angle-double-left'></i>
+                        Back
+                    </span>
+                    <span class='searchbox'>
+                        <input placeholder='Search Products' />
+                        <span class='search-clear'></span>
+                    </span>
+                    <span class='searchbox'></span>
+                </section>
+                <section class="full-content">
+                    <div class="window">
+                        <section class="subwindow">
+                            <div class="subwindow-container">
+                                <div class="subwindow-container-fix touch-scrollable scrollable-y">
+                                    <table class="client-list">
+                                        <thead>
+                                            <th name="th_pr_ref">Ref.</th>
+                                            <th name="th_pr_name">Name</th>
+                                            <th name="th_pr_stock">Barcode</th>
+                                            <th name="th_pr_price">Price</th>
+                                            <th name="th_pr_add"/>
+                                        </thead>
+                                        <tbody class="product-list-contents">
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </t>
+
+     <t t-name="ProductLine">
+        <tr class='product-line' t-att-data-id='product.id'>
+            <td name="td_pr_ref"><t t-esc='product.default_code' /></td>
+            <td name="td_pr_name"><t t-esc='product.name' /></td>
+            <td name="td_pr_stock"><t t-esc='product.barcode' /></td>
+            <td name="td_pr_price"><t t-esc='widget.format_currency(product.list_price)' /></td>
+            <td name="td_pr_add" t-att-data-productid="product.id">
+                <span class="button product-list-add" t-att-data-productid="product.id">
+                    <i class='fa fa-fw fa-check'/>
+                </span>
+            </td>
+        </tr>
+    </t>
+
 </templates>
