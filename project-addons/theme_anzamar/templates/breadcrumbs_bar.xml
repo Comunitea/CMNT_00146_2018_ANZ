@@ -3,9 +3,9 @@
 
     <!-- Add breadcrumb bar to the main frontend layout -->
     <template id="theme_anz_breadcrumbs_bar" inherit_id="portal.frontend_layout">
-        <xpath expr="//main/t" position="before">
+        <!--<xpath expr="//main/t" position="before">
             <t t-call="breadcrumbs_base.bcb_main_wrap"/>
-        </xpath>
+        </xpath>-->
     </template>
 
     <!-- Remove the product breadcrumb's bar -->
