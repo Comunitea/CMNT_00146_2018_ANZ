@@ -93,6 +93,7 @@
             <field name="url">/legal/advice</field>
             <field name="view_id" ref="website_legal_page.advice"/>
         </record>
+        <delete id="advise_page" model="website.page"/>
 
         <record id="privacy_page" model="website.page">
             <field name="website_published">True</field>
@@ -100,6 +101,7 @@
             <field name="url">/legal/privacy-policy</field>
             <field name="view_id" ref="website_legal_page.privacy-policy"/>
         </record>
+        <delete id="privacy_page" model="website.page"/>
 
         <record id="terms_page" model="website.page">
             <field name="website_published">True</field>
@@ -107,6 +109,26 @@
             <field name="url">/legal/terms-of-use</field>
             <field name="view_id" ref="website_legal_page.terms-of-use"/>
         </record>
+        <delete id="terms_page" model="website.page"/>
+
+        <!-- // Contact Us part -->
+
+        <record id="contactus_page" model="website.page">
+            <field name="website_published">True</field>
+            <field name="website_ids" eval="[(6, 0, [ref('website_base_multi_anz.anzamar_website')])]"/>
+            <field name="url">/lcontactus</field>
+            <field name="view_id" ref="website.contactus"/>
+        </record>
+        <delete id="contactus_page" model="website.page"/>
+
+        <record id="contactus_thanks" model="website.page">
+            <field name="website_published">True</field>
+            <field name="website_ids" eval="[(6, 0, [ref('website_base_multi_anz.anzamar_website')])]"/>
+            <field name="url">/contactus-thank-you</field>
+            <field name="view_id" ref="website_crm.contactus_thanks_ir_ui_view"/>
+        </record>
+        <delete id="contactus_thanks" model="website.page"/>
+
 
     </data>
 </odoo>

@@ -30,7 +30,7 @@
     'version': '1.0',
     'summary': 'FrontEnd customization for Anzamar Website',
     'description': '',
-    'category': 'Theme/Ecommerce',
+    'category': 'Theme',
     'author': 'Comunitea',
     'website': 'http://www.comunitea.com',
     'license': 'AGPL-3',
