@@ -9,6 +9,9 @@
         <xpath expr="//div[@id='wrapwrap']//div[hasclass('navbar')]" position="after">
             <t t-call="breadcrumbs_base.bcb_main_wrap"/>
         </xpath>
+        <xpath expr="//div[@id='wrapwrap']/header" position="attributes">
+            <attribute name="t-att-class">'homepage-header' if xmlid == 'website.homepage' else None</attribute>
+        </xpath>
     </template>
 
     <template id="theme_feel_logo_show" inherit_id="website_multi_theme.auto_view_anz_website_layout_logo_show">

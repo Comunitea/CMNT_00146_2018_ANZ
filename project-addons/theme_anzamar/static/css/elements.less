@@ -3,6 +3,14 @@ body {
     font-family: @roboto;
 }
 
+/* Links */
+a {
+    color: @color-dark;
+    &:hover, &:focus {
+        color: @color-light;
+    }
+}
+
 /* Buttons */
 .btn {
     border-radius: 0;
@@ -21,6 +29,12 @@ body {
 /* Carousel */
 #carousel_demo {
     height: 100vh;
+    & .carousel-caption {
+        margin-bottom: 5%;
+    }
+    & .carousel-indicators {
+        margin-bottom: 2%;
+    }
 }
 
 /* Other */
@@ -28,5 +42,5 @@ body {
     z-index: 199;
     position: absolute;
     width: 100%;
-    padding: 12px 0 8px 0;
+    padding: 6px 0 2px 0;
 }
