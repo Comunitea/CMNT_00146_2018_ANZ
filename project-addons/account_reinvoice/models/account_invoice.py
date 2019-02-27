@@ -18,7 +18,7 @@ class AccountInvoice(models.Model):
     associate_shipping_id = fields.Many2one(
         'res.partner', 'Asociado / Externo', domain=[('customer', '=', True), ('external', '=', True)])
     associate_id = fields.Many2one(
-        'res.partner', 'Asociado / Empresa', domain=[('customer', '=', True), ('company','=', True)])
+        'res.partner', 'Asociado / Empresa', domain=[('customer', '=', True), ('company_type','=', 'company')])
 
     from_supplier = fields.Boolean('From supplier Invoice', copy=False,
                                    default=False)
