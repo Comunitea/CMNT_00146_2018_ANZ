@@ -35,7 +35,7 @@
     <!-- Open Shop Submenu -->
     <record id="open_shop_submenu_open" model="website.menu">
         <field name="name">Open Your Shop</field>
-        <field name="url">/page/open_shop#open_section</field>
+        <field name="url">/page/open_shop</field>
         <field name="parent_id" ref="open_shop_menu"/>
         <field name="sequence" type="int">10</field>
         <field name="website_id" ref="website_base_multi_anz.anzamar_website"/>
@@ -91,7 +91,7 @@
     <!-- Anzamar Group Submenu -->
     <record id="group_submenu_group" model="website.menu">
         <field name="name">Anzamar Group</field>
-        <field name="url">/page/anzamar_group#group_section</field>
+        <field name="url">/page/anzamar_group</field>
         <field name="parent_id" ref="group_menu"/>
         <field name="sequence" type="int">10</field>
         <field name="website_id" ref="website_base_multi_anz.anzamar_website"/>

@@ -3,10 +3,10 @@
 
     <!-- Custom CSS -->
     <template id="custom_css">
-        <link href="/theme_anzamar/static/css/_general.less" rel="stylesheet" type="text/less"/>
         <link href="/theme_anzamar/static/css/elements.less" rel="stylesheet" type="text/less"/>
         <link href="/theme_anzamar/static/css/header.less" rel="stylesheet" type="text/less"/>
         <link href="/theme_anzamar/static/css/footer.less" rel="stylesheet" type="text/less"/>
+        <link href="/theme_anzamar/static/css/blog.less" rel="stylesheet" type="text/less"/>
         <link href="/theme_anzamar/static/css/map.less" rel="stylesheet" type="text/less"/>
     </template>
 
@@ -55,7 +55,7 @@
 
     <!-- Custom header for demo child-pages -->
     <template id="custom_header">
-        <div groups="website.group_website_publisher" class="clearfix mt32"/>
+        <div groups="website.group_website_publisher" class="clearfix mt32 header-fixed-margin"/>
         <div class="wp-contact-navbar">
             <div class="container contact-navbar">
                 <div class="row">
