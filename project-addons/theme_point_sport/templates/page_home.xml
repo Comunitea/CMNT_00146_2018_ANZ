@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <template id="point_sport_homepage_content">
+        <t t-call="website.layout">
+            <div id="wrap">
+                <!-- Slider section -->
+                <div id="carousel_do_not_panic" class="carousel slide" data-ride="carousel">
+                    <div class="carousel-inner" role="listbox">
+                        <div class="item active">
+                            <img class="img-responsive" src="/theme_point_sport/static/img/steel-working.png" alt="First slide"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="container">
+                    <!-- Content section -->
+                </div>
+            </div>
+        </t>
+    </template>
+
+</odoo>
