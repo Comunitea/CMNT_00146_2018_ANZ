@@ -19,7 +19,7 @@
         <field name="website_ids" eval="[(6, 0, [ref('website_base_multi_anz.anzamar_website')])]"/>
         <field name="url">/page/open_shop</field>
         <field name="view_id" ref="page_open_shop"/>
-     </record>
+    </record>
 
     <!-- Open Shop Menu -->
     <record id="open_shop_menu" model="website.menu">
@@ -71,12 +71,12 @@
 
     <!--Anzamar Group Pages -->
     <record id="id_page_anzamar_group" model="website.page">
-         <field name="name">Anzamar Group</field>
-         <field name="website_ids" eval="[(6, 0, [ref('website_base_multi_anz.anzamar_website')])]"/>
-         <field name="website_published">True</field>
-         <field name="url">/page/anzamar_group</field>
-         <field name="view_id" ref="page_anzamar_group"/>
-     </record>
+        <field name="name">Anzamar Group</field>
+        <field name="website_ids" eval="[(6, 0, [ref('website_base_multi_anz.anzamar_website')])]"/>
+        <field name="website_published">True</field>
+        <field name="url">/page/anzamar_group</field>
+        <field name="view_id" ref="page_anzamar_group"/>
+    </record>
 
     <!-- Anzamar Group Menu -->
     <record id="group_menu" model="website.menu">
@@ -165,7 +165,7 @@
         <field name="website_ids" eval="[(6, 0, [ref('website_base_multi_anz.anzamar_website')])]"/>
         <field name="url">/page/brands/umbro</field>
         <field name="view_id" ref="page_brand_umbro"/>
-     </record>
+    </record>
 
     <record id="id_page_brand_point_sport" model="website.page">
         <field name="name">Point Sport</field>
@@ -173,7 +173,7 @@
         <field name="website_ids" eval="[(6, 0, [ref('website_base_multi_anz.anzamar_website')])]"/>
         <field name="url">/page/brands/point-sport</field>
         <field name="view_id" ref="page_brand_point_sport"/>
-     </record>
+    </record>
 
     <record id="id_page_brand_black_laces" model="website.page">
         <field name="name">Black Laces</field>
@@ -181,7 +181,7 @@
         <field name="website_ids" eval="[(6, 0, [ref('website_base_multi_anz.anzamar_website')])]"/>
         <field name="url">/page/brands/blacklaces</field>
         <field name="view_id" ref="page_brand_black_laces"/>
-     </record>
+    </record>
 
     <record id="id_page_brand_goalkers" model="website.page">
         <field name="name">Goalkers</field>
@@ -189,7 +189,7 @@
         <field name="website_ids" eval="[(6, 0, [ref('website_base_multi_anz.anzamar_website')])]"/>
         <field name="url">/page/brands/goalkers</field>
         <field name="view_id" ref="page_brand_goalkers"/>
-     </record>
+    </record>
 
     <record id="id_page_brand_feel_point" model="website.page">
         <field name="name">Feel Point</field>
@@ -197,7 +197,7 @@
         <field name="website_ids" eval="[(6, 0, [ref('website_base_multi_anz.anzamar_website')])]"/>
         <field name="url">/page/brands/feel-point</field>
         <field name="view_id" ref="page_brand_feel_point"/>
-     </record>
+    </record>
 
     <record id="id_page_brand_skipping" model="website.page">
         <field name="name">Skipping</field>
@@ -205,7 +205,7 @@
         <field name="website_ids" eval="[(6, 0, [ref('website_base_multi_anz.anzamar_website')])]"/>
         <field name="url">/page/brands/skipping</field>
         <field name="view_id" ref="page_brand_umbro"/>
-     </record>
+    </record>
 
     <!-- Anzamar Brands Menu -->
     <record id="brands_menu" model="website.menu">
@@ -297,12 +297,12 @@
 
     <!-- Work with Us Page -->
     <record id="id_page_work_with_us" model="website.page">
-         <field name="name">Work with Us</field>
-         <field name="website_ids" eval="[(6, 0, [ref('website_base_multi_anz.anzamar_website')])]"/>
-         <field name="website_published">True</field>
-         <field name="url">/page/page_work_with_us</field>
-         <field name="view_id" ref="page_work_with_us"/>
-     </record>
+        <field name="name">Work with Us</field>
+        <field name="website_ids" eval="[(6, 0, [ref('website_base_multi_anz.anzamar_website')])]"/>
+        <field name="website_published">True</field>
+        <field name="url">/page/page_work_with_us</field>
+        <field name="view_id" ref="page_work_with_us"/>
+    </record>
 
     <!-- ======================================= Page Newsletter ======================================= -->
 
@@ -317,11 +317,11 @@
 
     <!-- Newsletter Page -->
     <record id="id_page_newsletter" model="website.page">
-         <field name="name">Newsletter</field>
-         <field name="website_ids" eval="[(6, 0, [ref('website_base_multi_anz.anzamar_website')])]"/>
-         <field name="website_published">True</field>
-         <field name="url">/page/newsletter</field>
-         <field name="view_id" ref="page_newsletter"/>
-     </record>
+        <field name="name">Newsletter</field>
+        <field name="website_ids" eval="[(6, 0, [ref('website_base_multi_anz.anzamar_website')])]"/>
+        <field name="website_published">True</field>
+        <field name="url">/page/newsletter</field>
+        <field name="view_id" ref="page_newsletter"/>
+    </record>
 
- </odoo>
+</odoo>
