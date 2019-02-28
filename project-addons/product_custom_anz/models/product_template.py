@@ -7,6 +7,8 @@ class ProductTemplate(models.Model):
 
     _inherit = 'product.template'
 
+    type = fields.Selection(default='product')
+
     @api.depends('product_variant_ids', 'product_variant_ids.standard_price')
     def _template_standard_price(self):
         for template in self:
