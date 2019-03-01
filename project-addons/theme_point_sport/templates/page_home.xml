@@ -5,15 +5,10 @@
         <t t-call="website.layout">
             <div id="wrap">
                 <!-- Slider section -->
-                <div id="carousel_do_not_panic" class="carousel slide" data-ride="carousel">
-                    <div class="carousel-inner" role="listbox">
-                        <div class="item active">
-                            <img class="img-responsive" src="/theme_point_sport/static/img/steel-working.png" alt="First slide"/>
-                        </div>
-                    </div>
-                </div>
+                <t t-call="theme_anzamar.carousel_homepage"/>
+                <!-- Content section -->
                 <div class="container">
-                    <!-- Content section -->
+                    <t t-call="theme_anzamar.demo_page_content"/>
                 </div>
             </div>
         </t>

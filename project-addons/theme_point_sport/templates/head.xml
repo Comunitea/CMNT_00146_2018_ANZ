@@ -7,6 +7,9 @@
             <link href="/theme_point_sport/static/css/_general.less" rel="stylesheet" type="text/less"/>
             <t t-call="theme_anzamar.custom_css"/>
         </xpath>
+        <xpath expr="//script[last()]" position="after">
+            <script type="text/javascript" src="/theme_anzamar/static/js/main.js"/>
+        </xpath>
     </template>
 
 </odoo>
