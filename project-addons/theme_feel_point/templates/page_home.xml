@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
 
-    <template id="feel_point_homepage_content">
+    <template id="fee_homepage_content">
         <t t-call="website.layout">
             <div id="wrap">
+                <!-- Slider section -->
+                <t t-call="theme_anzamar.carousel_homepage"/>
+                <!-- Content section -->
                 <div class="container">
-                    <t t-call="theme_anzamar.carousel_homepage"/>
-                    <!-- Latest news section -->
-                    <t t-set="latest_posts" t-value="website.latest_posts(3, 3, 'Our latest news', 'Read all our news')"/>
-                    <t t-call="website_blog_base.wbb_latest_post_wrap"/>
+                    <t t-call="theme_anzamar.demo_page_content"/>
                 </div>
             </div>
         </t>
