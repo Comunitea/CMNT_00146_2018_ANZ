@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <data noupdate="1">
+
+        <record model="website.theme" id="theme_point_sport_multi">
+            <field name="name">Multiwebsite Point Sport Theme</field>
+            <field name="converted_theme_addon">theme_point_sport</field>
+        </record>
+
+    </data>
+
+</odoo>

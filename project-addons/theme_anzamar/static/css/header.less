@@ -1,8 +1,6 @@
 /* Header */
 header {
-    background-color: @color-bg;
-    position: fixed;
-    top: 0;
+    background-color: @color-bg-black;
     width: 100%;
     z-index: 99;
     & .wp-contact-navbar {
@@ -28,10 +26,14 @@ header {
         background: none;
     }
     & .navbar-default {
-        & .navbar-nav > li > a {
+        & .navbar-nav > li > a, & & .navbar-nav > li > a.dropdown-toggle {
             color: @color-current;
             background: none !important;
-            &:hover {
+            padding: 15px;
+            line-height: 20px;
+            border: none;
+            outline-offset: 0;
+            &:hover, &:focus {
                 color: @color-dark;
                 outline: 2px solid @white;
             }
@@ -44,6 +46,9 @@ header {
                 outline: 2px solid @white;
             }
         }
+        & .navbar-nav > li > .dropdown-menu {
+            margin-right: -3px;
+        }
     }
     & a.navbar-brand.logo {
         & img {
@@ -52,9 +57,22 @@ header {
         }
     }
     /* Fixed header part */
+    &.homepage-header {
+        background-color: @color-bg;
+        position: fixed;
+        top: 0;
+    }
     &.fixed {
+        position: fixed;
+        top: 0;
         padding-top: 5px;
         background-color: @color-bg-black;
+    }
+    & .header-fixed-margin {
+        display: none;
+    }
+    &.homepage-header .header-fixed-margin {
+        display: block;
     }
 }
 

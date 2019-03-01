@@ -1,10 +1,12 @@
-/* Hide top menu with scroll */
+/* Hide top menu part with scroll */
 $(window).on('scroll', function() {
-    if ($(window).scrollTop() > 200) {
+    if ($(window).scrollTop() > 135) {
+        $('.wp-contact-navbar').hide();
+        if(!$('header').hasClass('homepage-header')){$('.header-fixed-margin').show();}
         $('header').addClass('fixed');
-        $('.wp-contact-navbar').slideUp();
     } else {
         $('header').removeClass('fixed');
-        $('.wp-contact-navbar').slideDown();
+        if(!$('header').hasClass('homepage-header')){$('.header-fixed-margin').hide();}
+        $('.wp-contact-navbar').slideDown(100);
     }
 });

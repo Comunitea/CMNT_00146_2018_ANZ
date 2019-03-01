@@ -2,7 +2,7 @@
 function presenceInitMap() {
     // Set var
     var map_center = {lat: 40.352, lng: -4.155}
-        anzamar = {lat: 36.7052, lng: -4.4804}
+        anzamar = {lat: 36.705102, lng: -4.478554}
         comunitea = {lat: 43.0097, lng: -7.5709}
     // Map create
     var map = new google.maps.Map(document.getElementById('map'), {
@@ -16,11 +16,11 @@ function presenceInitMap() {
         infoWindow2 = new google.maps.InfoWindow({content: marker2Content})
     // Add markers
     var marker1 = new google.maps.Marker({
-            position: anzamar, map: map, label: 'A',
+            position: anzamar, map: map, /*label: '1',*/
             icon: '/theme_anzamar/static/img/place-marker.png',
             title: 'Anzamar, S.L.'})
         marker2 = new google.maps.Marker({
-            position: comunitea, map: map, label: 'C',
+            position: comunitea, map: map, /*label: '2',*/
             icon: '/theme_anzamar/static/img/place-marker.png',
             title: 'Comunitea S.L.'})
 
