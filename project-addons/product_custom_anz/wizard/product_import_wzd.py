@@ -190,7 +190,7 @@ class ProductImportWzd(models.TransientModel):
             'standard_price': row_vals['cost'],
         }
         if template:
-            vals.update(product_tmpl_id=template.id)
+            vals.update(product_tmpl_id=template.id, type='product')
         product = pp_pool.create(vals)
 
         # CREATE PRODUCT XMLID
