@@ -18,6 +18,8 @@
                 <!--<field name="social_googleplus"></field>-->
                 <!--<field name="social_linkedin"></field>-->
                 <!--<field name="social_instagram"></field>-->
+                <field name="base_url">http://_______domain_________/</field>
+                <field name="email">info@point-sport.com</field>
             </record>
 
             <!--Create Website Point Sport-->
@@ -35,6 +37,8 @@
                 <!--<field name="social_googleplus"></field>-->
                 <!--<field name="social_linkedin"></field>-->
                 <!--<field name="social_instagram"></field>-->
+                <field name="base_url">http://_______domain_________/</field>
+                <field name="email">info@point-sport.com</field>
             </record>
 
             <!--Create Website Umbro-->
@@ -44,12 +48,14 @@
                 <field name="company_id" ref="base.main_company"/>
                 <field name="user_id" ref="base.public_user"/>
                 <field name="multi_theme_id"/>
-                <field name="favicon" type="base64" file="website_base_multi_anz/static/img/favicon_umbro.jpg"/>
+                <field name="favicon" type="base64" file="website_base_multi_anz/static/img/favicon_umbro.png"/>
                 <!--<field name="social_twitter"></field>-->
                 <field name="social_facebook">https://www.facebook.com/UmbroIberia</field>
                 <!--<field name="social_googleplus"></field>-->
                 <!--<field name="social_linkedin"></field>-->
                 <field name="social_instagram">https://www.instagram.com/umbro</field>
+                <field name="base_url">http://_______domain_________/</field>
+                <field name="email">info@umbro.es</field>
             </record>
 
             <!--Create Website Black Laces-->
@@ -65,6 +71,8 @@
                 <!--<field name="social_googleplus"></field>-->
                 <!--<field name="social_linkedin"></field>-->
                 <field name="social_instagram">https://www.instagram.com/blacklaces.es</field>
+                <field name="base_url">http://_______domain_________/</field>
+                <field name="email">info@blacklaces.com</field>
             </record>
 
             <!--Create Website Goalkers-->
@@ -80,6 +88,8 @@
                 <!--<field name="social_googleplus"></field>-->
                 <!--<field name="social_linkedin"></field>-->
                 <field name="social_instagram">https://www.instagram.com/goalkers.es</field>
+                <field name="base_url">http://_______domain_________/</field>
+                <field name="email">info@goalkers.com</field>
             </record>
 
             <!--Create Website Feel Point-->
@@ -95,6 +105,8 @@
                 <!--<field name="social_googleplus"></field>-->
                 <!--<field name="social_linkedin"></field>-->
                 <field name="social_instagram">https://www.instagram.com/feelpoint.es</field>
+                <field name="base_url">http://_______domain_________/</field>
+                <field name="email">info@feelpoint.com</field>
             </record>
 
             <!--Create Website Skipping-->
@@ -110,6 +122,8 @@
                 <!--<field name="social_googleplus"></field>-->
                 <!--<field name="social_linkedin"></field>-->
                 <field name="social_instagram">https://www.instagram.com/skipping.es</field>
+                <field name="base_url">http://_______domain_________/</field>
+                <field name="email">info@skipping.com</field>
             </record>
 
         </data>

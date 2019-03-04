@@ -3,10 +3,10 @@
 
     <!-- Custom CSS -->
     <template id="custom_css">
-        <link href="/theme_anzamar/static/css/_general.less" rel="stylesheet" type="text/less"/>
         <link href="/theme_anzamar/static/css/elements.less" rel="stylesheet" type="text/less"/>
         <link href="/theme_anzamar/static/css/header.less" rel="stylesheet" type="text/less"/>
         <link href="/theme_anzamar/static/css/footer.less" rel="stylesheet" type="text/less"/>
+        <link href="/theme_anzamar/static/css/blog.less" rel="stylesheet" type="text/less"/>
         <link href="/theme_anzamar/static/css/map.less" rel="stylesheet" type="text/less"/>
     </template>
 
@@ -55,7 +55,7 @@
 
     <!-- Custom header for demo child-pages -->
     <template id="custom_header">
-        <div groups="website.group_website_publisher" class="clearfix mt32"/>
+        <div groups="website.group_website_publisher" class="clearfix mt32 header-fixed-margin"/>
         <div class="wp-contact-navbar">
             <div class="container contact-navbar">
                 <div class="row">
@@ -147,6 +147,151 @@
                     <li><i class="fa fa-envelope"/><a t-field="group_anz.email" t-att-href="'mailto:%s' %group_anz.email"/></li>
                 </ul>
                 <h4><a href="/page/page_work_with_us" alt="Work with Us Link" title="Work with Us">Work with us</a></h4>
+            </div>
+        </div>
+    </template>
+
+    <template id="empty_footer">
+         <div class="row">
+            <div class="col-md-4">
+                <h4 t-esc="website.name"/>
+                <ul class="list-unstyled">
+                    <li><a href="#">About us</a></li>
+                    <li><a href="#">Our shops</a></li>
+                    <li><a href="#">Contactus</a></li>
+                    <li><a href="#">Follow us</a></li>
+                </ul>
+                <h2 class="mt4">
+                    <a t-att-href="website.social_facebook" t-if="website.social_facebook" rel="nofollow" target="_blank"><i class="fa fa-facebook-square"/></a>
+                    <a t-att-href="website.social_twitter" t-if="website.social_twitter" rel="nofollow" target="_blank"><i class="fa fa-twitter"/></a>
+                    <a t-att-href="website.social_linkedin" t-if="website.social_linkedin" rel="nofollow" target="_blank"><i class="fa fa-linkedin"/></a>
+                    <a t-att-href="website.social_youtube" t-if="website.social_youtube" rel="nofollow" target="_blank"><i class="fa fa-youtube-play"/></a>
+                    <a t-att-href="website.social_googleplus" t-if="website.social_googleplus" rel="publisher" target="_blank"><i class="fa fa-google-plus-square"/></a>
+                    <a t-att-href="website.social_github" t-if="website.social_github" rel="nofollow" target="_blank"><i class="fa fa-github"/></a>
+                    <a t-att-href="website.social_instagram" t-if="website.social_instagram" rel="nofollow" target="_blank"><i class="fa fa-instagram"/></a>
+                </h2>
+            </div>
+            <div class="col-md-4">
+                <h4>Information / Franchises</h4>
+                <ul class="list-unstyled">
+                    <li><a href="#">Delivery</a></li>
+                    <li><a href="#">Payment method</a></li>
+                    <li><a href="#">Open Your Shop</a></li>
+                    <li><a href="#">Steps to Open Your Shop</a></li>
+                    <li><a href="#">Open Request</a></li>
+                </ul>
+            </div>
+            <div class="col-md-4">
+                <h4>Our Group</h4>
+                <ul class="list-unstyled">
+                    <t t-set="group_anz" t-value="request.env['res.company'].search([('name', 'ilike', 'Anzamar')])"/>
+                    <li><a t-att-href="group_anz.website" target="_blank" rel="nofollow" t-esc="group_anz.name"/></li>
+                    <li>
+                        <i class="fa fa-map-marker"/>
+                        <a href="https://goo.gl/maps/Hm78jxSEG5B2" target="_blank" alt="Company Link" title="Company" rel="nofollow">
+                            <t t-esc="group_anz.street"/>,
+                            <t t-esc="group_anz.zip"/>,
+                            <t t-esc="group_anz.city"/>
+                        </a>
+                    </li>
+                    <li><i class="fa fa-phone"/><a t-field="group_anz.phone" t-att-href="'tel:%s' %group_anz.phone"/></li>
+                    <li><i class="fa fa-envelope"/><a t-field="group_anz.email" t-att-href="'mailto:%s' %group_anz.email"/></li>
+                </ul>
+                <h4><a href="#" alt="Work with Us Link" title="Work with Us">Work with us</a></h4>
+            </div>
+        </div>
+    </template>
+
+    <template id="demo_page_content">
+        <div class="row mt64 mb64">
+            <div class="col-md-12 mb32">
+                <h1 class="text-center mb32" t-esc="main_object.name"/>
+                <p>
+                    Lorem ipsum dolor <strong>sit amet, consectetur adipiscing</strong> elit. Ut in mi pretium,
+                    tincidunt est vel, tincidunt nisi. Phasellus aliquet, leo vitae consectetur
+                    auctor, urna mauris <a href="#">viverra lorem</a>, in semper nisl odio ac sem.
+                </p>
+                <p>
+                    Curabitur a lacus sed mi venenatis euismod eget nec lectus.
+                    Etiam in fermentum neque. In facilisis aliquet venenatis.
+                    Nam a massa sit amet magna <strong>sollicitudin pharetra</strong> ut vel nunc.
+                    Maecenas accumsan massa vitae iaculis tincidunt.
+                </p>
+                <h4>Lorem Ipsum h4 title</h4>
+                <p>
+                    Etiam erat ex, <a href="#">posuere sollicitudin</a> leo sit amet, convallis aliquam sem.
+                    Nulla sed erat ullamcorper, malesuada sapien vitae, condimentum nulla.
+                    Suspendisse auctor mauris neque, quis ornare augue efficitur id.
+                </p>
+                <ul>
+                    <li>Orci varius natoque penatibus</li>
+                    <li>Maecenas a molestie massa, quis suscipit massa</li>
+                    <li>Curabitur interdum lacus nisi</li>
+                </ul>
+                <p>
+                    Vivamus nec mattis lacus, vitae dapibus magna.
+                </p>
+                <p>
+                    Nulla sed erat ullamcorper, malesuada sapien vitae, condimentum nulla.
+                    Suspendisse auctor mauris neque, quis ornare augue efficitur id.
+                    Etiam erat ex, <a href="#">posuere sollicitudin</a> leo sit amet, convallis aliquam sem.
+                </p>
+            </div>
+            <section class="clearfix mb64">
+                <div class="col-md-4">
+                    <img src="/theme_anzamar/static/img/home/slider-03.jpg" class="img-responsive img-thumbnail" alt="Image"/>
+                </div>
+                <div class="col-md-4">
+                    <img src="/theme_anzamar/static/img/home/slider-01.jpg" class="img-responsive img-thumbnail" alt="Image"/>
+                </div>
+                <div class="col-md-4">
+                    <img src="/theme_anzamar/static/img/home/slider-02.jpg" class="img-responsive img-thumbnail" alt="Image"/>
+                </div>
+            </section>
+            <div class="col-md-6">
+                <p>
+                    Lorem ipsum dolor <strong>sit amet, consectetur adipiscing</strong> elit. Ut in mi pretium,
+                    tincidunt est vel, tincidunt nisi. Phasellus aliquet, leo vitae consectetur
+                    auctor, urna mauris <a href="#">viverra lorem</a>, in semper nisl odio ac sem.
+                </p>
+                <div class="mt32 mb32">
+                    <iframe width="100%" height="360" frameborder="0" allowfullscreen="allowfullscreen"
+                            src="https://www.youtube.com/embed/u9Hf7NcFgTc"
+                            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" />
+                </div>
+            </div>
+            <div class="col-md-5 col-md-offset-1">
+                <p>
+                    Etiam erat ex, <a href="#">posuere sollicitudin</a> leo sit amet, convallis aliquam sem.
+                    Nulla sed erat ullamcorper, malesuada sapien vitae, condimentum nulla.
+                    Suspendisse auctor mauris neque, quis ornare augue efficitur id.
+                </p>
+                <h4>Lorem Ipsum h4 title</h4>
+                <ul>
+                    <li>Orci varius natoque penatibus</li>
+                    <li>Maecenas a molestie massa, quis suscipit massa</li>
+                    <li>Curabitur interdum lacus nisi</li>
+                </ul>
+                <p>
+                    Vivamus nec mattis lacus, vitae dapibus magna.
+                </p>
+                <h3>Lorem Ipsum section</h3>
+                <p>
+                    Curabitur a lacus sed mi venenatis euismod eget nec lectus.
+                    Etiam in fermentum neque. In facilisis aliquet venenatis.
+                    Nam a massa sit amet magna <strong>sollicitudin pharetra</strong> ut vel nunc.
+                    Maecenas accumsan massa vitae iaculis tincidunt.
+                </p>
+            </div>
+        </div>
+    </template>
+
+    <template id="demo_do_not_panic">
+        <div id="carousel_do_not_panic" class="carousel slide" data-ride="carousel" style="height: 100vh;">
+            <div class="carousel-inner" role="listbox">
+                <div class="item active">
+                    <img class="img-responsive" src="/theme_anzamar/static/img/home/steel-working.png" alt="First slide"/>
+                </div>
             </div>
         </div>
     </template>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <template id="point_sport_homepage_content">
+        <t t-call="website.layout">
+            <div id="wrap">
+                <!-- Slider section -->
+                <t t-call="theme_anzamar.carousel_homepage"/>
+                <!-- Content section -->
+                <div class="container">
+                    <t t-call="theme_anzamar.demo_page_content"/>
+                </div>
+            </div>
+        </t>
+    </template>
+
+</odoo>
