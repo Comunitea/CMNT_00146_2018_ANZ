@@ -721,6 +721,7 @@ class InvoiceTxtImport(models.Model):
 
     @api.multi
     def create_invoice_from_invoice_txt(self, create_associate=False):
+
         new_invoice_ids = self.env['account.invoice']
         for txt in self:
             txt.state = 'invoiced'
@@ -756,7 +757,9 @@ class InvoiceTxtImport(models.Model):
                 comment = 'Corresponde a la factura rectificativa nº {}, de fecha: {}. Factura original: {}'.format(txt.supplier_invoice_num,
                                                                       txt.supplier_invoice_date, txt.original_rectificatica)
 
-                refund_invoice_id = self.env['account.invoice'].search([('reference', '=', txt.original_rectificatica)])
+                if txt.original_rectificatica:
+                    refund_invoice_id = self.env['account.invoice'].search([('reference', '=', txt.original_rectificatica)])
+
                 if refund_invoice_id and len(refund_invoice_id) == 1:
                     txt.partner_shipping_id = refund_invoice_id.associate_id
                     txt.associate_name = refund_invoice_id.associate_id.name
