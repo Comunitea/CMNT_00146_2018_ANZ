@@ -2,3 +2,5 @@
 "access_product_supplier_tag_all","product_supplier_tag_all","model_product_supplier_tag",,1,0,0,0
 "access_product_supplier_tag_user","product_supplier_tag_user","model_product_supplier_tag","base.group_user",1,1,1,0
 
+"access_product_attribute_tag_all","product_attribute_tag_all","model_product_attribute_tag",,1,0,0,0
+"access_product_attribute_tag_user","product_attribute_tag_user","model_product_attribute_tag","base.group_user",1,1,1,0

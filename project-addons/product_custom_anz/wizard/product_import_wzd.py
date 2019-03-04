@@ -38,9 +38,12 @@ class ProductImportWzd(models.TransientModel):
             'cost': row[8] or 0.0,
             'pvp': row[9] or 0.0,
             'category': row[10],
-            'tag1': row[11],
-            'tag2': row[12],
-            'tag3': row[13],
+            'type': row[11],
+            'gender': row[12],
+            'age': row[13],
+            'tag1': row[14],
+            'tag2': row[15],
+            'tag3': row[16],
         }
 
         # Check mandatory values setted
@@ -83,18 +86,64 @@ class ProductImportWzd(models.TransientModel):
             res = False
         return res
 
+
+    def _get_product_att(self, value, type='type', create=False):
+        at_tag = self.env['product.attribute.tag']
+        domain = [('product_brand_id', '=', self.brand_id.id), ('type', '=', type), ('value', '=', value)]
+        tag = at_tag.search(domain, limit=1)
+        if not tag and create:
+            vals ={'product_brand_id': self.brand_id.id,
+                   'type': type,
+                   'value': value}
+
+            tag = at_tag.create(vals)
+            print ("Se ha creado la etiqueta de atributo: {}".format(tag.display_name))
+        return tag
+
+
     def _get_attr_value(self, row_vals, idx, categ_id):
         """
         Get an Existing attribute or raise an error
         """
+
+
         if not categ_id:
             categ_id = self._get_category_id(row_vals['category'], idx)
-        domain = [('attribute_category_id', '=', categ_id.id), ('product_brand_id', '=', self.brand_id.id), ('name', '=', row_vals['attr_name'])]
-        attr = self.env['product.attribute'].search(domain)
+
+        domain = [('product_brand_id', '=', self.brand_id.id)]
+
+        if row_vals['type']:
+            tag_type_id = self._get_product_att(row_vals['type'], 'type', True)
+            if tag_type_id:
+                domain += [('product_type_id', '=', tag_type_id.id)]
+            else:
+                domain += [('product_type_id', '=', False)]
+
+        if row_vals['gender']:
+            tag_gender_id = self._get_product_att(row_vals['gender'], 'gender', True)
+            if tag_gender_id:
+                domain += [('product_gender_id', '=', tag_gender_id.id)]
+            else:
+                domain += [('product_gender_id', '=', False)]
+
+        if row_vals['age']:
+            tag_age_id = self._get_product_att(row_vals['age'], 'age', True)
+            if tag_age_id:
+                domain += [('product_age_id', '=', tag_age_id.id)]
+            else:
+                domain += [('product_age_id', '=', False)]
+        print (domain)
+        attr = self.env['product.attribute'].search(domain, limit=1)
         if not attr:
             if self.create_attributes:
-                vals = {'attribute_category_id': categ_id.id, 'product_brand_id': self.brand_id.id, 'name': row_vals['attr_name']}
+                vals = {'attribute_category_id': categ_id.id,
+                        'product_brand_id': self.brand_id.id,
+                        'name': row_vals['attr_name'],
+                        'product_type_id': tag_type_id.id,
+                        'product_gender_id': tag_gender_id.id,
+                        'product_age_id': tag_age_id.id}
                 attr = self.env['product.attribute'].create(vals)
+                print("Se ha creado el atributo: {}".format(attr.display_name))
             else:
                 raise UserError(
                     _('Error getting attribute %s in line %s: \
@@ -110,6 +159,7 @@ class ProductImportWzd(models.TransientModel):
                         'name': row_vals['attr_val'],
                         'supplier_code': row_vals['code_attr'] or row_vals['attr_val']}
                 attr_value = self.env['product.attribute.value'].create(vals)
+                print("Se ha creado el valor {} para el atributo: {}".format(attr_value.display_name, attr.display_name))
             else:
                 raise UserError(
                     _('Error getting attribute %s with value %s in line %s: \
