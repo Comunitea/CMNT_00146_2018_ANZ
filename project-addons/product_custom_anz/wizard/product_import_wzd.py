@@ -187,12 +187,8 @@ class ProductImportWzd(models.TransientModel):
             'barcode': row_vals['ean'],
             'importation_name': self.name,
             'lst_price': row_vals['pvp'],
-<<<<<<< HEAD
-            'standard_price': row_vals['cost']
-=======
             'standard_price': row_vals['cost'],
             'type': 'product'
->>>>>>> upstream/master
         }
         if template:
             vals.update(product_tmpl_id=template.id)
