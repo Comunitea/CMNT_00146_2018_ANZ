@@ -757,7 +757,7 @@ class InvoiceTxtImport(models.Model):
                                                                       txt.supplier_invoice_date, txt.original_rectificatica)
 
                 refund_invoice_id = self.env['account.invoice'].search([('reference', '=', txt.original_rectificatica)])
-                if refund_invoice_id:
+                if refund_invoice_id and len(refund_invoice_id) == 1:
                     txt.partner_shipping_id = refund_invoice_id.associate_id
                     txt.associate_name = refund_invoice_id.associate_id.name
                 else:
