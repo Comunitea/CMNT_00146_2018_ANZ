@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
 
-    <template id="umbro_homepage_content">
+    <template id="umb_homepage_content">
         <t t-call="website.layout">
             <div id="wrap">
-                <div class="container">
-                    <t t-call="theme_anzamar.carousel_homepage"/>
-                </div>
+                <!-- Slider section -->
+                <t t-call="theme_anzamar.demo_do_not_panic"/>
             </div>
         </t>
     </template>
