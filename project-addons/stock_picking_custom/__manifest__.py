@@ -17,8 +17,8 @@
         'views/stock_location.xml',
         'views/stock_picking.xml',
         'report/stock_picking_delivery_tag.xml',
-        'report/report_stock_picking_view.xml'
-        #'wizard/sale_manage_variant_view.xml'
+        'report/report_stock_picking_view.xml',
+        'wizard/stock_import.xml'
     ],
     'installable': True,
 }
