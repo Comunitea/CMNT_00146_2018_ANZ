@@ -30,7 +30,7 @@
     'version': '1.0',
     'summary': 'FrontEnd customization for Feel Point Website',
     'description': '',
-    'category': 'Theme',
+    'category': 'Website',
     'author': 'Comunitea',
     'website': 'http://www.comunitea.com',
     'license': 'AGPL-3',
