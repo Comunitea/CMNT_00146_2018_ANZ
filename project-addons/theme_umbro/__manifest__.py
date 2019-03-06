@@ -49,7 +49,6 @@
         'templates/header.xml',
         'templates/footer.xml',
         'templates/breadcrumbs_bar.xml',
-        'templates/pages.xml',
         'templates/page_home.xml',
     ],
     'images': [

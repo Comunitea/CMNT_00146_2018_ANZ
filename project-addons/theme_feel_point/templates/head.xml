@@ -4,7 +4,11 @@
     <!-- Add custom styles -->
     <template id="theme_feel_point_website_assets_frontend" inherit_id="website_multi_theme.auto_assets_website_fee">
         <xpath expr="link[last()]" position="after">
+            <link href="/theme_feel_point/static/static/css/_general.less" rel="stylesheet" type="text/less"/>
             <t t-call="theme_anzamar.custom_css"/>
+        </xpath>
+        <xpath expr="//script[last()]" position="after">
+            <script type="text/javascript" src="/theme_anzamar/static/js/main.js"/>
         </xpath>
     </template>
 

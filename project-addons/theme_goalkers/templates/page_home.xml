@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <template id="goa_homepage_content">
+        <t t-call="website.layout">
+            <div id="wrap">
+                <!-- Slider section -->
+                <t t-call="theme_anzamar.demo_do_not_panic"/>
+            </div>
+        </t>
+    </template>
+
+</odoo>
