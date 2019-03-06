@@ -8,6 +8,7 @@
     'license': 'AGPL-3',
     'author': "Comunitea, ",
     'depends': [
+        'product_tags',
         'base',
         'account',
         'sale',

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <!--Header Template-->
+    <template id="website_layout" inherit_id="website_multi_theme.auto_layout_website_bla">
+        <xpath expr="//div[@id='wrapwrap']//div[hasclass('navbar')]" position="before">
+            <t t-call="theme_anzamar.custom_header"/>
+        </xpath>
+        <xpath expr="//div[@id='wrapwrap']//div[hasclass('navbar')]" position="after">
+            <t t-call="breadcrumbs_base.bcb_main_wrap"/>
+        </xpath>
+        <xpath expr="//div[@id='wrapwrap']/header" position="attributes">
+            <attribute name="t-att-class">'homepage-header' if xmlid == 'website.homepage' else None</attribute>
+        </xpath>
+    </template>
+
+    <template id="logo_show" inherit_id="website_multi_theme.auto_view_bla_website_layout_logo_show">
+        <xpath expr="//a[hasclass('navbar-brand')]/span" position="replace">
+            <img class="img img-responsive" src="/theme_blacklaces/static/img/logo-horizontal.png" alt="website.name"/>
+        </xpath>
+    </template>
+
+</odoo>
