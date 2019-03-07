@@ -32,8 +32,10 @@ class StockMove(models.Model):
     @api.depends('product_id', 'picking_id.location_id')
     @api.multi
     def get_qty_available(self):
+
         for line in self:
-            line.qty_available = line.product_id.with_context(location=line.picking_id.location_id.id).qty_available_global
+            location = line.picking_id and line.picking_id.location_id or line.location_id
+            line.qty_available = line.product_id.with_context(location=location.id).qty_available_global
 
     @api.multi
     def force_set_qty_done(self):
@@ -55,6 +57,8 @@ class StockMove(models.Model):
     @api.depends('state', 'picking_id')
     def _compute_is_initial_demand_editable(self):
         for move in self:
-            move.is_initial_demand_editable = move.picking_id.is_locked and move.state != 'done'
+
+            move.is_initial_demand_editable = (move.picking_id and move.picking_id.is_locked or True) and move.state != 'done'
+
 
 
