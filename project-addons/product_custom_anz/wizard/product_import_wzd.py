@@ -111,23 +111,23 @@ class ProductImportWzd(models.TransientModel):
             categ_id = self._get_category_id(row_vals['category'], idx)
 
         domain = [('product_brand_id', '=', self.brand_id.id)]
-
+        tag_type_id=tag_age_id=tag_gender_id=False
         if row_vals['type']:
-            tag_type_id = self._get_product_att(row_vals['type'], 'type', True)
+            tag_type_id = self._get_product_att(row_vals['type'], 'type', self.create_attributes)
             if tag_type_id:
                 domain += [('product_type_id', '=', tag_type_id.id)]
             else:
                 domain += [('product_type_id', '=', False)]
 
         if row_vals['gender']:
-            tag_gender_id = self._get_product_att(row_vals['gender'], 'gender', True)
+            tag_gender_id = self._get_product_att(row_vals['gender'], 'gender', self.create_attributes)
             if tag_gender_id:
                 domain += [('product_gender_id', '=', tag_gender_id.id)]
             else:
                 domain += [('product_gender_id', '=', False)]
 
         if row_vals['age']:
-            tag_age_id = self._get_product_att(row_vals['age'], 'age', True)
+            tag_age_id = self._get_product_att(row_vals['age'], 'age', self.create_attributes)
             if tag_age_id:
                 domain += [('product_age_id', '=', tag_age_id.id)]
             else:
@@ -136,12 +136,13 @@ class ProductImportWzd(models.TransientModel):
         attr = self.env['product.attribute'].search(domain, limit=1)
         if not attr:
             if self.create_attributes:
+
                 vals = {'attribute_category_id': categ_id.id,
                         'product_brand_id': self.brand_id.id,
                         'name': row_vals['attr_name'],
-                        'product_type_id': tag_type_id.id,
-                        'product_gender_id': tag_gender_id.id,
-                        'product_age_id': tag_age_id.id}
+                        'product_type_id': tag_type_id and tag_type_id.id,
+                        'product_gender_id': tag_gender_id and tag_gender_id.id,
+                        'product_age_id': tag_age_id and tag_age_id.id}
                 attr = self.env['product.attribute'].create(vals)
                 print("Se ha creado el atributo: {}".format(attr.display_name))
             else:
