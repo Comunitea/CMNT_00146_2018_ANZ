@@ -91,7 +91,7 @@ class StockImportWzd(models.TransientModel):
         created_product_ids = []
         idx = 1
         self.picking_id.origin = sh.row_values(11)[1]
-        idx = 15
+        idx = 14
         for nline in range(idx, sh.nrows):
 
             idx += 1
