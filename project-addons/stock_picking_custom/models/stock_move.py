@@ -27,16 +27,6 @@ class StockMove(models.Model):
     default_product_dest_location_id = fields.Many2one('stock.location', compute="_get_product_default_location_id",
                                                        string="Default destination location")
 
-    qty_available = fields.Float('Qty available', compute="get_qty_available")
-
-    @api.depends('product_id', 'picking_id.location_id')
-    @api.multi
-    def get_qty_available(self):
-
-        for line in self:
-            location = line.picking_id and line.picking_id.location_id or line.location_id
-            line.qty_available = line.product_id.with_context(location=location.id).qty_available_global
-
     @api.multi
     def force_set_qty_done(self):
         for move in self.filtered(lambda x: not x.quantity_done):
