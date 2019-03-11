@@ -10,7 +10,7 @@ class ProductProduct(models.Model):
 
     @api.multi
     def act_fixed_to_stock(self):
-
+        ##PONER EN LOS PUTAWAYS EL LA UBICACION CON STOCK SI
 
         sql = "select sum(quantity) as qty, sl.id as fixed_location_id, product_id as product_id, pp.product_tmpl_id as product_tmpl_id from stock_quant sq " \
               "join stock_location sl on sl.id = sq.location_id " \
