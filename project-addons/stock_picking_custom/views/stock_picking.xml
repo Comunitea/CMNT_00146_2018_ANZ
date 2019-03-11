@@ -16,17 +16,17 @@
                         groups="base.group_user"/>
                 </xpath>
 
-                <xpath expr="//div[@name='tracking']" position="after">
+                <!--xpath expr="//div[@name='tracking']" position="after">
                     <label for="need_packing_list"/>
                         <div name="packing_list">
                             <field name="need_packing_list" class="oe_inline" attrs="{'readonly': [('state', '=', 'cancel')]}"/>
                             <button type='object' class="fa fa-arrow-right oe_link" name="open_stock_move_tree_for_packing" string="Apply packing"
                                     attrs="{'invisible':[('need_packing_list','=',False)]}"/>
                         </div>
-                </xpath>
-                <xpath expr="//field[@name='move_lines']/tree/field[@name='product_id']" position="before">
+                </xpath-->
+                <!--xpath expr="//field[@name='move_lines']/tree/field[@name='product_id']" position="before">
                     <field name="packing_list_id" attrs="{'column_invisible': [('parent.need_packing_list','=',False)]}"/>
-                </xpath>
+                </xpath-->
 
 
             <field name="move_lines" position="after">

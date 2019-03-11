@@ -178,8 +178,8 @@ class InvoiceTxtImport(models.Model):
     customer_invoice_id = fields.Many2one(related="invoice_id.customer_invoice_id")
 
     associate_name = fields.Char("Nombre importado", help="Nombre que aparece en la factura importada. Debe conincidir con el nombre del cliente externo, si lo hubiera")
-    associate_id = fields.Many2one(related='partner_shipping_id.commercial_partner_id', string='Empresa asociado')
-    partner_shipping_id = fields.Many2one('res.partner', string='Asociado', help="Cliente externo que se asocia al nombre que se importad de la factura")
+    associate_id = fields.Many2one('res.partner', string='Empresa asociado')
+    partner_shipping_id = fields.Many2one('res.partner', string='Asociado', domain=[('external','=', True)], help="Cliente externo que se asocia al nombre que se importad de la factura")
 
     partner_vat = fields.Char("NIF Cliente")
     partner_id = fields.Many2one('res.partner', 'Proveedor')
@@ -236,8 +236,7 @@ class InvoiceTxtImport(models.Model):
     def write(self, vals):
         for txt in self:
             if txt.invoice_id:
-                return ValidationError("No puedes modificar este rgistro porque ya has creado la factura")
-
+                self.message_post("Se ha modificado este registro con la factura creada: Nuevos valores {}".format(vals))
         return super().write(vals)
 
     @api.onchange('partner_shipping_id')
@@ -268,10 +267,13 @@ class InvoiceTxtImport(models.Model):
         for txt in self.filtered(lambda x: x.partner_shipping_id != False):
             txt.rule_ids = self.env['reinvoice.rule'].get_reinvoice_rule_for_txt(txt)
 
+    @api.multi
+    def act_associate_shipping_id(self):
+        for txt in self.env["invoice.txt.import"].search([('associate_id', '=', False)]):
+            txt.associate_id = txt.partner_shipping_id.commercial_partner_id
 
     @api.multi
     def get_partner_shipping_id_from_associate_name(self):
-
         for txt in self.filtered(lambda x: x.associate_name and not x.partner_shipping_id):
             str = txt.associate_name
             domain = ['|', ('supplier_code', '=', str), ('supplier_str', '=', str)]
@@ -298,8 +300,6 @@ class InvoiceTxtImport(models.Model):
 
         if self.associate_name and self.type == 'in_invoice':
             self.get_partner_shipping_id_from_associate_name()
-            if not self.partner_shipping_id:
-                message = "{} <li>{} {}</li>".format(message, 'No hay encuentro al asociado para el nombre ', self.associate_name)
         else:
             if self.type == 'in_refund':
                 domain = ['|', ('supplier_invoice_number', '=', '{}'.format(self.original_rectificatica)), ('reference', '=', '{}'.format(self.original_rectificatica))]
@@ -721,6 +721,7 @@ class InvoiceTxtImport(models.Model):
 
     @api.multi
     def create_invoice_from_invoice_txt(self, create_associate=False):
+
         new_invoice_ids = self.env['account.invoice']
         for txt in self:
             txt.state = 'invoiced'
@@ -733,7 +734,7 @@ class InvoiceTxtImport(models.Model):
             if not txt.partner_id:
                 txt_message ='{} <li>{}</li>'.format(txt_message, "No encuentro proveedor")
                 create_inv=False
-            if not txt.associate_id:
+            if not txt.associate_id or not txt.partner_shipping_id:
                 txt_message = '{} <li>{}</li>'.format(txt_message, "No encuentro asociado")
                 create_inv = False
             if txt.pay_notes:
@@ -753,12 +754,13 @@ class InvoiceTxtImport(models.Model):
 
 
             if self.type == 'in_refund':
-
                 comment = 'Corresponde a la factura rectificativa nº {}, de fecha: {}. Factura original: {}'.format(txt.supplier_invoice_num,
                                                                       txt.supplier_invoice_date, txt.original_rectificatica)
 
-                refund_invoice_id = self.env['account.invoice'].search([('reference', '=', txt.original_rectificatica)])
-                if refund_invoice_id:
+                if txt.original_rectificatica:
+                    refund_invoice_id = self.env['account.invoice'].search([('reference', '=', txt.original_rectificatica)])
+
+                if refund_invoice_id and len(refund_invoice_id) == 1:
                     txt.partner_shipping_id = refund_invoice_id.associate_id
                     txt.associate_name = refund_invoice_id.associate_id.name
                 else:
@@ -776,7 +778,7 @@ class InvoiceTxtImport(models.Model):
             same_supplier_inv_num = self.env['account.invoice'].search([
                 ('commercial_partner_id', '=', txt.partner_id.commercial_partner_id.id),
                 ('type', 'in', ('in_invoice', 'in_refund')),
-                ('supplier_invoice_number', '=ilike', txt.supplier_invoice_num),
+                ('supplier_invoice_number', '=', txt.supplier_invoice_num),
             ], limit=1)
             if same_supplier_inv_num:
                 create_inv = False
@@ -812,12 +814,12 @@ class InvoiceTxtImport(models.Model):
             invoice_val = {
                 'type': self.type or 'in_invoice',
                 'partner_shipping_id': txt.partner_shipping_id.id,
+                'associate_id': txt.associate_id.id,
                 'associate_shipping_id': txt.partner_shipping_id.id,
-                'partner_id': txt.partner_id.id or False,
+                'partner_id': txt.partner_id.id,
                 'supplier_invoice_number': txt.supplier_invoice_num,
                 'reference': txt.supplier_invoice_num,
                 'currency_id': currency_id,
-                'associate_id': txt.associate_id.id or False,
                 'journal_id': journal_id and journal_id[0].id or False,
                 'date_invoice': txt.supplier_invoice_date,
                 'date_due': txt.fecha_vencimiento,
@@ -843,7 +845,6 @@ class InvoiceTxtImport(models.Model):
 
             if not inv.get('operating_unit_id', False) and sale_type_id:
                 inv.update(operating_unit_id=sale_type_id.operating_unit_id and sale_type_id.operating_unit_id.id)
-
 
             new_invoice = self.env['account.invoice'].create(inv)
             new_invoice.journal_id = journal_id

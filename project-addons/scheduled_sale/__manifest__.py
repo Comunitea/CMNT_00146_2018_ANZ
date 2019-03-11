@@ -10,7 +10,8 @@
     'depends': [
         'sale',
         'sale_order_line_tree',
-        'sale_custom_anz'
+        'sale_custom_anz',
+        'stock_picking_imp'
     ],
     'data': [
         'security/ir.model.access.csv',

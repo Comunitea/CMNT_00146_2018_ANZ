@@ -110,8 +110,8 @@ class StockPicking(models.Model):
     @api.multi
     def action_done(self):
 
-        if any(x.location_dest_id.name == 'Stock' for x in self.move_line_ids):
-            raise UserError ("No puedes colocar mercancía en stock")
+        #if any(x.location_dest_id.name == 'Stock' for x in self.move_line_ids):
+        #    raise UserError ("No puedes colocar mercancía en stock")
 
         return super().action_done()
 

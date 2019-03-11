@@ -12,26 +12,13 @@ class StockLocation(models.Model):
     ubic = fields.Integer('Ubicación', default=0, help="Optional ubication details, for information purpose only")
 
     @api.multi
-    def set_barcode_field(self, inc=0):
+    def set_barcode_field(self):
         total = len(self)
-        for location in self.filtered(lambda x: x.usage == 'internal'):
-            inc += 1
-            barcode = ''
-            if location.ubic > 0:
-                barcode = "{:02d}".format(location.ubic)
-            elif location.posx>0 or location.posy>0 or location.posz>0:
-                barcode = ".{:02d}.{:02d}.{:02d}".format(location.posx, location.posy, location.posz)
-                location.name = "{:02d}.{:02d}.{:02d}".format(location.posx, location.posy, location.posz)
-            loc = location.location_id
-            while loc and loc.ubic == 0:
-                loc = loc.location_id
-            if loc:
-                barcode = "{}{}".format(loc.barcode, barcode)
-            print ('{} de {} >> {}: Codigo: {}'.format(inc, total, location.display_name, location.barcode))
+        inc = 0
+        for location in self.filtered(lambda x: x.usage == 'internal' and x.location_id.ubic):
+            barcode = "{:02d}.{:02d}.{:02d}.{:02d}".format(location.location_id.ubic, location.posx, location.posy, location.posz)
             location.barcode = barcode
+            inc += 1
+            print ('{} de {} >> {}: Codigo: {}'.format(inc, total, location.display_name, location.barcode))
 
 
-    @api.multi
-    @api.onchange('ubic', 'posx', 'posy', 'posz', 'location_id')
-    def onchange_for_barcode(self):
-        return self.set_barcode_field()

@@ -26,9 +26,11 @@ class ProductTemplate(models.Model):
 
         for template in self:
             if not undo:
-                archive_vals = {'scheduled_sale_id': False, 'origin_scheduled_sale_id': scheduled_sale_id}
+                archive_vals = {'scheduled_sale_id': False,
+                                'origin_scheduled_sale_id': scheduled_sale_id}
             else:
-                archive_vals = {'scheduled_sale_id': scheduled_sale_id, 'origin_scheduled_sale_id': False}
+                archive_vals = {'scheduled_sale_id': scheduled_sale_id,
+                                'origin_scheduled_sale_id': False}
             template.write(archive_vals)
 
     @api.model
@@ -46,27 +48,32 @@ class ProductProduct(models.Model):
 
     _inherit = 'product.product'
 
-    #scheduled_sale_id = fields.Many2one('scheduled.sale', 'Schedule order')
-
     @api.multi
     def action_unlink_product(self):
-
         scheduled_sale_id = self._context.get('scheduled_sale_id', False)
-        if not scheduled_sale_id:
-            return
-        return self.env['scheduled.sale'].browse(scheduled_sale_id).open_product_to_cancel(self.ids, re_order=self._context.get('re_order', False))
+        set_active = self._context.get('set_active', False)
+
+
+        if scheduled_sale_id:
+            if set_active:
+                self.write({'active': True})
+                tmpl_ids = self.mapped('product_tmpl_id').filtered(lambda x: x.active)
+                tmpl_ids.write({'scheduled_sale_id': scheduled_sale_id})
+            else:
+                self.unlink_scheduled_products(scheduled_sale_id)
+
 
 
     @api.multi
     def unlink_scheduled_products(self, scheduled_sale_id=[]):
-
         ##Unlink products if in sale orders
         ## Implica desactivar los productos, sacarlos de las ordenes de venta y post en el saleorder
 
         if not self or not scheduled_sale_id:
             raise ValidationError (_('No products to unlink, or not schedule sale'))
         ##ventas de estos productos.
-        sale_orders = self.env['sale.order.line'].search([('product_id', 'in', self.ids), ('order_id.scheduled_sale_id','=', scheduled_sale_id), ('state','in', ['draft', 'sent'])]).mapped('order_id')
+        domain = [('product_id', 'in', self.ids), ('order_id.scheduled_sale_id','=', scheduled_sale_id), ('state','in', ['draft', 'sent'])]
+        sale_orders = self.env['sale.order.line'].search(domain).mapped('order_id')
 
         for sale_order in sale_orders:
             #lineas de venta de estos productos
@@ -83,12 +90,13 @@ class ProductProduct(models.Model):
             sale_order.message_post(body=message)
 
             lines.unlink()
-        for product in self:
-            if len(product.product_tmpl_id.filtered('active')) == 1:
-                product.product_tmpl_id.active = False
-            else:
-                product.write({'active': False})
+        self.write({'active': False})
+        tmpl_ids = self.mapped('product_tmpl_id').filtered(lambda x: not x.active)
+        tmpl_ids.write({'scheduled_sale_id': False, 'origin_scheduled_sale_id': scheduled_sale_id})
+
+
         return True
+
 
     @api.model
     def _search(self, args, offset=0, limit=None, order=None, count=False, access_rights_uid=None):

@@ -7,7 +7,7 @@ from odoo import _, api, fields, models
 
 class UnlinkScheduleProductLine(models.TransientModel):
     _name = 'unlink.schedule.product.line'
-    _order = 'product_active desc, product_tmpl_id, product_id'
+    _order = 'product_tmpl_id, product_active desc, product_id'
 
     @api.multi
     @api.depends('product_id')
@@ -27,29 +27,19 @@ class UnlinkScheduleProductLine(models.TransientModel):
     to_cancel = fields.Boolean('To cancel', default=False)
     unlink_schedule_product_id = fields.Many2one('unlink.schedule.product.wzd')
     product_qty_scheduled = fields.Float("Qty ordered", compute="get_qty_ordered", store=True)
-
+    scheduled_sale_id = fields.Many2one(related='unlink_schedule_product_id.scheduled_sale_id')
     @api.multi
     def set_product_as_cancel(self, to_cancel=False):
         self.browse(self._context.get('active_ids', [])).write({'to_cancel': to_cancel})
 
     @api.multi
     def action_unlink_product(self):
+
         if self._context.get('from_tree', False):
-            to_cancel_product = self.mapped('product_id')
-            active_product_ids = to_cancel_product.filtered(lambda x: x.active)
-            archived_product_ids = to_cancel_product.filtered(lambda x: not x.active)
-            active_product_ids and active_product_ids.unlink_scheduled_products(self.unlink_schedule_product_id.scheduled_sale_id.id)
-            archived_product_ids.write({'active': True})
-            templates_unactive = archived_product_ids.mapped('product_tmpl_id').filtered(lambda x: not x.active)
-            templates_unactive.write({'active': True})
-            return True
+            line_to_active = self.filtered(lambda x: x.product_id.active)
+            line_to_active.mapped('product_id').action_unlink_product()
+        return
 
-
-        for product in self:
-            product.to_cancel = not product.to_cancel
-        return {
-            "type": "ir.actions.do_nothing",
-        }
 
     @api.multi
     def set_product_as_cancel(self, to_cancel=False):

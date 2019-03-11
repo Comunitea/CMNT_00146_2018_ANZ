@@ -10,6 +10,12 @@
             <field name="name" position="after">
                 <field name="product_brand_id"/>
                 <field name="attribute_category_id"/>
+                <field name="product_type_id" domain = "[('product_brand_id','=',product_brand_id), ('type','=','type')]"
+                       context="{'default_type': 'type', 'default_product_brand_id': product_brand_id}"/>
+                <field name="product_gender_id" domain = "[('product_brand_id','=',product_brand_id), ('type','=','gender')]"
+                       context="{'default_type': 'gender', 'default_product_brand_id': product_brand_id}"/>
+                <field name="product_age_id" domain = "[('product_brand_id','=',product_brand_id), ('type','=','age')]"
+                       context="{'default_type': 'age', 'default_product_brand_id': product_brand_id}"/>
             </field>
             <field name="create_variant" position="after">
                 <field name="is_tboot"/>
@@ -57,6 +63,13 @@
             <field name="name" position="after">
                 <field name="product_brand_id"/>
                 <field name="attribute_category_id"/>
+                 <field name="product_type_id" domain = "[('product_brand_id','=',product_brand_id), ('type','=','type')]"
+                       context="{'default_type': 'type', 'default_product_brand_id': product_brand_id}"/>
+                <field name="product_gender_id" domain = "[('product_brand_id','=',product_brand_id), ('type','=','gender')]"
+                       context="{'default_type': 'gender', 'default_product_brand_id': product_brand_id}"/>
+                <field name="product_age_id" domain = "[('product_brand_id','=',product_brand_id), ('type','=','age')]"
+                       context="{'default_type': 'age', 'default_product_brand_id': product_brand_id}"/>
+
             </field>
             <field name="create_variant" position="after">
                 <field name="is_tboot"/>
@@ -94,7 +107,7 @@
             </field>
             <field name="list_price" position="after">
                 <field name="pvp" widget="monetary" options="{'currency_field': 'currency_id', 'field_digits': True}"/>
-                <field name="template_standard_price" widget="monetary" options="{'currency_field': 'currency_id', 'field_digits': True}" groups="base.group_user" attrs="{'invisible': [('product_variant_count', '&lt;', 2)]}"/>
+                <!--field name="template_standard_price" widget="monetary" options="{'currency_field': 'currency_id', 'field_digits': True}" groups="base.group_user" attrs="{'invisible': [('product_variant_count', '&lt;', 2)]}"/-->
 
             </field>
         </field>
@@ -142,5 +155,66 @@
         </field>
     </record>
 
+
+
+     <record model="ir.ui.view" id="view_produt_attribute_tag_form">
+            <field name="name">Product attribute tag</field>
+            <field name="model">product.attribute.tag</field>
+            <field name="arch" type="xml">
+                <form string="Product attribute tag">
+                    <sheet>
+                        <group col="4">
+                            <field name="product_brand_id" />
+                            <field name="type"/>
+                            <field name="value"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="view_produt_attribute_tag_tree">
+            <field name="name">Product attribute tag</field>
+            <field name="model">product.attribute.tag</field>
+            <field name="arch" type="xml">
+                <tree string="Attribute tags">
+                    <field name="product_brand_id" />
+                    <field name="type"/>
+                    <field name="value"/>
+                </tree>
+            </field>
+        </record>
+        <record id="produt_attribute_tag_search_view" model="ir.ui.view">
+        <field name="name">Product attribute tag.search</field>
+        <field name="model">product.attribute.tag</field>
+        <field name="arch" type="xml">
+            <search string="Product">
+                <field name="value" string="Product" filter_domain="[('value', 'ilike', self)]"/>
+                <field name="product_brand_id" string= "Marca" />
+                <separator/>
+
+                <filter string="Type" name="filter_to_type" domain="[('type','=','type')]"/>
+                <filter string="Gender" name="filter_to_gender" domain="[('type','=','gender')]"/>
+                <filter string="Age" name="filter_to_age" domain="[('type','=','age')]"/>
+
+                <separator/>
+                <group expand="0" string="Group By">
+                    <filter string="Brand" domain="[]" context="{'group_by':'product_brand_id'}"/>
+                    <filter string="Type" domain="[]" context="{'group_by':'type'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+        <record model="ir.actions.act_window" id="action_view_produt_attribute_tag_tree">
+            <field name="name">Product attribute tag</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">product.attribute.tag</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+    </record>
+
+
+     <menuitem id="menu_product_attribute_tag" parent="stock.menu_product_in_config_stock" action="product_custom_anz.action_view_produt_attribute_tag_tree"
+        sequence="500" groups="base.group_no_one"/>
 </odoo>
 

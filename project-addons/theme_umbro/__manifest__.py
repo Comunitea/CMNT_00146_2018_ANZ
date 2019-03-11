@@ -30,7 +30,7 @@
     'version': '1.0',
     'summary': 'FrontEnd customization for Umbro Website',
     'description': '',
-    'category': 'Theme',
+    'category': 'Website',
     'author': 'Comunitea',
     'website': 'http://www.comunitea.com',
     'license': 'AGPL-3',
@@ -49,7 +49,6 @@
         'templates/header.xml',
         'templates/footer.xml',
         'templates/breadcrumbs_bar.xml',
-        'templates/pages.xml',
         'templates/page_home.xml',
     ],
     'images': [

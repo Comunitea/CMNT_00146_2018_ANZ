@@ -8,6 +8,7 @@
     'license': 'AGPL-3',
     'author': "Comunitea, ",
     'depends': [
+        'product_tags',
         'base',
         'account',
         'sale',
@@ -21,7 +22,9 @@
         'views/product_view.xml',
         'views/product_pricelist_view.xml',
         'views/operating_unit.xml',
+        'views/product_tag.xml',
         'wizard/product_import_wzd_view.xml',
+        'security/ir.model.access.csv'
     ],
     'installable': True,
 }
