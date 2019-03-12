@@ -42,7 +42,7 @@ class SaleOrderLine(models.Model):
     @api.multi
     def write(self, vals):
         self2 = self.env['sale.order.line']
-        if vals.get('product_id') or vals.get('discount'):
+        if vals.get('product_id') or 'discount' in vals:
             for line in self:
                 if (vals.get('product_id') and
                         line.product_id.id != vals['product_id']) or \
