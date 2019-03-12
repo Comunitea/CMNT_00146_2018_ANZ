@@ -77,7 +77,12 @@ odoo.define('pos.custom_anz.models', function (require) {
             return res;
         },
         to_upper_case: function(){
-            var res = this.simplified_invoice.toLocaleUpperCase()
+            // Evito que falle cuando el pedido es recuperado, ya que entonces
+            // el campo simplified invoice no existe, y en el name debería
+            // estar cargado el pos_reference, que sería el equivalente en
+            // backend del pos reference
+            var name_ref = this.simplified_invoice || this.name
+            var res = name_ref.toLocaleUpperCase()
             return res;
         }
     });
