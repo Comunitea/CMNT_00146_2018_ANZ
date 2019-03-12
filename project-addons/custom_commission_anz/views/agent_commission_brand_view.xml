@@ -28,7 +28,7 @@
                 <group expand="1" string="Group By">
                     <filter string="Agent" name="group_agent" context="{'group_by': 'partner_id'}"/>
                     <filter string="Brand" name="group_brand" context="{'group_by': 'brand_id'}"/>
-                    <filter string="Commission" name="group_commission" context="{'group_by': 'commissio_id'}"/>
+                    <filter string="Commission" name="group_commission" context="{'group_by': 'commission_id'}"/>
                 </group>
             </search>
         </field>
