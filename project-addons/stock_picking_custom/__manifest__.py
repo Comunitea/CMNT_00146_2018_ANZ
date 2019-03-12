@@ -9,7 +9,8 @@
     'author': "Comunitea, ",
     'depends': [
         'delivery',
-        'delivery_packing_list'
+        'delivery_packing_list',
+        'stock_move_manage',
     ],
     'data': [
         'data/res_partner_category.xml',
