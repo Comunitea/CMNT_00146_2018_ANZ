@@ -46,7 +46,9 @@
         'mass_mailing',
         'website_form_builder',
         'seo_base',
-        'breadcrumbs_base'
+        'breadcrumbs_base',
+        'website_sale_product_brand',
+        'payment_redsys'
     ],
     'data': [
         'data/company_data.xml',
