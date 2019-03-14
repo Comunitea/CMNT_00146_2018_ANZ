@@ -257,7 +257,7 @@ class ProductImportWzd(models.TransientModel):
                 'ref_template': row_vals['code_temp'],
                 'importation_name': self.name,
                 'product_brand_id': self.brand_id.id,
-                'categ_id': categ_id.id,
+                'categ_id': categ_id.id
 
 
             }
