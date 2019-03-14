@@ -22,6 +22,9 @@ consultar condiciones de cambio en el establecimiento.
 			</span>
 			<br/>
 		</t>
+		<t t-jquery='div.after-footer' t-operation='after'>
+			<br/>
+		</t>
     </t>
 
     <!-- Same changes a l10n_es_pos un Gift Ticket -->
