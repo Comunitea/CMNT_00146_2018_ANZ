@@ -238,7 +238,8 @@ class ProductImportWzd(models.TransientModel):
             'barcode': row_vals['ean'],
             'importation_name': self.name,
             'lst_price': row_vals['pvp'],
-            'standard_price': row_vals['cost']
+            'standard_price': row_vals['cost'],
+            'type': 'product'
         }
         if template:
             vals.update(product_tmpl_id=template.id)
@@ -257,8 +258,8 @@ class ProductImportWzd(models.TransientModel):
                 'importation_name': self.name,
                 'product_brand_id': self.brand_id.id,
                 'categ_id': categ_id.id,
-                'default_code': row_vals['code_temp'],
-                'type': 'product'
+
+
             }
             if tags:
                 vals.update(tag_ids=[(6, 0, tags)])

@@ -20,7 +20,6 @@
     'data': [
         'views/partner_view.xml',
         'views/product_view.xml',
-        'views/product_attribute_value_view.xml',
         'views/product_pricelist_view.xml',
         'views/operating_unit.xml',
         'views/product_tag.xml',
