@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <!-- Product page template -->
+    <template id="website_sale_product" inherit_id="website_multi_theme.auto_view_poi_website_sale_product">
+        <!-- User access control -->
+        <xpath expr="//section[@id='product_detail']" position="before">
+            <t t-set="user_access" t-value="website.user_access()"/>
+        </xpath>
+        <xpath expr="//section[@id='product_detail']" position="attributes">
+            <attribute name="t-if">user_access == True</attribute>
+        </xpath>
+        <xpath expr="//section[@id='product_detail']" position="after">
+            <t t-if="user_access == False" t-call="theme_anzamar.only_logged_in_users_advise"/>
+        </xpath>
+    </template>
+
+</odoo>

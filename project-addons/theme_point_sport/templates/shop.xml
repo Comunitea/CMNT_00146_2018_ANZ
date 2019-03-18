@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <!-- Shop/category page template -->
+    <template id="website_sale_products" inherit_id="website_sale.products">
+        <xpath expr="//div[@id='wrap']" position="before">
+            <t t-set="user_access" t-value="website.user_access()"/>
+        </xpath>
+        <!-- User access control -->
+        <xpath expr="//div[hasclass('oe_website_sale')]" position="attributes">
+            <attribute name="t-if">user_access == True</attribute>
+        </xpath>
+        <xpath expr="//div[hasclass('oe_website_sale')]" position="after">
+            <t t-if="user_access == False" t-call="theme_anzamar.only_logged_in_users_advise"/>
+        </xpath>
+    </template>
+
+    <!-- Brand page template -->
+    <template id="website_sale_product_brand_product_brands" inherit_id="website_sale_product_brand.product_brands">
+        <!-- User access control -->
+        <xpath expr="//div[hasclass('container')]" position="before">
+            <t t-set="user_access" t-value="website.user_access()"/>
+        </xpath>
+        <xpath expr="//div[hasclass('container')]" position="attributes">
+            <attribute name="t-if">user_access == True</attribute>
+        </xpath>
+        <xpath expr="//div[hasclass('container')]" position="after">
+            <t t-if="user_access == False" t-call="theme_anzamar.only_logged_in_users_advise"/>
+        </xpath>
+    </template>
+
+</odoo>

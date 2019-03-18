@@ -51,6 +51,8 @@
         'templates/breadcrumbs_bar.xml',
         'templates/pages.xml',
         'templates/page_home.xml',
+        'templates/shop.xml',
+        'templates/product.xml',
     ],
     'images': [
         '/static/description/icon.png',
