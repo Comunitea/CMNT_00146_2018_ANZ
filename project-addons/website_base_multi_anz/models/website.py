@@ -5,7 +5,8 @@
 #
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import models, fields
+from odoo import http, api, models, fields
+from odoo.http import request
 from odoo.addons.seo_base.models.settings import _default_website
 
 
@@ -20,6 +21,17 @@ class Website(models.Model):
     social_googleplus = fields.Char(related=False, store=True)
     social_instagram = fields.Char(string='Instagram Account')
     email = fields.Char(string='Website Email')
+
+    @api.multi
+    def user_access(self):
+        website = self
+        user = request.env.user
+        access = True
+
+        if website.name == 'Point Sport':
+            access = False if user.has_group('base.group_public') else True
+
+        return access
 
 
 class ResConfigSettings(models.TransientModel):
