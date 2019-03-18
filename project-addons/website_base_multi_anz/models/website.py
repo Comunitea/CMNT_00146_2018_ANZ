@@ -30,4 +30,7 @@ class ResConfigSettings(models.TransientModel):
     email = fields.Char(related='website_id.email')
 
 
+class WebsiteMenu(models.Model):
+    _inherit = 'website.menu'
 
+    not_public = fields.Boolean(string='Show it only if the user is logged in', default=False)

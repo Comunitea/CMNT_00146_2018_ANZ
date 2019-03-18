@@ -12,8 +12,8 @@
         <xpath expr="//div[@id='wrapwrap']/header" position="attributes">
             <attribute name="t-att-class">'homepage-header' if xmlid == 'website.homepage' else None</attribute>
         </xpath>
-        <!-- No retailer-user redirection -->
-        <xpath expr="//div[@id='wrapwrap']/header" position="inside">
+        <!-- Public user redirection -->
+        <!--<xpath expr="//div[@id='wrapwrap']/header" position="inside">
             <t t-if="request.env.user.has_group('base.group_public')">
                 <script>
                     if(window.location.pathname != '/'){
@@ -21,12 +21,34 @@
                     }
                 </script>
             </t>
-        </xpath>
+        </xpath>-->
     </template>
 
     <template id="logo_show" inherit_id="website_multi_theme.auto_view_poi_website_layout_logo_show">
         <xpath expr="//a[hasclass('navbar-brand')]/span" position="replace">
             <img class="img img-responsive" src="/theme_point_sport/static/img/logo-horizontal.png" alt="website.name"/>
+        </xpath>
+    </template>
+
+    <template id="website_submenu" inherit_id="website.submenu">
+        <!-- Control of user access to the website menu -->
+        <xpath expr="//li[1]" position="attributes">
+            <attribute name="t-if">
+                submenu.is_visible and not submenu.child_id.filtered(lambda menu: menu.is_visible) and ((
+                    request.env.user.has_group('base.group_public') and not submenu.not_public
+                ) or (
+                    not request.env.user.has_group('base.group_public')
+                ))
+            </attribute>
+        </xpath>
+        <xpath expr="//li[2]" position="attributes">
+            <attribute name="t-if">
+                submenu.child_id.filtered(lambda menu: menu.is_visible) and ((
+                    request.env.user.has_group('base.group_public') and not submenu.not_public
+                ) or (
+                    not request.env.user.has_group('base.group_public')
+                ))
+            </attribute>
         </xpath>
     </template>
 
