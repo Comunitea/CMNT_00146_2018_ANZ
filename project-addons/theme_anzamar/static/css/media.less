@@ -45,6 +45,9 @@
         &.fixed {
             background-color: rgba(0,0,0,0.9);
         }
+        .navbar {
+            min-height: 40px;
+        }
         & .navbar-default {
             & .navbar-nav > li > a, & .navbar-nav > li > a.dropdown-toggle {
                 padding: 10px 8px 5px 8px;
@@ -60,6 +63,19 @@
                     }
                 }
             }
+        }
+        & .navbar-toggle {
+            margin-top: 3px;
+            margin-bottom: 3px;
+        }
+        & a.navbar-brand.logo {
+            height: 40px;
+            & img {
+                margin-top: 2px;
+            }
+        }
+        & .wp-contact-navbar {
+            padding: 5px 0;
         }
     }
 }
