@@ -21,6 +21,19 @@ $(window).on('scroll', function() {
     }
 });
 
+$(document).ready(function(){
+    /*
+        Open sub-menu with hover action
+    */
+    $('#top_menu li.dropdown').hover(function(){
+        $(this).addClass('open');
+        $(this).find('a.dropdown-toggle').attr('aria-expanded', 'true');
+    }, function(){
+        $(this).find('a.dropdown-toggle').attr('aria-expanded', 'false');
+        $(this).removeClass('open');
+    });
+});
+
 /* Add modal "Add to Cart" window a to cart redirect */
 odoo.define('theme_anzamar.website_sale', function(require) {
     "use strict";
