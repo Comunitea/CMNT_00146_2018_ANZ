@@ -87,7 +87,33 @@
                 </div>
                 <!-- Content section -->
                 <div class="container">
-                    <t t-call="theme_anzamar.demo_page_content"/>
+                     <div class="row mt64 mb64">
+                        <div class="col-md-12 mb32">
+                            <h1 class="text-center mb32">Point Sport</h1>
+                            <p>Point Sport es una marca de tienda multideporte que en la actualidad está presente con más de 140 tiendas en España, enfocada al <strong>pequeño</strong> y mediano comercio especializado en deporte.</p>
+                            <h2>¿Quieres abrir tu tienda deportiva Point Sport?</h2>
+                            <p>Si quieres emprender y abrir tu tienda especialista en el sector <strong>deportivo</strong>, o ya tienes una y quieres acceder a precios más competitivos con total libertad de programación, este es tu proyecto. <strong>Point Sport</strong> te permitirá competir en precio y en producto con el resto de tiendas y grandes superficies.</p>
+                            <p>Encontrarás una gran selección de artículos deportivos, con más de 100 marcas referentes del mundo deportivo; <i>Adidas, Umbro, Munich, New Balance, Fila, Puma, Converse</i>, y muchas más. Y una amplia variedad de artículos de las principales disciplinas deportivas; <i>fútbol, running, training, fitness, baloncesto, natación, tenis/pádel, voleibol</i>, etc.</p>
+                            <h2>¿Cuáles son las principales ventajas?</h2>
+                            <ul>
+                                <li>Experiencia en el mercado deportivo</li>
+                                <li>Acceso a marcas deportivas líderes</li>
+                                <li>Descuentos en compras a mayorista (Grupo Anzamar)</li>
+                                <li>Envío en 24/48 horas</li>
+                                <li>Sistema de devolución garantizado</li>
+                                <li>Acceso a ofertas y productos exclusivos</li>
+                                <li>Libertad de compra sin importes mínimos ni máximos</li>
+                                <li>Apoyo en marketing y comunicación</li>
+                                <li>Acceso a dropshipping</li>
+                                <li>Atención personalizada al asociado/a</li>
+                                <li>Comerciales especialistas por toda España</li>
+                                <li>Exclusividad de zona</li>
+                                <li>Jornadas de compra para compartir experiencias y acceder a ofertas especiales</li>
+                                <li>Sector en crecimiento y alta demanda</li>
+                            </ul>
+                            <p>Si quieres obtener más información acerca de <strong>Point Sport</strong> y montar tu propia tienda, puedes ver la sección <a href="/page/open_shop">cómo abrir una tienda</a> o escribirnos a <a href="mailto:info@anzamar.com" target="_blank">info@anzamar.com</a></p>
+                        </div>
+                     </div>
                 </div>
             </div>
         </t>

@@ -36,7 +36,7 @@
                 <!--<field name="social_facebook">https://www.facebook.com/blacklaces2</field>-->
                 <!--<field name="social_googleplus"></field>-->
                 <!--<field name="social_linkedin"></field>-->
-                <!--<field name="social_instagram"></field>-->
+                <field name="social_instagram">https://www.instagram.com/PointSport.es/</field>
                 <field name="base_url">http://_______domain_________/</field>
                 <field name="email">info@point-sport.com</field>
             </record>
