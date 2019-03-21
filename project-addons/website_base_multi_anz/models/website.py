@@ -46,3 +46,4 @@ class WebsiteMenu(models.Model):
     _inherit = 'website.menu'
 
     not_public = fields.Boolean(string='Show it only if the user is logged in', default=False)
+    website_published = fields.Boolean(string='Published', default=True)

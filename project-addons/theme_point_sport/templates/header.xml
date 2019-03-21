@@ -34,7 +34,7 @@
         <!-- Control of user access to the website menu -->
         <xpath expr="//li[1]" position="attributes">
             <attribute name="t-if">
-                submenu.is_visible and not submenu.child_id.filtered(lambda menu: menu.is_visible) and ((
+                submenu.is_visible and submenu.website_published and not submenu.child_id.filtered(lambda menu: menu.is_visible) and ((
                     request.env.user.has_group('base.group_public') and not submenu.not_public
                 ) or (
                     not request.env.user.has_group('base.group_public')
@@ -43,7 +43,7 @@
         </xpath>
         <xpath expr="//li[2]" position="attributes">
             <attribute name="t-if">
-                submenu.child_id.filtered(lambda menu: menu.is_visible) and ((
+                submenu.child_id.filtered(lambda menu: menu.is_visible) and submenu.website_published and ((
                     request.env.user.has_group('base.group_public') and not submenu.not_public
                 ) or (
                     not request.env.user.has_group('base.group_public')
