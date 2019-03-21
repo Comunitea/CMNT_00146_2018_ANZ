@@ -105,12 +105,11 @@
                     <h1 class="text-center mb32">Tiendas</h1>
                     <div class="row">
                         <div class="col-md-12">
-                            <style>
-
-                            </style>
                             <span class="metadata-marker" data-region_tag="html-body"/>
                             <div id="map" class="clearfix mb64"/>
                             <script type="text/javascript" src="/theme_point_sport/static/js/our-shops-map.js"/>
+                            <script type="text/javascript"
+                                    src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"/>
                             <script async="async" defer="defer" type="text/javascript"
                                     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA_3Mma3hft3POI5f2LhzxSzie0dF1BtOs&amp;language=es&amp;callback=pointShopsInitMap"/>
                         </div>
