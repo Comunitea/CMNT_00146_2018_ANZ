@@ -501,7 +501,7 @@
         <field name="sequence" type="int">20</field>
         <field name="website_id" ref="website_base_multi_anz.point_sport_website"/>
         <field name="website_published">True</field>
-        <field name="not_publc">True</field>
+        <field name="not_public">True</field>
     </record>
 
     <!-- Product Brands -->
@@ -520,7 +520,7 @@
         <field name="sequence" type="int">22</field>
         <field name="website_id" ref="website_base_multi_anz.point_sport_website"/>
         <field name="website_published">True</field>
-        <field name="not_publc">True</field>
+        <field name="not_public">True</field>
     </record>
 
 </odoo>
