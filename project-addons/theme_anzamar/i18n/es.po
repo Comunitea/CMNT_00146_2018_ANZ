@@ -67,7 +67,7 @@ msgstr "Marcas de nuestro grupo"
 #: model:ir.ui.view,arch_db:theme_anzamar.custom_footer
 #: model:ir.ui.view,arch_db:theme_anzamar.empty_footer
 #: model:ir.ui.view,arch_db:theme_anzamar.only_logged_in_users_advise
-msgid "Contactus"
+msgid "Contact Us"
 msgstr "Contáctenos"
 
 #. module: theme_anzamar

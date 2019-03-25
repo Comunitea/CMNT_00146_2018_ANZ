@@ -159,8 +159,8 @@
                 <h4 t-esc="website.name"/>
                 <ul class="list-unstyled">
                     <li><a href="#">About us</a></li>
-                    <li><a href="#">Our shops</a></li>
-                    <li><a href="#">Contactus</a></li>
+                    <li><a href="#">Our Shops</a></li>
+                    <li><a href="#">Contact Us</a></li>
                     <li><a href="#">Follow us</a></li>
                 </ul>
                 <h2 class="mt4">

@@ -440,7 +440,7 @@
     </template>
 
     <record id="poi_contactus_page" model="website.page">
-        <field name="name">Contactus</field>
+        <field name="name">Contact Us</field>
         <field name="website_published">True</field>
         <field name="website_ids" eval="[(6, 0, [ref('website_base_multi_anz.point_sport_website')])]"/>
         <field name="url">/contactus</field>
