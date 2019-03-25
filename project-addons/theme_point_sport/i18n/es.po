@@ -21,6 +21,16 @@ msgid "About us"
 msgstr "Sobre Nosotros"
 
 #. module: theme_point_sport
+#: model:website.menu,name:theme_point_sport.poi_contact_us_menu
+msgid "Contact Us"
+msgstr "Contáctenos"
+
+#. module: theme_point_sport
+#: model:website.menu,name:theme_point_sport.poi_contactus_page
+msgid "Contact Us"
+msgstr "Contáctenos"
+
+#. module: theme_point_sport
 #: model:website.menu,name:theme_point_sport.poi_product_brands_menu
 msgid "Brands"
 msgstr "Marcas"

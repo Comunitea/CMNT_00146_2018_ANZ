@@ -68,13 +68,31 @@ msgstr "Marcas de nuestro grupo"
 #: model:ir.ui.view,arch_db:theme_anzamar.empty_footer
 #: model:ir.ui.view,arch_db:theme_anzamar.only_logged_in_users_advise
 msgid "Contactus"
-msgstr "Contáctanos"
+msgstr "Contáctenos"
 
 #. module: theme_anzamar
 #: model:ir.ui.view,arch_db:theme_anzamar.custom_footer
 #: model:ir.ui.view,arch_db:theme_anzamar.empty_footer
 msgid "Delivery"
-msgstr "Entrega"
+msgstr "Métodos de Entrega"
+
+#. module: theme_anzamar
+#: model:ir.ui.view,arch_db:theme_anzamar.custom_footer
+#: model:ir.ui.view,arch_db:theme_anzamar.empty_footer
+msgid "About us"
+msgstr "Sobre Nosotros"
+
+#. module: theme_anzamar
+#: model:ir.ui.view,arch_db:theme_anzamar.custom_footer
+#: model:ir.ui.view,arch_db:theme_anzamar.empty_footer
+msgid "Our Shops"
+msgstr "Nuestras Tiendas"
+
+#. module: theme_anzamar
+#: model:ir.ui.view,arch_db:theme_anzamar.custom_footer
+#: model:ir.ui.view,arch_db:theme_anzamar.empty_footer
+msgid "Our Group"
+msgstr "Nuestro Grupo"
 
 #. module: theme_anzamar
 #: model:ir.ui.view,arch_db:theme_anzamar.theme_anz_website_footer_custom
@@ -117,7 +135,7 @@ msgstr "Imagen"
 #: model:ir.ui.view,arch_db:theme_anzamar.custom_footer
 #: model:ir.ui.view,arch_db:theme_anzamar.empty_footer
 msgid "Information / Franchises"
-msgstr "Información / Franquicas"
+msgstr "Información / Franquicias"
 
 #. module: theme_anzamar
 #: model:ir.ui.view,arch_db:theme_anzamar.theme_anzamar_page_open_shop
@@ -177,7 +195,7 @@ msgstr "Noticias"
 #: model:ir.ui.view,arch_db:theme_anzamar.theme_anzamar_page_open_shop
 #: model:website.menu,name:theme_anzamar.open_shop_submenu_request
 msgid "Open Request"
-msgstr "Solicitudde Apertura"
+msgstr "Solicitud de Apertura"
 
 #. module: theme_anzamar
 #: model:ir.ui.view,arch_db:theme_anzamar.custom_footer
@@ -312,6 +330,11 @@ msgstr "Usted no tiene permiso para acceder a esta página"
 #: model:ir.ui.view,arch_db:theme_anzamar.theme_anzamar_page_work_with_us
 msgid "Your Company"
 msgstr "Su Compañía"
+
+#. module: theme_anzamar
+#: model:ir.ui.view,arch_db:theme_anzamar.theme_anzamar_page_work_with_us
+msgid "Send"
+msgstr "Enviar"
 
 #. module: theme_anzamar
 #: model:ir.ui.view,arch_db:theme_anzamar.portal_my_details_ir_ui_view
