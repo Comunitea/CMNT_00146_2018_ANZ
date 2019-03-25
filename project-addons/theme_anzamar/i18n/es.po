@@ -6,10 +6,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-03-21 08:39+0000\n"
-"PO-Revision-Date: 2019-03-21 08:39+0000\n"
-"Last-Translator: <>\n"
-"Language-Team: \n"
+"POT-Creation-Date: 2019-03-25 11:47+0000\n"
+"PO-Revision-Date: 2019-03-25 11:47+0000\n"
+"Last-Translator: <ruben@comunitea.com>\n"
+"Language-Team: es/ES\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
@@ -18,9 +18,333 @@ msgstr ""
 #. module: website_sale
 #: model:ir.ui.view,arch_db:website_sale.wizard_checkout
 msgid "<span>Review Order</span>"
-msgstr "<span>Revisa tu pedido</span>"
+msgstr "<span>Revisa tu Pedido</span>"
 
 #. module: website_sale
 #: model:ir.ui.view,arch_db:website_sale.wizard_checkout
 msgid "<span> &amp; Shipping</span>"
-msgstr "<span> y envío</span>"
+msgstr "<span> y Envío</span>"
+
+#. module: theme_anzamar
+#: model:ir.ui.view,arch_db:theme_anzamar.theme_anz_website_footer_custom
+#: model:ir.ui.view,arch_db:theme_anzamar.theme_anzamar_page_anzamar_group
+#: model:website.menu,name:theme_anzamar.group_menu
+#: model:website.menu,name:theme_anzamar.group_submenu_group
+msgid "Anzamar Group"
+msgstr "Grupo Anzamar"
+
+#. module: theme_anzamar
+#: model:ir.ui.view,arch_db:theme_anzamar.theme_anz_website_footer_custom
+msgid "Anzamar Group Link"
+msgstr "Enlace Grupo Anzamar"
+
+#. module: theme_anzamar
+#: model:ir.ui.view,arch_db:theme_anzamar.theme_anzamar_page_anzamar_group
+msgid "Anzamar Group is ..."
+msgstr "El Grupo Anzamar es ..."
+
+#. module: theme_anzamar
+#: model:ir.ui.view,arch_db:theme_anzamar.theme_anz_website_footer_custom
+msgid "Black Laces Brand Page"
+msgstr "Grupo Anzamar - Marca Black Laces"
+
+#. module: theme_anzamar
+#: model:ir.ui.view,arch_db:theme_anzamar.theme_anz_website_footer_custom
+msgid "Blog Link"
+msgstr "Enlace al Blog"
+
+#. module: theme_anzamar
+#: model:website.menu,name:theme_anzamar.brands_menu
+msgid "Brands"
+msgstr "Marcas"
+
+#. module: theme_anzamar
+#: model:ir.ui.view,arch_db:theme_anzamar.anzamar_homepage_content
+msgid "Brands of our group"
+msgstr "Marcas de nuestro grupo"
+
+#. module: theme_anzamar
+#: model:ir.ui.view,arch_db:theme_anzamar.custom_footer
+#: model:ir.ui.view,arch_db:theme_anzamar.empty_footer
+#: model:ir.ui.view,arch_db:theme_anzamar.only_logged_in_users_advise
+msgid "Contactus"
+msgstr "Contáctanos"
+
+#. module: theme_anzamar
+#: model:ir.ui.view,arch_db:theme_anzamar.custom_footer
+#: model:ir.ui.view,arch_db:theme_anzamar.empty_footer
+msgid "Delivery"
+msgstr "Entrega"
+
+#. module: theme_anzamar
+#: model:ir.ui.view,arch_db:theme_anzamar.theme_anz_website_footer_custom
+msgid "Feel Point Brand Page"
+msgstr "Grupo Anzamar - Marca Feel Point"
+
+#. module: theme_anzamar
+#: model:ir.ui.view,arch_db:theme_anzamar.custom_footer
+#: model:ir.ui.view,arch_db:theme_anzamar.empty_footer
+msgid "Follow us"
+msgstr "Síguenos"
+
+#. module: theme_anzamar
+#: model:ir.ui.view,arch_db:theme_anzamar.theme_anzamar_page_anzamar_group
+#: model:ir.ui.view,arch_db:theme_anzamar.theme_anzamar_page_open_shop
+msgid "Form to open your shop with Anzamar Group"
+msgstr "Formulario para abrir tu tienda con el Grupo Anzamar"
+
+#. module: theme_anzamar
+#: model:ir.ui.view,arch_db:theme_anzamar.theme_anz_website_footer_custom
+msgid "Goalkers Brand Page"
+msgstr "Grupo Anzamar - Marca Goalkers"
+
+#. module: theme_anzamar
+#: model:ir.ui.view,arch_db:theme_anzamar.theme_anzamar_page_anzamar_group
+msgid "Great team to support you"
+msgstr "Un gran equipo para apoyarte"
+
+#. module: theme_anzamar
+#: model:website.menu,name:theme_anzamar.anzamar_menu_homepage
+msgid "Home"
+msgstr "Inicio"
+
+#. module: theme_anzamar
+#: model:ir.ui.view,arch_db:theme_anzamar.demo_page_content
+msgid "Image"
+msgstr "Imagen"
+
+#. module: theme_anzamar
+#: model:ir.ui.view,arch_db:theme_anzamar.custom_footer
+#: model:ir.ui.view,arch_db:theme_anzamar.empty_footer
+msgid "Information / Franchises"
+msgstr "Información / Franquicas"
+
+#. module: theme_anzamar
+#: model:ir.ui.view,arch_db:theme_anzamar.theme_anzamar_page_open_shop
+msgid "Instructions to open your shop with Anzamar Group"
+msgstr "Instrucciones para Abrir tu Tienda con el Grupo Anzamar"
+
+#. module: theme_anzamar
+#: model:ir.ui.view,arch_db:theme_anzamar.theme_anz_website_footer_custom
+#: model:ir.ui.view,arch_db:theme_anzamar.theme_anzamar_page_newsletter
+msgid "LinkedIn Link"
+msgstr "Enlace LinkeIn"
+
+#. module: theme_anzamar
+#: model:ir.ui.view,arch_db:theme_anzamar.only_logged_in_users_advise
+msgid "Log In"
+msgstr "Entrar"
+
+#. module: theme_anzamar
+#: model:website.menu,name:theme_anzamar.anzamar_main_menu
+msgid "Main Menu"
+msgstr "Menú Principal"
+
+#. module: theme_anzamar
+#: model:ir.ui.view,arch_db:theme_anzamar.theme_anzamar_page_anzamar_group
+msgid "Map of national presence"
+msgstr "Mapa de Presencia Nacional"
+
+#. module: theme_anzamar
+#: model:website.theme,name:theme_anzamar.theme_anazamar_multi
+msgid "Multiwebsite Anzamar Theme"
+msgstr "Tema Anzamar Multiwebsite"
+
+#. module: theme_anzamar
+#: model:ir.ui.view,arch_db:theme_anzamar.theme_anzamar_page_anzamar_group
+msgid "National Presence"
+msgstr "Presencia Nacional"
+
+#. module: theme_anzamar
+#: model:website.menu,name:theme_anzamar.group_submenu_presence
+msgid "National presence"
+msgstr "Presencia Nacional"
+
+#. module: theme_anzamar
+#: model:ir.ui.view,arch_db:theme_anzamar.only_logged_in_users_advise
+msgid "Need to"
+msgstr "Necesario para"
+
+#. module: theme_anzamar
+#: model:ir.ui.view,arch_db:theme_anzamar.theme_anz_website_footer_custom
+#: model:ir.ui.view,arch_db:theme_anzamar.theme_anzamar_page_newsletter
+msgid "Newsletter"
+msgstr "Noticias"
+
+#. module: theme_anzamar
+#: model:ir.ui.view,arch_db:theme_anzamar.custom_footer
+#: model:ir.ui.view,arch_db:theme_anzamar.empty_footer
+#: model:ir.ui.view,arch_db:theme_anzamar.theme_anzamar_page_open_shop
+#: model:website.menu,name:theme_anzamar.open_shop_submenu_request
+msgid "Open Request"
+msgstr "Solicitudde Apertura"
+
+#. module: theme_anzamar
+#: model:ir.ui.view,arch_db:theme_anzamar.custom_footer
+#: model:ir.ui.view,arch_db:theme_anzamar.empty_footer
+#: model:ir.ui.view,arch_db:theme_anzamar.theme_anzamar_page_open_shop
+#: model:website.menu,name:theme_anzamar.open_shop_menu
+#: model:website.menu,name:theme_anzamar.open_shop_submenu_open
+msgid "Open Your Shop"
+msgstr "Abre tu Tienda"
+
+#. module: theme_anzamar
+#: model:ir.ui.view,arch_db:theme_anzamar.theme_anzamar_page_open_shop
+#: model:website.menu,name:theme_anzamar.open_shop_submenu_steps
+msgid "Open Your Shop Steps"
+msgstr "Pasos para Abrir tu Tienda"
+
+#. module: theme_anzamar
+#: model:ir.ui.view,arch_db:theme_anzamar.custom_footer
+#: model:ir.ui.view,arch_db:theme_anzamar.empty_footer
+msgid "Payment method"
+msgstr "Métodos de Pago"
+
+#. module: theme_anzamar
+#: model:ir.ui.view,arch_db:theme_anzamar.theme_anzamar_page_work_with_us
+msgid "Phone Number"
+msgstr "Número de Teléfono"
+
+#. module: theme_anzamar
+#: model:ir.ui.view,arch_db:theme_anzamar.theme_anzamar_page_open_shop
+msgid "Please, follow the instructions"
+msgstr "Por favor, siga las instrucciones"
+
+#. module: theme_anzamar
+#: model:ir.ui.view,arch_db:theme_anzamar.theme_anz_website_footer_custom
+msgid "Point Sport Brand Page"
+msgstr "Grupo Anzamar - Marca Point Sport"
+
+#. module: theme_anzamar
+#: model:ir.ui.view,arch_db:theme_anzamar.theme_anz_website_footer_custom
+msgid "Presence"
+msgstr "Presencia"
+
+#. module: theme_anzamar
+#: model:ir.ui.view,arch_db:theme_anzamar.theme_anz_website_footer_custom
+msgid "Presence Link"
+msgstr "Enlace Presencia Nacional"
+
+#. module: theme_anzamar
+#: model:ir.ui.view,arch_db:theme_anzamar.theme_anz_website_footer_custom
+msgid "Skipping Brand Page"
+msgstr "Grupo Anzamar - Marca Skipping"
+
+#. module: theme_anzamar
+#: model:ir.ui.view,arch_db:theme_anzamar.only_logged_in_users_advise
+msgid "Start page"
+msgstr "Página de Inicio"
+
+#. module: theme_anzamar
+#: model:ir.ui.view,arch_db:theme_anzamar.custom_footer
+#: model:ir.ui.view,arch_db:theme_anzamar.empty_footer
+msgid "Steps to Open Your Shop"
+msgstr "Pasos para Abrir tu Tienda"
+
+#. module: theme_anzamar
+#: model:ir.ui.view,arch_db:theme_anzamar.theme_anzamar_page_open_shop
+msgid "Steps to open your shop with Anzamar Group"
+msgstr "Pasos para Abrir tu Tienda con el Grupo Anzamar"
+
+#. module: theme_anzamar
+#: model:ir.ui.view,arch_db:theme_anzamar.theme_anzamar_page_work_with_us
+msgid "Subject"
+msgstr "Asunto"
+
+#. module: theme_anzamar
+#: model:ir.ui.view,arch_db:theme_anzamar.carousel_homepage
+#: model:ir.ui.view,arch_db:theme_anzamar.theme_anzamar_page_brand_black_laces
+#: model:ir.ui.view,arch_db:theme_anzamar.theme_anzamar_page_brand_feel_point
+#: model:ir.ui.view,arch_db:theme_anzamar.theme_anzamar_page_brand_goalkers
+#: model:ir.ui.view,arch_db:theme_anzamar.theme_anzamar_page_brand_point_sport
+#: model:ir.ui.view,arch_db:theme_anzamar.theme_anzamar_page_brand_skipping
+#: model:ir.ui.view,arch_db:theme_anzamar.theme_anzamar_page_brand_umbro
+msgid "Team Wear"
+msgstr "Ropa de Equipo"
+
+#. module: theme_anzamar
+#: model:ir.ui.view,arch_db:theme_anzamar.theme_anzamar_page_anzamar_group
+msgid "The Anzamar companies are ..."
+msgstr "Las compañias del Grupo Anzamar son ..."
+
+#. module: theme_anzamar
+#: model:ir.ui.view,arch_db:theme_anzamar.theme_anzamar_page_open_shop
+msgid "These are the instructions:"
+msgstr "Estas son las instrucciones:"
+
+#. module: theme_anzamar
+#: model:ir.ui.view,arch_db:theme_anzamar.theme_anzamar_page_anzamar_group
+#: model:ir.ui.view,arch_db:theme_anzamar.theme_anzamar_page_open_shop
+msgid "These are the requirements:"
+msgstr "Estos son los requisitos:"
+
+#. module: theme_anzamar
+#: model:ir.ui.view,arch_db:theme_anzamar.theme_anz_website_footer_custom
+msgid "Umbro Brand Page"
+msgstr "Grupo Anzamar - Marca Umbro"
+
+#. module: theme_anzamar
+#: model:ir.ui.view,arch_db:theme_anzamar.custom_footer
+#: model:ir.ui.view,arch_db:theme_anzamar.empty_footer
+#: model:ir.ui.view,arch_db:theme_anzamar.theme_anz_website_footer_custom
+msgid "Work with Us"
+msgstr "Trabaje con Nosotros"
+
+#. module: theme_anzamar
+#: model:ir.ui.view,arch_db:theme_anzamar.custom_footer
+#: model:ir.ui.view,arch_db:theme_anzamar.empty_footer
+#: model:ir.ui.view,arch_db:theme_anzamar.theme_anz_website_footer_custom
+msgid "Work with Us Link"
+msgstr "Enlace a Trabaje con Nosotros"
+
+#. module: theme_anzamar
+#: model:ir.ui.view,arch_db:theme_anzamar.custom_footer
+#: model:ir.ui.view,arch_db:theme_anzamar.empty_footer
+msgid "Work with us"
+msgstr "Trabaje con Nosotros"
+
+#. module: theme_anzamar
+#: model:ir.ui.view,arch_db:theme_anzamar.only_logged_in_users_advise
+msgid "You do not have access to this page"
+msgstr "Usted no tiene permiso para acceder a esta página"
+
+#. module: theme_anzamar
+#: model:ir.ui.view,arch_db:theme_anzamar.theme_anzamar_page_work_with_us
+msgid "Your Company"
+msgstr "Su Compañía"
+
+#. module: theme_anzamar
+#: model:ir.ui.view,arch_db:theme_anzamar.portal_my_details_ir_ui_view
+#: model:website.page,arch_db:theme_anzamar.portal_my_details
+msgid "Your Contact Details"
+msgstr "Sus Detalles de Contacto"
+
+#. module: theme_anzamar
+#: model:ir.ui.view,arch_db:theme_anzamar.portal_my_details_ir_ui_view
+#: model:website.page,arch_db:theme_anzamar.portal_my_details
+msgid "Your Details"
+msgstr "Sus Detalles"
+
+#. module: theme_anzamar
+#: model:ir.ui.view,arch_db:theme_anzamar.portal_my_home_ir_ui_view
+#: model:website.page,arch_db:theme_anzamar.portal_my_home
+msgid "Your Documents"
+msgstr "Sus Documentos"
+
+#. module: theme_anzamar
+#: model:ir.ui.view,arch_db:theme_anzamar.portal_my_details_ir_ui_view
+#: model:ir.ui.view,arch_db:theme_anzamar.theme_anzamar_page_work_with_us
+#: model:website.page,arch_db:theme_anzamar.portal_my_details
+msgid "Your Name"
+msgstr "Su Nombre"
+
+#. module: theme_anzamar
+#: model:ir.ui.view,arch_db:theme_anzamar.theme_anzamar_page_work_with_us
+msgid "Your Question"
+msgstr "Su Pregunta"
+
+#. module: theme_anzamar
+#: model:ir.ui.view,arch_db:theme_anzamar.only_logged_in_users_advise
+msgid "how a retailer user"
+msgstr "como un usuario retailer"
+

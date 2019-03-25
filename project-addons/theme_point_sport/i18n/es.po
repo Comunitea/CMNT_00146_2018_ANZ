@@ -1,0 +1,151 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* theme_point_sport
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 11.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-03-25 11:47+0000\n"
+"PO-Revision-Date: 2019-03-25 11:47+0000\n"
+"Last-Translator: <ruben@comunitea.com>\n"
+"Language-Team: es/ES\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: theme_point_sport
+#: model:website.menu,name:theme_point_sport.poi_menu_about_us
+msgid "About us"
+msgstr "Sobre Nosotros"
+
+#. module: theme_point_sport
+#: model:website.menu,name:theme_point_sport.poi_product_brands_menu
+msgid "Brands"
+msgstr "Marcas"
+
+#. module: theme_point_sport
+#: model:website.menu,name:theme_point_sport.point_sport_menu_homepage
+msgid "Home"
+msgstr "Inicio"
+
+#. module: theme_point_sport
+#: model:website.menu,name:theme_point_sport.point_sport_main_menu
+msgid "Main Menu"
+msgstr "Menú Principal"
+
+#. module: theme_point_sport
+#: model:website.theme,name:theme_point_sport.theme_point_sport_multi
+msgid "Multiwebsite Point Sport Theme"
+msgstr "Tema Multiwebsite Point Sport"
+
+#. module: theme_point_sport
+#: model:ir.ui.view,arch_db:theme_point_sport.poi_product_brands_ir_ui_view
+#: model:website.page,arch_db:theme_point_sport.poi_product_brands
+msgid "No Brands Found."
+msgstr "No se han encontrado Marcas."
+
+#. module: theme_point_sport
+#: model:website.menu,name:theme_point_sport.poi_open_shop_submenu_request
+msgid "Open Request"
+msgstr "Solicitud Apertura"
+
+#. module: theme_point_sport
+#: model:website.menu,name:theme_point_sport.poi_open_shop_menu
+#: model:website.menu,name:theme_point_sport.poi_open_shop_submenu_open
+msgid "Open Your Shop"
+msgstr "Abre tu Tienda"
+
+#. module: theme_point_sport
+#: model:website.menu,name:theme_point_sport.poi_open_shop_submenu_steps
+msgid "Open Your Shop Steps"
+msgstr "Pasos para Abrir tu Tienda"
+
+#. module: theme_point_sport
+#: model:ir.ui.view,arch_db:theme_point_sport.poi_product_brands_ir_ui_view
+#: model:website.page,arch_db:theme_point_sport.poi_product_brands
+msgid "Product Brands"
+msgstr "Marcas de Producto"
+
+#. module: theme_point_sport
+#: model:ir.ui.view,arch_db:theme_point_sport.poi_product_brands_ir_ui_view
+#: model:website.page,arch_db:theme_point_sport.poi_product_brands
+msgid "Search"
+msgstr "Buscar"
+
+#. module: theme_point_sport
+#: model:ir.ui.view,arch_db:theme_point_sport.poi_product_brands_ir_ui_view
+#: model:website.page,arch_db:theme_point_sport.poi_product_brands
+msgid "Search..."
+msgstr "Buscar..."
+
+#. module: theme_point_sport
+#: model:website.menu,name:theme_point_sport.poi_shop_menu
+msgid "Shop"
+msgstr "Tienda"
+
+#. module: theme_point_sport
+#: model:ir.ui.view,arch_db:theme_point_sport.poi_order_confirmation_ir_ui_view
+#: model:website.page,arch_db:theme_point_sport.poi_order_confirmation
+msgid "Shop - Confirmed"
+msgstr "Tienda - Confirmado"
+
+#. module: theme_point_sport
+#: model:website.menu,name:theme_point_sport.poi_menu_our_shops
+msgid "Shops"
+msgstr "Tiendas"
+
+#. module: theme_point_sport
+#: model:ir.ui.view,arch_db:theme_point_sport.point_sport_homepage_content
+msgid "Team Wear"
+msgstr "Ropa Deportiva"
+
+#. module: theme_point_sport
+#: model:ir.ui.view,arch_db:theme_point_sport.poi_terms_page_ir_ui_view
+#: model:website.page,arch_db:theme_point_sport.poi_terms_page
+msgid "We reserve the right, at our sole discretion, to modify or replace these\n"
+"                                                Terms at any time. If a\n"
+"                                                revision is material we will try to provide at least ​30 days notice\n"
+"                                                prior to any new\n"
+"                                                terms taking effect. What constitutes a material change will be\n"
+"                                                determined at our sole discretion.\n"
+"                                                By continuing to access or use our Service after those revisions become\n"
+"                                                effective, you agree to\n"
+"                                                be bound by the revised terms. If you do not agree to the new terms,\n"
+"                                                please stop using the\n"
+"                                                Service."
+msgstr ""
+"Reservamos el derecho, a nuestra propia discreción, de modificar o sustituir "
+"estos Términos en cualquier momento. Si una revisión es material trataremos "
+"de proporcionar aviso de al menos ​30 días antes de  que cualquier nuevo "
+"término entrase en vigor. Lo que constituye un cambio material será "
+"determinado a nuestra propia discreción. Si sigue teniendo acceso o usando "
+"nuestro Servicio después de que aquellas revisiones entren en vigor, "
+"consiente en ser ligado por los términos revisados. Si no está de acuerdo "
+"con los nuevos términos, por favor deje de usar el Servicio"
+
+#. module: theme_point_sport
+#: model:ir.ui.view,arch_db:theme_point_sport.poi_terms_page_ir_ui_view
+#: model:website.page,arch_db:theme_point_sport.poi_terms_page
+msgid "We strongly advise you to read the terms and conditions and privacy\n"
+"                                                policies of any third­party\n"
+"                                                web sites or services that you visit."
+msgstr ""
+"Aconsejamos que lea los términos y condiciones y políticas de privacidad de "
+"los sitios web de terceros o servicios que usted visite."
+
+#. module: theme_point_sport
+#: model:ir.ui.view,arch_db:theme_point_sport.poi_privacy_page_ir_ui_view
+#: model:website.page,arch_db:theme_point_sport.poi_privacy_page
+msgid "While using our Site, we may ask you to provide us with certain\n"
+"                                                personally identifiable information\n"
+"                                                that can be used to contact or identify you. Personally identifiable\n"
+"                                                information may include, but is\n"
+"                                                not limited to your name (\"Personal Information\")."
+msgstr ""
+"Durante el uso de nuestro sitio podremos pedirle que nos proporcione cierta "
+"información que puede ser usada para contactar o identificarle. La "
+"información podria incluir, pero no está limitada a su nombre (Información "
+"Personal)."
+
