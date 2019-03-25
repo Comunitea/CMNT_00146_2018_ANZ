@@ -136,3 +136,51 @@ odoo.define('theme_anzamar.website_sale', function(require) {
     }, 200, true));
 
 });
+
+$(document).ready(function(){
+    odoo.define('theme_anzamar.multi_update_cart', function (require) {
+        'use strict';
+        var ajax = require('web.ajax');
+
+        $('form#multi_update').on('submit', function(e){
+            e.preventDefault();
+
+            var product_variants = {}
+
+            $('.one-input input').each(function(){
+                var count = parseInt($(this).val())
+                if(count > 0) {
+                    var key = parseInt($(this).attr('id'))
+                    product_variants[key] = count
+                }
+            });
+
+            if(Object.keys(product_variants).length > 0){
+                ajax.jsonRpc('/shop/cart/multi_update', 'call', {
+                    'update_data': JSON.stringify(product_variants),
+                    'product_template': parseInt($('input[name="product_template"]').val())
+                }).then(function (data) {
+                    data = $.parseJSON(data);
+                    if(data['success'] == true){
+                        // SUCCESS ACTION
+                        if(data['quantity'] > 0){
+                            $('.my_cart_quantity').html(data['quantity']);
+                        }
+                        $('#multi_was_added .modal-body').html(data['message']);
+                        $('#multi_was_added').modal('show');
+                        $('form#multi_update').trigger('reset');
+                    }else {
+                        // ERROR MESSAGE
+                        $('#multi_error .modal-body').html(data['message']);
+                        $('#multi_error').modal('show');
+                    }
+                });
+            }else{
+                // ERROR MESSAGE
+                $('#multi_error .modal-body').html('Empty list of product variants');
+                $('#multi_error').modal('show');
+            }
+        });
+
+    });
+});
