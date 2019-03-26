@@ -52,13 +52,15 @@
                 </t>
             </t>
         </xpath>
+
+        <!-- Retailer multi-add-to-cart success/fail windows -->
         <xpath expr="//form[hasclass('js_add_cart_variants')]" position="after">
             <div id="multi_was_added" class="modal fade" tabindex="-1" role="dialog">
                 <div class="modal-dialog modal-md">
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-                            <h4 class="modal-title">The product was added to cart</h4>
+                            <h4 class="modal-title">This product was added to cart</h4>
                         </div>
                         <div class="modal-body bg-success"/>
                         <div class="modal-footer">

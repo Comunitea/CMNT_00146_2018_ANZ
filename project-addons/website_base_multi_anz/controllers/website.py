@@ -22,22 +22,27 @@ class MultiUpdateCart(WebsiteSale):
             # Set order data
             order = request.website.sale_get_order(force_create=True)
             qty_total = 0
-
+            prod_list = ''
+            # Search product.product with current attributes
             for key in variants:
                 qty = variants[key]
                 product_id = variant_ids.filtered(lambda x: int(key, 10) in x.attribute_value_ids.ids)
                 if product_id:
+                    # Add to cart
                     order._cart_update(product_id=product_id.id, add_qty=qty)
                     qty_total += qty
+                    attr_name = product_id.attribute_value_ids.search([('id', '=', int(key, 10))], limit=1).name
+                    prod_list += '<li>%s <strong>(%s)</strong>: %d unit(s)</li>' % (product_id.name, attr_name, qty)
             if qty_total > 0:
                 success = True
-                message = _('Was added %d unit(s)' % qty_total)
+                message = _('<p>Was added %d unit(s):</p><ul>%s</ul>' % (qty_total, prod_list))
                 quantity = order.cart_quantity
             else:
                 message = _('Product variants not found')
         else:
             message = _('Empty list of product variants')
 
+        # Return fail/success message
         values = {
             'success': success,
             'quantity': quantity,
