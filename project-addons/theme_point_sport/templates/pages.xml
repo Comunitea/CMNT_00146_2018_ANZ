@@ -121,14 +121,22 @@
                     <script type="text/javascript" async="async" defer="defer"
                             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA_3Mma3hft3POI5f2LhzxSzie0dF1BtOs&amp;language=es&amp;callback=pointShopsInitMap"/>
                 </div>
-                <!--<div class="container">
+                <div class="container">
                     <h1 class="text-center mb32">Tiendas</h1>
                     <div class="row">
-                        <div class="col-md-12">
-
+                        <div class="col-md-12 mb32">
+                            <h3 class="text-center">¿Dónde encontrar tu Tienda de deportes, ropa deportiva, zapatillas deportivas running y accesorios para comprar online o en Málaga?</h3>
+                            <p><strong>"Tu punto de referencia en el deporte"</strong></p>
+                            <p><strong>Master Sport</strong>, tienda online de material deportivo, está compuesta de dos tiendas situadas en Málaga Capital con más de 16 años de experiencia.</p>
+                            <p>Tanto en nuestra tienda online como en nuestras tiendas deportivas en Málaga podrás encontrar los artículos deportivos que necesitas entre otras, ropa deportiva, calzado deportivo y lo último en moda sport.</p>
+                            <p>Si eres amante del Running, del Padel, del Fútbol o de cualquier otro deporte, nuestro personal altamente cualificado resolverán todas tus dudas y te ayudarán a elegir el material que necesites.</p>
+                            <p>Nos adaptamos a ti y a tu tiempo disponible gracias a nuestra tienda online!! En ella podrás realizar consultas a nuestros especialistas y ellos se pondrán en contacto contigo para ayudarte en tu elección para recibir el material deportivo que mejor se te adapte con la mayor comodidad y lo antes posible en tu domicilio para practicar tu deporte favorito en menos de <a href="/page/delivery">48 horas</a>.</p>
+                            <p>Además, en el año 2000 nos unimos al <strong>Grupo de Compras Point Sport</strong>, empresa dedicada y especialista en el deporte desde 1986, es decir, con más de 25 años de experiencia en el mercado deportivo siendo uno de los principales distribuidores a Nivel Nacional, contando con más de 130 tiendas por toda España.</p>
+                            <p>Todas tus compras y dudas serán avaladas y atendidas por un personal cualificado y respaldado siempre por una empresa de más de 26 años especialista en deporte.</p>
+                            <p>Sólo vendemos productos originales y sólo las principales marcas del mercado deportivo.</p>
                         </div>
                     </div>
-                </div>-->
+                </div>
             </div>
         </t>
     </template>
@@ -149,6 +157,7 @@
         <field name="parent_id" ref="point_sport_main_menu"/>
         <field name="sequence" type="int">30</field>
         <field name="website_id" ref="website_base_multi_anz.point_sport_website"/>
+        <field name="not_portal">True</field>
     </record>
 
     <!-- ======================================= Page Open Your Shop ======================================= -->
@@ -483,6 +492,46 @@
         <field name="sequence" type="int">22</field>
         <field name="website_id" ref="website_base_multi_anz.point_sport_website"/>
         <field name="website_published">True</field>
+        <field name="not_public">True</field>
+    </record>
+
+    <!-- ======================================= Group menu ======================================= -->
+
+    <!-- Our shop Template -->
+    <template id="poi_template_our_group">
+        <t t-call="website.layout">
+            <div id="wrap">
+                <div class="container">
+                    <h1 class="text-center mb32">Empresa</h1>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <p><strong>Anzamar S.L.</strong> es una empresa dedicada a la distribución de artículos deportivos desde el año 1986. Nuestro principal objetivo ha sido surtir de todos los productos necesarios para la ejecución de la práctica deportiva en cualquier establecimiento. Actualmente contamos con más de 12.500 referencias proporcionándonos esto ser uno de los referentes en el mercado deportivo Nacional.</p>
+                            <p>Nuestros más de 20 años de experiencia como mayoristas nos facilita el acceso a las mejores y/o más rentables marcas del mundo deportivo Nacional proporcionando a nuestros clientes un asesoramiento de maxima calidad. En el año 1999 nació el Grupo de Compras <strong>POINT SPORT</strong>, siendo uno de los grupos de referencia a nivel Nacional según la revista deportiva CMD (Correo del Mercado Deportivo) que nos sitúa como el sexto operador Nacional.</p>
+                            <p>Uno de nuestros principios básicos en el grupo de compras <strong>POINT SPORT</strong> es hacer las cosas fáciles, y para ello tenemos negociadas las mejores condiciones con más de 50 proveedores deportivos que os proporcionará tener siempre el producto más adecuado y con las mejores condiciones necesarias para realizar vuestro deporte favorito.</p>
+                            <p>Actualmente sumamos 132 establecimientos con 107 asociados distribuidos en 112 ciudades de toda España.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+
+    <!-- Our shop Page -->
+    <record id="poi_page_our_group" model="website.page">
+        <field name="name">Group</field>
+        <field name="website_ids" eval="[(6, 0, [ref('website_base_multi_anz.point_sport_website')])]"/>
+        <field name="website_published">True</field>
+        <field name="url">/page/our-group</field>
+        <field name="view_id" ref="poi_template_our_group"/>
+    </record>
+
+    <!-- Our shop Page -->
+    <record id="poi_menu_our_group" model="website.menu">
+        <field name="name">Group</field>
+        <field name="url">/page/our-group</field>
+        <field name="parent_id" ref="point_sport_main_menu"/>
+        <field name="sequence" type="int">30</field>
+        <field name="website_id" ref="website_base_multi_anz.point_sport_website"/>
         <field name="not_public">True</field>
     </record>
 

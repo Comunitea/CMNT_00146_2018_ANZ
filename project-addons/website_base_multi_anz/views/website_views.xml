@@ -24,6 +24,7 @@
                 <field name="parent_id" position="after">
                     <field name="website_published"/>
                     <field name="not_public"/>
+                    <field name="not_portal"/>
                 </field>
             </field>
         </record>

@@ -37,7 +37,7 @@
                 submenu.is_visible and submenu.website_published and not submenu.child_id.filtered(lambda menu: menu.is_visible) and ((
                     request.env.user.has_group('base.group_public') and not submenu.not_public
                 ) or (
-                    not request.env.user.has_group('base.group_public')
+                    not request.env.user.has_group('base.group_public') and not submenu.not_portal
                 ))
             </attribute>
         </xpath>
@@ -46,7 +46,7 @@
                 submenu.child_id.filtered(lambda menu: menu.is_visible) and submenu.website_published and ((
                     request.env.user.has_group('base.group_public') and not submenu.not_public
                 ) or (
-                    not request.env.user.has_group('base.group_public')
+                    not request.env.user.has_group('base.group_public') and not submenu.not_portal
                 ))
             </attribute>
         </xpath>
