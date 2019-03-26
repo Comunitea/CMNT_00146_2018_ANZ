@@ -108,7 +108,7 @@
                 <h4 t-esc="website.name"/>
                 <ul class="list-unstyled">
                     <li><a href="/page/about-us">About us</a></li>
-                    <li><a href="/page/our-shops">Our shops</a></li>
+                    <li><a href="/page/our-shops">Our Shops</a></li>
                     <li><a href="/contactus">Contactus</a></li>
                     <li><a href="/page/newsletter">Follow us</a></li>
                 </ul>

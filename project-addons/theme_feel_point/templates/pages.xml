@@ -103,7 +103,7 @@
 
     <!-- Our shop Page -->
     <record id="fee_page_our_shops" model="website.page">
-        <field name="name">Our shops</field>
+        <field name="name">Our Shops</field>
         <field name="website_ids" eval="[(6, 0, [ref('website_base_multi_anz.feel_point_website')])]"/>
         <field name="website_published">True</field>
         <field name="url">/page/our-shops</field>
@@ -112,7 +112,7 @@
 
     <!-- Our shop Page -->
     <record id="fee_menu_our_shops" model="website.menu">
-        <field name="name">Our shops</field>
+        <field name="name">Our Shops</field>
         <field name="url">/page/our-shops</field>
         <field name="parent_id" ref="fee_main_menu"/>
         <field name="sequence" type="int">30</field>
