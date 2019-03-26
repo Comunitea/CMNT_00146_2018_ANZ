@@ -334,12 +334,12 @@
         <t t-call="website.layout">
             <div id="wrap">
                 <div class="container">
-                    <h1 class="text-center mb32">Contact us</h1>
+                    <h1 class="text-center mb32">Contact Us</h1>
                     <div class="row">
                         <div class="col-md-8">
                             <div class="oe_structure">
                                 <div>
-                                    <p>Contáctese con nosotros por cualquier cosa relacionada con nuestra empresa o servicios.</p>
+                                    <p>Contacte con nosotros para cualquier cosa relacionada con nuestra empresa o servicios.</p>
                                     <p>Haremos lo posible por responderle a la mayor brevedad.</p>
                                 </div>
                             </div>
