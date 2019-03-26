@@ -319,13 +319,18 @@
         <div class="form-group form-field o_website_form_required">
             <div class="col-md-7 col-md-offset-3 col-sm-8 col-sm-offset-4">
                 <div class="checkbox">
-                    <input type="checkbox" value="accepted" id="privacy_policy" name="privacy_policy" class="o_website_form_input" required="required"/>
-                    <label class="control-label" for="privacy_policy">
+                    <input type="checkbox" value="accepted" id="privacy_policy" name="privacy_policy" class="o_website_form_input ml0" required="required"/>
+                    <label for="privacy_policy">
                         <t t-call="website_legal_page.acceptance_full"/>
                     </label>
                 </div>
             </div>
         </div>
+    </template>
+
+    <!-- Terms of use without checkbox -->
+    <template id="privacy_policy_advise">
+        I accept the <a href="/legal/advice">legal advice</a>, the <a href="/legal/privacy-policy">privacy policy</a>, and the <a href="/legal/terms-of-use">terms of use</a> of this website.
     </template>
 
     <!-- Default contact form with google recapthca and terms of use-->
@@ -367,13 +372,13 @@
                     <textarea class="form-control o_website_form_input" name="description" required=""><t t-esc="request.params.get('description', '')"/></textarea>
                 </div>
             </div>
-            <t t-call="theme_anzamar.privacy_policy_contact_form"/>
             <div class="form-group form-field o_website_form_required_custom">
                 <label class="col-md-3 col-sm-4 control-label" for="g-recaptcha-response">Is human?</label>
                 <div class="col-md-7 col-sm-8">
                     <span class="o_website_form_recaptcha" />
                 </div>
             </div>
+            <t t-call="theme_anzamar.privacy_policy_contact_form" t-if="website.env.user == request.website.user_id"/>
             <div class="form-group">
                 <div class="col-md-offset-3 col-sm-offset-4 col-sm-8 col-md-7">
                     <span class="btn btn-primary btn-lg o_website_form_send">Send</span>

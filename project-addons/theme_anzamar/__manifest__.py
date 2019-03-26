@@ -50,6 +50,8 @@
         'templates/header.xml',
         'templates/footer.xml',
         'templates/breadcrumbs_bar.xml',
+        'templates/account.xml',
+        'templates/newsletter.xml',
         'templates/pages.xml',
         'templates/page_home.xml',
         'templates/page_anzamar_group.xml',

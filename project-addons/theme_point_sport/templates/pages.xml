@@ -43,7 +43,18 @@
         <t t-call="website.layout">
             <div id="wrap">
                 <div class="container">
-                    <t t-call="theme_anzamar.demo_page_content"/>
+                    <!--<t t-call="theme_anzamar.demo_page_content"/>-->
+                    <div class="row mt64 mb64">
+                        <div class="col-md-12 mb32">
+                            <h1 class="text-center mb32" t-esc="main_object.name"/>
+                            <div class="oe_login_form text-center">
+                                <t t-call="website_mail.follow">
+                                    <t t-set="email" t-value="user_id.email"/>
+                                    <t t-set="object" t-value="request.env['blog.blog'].sudo().search([('website_ids', 'ilike', website.id)])"/>
+                                </t>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </t>
