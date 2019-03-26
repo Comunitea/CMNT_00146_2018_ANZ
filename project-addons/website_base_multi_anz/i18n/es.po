@@ -87,3 +87,40 @@ msgstr "Email del Sitio Web"
 #: model:ir.model,name:website_base_multi_anz.model_website_menu
 msgid "Website Menu"
 msgstr "Menú del Sitio Web"
+
+#. module: website_base_multi_anz
+#: model:ir.model.fields,field_description:website_base_multi_anz.field_website_menu_not_portal
+msgid "Available only for public users"
+msgstr "Disponible solo para Usuarios Públicos"
+
+#. module: website_base_multi_anz
+#: code:addons/website_base_multi_anz/controllers/website.py:38
+#, python-format
+msgid "<p>Añadida(s) %d unidad(s):</p><ul>%s</ul>"
+msgstr ""
+
+#. module: website_base_multi_anz
+#: code:addons/website_base_multi_anz/controllers/website.py:41
+#, python-format
+msgid "Product variants not found"
+msgstr "Variantes de Producto no encontradas"
+
+#. module: website_base_multi_anz
+#: model:ir.model,name:website_base_multi_anz.model_website
+msgid "Website"
+msgstr "Sitio Web"
+
+#. module: website_base_multi_anz
+#: model:ir.model.fields,field_description:website_base_multi_anz.field_res_config_settings_email
+#: model:ir.model.fields,field_description:website_base_multi_anz.field_robots_txt_settings_email
+#: model:ir.model.fields,field_description:website_base_multi_anz.field_seo_general_settings_email
+#: model:ir.model.fields,field_description:website_base_multi_anz.field_sitemap_base_settings_email
+#: model:ir.model.fields,field_description:website_base_multi_anz.field_web_app_settings_email
+#: model:ir.model.fields,field_description:website_base_multi_anz.field_website_email
+msgid "Website Email"
+msgstr "Email Sitio Web"
+
+#. module: website_base_multi_anz
+#: model:ir.model,name:website_base_multi_anz.model_website_menu
+msgid "Website Menu"
+msgstr "Menú Sitio Web"

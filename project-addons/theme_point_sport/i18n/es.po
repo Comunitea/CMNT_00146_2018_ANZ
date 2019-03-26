@@ -159,3 +159,9 @@ msgstr ""
 "información podria incluir, pero no está limitada a su nombre (Información "
 "Personal)."
 
+#. module: theme_point_sport
+#: model:website.menu,name:theme_point_sport.poi_menu_our_group
+#: model:website.page,name:theme_point_sport.poi_page_our_group
+msgid "Group"
+msgstr "Grupo Anzamar"
+

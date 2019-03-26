@@ -371,3 +371,27 @@ msgstr "Su Pregunta"
 msgid "how a retailer user"
 msgstr "como un usuario retailer"
 
+#. module: theme_anzamar
+#: model:ir.ui.view,arch_db:theme_anzamar.theme_anz_web_login
+msgid "With entering"
+msgstr "Al entrar"
+
+#. module: theme_anzamar
+#: model:ir.ui.view,arch_db:theme_anzamar.privacy_policy_advise
+msgid "I accept the"
+msgstr "Acepto el"
+
+#. module: theme_anzamar
+#: model:ir.ui.view,arch_db:theme_anzamar.privacy_policy_advise
+msgid ", the"
+msgstr ", la"
+
+#. module: theme_anzamar
+#: model:ir.ui.view,arch_db:theme_anzamar.privacy_policy_advise
+msgid ", and the"
+msgstr "y los"
+
+#. module: theme_anzamar
+#: model:ir.ui.view,arch_db:theme_anzamar.privacy_policy_advise
+msgid "of this website."
+msgstr "de este Sitio Web."
