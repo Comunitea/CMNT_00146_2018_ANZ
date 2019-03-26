@@ -76,9 +76,9 @@
         <t t-call="website.layout">
             <div id="wrap">
                 <div class="container">
-                    <div class="row mt64 mb64">
+                    <h1 class="text-center mb32">Sobre nosotros</h1>
+                    <div class="row">
                         <div class="col-md-12 mb32">
-                            <h1 class="text-center mb32">Sobre nosotros</h1>
                             <p>Point Sport pertenece al Grupo Anzamar; central de compras y distribuidor de artículos deportivos fundado hace más de 30 años. Como central de compras, aunamos una gran cantidad de asociados con los que ganamos competitividad y visibilidad en el mercado gracias a la fuerza colectiva. De esta forma cualquier integrante de nuestro grupo puede acceder a una serie de marcas, promociones y precios que a los que serían imposibles acceder en solitario. Nuestro catálogo de más de 100 marcas integra las mejores y más importantes del mercado con los precios más competitivos.</p>
                             <p>Como mayorista, nuestro principal objetivo es surtir de todos los productos necesarios para la ejecución de la práctica deportiva a cualquier establecimiento. Para ello nuestros profesionales con décadas de experiencia en sector deportivo analizan continuamente el mercado, la oferta y las últimas tendencias para disponer de las mejores novedades disponibles para la venta.</p>
                             <p>Grupo Anzamar cuenta con unas instalaciones de almacenaje que suman una superficie de más de 3.000 metros cuadrados, en la cual contamos con más de 12.500 referencias. Estas referencias son la expresión de nuestra selección de los artículos con mayor prospectiva de venta basados en nuestra experiencia, estudios especializados y la reciprocidad de nuestras relaciones con el resto del retail dedicados al deporte y minoristas del mercado. Nuestra experiencia y trayectoria sumada a nuestro potencial y capacidad, nos convierte en uno de los referentes entre los detallistas deportivos en el mercado deportivo nacional.</p>
@@ -477,12 +477,15 @@
     </record>
 
     <!-- Product Brands -->
+
+    <template id="poi_product_brands_view" name="Brands view" inherit_id="website_sale_product_brand.product_brands"/>
+
     <record id="poi_product_brands" model="website.page">
         <field name="name">Brands</field>
         <field name="website_published">True</field>
         <field name="website_ids" eval="[(6, 0, [ref('website_base_multi_anz.point_sport_website')])]"/>
         <field name="url">/page/product_brands</field>
-        <field name="view_id" ref="website_sale_product_brand.product_brands"/>
+        <field name="view_id" ref="poi_product_brands_view"/>
     </record>
     <record id="poi_product_brands_menu" model="website.menu">
         <field name="name">Brands</field>
