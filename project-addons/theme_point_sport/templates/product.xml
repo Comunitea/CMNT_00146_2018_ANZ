@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <!-- Product page template -->
+    <template id="website_sale_product" inherit_id="website_multi_theme.auto_view_poi_website_sale_product">
+        <!-- User access control -->
+        <xpath expr="//section[@id='product_detail']" position="before">
+            <t t-set="user_access" t-value="website.user_access()"/>
+        </xpath>
+        <xpath expr="//section[@id='product_detail']" position="attributes">
+            <attribute name="t-if">user_access == True</attribute>
+        </xpath>
+        <xpath expr="//section[@id='product_detail']" position="after">
+            <t t-if="user_access == False" t-call="theme_anzamar.only_logged_in_users_advise"/>
+        </xpath>
+
+        <!-- Retailer multi-add-to-cart action in the form -->
+        <xpath expr="//form[hasclass('js_add_cart_variants')]" position="attributes">
+            <attribute name="t-attf-action">#{'/shop/cart/multi_update' if (user_access == True and len(product.product_variant_ids) &gt; 1) else '/shop/cart/update'}</attribute>
+            <attribute name="t-att-id">'multi_update' if (user_access == True and len(product.product_variant_ids) &gt; 1) else None</attribute>
+        </xpath>
+        <xpath expr="//a[@id='add_to_cart']" position="attributes">
+            <attribute name="t-if">not(user_access == True and len(product.product_variant_ids) &gt; 1)</attribute>
+        </xpath>
+        <xpath expr="//a[@id='add_to_cart']" position="after">
+            <div class="add-to-cart-multi" t-if="user_access == True and len(product.product_variant_ids) &gt; 1">
+                <a class="btn btn-success btn-lg mt8 a-submit" href="#">Multi add to Cart</a>
+            </div>
+        </xpath>
+
+        <!-- Retailer product variants grid -->
+        <xpath expr="//div[hasclass('js_product')]/t[1]" position="attributes">
+            <attribute name="t-if">not(user_access == True and len(product.product_variant_ids) &gt; 1)</attribute>
+        </xpath>
+        <xpath expr="//div[hasclass('js_product')]/t[1]" position="after">
+            <t t-if="user_access == True and len(product.product_variant_ids) &gt; 1">
+                <input type="hidden" name="product_template" t-att-value="product.id"/>
+                <t t-set="attribute_value_ids" t-value="get_attribute_value_ids(product)"/>
+                <t t-foreach="product.attribute_line_ids.sorted(key=lambda x: x.attribute_id.sequence)" t-as="variant_id">
+                    <div class="multi-sizes" t-if="len(variant_id.value_ids) > 1 and variant_id.attribute_id.type == 'radio'">
+                        <t t-foreach="variant_id.value_ids" t-as="value_id">
+                            <div class="one-line">
+                                <div class="one-label">
+                                    <label t-att-for="value_id.id" t-field="value_id.name"/>
+                                </div>
+                                <div class="one-input">
+                                    <input type="number" min="0" max="100" t-att-id="value_id.id" t-att-name="'attribute-%s-%s' % (product.id, variant_id.attribute_id.id)"/>
+                                </div>
+                            </div>
+                        </t>
+                    </div>
+                </t>
+            </t>
+        </xpath>
+
+        <!-- Retailer multi-add-to-cart success/fail windows -->
+        <xpath expr="//form[hasclass('js_add_cart_variants')]" position="after">
+            <div id="multi_was_added" class="modal fade" tabindex="-1" role="dialog">
+                <div class="modal-dialog modal-md">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+                            <h4 class="modal-title">This product was added to cart</h4>
+                        </div>
+                        <div class="modal-body bg-success"/>
+                        <div class="modal-footer">
+                            <a class="btn btn-default" href="/shop"><i class="fa fa-chevron-left"/> <span class="hidden-xs">Continue Shopping</span><span class="visible-xs-inline">Continue</span></a>
+                            <a class="btn btn-primary pull-right" href="/shop/cart"><i class="fa fa-shopping-cart fa-fw"/> <span class="hidden-xs">Proceed to Checkout</span><span class="visible-xs-inline">Checkout</span></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="multi_error" class="modal fade" tabindex="-1" role="dialog">
+                <div class="modal-dialog modal-md">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+                            <h4 class="modal-title text-danger">An error has occurred</h4>
+                        </div>
+                        <div class="modal-body bg-danger"/>
+                        <div class="modal-footer">
+                            <a class="btn btn-default pull-right" data-dismiss="modal" aria-hidden="true">Close</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </xpath>
+
+    </template>
+
+    <!-- Product select quantity template -->
+    <template id="website_sale_product_quantity" inherit_id="website_multi_theme.auto_view_poi_website_sale_product_quantity">
+        <xpath expr="//div[hasclass('css_quantity')]" position="before">
+            <t t-set="user_access" t-value="website.user_access()"/>
+        </xpath>
+        <xpath expr="//div[hasclass('css_quantity')]" position="attributes">
+            <attribute name="t-if">not(user_access == True and len(product.product_variant_ids) &gt; 1)</attribute>
+        </xpath>
+    </template>
+
+</odoo>

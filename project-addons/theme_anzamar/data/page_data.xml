@@ -87,21 +87,24 @@
 
         <!-- // Legal pages part -->
 
-        <record id="website_legal_page.advise_page" model="website.page">
+        <record id="anz_advise_page" model="website.page">
+            <field name="name">Legal advise</field>
             <field name="website_published">True</field>
             <field name="website_ids" eval="[(6, 0, [ref('website_base_multi_anz.anzamar_website')])]"/>
             <field name="url">/legal/advice</field>
             <field name="view_id" ref="website_legal_page.advice"/>
         </record>
 
-        <record id="website_legal_page.privacy_page" model="website.page">
+        <record id="anz_privacy_page" model="website.page">
+            <field name="name">Privacy policy</field>
             <field name="website_published">True</field>
             <field name="website_ids" eval="[(6, 0, [ref('website_base_multi_anz.anzamar_website')])]"/>
             <field name="url">/legal/privacy-policy</field>
             <field name="view_id" ref="website_legal_page.privacy-policy"/>
         </record>
 
-        <record id="website_legal_page.terms_page" model="website.page">
+        <record id="anz_terms_page" model="website.page">
+            <field name="name">Terms of use</field>
             <field name="website_published">True</field>
             <field name="website_ids" eval="[(6, 0, [ref('website_base_multi_anz.anzamar_website')])]"/>
             <field name="url">/legal/terms-of-use</field>

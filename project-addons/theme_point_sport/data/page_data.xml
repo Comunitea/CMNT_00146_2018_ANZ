@@ -88,6 +88,7 @@
         <!-- // Legal pages part -->
 
         <record id="poi_advise_page" model="website.page">
+            <field name="name">Legal advise</field>
             <field name="website_published">True</field>
             <field name="website_ids" eval="[(6, 0, [ref('website_base_multi_anz.point_sport_website')])]"/>
             <field name="url">/legal/advice</field>
@@ -95,6 +96,7 @@
         </record>
 
         <record id="poi_privacy_page" model="website.page">
+            <field name="name">Privacy policy</field>
             <field name="website_published">True</field>
             <field name="website_ids" eval="[(6, 0, [ref('website_base_multi_anz.point_sport_website')])]"/>
             <field name="url">/legal/privacy-policy</field>
@@ -102,26 +104,11 @@
         </record>
 
         <record id="poi_terms_page" model="website.page">
+            <field name="name">Terms of use</field>
             <field name="website_published">True</field>
             <field name="website_ids" eval="[(6, 0, [ref('website_base_multi_anz.point_sport_website')])]"/>
             <field name="url">/legal/terms-of-use</field>
             <field name="view_id" ref="website_legal_page.terms-of-use"/>
-        </record>
-
-        <!-- // Contact Us part -->
-
-        <record id="poi_contactus_page" model="website.page">
-            <field name="website_published">True</field>
-            <field name="website_ids" eval="[(6, 0, [ref('website_base_multi_anz.point_sport_website')])]"/>
-            <field name="url">/contactus</field>
-            <field name="view_id" ref="website.contactus"/>
-        </record>
-
-        <record id="poi_contactus_thanks" model="website.page">
-            <field name="website_published">True</field>
-            <field name="website_ids" eval="[(6, 0, [ref('website_base_multi_anz.point_sport_website')])]"/>
-            <field name="url">/contactus-thank-you</field>
-            <field name="view_id" ref="website_crm.contactus_thanks_ir_ui_view"/>
         </record>
 
     </data>

@@ -11,6 +11,7 @@
         <field name="parent_id" ref="point_sport_main_menu"/>
         <field name="sequence" type="int">40</field>
         <field name="website_id" ref="website_base_multi_anz.point_sport_website"/>
+        <field name="website_published">False</field>
     </record>
 
     <!-- ======================================= Page Work with Us ======================================= -->
@@ -42,7 +43,18 @@
         <t t-call="website.layout">
             <div id="wrap">
                 <div class="container">
-                    <t t-call="theme_anzamar.demo_page_content"/>
+                    <!--<t t-call="theme_anzamar.demo_page_content"/>-->
+                    <div class="row mt64 mb64">
+                        <div class="col-md-12 mb32">
+                            <h1 class="text-center mb32" t-esc="main_object.name"/>
+                            <div class="oe_login_form text-center">
+                                <t t-call="website_mail.follow">
+                                    <t t-set="email" t-value="user_id.email"/>
+                                    <t t-set="object" t-value="request.env['blog.blog'].sudo().search([('website_ids', 'ilike', website.id)])"/>
+                                </t>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </t>
@@ -64,7 +76,14 @@
         <t t-call="website.layout">
             <div id="wrap">
                 <div class="container">
-                    <t t-call="theme_anzamar.demo_page_content"/>
+                    <h1 class="text-center mb32">Sobre nosotros</h1>
+                    <div class="row">
+                        <div class="col-md-12 mb32">
+                            <p>Point Sport pertenece al Grupo Anzamar; central de compras y distribuidor de artículos deportivos fundado hace más de 30 años. Como central de compras, aunamos una gran cantidad de asociados con los que ganamos competitividad y visibilidad en el mercado gracias a la fuerza colectiva. De esta forma cualquier integrante de nuestro grupo puede acceder a una serie de marcas, promociones y precios que a los que serían imposibles acceder en solitario. Nuestro catálogo de más de 100 marcas integra las mejores y más importantes del mercado con los precios más competitivos.</p>
+                            <p>Como mayorista, nuestro principal objetivo es surtir de todos los productos necesarios para la ejecución de la práctica deportiva a cualquier establecimiento. Para ello nuestros profesionales con décadas de experiencia en sector deportivo analizan continuamente el mercado, la oferta y las últimas tendencias para disponer de las mejores novedades disponibles para la venta.</p>
+                            <p>Grupo Anzamar cuenta con unas instalaciones de almacenaje que suman una superficie de más de 3.000 metros cuadrados, en la cual contamos con más de 12.500 referencias. Estas referencias son la expresión de nuestra selección de los artículos con mayor prospectiva de venta basados en nuestra experiencia, estudios especializados y la reciprocidad de nuestras relaciones con el resto del retail dedicados al deporte y minoristas del mercado. Nuestra experiencia y trayectoria sumada a nuestro potencial y capacidad, nos convierte en uno de los referentes entre los detallistas deportivos en el mercado deportivo nacional.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </t>
@@ -94,8 +113,29 @@
     <template id="poi_template_our_shops">
         <t t-call="website.layout">
             <div id="wrap">
+                <div class="map-wrap">
+                    <span class="metadata-marker" data-region_tag="html-body"/>
+                    <div id="map" class="full-size"/>
+                    <script type="text/javascript" src="/theme_point_sport/static/js/our-shops-map.js"/>
+                    <script type="text/javascript" src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"/>
+                    <script type="text/javascript" async="async" defer="defer"
+                            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA_3Mma3hft3POI5f2LhzxSzie0dF1BtOs&amp;language=es&amp;callback=pointShopsInitMap"/>
+                </div>
                 <div class="container">
-                    <t t-call="theme_anzamar.demo_page_content"/>
+                    <h1 class="text-center mb32">Tiendas</h1>
+                    <div class="row">
+                        <div class="col-md-12 mb32">
+                            <h3 class="text-center">¿Dónde encontrar tu Tienda de deportes, ropa deportiva, zapatillas deportivas running y accesorios para comprar online o en Málaga?</h3>
+                            <p><strong>"Tu punto de referencia en el deporte"</strong></p>
+                            <p><strong>Master Sport</strong>, tienda online de material deportivo, está compuesta de dos tiendas situadas en Málaga Capital con más de 16 años de experiencia.</p>
+                            <p>Tanto en nuestra tienda online como en nuestras tiendas deportivas en Málaga podrás encontrar los artículos deportivos que necesitas entre otras, ropa deportiva, calzado deportivo y lo último en moda sport.</p>
+                            <p>Si eres amante del Running, del Padel, del Fútbol o de cualquier otro deporte, nuestro personal altamente cualificado resolverán todas tus dudas y te ayudarán a elegir el material que necesites.</p>
+                            <p>Nos adaptamos a ti y a tu tiempo disponible gracias a nuestra tienda online!! En ella podrás realizar consultas a nuestros especialistas y ellos se pondrán en contacto contigo para ayudarte en tu elección para recibir el material deportivo que mejor se te adapte con la mayor comodidad y lo antes posible en tu domicilio para practicar tu deporte favorito en menos de <a href="/page/delivery">48 horas</a>.</p>
+                            <p>Además, en el año 2000 nos unimos al <strong>Grupo de Compras Point Sport</strong>, empresa dedicada y especialista en el deporte desde 1986, es decir, con más de 25 años de experiencia en el mercado deportivo siendo uno de los principales distribuidores a Nivel Nacional, contando con más de 130 tiendas por toda España.</p>
+                            <p>Todas tus compras y dudas serán avaladas y atendidas por un personal cualificado y respaldado siempre por una empresa de más de 26 años especialista en deporte.</p>
+                            <p>Sólo vendemos productos originales y sólo las principales marcas del mercado deportivo.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </t>
@@ -103,7 +143,7 @@
 
     <!-- Our shop Page -->
     <record id="poi_page_our_shops" model="website.page">
-        <field name="name">Our shops</field>
+        <field name="name">Shops</field>
         <field name="website_ids" eval="[(6, 0, [ref('website_base_multi_anz.point_sport_website')])]"/>
         <field name="website_published">True</field>
         <field name="url">/page/our-shops</field>
@@ -112,11 +152,12 @@
 
     <!-- Our shop Page -->
     <record id="poi_menu_our_shops" model="website.menu">
-        <field name="name">Our shops</field>
+        <field name="name">Shops</field>
         <field name="url">/page/our-shops</field>
         <field name="parent_id" ref="point_sport_main_menu"/>
         <field name="sequence" type="int">30</field>
         <field name="website_id" ref="website_base_multi_anz.point_sport_website"/>
+        <field name="not_portal">True</field>
     </record>
 
     <!-- ======================================= Page Open Your Shop ======================================= -->
@@ -126,7 +167,94 @@
         <t t-call="website.layout">
             <div id="wrap">
                 <div class="container">
-                    <t t-call="theme_anzamar.demo_page_content"/>
+                    <h1 class="text-center mb32">Abre tu tienda</h1>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <!--
+                                section content
+                            -->
+                        </div>
+                    </div>
+                    <div class="row" id="step_section">
+                        <div class="col-md-12">
+                            <h2>Pasos para abrir tu tienda</h2>
+                            <!--
+                                section content
+                            -->
+                        </div>
+                    </div>
+                    <div class="row" id="request_section">
+                        <div class="col-md-12">
+                            <h2>Solicitud de apertura</h2>
+                            <!--
+                                section content
+                            -->
+                            <form action="/website_form/" method="post" data-model_name="crm.lead" data-success_page="/contactus-thank-you" class="s_website_form form-horizontal mt32 mb32" enctype="multipart/form-data" data-editable-form="false">
+                                <input type="hidden" name="name" value="Nueva solicitud de apertura" />
+                                <div class="form-group form-field o_website_form_required_custom">
+                                    <label class="col-md-3 col-sm-4 control-label" for="contact_name">Nombre y apellidos</label>
+                                    <div class="col-md-7 col-sm-8">
+                                        <input type="text" class="form-control o_website_form_input" name="contact_name" t-att-value="request.params.get('contact_name', '')" required=""/>
+                                    </div>
+                                </div>
+                                <div class="form-group form-field o_website_form_required_custom">
+                                    <label class="col-md-3 col-sm-4 control-label" for="phone">Teléfono</label>
+                                    <div class="col-md-7 col-sm-8">
+                                        <input type="text" class="form-control o_website_form_input" name="phone" t-att-value="request.params.get('phone', '')" required=""/>
+                                    </div>
+                                </div>
+                                <div class="form-group form-field o_website_form_required_custom">
+                                    <label class="col-md-3 col-sm-4 control-label" for="email_from">Email</label>
+                                    <div class="col-md-7 col-sm-8">
+                                        <input type="text" class="form-control o_website_form_input" name="email_from" required="" t-att-value="request.params.get('email_from', '')" />
+                                    </div>
+                                </div>
+                                <div class="form-group form-field o_website_form_required_custom">
+                                    <label class="col-md-3 col-sm-4 control-label" for="city">Ciudad</label>
+                                    <div class="col-md-7 col-sm-8">
+                                        <input type="text" class="form-control o_website_form_input" name="city" t-att-value="request.params.get('city', '')" required=""/>
+                                    </div>
+                                </div>
+                                <div class="form-group form-field o_website_form_required_custom">
+                                    <label class="col-md-3 col-sm-4 control-label" for="state">Provincia</label>
+                                    <div class="col-md-7 col-sm-8">
+                                        <input type="text" class="form-control o_website_form_input" name="state" t-att-value="request.params.get('state', '')" required=""/>
+                                    </div>
+                                </div>
+                                <div class="form-group form-field o_website_form_required_custom">
+                                    <label class="col-md-3 col-sm-4 control-label" for="country">País</label>
+                                    <div class="col-md-7 col-sm-8">
+                                        <input type="text" class="form-control o_website_form_input" name="country" t-att-value="request.params.get('country', '')" required=""/>
+                                    </div>
+                                </div>
+                                <div class="form-group form-field o_website_form_required">
+                                    <label class="col-md-3 col-sm-4 control-label" for="brand">Marca sobre la que desea información</label>
+                                    <div class="col-md-7 col-sm-8">
+                                        <input type="text" class="form-control o_website_form_input" name="brand" required="" t-att-value="request.params.get('brand', '')" />
+                                    </div>
+                                </div>
+                                <div class="form-group form-field o_website_form_required_custom">
+                                    <label class="col-md-3 col-sm-4 control-label" for="description">Escribe tu consulta</label>
+                                    <div class="col-md-7 col-sm-8">
+                                        <textarea class="form-control o_website_form_input" name="description" required=""><t t-esc="request.params.get('description', '')"/></textarea>
+                                    </div>
+                                </div>
+                                <t t-call="theme_anzamar.privacy_policy_contact_form"/>
+                                <div class="form-group form-field o_website_form_required_custom">
+                                    <label class="col-md-3 col-sm-4 control-label" for="g-recaptcha-response">Eres humano?</label>
+                                    <div class="col-md-7 col-sm-8">
+                                        <span class="o_website_form_recaptcha" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-offset-3 col-sm-offset-4 col-sm-8 col-md-7">
+                                        <span class="btn btn-primary btn-lg o_website_form_send">Enviar</span>
+                                        <span id="o_website_form_result"/>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </div>
         </t>
@@ -220,7 +348,76 @@
         <field name="view_id" ref="poi_template_payment"/>
     </record>
 
-    <!-- ======================================= Contact us menu ======================================= -->
+    <!-- ======================================= Contact us page ======================================= -->
+
+    <template id="poi_template_contactus">
+        <t t-call="website.layout">
+            <div id="wrap">
+                <div class="container">
+                    <h1 class="text-center mb32">Contact Us</h1>
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="oe_structure">
+                                <div>
+                                    <p>Contacte con nosotros para cualquier cosa relacionada con nuestra empresa o servicios.</p>
+                                    <p>Haremos lo posible por responderle a la mayor brevedad.</p>
+                                </div>
+                            </div>
+                            <!-- Contact form -->
+                            <div>
+                                <t t-call="theme_anzamar.default_contact_form"/>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb32">
+                            <p>¿Tienes alguna consulta? Puedes contactar con nosotros a través de los siguientes canales:</p>
+                            <h4 class="mt16">Correo electrónico</h4>
+                            <p>
+                                <i class="fa fa-envelope"/>
+                                <a t-field="website.email" t-att-href="'mailto:%s' %website.email"/>
+                            </p>
+                            <h4 class="mt16">Teléfono</h4>
+                            <p>
+                                <i class="fa fa-phone"/>
+                                <a t-field="res_company.phone" t-att-href="'tel:%s' %res_company.phone"/>
+                                <br/>
+                                <i class="fa fa-phone"/>
+                                <a href="tel:691413453">691 41 34 53</a>
+                            </p>
+                            <h4 class="mt16">Redes sociales</h4>
+                            <p>
+                                Facebook: <a href="https://www.facebook.com/POINTSPORT" target="_blank" rel="nofollow">@PointSport</a>
+                                <br/>
+                                Instagram: <a href="https://www.instagram.com/PointSport.es/" target="_blank" rel="nofollow">@PointSport.es</a>
+                            </p>
+                            <h4 class="mt16">Horario de atención al cliente</h4>
+                            <p>
+                                De lunes a viernes de 8.00 a 15.00 horas<br/>
+                                Lunes y miércoles de 17.00 a 19.30 horas
+                            </p>
+                            <p class="mt16">
+                                <t t-set="group_anz" t-value="request.env['res.company'].search([('name', 'ilike', 'Anzamar')])"/>
+                                Oficina central Grupo Anzamar:<br/>
+                                <i class="fa fa-map-marker"/>
+                                <a href="https://goo.gl/maps/Hm78jxSEG5B2" target="_blank" alt="Company Link" title="Company" rel="nofollow">
+                                    <t t-esc="group_anz.street"/>,
+                                    <t t-esc="group_anz.zip"/>,
+                                    <t t-esc="group_anz.city"/>
+                                </a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+
+    <record id="poi_contactus_page" model="website.page">
+        <field name="name">Contact Us</field>
+        <field name="website_published">True</field>
+        <field name="website_ids" eval="[(6, 0, [ref('website_base_multi_anz.point_sport_website')])]"/>
+        <field name="url">/contactus</field>
+        <field name="view_id" ref="poi_template_contactus"/>
+    </record>
 
     <record id="poi_contact_us_menu" model="website.menu">
         <field name="name">Contactus</field>
@@ -232,6 +429,41 @@
         <field name="website_published">True</field>
     </record>
 
+    <template id="poi_template_contactus_thanks">
+        <t t-call="website.layout">
+            <div id="wrap">
+                <div class="container">
+                    <h1>¡Gracias!</h1>
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="alert alert-success">
+                                Su mensaje se ha enviado correctamente.
+                                <button type="button" class="close" data-dismiss="alert">&amp;times;</button>
+                            </div>
+                            <p>Le contestaremos en breve.</p>
+                            <p>Si tiene una emergencia, no dude en contactarnos: </p>
+                            <ul class="list-unstyled">
+                                <li><i class="fa fa-phone"/> <span t-field="res_company.phone"/></li>
+                                <li><i class="fa fa-envelope"/> <span t-field="website.email"/></li>
+                            </ul>
+                        </div>
+                        <div class="col-md-4">
+                            <!-- Right bar -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+
+    <record id="poi_contactus_thanks" model="website.page">
+        <field name="name">Contactus thanks</field>
+        <field name="website_published">True</field>
+        <field name="website_ids" eval="[(6, 0, [ref('website_base_multi_anz.point_sport_website')])]"/>
+        <field name="url">/contactus-thank-you</field>
+        <field name="view_id" ref="poi_template_contactus_thanks"/>
+    </record>
+
     <!-- ======================================= Shop menu ======================================= -->
 
     <record id="poi_shop_menu" model="website.menu">
@@ -241,15 +473,19 @@
         <field name="sequence" type="int">20</field>
         <field name="website_id" ref="website_base_multi_anz.point_sport_website"/>
         <field name="website_published">True</field>
+        <field name="not_public">True</field>
     </record>
 
     <!-- Product Brands -->
+
+    <template id="poi_product_brands_view" name="Brands view" inherit_id="website_sale_product_brand.product_brands"/>
+
     <record id="poi_product_brands" model="website.page">
         <field name="name">Brands</field>
         <field name="website_published">True</field>
         <field name="website_ids" eval="[(6, 0, [ref('website_base_multi_anz.point_sport_website')])]"/>
         <field name="url">/page/product_brands</field>
-        <field name="view_id" ref="website_sale_product_brand.product_brands"/>
+        <field name="view_id" ref="poi_product_brands_view"/>
     </record>
     <record id="poi_product_brands_menu" model="website.menu">
         <field name="name">Brands</field>
@@ -259,6 +495,47 @@
         <field name="sequence" type="int">22</field>
         <field name="website_id" ref="website_base_multi_anz.point_sport_website"/>
         <field name="website_published">True</field>
+        <field name="not_public">True</field>
+    </record>
+
+    <!-- ======================================= Group menu ======================================= -->
+
+    <!-- Our shop Template -->
+    <template id="poi_template_our_group">
+        <t t-call="website.layout">
+            <div id="wrap">
+                <div class="container">
+                    <h1 class="text-center mb32">Empresa</h1>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <p><strong>Anzamar S.L.</strong> es una empresa dedicada a la distribución de artículos deportivos desde el año 1986. Nuestro principal objetivo ha sido surtir de todos los productos necesarios para la ejecución de la práctica deportiva en cualquier establecimiento. Actualmente contamos con más de 12.500 referencias proporcionándonos esto ser uno de los referentes en el mercado deportivo Nacional.</p>
+                            <p>Nuestros más de 20 años de experiencia como mayoristas nos facilita el acceso a las mejores y/o más rentables marcas del mundo deportivo Nacional proporcionando a nuestros clientes un asesoramiento de maxima calidad. En el año 1999 nació el Grupo de Compras <strong>POINT SPORT</strong>, siendo uno de los grupos de referencia a nivel Nacional según la revista deportiva CMD (Correo del Mercado Deportivo) que nos sitúa como el sexto operador Nacional.</p>
+                            <p>Uno de nuestros principios básicos en el grupo de compras <strong>POINT SPORT</strong> es hacer las cosas fáciles, y para ello tenemos negociadas las mejores condiciones con más de 50 proveedores deportivos que os proporcionará tener siempre el producto más adecuado y con las mejores condiciones necesarias para realizar vuestro deporte favorito.</p>
+                            <p>Actualmente sumamos 132 establecimientos con 107 asociados distribuidos en 112 ciudades de toda España.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+
+    <!-- Our shop Page -->
+    <record id="poi_page_our_group" model="website.page">
+        <field name="name">Group</field>
+        <field name="website_ids" eval="[(6, 0, [ref('website_base_multi_anz.point_sport_website')])]"/>
+        <field name="website_published">True</field>
+        <field name="url">/page/our-group</field>
+        <field name="view_id" ref="poi_template_our_group"/>
+    </record>
+
+    <!-- Our shop Page -->
+    <record id="poi_menu_our_group" model="website.menu">
+        <field name="name">Group</field>
+        <field name="url">/page/our-group</field>
+        <field name="parent_id" ref="point_sport_main_menu"/>
+        <field name="sequence" type="int">30</field>
+        <field name="website_id" ref="website_base_multi_anz.point_sport_website"/>
+        <field name="not_public">True</field>
     </record>
 
 </odoo>
