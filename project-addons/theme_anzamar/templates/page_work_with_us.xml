@@ -92,6 +92,8 @@
                                 <textarea class="form-control o_website_form_input" name="description" required=""><t t-esc="request.params.get('description', '')"/></textarea>
                             </div>
                         </div>
+                        <t t-call="theme_anzamar.google_recaptcha_contact_form"/>
+                        <t t-call="theme_anzamar.privacy_policy_contact_form"/>
                         <div class="form-group">
                             <div class="col-md-offset-3 col-sm-offset-4 col-sm-8 col-md-7">
                                 <span class="btn btn-primary btn-lg o_website_form_send">Send</span>
