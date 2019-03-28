@@ -12,6 +12,19 @@
            </filter>
         </field>
    </record>
+
+     <record id="view_res_partner_filter_anz" model="ir.ui.view">
+       <field name="name">res.partner.risk_excceed</field>
+       <field name="model">res.partner</field>
+       <field name="inherit_id" ref="base.view_res_partner_filter"/>
+       <field name="arch" type="xml">
+           <filter name="inactive" position="after">
+				   <separator/>
+				   <separator/>
+           </filter>
+        </field>
+   </record>
+
     <record id="view_partner_form_anz_custom" model="ir.ui.view">
         <field name="name">view.partner.form.anz.custom</field>
         <field name="model">res.partner</field>

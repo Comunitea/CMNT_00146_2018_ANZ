@@ -40,6 +40,7 @@ class ImportImagesValue():
     res_model = 'product.template'
     res_id = None
     type = 'binary'
+    index_content = "image"
     checksum = None
 
     def __init__(self, filepath):
@@ -84,10 +85,11 @@ class ImportImagesValue():
                 res_id = self.res_id,
                 type=self.type,
                 file_size=self.file_size(),
-                checksum=self.checksum(),
+                checksum=self.checksum,
                 store_fname=self.store_fname(),
                 mimetype=self.mimetype())
     # TODO expand image tipes
+
 
 class ImportImages(models.TransientModel):
     """

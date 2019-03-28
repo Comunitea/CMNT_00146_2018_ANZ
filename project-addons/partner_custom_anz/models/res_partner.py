@@ -61,6 +61,7 @@ class ResPartner(models.Model):
                                             )
     ref = fields.Char(default='[Auto]')
 
+    #risk_exceeded = fields.Boolean(compute='_get_risk_exceed', string="risk exceed", compute_sudo=True)
 
     @api.multi
     def refresh_partner_ref(self):
@@ -169,4 +170,12 @@ class ResPartner(models.Model):
         elif amount > self.sponsorship_bag:
             raise UserError(_('You try to sponsorship a quantity of %s and \
                 the rest of the bag is %s.') % (amount, self.sponsorship_bag))
+
+
+    #@api.multi
+    #@api.depends('risk_total','credit_limit')
+    #def _get_risk_exceed(self):
+    #    for partnet in self:
+    #        partner.risk_exceeded = partner.risk_total > partner.credit_limit
+
 
