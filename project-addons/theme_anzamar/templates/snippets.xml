@@ -316,7 +316,7 @@
 
     <!-- Accept terms of use -->
     <template id="privacy_policy_contact_form">
-        <div class="form-group form-field o_website_form_required">
+        <div class="form-group form-field o_website_form_required" t-if="website.env.user == request.website.user_id">
             <div class="col-md-7 col-md-offset-3 col-sm-8 col-sm-offset-4">
                 <div class="checkbox">
                     <input type="checkbox" value="accepted" id="privacy_policy" name="privacy_policy" class="o_website_form_input ml0" required="required"/>
@@ -324,6 +324,16 @@
                         <t t-call="website_legal_page.acceptance_full"/>
                     </label>
                 </div>
+            </div>
+        </div>
+    </template>
+
+    <!-- Google recaptcha -->
+    <template id="google_recaptcha_contact_form">
+        <div class="form-group form-field o_website_form_required_custom">
+            <label class="col-md-3 col-sm-4 control-label" for="g-recaptcha-response">Is human?</label>
+            <div class="col-md-7 col-sm-8">
+                <span class="o_website_form_recaptcha" />
             </div>
         </div>
     </template>
@@ -372,13 +382,8 @@
                     <textarea class="form-control o_website_form_input" name="description" required=""><t t-esc="request.params.get('description', '')"/></textarea>
                 </div>
             </div>
-            <div class="form-group form-field o_website_form_required_custom">
-                <label class="col-md-3 col-sm-4 control-label" for="g-recaptcha-response">Is human?</label>
-                <div class="col-md-7 col-sm-8">
-                    <span class="o_website_form_recaptcha" />
-                </div>
-            </div>
-            <t t-call="theme_anzamar.privacy_policy_contact_form" t-if="website.env.user == request.website.user_id"/>
+            <t t-call="theme_anzamar.google_recaptcha_contact_form"/>
+            <t t-call="theme_anzamar.privacy_policy_contact_form"/>
             <div class="form-group">
                 <div class="col-md-offset-3 col-sm-offset-4 col-sm-8 col-md-7">
                     <span class="btn btn-primary btn-lg o_website_form_send">Send</span>
