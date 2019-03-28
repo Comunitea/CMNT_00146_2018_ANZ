@@ -8,10 +8,10 @@
             <t t-set="user_access" t-value="website.user_access()"/>
         </xpath>
         <xpath expr="//section[@id='product_detail']" position="attributes">
-            <attribute name="t-if">user_access == True</attribute>
+            <attribute name="t-if">user_access == True and product</attribute>
         </xpath>
         <xpath expr="//section[@id='product_detail']" position="after">
-            <t t-if="user_access == False" t-call="theme_anzamar.only_logged_in_users_advise"/>
+            <t t-if="user_access == False or not product" t-call="theme_anzamar.only_logged_in_users_advise"/>
         </xpath>
 
         <!-- Retailer multi-add-to-cart action in the form -->
@@ -83,6 +83,20 @@
                         </div>
                     </div>
                 </div>
+            </div>
+        </xpath>
+
+        <!-- Image URL and attributes -->
+        <xpath expr="//div[hasclass('carousel-inner')]/div[2]" position="replace">
+            <div t-attf-class="item#{'' if variant_img else ' active'}">
+                <img t-att-alt="product.name" t-att-title="product.name" class="product_detail_img js_variant_img"
+                     t-attf-src="/website/image/product.template/{{product.id}}/image/"/>
+            </div>
+        </xpath>
+        <xpath expr="//div[hasclass('carousel-inner')]/t/div[hasclass('item')]" position="replace">
+            <div class="item">
+                <img t-att-alt="pimg.name" t-att-title="pimg.name" class="product_detail_img"
+                     t-attf-src="/web/image/product.image/{{pimg.id}}/image/"/>
             </div>
         </xpath>
 
