@@ -395,3 +395,8 @@ msgstr "y los"
 #: model:ir.ui.view,arch_db:theme_anzamar.privacy_policy_advise
 msgid "of this website."
 msgstr "de este Sitio Web."
+
+#. module: theme_anzamar
+#: model:ir.ui.view,arch_db:theme_anzamar.google_recaptcha_contact_form
+msgid "Is human?"
+msgstr "¿Eres humano?"
