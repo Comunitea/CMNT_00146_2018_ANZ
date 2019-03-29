@@ -150,6 +150,7 @@ $(document).ready(function(){
             $('.one-input input').each(function(){
                 var count = parseInt($(this).val())
                 if(count > 0) {
+                    if(count > 100){count = 100} // Set MAX limit for any size to 100
                     var key = parseInt($(this).attr('id'))
                     product_variants[key] = count
                 }
@@ -181,6 +182,7 @@ $(document).ready(function(){
                 $('#multi_error').modal('show');
             }
         });
-
+        // Reload the product page with closing the success window
+        $('#multi_was_added').on('click', '.close', function(){location.reload()});
     });
 });
