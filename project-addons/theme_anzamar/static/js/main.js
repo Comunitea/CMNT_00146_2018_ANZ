@@ -178,11 +178,11 @@ $(document).ready(function(){
                 });
             }else{
                 // ERROR MESSAGE
-                $('#multi_error .modal-body').html('Empty list of product variants');
+                $('#multi_error .modal-body').html('<p><strong>Empty list of product variants</strong></p>');
                 $('#multi_error').modal('show');
             }
         });
         // Reload the product page with closing the success window
-        $('#multi_was_added').on('click', '.close', function(){location.reload()});
+        $('#multi_was_added').on('hidden.bs.modal', function(){location.reload()});
     });
 });

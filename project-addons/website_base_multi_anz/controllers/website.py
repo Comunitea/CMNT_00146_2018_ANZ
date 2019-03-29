@@ -28,19 +28,46 @@ class MultiUpdateCart(WebsiteSale):
                 qty = variants[key]
                 product_id = variant_ids.filtered(lambda x: int(key, 10) in x.attribute_value_ids.ids)
                 if product_id:
-                    # Add to cart
-                    order._cart_update(product_id=product_id.id, add_qty=qty)
-                    qty_total += qty
                     attr_name = product_id.attribute_value_ids.search([('id', '=', int(key, 10))], limit=1).name
-                    prod_list += '<li>%s <strong>(%s)</strong>: %d unit(s)</li>' % (product_id.name, attr_name, qty)
+                    attr_name = '<strong>%s</strong>' % attr_name
+                    # Check of product stock
+                    if product_id.inventory_availability in ['always', 'threshold']:
+                        virtual_available = product_id.virtual_available
+                        cart_qty = 0
+                        # Search this variant in the cart
+                        for line in order.order_line:
+                            if line.product_id == product_id:
+                                cart_qty = line.product_uom_qty
+                        stock = virtual_available - cart_qty
+                        # Max qty calculation and set advise message
+                        if qty > stock:
+                            qty_old = qty
+                            qty = stock
+                            if qty > 0:
+                                prod_list += _('<p class="alert alert-warning">%s: you ask for %d units but only %d '
+                                               'is available</p>') % (attr_name, qty_old, qty)
+                            else:
+                                prod_list += _('<p class="alert alert-danger">%s: you ask for %d units but this '
+                                               'variant is not available in stock</p>') % (attr_name, qty_old)
+                        else:
+                            prod_list += '<p class="alert alert-success">%s: %d unit(s)</p>' % (attr_name, qty)
+                    else:
+                        prod_list += '<p class="alert alert-success">%s: %d unit(s)</p>' % (attr_name, qty)
+                    # Add to cart
+                    if qty > 0:
+                        order._cart_update(product_id=product_id.id, add_qty=qty)
+                        qty_total += qty
+
             if qty_total > 0:
                 success = True
-                message = _('<p>Was added %d unit(s):</p><ul>%s</ul>' % (qty_total, prod_list))
+                message = _('<p><strong>Was added %d unit(s) of %s:</strong></p>%s' % (
+                    qty_total, curr_prod.name, prod_list))
                 quantity = order.cart_quantity
             else:
-                message = _('Product variants not found')
+                message = _('<p><strong>Product variants for %s not found:</strong></p>%s' % (
+                    curr_prod.name, prod_list))
         else:
-            message = _('Empty list of product variants')
+            message = _('<p><strong>Empty list of product variants</strong></p>')
 
         # Return fail/success message
         values = {

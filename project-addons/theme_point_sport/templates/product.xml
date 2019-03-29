@@ -55,14 +55,14 @@
 
         <!-- Retailer multi-add-to-cart success/fail windows -->
         <xpath expr="//form[hasclass('js_add_cart_variants')]" position="after">
-            <div id="multi_was_added" class="modal fade" tabindex="-1" role="dialog">
+            <div id="multi_was_added" class="modal fade multi-add-result" tabindex="-1" role="dialog">
                 <div class="modal-dialog modal-md">
                     <div class="modal-content">
-                        <div class="modal-header">
+                        <div class="modal-header bg-success">
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
                             <h4 class="modal-title">This product was added to cart</h4>
                         </div>
-                        <div class="modal-body bg-success"/>
+                        <div class="modal-body"/>
                         <div class="modal-footer">
                             <a class="btn btn-default" href="/shop"><i class="fa fa-chevron-left"/> <span class="hidden-xs">Continue Shopping</span><span class="visible-xs-inline">Continue</span></a>
                             <a class="btn btn-primary pull-right" href="/shop/cart"><i class="fa fa-shopping-cart fa-fw"/> <span class="hidden-xs">Proceed to Checkout</span><span class="visible-xs-inline">Checkout</span></a>
@@ -70,14 +70,14 @@
                     </div>
                 </div>
             </div>
-            <div id="multi_error" class="modal fade" tabindex="-1" role="dialog">
+            <div id="multi_error" class="modal fade multi-add-result" tabindex="-1" role="dialog">
                 <div class="modal-dialog modal-md">
                     <div class="modal-content">
-                        <div class="modal-header">
+                        <div class="modal-header bg-danger">
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
                             <h4 class="modal-title text-danger">An error has occurred</h4>
                         </div>
-                        <div class="modal-body bg-danger"/>
+                        <div class="modal-body"/>
                         <div class="modal-footer">
                             <a class="btn btn-default pull-right" data-dismiss="modal" aria-hidden="true">Close</a>
                         </div>
