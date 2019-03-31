@@ -3,6 +3,7 @@
 <odoo>
 	<!-- tree view -->
 	<!-- TODO importimagesvalue view after import -->
+	<!--
 	<record model="ir.ui.view" id="import_images_value_tree">
         <field name="name">import.images.value.view</field>
         <field name="model">import.images.value</field>
@@ -14,7 +15,7 @@
 			</tree>
 		</field>
 	</record>
-
+	-->
 	<!-- view form -->
     <record model="ir.ui.view" id="import_images_form">
         <field name="name">import.images.form</field>

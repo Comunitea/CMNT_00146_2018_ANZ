@@ -18,10 +18,10 @@ import logging
 import pdb
 import re
 
-from odoo import models, fields, config
+from odoo import models, fields
 from odoo.exceptions import UserError
 from mimetypes import guess_type
-from hashlib import sha1
+from base64 import b64encode
 
 _logger = logging.getLogger(__name__)
 
@@ -30,10 +30,13 @@ SPLITER = re.compile(r'(.*?)(?:_(\d*))?(?:\.(?:\w+))$')
 CODECOLOR = re.compile(r'^([a-z0-9]+)(?:[\,-_ ](\w+))?',re.IGNORECASE)
 
 class ImportImagesValue():
-    """ mimic ir.attachment 
+    """  
     TODO:
-        Variables a metodos
-        ??? api.multi y pasarlo a transient modeil heredando ir.attachment
+        Model.Transient with results
+        New Model that:
+            Inherit IrAttachment and implement new engines (URL, S3 etc)
+            https://github.com/antibios/odoo-s3/blob/master/models/models.py
+            https://github.com/maxmumford/oe_import_product_images/blob/master/import_product_images.py
     """
 
     name ='image' 
@@ -41,7 +44,7 @@ class ImportImagesValue():
     res_id = None
     type = 'binary'
     index_content = "image"
-    checksum = None
+    data = None
 
     def __init__(self, filepath):
         self.filepath = filepath
@@ -55,47 +58,36 @@ class ImportImagesValue():
     def file_size(self):
         return os.path.getsize(self.filepath)
 
-    def __checksum(self):
-        with open(self.filepath,'rb') as f:
-            self.checksum = sha1(f.read()).hexdigest()
-
     def mimetype(self):
         return guess_type(self.filepath)[0]
 
     def basename(self):
         return os.path.basename(self.filepath)
 
-    def store_fname(self):
-        pass
+    def _data(self):
+        with open(self.filepath, 'r+b') as f:
+            self.data = b64encode(f.read())
+        return self.data
 
-    def copy(self,size=None):
-        if size == 'small':
-            pass
-        elif size == 'medium':
-            pass
-        else:
-            pass
+    def dump(self):
+        self._data()
+        return {'image':self.data, 'image_medium':self.data, 'image_small':self.data}
 
-    def __repr__(self):
+    def dict(self):
         return dict(
                 name=self.name,
                 res_name=self.res_name,
                 res_model=self.res_model,
-                res_field=self.res_field(),
                 res_id = self.res_id,
                 type=self.type,
-                file_size=self.file_size(),
-                checksum=self.checksum,
-                store_fname=self.store_fname(),
-                mimetype=self.mimetype())
-    # TODO expand image tipes
-
+                datas=self.data or self._data())
 
 class ImportImages(models.TransientModel):
     """
         Transient model for import images
         TODO:
             Reemplazar el boton de importar
+            _get_filters as coroutines
     """
 
     _name = 'import.images'
@@ -128,42 +120,46 @@ class ImportImages(models.TransientModel):
         """
         imported = []
         for file in self._get_file_images():
-            if os.access(file,os.R_OK,os.W_OK)
+            if os.access(file,os.R_OK & os.W_OK):
                 image = ImportImagesValue(file)
                 imported.append(image)
             
-        imported = sorted(imported, key=lambda image: image.basename)
+        imported = sorted(imported, key=lambda image: image.reference)
 
         ref = ''
         groups = []
         for image in imported:
-            if ref != image.basename():
-                ref = image.basename()
+            if ref != image.reference:
+                ref = image.reference
                 groups.append([])
             groups[-1].append(image)
 
         rem = []
         for ind, references in enumerate(groups):
             table = 'product.product'
-            code, color = CODECOLOR.match(references[0].basename).groups()
-            domain = [('default_code','ilike',code+'%' if not color else '_'+color+'%')]
+            code, color = CODECOLOR.match(references[0].reference).groups()
+            domain = [('default_code','=ilike',code+'%' if not color else code+'_'+color+'%')]
             if not color and re.match(r'\d{12,14}',code):
                 domain = [('barcode','=',code)]
-            tmpl_ids = self.env[table].read_group(domain,('product_tmpl_id'),('product_tmpl_id'))['product_tmpl_id']
-            pdb.set_trace()
+            tmpl_ids = self.env[table].read_group(domain,['product_tmpl_id'],['product_tmpl_id'])
             if not len(tmpl_ids) == 1:
                 # ??? log
                 rem.append(ind)
             else:
                 for image in references:
-                    image.res_id = tmpl_ids[0]
+                    image.res_id = tmpl_ids[0]['product_tmpl_id'][0]
 
-        for i in rem:
-            groups.pop(i)
+        groups = [val for ind, val in enumerate(groups) if ind not in rem]
         
         return groups
 
     def action_import_images(self):
-        images = self._get_images()
-        pdb.set_trace()
-        pass
+        """ """
+        gimages = self._get_images()
+        for images in gimages:
+            image = images[0]
+            templ = self.env['product.template'].search([('id','=',image.res_id)])
+            if not self.update and templ.image:
+                continue
+            templ.write(image.dump())
+
