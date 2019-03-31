@@ -13,13 +13,14 @@
         </field>
    </record>
 
-     <record id="view_res_partner_filter_anz" model="ir.ui.view">
+     <record id="view_res_partner_risk_exceed_anz" model="ir.ui.view">
        <field name="name">res.partner.risk_excceed</field>
        <field name="model">res.partner</field>
        <field name="inherit_id" ref="base.view_res_partner_filter"/>
        <field name="arch" type="xml">
-           <filter name="inactive" position="after">
+           <filter name="supplier" position="after">
 				   <separator/>
+               		<filter string="Riesgo excedido" name="risk_exception" domain="[('risk_exception', '=', True)]" help="Riesgo excedido"/>
 				   <separator/>
            </filter>
         </field>
