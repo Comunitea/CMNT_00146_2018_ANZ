@@ -172,7 +172,6 @@ class ResPartner(models.Model):
                 the rest of the bag is %s.') % (amount, self.sponsorship_bag))
 
 
-    @api.multi
     def _search_risk_exception(self,operator,value):
         """ """
         if operator == '=' and isinstance(value, (int)):
