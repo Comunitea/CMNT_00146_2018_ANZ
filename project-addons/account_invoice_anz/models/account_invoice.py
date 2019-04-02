@@ -6,6 +6,20 @@ from odoo import api, fields, models
 class AccountInvoice(models.Model):
     _inherit = 'account.invoice'
 
+
+    @api.multi
+    def write(self, vals):
+        if self._context.get('from_action_invoice_draft', False):
+            if 'date' in vals:
+                vals.pop('date')
+        return super().write(vals)
+
+    @api.multi
+    def action_invoice_draft(self):
+        ctx = self._context.copy()
+        ctx.update(from_action_invoice_draft=True)
+        return super(AccountInvoice, self.with_context(ctx)).action_invoice_draft()
+
     @api.model
     def create(self, vals):
         res = super(AccountInvoice, self).create(vals)
