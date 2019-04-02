@@ -55,7 +55,7 @@ class CatalogType(models.Model):
     purchases = fields.Boolean('Purchases')
     sales = fields.Boolean('Sales')
     stocks = fields.Boolean('Stocks')
-    pvp = fields.Boolean('P.V.P.')
+    pvp = fields.Boolean('Precio')
     cost = fields.Boolean('Cpst')
     company_header = fields.Char('Company header')
     image = fields.Boolean('Template Image')
@@ -176,8 +176,10 @@ class ExportCatalogtWzd(models.TransientModel):
         domain = []
         if self.scheduled_id:
             domain += [('scheduled_sale_id', '=', self.scheduled_id.id)]
+        template_brand_ids = []
         if self.brand_id:
             domain += [('product_brand_id', '=', self.brand_id.id)]
+            template_brand_ids = self.env['product.template'].search([('product_brand_id','=',self.brand_id.id)]).mapped('id')
         if self.categ_id:
             domain += [('categ_id', 'child_of', self.categ_id.id)]
         if self.product_template_ids:
@@ -190,7 +192,11 @@ class ExportCatalogtWzd(models.TransientModel):
             product_domain = [('pricelist_id', '=', self.pricelist_id.id), ('applied_on', '=', '0_product_variant')]
             price_product_ids = self.env['product.pricelist.item'].search(product_domain).mapped('product_id').mapped('product_tmpl_id')
 
-            domain += [('id', 'in', price_template_ids.ids + price_product_ids.ids)]
+            # TODO Categos
+            # product_domain = [('pricelist_id', '=', self.pricelist_id.id), ('applied_on', '=', '0_product_variant')]
+            # price_product_ids = self.env['product.pricelist.item'].search(product_domain).mapped('product_id').mapped('product_tmpl_id')
+
+            domain += [('id', 'in', price_template_ids.ids + price_product_ids.ids + template_brand_ids)]
         print (domain)
         templates = self.env['product.template'].search(domain, limit=self.limit)
         return templates
