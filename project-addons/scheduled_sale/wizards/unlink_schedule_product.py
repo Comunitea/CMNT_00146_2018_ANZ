@@ -28,6 +28,7 @@ class UnlinkScheduleProductLine(models.TransientModel):
     unlink_schedule_product_id = fields.Many2one('unlink.schedule.product.wzd')
     product_qty_scheduled = fields.Float("Qty ordered", compute="get_qty_ordered", store=True)
     scheduled_sale_id = fields.Many2one(related='unlink_schedule_product_id.scheduled_sale_id')
+
     @api.multi
     def set_product_as_cancel(self, to_cancel=False):
         self.browse(self._context.get('active_ids', [])).write({'to_cancel': to_cancel})
