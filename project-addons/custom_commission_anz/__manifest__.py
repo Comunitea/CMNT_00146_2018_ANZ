@@ -13,6 +13,7 @@
         'sale_commission'
     ],
     'data': [
+        'security/security.xml',
         'security/ir.model.access.csv',
         'views/agent_commission_brand_view.xml',
         'views/partner_view.xml',
