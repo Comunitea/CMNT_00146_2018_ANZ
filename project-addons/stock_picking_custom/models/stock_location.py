@@ -35,7 +35,7 @@ class StockLocation(models.Model):
 
     @api.model
     def create(self, vals):
-        self.check_vals(vals['usage'], vals['posx'], vals['posy'], vals['posz'], vals['barcode'])
+        # self.check_vals(vals.get('usage'), vals.get('posx'), vals.get('posy'), vals.get('posz'), vals.get('barcode'))
         return super().create(vals)
 
     @api.multi

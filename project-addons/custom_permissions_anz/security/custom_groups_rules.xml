@@ -39,7 +39,20 @@
         <field name="groups" eval="[(4, ref('anz_salesman'))]"/>
     </record>
 
+    <!-- Grupo para acceso resringido a usuarios de TpV -->
+    <record id="anz_tpv_user" model="res.groups">
+        <field name="name">TpV User</field>
+        <field name="implied_ids" eval="False"/>
+        <field name="comment">The TpV users has customized restricted access</field>
+    </record>
 
+    <!-- Ver solo clientes propios -->
+    <record id="anz_tpv_own_partners" model="ir.rule">
+        <field name="name">Own Partners</field>
+        <field name="model_id" ref="base.model_res_partner"/>
+        <field name="domain_force">['|',('company_id','=',False),('company_id','child_of',[user.company_id.id])]</field>
+        <field name="groups" eval="[(4, ref('anz_tpv_user'))]"/>
+    </record>
 
 
 </odoo>
