@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Grupo para acceso resringido a programaciones -->
+    <record id="schedule_sale_manager" model="res.groups">
+        <field name="name">Schedule sale manager</field>
+        <field name="implied_ids" eval="False"/>
+        <field name="comment">Solo ve programaciones propias</field>
+    </record>
+
+    <record id="schedule_sale_user" model="res.groups">
+        <field name="name">Usuario de programaciones</field>
+        <field name="implied_ids" eval="False"/>
+        <field name="comment">Estar en este grupo permite ver las programaciones</field>
+    </record>
+
+</odoo>

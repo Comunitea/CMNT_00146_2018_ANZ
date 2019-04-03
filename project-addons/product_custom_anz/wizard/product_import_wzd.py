@@ -2,6 +2,12 @@
 # © 2018 Comunitea
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
+# TODO
+# Crear los colores como variantes (búsquedas por atributo)
+# añadir un loop para leer todos los campos tras category como tags
+# ??? try color -> tags 
+# ??? pandas
+
 from odoo import models, fields, _
 from odoo.exceptions import UserError
 import xlrd
@@ -147,8 +153,7 @@ class ProductImportWzd(models.TransientModel):
                 print("Se ha creado el atributo: {}".format(attr.display_name))
             else:
                 raise UserError(
-                    _('Error getting attribute %s in line %s: \
-                       Not found') % (row_vals['attr_name'], str(idx)))
+                        _('Error: El atributo %s in line %s no existe') % (row_vals['attr_name'], str(idx)))
         domain = [
             ('attribute_id', '=', attr.id),
             '|', ('supplier_code', '=', row_vals['code_attr']), ('name', '=', row_vals['attr_val'])
