@@ -39,20 +39,27 @@
         <field name="groups" eval="[(4, ref('anz_salesman'))]"/>
     </record>
 
-    <!-- Grupo para acceso resringido a usuarios de TpV -->
-    <record id="anz_tpv_user" model="res.groups">
-        <field name="name">TpV User</field>
+    <!-- Grupo para acceso resringido de Asociados -->
+    <record id="anz_asociated_user" model="res.groups">
+        <field name="name">Asociated</field>
         <field name="implied_ids" eval="False"/>
-        <field name="comment">The TpV users has customized restricted access</field>
+        <field name="comment">Asociates have a customiced access</field>
     </record>
 
     <!-- Ver solo clientes propios -->
-    <record id="anz_tpv_own_partners" model="ir.rule">
+    <record id="anz_asociated_own_partners" model="ir.rule">
         <field name="name">Own Partners</field>
         <field name="model_id" ref="base.model_res_partner"/>
         <field name="domain_force">['|',('company_id','=',False),('company_id','child_of',[user.company_id.id])]</field>
-        <field name="groups" eval="[(4, ref('anz_tpv_user'))]"/>
+        <field name="groups" eval="[(4, ref('anz_asociated_user'))]"/>
     </record>
 
+    <!-- Ver solo empleados propios -->
+    <record id="anz_asociated_own_employes" model="ir.rule">
+        <field name="name">Own employes</field>
+        <field name="model_id" ref="hr.model_hr_employee"/>
+        <field name="domain_force">['|',('company_id','=',False),('company_id','child_of',[user.company_id.id])]</field>
+        <field name="groups" eval="[(4, ref('anz_asociated_user'))]"/>
+	</record>
 
 </odoo>

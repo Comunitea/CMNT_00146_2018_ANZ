@@ -14,6 +14,7 @@
         'stock_picking_imp'
     ],
     'data': [
+        'security/security.xml',
         'security/ir.model.access.csv',
         'views/sale_order.xml',
         'views/scheduled_sale.xml',

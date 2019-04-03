@@ -33,7 +33,7 @@
                 <attribute name="invisible">0</attribute>
             </field>
             <field name="price" position="after">
-                <field name="qty_available_global"/>
+                <field name="qty_available_global" groups="base.see_qty_available_global_group" />
             </field>
         </field>
     </record>
