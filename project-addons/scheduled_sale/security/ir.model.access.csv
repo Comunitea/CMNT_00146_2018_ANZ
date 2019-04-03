@@ -1,5 +1,5 @@
 "id","name","model_id:id","group_id:id","perm_read","perm_write","perm_create","perm_unlink"
-"access_scheduled_sale_period_manager","scheduled_sale_period_manager","model_scheduled_sale_period",sales_team.group_sale_manager,1,1,1,1
-"access_scheduled_sale_period_user","scheduled_sale_period_user","model_scheduled_sale_period",sales_team.group_sale_salesman,1,0,0,0
-"access_scheduled_sale_manager","scheduled_sale_manager","model_scheduled_sale",sales_team.group_sale_manager,1,1,1,1
-"access_scheduled_sale_user","scheduled_sale_user","model_scheduled_sale",sales_team.group_sale_salesman,1,1,1,1
+"access_scheduled_sale_period_manager","scheduled_sale_period_manager","model_scheduled_sale_period",scheduled_sale.schedule_sale_manager,1,1,1,1
+"access_scheduled_sale_manager","scheduled_sale_manager","model_scheduled_sale",scheduled_sale.schedule_sale_manager,1,1,1,1
+"access_scheduled_sale_user","scheduled_sale_user","model_scheduled_sale",scheduled_sale.schedule_sale_user,1,1,1,1
+"access_scheduled_sale_period_user","scheduled_sale_period_user","model_scheduled_sale_period",scheduled_sale.schedule_sale_user,1,0,0,0

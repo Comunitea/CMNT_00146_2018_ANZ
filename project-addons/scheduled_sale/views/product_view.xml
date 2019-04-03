@@ -14,7 +14,7 @@
         </field>
 
      </record>
-    <delete id="scheduled_sale.product_product_for_view_anz" model="ir.ui.view"/>
+    <!--delete id="scheduled_sale.product_product_for_view_anz" model="ir.ui.view"/-->
      <!--record id="product_product_for_view_anz" model="ir.ui.view">
         <field name="name">product.product.view.custom.anz</field>
         <field name="model">product.product</field>
