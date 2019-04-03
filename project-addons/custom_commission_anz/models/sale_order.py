@@ -16,6 +16,7 @@ class SaleOrder(models.Model):
 
 
 class SaleOrderLine(models.Model):
+    """ cOPIAR ESTA CLASE A ACCOUNT INVOICELINE  para heredar el comportamiento en facturas"""
     _inherit = "sale.order.line"
 
     def _prepare_agents_vals(self):
@@ -34,7 +35,7 @@ class SaleOrderLine(models.Model):
             order = self.env['sale.order'].browse(order_id)
             partner = order.partner_id
             product = self.env['product.product'].browse(product_id)
-            agent_vals = self._prepare_agents_vals_by_brand(
+            agent_vals = self._prepare_agents_vals_by_brand( # RECALCULA LAS LINEAS DE AGENTE
                 partner, product, order.user_id.id, vals.get('discount', 0.0))
             vals['agents'] = agent_vals
         return super().create(vals)

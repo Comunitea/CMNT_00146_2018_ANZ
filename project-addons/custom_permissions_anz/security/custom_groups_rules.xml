@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
+    <!-- Ver solo los usuairios de tu empresa -->
+	<record id="own_calendar_contacts" model="ir.rule">
+		<field name="name">Calendar own contacts</field>
+		<field name="implied_ids" eval="False"/>
+        <field name="model_id" ref="calendar.model_calendar_contacts"/>
+        <field name="domain_force">['|',('partner_id.company_id','=',False),('partner_id.company_id.id','child_of',[user.company_id.id])]</field>
+	</record>
+
     <!-- Grupo para acceso resringido comerciales -->
     <record id="anz_salesman" model="res.groups">
         <field name="name">Salesman: Restricted</field>
