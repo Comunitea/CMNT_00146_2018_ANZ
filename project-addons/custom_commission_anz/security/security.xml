@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Ver solo comerciales propios -->
+    <record id="custom_commission_anz.anz_asociated_own_partners" model="ir.rule">
+        <field name="name">Own comsion by brand</field>
+        <field name="model_id" ref="custom_commission_anz.commission_brand"/>
+        <field name="domain_force">['|',('partner_id.company_id','=',False),('partner_id.company_id','child_of',[user.company_id.id])]</field>
+	</record>
+
+</odoo>
