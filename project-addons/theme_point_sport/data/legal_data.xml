@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <template id="poi_advise_page_tmp" name="Aviso legal - Point sport">
+        <t t-call="website.layout">
+            <div id="wrap">
+                <div class="container">
+                    <h1 class="text-center mb32">Aviso legal</h1>
+                    <div class="row">
+                        <div class="col-md-12 mb32">
+                            <p>En cumplimiento con el deber de información recogido en artículo 10 de la Ley 34/2002, de 11 de julio, de Servicios de la Sociedad de la Información y de Comercio Electrónico, a continuación se reflejan los siguientes datos: La empresa titular de la web (en adelante, LA EMPRESA) pone a su disposición la siguiente información:</p>
+                            <ul class="mt8 mb8 list-unstyled">
+                                <li>Identificación:	<span t-field="res_company.name"/></li>
+                                <li>CIF: <span t-field="res_company.vat"/></li>
+                                <li>Dirección:
+                                    <span t-field="res_company.zip"/>,
+                                    <span t-field="res_company.city"/>,
+                                    <span t-field="res_company.country_id.name"/>,
+                                    <span t-field="res_company.street"/>
+                                </li>
+                                <li>Teléfono: <span t-field="res_company.phone"/></li>
+                                <li>E-Mail: <a t-attf-href="mailto:#{res_company.email}">
+                                    <span t-field="res_company.email"/>
+                                </a></li>
+                            </ul>
+                            <h2>1. Condiciones generales de uso de la web y su aceptación</h2>
+                            <p>El presente aviso (en adelante, el “Aviso Legal”) regula el uso del servicio de acceso y utilización de la web que Anzamar, S.L.(en adelante, “LA EMPRESA”), pone a su disposición.</p>
+                            <p>La utilización de la web atribuye la condición de usuario de la web (en adelante, el “Usuario”) e implica la aceptación plena y sin reservas de todas y cada una de las disposiciones incluidas en este Aviso Legal en la versión publicada por LA EMPRESA en el momento mismo en que el Usuario acceda a la Web. </p>
+                            <p>LA EMPRESA se reserva el derecho a modificar unilateralmente, en cualquier momento y sin previo aviso, la presentación y configuración de los contenidos y los servicios de la Web, así como las condiciones requeridas para su utilización cuando ello sea conveniente para su mejor prestación.</p>
+                            <p>El contenido de la presente web está protegido por las leyes de propiedad intelectual.</p>
+                            <p>Dichos contenidos deberán ser usados de forma correcta y licita por el usuario y, en particular queda obligado a utilizar dichos contenidos de forma diligente, correcta y lícita.</p>
+                            <p>No podrán usarse los contenidos de forma contraria a la ley, a la moral o a las buenas costumbres aceptadas en orden público. Está prohibida la transmisión de cualquier tipo de datos que usted pueda realizar a esta web, o a otros pertenecientes a terceras empresas cuyos links podrá encontrar dentro de esta web, que atente contra los derechos de propiedad de terceros, sean obscenos, pornográficos, difamatorios, de carácter amenazador o material que pueda ser considerado delito o falta en virtud del vigente Código Penal. Queda prohibida la reproducción, copia, distribución, transformación o modificación de contenidos (textos, imágenes, voces o estructura) a menos que se cuente con la autorización expresa y por escrito del titular de los derechos adquiridos.</p>
+                            <h2>2. Objeto</h2>
+                            <p>A través de la web, LA EMPRESA facilita a los Usuarios y Socios información de diversos servicios y contenidos puestos a disposición por LA EMPRESA.</p>
+                            <h2>3. Condiciones de acceso y utilización de la web</h2>
+                            <h3>3.1. Carácter gratuito del acceso y utilización de la web</h3>
+                            <p>La utilización de la web tiene carácter gratuito. No obstante lo anterior, alguno de los Servicios suministrados por LA EMPRESA a través de la web pueden estar sujetos al pago de un precio en la forma que se determine en las correspondientes contrataciones.</p>
+                            <h3>3.2. Veracidad de la información</h3>
+                            <p>Toda la información que facilite el usuario a través de la web deberá ser veraz. A estos efectos, el usuario garantiza la autenticidad de todos aquellos datos que comunique como consecuencia de la cumplimentación de los formularios de solicitud de información. De igual forma, se deberá mantener la información facilitada a LA EMPRESA actualizada. En todo caso el usuario será el único responsable de las manifestaciones falsas o inexactas que realice y de los perjuicios que cause a LA EMPRESA o a terceros por la información que facilite.</p>
+                            <h3>3.3. Obligación de hacer un uso correcto de la Web</h3>
+                            <p>El usuario se compromete a utilizar la Web de conformidad con la ley, el presente Aviso Legal, y demás avisos, reglamentos de uso e instrucciones puestos en su conocimiento, así como con la moral y las buenas costumbres generalmente aceptadas y el orden público.</p>
+                            <p>A tal efecto, el usuario se abstendrá de utilizar la web con fines o efectos ilícitos, prohibidos en el presente Aviso Legal, lesivos de los derechos e intereses de terceros, o que de cualquier forma puedan dañar, inutilizar, sobrecargar, deteriorar o impedir la normal utilización de la web los equipos informáticos o los documentos, archivos y toda clase de contenidos almacenados en cualquier equipo informático de LA EMPRESA, o de cualquier usuario de Internet (hardware y software).</p>
+                            <h2>4. Blog</h2>
+                            <p>En el apartado blog los usuarios de la página pueden realizar comentarios. </p>
+                            <p>Toda la información y comentarios que se reciban en esta página se considerará cedida a título gratuito. El usuario no debe enviar información que no puede ser tratada de esta forma.</p>
+                            <p>LA EMPRESA se reserva el derecho de publicar los comentarios que se envíen y retirar todos aquellos comentarios y aportaciones que no estén relacionados con el contenido de la entrada en la que se realiza el comentario, vulneren la propiedad intelectual, el respeto a la dignidad de la persona, al derecho al honor, la propia imagen o la intimidad, el derecho a la protección de datos personales, que sean discriminatorios, xenófobos, racistas, pornográficos, que atenten contra la juventud o la infancia, el orden o la seguridad pública o que, a su juicio, resultaran ilegales o, simplemente, no adecuados para su publicación. En cualquier caso, LA EMPRESA no será responsable de las opiniones vertidas por los usuarios a través de las herramientas de participación. </p>
+                            <p>Aquellos comentarios no publicados o retirados serán destruidos.</p>
+                            <p>Quien envíe un comentario es responsable de aportar contenidos lícitos o se compromete a hacer un uso adecuado de los contenidos y servicios que LA EMPRESA ofrece a través de su página web. Con carácter enunciativo pero no limitativo, a no emplearlos para incurrir en actividades ilícitas o contrarias a la buena fe y al orden público; difundir contenidos o propaganda de carácter racista, xenófobo, pornográfico, de apología del terrorismo o atentatorio contra los derechos huanos; provocar daños en los sistemas físicos y lógicos de LA EMPRESA, a su proveedores o a terceras personales, introducir o difundir en la red virus informáticos o cualesquiera otros sistemas físicos o lógicos que sean susceptibles de provocar los daños anteriormente mencionados; intentar acceder y modificar o manipular los mensajes de otros usuarios. </p>
+                            <p>Si el usuario incluye datos de carácter personal debe cumplir con la normativa de protección de datos de carácter personal. Respecto a los suyos puede ejercer los derechos consignados en el apartado  “DERECHOS” de la política de privacidad de la web. </p>
+                            <h2>5. Copyright y marcas registradas</h2>
+                            <p>Todas las marcas, nombres comerciales o signos distintivos de cualquier clase que aparecen en la web son propiedad de LA EMPRESA o de terceros, sin que pueda entenderse que el uso o acceso a la web y/o a los servicios del área del cliente atribuya al usuario derecho alguno sobre las citadas marcas, nombres comerciales y/o signos distintivos. Asimismo, los Contenidos son propiedad intelectual de LA EMPRESA o de terceros, sin que puedan entenderse cedidos al usuario, en virtud de lo establecido en este Aviso Legal, ninguno de los derechos de explotación que existen o puedan existir sobre dichos Contenidos más allá de lo estrictamente necesario para el correcto uso de la web.</p>
+                            <h2>6. Responsabilidades por daños y perjuicios</h2>
+                            <p>El usuario de la web o de cualquiera de las páginas Web de terceras empresas, incluidas en el website o con un acceso mediante un link desde el mismo, será responsable de los Daños y Perjuicios que LA EMPRESA pueda sufrir directa o indirectamente, como consecuencia del incumplimiento de cualquiera de las obligaciones derivadas establecidas en el presente Aviso Legal.</p>
+                            <h2>7. Limite de responsabilidad</h2>
+                            <h3>7.1. Exclusión de garantías y de responsabilidad por el funcionamiento de la web</h3>
+                            <p>LA EMPRESA no garantiza la disponibilidad del funcionamiento de los servicios de la web.</p>
+                            <p>Cuando ello sea razonablemente posible, LA EMPRESA advertirá previamente de las interrupciones en el funcionamiento de la web. LA EMPRESA tampoco garantiza la unidad de los Servicios para la realización de ninguna actividad en particular, ni su inhabilidad, y en particular, aunque no de modo exclusivo, que los usuarios puedan efectivamente utilizar los Servicios y acceder a las distintas páginas web desde las que se presten los Servicios.</p>
+                            <h3>7.2. Privacidad y seguridad en la utilización de la web</h3>
+                            <p>LA EMPRESA no garantiza la privacidad y la seguridad de la utilización de la web, no puede garantizar la invulnerabilidad absoluta de sus sistemas de seguridad.</p>
+                            <h3>7.3. Exclusión de garantías y de responsabilidad por los Contenidos</h3>
+                            <p>LA EMPRESA no controla ni garantiza la ausencia de virus ni de otros elementos en los Contenidos que puedan producir alteraciones en el sistema informático del usuario (software y hardware) o en los documentos electrónicos y ficheros almacenados en éste.</p>
+                            <p>De igual forma, LA EMPRESA, elude toda responsabilidad en los supuestos de fallo en el rendimiento, error, omisión, interrupción, defecto de demora en la operación de transmisión, fallo del sistema o línea, así como en el contenido, exactitud y opiniones expresadas y otras conexiones suministradas por estos medios.</p>
+                            <p>LA EMPRESA no garantiza la licitud, fiabilidad y utilidad de los Contenidos, ni tampoco garantiza la veracidad, exactitud, exhaustividad y actualidad de los Contenidos. Esta web puede establecer enlaces a otras páginas web que pertenecen a terceros sobre los que LA EMPRESA no tiene control alguno. En estos supuestos LA EMPRESA no asume responsabilidad alguna ni compromiso sobre la información contenida en estas páginas ni de los servicios o productos que en ellas se incluya u oferte.</p>
+                            <h3>7.4. Deber de colaboración con las Autoridades Competentes</h3>
+                            <p>En caso de que una autoridad judicial comunique a LA EMPRESA o ésta tenga conocimiento efectivo de la existencia de una información ilícita contenida en la web o que lesione bienes o derechos de un tercero susceptible de indemnización, LA EMPRESA colaborará con las organismos competentes para la identificación de las personas responsables de haber publicado la información ilícita, y en todo caso, procederá a retirar tal información o hacer imposible el acceso a la misma.</p>
+                            <h3>7.5. Exclusión de responsabilidad</h3>
+                            <p class="alert alert-danger">LA EMPRESA excluye cualquier responsabilidad por los daños y perjuicios de toda naturaleza que puedan deberse directa o indirectamente a hechos no garantizados en virtud de las anteriores cláusulas 7.1, 7.2, 7.3. y 7.4.</p>
+                            <h2>8. Política de protección de datos</h2>
+                            <p>LA EMPRESA tiene establecida una política de privacidad en lo que refiere a los datos de carácter personal, que recoge, trata o custodia, claramente definida en la política de privacidad.</p>
+                            <h2>9. Duracion</h2>
+                            <p>LA EMPRESA podrá interrumpir el servicio de la web no obstante, está autorizada a dar por terminada o suspender la prestación de los Servicios en cualquier momento. Cuando ello sea razonablemente posible, LA EMPRESA advertirá previamente la terminación o suspensión de la prestación de los servicios de la web.</p>
+                            <h2>10. Jurisdicción</h2>
+                            <p>Las partes, con expresa renuncia de su propio fuero, aceptan como legislación rectora del presente contrato, la española, y se someten para la resolución de cuantos litigios pudieran derivarse del mismo a los Juzgados y Tribunales de MALAGA</p>
+                            <h2>11. Legislación</h2>
+                            <p>Las presentes Condiciones Generales se rigen por las leyes españolas.</p>
+                            <p>Queda prohibida la reproducción, copia, distribución, transformación o modificación de contenidos (textos, imágenes, voces o estructura) a menos que se cuente con la autorización expresa y por escrito del titular de los derechos adquiridos.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+
+    <template id="poi_privacy_page_tmp" name="Política de privacidad - Point sport">
+        <t t-call="website.layout">
+            <div id="wrap">
+                <div class="container">
+                    <h1 class="text-center mb32">Política de privacidad</h1>
+                    <div class="row">
+                        <div class="col-md-12 mb32">
+                            <ul class="mb8 list-unstyled">
+                                <li>Responsable: <span t-field="res_company.name"/></li>
+                                <li>CIF: <span t-field="res_company.vat"/></li>
+                                <li>Dirección:
+                                    <span t-field="res_company.zip"/>,
+                                    <span t-field="res_company.city"/>,
+                                    <span t-field="res_company.country_id.name"/>,
+                                    <span t-field="res_company.street"/>
+                                </li>
+                                <li>Teléfono: <span t-field="res_company.phone"/></li>
+                                <li>E-Mail: <a t-attf-href="mailto:#{res_company.email}">
+                                    <span t-field="res_company.email"/>
+                                </a></li>
+                            </ul>
+                            <!-- Política de privacidad -->
+                            <p>A través de este sitio web no se recaban datos de carácter personal de los usuarios sin su conocimiento, ni se ceden a terceros. </p>
+                            <p><span t-field="res_company.name"/> utiliza cookies para diferentes fines. Por favor, lea nuestra Política de Cookies. </p>
+                            <p>La web de la que es titular <span t-field="res_company.name"/> contiene enlaces a sitios webs de terceros, cuyas políticas de privacidad son ajenas a las de <span t-field="res_company.name"/> Al acceder a tales sitios web usted puede decidir si acepta sus políticas de privacidad y de cookies. Con carácter general, si navega por internet usted puede aceptar o rechazar las cookies de terceros desde las opciones de configuración de su navegador. </p>
+                            <p>A continuación, le facilitamos la información sobre protección de datos respecto de los datos que le solicitamos a través de los distintos formularios de esta web.</p>
+                            <h2>Finalidades del tratamiento de sus datos, legitimación y conservación </h2>
+                            <h3>Recogida de sus datos a través de formularios Web</h3>
+                            <p>Trataremos sus datos para atender su solicitud o petición y para enviarle información publicitaria y comercial, a través de e-mail, correo postal teléfono y fax, de nuestros productos y servicios. La base jurídica del tratamiento es la ejecución de medidas precontractuales a petición suya o su consentimiento. </p>
+                            <p>Asimismo, si usted nos otorga su consentimiento, utilizaremos sus datos para remitirle, vía e-mail, fax, teléfono y correo postal, información publicitaria y/o comercial sobre nuestros productos y servicios que pudieran ser de su interés. La base jurídica es su consentimiento expreso, el cual usted podrá retirar en cualquier momento. </p>
+                            <p>Conservaremos sus datos durante un plazo máximo de un año. Si usted ha prestado su consentimiento, conservaremos sus datos mientras no nos solicite la supresión de los mismos. </p>
+                            <h2>Decisiones automatizadas sobre sus datos y elaboración de perfiles</h2>
+                            <p>No tomamos decisiones automatizadas sobre sus datos ni elaboramos perfiles de su persona. </p>
+                            <h2>Cesiones de sus datos a terceros</h2>
+                            <p>No cedemos sus datos a terceros ni realizamos transferencias internacionales de sus datos, salvo obligación legal aplicable a nuestra organización. </p>
+                            <h2>Sus derechos en protección de datoS </h2>
+                            <ul>
+                                <li>Derecho a solicitar el acceso a sus datos personales.</li>
+                                <li>Derecho a solicitar su rectificación o supresión.</li>
+                                <li>Derecho a solicitar la limitación de su tratamiento.</li>
+                                <li>Derecho a oponerse al tratamiento.</li>
+                                <li>Derecho a la portabilidad de los datos.</li>
+                                <li>Derecho a retirar el consentimiento prestado.</li>
+                            </ul>
+                            <p>Cualquier persona tiene derecho a obtener confirmación sobre si estamos tratando datos personales que le conciernan o no. Usted tiene derecho a acceder a sus datos personales, así como a solicitar la rectificación de los datos inexactos o, en su caso, solicitar su supresión cuando, entre otros motivos, los datos ya no sean necesarios para los fines que fueron recogidos.</p>
+                            <p>En determinadas circunstancias, usted podrá solicitar la limitación del tratamiento de sus datos, en cuyo caso únicamente los conservaremos para el ejercicio o la defensa de reclamaciones. </p>
+                            <p>En determinadas circunstancias y por motivos relacionados con su situación particular, usted podrá oponerse al tratamiento de sus datos. En este caso, dejaremos de tratar sus datos, salvo que existan motivos legítimos imperiosos, o para la formulación, el ejercicio y la defensa de posibles reclamaciones.</p>
+                            <p>Si ha otorgado su consentimiento para alguna finalidad concreta, tiene derecho a retirar el consentimiento otorgado en cualquier momento, sin que ello afecte a la licitud del tratamiento basado en el consentimiento previo a su retirada. Para ello podrá dirigirnos un escrito a  <span t-field="res_company.zip"/>, <span t-field="res_company.city"/>, <span t-field="res_company.country_id.name"/>, <span t-field="res_company.street"/>, o enviarnos un correo electrónico a <a t-attf-href="mailto:#{res_company.email}"><span t-field="res_company.email"/></a></p>
+                            <p>En caso de que sienta vulnerados sus derechos en lo concerniente a la protección de sus datos personales, especialmente cuando no haya obtenido satisfacción en el ejercicio de sus derechos, puede presentar una reclamación ante la Autoridad de Control en materia de Protección de Datos competente a través de su sitio web: www.agpd.es</p>
+                            <hr class="mt32"/>
+                            <!-- Política de cookies -->
+                            <h2>Política de cookies </h2>
+                            <p>Utilizamos cookies propias y de terceros para mejorar nuestros servicios y mostrarle publicidad relacionada con sus preferencias mediante el análisis de sus hábitos de navegación. Si continúa navegando, consideramos que acepta su uso. Puede cambiar la configuración u obtener más información aquí. </p>
+                            <h3>1. ¿Qué son las cookies? </h3>
+                            <p>Una cookie es un fichero que se descarga en su ordenador al acceder a determinadas páginas web. Las cookies permiten a una página web, entre otras cosas, almacenar y recuperar información sobre los hábitos de navegación de un usuario o de su equipo y, dependiendo de la información que contengan y de la forma en que utilice el equipo, pueden utilizarse para reconocer al usuario. Según quien sea la entidad que gestione el dominio desde donde se envían las cookies y trate los datos que se obtengan se pueden distinguir dos tipos: cookies propias y cookies de terceros. Existe también una segunda clasificación según el plazo de tiempo que permanecen almacenadas en el navegador del cliente, pudiendo tratarse de cookies de sesión o cookies persistentes. Por último, existe otra clasificación con cinco tipos de cookies según la finalidad para la que se traten los datos obtenidos: cookies técnicas, cookies de personalización, cookies de análisis, cookies publicitarias y cookies de publicidad comportamental. Para más información a este respecto puede consultar la guía sobre el uso de las cookies de la Agencia Española de Protección de Datos. </p>
+                            <h3>2. ¿Qué tipo de cookies utiliza esta página web? </h3>
+                            <p>Cookies de análisis: Son aquellas que bien tratadas por nosotros o por terceros, nos permiten cuantificar el número de usuarios y así realizar la medición y análisis estadístico de la utilización que hacen los usuarios del servicio ofertado. Para ello se analiza su navegación en nuestra página web con el fin de mejorar la oferta de productos o servicios que le ofrecemos. Esta página web utiliza Google Analytics, un servicio de analítica web desarrollada por Google, que permite la medición y análisis de la navegación en las páginas web. En su navegador podrá observar cuatro cookies de este servicio: _utma, _utmb, _utmc y _utmc . Según la tipología anterior se trata de cookies propias, de sesión y de análisis. Puede encontrar más información al respecto e inhabilitar el uso de estas cookies en la siguiente dirección: https://www.google.com/intl/es_es/policies/technologies/cookies </p>
+                            <p>A través de la analítica web se obtiene información relativa al número de usuarios que acceden a la web, el número de páginas vistas, la frecuencia y repetición de las visitas, su duración, el navegador utilizado, el operador que presta el servicio, el idioma, el terminal que utiliza, o la ciudad a la que está asignada su dirección IP. Información que posibilita un mejor y más apropiado servicio por parte de esta página web. </p>
+                            <p>Cookies de personalización: Son aquellas que en nuestro caso permiten recordar las preferencias seleccionadas por el usuario durante su previa navegación por nuestra página web (por ejemplo, el idioma). </p>
+                            <p>Cookies publicitarias: Son aquellas que, bien tratadas por nosotros o por terceros, nos permiten gestionar de la forma más eficaz posible la oferta de los espacios publicitarios que hay en la página web, adecuando el contenido del anuncio al contenido del servicio solicitado o al uso que realice de nuestra página web. Para ello podemos analizar sus hábitos de navegación en Internet y podemos mostrarle publicidad relacionada con su perfil de navegación. </p>
+                            <h3>3. Aceptación de la Política de cookies </h3>
+                            <p>Asejimar Asesores, SL asume que usted acepta el uso de cookies. No obstante, muestra información sobre su política de cookies en la parte superior de cualquier página del sitio web con cada inicio de sesión con el objeto de que usted sea consciente. </p>
+                            <p>Ante esta información es posible llevar a cabo las siguientes acciones: </p>
+                            <p>Aceptar. Para aceptar la colocación y/o lectura de las cookies analíticas de Google.
+                                Modificar su configuración. Podrá obtener más información sobre qué son las cookies, conocer la política de cookies de Asejimar Asesores, SL y modificar la configuración de su navegador. </p>
+                            <h3>4. ¿Cómo bloquear o eliminar las cookies? </h3>
+                            <p>Puede usted permitir, bloquear o eliminar las cookies instaladas en su equipo mediante la configuración de las opciones del navegador instalado en su ordenador. En cada navegador la operativa es diferente, la función de 'Ayuda" le mostrará cómo hacerlo. </p>
+                            <ul>
+                                <li>Internet Explorer: windows.microsoft.com/es-xl/internet-explorer/delete-manage-cookies#ie="ie-10"</li>
+                                <li>FireFox: support.mozilla.org/es/kb/Borrar%20cookies</li>
+                                <li>Chrome: support.google.com/chrome/answer/95647?hl="es"</li>
+                                <li>Safari: apple.com/es/privacy/use-of-cookies </li>
+                            </ul>
+                            <p>Además, también puede gestionar el almacén de cookies en su navegador a través de herramientas como las siguientes: </p>
+                            <ul>
+                                <li>Ghostery: ghostery.com</li>
+                                <li>Your online choices: youronlinechoices.com/es</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+
+</odoo>
