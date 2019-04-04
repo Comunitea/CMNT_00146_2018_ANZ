@@ -61,7 +61,7 @@
         'templates/page_brand_point_sport.xml',
         'templates/page_brand_skipping.xml',
         'templates/page_brand_umbro.xml',
-        'templates/page_newsletter.xml',
+        # 'templates/page_newsletter.xml',
         'templates/page_open_shop.xml',
         'templates/page_work_with_us.xml',
     ],

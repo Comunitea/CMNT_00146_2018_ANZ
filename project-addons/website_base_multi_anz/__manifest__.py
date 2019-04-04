@@ -48,7 +48,8 @@
         'seo_base',
         'breadcrumbs_base',
         'website_sale_product_brand',
-        'payment_redsys'
+        'payment_redsys',
+        'follow_us_base'
     ],
     'data': [
         'data/company_data.xml',

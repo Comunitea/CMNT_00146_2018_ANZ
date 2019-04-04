@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<odoo noupdate="1">
+<odoo noupdate="0">
 
     <!-- ======================================= Page Open Your Shop ======================================= -->
 
@@ -307,13 +307,7 @@
     <!-- ======================================= Page Newsletter ======================================= -->
 
     <!--Newsletter Template-->
-    <template id="page_newsletter">
-        <t t-call="website.layout">
-            <div id="wrap">
-                <div class="container"/>
-            </div>
-        </t>
-    </template>
+    <template id="page_newsletter" inherit_id="follow_us_base.fub_newsletter_page_template"/>
 
     <!-- Newsletter Page -->
     <record id="id_page_newsletter" model="website.page">
