@@ -171,6 +171,7 @@ class ImportImages(models.TransientModel):
             once = False
             for image in images:
                 if not templ.image:
+                    once = True
                     templ.write(image.dump())
                     continue
                 elif not once and self.update_default:
