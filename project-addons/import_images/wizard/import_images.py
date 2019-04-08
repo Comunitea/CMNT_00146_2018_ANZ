@@ -22,6 +22,7 @@ from odoo import models, fields
 from odoo.exceptions import UserError
 from mimetypes import guess_type
 from base64 import b64encode
+from hashlib import sha1
 
 _logger = logging.getLogger(__name__)
 
@@ -40,17 +41,17 @@ class ImportImagesValue():
     """
 
     name ='image' 
-    res_model = 'product.template'
     res_id = None
     type = 'binary'
     index_content = "image"
-    data = None
+    _data = None
+    _checksum = None
 
     def __init__(self, filepath):
         self.filepath = filepath
         self.res_name = self.basename()
         self.reference, self.order = SPLITER.match(self.basename()).groups()
-        self.order = self.order or 0
+        self.order = int(self.order) if  self.order else 0
 
     def res_field(self):
         return self.name
@@ -64,23 +65,31 @@ class ImportImagesValue():
     def basename(self):
         return os.path.basename(self.filepath)
 
-    def _data(self):
-        with open(self.filepath, 'r+b') as f:
-            self.data = b64encode(f.read())
-        return self.data
+    def data(self):
+        if not self._data:
+            with open(self.filepath, 'r+b') as f:
+                self._data = b64encode(f.read())
+        return self._data
 
     def dump(self):
-        self._data()
-        return {'image':self.data, 'image_medium':self.data, 'image_small':self.data}
+        return {'image':self.data(), 'image_medium':self.data(), 'image_small':self.data()}
 
-    def dict(self):
-        return dict(
-                name=self.name,
-                res_name=self.res_name,
-                res_model=self.res_model,
-                res_id = self.res_id,
-                type=self.type,
-                datas=self.data or self._data())
+    def checksum(self):
+        """ TODO: mimic decorator api.depend? """
+        if not self._checksum:
+            self._checksum = sha1(self.data()).hexdigest()
+        return self._checksum
+
+    def attachment(self, res_id,res_name=None):
+        """ """
+        return dict(name="image",
+                res_name = res_name or self.res_name,
+                res_model= 'product.image',
+                res_field= 'image',
+                res_id   = res_id,
+                type     = 'binary',
+                datas    = self.data())
+
 
 class ImportImages(models.TransientModel):
     """
@@ -88,6 +97,7 @@ class ImportImages(models.TransientModel):
         TODO:
             Reemplazar el boton de importar
             _get_filters as coroutines
+            if folder imput == FTP:// get conection
     """
 
     _name = 'import.images'
@@ -129,8 +139,8 @@ class ImportImages(models.TransientModel):
         ref = ''
         groups = []
         for image in imported:
-            if ref != image.reference:
-                ref = image.reference
+            if ref != image.reference.lower():
+                ref = image.reference.lower()
                 groups.append([])
             groups[-1].append(image)
 
@@ -143,7 +153,6 @@ class ImportImages(models.TransientModel):
                 domain = [('barcode','=',code)]
             tmpl_ids = self.env[table].read_group(domain,['product_tmpl_id'],['product_tmpl_id'])
             if not len(tmpl_ids) == 1:
-                # ??? log
                 rem.append(ind)
             else:
                 for image in references:
@@ -157,9 +166,18 @@ class ImportImages(models.TransientModel):
         """ """
         gimages = self._get_images()
         for images in gimages:
-            image = images[0]
-            templ = self.env['product.template'].search([('id','=',image.res_id)])
-            if not self.update and templ.image:
-                continue
-            templ.write(image.dump())
-
+            images = sorted(images, key=lambda image: image.order)
+            templ = self.env['product.template'].search([('id','=',images[0].res_id)])
+            once = False
+            for image in images:
+                if not templ.image:
+                    once = True
+                    templ.write(image.dump())
+                    continue
+                elif not once and self.update_default:
+                    once = True
+                    templ.write(image.dump())
+                    continue
+                if not len(self.env['ir.attachment'].search([('checksum','=',image.checksum()),('res_id','=',templ.id)])._ids):
+                    templ_image = self.env['product.image'].create({'name':templ.name,'product_tmpl_id':templ.id})
+                    self.env['ir.attachment'].create(image.attachment(templ_image.id, templ.name))
