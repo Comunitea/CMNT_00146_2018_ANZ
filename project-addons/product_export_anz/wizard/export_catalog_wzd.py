@@ -55,7 +55,7 @@ class CatalogType(models.Model):
     purchases = fields.Boolean('Purchases')
     sales = fields.Boolean('Sales')
     stocks = fields.Boolean('Stocks')
-    pvp = fields.Boolean('Precio')
+    pvp = fields.Boolean('PVP')
     cost = fields.Boolean('Cpst')
     company_header = fields.Char('Company header')
     image = fields.Boolean('Template Image')
@@ -190,10 +190,6 @@ class ExportCatalogtWzd(models.TransientModel):
             product_domain = [('pricelist_id', '=', self.pricelist_id.id), ('applied_on', '=', '0_product_variant')]
             price_product_ids = self.env['product.pricelist.item'].search(product_domain).mapped('product_id').mapped('product_tmpl_id')
 
-            # TODO Categos
-            # product_domain = [('pricelist_id', '=', self.pricelist_id.id), ('applied_on', '=', '0_product_variant')]
-            # price_product_ids = self.env['product.pricelist.item'].search(product_domain).mapped('product_id').mapped('product_tmpl_id')
-
             domain += [('id', 'in', price_template_ids.ids + price_product_ids.ids)]
         templates = self.env['product.template'].search(domain, limit=self.limit)
         return templates
@@ -235,8 +231,8 @@ class ExportCatalogtWzd(models.TransientModel):
                 'percent': 0.00,
                 'grouped_sale': [],
                 'grouped_purchase': [],
-                'grouped_months': []
-
+                'grouped_months': [],
+                'ref_template': tmp.ref_template
             }
             sales=purchases=incomings=outgoings=stocks=0
             for variant in tmp.product_variant_ids:

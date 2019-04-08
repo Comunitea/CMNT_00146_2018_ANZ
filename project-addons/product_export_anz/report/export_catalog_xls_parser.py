@@ -170,7 +170,7 @@ class ExportCatalogXlsParser(models.AbstractModel):
 
             sheet.write(row, 0, 'MODELO', f_header)
             #sheet.write(row + 1, 0, tmp_name, f_product)
-            sheet.merge_range('{}:{}'.format(c1, c2), tmp_name, f_product)
+            sheet.merge_range('{}:{}'.format(c1, c2), tmp_dic['ref_template'] or tmp_name, f_product)
             cols = 3
 
             pvp_cell = cost_cell = xl_rowcol_to_cell(row + 1, 5)
@@ -181,7 +181,7 @@ class ExportCatalogXlsParser(models.AbstractModel):
                 cost_cell = xl_rowcol_to_cell(row + 1, cols)
                 cols+=1
             if catalog_id.pvp:
-                sheet.write(row, cols, 'PVP', f_header)
+                sheet.write(row, cols, 'Precio', f_header)
                 sheet.write(row + 1, cols, tmp_dic['pvp'], money_with_border)
                 pvp_cell = xl_rowcol_to_cell(row + 1, cols)
             row += 1
