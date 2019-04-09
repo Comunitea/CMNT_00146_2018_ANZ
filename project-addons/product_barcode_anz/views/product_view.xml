@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
-
-    <record id="view_product_product_form_barcodes_custom" model="ir.ui.view">
+    <delete id="view_product_product_form_barcodes_custom" model="ir.ui.view"/>
+    <!--record id="view_product_product_form_barcodes_custom" model="ir.ui.view">
         <field name="name">product.product.view.custom.anz.barcodes.custom</field>
         <field name="model">product.product</field>
         <field name="inherit_id" ref="barcodes_generator_product.view_product_product_form"/>
@@ -19,9 +19,9 @@
                 <attribute name="attrs">{'invisible': ['|', '|', ('barcode','!=', ''), ('barcode_rule_id', '=', False), ('barcode_base', '=', 0)]}</attribute>
             </xpath>
         </field>
-    </record>
-
-     <record id="view_product_template_form_barcodes_custom" model="ir.ui.view">
+    </record-->
+    <delete id="view_product_template_form_barcodes_custom" model="ir.ui.view"/>
+     <!--record id="view_product_template_form_barcodes_custom" model="ir.ui.view">
         <field name="name">product.template.view.custom.anz.barcodes.custom</field>
         <field name="model">product.template</field>
         <field name="inherit_id" ref="barcodes_generator_product.view_product_template_form"/>
@@ -31,7 +31,6 @@
             </field>
              <field name="barcode_base" position="attributes">
                 <attribute name="attrs">{'readonly': [('generate_type', '!=', 'manual')], 'invisible': ['|', ('barcode','!=', ''), ('barcode_rule_id', '=', False)]}</attribute>
-
             </field>
             <xpath expr="//button[@name='generate_base']" position="attributes">
                 <attribute name="attrs">{'invisible': ['|', '|', ('barcode','!=', ''), ('generate_type', '!=', 'sequence'), ('barcode_base', '!=', 0)]}</attribute>
@@ -44,7 +43,7 @@
                 <attribute name="class">oe_inline</attribute>
             </xpath>
         </field>
-    </record>
+    </record-->
 
 </odoo>
 
