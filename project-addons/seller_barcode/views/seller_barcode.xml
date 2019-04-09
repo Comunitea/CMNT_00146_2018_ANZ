@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+
+
+    <record id="view_seller_barcode_template_form" model="ir.ui.view">
+        <field name="name">view.seller.barcode.template.form</field>
+        <field name="model">seller.barcode.template</field>
+        <field name="arch" type="xml">
+            <form string="Schedule sale">
+                 <header>
+                     <!--button name="cancel_schedule" string="Cancel" type="object" class="btn-warning" states="draft"/>
+                     <button name="done_schedule" string="Done" type="object" class="btn-primary" states="draft"/>
+
+                     <field name="state" widget="statusbar" clickable="True" statusbar_visible="draft,done"/-->
+                </header>
+                <div class="oe_button_box" name="button_box">
+                   <button name="toggle_active" type="object" class="oe_stat_button" icon="fa-archive">
+                        <field name="active" widget="boolean_button" options='{"terminology": "archive"}'/>
+                   </button>
+
+                   <!--button name="action_view_order_lines" type="object" class="oe_stat_button"
+                    icon="fa-list" attrs="{'invisible': [('scheduled_order_lines_ids_count', '=', 0)]}">
+                        <field name="scheduled_order_lines_ids_count" widget="statinfo" string="Order lines"/>
+                   </button>
+
+                   <button name="action_show_schedule_orders" type="object" class="oe_stat_button" icon="fa-list">
+                        <field name="scheduled_orders_ids_count" widget="statinfo" tring="Sale orders"/>
+                    </button-->
+                </div>
+                <group>
+                    <group>
+                        <field name="name"/>
+                        <field name="template"/>
+                        <field name="ref"/>
+                        <field name="description"/>
+                        <field name="image"/>
+                    </group>
+                    <group>
+                        <field name="arancel"/>
+                        <field name="brand"/>
+                        <field name="category"/>
+                        <field name="tag"/>
+                        <field name="cost"/>
+                        <field name="pvp"/>
+                    </group>
+                </group>
+
+                <notebook>
+                    <page string="Props">
+                        <group>
+                            <group>
+                                <field name="brand"/>
+                                <field name="category"/>
+                                <field name="partner"/>
+                                <field name="brand_id" options="{'no_create': True}"/>
+                                <field name="category_id" options="{'no_create': True}"/>
+                                <field name="partner_id" options="{'no_create': True}"/>
+
+                            </group>
+                            <group>
+                                <field name="attribute_name"/>
+                                <field name="color"/>
+                                <field name="attribute_id" options="{'no_create': True}"/>
+                                <field name="color_id" options="{'no_create': True}"/>
+
+
+                            </group>
+                        </group>
+                    </page>
+                    <page string="Barcode">
+
+                        <group>
+                            <div>
+                                <field name="barcode_ids" readonly="1">
+                                    <tree>
+                                        <field name="barcode" />
+                                        <field name="barcode_name" readonly="1"/>
+                                        <field name="attribute_value_id" readonly="1"/>
+                                        <field name="attribute_value_code" readonly="1"/>
+
+                                    </tree>
+                                </field>
+                            </div>
+                        </group>
+                    </page>
+                </notebook>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_seller_barcode_template_tree" model="ir.ui.view">
+        <field name="name">seller.barcode.template.tree</field>
+        <field name="model">seller.barcode.template</field>
+        <field name="priority" eval="1"/>
+        <field name="arch" type="xml">
+            <tree string="Seller barcode template">
+                <field name="name" />
+                <field name="partner_id"/>
+                <field name="brand_id"/>
+                <field name="color"/>
+                <field name="cost"/>
+                <field name="pvp"/>
+            </tree>
+        </field>
+    </record>
+    <record id="view_seller_barcode_template_search" model="ir.ui.view">
+        <field name="name">seller_barcode_template.search</field>
+        <field name="model">seller.barcode.template</field>
+        <field name="arch" type="xml">
+            <search string="Seller barcode template">
+
+                <field name="name" filter_domain="['|', '|', ('name','ilike',self), ('template','ilike',self), ('description','ilike',self)]" string="Name"/>
+                <field name="tag" filter_domain="[('tags','ilike',self)" string="Tag"/>
+                <field name="template" string="Template" filter_domain ="[('template','ilike',self)]"/>
+                <field name="description"/>
+                <field name="brand_id" string="Brand"/>
+                <field name="partner_id" string="Partner"/>
+                <field name="category_id" string="Category"/>
+                <field name="color_id" string="Color"/>
+                <field name="active"/>
+
+                <separator/>
+                <separator/>
+                <filter string="Active" name="active" domain="[('active', '=',True)]"/>
+                <filter string="Inactive" domain="[('active', '=', False)]"/>
+                <group expand="0" string="Group By">
+                        <filter string="Period" domain="[]" context="{'group_by':'period_id'}"/>
+                        <filter string="Company" domain="[]" context="{'group_by':'company_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+
+
+
+    <record id="action_seller_barcode_template_form" model="ir.actions.act_window">
+        <field name="name">Seller barcodes</field>
+        <field name="res_model">seller.barcode.template</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="seller_barcode.view_seller_barcode_template_form"/>
+        <field name="search_view_id" ref="seller_barcode.view_seller_barcode_template_search"/>
+        <field name="context">{}</field>
+        <field name="help" type="html">
+          <p class="oe_view_nocontent_create">
+             Click to add a schedule sale.
+          </p>
+        </field>
+    </record>
+    <!--record id="action_scheduled_sale_period_form" model="ir.actions.act_window">
+        <field name="name">Schedule periods</field>
+        <field name="res_model">scheduled.sale.period</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="scheduled_sale.view_scheduled_sale_period_tree"/>
+        <field name="search_view_id" ref="scheduled_sale.view_scheduled_sale_period_search"/>
+        <field name="context">{}</field>
+        <field name="help" type="html">
+          <p class="oe_view_nocontent_create">
+             Click to add a schedule period.
+          </p>
+        </field>
+    </record-->
+    <menuitem
+        name="Seller barcode"
+        id="menu_seller_barcode_template_form"
+        action="action_seller_barcode_template_form"
+        parent="sale.prod_config_main"/>
+
+
+
+  <record id="tree_product_barcode_age" model="ir.ui.view">
+        <field name="name">tree.product.barcode.age</field>
+        <field name="model">product.barcode.age</field>
+        <field name="arch" type="xml">
+            <tree string="Seller barcode age" editable="bottom">
+                <field name="name" />
+            </tree>
+        </field>
+  </record>
+  <record id="tree_product_barcode_gender" model="ir.ui.view">
+        <field name="name">tree.product.barcode.gender</field>
+        <field name="model">product.barcode.gender</field>
+        <field name="arch" type="xml">
+            <tree string="Seller barcode gender" editable="bottom">
+                <field name="name" />
+            </tree>
+        </field>
+  </record>
+<delete id="action_open_product_barcode_age" model="ir.actions.act_window"/>
+  <record id="action_open_product_barcode_age" model="ir.actions.act_window">
+    <field name="name">Barcode ages group</field>
+    <field name="res_model">product.barcode.age</field>
+    <field name="view_type">form</field>
+    <field name="view_mode">tree</field>
+    <field name="view_id" ref="seller_barcode.tree_product_barcode_age"/>
+  </record>
+      <delete id="action_open_product_barcode_gender" model="ir.actions.act_window"/>
+  <record id="action_open_product_barcode_gender" model="ir.actions.act_window">
+    <field name="name">Barcode gender group</field>
+    <field name="res_model">product.barcode.gender</field>
+    <field name="view_type">form</field>
+    <field name="view_mode">tree</field>
+    <field name="view_id" ref="seller_barcode.tree_product_barcode_gender"/>
+  </record>
+    <menuitem id="menu_action_open_product_barcode_age" name="Barcode age group" action="action_open_product_barcode_age" parent="sale.product_menu_catalog" sequence="99"/>
+    <menuitem id="menu_action_open_product_barcode_gender" name="Barcode gender group" action="action_open_product_barcode_gender" parent="sale.product_menu_catalog" sequence="99"/>
+
+
+</odoo>
+
+
