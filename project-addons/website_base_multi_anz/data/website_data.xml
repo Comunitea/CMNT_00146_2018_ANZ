@@ -41,90 +41,90 @@
                 <field name="email">info@point-sport.com</field>
             </record>
 
-<!--            &lt;!&ndash;Create Website Umbro&ndash;&gt;-->
-<!--            <record id="umbro_website" model="website">-->
-<!--                <field name="name">Umbro</field>-->
-<!--                <field name="domain">umbro</field>-->
-<!--                <field name="company_id" ref="base.main_company"/>-->
-<!--                <field name="user_id" ref="base.public_user"/>-->
-<!--                <field name="multi_theme_id"/>-->
-<!--                <field name="favicon" type="base64" file="website_base_multi_anz/static/img/favicon_umbro.png"/>-->
-<!--                &lt;!&ndash;<field name="social_twitter"></field>&ndash;&gt;-->
-<!--                <field name="social_facebook">https://www.facebook.com/UmbroIberia</field>-->
-<!--                &lt;!&ndash;<field name="social_googleplus"></field>&ndash;&gt;-->
-<!--                &lt;!&ndash;<field name="social_linkedin"></field>&ndash;&gt;-->
-<!--                <field name="social_instagram">https://www.instagram.com/umbro</field>-->
-<!--                <field name="base_url">http://_______domain_________/</field>-->
-<!--                <field name="email">info@umbro.es</field>-->
-<!--            </record>-->
+            <!--Create Website Umbro-->
+            <record id="umbro_website" model="website">
+                <field name="name">Umbro</field>
+                <field name="domain">umbro</field>
+                <field name="company_id" ref="base.main_company"/>
+                <field name="user_id" ref="base.public_user"/>
+                <field name="multi_theme_id"/>
+                <field name="favicon" type="base64" file="website_base_multi_anz/static/img/favicon_umbro.png"/>
+                <!--<field name="social_twitter"></field>-->
+                <field name="social_facebook">https://www.facebook.com/UmbroIberia</field>
+                <!--<field name="social_googleplus"></field>-->
+                <!--<field name="social_linkedin"></field>-->
+                <field name="social_instagram">https://www.instagram.com/umbro</field>
+                <field name="base_url">http://_______domain_________/</field>
+                <field name="email">info@umbro.es</field>
+            </record>
 
-<!--            &lt;!&ndash;Create Website Black Laces&ndash;&gt;-->
-<!--            <record id="blacklaces_website" model="website">-->
-<!--                <field name="name">Blacklaces</field>-->
-<!--                <field name="domain">blacklaces</field>-->
-<!--                <field name="company_id" ref="base.main_company"/>-->
-<!--                <field name="user_id" ref="base.public_user"/>-->
-<!--                <field name="multi_theme_id"/>-->
-<!--                <field name="favicon" type="base64" file="website_base_multi_anz/static/img/favicon_blacklaces.png"/>-->
-<!--                &lt;!&ndash;<field name="social_twitter"></field>&ndash;&gt;-->
-<!--                <field name="social_facebook">https://www.facebook.com/blacklaces.es</field>-->
-<!--                &lt;!&ndash;<field name="social_googleplus"></field>&ndash;&gt;-->
-<!--                &lt;!&ndash;<field name="social_linkedin"></field>&ndash;&gt;-->
-<!--                <field name="social_instagram">https://www.instagram.com/blacklaces.es</field>-->
-<!--                <field name="base_url">http://_______domain_________/</field>-->
-<!--                <field name="email">info@blacklaces.com</field>-->
-<!--            </record>-->
+            <!--Create Website Black Laces-->
+            <record id="blacklaces_website" model="website">
+                <field name="name">Blacklaces</field>
+                <field name="domain">blacklaces</field>
+                <field name="company_id" ref="base.main_company"/>
+                <field name="user_id" ref="base.public_user"/>
+                <field name="multi_theme_id"/>
+                <field name="favicon" type="base64" file="website_base_multi_anz/static/img/favicon_blacklaces.png"/>
+                <!--<field name="social_twitter"></field>-->
+                <field name="social_facebook">https://www.facebook.com/blacklaces.es</field>
+                <!--<field name="social_googleplus"></field>-->
+                <!--<field name="social_linkedin"></field>-->
+                <field name="social_instagram">https://www.instagram.com/blacklaces.es</field>
+                <field name="base_url">http://_______domain_________/</field>
+                <field name="email">info@blacklaces.com</field>
+            </record>
 
-<!--            &lt;!&ndash;Create Website Goalkers&ndash;&gt;-->
-<!--            <record id="goalkers_website" model="website">-->
-<!--                <field name="name">Goalkers</field>-->
-<!--                <field name="domain">goalkers</field>-->
-<!--                <field name="company_id" ref="base.main_company"/>-->
-<!--                <field name="user_id" ref="base.public_user"/>-->
-<!--                <field name="multi_theme_id"/>-->
-<!--                <field name="favicon" type="base64" file="website_base_multi_anz/static/img/favicon_goalkers.jpeg"/>-->
-<!--                &lt;!&ndash;<field name="social_twitter"></field>&ndash;&gt;-->
-<!--                <field name="social_facebook">https://www.facebook.com/goalkers</field>-->
-<!--                &lt;!&ndash;<field name="social_googleplus"></field>&ndash;&gt;-->
-<!--                &lt;!&ndash;<field name="social_linkedin"></field>&ndash;&gt;-->
-<!--                <field name="social_instagram">https://www.instagram.com/goalkers.es</field>-->
-<!--                <field name="base_url">http://_______domain_________/</field>-->
-<!--                <field name="email">info@goalkers.com</field>-->
-<!--            </record>-->
+            <!--Create Website Goalkers-->
+            <record id="goalkers_website" model="website">
+                <field name="name">Goalkers</field>
+                <field name="domain">goalkers</field>
+                <field name="company_id" ref="base.main_company"/>
+                <field name="user_id" ref="base.public_user"/>
+                <field name="multi_theme_id"/>
+                <field name="favicon" type="base64" file="website_base_multi_anz/static/img/favicon_goalkers.jpeg"/>
+                <!--<field name="social_twitter"></field>-->
+                <field name="social_facebook">https://www.facebook.com/goalkers</field>
+                <!--<field name="social_googleplus"></field>-->
+                <!--<field name="social_linkedin"></field>-->
+                <field name="social_instagram">https://www.instagram.com/goalkers.es</field>
+                <field name="base_url">http://_______domain_________/</field>
+                <field name="email">info@goalkers.com</field>
+            </record>
 
-<!--            &lt;!&ndash;Create Website Feel Point&ndash;&gt;-->
-<!--            <record id="feel_point_website" model="website">-->
-<!--                <field name="name">Feel Point</field>-->
-<!--                <field name="domain">feel-point</field>-->
-<!--                <field name="company_id" ref="website_base_multi_anz.bemar_company"/>-->
-<!--                <field name="user_id" ref="base.public_user"/>-->
-<!--                <field name="multi_theme_id"/>-->
-<!--                <field name="favicon" type="base64" file="website_base_multi_anz/static/img/favicon_feel_point.jpeg"/>-->
-<!--                &lt;!&ndash;<field name="social_twitter"></field>&ndash;&gt;-->
-<!--                <field name="social_facebook">https://www.facebook.com/FeelPoint.es</field>-->
-<!--                &lt;!&ndash;<field name="social_googleplus"></field>&ndash;&gt;-->
-<!--                &lt;!&ndash;<field name="social_linkedin"></field>&ndash;&gt;-->
-<!--                <field name="social_instagram">https://www.instagram.com/feelpoint.es</field>-->
-<!--                <field name="base_url">http://_______domain_________/</field>-->
-<!--                <field name="email">info@feelpoint.com</field>-->
-<!--            </record>-->
+            <!--Create Website Feel Point-->
+            <record id="feel_point_website" model="website">
+                <field name="name">Feel Point</field>
+                <field name="domain">feel-point</field>
+                <field name="company_id" ref="website_base_multi_anz.bemar_company"/>
+                <field name="user_id" ref="base.public_user"/>
+                <field name="multi_theme_id"/>
+                <field name="favicon" type="base64" file="website_base_multi_anz/static/img/favicon_feel_point.jpeg"/>
+                <!--<field name="social_twitter"></field>-->
+                <field name="social_facebook">https://www.facebook.com/FeelPoint.es</field>
+                <!--<field name="social_googleplus"></field>-->
+                <!--<field name="social_linkedin"></field>-->
+                <field name="social_instagram">https://www.instagram.com/feelpoint.es</field>
+                <field name="base_url">http://_______domain_________/</field>
+                <field name="email">info@feelpoint.com</field>
+            </record>
 
-<!--            &lt;!&ndash;Create Website Skipping&ndash;&gt;-->
-<!--            <record id="skipping_website" model="website">-->
-<!--                <field name="name">Skipping</field>-->
-<!--                <field name="domain">skipping</field>-->
-<!--                <field name="company_id" ref="base.main_company"/>-->
-<!--                <field name="user_id" ref="base.public_user"/>-->
-<!--                <field name="multi_theme_id"/>-->
-<!--                <field name="favicon" type="base64" file="website_base_multi_anz/static/img/favicon_skipping.jpg"/>-->
-<!--                &lt;!&ndash;<field name="social_twitter"></field>&ndash;&gt;-->
-<!--                <field name="social_facebook">https://www.facebook.com/Skipping.es</field>-->
-<!--                &lt;!&ndash;<field name="social_googleplus"></field>&ndash;&gt;-->
-<!--                &lt;!&ndash;<field name="social_linkedin"></field>&ndash;&gt;-->
-<!--                <field name="social_instagram">https://www.instagram.com/skipping.es</field>-->
-<!--                <field name="base_url">http://_______domain_________/</field>-->
-<!--                <field name="email">info@skipping.com</field>-->
-<!--            </record>-->
+            <!--Create Website Skipping-->
+            <record id="skipping_website" model="website">
+                <field name="name">Skipping</field>
+                <field name="domain">skipping</field>
+                <field name="company_id" ref="base.main_company"/>
+                <field name="user_id" ref="base.public_user"/>
+                <field name="multi_theme_id"/>
+                <field name="favicon" type="base64" file="website_base_multi_anz/static/img/favicon_skipping.jpg"/>
+                <!--<field name="social_twitter"></field>-->
+                <field name="social_facebook">https://www.facebook.com/Skipping.es</field>
+                <!--<field name="social_googleplus"></field>-->
+                <!--<field name="social_linkedin"></field>-->
+                <field name="social_instagram">https://www.instagram.com/skipping.es</field>
+                <field name="base_url">http://_______domain_________/</field>
+                <field name="email">info@skipping.com</field>
+            </record>
 
         </data>
 </odoo>
