@@ -3,45 +3,34 @@
 from odoo import api, models
 
 
-class SaleOrder(models.Model):
-    _inherit = "sale.order"
-
-    def onchange_partner_id(self):
-        """
-        Allways user id in commercial field, avoi to puth the comercial
-        assigned to the partner_id
-        """
-        super(SaleOrder, self).onchange_partner_id()
-        self.update({'user_id': self.env.uid})
-
-
-class SaleOrderLine(models.Model):
-    _inherit = "sale.order.line"
+class AccountInvoiceLine(models.Model):
+    _inherit = "account.invoice.line"
 
     def _prepare_agents_vals(self):
         self.ensure_one()
         super()._prepare_agents_vals()
         return self._prepare_agents_vals_by_brand(
-            self.order_id.partner_id, self.product_id,
-            self.order_id.user_id.id, self.discount
+            self.invoice_id.partner_id, self.product_id,
+            self.invoice_id.user_id.id, self.discount
         )
 
     @api.model
     def create(self, vals):
         product_id = vals.get('product_id', False)
-        order_id = vals.get('order_id', False)
-        if order_id and product_id:
-            order = self.env['sale.order'].browse(order_id)
-            partner = order.partner_id
+        invoice_id = vals.get('invoice_id', False)
+        if invoice_id and product_id:
+            invoice = self.env['account.invoice'].browse(invoice_id)
+            partner = invoice.partner_id
             product = self.env['product.product'].browse(product_id)
             agent_vals = self._prepare_agents_vals_by_brand(
-                partner, product, order.user_id.id, vals.get('discount', 0.0))
+                partner, product, invoice.user_id.id, 
+                vals.get('discount', 0.0))
             vals['agents'] = agent_vals
         return super().create(vals)
 
     @api.multi
     def write(self, vals):
-        self2 = self.env['sale.order.line']
+        self2 = self.env['account.invoice.line']
         if vals.get('product_id') or 'discount' in vals:
             for line in self:
                 if (vals.get('product_id') and

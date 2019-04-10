@@ -3,11 +3,11 @@
 from odoo import api, models, fields
 
 
-
 class SaleCommission(models.Model):
     _inherit = "sale.commission"
 
     company_id = fields.Many2one('res.company', 'Company', readonly=True)
+
 
 class SaleCommissionMixin(models.AbstractModel):
     _inherit = "sale.commission.mixin"
@@ -15,6 +15,7 @@ class SaleCommissionMixin(models.AbstractModel):
     @api.model
     def _prepare_agents_vals_by_brand(self, partner, product, user_id=False,
                                       discount=0.0):
+        import ipdb; ipdb.set_trace()
         res = super()._prepare_agents_vals()
         brand = product.product_brand_id
         # if not brand:
