@@ -212,8 +212,8 @@ class ProductCheckBarcodes(models.TransientModel):
 
         pp_pool = self.env['product.product']
         product_name = row_vals['name_temp'] + ' ' + row_vals['name_color'] + row_vals['name_extra']
-        categ_id = self._get_category_id(row_vals['category'], idx)
-        attr_value = self._get_attr_value(row_vals, idx, categ_id)
+        #categ_id = self._get_category_id(row_vals['category'], idx)
+        attr_value = self._get_attr_value(row_vals, idx, False)
         code_attr = row_vals['code_attr'] and str(int(row_vals['code_attr'])) or '%04d' % (attr_value.id)
         default_code = row_vals['code_temp'] + '.' + code_attr
 
