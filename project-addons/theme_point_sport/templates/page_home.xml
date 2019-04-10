@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
 
-    <template id="point_sport_homepage_content">
+    <template id="poi_home_content" name="Home Point Content Template">
         <t t-call="website.layout">
             <div id="wrap">
                 <!-- Slider section -->

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
 
-    <template id="theme_anzamar_page_anzamar_group" inherit_id="theme_anzamar.page_anzamar_group">
+    <template id="anz_anzamar_group_content_template" name="Group Anzamar Content Template" inherit_id="theme_anzamar.page_anzamar_group">
         <xpath expr="//div[@class='container']" position="inside">
             <section id="group_section">
                 <div id="carousel_anzamar_group" class="carousel slide" data-ride="carousel">

@@ -4,7 +4,7 @@
     <!-- ======================================= Page Open Your Shop ======================================= -->
 
     <!--Template Open Your Shop-->
-    <template id="page_open_shop">
+    <template id="page_open_shop" name="About Us Anzamar Template">
         <t t-call="website.layout">
             <div id="wrap">
                 <div class="container"/>
@@ -61,7 +61,7 @@
     <!-- ======================================= Page Anzamar Group ======================================= -->
 
     <!--Anzamar Group Templates-->
-    <template id="page_anzamar_group">
+    <template id="page_anzamar_group" name="Group Anzamar Template">
         <t t-call="website.layout">
             <div id="wrap">
                 <div class="container"/>
@@ -110,7 +110,7 @@
     <!-- ======================================= Page Anzamar Brands ======================================= -->
 
     <!--Anzamar Brands Templates -->
-    <template id="page_brand_umbro">
+    <template id="page_brand_umbro" name="Brand Umbro Anzamar Template">
         <t t-call="website.layout">
             <div id="wrap">
                 <div class="container"/>
@@ -118,7 +118,7 @@
         </t>
     </template>
 
-    <template id="page_brand_point_sport">
+    <template id="page_brand_point_sport" name="Brand Point Anzamar Template">
         <t t-call="website.layout">
             <div id="wrap">
                 <div class="container"/>
@@ -126,7 +126,7 @@
         </t>
     </template>
 
-    <template id="page_brand_black_laces">
+    <template id="page_brand_black_laces" name="Brand Black Anzamar Template">
         <t t-call="website.layout">
             <div id="wrap">
                 <div class="container"/>
@@ -134,7 +134,7 @@
         </t>
     </template>
 
-    <template id="page_brand_goalkers">
+    <template id="page_brand_goalkers" name="Brand Goal Anzamar Template">
         <t t-call="website.layout">
             <div id="wrap">
                 <div class="container"/>
@@ -142,7 +142,7 @@
         </t>
     </template>
 
-    <template id="page_brand_feel_point">
+    <template id="page_brand_feel_point" name="Brand Feel Anzamar Template">
         <t t-call="website.layout">
             <div id="wrap">
                 <div class="container"/>
@@ -150,7 +150,7 @@
         </t>
     </template>
 
-    <template id="page_brand_skipping">
+    <template id="page_brand_skipping" name="Brand Skip Anzamar Template">
         <t t-call="website.layout">
             <div id="wrap">
                 <div class="container"/>
@@ -287,7 +287,7 @@
     <!-- ======================================= Page Work with Us ======================================= -->
 
     <!--A Work with Us Template-->
-    <template id="page_work_with_us">
+    <template id="page_work_with_us" name="Work With Us Anzamar Template">
         <t t-call="website.layout">
             <div id="wrap">
                 <div class="container"/>
@@ -307,7 +307,7 @@
     <!-- ======================================= Page Newsletter ======================================= -->
 
     <!--Newsletter Template-->
-    <template id="page_newsletter" inherit_id="follow_us_base.fub_newsletter_page_template"/>
+    <template id="page_newsletter"  name="Newsletter Anzamar Template" inherit_id="follow_us_base.fub_newsletter_page_template"/>
 
     <!-- Newsletter Page -->
     <record id="id_page_newsletter" model="website.page">

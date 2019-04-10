@@ -2,7 +2,7 @@
 <odoo>
 
     <!-- Shop/category page template -->
-    <template id="website_sale_products" inherit_id="website_sale.products">
+    <template id="website_sale_products" name="Products Point Content Template" inherit_id="website_sale.products">
         <!-- User access control -->
         <xpath expr="//div[@id='wrap']" position="before">
             <t t-set="user_access" t-value="website.user_access()"/>
@@ -16,7 +16,7 @@
     </template>
 
     <!-- Brand page template -->
-    <template id="website_sale_product_brand_product_brands" inherit_id="website_sale_product_brand.product_brands">
+    <template id="website_sale_product_brand_product_brands" name="Brands Point Content Template" inherit_id="website_sale_product_brand.product_brands">
         <!-- User access control -->
         <xpath expr="//div[hasclass('container')]" position="before">
             <t t-set="user_access" t-value="website.user_access()"/>

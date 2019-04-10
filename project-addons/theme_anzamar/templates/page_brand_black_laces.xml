@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
 
-    <template id="theme_anzamar_page_brand_black_laces" inherit_id="theme_anzamar.page_brand_black_laces">
+    <template id="anz_brand_black_laces_content_template" name="Brand Black Laces Anzamar Content Template" inherit_id="theme_anzamar.page_brand_black_laces">
         <xpath expr="//div[@class='container']" position="inside">
             <div id="carousel_brand_umbro" class="carousel slide" data-ride="carousel">
                 <ol class="carousel-indicators">

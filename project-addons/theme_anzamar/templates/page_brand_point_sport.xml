@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
 
-    <template id="theme_anzamar_page_brand_point_sport" inherit_id="theme_anzamar.page_brand_point_sport">
+    <template id="anz_brand_point_sport_content_template" name="Brand Point Sport Anzamar Content Template" inherit_id="theme_anzamar.page_brand_point_sport">
         <xpath expr="//div[@class='container']" position="inside">
             <div id="carousel_brand_umbro" class="carousel slide" data-ride="carousel">
                 <ol class="carousel-indicators">

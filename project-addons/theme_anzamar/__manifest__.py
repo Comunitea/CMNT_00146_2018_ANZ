@@ -39,6 +39,9 @@
         'Rubén Seijas <ruben@comunitea.com>',
     ],
     'depends': [
+        'breadcrumbs_base',
+        'website_blog_base',
+        'multi_company_base',
         'website_base_multi_anz',
     ],
     'data': [

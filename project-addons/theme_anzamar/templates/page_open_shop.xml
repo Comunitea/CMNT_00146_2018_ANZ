@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
 
-    <template id="theme_anzamar_page_open_shop" inherit_id="theme_anzamar.page_open_shop">
+    <template id="anz_open_shop_content_template" name="open Shop Anzamar Content Template" inherit_id="theme_anzamar.page_open_shop">
         <xpath expr="//div[@class='container']" position="inside">
             <section id="open_section">
                 <!--Carousel-->

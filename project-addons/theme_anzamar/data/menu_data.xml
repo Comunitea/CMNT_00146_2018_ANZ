@@ -26,7 +26,7 @@
                 <field name="key">website.homepage</field>
                 <field name="arch" type="xml">
                     <t name="Home" priority="29" t-name="anzamar_homepage">
-                        <t t-call="theme_anzamar.anzamar_homepage_content"/>
+                        <t t-call="theme_anzamar.anz_home_content_template"/>
                     </t>
                 </field>
             </record>

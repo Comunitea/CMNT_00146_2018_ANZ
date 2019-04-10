@@ -2,21 +2,21 @@
 <odoo>
 
     <!-- Remove the product breadcrumb's bar -->
-    <template id="theme_anz_breadcrumbs_product_remove" inherit_id="website_multi_theme.auto_view_anz_website_sale_product">
+    <template id="anz_breadcrumbs_product_remove" name="Remove Product BreadCrumbs Anzamar Template" inherit_id="website_multi_theme.auto_view_anz_website_sale_product">
         <xpath expr="//ol[hasclass('breadcrumb')]" position="attributes">
             <attribute name="t-if">True == False</attribute>
         </xpath>
     </template>
 
     <!-- Remove the My Account breadcrumb's bar -->
-    <template id="theme_anz_breadcrumbs_account_remove" inherit_id="portal.portal_layout">
+    <template id="anz_breadcrumbs_account_remove" name="Remove Account BreadCrumbs Anzamar Template" inherit_id="portal.portal_layout">
         <xpath expr="//div[hasclass('o_portal')]" position="attributes">
             <attribute name="t-if">True == False</attribute>
         </xpath>
     </template>
 
     <!-- Remove the Blog breadcrumb's bar -->
-    <template id="theme_anz_breadcrumbs_blog_remove" inherit_id="website_blog.blog_breadcrumb">
+    <template id="anz_breadcrumbs_blog_remove" name="Remove Blog BreadCrumbs Anzamar Template" inherit_id="website_blog.blog_breadcrumb">
         <xpath expr="//div[hasclass('container')]" position="attributes">
             <attribute name="t-if">True == False</attribute>
         </xpath>

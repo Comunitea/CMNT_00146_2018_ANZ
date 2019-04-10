@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<odoo>
+<odoo noupdate="1">
 
-    <data noupdate="1">
+    <record model="website.theme" id="theme_anazamar_multi">
+        <field name="name">Multiwebsite Anzamar Theme</field>
+        <field name="converted_theme_addon">theme_anzamar</field>
+    </record>
 
-        <record model="website.theme" id="theme_anazamar_multi">
-            <field name="name">Multiwebsite Anzamar Theme</field>
-            <field name="converted_theme_addon">theme_anzamar</field>
-        </record>
-
-    </data>
+    <!-- This method prepare assets and applies theme for his website -->
+    <!-- Hook to reload theme on website_multi_theme module updates -->
+    <function model="res.config.settings"
+              name="multi_theme_reload"
+              eval="([],)"
+    />
 
 </odoo>

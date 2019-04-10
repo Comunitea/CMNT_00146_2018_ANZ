@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
 
-    <template id="theme_anzamar_page_work_with_us" inherit_id="theme_anzamar.page_work_with_us">
+    <template id="anz_work_with_us_content_template" name="Work With Us Anzamar Content Template" inherit_id="theme_anzamar.page_work_with_us">
         <xpath expr="//div[@class='container']" position="inside">
             <div id="carousel_work_with_us" class="carousel slide" data-ride="carousel">
                 <ol class="carousel-indicators">

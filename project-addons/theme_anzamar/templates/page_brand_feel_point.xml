@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
 
-    <template id="theme_anzamar_page_brand_feel_point" inherit_id="theme_anzamar.page_brand_feel_point">
+    <template id="anz_brand_feel_point_content_template" name="Brand Feel Point Anzamar Content Template" inherit_id="theme_anzamar.page_brand_feel_point">
        <xpath expr="//div[@class='container']" position="inside">
             <div id="carousel_brand_umbro" class="carousel slide" data-ride="carousel">
                 <ol class="carousel-indicators">

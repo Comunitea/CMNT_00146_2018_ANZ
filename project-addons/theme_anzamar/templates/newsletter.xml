@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
 
-    <template id="theme_anz_website_mail_follow" inherit_id="website_mail.follow">
+    <template id="anz_website_mail_follow" name="Mail Follow Anzamar Template" inherit_id="website_mail.follow">
         <xpath expr="//div[hasclass('js_follow')]" position="after">
             <div class="on_subscribe_advise small mt4" t-if="object.id and not object.message_is_follower">
                 With subscribe <t t-call="theme_anzamar.privacy_policy_advise"/>

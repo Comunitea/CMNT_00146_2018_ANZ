@@ -26,7 +26,7 @@
                 <field name="key">website.homepage</field>
                 <field name="arch" type="xml">
                     <t name="Home" priority="29" t-name="point_sport_homepage">
-                        <t t-call="theme_point_sport.point_sport_homepage_content"/>
+                        <t t-call="theme_point_sport.poi_home_content"/>
                     </t>
                 </field>
             </record>

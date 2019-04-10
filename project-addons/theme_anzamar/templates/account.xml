@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
 
-    <template id="theme_anz_web_login" inherit_id="web.login">
+    <template id="anz_legal_login" name="Legal Login Anzamar Template" inherit_id="web.login">
         <xpath expr="//div[hasclass('oe_login_buttons')]" position="before">
             <div class="on_login_advise mt4 mb8 small">
                 With entering <t t-call="theme_anzamar.privacy_policy_advise"/>

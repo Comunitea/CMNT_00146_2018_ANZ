@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
 
-    <template id="anzamar_homepage_content">
+    <template id="anz_home_content_template" name="Home Anzamar Content Template">
         <t t-call="website.layout">
             <div id="wrap">
                 <!-- Slider section -->

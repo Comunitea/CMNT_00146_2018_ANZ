@@ -2,7 +2,7 @@
 <odoo>
 
     <!-- Product page template -->
-    <template id="website_sale_product" inherit_id="website_multi_theme.auto_view_poi_website_sale_product">
+    <template id="poi_website_sale_product" name="Product Point Content Template" inherit_id="website_multi_theme.auto_view_poi_website_sale_product">
         <!-- User access control -->
         <xpath expr="//section[@id='product_detail']" position="before">
             <t t-set="user_access" t-value="website.user_access()"/>
@@ -103,7 +103,7 @@
     </template>
 
     <!-- Product select quantity template -->
-    <template id="website_sale_product_quantity" inherit_id="website_multi_theme.auto_view_poi_website_sale_product_quantity">
+    <template id="website_sale_product_quantity" name="Product Quantity Point Content Template" inherit_id="website_multi_theme.auto_view_poi_website_sale_product_quantity">
         <xpath expr="//div[hasclass('css_quantity')]" position="before">
             <t t-set="user_access" t-value="website.user_access()"/>
         </xpath>
