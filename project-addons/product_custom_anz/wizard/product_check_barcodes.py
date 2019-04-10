@@ -22,7 +22,7 @@ class ProductCheckBarcodes(models.TransientModel):
     brand_id = fields.Many2one('product.brand', 'Brand', required=True)
     filename = fields.Char(string='Filename')
     categ_id = fields.Many2one('product.category', 'Default product category')
-    create_attributes = fields.Boolean('Create attributes/values if neccesary')
+    create_attributes = fields.Boolean('Create attributes/values if neccesary', default=False)
 
     def _parse_row_vals(self, row, idx):
         res = {
@@ -54,8 +54,8 @@ class ProductCheckBarcodes(models.TransientModel):
                 _('The row %s is missing some mandatory column') % str(idx))
         return res
 
-        def get_ref(self, ext_id):
-            ext_id_c = ext_id.split('.')
+    def get_ref(self, ext_id):
+        ext_id_c = ext_id.split('.')
 
         if len(ext_id_c) == 1:
             domain = [('model', '=', 'product.product'), ('module', '=', False), ('name', '=', ext_id)]
@@ -117,27 +117,27 @@ class ProductCheckBarcodes(models.TransientModel):
         Get an Existing attribute or raise an error
         """
 
-        if not categ_id:
-            categ_id = self._get_category_id(row_vals['category'], idx)
+        #if not categ_id:
+        #    categ_id = self._get_category_id(row_vals['category'], idx)
 
         domain = [('product_brand_id', '=', self.brand_id.id)]
         tag_type_id = tag_age_id = tag_gender_id = False
         if row_vals['type']:
-            tag_type_id = self._get_product_att(row_vals['type'], 'type', self.create_attributes)
+            tag_type_id = self._get_product_att(row_vals['type'], 'type', False)
             if tag_type_id:
                 domain += [('product_type_id', '=', tag_type_id.id)]
             else:
                 domain += [('product_type_id', '=', False)]
 
         if row_vals['gender']:
-            tag_gender_id = self._get_product_att(row_vals['gender'], 'gender', self.create_attributes)
+            tag_gender_id = self._get_product_att(row_vals['gender'], 'gender', False)
             if tag_gender_id:
                 domain += [('product_gender_id', '=', tag_gender_id.id)]
             else:
                 domain += [('product_gender_id', '=', False)]
 
         if row_vals['age']:
-            tag_age_id = self._get_product_att(row_vals['age'], 'age', self.create_attributes)
+            tag_age_id = self._get_product_att(row_vals['age'], 'age', False)
             if tag_age_id:
                 domain += [('product_age_id', '=', tag_age_id.id)]
             else:

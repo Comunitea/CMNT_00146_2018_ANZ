@@ -11,6 +11,7 @@
                 <group>
                     <field name="name" string="Nombre de la importación"/>
                     <field name="brand_id"/>
+                    <field name="product_category_id"/>
                     <field name="file" string ="Fichero" filename="filename"/>
                 </group>
                 <footer>
