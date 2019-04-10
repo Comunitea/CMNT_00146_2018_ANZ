@@ -77,7 +77,7 @@ class ProductImportWzd(models.TransientModel):
     def _get_category_id(self, category_name = False, idx=0):
         categ_id = False
         if category_name:
-            categ_id = self.env['product.category'].search([('name', '=', category_name)])
+            categ_id = self.env['product.category'].search([('name', '=', category_name)], limit=1)
 
         categ_id = categ_id or self.categ_id
         if not categ_id:
@@ -148,7 +148,7 @@ class ProductImportWzd(models.TransientModel):
         if not attr:
             if self.create_attributes:
 
-                vals = {'attribute_category_id': categ_id.id,
+                vals = {#'attribute_category_id': categ_id.id,
                         'product_brand_id': self.brand_id.id,
                         'name': row_vals['attr_name'],
                         'product_type_id': tag_type_id and tag_type_id.id,

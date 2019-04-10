@@ -145,37 +145,19 @@ class ProductCheckBarcodes(models.TransientModel):
         print(domain)
         attr = self.env['product.attribute'].search(domain, limit=1)
         if not attr:
-            if self.create_attributes:
 
-                vals = {'attribute_category_id': categ_id.id,
-                        'product_brand_id': self.brand_id.id,
-                        'name': row_vals['attr_name'],
-                        'product_type_id': tag_type_id and tag_type_id.id,
-                        'product_gender_id': tag_gender_id and tag_gender_id.id,
-                        'product_age_id': tag_age_id and tag_age_id.id}
-                attr = self.env['product.attribute'].create(vals)
-                print("Se ha creado el atributo: {}".format(attr.display_name))
-            else:
-                raise UserError(
-                    _('Error getting attribute %s in line %s: \
-                       Not found') % (row_vals['attr_name'], str(idx)))
+            raise UserError(
+                _('Error getting attribute %s in line %s: \
+                   Not found') % (row_vals['attr_name'], str(idx)))
         domain = [
             ('attribute_id', '=', attr.id),
             '|', ('supplier_code', '=', row_vals['code_attr']), ('name', '=', row_vals['attr_val'])
         ]
         attr_value = self.env['product.attribute.value'].search(domain)
         if not attr_value:
-            if self.create_attributes:
-                vals = {'attribute_id': attr.id,
-                        'name': row_vals['attr_val'],
-                        'supplier_code': row_vals['code_attr'] or row_vals['attr_val']}
-                attr_value = self.env['product.attribute.value'].create(vals)
-                print(
-                    "Se ha creado el valor {} para el atributo: {}".format(attr_value.display_name, attr.display_name))
-            else:
-                raise UserError(
-                    _('Error getting attribute %s with value %s in line %s: \
-                        Not found') % (attr.name, row_vals['attr_val'], str(idx)))
+            raise UserError(
+                _('Error getting attribute %s with value %s in line %s: \
+                    Not found') % (attr.name, row_vals['attr_val'], str(idx)))
         return attr_value
 
     def _update_template_attributes(self, template, attr_value):
