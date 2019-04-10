@@ -10,6 +10,7 @@
                 </div>
                 <group>
                     <field name="name" string="Nombre de la importación"/>
+                    <field name="brand_id"/>
                     <field name="file" string ="Fichero" filename="filename"/>
                 </group>
                 <footer>
@@ -28,7 +29,7 @@
         <field name="target">new</field>
     </record>
 
-    <menuitem id="menu_action_check_barcodes" name="Reimportar codigos" action="action_check_barcodes" parent="sale.product_menu_catalog" sequence="100"/>
+    <menuitem id="menu_action_check_barcodes" name="Reimportar codigos" action="action_check_barcodes" parent="sale.product_menu_catalog" sequence="100" groups="barcodes_generator_abstract.generate_barcode"/>
     
     
 </odoo>

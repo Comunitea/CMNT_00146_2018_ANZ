@@ -17,8 +17,8 @@ template_ids = []
 class ProductCheckBarcodes(models.TransientModel):
     _name = 'product.check.barcodes'
 
-    name = fields.Char('Importation name', required=True)
-    file = fields.Binary(string='File', required=True)
+    name = fields.Char('Importation name')
+    file = fields.Binary(string='File')
     brand_id = fields.Many2one('product.brand', 'Brand', required=True)
     filename = fields.Char(string='Filename')
     categ_id = fields.Many2one('product.category', 'Default product category')
@@ -67,7 +67,7 @@ class ProductCheckBarcodes(models.TransientModel):
 
     def _delete_xml_id(self, res_id, model):
         self._cr.execute(
-            'delete from ir_model_date where model = %s and res_id = %s'.format(model, res_id))
+            "delete from ir_model_data where model = '{}' and res_id = {}".format(model, res_id))
 
     def _create_xml_id(self, xml_id, res_id, model):
         virual_module_name = 'PT' if model == 'product.template' else 'PP'
@@ -237,37 +237,42 @@ class ProductCheckBarcodes(models.TransientModel):
 
         print("{} >> Creo {}: referencia: {}. Talla {}. Pvp: {}€".format(idx, product_name, default_code,
                                                                          attr_value.display_name, row_vals['pvp']))
+        try:
+            ean13 = str(int(row_vals['ean']))
+        except:
+            ean13 = ''
+
         # CREATE PRODUCT
         vals = {
             'name': product_name,
             'default_code': default_code,
             'available_in_pos': False,
             'attribute_value_ids': [(4, attr_value.id)],
-            'barcode': row_vals['ean'],
+            'barcode': ean13,
             'importation_name': self.name,
             'lst_price': row_vals['pvp'],
             'standard_price': row_vals['cost'],
             'type': 'product',
 
         }
-        if template:
-            vals.update(product_tmpl_id=template.id)
+        #if template:
+        #    vals.update(product_tmpl_id=template.id)
 
         # En vez de crear el producto
         domain = [('default_code', '=', default_code)]
-        product = self.env(domain, limit=1)
+        product = self.env['product.product'].search(domain, limit=1)
         if not product:
             domain += [('active', '=', False)]
-            product = self.env(domain, limit=1)
+            product = self.env['product.product'].search(domain, limit=1)
         if product:
             # Borro el xml antiguo
             self._delete_xml_id(product.id, 'product.product')
             # CREATE PRODUCT XMLID
-            self._create_xml_id(row_vals['ean'], product.id, 'product.product')
-            product.barcode = row_vals['ean']
+            self._create_xml_id(ean13, product.id, 'product.product')
+            product.barcode = ean13
         return product
 
-    def import_products(self):
+    def check_barcodes(self):
         self.ensure_one()
         _logger.info(_('STARTING PRODUCT IMPORTATION'))
 
