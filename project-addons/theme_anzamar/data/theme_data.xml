@@ -1,16 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<odoo noupdate="1">
+<odoo>
 
-    <record model="website.theme" id="theme_anazamar_multi">
-        <field name="name">Multiwebsite Anzamar Theme</field>
-        <field name="converted_theme_addon">theme_anzamar</field>
+    <!-- Assets that define the demo theme -->
+    <template id="anz_website_assets_frontend" name="Assets Anzamar Template" inherit_id="website.assets_frontend">
+        <xpath expr=".">
+            <link href="/theme_anzamar/static/css/_general.less" rel="stylesheet" type="text/less"/>
+            <t t-call="theme_anzamar.custom_css"/>
+        </xpath>
+        <xpath expr="//script[last()]" position="after">
+            <script type="text/javascript" src="/theme_anzamar/static/js/main.js"/>
+        </xpath>
+    </template>
+
+    <!-- Record that lets website admin to choose this theme -->
+    <record model="website.theme" id="theme_anzamar_multi">
+        <field name="name">Multi Website Anzamar Theme</field>
+        <field name="dependency_ids" eval="[(4, ref('website_multi_theme.theme_default'))]"/>
     </record>
+
+    <!-- List provided assets  -->
+    <record model="website.theme.asset" id="anz_multi_asset">
+        <field name="name">theme_anzamar.anz_website_assets_frontend</field>
+        <field name="theme_id" ref="theme_anzamar.theme_anzamar_multi"/>
+    </record>
+
+    <!-- Themes should always call this method after adding their stuff,
+         to make users get immediate availability, insead of having to reload themes. -->
+    <function model="website.theme"
+              name="_convert_assets"
+              eval="([ref('theme_anzamar.theme_anzamar_multi')])"/>
 
     <!-- This method prepare assets and applies theme for his website -->
     <!-- Hook to reload theme on website_multi_theme module updates -->
     <function model="res.config.settings"
               name="multi_theme_reload"
-              eval="([],)"
+              eval="([ref('theme_anzamar.theme_anzamar_multi')])"
     />
 
 </odoo>

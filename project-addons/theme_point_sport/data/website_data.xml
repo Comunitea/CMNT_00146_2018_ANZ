@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="website_base_multi_anz.point_sport_website" model="website">
+        <field name="multi_theme_id" ref="theme_point_sport.theme_point_sport_multi"/>
+    </record>
+
+</odoo>

@@ -41,15 +41,17 @@
     'depends': [
         'breadcrumbs_base',
         'website_blog_base',
+        'follow_us_base',
         'multi_company_base',
         'website_base_multi_anz',
     ],
     'data': [
         'data/theme_data.xml',
+        'data/website_data.xml',
         'data/menu_data.xml',
         'data/page_data.xml',
         'templates/snippets.xml',
-        'templates/head.xml',
+        # 'templates/head.xml',  # Nothing to load at this moment
         'templates/header.xml',
         'templates/footer.xml',
         'templates/breadcrumbs_bar.xml',
@@ -64,7 +66,7 @@
         'templates/page_brand_point_sport.xml',
         'templates/page_brand_skipping.xml',
         'templates/page_brand_umbro.xml',
-        # 'templates/page_newsletter.xml',
+        # 'templates/page_newsletter.xml',  # Using follow_us_base template at this moment
         'templates/page_open_shop.xml',
         'templates/page_work_with_us.xml',
     ],

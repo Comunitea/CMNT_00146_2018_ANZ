@@ -164,9 +164,9 @@ msgid "Map of national presence"
 msgstr "Mapa de Presencia Nacional"
 
 #. module: theme_anzamar
-#: model:website.theme,name:theme_anzamar.theme_anazamar_multi
-msgid "Multiwebsite Anzamar Theme"
-msgstr "Tema Anzamar Multiwebsite"
+#: model:website.theme,name:theme_anzamar.theme_anzamar_multi
+msgid "Multi Website Anzamar Theme"
+msgstr "Tema Anzamar Multi Website"
 
 #. module: theme_anzamar
 #: model:ir.ui.view,arch_db:theme_anzamar.theme_anzamar_page_anzamar_group

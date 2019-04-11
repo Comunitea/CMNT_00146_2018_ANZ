@@ -47,8 +47,8 @@ msgstr "Menú Principal"
 
 #. module: theme_point_sport
 #: model:website.theme,name:theme_point_sport.theme_point_sport_multi
-msgid "Multiwebsite Point Sport Theme"
-msgstr "Tema Multiwebsite Point Sport"
+msgid "Multi Website Point Sport Theme"
+msgstr "Tema Point Sport Multi Website"
 
 #. module: theme_point_sport
 #: model:ir.ui.view,arch_db:theme_point_sport.poi_product_brands_ir_ui_view
