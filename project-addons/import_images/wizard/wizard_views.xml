@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Options: https://www.odoo.com/documentation/11.0/howtos/backend.html#wizards -->
+<odoo>
+	<!-- tree view -->
+	<!-- TODO importimagesvalue view after import -->
+	<!--
+	<record model="ir.ui.view" id="import_images_value_tree">
+        <field name="name">import.images.value.view</field>
+        <field name="model">import.images.value</field>
+        <field name="arch" type="xml">
+			<tree string="imported images">
+				<field name="name"/>
+				<field name="imported"/>
+				<field name="cause"/>
+			</tree>
+		</field>
+	</record>
+	-->
+	<!-- view form -->
+    <record model="ir.ui.view" id="import_images_form">
+        <field name="name">import.images.form</field>
+        <field name="model">import.images</field>
+        <field name="arch" type="xml">
+				<form string="Select folder">
+                	<div name="help">
+                    	<h2>Select folder to import</h2>
+                	</div>
+					<group>
+						<field name="folder"/>
+						<field name="recursive"/>
+						<field name="update_default"/>
+					</group>
+					<footer>
+                    	<button name="action_import_images" type="object" class="oe-highlight" string="Import images"/>
+                    	<button special="cancel" string="Cancel"/>
+					</footer>
+				</form>
+		</field>
+    </record>
+
+	<record model="ir.actions.act_window" id="action_import_images">
+        <field name="name">Import Images</field>
+        <field name="res_model">import.images</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+		<field name="help" type="html">
+			<p class="oe_view_nocontent_smiling_face">Vamos a añadir imagenes</p>
+		</field>
+	</record>
+
+	<menuitem id="menu_import_images" 
+			  parent="sale.product_menu_catalog"
+			  name="Importar imágenes"
+			  sequence="99"
+			  action="action_import_images"/>
+    
+</odoo>

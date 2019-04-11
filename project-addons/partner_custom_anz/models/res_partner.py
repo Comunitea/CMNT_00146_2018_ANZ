@@ -61,6 +61,7 @@ class ResPartner(models.Model):
                                             )
     ref = fields.Char(default='[Auto]')
 
+    risk_exception = fields.Boolean(search="_search_risk_exception")
 
     @api.multi
     def refresh_partner_ref(self):
@@ -131,7 +132,7 @@ class ResPartner(models.Model):
             elif r_categ:
                 args = expression.AND([args, [('categ_id', 'not in', r_categ)]])
             args = expression.normalize_domain(args)
-        print (args)
+        #print (args)
         return args
 
     @api.multi
@@ -169,4 +170,14 @@ class ResPartner(models.Model):
         elif amount > self.sponsorship_bag:
             raise UserError(_('You try to sponsorship a quantity of %s and \
                 the rest of the bag is %s.') % (amount, self.sponsorship_bag))
+
+
+    def _search_risk_exception(self,operator,value):
+        """ """
+        if operator == '=' and isinstance(value, (int)):
+            id_list = [company.id for company in self.env['res.partner'].search([('is_company','=',True)]) if company.risk_exception == value]
+            return [('id','in',id_list)]
+        else:
+            ValidationError('The field risk_exception is not searchable '
+                            'with the operator {} and value {}'.format(operator,value))
 

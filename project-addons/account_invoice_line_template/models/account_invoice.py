@@ -30,7 +30,7 @@ class AccountInvoiceLine(models.Model):
     product_tmpl_id = fields.Many2one(
         'product.template', string="Template")
 
-    @api.model
+    @api.multi
     def write(self, vals):
         if 'product_tmpl_id' not in vals and vals.get('product_id', False):
             tmpl_id = self.env['product.product']. \

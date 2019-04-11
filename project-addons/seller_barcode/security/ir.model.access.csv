@@ -1,0 +1,16 @@
+"id","name","model_id:id","group_id:id","perm_read","perm_write","perm_create","perm_unlink"
+
+"access_barcode_tag_manager","barcode_tag_manager","model_barcode_tag",sales_team.group_sale_manager,1,1,1,1
+"access_barcode_tag_user","barcode_tag_user","model_barcode_tag",sales_team.group_sale_salesman,1,0,0,0
+
+"access_product_barcode_age_manager","product_barcode_age_manager","model_product_barcode_age",sales_team.group_sale_manager,1,1,1,1
+"access_product_barcode_age_user","product_barcode_age_user","model_product_barcode_age",sales_team.group_sale_salesman,1,0,0,0
+
+"access_product_barcode_gender_manager","product_barcode_gender_manager","model_product_barcode_gender",sales_team.group_sale_manager,1,1,1,1
+"access_product_barcode_gender_user","product_barcode_gender_user","model_barcode_tag",sales_team.group_sale_salesman,1,0,0,0
+
+"access_seller_barcode_template_manager","seller_barcode_template_manager","model_seller_barcode_template",sales_team.group_sale_manager,1,1,1,1
+"access_seller_barcode_template_user","seller_barcode_template_user","model_seller_barcode_template",sales_team.group_sale_salesman,1,0,0,0
+
+"access_seller_barcode_manager","seller_barcode_manager","model_seller_barcode",sales_team.group_sale_manager,1,1,1,1
+"access_seller_barcode_user","seller_barcode_user","model_seller_barcode",sales_team.group_sale_salesman,1,0,0,0
