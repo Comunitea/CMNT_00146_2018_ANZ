@@ -2,7 +2,13 @@
 # © 2018 Comunitea
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import models, fields, _
+# TODO
+# Crear los colores como variantes (búsquedas por atributo)
+# añadir un loop para leer todos los campos tras category como tags
+# ??? try color -> tags
+# ??? pandas
+
+from odoo import api, models, fields, _
 from odoo.exceptions import UserError
 import xlrd
 import base64
@@ -22,8 +28,13 @@ class ProductImportWzd(models.TransientModel):
     file = fields.Binary(string='File', required=True)
     brand_id = fields.Many2one('product.brand', 'Brand', required=True)
     filename = fields.Char(string='Filename')
-    categ_id = fields.Many2one('product.category','Default product category')
+    categ_id = fields.Many2one('product.category', 'Default product category')
     create_attributes = fields.Boolean('Create attributes/values if neccesary')
+
+    @api.onchange('file')
+    def onchange_filename(self):
+        if not self.name and self.filename:
+            self.name = self.filename and self.filename.split('.')[0]
 
     def _parse_row_vals(self, row, idx):
         res = {
@@ -66,7 +77,7 @@ class ProductImportWzd(models.TransientModel):
     def _get_category_id(self, category_name = False, idx=0):
         categ_id = False
         if category_name:
-            categ_id = self.env['product.category'].search([('name', '=', category_name)])
+            categ_id = self.env['product.category'].search([('name', '=', category_name)], limit=1)
 
         categ_id = categ_id or self.categ_id
         if not categ_id:
@@ -137,7 +148,7 @@ class ProductImportWzd(models.TransientModel):
         if not attr:
             if self.create_attributes:
 
-                vals = {'attribute_category_id': categ_id.id,
+                vals = {#'attribute_category_id': categ_id.id,
                         'product_brand_id': self.brand_id.id,
                         'name': row_vals['attr_name'],
                         'product_type_id': tag_type_id and tag_type_id.id,
@@ -147,8 +158,7 @@ class ProductImportWzd(models.TransientModel):
                 print("Se ha creado el atributo: {}".format(attr.display_name))
             else:
                 raise UserError(
-                    _('Error getting attribute %s in line %s: \
-                       Not found') % (row_vals['attr_name'], str(idx)))
+                        _('Error: El atributo %s in line %s no existe') % (row_vals['attr_name'], str(idx)))
         domain = [
             ('attribute_id', '=', attr.id),
             '|', ('supplier_code', '=', row_vals['code_attr']), ('name', '=', row_vals['attr_val'])
@@ -220,17 +230,16 @@ class ProductImportWzd(models.TransientModel):
         product_name = row_vals['name_temp'] + ' ' + row_vals['name_color'] + row_vals['name_extra']
         categ_id = self._get_category_id(row_vals['category'], idx)
         attr_value = self._get_attr_value(row_vals, idx, categ_id)
-        code_attr = row_vals['code_attr'] and str(int(row_vals['code_attr'])) or '%04d'%(attr_value.id)
+
+        code_attr = row_vals['code_attr'] and str(int(row_vals['code_attr'])) or '%04d' % (attr_value.id)
         default_code = row_vals['code_temp'] + '.' + code_attr
 
-        print ("{} >> Creo {}: referencia: {}. Talla {}. Pvp: {}€".format(idx, product_name, default_code, attr_value.display_name, row_vals['pvp']))
-        # CREATE PRODUCT
         vals = {
             'name': product_name,
             'default_code': default_code,
             'available_in_pos': False,
             'attribute_value_ids': [(4, attr_value.id)],
-            'barcode': row_vals['ean'],
+            'barcode': str(int(row_vals['ean'])),
             'importation_name': self.name,
             'lst_price': row_vals['pvp'],
             'standard_price': row_vals['cost'],
@@ -240,10 +249,11 @@ class ProductImportWzd(models.TransientModel):
             vals.update(product_tmpl_id=template.id)
         product = pp_pool.create(vals)
 
+
         # CREATE PRODUCT XMLID
         self._create_xml_id(
             product.barcode, product.id, 'product.product')
-
+        print("Se crea el producto {} con xml_id {} \nVals :{} y ".format(product.display_name, product.get_xml_id(), vals))
         # WRITE TEMPLATE REF AND XMLID TO THE NEW CREATED TEMPLATE
         if not template:
             template = product.product_tmpl_id
@@ -253,16 +263,17 @@ class ProductImportWzd(models.TransientModel):
                 'importation_name': self.name,
                 'product_brand_id': self.brand_id.id,
                 'categ_id': categ_id.id
-
-
             }
             if tags:
                 vals.update(tag_ids=[(6, 0, tags)])
             template.write(vals)
-
             xml_id = row_vals['code_temp']
             self._create_xml_id(xml_id, template.id, 'product.template')
             template_ids.append(template.id)
+            print("Se crea la plantilla {} con xml_id {} \nVals :{} y ".format(template.display_name, template.get_xml_id(), vals))
+            if len(template.product_variant_ids)>1:
+                raise UserError(
+                    "Linea %s: Plantilla %s. Si la plantilla tiene más de una variante debes de crear variantes y el codigo del atributo debe ser distinto a 'NO'" %(idx, template.display_name))
 
         # LINK ATTRIBUTE VALUE TO THE TEMPLATE
         self._update_template_attributes(template, attr_value)

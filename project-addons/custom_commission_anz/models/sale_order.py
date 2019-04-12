@@ -22,7 +22,7 @@ class SaleOrderLine(models.Model):
         self.ensure_one()
         super()._prepare_agents_vals()
         return self._prepare_agents_vals_by_brand(
-            self.order_id.partner_id, self.product_id, 
+            self.order_id.partner_id, self.product_id,
             self.order_id.user_id.id, self.discount
         )
 
