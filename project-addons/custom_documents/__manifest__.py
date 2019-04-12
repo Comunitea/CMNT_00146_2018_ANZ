@@ -26,6 +26,7 @@
     ],
     'data': [
         'views/report_templates.xml',
+        'views/buy_order_line.xml',
         'views/sale_order_template.xml',
         'views/sale_report.xml',
         'views/report_invoice.xml',

@@ -30,6 +30,35 @@ FOLDERINPUT='/opt/hotfolder/images/'
 SPLITER = re.compile(r'(.*?)(?:_(\d*))?(?:\.(?:\w+))$')
 CODECOLOR = re.compile(r'^([a-z0-9]+)(?:[\,-_ ](\w+))?',re.IGNORECASE)
 
+def coroutine(func):
+    def start(*args,**kwargs)
+        cr = func(*args, **kwargs):
+        cr.next()
+        return cr
+    return start
+
+def listfiles(path, recursive=False):
+        """ Generator """
+        root, dirs, files = next(os.walk(self.folder))
+        for file in files:
+            yield os.path.join(root, file)
+        if recursive:
+            for dir in dirs:
+                yield from listfiles(os.path.join(root, dir))
+
+@coroutine
+def file_filter_access(perm = os.R_OK & os.W_OK):
+    try:
+        while True:
+            file = (yield)
+            if os.access(file,perm):
+                image = ImportImagesValue(file)
+                imported.append(image)
+    except GeneratorExit: # handle Close
+        pass
+        # Done
+    
+
 class ImportImagesValue():
     """  
     TODO:
