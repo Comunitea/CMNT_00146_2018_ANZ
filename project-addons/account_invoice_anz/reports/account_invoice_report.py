@@ -25,11 +25,11 @@ class AccountInvoiceReport(models.Model):
         select_str += """
             , ail.discount * invoice_type.sign as discount
             , (ail.price_subtotal_signed + ail.discount) as total_with_discount
-            , 
-                case when (ail.price_subtotal_signed = 0) then 100 
+            ,
+                case when (ail.price_subtotal_signed = 0 or (ail.price_subtotal_signed + ail.discount) = 0) then 100
                 else (ail.discount / (ail.price_subtotal_signed + ail.discount)) * 100
-                end 
+                end
                 as average_discount
-            
+
         """
         return select_str
