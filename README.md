@@ -100,6 +100,14 @@ supervisor_port = 9002      (9001 default supervisord)
 postgres_port = 5434        (5432 default postgres)
 ```
 
+## Instalar SASS: NECESARIO PARA BASE DE DATOS PRODUCCIÓN
+```console
+sudo apt-get install ruby2.5
+sudo gem install sass -v 3.4.0
+sudo apt-get install ruby-compass
+sudo gem install compass
+```
+
 # Contributors
 
 ## Creators

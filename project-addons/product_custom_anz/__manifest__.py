@@ -24,8 +24,10 @@
         'views/operating_unit.xml',
         'views/product_tag.xml',
         'wizard/product_import_wzd_view.xml',
+        'wizard/product_check_barcodes_view.xml',
         'security/ir.model.access.csv',
         'security/custom_product_rules.xml',
+
     ],
     'installable': True,
 }
