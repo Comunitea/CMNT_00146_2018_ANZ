@@ -31,8 +31,8 @@ SPLITER = re.compile(r'(.*?)(?:_(\d*))?(?:\.(?:\w+))$')
 CODECOLOR = re.compile(r'^([a-z0-9]+)(?:[\,-_ ](\w+))?',re.IGNORECASE)
 
 def coroutine(func):
-    def start(*args,**kwargs)
-        cr = func(*args, **kwargs):
+    def start(*args,**kwargs):
+        cr = func(*args, **kwargs)
         cr.next()
         return cr
     return start
