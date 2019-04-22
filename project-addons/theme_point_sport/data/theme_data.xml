@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
-    <record model="website.theme" id="theme_point_sport_multi">
-        <field name="name">Multi Website Point Sport Theme</field>
-        <field name="converted_theme_addon">theme_point_sport</field>
-    </record>
-
-    <!-- Assets that define the demo theme -->
+    <!-- Assets that define the Point Sport theme -->
     <template id="poi_website_assets_frontend" name="Assets Point Template" inherit_id="website.assets_frontend">
         <xpath expr="link[last()]" position="after">
             <link href="/theme_point_sport/static/css/_general.less" rel="stylesheet" type="text/less"/>
@@ -19,13 +14,13 @@
 
     <!-- Record that lets website admin to choose this theme -->
     <record model="website.theme" id="theme_point_sport_multi">
-        <field name="name">Multi Website Point Theme</field>
+        <field name="name">Multi Website Point Sport Theme</field>
         <field name="dependency_ids" eval="[(4, ref('website_multi_theme.theme_default'))]"/>
     </record>
 
     <!-- List provided assets  -->
     <record model="website.theme.asset" id="poi_multi_asset">
-        <field name="name">theme_point_sport.anz_website_assets_frontend</field>
+        <field name="name">theme_point_sport.poi_website_assets_frontend</field>
         <field name="theme_id" ref="theme_point_sport.theme_point_sport_multi"/>
     </record>
 
@@ -35,7 +30,7 @@
               name="_convert_assets"
               eval="([ref('theme_point_sport.theme_point_sport_multi')])"/>
 
-    <!-- This method prepare assets and applies theme for his website -->
+    <!-- This method prepare assets and applies Point theme for Point website -->
     <!-- Hook to reload theme on website_multi_theme module updates -->
     <function model="res.config.settings"
               name="multi_theme_reload"
