@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-03-25 11:47+0000\n"
-"PO-Revision-Date: 2019-03-25 11:47+0000\n"
+"PO-Revision-Date: 2019-04-23 11:47+0000\n"
 "Last-Translator: <ruben@comunitea.com>\n"
 "Language-Team: es/ES\n"
 "MIME-Version: 1.0\n"
@@ -69,6 +69,18 @@ msgstr "Marcas de nuestro grupo"
 #: model:ir.ui.view,arch_db:theme_anzamar.only_logged_in_users_advise
 msgid "Contact Us"
 msgstr "Contáctenos"
+
+#. module: theme_anzamar
+#: model:ir.ui.view,arch_db:theme_anzamar.custom_footer
+#: model:ir.ui.view,arch_db:theme_anzamar.empty_footer
+#: model:ir.ui.view,arch_db:theme_anzamar.only_logged_in_users_advise
+msgid "Contactus"
+msgstr "Contáctenos"
+
+#. module: theme_anzamar
+#: model:website.page,name:theme_anzamar.anz_contactus_thanks_page
+msgid "Contact Us (Thanks)"
+msgstr "Contáctenos (Gracias)"
 
 #. module: theme_anzamar
 #: model:ir.ui.view,arch_db:theme_anzamar.custom_footer
@@ -151,7 +163,7 @@ msgstr "Enlace LinkeIn"
 #. module: theme_anzamar
 #: model:ir.ui.view,arch_db:theme_anzamar.only_logged_in_users_advise
 msgid "Log In"
-msgstr "Entrar"
+msgstr "Iniciar Sesión"
 
 #. module: theme_anzamar
 #: model:website.menu,name:theme_anzamar.anzamar_main_menu
@@ -377,6 +389,11 @@ msgid "With entering"
 msgstr "Al entrar"
 
 #. module: theme_anzamar
+#: model:ir.ui.view,arch_db:theme_anzamar.anz_website_mail_follow
+msgid "With subscribe"
+msgstr "Al subscribirse"
+
+#. module: theme_anzamar
 #: model:ir.ui.view,arch_db:theme_anzamar.privacy_policy_advise
 msgid "I accept the"
 msgstr "Acepto el"
@@ -400,3 +417,72 @@ msgstr "de este Sitio Web."
 #: model:ir.ui.view,arch_db:theme_anzamar.google_recaptcha_contact_form
 msgid "Is human?"
 msgstr "¿Eres humano?"
+
+#. module: theme_anzamar
+#: model:ir.ui.view,arch_db:theme_anzamar.default_contact_form
+msgid "<span class=\"btn btn-primary btn-lg o_website_form_send\">Send</span>\n"
+"                    <span id=\"o_website_form_result\"/>"
+msgstr "<span class=\"btn btn-primary btn-lg o_website_form_send\">Enviar</span>\n"
+"                    <span id=\"o_website_form_result\"/>"
+
+#. module: theme_anzamar
+#: model:ir.ui.view,arch_db:theme_anzamar.anz_work_with_us_content_template
+#: model:ir.ui.view,arch_db:theme_anzamar.default_contact_form
+msgid "Email"
+msgstr "Correo electrónico"
+
+#. module: theme_anzamar
+#: model:website.page,name:theme_anzamar.anz_advise_page
+msgid "Legal Advise"
+msgstr "Aviso Legal"
+
+#. module: theme_anzamar
+#: model:website.page,name:theme_anzamar.anz_privacy_page
+msgid "Privacy Policy"
+msgstr "Política de Privacidad"
+
+#. module: theme_anzamar
+#: model:ir.ui.view,arch_db:theme_anzamar.privacy_policy_advise
+msgid "terms of use"
+msgstr "términos de uso"
+
+#. module: theme_anzamar
+#: model:website.page,name:theme_anzamar.portal_my_details
+msgid "Account Details"
+msgstr "Detalles Cuenta"
+
+#. module: theme_anzamar
+#: model:website.page,name:theme_anzamar.portal_invoice_page
+msgid "Invoice"
+msgstr "Factura"
+
+#. module: theme_anzamar
+#: model:website.page,name:theme_anzamar.portal_my_invoices
+msgid "My Invoices and Payments "
+msgstr "Mis Facturas y Pagos "
+
+#. module: theme_anzamar
+#: model:website.page,name:theme_anzamar.portal_my_home
+msgid "My Portal"
+msgstr "Mi Cuenta"
+
+#. module: theme_anzamar
+#: model:website.page,name:theme_anzamar.portal_my_quotations
+msgid "My Quotations"
+msgstr "Mis Presupuestos"
+
+#. module: theme_anzamar
+#: model:website.page,name:theme_anzamar.portal_my_orders
+msgid "My Sales Orders"
+msgstr "Mis Pedidos"
+
+#. module: theme_anzamar
+#: model:website.page,name:theme_anzamar.order_confirmation
+msgid "Order Confirmation"
+msgstr "Confirmación de Pedido"
+
+#. module: theme_anzamar
+#: model:website.page,name:theme_anzamar.portal_order_page
+msgid "Sales Order"
+msgstr "Pedido de Venta"
+
