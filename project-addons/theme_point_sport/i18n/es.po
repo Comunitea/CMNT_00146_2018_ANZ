@@ -39,17 +39,24 @@ msgid "Contactus"
 msgstr "Contáctenos"
 
 #. module: theme_point_sport
+#: model:website.page,name:theme_point_sport.poi_contactus_page
+msgid "Contact Us"
+msgstr "Contáctenos"
+
+#. module: theme_point_sport
 #: model:website.page,name:theme_point_sport.poi_contactus_thanks
 msgid "Contactus thanks"
 msgstr "Contáctenos (Gracias)"
 
 #. module: theme_point_sport
 #: model:website.menu,name:theme_point_sport.poi_product_brands_menu
+#: model:website.page,name:theme_point_sport.poi_product_brands
 msgid "Brands"
 msgstr "Marcas"
 
 #. module: theme_point_sport
 #: model:website.menu,name:theme_point_sport.point_sport_menu_homepage
+#: model:website.page,name:theme_point_sport.point_sport_homepage_page
 msgid "Home"
 msgstr "Inicio"
 
@@ -77,6 +84,7 @@ msgstr "Solicitud Apertura"
 #. module: theme_point_sport
 #: model:website.menu,name:theme_point_sport.poi_open_shop_menu
 #: model:website.menu,name:theme_point_sport.poi_open_shop_submenu_open
+#: model:website.page,name:theme_point_sport.poi_page_open_shop
 msgid "Open Your Shop"
 msgstr "Abre tu Tienda"
 
@@ -116,6 +124,7 @@ msgstr "Tienda - Confirmado"
 
 #. module: theme_point_sport
 #: model:website.menu,name:theme_point_sport.poi_menu_our_shops
+#: model:website.page,name:theme_point_sport.poi_page_our_shops
 msgid "Shops"
 msgstr "Tiendas"
 
@@ -179,10 +188,14 @@ msgid "Group"
 msgstr "Grupo Anzamar"
 
 #. module: theme_point_sport
-<<<<<<< HEAD
 #: model:ir.ui.view,arch_db:theme_point_sport.poi_website_sale_product
 msgid "Multi add to Cart"
 msgstr "Añadir al Carro Multi"
+
+#. module: theme_point_sport
+#: model:ir.ui.view,arch_db:theme_point_sport.poi_website_sale_product
+msgid "Products"
+msgstr "Productos"
 
 #. module: theme_point_sport
 #: model:ir.ui.view,arch_db:theme_point_sport.poi_website_sale_product
@@ -230,6 +243,7 @@ msgstr "Ha ocurrido un error"
 #. module: theme_point_sport
 #: model:website.menu,name:theme_point_sport.poi_menu_about_us
 #: model:website.page,name:theme_point_sport.poi_page_about_us
+#: model:ir.ui.view,arch_db:theme_point_sport.poi_template_about_us
 msgid "About Us"
 msgstr "Sobre Nosotros"
 
@@ -269,6 +283,11 @@ msgid "My Portal"
 msgstr "Mi Cuenta"
 
 #. module: theme_point_sport
+#: model:website.page,name:theme_point_sport.poi_portal_my_purchase_orders
+msgid "My Purchase Orders"
+msgstr "Mis Pedidos de Compra"
+
+#. module: theme_point_sport
 #: model:website.page,name:theme_point_sport.poi_portal_my_quotations
 msgid "My Quotations"
 msgstr "Mis Presuspuestos"
@@ -281,13 +300,14 @@ msgstr "Mis Pedidos de Venta"
 #. module: theme_point_sport
 #: model:website.page,name:theme_point_sport.poi_order_confirmation
 msgid "Order Confirmation"
-msgstr "Confirmación de Pedido"
+msgstr "Confirmación Pedido de Venta"
 
 #. module: theme_point_sport
 #: model:website.page,name:theme_point_sport.poi_portal_order_page
 msgid "Sales Order"
 msgstr "Pedido de Venta"
 
+#. module: theme_point_sport
 #: model:ir.ui.view,arch_db:theme_point_sport.website_sale_products_categories
 msgid "All Products"
-msgstr "Todos los productos"
+msgstr "Todos los Productos"
