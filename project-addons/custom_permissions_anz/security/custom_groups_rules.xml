@@ -70,12 +70,12 @@
 	</record>
 
 	<!-- Ver solo tarifas propias -->
-    <record id="partner _pricelist_own" model="ir.rule">
+    <record id="partner_pricelist_own" model="ir.rule">
         <field name="name">Own pricelist</field>
         <field name="model_id" ref="product.model_product_pricelist"/>
         <field name="domain_force">['|',('company_id','=',False),('company_id','child_of',[user.company_id.id])]</field>
 	</record>
-    <record id="partner _pricelist_item_own" model="ir.rule">
+    <record id="partner_pricelist_item_own" model="ir.rule">
         <field name="name">Own pricelist</field>
         <field name="model_id" ref="product.model_product_pricelist_item"/>
         <field name="domain_force">['|',('company_id','=',False),('company_id','child_of',[user.company_id.id])]</field>
