@@ -165,3 +165,7 @@ msgstr ""
 msgid "Group"
 msgstr "Grupo Anzamar"
 
+#. module: theme_point_sport
+#: model:ir.ui.view,arch_db:theme_point_sport.website_sale_products_categories
+msgid "All Products"
+msgstr "Todos los productos"
