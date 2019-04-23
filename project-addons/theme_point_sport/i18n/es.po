@@ -179,6 +179,7 @@ msgid "Group"
 msgstr "Grupo Anzamar"
 
 #. module: theme_point_sport
+<<<<<<< HEAD
 #: model:ir.ui.view,arch_db:theme_point_sport.poi_website_sale_product
 msgid "Multi add to Cart"
 msgstr "Añadir al Carro Multi"
@@ -286,3 +287,7 @@ msgstr "Confirmación de Pedido"
 #: model:website.page,name:theme_point_sport.poi_portal_order_page
 msgid "Sales Order"
 msgstr "Pedido de Venta"
+
+#: model:ir.ui.view,arch_db:theme_point_sport.website_sale_products_categories
+msgid "All Products"
+msgstr "Todos los productos"
