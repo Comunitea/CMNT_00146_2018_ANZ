@@ -21,6 +21,7 @@ class Website(models.Model):
     social_googleplus = fields.Char(related=False, store=True)
     social_instagram = fields.Char(string='Instagram Account')
     email = fields.Char(string='Website Email')
+    sale_type_id = fields.Many2one('sale.order.type', string='Order type')
 
     @api.multi
     def user_access(self):
@@ -40,6 +41,7 @@ class ResConfigSettings(models.TransientModel):
     website_id = fields.Many2one('website', string="website", default=_default_website, required=True)
     social_instagram = fields.Char(related='website_id.social_instagram')
     email = fields.Char(related='website_id.email')
+    sale_type_id = fields.Many2one(related='website_id.sale_type_id')
 
 
 class WebsiteMenu(models.Model):
