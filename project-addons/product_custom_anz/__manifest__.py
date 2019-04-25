@@ -27,6 +27,7 @@
         'wizard/product_check_barcodes_view.xml',
         'security/ir.model.access.csv',
         'security/custom_product_rules.xml',
+        'views/product_tag_label.xml'
 
     ],
     'installable': True,

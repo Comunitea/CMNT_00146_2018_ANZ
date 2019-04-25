@@ -11,15 +11,12 @@ class ProductAttributeTag(models.Model):
 
     _name = "product.attribute.tag"
 
-
     @api.multi
     def name_get(self):
         res = []
         for record in self:
             res.append((record.id, '{}: {}'.format(record.product_brand_id.name, record.value)))
         return res
-
-
     product_brand_id = fields.Many2one('product.brand', 'Brand', required=1)
     type = fields.Selection([('type', 'Tipo de articulo'), ('gender', 'Género'), ('age', 'Edad')], required=1)
     value = fields.Char('Valor', required=1)
@@ -29,13 +26,16 @@ class ProductAttribute(models.Model):
 
     _inherit = "product.attribute"
 
-
-
     @api.multi
     def name_get(self):
         res = []
         for record in self:
-            new_name = '{}: {}'.format(record.product_brand_id.name, record.product_type_id.value)
+            if record.product_brand_id:
+                new_name = '{}: {}'.format(record.product_brand_id.name, record.name)
+            else:
+                new_name = record.name
+            if record.product_type_id:
+                new_name = '{} / {}'.format(new_name, record.product_type_id.value)
             if record.product_gender_id:
                 new_name = '{} / {}'.format(new_name, record.product_gender_id.value)
             if record.product_age_id:

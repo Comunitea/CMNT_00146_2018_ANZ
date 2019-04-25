@@ -197,7 +197,7 @@ class ProductProduct(models.Model):
 
 
         model = 'product.product'
-        product_ids = self.env['product.product'].search([('default_code','!=','')])
+        product_ids = self.env['product.product'].search([('barcode','!=','')])
         len_p = len(product_ids)
         print ("Actualizando {} productos".format(len_p))
         i=0
@@ -205,5 +205,5 @@ class ProductProduct(models.Model):
         for p in product_ids:
             i+=1
             print("Van {} de {}".format(i, len_p))
-            create_xml_id(p.default_code, p.id, model)
+            create_xml_id(p.barcode, p.id, model)
 
