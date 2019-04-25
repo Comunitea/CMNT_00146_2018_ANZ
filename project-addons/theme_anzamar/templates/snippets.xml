@@ -22,25 +22,25 @@
             </ol>
             <div class="carousel-inner" role="listbox">
                 <div class="item active">
-                    <img class="img-responsive" src="/theme_anzamar/static/img/home/slider-01.jpg" alt="First slide"/>
-                    <div class="carousel-caption">
-                        <h1>Team Wear</h1>
-                        <h3>Pensado especialmente para equipos</h3>
-                    </div>
+                    <img class="img-responsive" src="/theme_anzamar/static/img/home/anzamar_140_establecimientos.png" alt="Anzamar Stores"/>
+<!--                    <div class="carousel-caption">-->
+<!--                        <h1>Team Wear</h1>-->
+<!--                        <h3>Pensado especialmente para equipos</h3>-->
+<!--                    </div>-->
                 </div>
                 <div class="item">
-                    <img class="img-responsive" src="/theme_anzamar/static/img/home/slider-02.jpg" alt="Second slide"/>
-                    <div class="carousel-caption">
-                        <h1>Zapatillas</h1>
-                        <h3>Adaptadas a todas las necesidades</h3>
-                    </div>
+                    <img class="img-responsive" src="/theme_anzamar/static/img/home/anzamar_goalkers_abre_granada.png" alt="Goalkers Granada"/>
+<!--                    <div class="carousel-caption">-->
+<!--                        <h1>Zapatillas</h1>-->
+<!--                        <h3>Adaptadas a todas las necesidades</h3>-->
+<!--                    </div>-->
                 </div>
                 <div class="item">
-                    <img class="img-responsive" src="/theme_anzamar/static/img/home/slider-03.jpg" alt="Third slide"/>
-                    <div class="carousel-caption">
-                        <h1>Testil</h1>
-                        <h3>Nuevas lineas pensadas para tí</h3>
-                    </div>
+                    <img class="img-responsive" src="/theme_anzamar/static/img/home/anzamar_goalkers_catalogo_100_marcas.png" alt="Goalkers Brands Catalogue"/>
+<!--                    <div class="carousel-caption">-->
+<!--                        <h1>Testil</h1>-->
+<!--                        <h3>Nuevas lineas pensadas para tí</h3>-->
+<!--                    </div>-->
                 </div>
             </div>
             <!-- Controls -->

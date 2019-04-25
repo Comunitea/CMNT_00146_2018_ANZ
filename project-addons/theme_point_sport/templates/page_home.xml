@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<odoo>
+<odoo noupdate="1">
 
     <template id="poi_home_content" name="Home Point Content Template">
         <t t-call="website.layout">
@@ -15,25 +15,25 @@
                         </ol>
                         <div class="carousel-inner" role="listbox">
                             <div class="item active">
-                                <img class="img-responsive" src="/theme_anzamar/static/img/home/slider-01.jpg" alt="First slide"/>
-                                <div class="carousel-caption">
-                                    <h1>Team Wear</h1>
-                                    <h3>Pensado especialmente para equipos</h3>
-                                </div>
+                                <img class="img-responsive" src="/theme_point_sport/static/img/descubre_ultimas_novedades.png" alt="Last Novelties"/>
+<!--                                <div class="carousel-caption">-->
+<!--                                    <h1>Team Wear</h1>-->
+<!--                                    <h3>Pensado especialmente para equipos</h3>-->
+<!--                                </div>-->
                             </div>
                             <div class="item">
-                                <img class="img-responsive" src="/theme_anzamar/static/img/home/slider-02.jpg" alt="Second slide"/>
-                                <div class="carousel-caption">
-                                    <h1>Zapatillas</h1>
-                                    <h3>Adaptadas a todas las necesidades</h3>
-                                </div>
+                                <img class="img-responsive" src="/theme_point_sport/static/img/encuentra_productos.png" alt="Find Products"/>
+<!--                                <div class="carousel-caption">-->
+<!--                                    <h1>Zapatillas</h1>-->
+<!--                                    <h3>Adaptadas a todas las necesidades</h3>-->
+<!--                                </div>-->
                             </div>
                             <div class="item">
-                                <img class="img-responsive" src="/theme_anzamar/static/img/home/slider-01.jpg" alt="Third slide"/>
-                                <div class="carousel-caption">
-                                    <h1>Testil</h1>
-                                    <h3>Nuevas lineas pensadas para tí</h3>
-                                </div>
+                                <img class="img-responsive" src="/theme_point_sport/static/img/primavera_verano.png" alt="Spring_Summer"/>
+<!--                                <div class="carousel-caption">-->
+<!--                                    <h1>Testil</h1>-->
+<!--                                    <h3>Nuevas lineas pensadas para tí</h3>-->
+<!--                                </div>-->
                             </div>
                         </div>
                     </t>
@@ -42,35 +42,27 @@
                             <li data-target="#carousel_point_sport" data-slide-to="0" class="active"/>
                             <li data-target="#carousel_point_sport" data-slide-to="1"/>
                             <li data-target="#carousel_point_sport" data-slide-to="2"/>
-                            <li data-target="#carousel_point_sport" data-slide-to="3"/>
                         </ol>
                         <div class="carousel-inner" role="listbox">
                             <div class="item active">
-                                <img class="img-responsive" src="/theme_anzamar/static/img/home/slider-03.jpg" alt="First slide"/>
+                                <img class="img-responsive" src="/theme_point_sport/static/img/descubre_ultimas_novedades.png" alt="Last Novelties"/>
                                 <div class="carousel-caption">
-                                    <h1>Team Wear</h1>
-                                    <h3>Pensado especialmente para equipos</h3>
+<!--                                    <h1>Team Wear</h1>-->
+<!--                                    <h3>Pensado especialmente para equipos</h3>-->
                                 </div>
                             </div>
                             <div class="item">
-                                <img class="img-responsive" src="/theme_anzamar/static/img/home/slider-02.jpg" alt="Second slide"/>
+                                <img class="img-responsive" src="/theme_point_sport/static/img/encuentra_productos.png" alt="Find Products"/>
                                 <div class="carousel-caption">
-                                    <h1>Zapatillas</h1>
-                                    <h3>Adaptadas a todas las necesidades</h3>
+<!--                                    <h1>Zapatillas</h1>-->
+<!--                                    <h3>Adaptadas a todas las necesidades</h3>-->
                                 </div>
                             </div>
                             <div class="item">
-                                <img class="img-responsive" src="/theme_anzamar/static/img/home/slider-03.jpg" alt="Third slide"/>
+                                <img class="img-responsive" src="/theme_point_sport/static/img/primavera_verano.png" alt="Spring_Summer"/>
                                 <div class="carousel-caption">
-                                    <h1>Testil</h1>
-                                    <h3>Nuevas lineas pensadas para tí</h3>
-                                </div>
-                            </div>
-                            <div class="item">
-                                <img class="img-responsive" src="/theme_anzamar/static/img/home/slider-02.jpg" alt="Second slide"/>
-                                <div class="carousel-caption">
-                                    <h1>Zapatillas</h1>
-                                    <h3>Adaptadas a todas las necesidades</h3>
+<!--                                    <h1>Testil</h1>-->
+<!--                                    <h3>Nuevas lineas pensadas para tí</h3>-->
                                 </div>
                             </div>
                         </div>
