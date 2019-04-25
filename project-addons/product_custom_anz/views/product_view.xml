@@ -148,13 +148,13 @@
         <field name="model">product.template</field>
         <field name="inherit_id" ref="product.product_template_search_view"/>
         <field name="arch" type="xml">
+			<field name="name" position="replace">
+				<field name="name" string="Product" filter_domain="['|','|','|',('ref_template','ilike',self),('default_code','ilike',self),('name','ilike',self),('barcode','ilike',self)]"/>
+			</field>
             <field name="categ_id" position="after">
                 <field name="ref_template"/>
                 <field name="importation_name"/>
             </field>
-			<field name="name" position="replace">
-				<field name="name" string="Product" filter_domain="['|','|','|',('ref_template','ilike',self),('default_code','ilike',self),('name','ilike',self),('barcode','ilike',self)]"/>
-			</field>
         </field>
     </record>
 
