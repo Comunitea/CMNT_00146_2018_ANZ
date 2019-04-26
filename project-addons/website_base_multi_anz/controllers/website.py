@@ -10,6 +10,9 @@ class MultiUpdateCart(WebsiteSale):
 
     @http.route(['/shop/cart/multi_update'], type='json', auth="public", methods=['POST'], website=True)
     def multi_update_cart(self, update_data, product_template):
+
+        # import ipdb;ipdb.set_trace()
+
         success = False
         quantity = 0
         variants = json.loads(update_data)
@@ -28,11 +31,11 @@ class MultiUpdateCart(WebsiteSale):
                 qty = variants[key]
                 product_id = variant_ids.filtered(lambda x: int(key, 10) in x.attribute_value_ids.ids)
                 if product_id:
-                    attr_name = product_id.attribute_value_ids.search([('id', '=', int(key, 10))], limit=1).name
+                    attr_name = product_id.attribute_value_ids.sudo().search([('id', '=', int(key, 10))], limit=1).name
                     attr_name = '<strong>%s</strong>' % attr_name
                     # Check of product stock
                     if product_id.inventory_availability in ['always', 'threshold']:
-                        virtual_available = product_id.virtual_available
+                        virtual_available = product_id.sudo().virtual_available
                         cart_qty = 0
                         # Search this variant in the cart
                         for line in order.order_line:
