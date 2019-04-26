@@ -10,9 +10,6 @@ class MultiUpdateCart(WebsiteSale):
 
     @http.route(['/shop/cart/multi_update'], type='json', auth="public", methods=['POST'], website=True)
     def multi_update_cart(self, update_data, product_template):
-
-        # import ipdb;ipdb.set_trace()
-
         success = False
         quantity = 0
         variants = json.loads(update_data)
