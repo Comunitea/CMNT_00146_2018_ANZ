@@ -87,3 +87,78 @@ header {
         }
     }
 }
+
+/* Drop-down category dynamic menu */
+.dynamic-cat-menu {
+    position: absolute;
+    width: 860px;
+    left: -200px !important;
+    right: auto !important;
+    margin: 2px 0 0 0 !important;
+    padding: 0 !important;
+    background: @white;
+    box-shadow:         0 0 5px 0 #ddd;
+    -moz-box-shadow:    0 0 5px 0 #ddd;
+    -webkit-box-shadow: 0 0 5px 0 #ddd;
+    /*
+    max-height: 600px;
+    overflow-y: auto;
+    */
+    @media (min-width: 769px){
+        & .first-level {
+            width: 200px;
+            padding: 5px 10px;
+            border-right: 1px solid #E4E4E4;
+            border-bottom: 1px solid #E4E4E4;
+            &:hover {
+                background-color: @color-dark;
+                & .first-level-wp a {
+                    color: @white;
+                }
+                & .first-level-inner {
+                    display: block;
+                }
+            }
+        }
+    }
+    & ul {
+        list-style-type: none;
+    }
+    & .first-level-wp {
+        padding: 2px 0 2px 0;
+        cursor: pointer;
+        & a {
+
+        }
+    }
+    & .first-level-inner {
+        display: none;
+        position: absolute;
+        top: 0;
+        left: 200px;
+        width: 659px;
+        height: 100%;
+        overflow-y: auto;
+        margin: 0;
+        padding: 15px 5px 15px 0;
+    }
+    & .second-level {
+        margin: 0 0 15px 0;
+        width: 32%;
+        display: inline-block;
+        vertical-align: top;
+        & > a {
+            font-weight: 600;
+        }
+    }
+    & .second-level-inner {
+        & ul {
+            padding: 0;
+            margin: 0 0 0 15px;
+        }
+    }
+    & .third-level {
+        line-height: 20px;
+        padding: 2px 0;
+    }
+}

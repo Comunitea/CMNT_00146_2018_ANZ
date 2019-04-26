@@ -38,5 +38,17 @@
                 <field name="website_ids" eval="[(6, 0, [ref('website_base_multi_anz.point_sport_website')])]"/>
             </record>
 
+            <!-- Dynamic menu of product categories-->
+            <record id="point_sport_categories_menu" model="website.menu">
+                <field name="name">Categories</field>
+                <field name="url">#</field>
+                <field name="parent_id" ref="point_sport_main_menu"/>
+                <field name="sequence" type="int">23</field>
+                <field name="website_id" ref="website_base_multi_anz.point_sport_website"/>
+                <field name="website_published">False</field>
+                <field name="not_public">True</field>
+                <field name="dynamic_cat_menu">True</field>
+            </record>
+
         </data>
 </odoo>

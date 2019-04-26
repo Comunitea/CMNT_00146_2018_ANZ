@@ -311,3 +311,8 @@ msgstr "Pedido de Venta"
 #: model:ir.ui.view,arch_db:theme_point_sport.website_sale_products_categories
 msgid "All Products"
 msgstr "Todos los Productos"
+
+#. module: theme_point_sport
+#: model:website.menu,name:theme_point_sport.point_sport_categories_menu
+msgid "Categories"
+msgstr "Categorías"

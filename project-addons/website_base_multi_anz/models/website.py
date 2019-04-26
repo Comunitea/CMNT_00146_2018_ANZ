@@ -34,6 +34,10 @@ class Website(models.Model):
 
         return access
 
+    def dynamic_category_list(self):
+        domain = ['|', ('website_ids', '=', False), ('website_ids', 'in', self.id)]
+        return self.env['product.public.category'].sudo().search(domain)
+
 
 class ResConfigSettings(models.TransientModel):
     _inherit = 'res.config.settings'
@@ -50,3 +54,4 @@ class WebsiteMenu(models.Model):
     not_public = fields.Boolean(string='Show it only if the user is logged in', default=False)
     not_portal = fields.Boolean(string='Available only for public users', default=False)
     website_published = fields.Boolean(string='Published', default=True)
+    dynamic_cat_menu = fields.Boolean(string='Dynamic categories menu', default=False)
