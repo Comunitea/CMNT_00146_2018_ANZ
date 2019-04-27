@@ -1,0 +1,168 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* product_custom_label_anz
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 11.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-04-27 10:29+0000\n"
+"PO-Revision-Date: 2019-04-27 10:29+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: product_custom_label_anz
+#: model:ir.ui.view,arch_db:product_custom_label_anz.report_label_anz
+msgid "<span class=\"font_size_8 font_fam\">OFERTA</span>"
+msgstr "<span class=\"font_size_8 font_fam\">OFERTA</span>"
+
+#. module: product_custom_label_anz
+#: model:ir.ui.view,arch_db:product_custom_label_anz.report_label_anz
+msgid "<span class=\"font_size_8 font_fam\">PVC</span>"
+msgstr "<span class=\"font_size_8 font_fam\">PVC</span>"
+
+#. module: product_custom_label_anz
+#: model:ir.ui.view,arch_db:product_custom_label_anz.report_label_anz
+msgid "<span class=\"font_size_8 font_fam\">PVP</span>"
+msgstr "<span class=\"font_size_8 font_fam\">PVP</span>"
+
+#. module: product_custom_label_anz
+#: model:ir.ui.view,arch_db:product_custom_label_anz.report_label_anz
+msgid "<span class=\"font_size_8 font_fam\">Talla</span>"
+msgstr "<span class=\"font_size_8 font_fam\">Talla</span>"
+
+#. module: product_custom_label_anz
+#: model:ir.model.fields,field_description:product_custom_label_anz.field_product_label_pricelist_altura
+msgid "Altura"
+msgstr "Altura"
+
+#. module: product_custom_label_anz
+#: model:ir.model.fields,field_description:product_custom_label_anz.field_product_label_pricelist_anchura
+msgid "Anchura"
+msgstr "Anchura"
+
+#. module: product_custom_label_anz
+#: model:ir.model.fields,field_description:product_custom_label_anz.field_product_product_label_attr_name
+msgid "Attr Name"
+msgstr "Nombre talla"
+
+#. module: product_custom_label_anz
+#: model:ir.model.fields,field_description:product_custom_label_anz.field_product_product_label_barcode
+msgid "Barcode"
+msgstr "Código de barras"
+
+#. module: product_custom_label_anz
+#: model:ir.ui.view,arch_db:product_custom_label_anz.view_product_tag_price_list
+msgid "Cancel"
+msgstr "Cancelar"
+
+#. module: product_custom_label_anz
+#: model:ir.model.fields,field_description:product_custom_label_anz.field_product_product_label_create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: product_custom_label_anz
+#: model:ir.model.fields,field_description:product_custom_label_anz.field_product_product_label_create_date
+msgid "Created on"
+msgstr "Creado en"
+
+#. module: product_custom_label_anz
+#: model:ir.model.fields,field_description:product_custom_label_anz.field_product_product_label_display_name
+msgid "Display Name"
+msgstr "Nombre mostrado"
+
+#. module: product_custom_label_anz
+#: model:ir.actions.report,name:product_custom_label_anz.action_print_label_docs_pricelist
+msgid "Etiquetas POS OK (Sin rebaja)"
+msgstr "Etiquetas POS OK"
+
+#. module: product_custom_label_anz
+#: model:ir.model.fields,field_description:product_custom_label_anz.field_product_product_label_height_r
+msgid "Height R"
+msgstr "Altura fila"
+
+#. module: product_custom_label_anz
+#: model:ir.model.fields,field_description:product_custom_label_anz.field_product_product_label_height_t
+msgid "Height T"
+msgstr "Altura total"
+
+#. module: product_custom_label_anz
+#: model:ir.model.fields,field_description:product_custom_label_anz.field_product_product_label_id
+msgid "ID"
+msgstr "ID (identificación)"
+
+#. module: product_custom_label_anz
+#: model:ir.model.fields,field_description:product_custom_label_anz.field_product_label_pricelist_discount
+#: model:ir.model.fields,field_description:product_custom_label_anz.field_product_product_label_discount
+msgid "Is discount?"
+msgstr "Etiqueta de oferta?"
+
+#. module: product_custom_label_anz
+#: model:ir.model,name:product_custom_label_anz.model_product_label_pricelist
+msgid "Label Price List"
+msgstr "Etiquetas de precios"
+
+#. module: product_custom_label_anz
+#: model:ir.actions.act_window,name:product_custom_label_anz.action_product_label_price_list
+msgid "Labels with pricelist"
+msgstr "Etiquetas con precios de tarifa"
+
+#. module: product_custom_label_anz
+#: model:ir.model.fields,field_description:product_custom_label_anz.field_product_product_label___last_update
+msgid "Last Modified on"
+msgstr "Última modificación en"
+
+#. module: product_custom_label_anz
+#: model:ir.model.fields,field_description:product_custom_label_anz.field_product_product_label_write_uid
+msgid "Last Updated by"
+msgstr "Última actualización de"
+
+#. module: product_custom_label_anz
+#: model:ir.model.fields,field_description:product_custom_label_anz.field_product_product_label_write_date
+msgid "Last Updated on"
+msgstr "Última actualización en"
+
+#. module: product_custom_label_anz
+#: model:ir.model.fields,field_description:product_custom_label_anz.field_product_product_label_lst_price
+msgid "Lst Price"
+msgstr "Precio sin tarifa"
+
+#. module: product_custom_label_anz
+#: model:ir.model.fields,field_description:product_custom_label_anz.field_product_product_label_name
+msgid "Name"
+msgstr "Nombre"
+
+#. module: product_custom_label_anz
+#: model:ir.model.fields,field_description:product_custom_label_anz.field_product_product_label_price
+msgid "Price"
+msgstr "Precio de tarifa"
+
+#. module: product_custom_label_anz
+#: model:ir.ui.view,arch_db:product_custom_label_anz.view_product_tag_price_list
+msgid "Price List"
+msgstr "Lista de precios"
+
+#. module: product_custom_label_anz
+#: model:ir.ui.view,arch_db:product_custom_label_anz.view_product_tag_price_list
+msgid "Print"
+msgstr "Imprimir"
+
+#. module: product_custom_label_anz
+#: model:ir.ui.view,arch_db:product_custom_label_anz.view_product_tag_price_list
+msgid "Print tags with pricelist."
+msgstr "Etiquetas con tarifa."
+
+#. module: product_custom_label_anz
+#: model:ir.model.fields,field_description:product_custom_label_anz.field_product_product_label_rows
+msgid "Rows"
+msgstr "Filas"
+
+#. module: product_custom_label_anz
+#: model:ir.model,name:product_custom_label_anz.model_product_product_label
+msgid "product.product.label"
+msgstr "product.product.label"
+

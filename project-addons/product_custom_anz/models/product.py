@@ -70,3 +70,5 @@ class ProductAttributeValue(models.Model):
                               readonly=True)
     supplier_code = fields.Char("Supplier name")
     name_normalizado = fields.Char()
+
+
