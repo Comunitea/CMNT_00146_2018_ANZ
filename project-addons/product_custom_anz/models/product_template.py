@@ -43,7 +43,6 @@ class ProductTemplate(models.Model):
         ('threshold_virtual', 'Show future inventory below a threshold and prevent sales if not enought stock'),
         ('custom', 'Show product-specific notifications'),
     ], string='Inventory Availability', help='Adds an inventory availability status on the web product page.', default='never')
-    available_threshold = fields.Float(string='Availability Threshold', default=0.0)
     sql_constraints = [
         ("unique_template_ref", "UNIQUE(ref_template)",
          "Cannot have more than one template with same code.")

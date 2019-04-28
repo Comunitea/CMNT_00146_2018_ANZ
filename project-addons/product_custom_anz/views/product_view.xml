@@ -102,7 +102,10 @@
                     <field name="product_color"/>
                     <field name="attribute_id"/>
                     <field name="variant_suffix"/>
-                    <field name="ref_template"/>
+					<group>
+                    	<field name="ref_template"/>
+                    	<field name="ref_template_color"/>
+					</group>
                 </group>
             </field>
             <field name="list_price" position="after">
