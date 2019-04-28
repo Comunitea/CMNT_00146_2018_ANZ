@@ -10,13 +10,12 @@ class MultiUpdateCart(WebsiteSale):
 
     @http.route(['/shop/cart/multi_update'], type='json', auth="public", methods=['POST'], website=True)
     def multi_update_cart(self, update_data, product_template):
+        """ Añade multiples variantes de una plantilla al carrito """
         success = False
         quantity = 0
         variants = json.loads(update_data)
-        products = request.env['product.template']
-        domain = [('id', '=', product_template)]
-        curr_prod = products.search(domain)
-        variant_ids = curr_prod.product_variant_ids
+        template = request.env['product.template'].search([('id','=',product_template)])
+        variant_ids = template.product_variant_ids
 
         if variants and len(variants) > 0:
             # Set order data
@@ -31,26 +30,23 @@ class MultiUpdateCart(WebsiteSale):
                     attr_name = product_id.attribute_value_ids.search([('id', '=', int(key, 10))], limit=1).name
                     attr_name = '<strong>%s</strong>' % attr_name
                     # Check of product stock
+                    max_qty = -1
                     if product_id.inventory_availability in ['always', 'threshold']:
-                        virtual_available = product_id.virtual_available
-                        cart_qty = 0
-                        # Search this variant in the cart
-                        for line in order.order_line:
-                            if line.product_id == product_id:
-                                cart_qty = line.product_uom_qty
-                        stock = virtual_available - cart_qty
-                        # Max qty calculation and set advise message
-                        if qty > stock:
-                            qty_old = qty
-                            qty = stock
-                            if qty > 0:
-                                prod_list += _('<p class="alert alert-warning">%s: you ask for %d units but only %d '
-                                               'is available</p>') % (attr_name, qty_old, qty)
-                            else:
-                                prod_list += _('<p class="alert alert-danger">%s: you ask for %d units but this '
-                                               'variant is not available in stock</p>') % (attr_name, qty_old)
-                        else:
-                            prod_list += '<p class="alert alert-success">%s: %d unit(s)</p>' % (attr_name, qty)
+                        max_qty = max(0,product_id.qty_available)
+                    elif product_id.inventory_availability in ['always_virtual','threshold_virtual']:
+                        max_qty = max(0,product_id.virtual_available)
+                    threshold = template.available_threshold
+                    if product_id.inventory_availability in ['threshold','threshold_virtual']
+                        and treshold > 0:
+                        max_qty = max(0,max_qty - threshold)
+                    # Search this variant qty in the cart
+                    for line in order.order_line if line.product_id == product_id:
+                        cart_qty = line.product_uom_qty
+
+                    if max_qty >= 0 and max_qty - cart_qty - qty < 0:
+                        prod_list += _('<p class="alert alert-warning">{}: you ask for {} units but only {} '
+                                       'is available</p>'.format(attr_name, qty+cart_qty, max_qty))
+                        qty = min(qty, max_qty)
                     else:
                         prod_list += '<p class="alert alert-success">%s: %d unit(s)</p>' % (attr_name, qty)
                     # Add to cart

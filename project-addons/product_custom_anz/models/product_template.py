@@ -22,10 +22,28 @@ class ProductTemplate(models.Model):
     attribute_id = fields.Many2one('product.attribute')
     variant_suffix = fields.Char('Variant suffix')
     pvp = fields.Float('PVP', digits=(16, 2))
-    ref_template = fields.Char('Ref Template')
+    
+    # TODO Mostrar estos campos al editar
+    ref_template = fields.Char('Referencia')
+    ref_template_color = fields.Char('Color code')
+    # TODO Ya hay un campo color, hay que relacionarlo con este
+    # TODO si no mostrar este
+    @api.depends('ref_template','ref_template_color')
+    def referencia(self):
+        return ref_template + " " + ref_template_color
+
     importation_name = fields.Char('Importation name')
     fields.Many2one('product.attribute')
     numero_de_variantes = fields.Integer('Numero de variantes')
+    inventory_availability = fields.Selection([
+        ('never', 'Sell regardless of inventory'),
+        ('always', 'Show inventory on website and prevent sales if not enough stock'),
+        ('always_virtual', 'Show future inventory on website and prevent sales if not enought stock'),
+        ('threshold', 'Show inventory below a threshold and prevent sales if not enough stock'),
+        ('threshold_virtual', 'Show future inventory below a threshold and prevent sales if not enought stock'),
+        ('custom', 'Show product-specific notifications'),
+    ], string='Inventory Availability', help='Adds an inventory availability status on the web product page.', default='never')
+    available_threshold = fields.Float(string='Availability Threshold', default=0.0)
     sql_constraints = [
         ("unique_template_ref", "UNIQUE(ref_template)",
          "Cannot have more than one template with same code.")
@@ -34,7 +52,7 @@ class ProductTemplate(models.Model):
     @api.multi
     @api.onchange("attribute_line_ids")
     def _get_variant_suffix(self):
-
+        """ """
         total = len(self)
         idx = 0
         for template in self:
