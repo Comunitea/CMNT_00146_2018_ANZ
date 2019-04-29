@@ -1,6 +1,6 @@
 /* Header */
 header {
-    background-color: @color-bg-black;
+    background-color: @color-light;
     width: 100%;
     z-index: 99;
     position: relative;
@@ -9,9 +9,9 @@ header {
         padding: 10px 0;
         color: @white;
         & a {
-            color: @color-light;
+            color: @color-current;
             &:hover {
-                color: @color-dark;
+                text-decoration: underline;
             }
         }
         & .contact-separator {
@@ -28,23 +28,24 @@ header {
         background: none;
     }
     & .navbar-default {
+        padding: 2px 0;
         & .navbar-nav > li > a, & .navbar-nav > li > a.dropdown-toggle {
             color: @color-current;
             background: none !important;
-            padding: 15px;
+            padding: 13px;
             line-height: 20px;
             border: none;
             outline-offset: 0;
             &:hover, &:focus {
-                color: @color-dark;
+                color: @color-current;
                 outline: 2px solid @white;
             }
         }
         & .navbar-nav > li.active > a, & .navbar-nav > li.open > a {
-            color: @color-dark;
+            color: @color-current;
             outline: 2px solid @white;
             &:hover, &:focus {
-                color: @color-dark;
+                color: @color-current;
                 outline: 2px solid @white;
             }
         }
@@ -54,8 +55,9 @@ header {
     }
     & a.navbar-brand.logo {
         & img {
-            height: 28px;
-            margin-top: 12px;
+            padding-bottom: 5px;
+            height: 99%;
+            margin: 0;
         }
     }
     /* Fixed header part */
@@ -63,7 +65,6 @@ header {
         position: fixed;
         top: 0;
         padding-top: 5px;
-        background-color: @color-bg-black;
     }
     & .header-fixed-margin {
         display: none;
@@ -72,7 +73,7 @@ header {
 
 /* Breadcrumbs */
 .wp_breadcrumbs_base {
-    background: none;
+    background: @white;
 }
 .breadcrumbs_base {
     & ol.breadcrumb {
@@ -83,7 +84,7 @@ header {
             color: @color-href;
         }
         & span {
-            color: @color-current;
+            color: @color-text;
         }
     }
 }
