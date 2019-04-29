@@ -237,8 +237,18 @@ msgstr "Canal de noticias"
 
 #. module: theme_point_sport
 #: model:ir.ui.view,arch_db:theme_point_sport.poi_website_sale_product
+msgid "This product was added to cart"
+msgstr "Este producto fue añadido al carrito"
+
+#. module: theme_point_sport
+#: model:ir.ui.view,arch_db:theme_point_sport.poi_website_sale_product
 msgid "An error has occurred"
 msgstr "Ha ocurrido un error"
+
+#. module: theme_point_sport
+#: model:ir.ui.view,arch_db:theme_point_sport.poi_website_sale_product
+msgid "Close"
+msgstr "Cerrar"
 
 #. module: theme_point_sport
 #: model:website.menu,name:theme_point_sport.poi_menu_about_us
@@ -316,3 +326,23 @@ msgstr "Todos los Productos"
 #: model:website.menu,name:theme_point_sport.point_sport_categories_menu
 msgid "Categories"
 msgstr "Categorías"
+
+#. module: theme_point_sport
+#: model:ir.ui.view,arch_db:theme_point_sport.poi_website_sale_product
+msgid "To order"
+msgstr "Solicitud"
+
+#. module: theme_point_sport
+#: model:ir.ui.view,arch_db:theme_point_sport.poi_website_sale_product
+msgid "Available"
+msgstr "Disponible"
+
+#. module: theme_point_sport
+#: model:ir.ui.view,arch_db:theme_point_sport.poi_website_sale_product
+msgid "On hand"
+msgstr "A mano"
+
+#. module: theme_point_sport
+#: model:ir.ui.view,arch_db:theme_point_sport.poi_website_sale_product
+msgid "Forecast"
+msgstr "Planificado"

@@ -39,20 +39,33 @@ class MultiUpdateCart(WebsiteSale):
                             if line.product_id == product_id:
                                 cart_qty = line.product_uom_qty
                         stock = virtual_available - cart_qty
+
+                        # Add threshold control
+                        if product_id.inventory_availability == 'threshold':
+                            threshold_qty = product_id.available_threshold
+                            if threshold_qty > 0:
+                                stock = stock - threshold_qty
+
                         # Max qty calculation and set advise message
                         if qty > stock:
                             qty_old = qty
                             qty = stock
                             if qty > 0:
+                                in_cart = _('and %d unit(s) was already in cart') % cart_qty if cart_qty > 0 else ''
                                 prod_list += _('<p class="alert alert-warning">%s: you ask for %d units but only %d '
-                                               'is available</p>') % (attr_name, qty_old, qty)
+                                               'is available %s</p>') % (attr_name, qty_old, qty, in_cart)
                             else:
-                                prod_list += _('<p class="alert alert-danger">%s: you ask for %d units but this '
-                                               'variant is not available in stock</p>') % (attr_name, qty_old)
+                                if cart_qty > 0:
+                                    prod_list += _('<p class="alert alert-warning">%s: you ask for %d units but %d '
+                                                   'unit(s) was already in your cart</p>') \
+                                                 % (attr_name, qty_old, cart_qty)
+                                else:
+                                    prod_list += _('<p class="alert alert-danger">%s: you ask for %d units but this '
+                                                   'variant is not available in stock</p>') % (attr_name, qty_old)
                         else:
-                            prod_list += '<p class="alert alert-success">%s: %d unit(s)</p>' % (attr_name, qty)
+                            prod_list += _('<p class="alert alert-success">%s: %d unit(s)</p>') % (attr_name, qty)
                     else:
-                        prod_list += '<p class="alert alert-success">%s: %d unit(s)</p>' % (attr_name, qty)
+                        prod_list += _('<p class="alert alert-success">%s: %d unit(s)</p>') % (attr_name, qty)
                     # Add to cart
                     if qty > 0:
                         order._cart_update(product_id=product_id.id, add_qty=qty)
@@ -60,12 +73,12 @@ class MultiUpdateCart(WebsiteSale):
 
             if qty_total > 0:
                 success = True
-                message = _('<p><strong>Was added %d unit(s) of %s:</strong></p>%s' % (
-                    qty_total, curr_prod.name, prod_list))
+                message = _('<p><strong>Was added %d unit(s) of %s:</strong></p>%s') % (
+                    qty_total, curr_prod.name, prod_list)
                 quantity = order.cart_quantity
             else:
-                message = _('<p><strong>Product variants for %s not found:</strong></p>%s' % (
-                    curr_prod.name, prod_list))
+                message = _('<p><strong>Product variants for %s not found:</strong></p>%s') % (
+                    curr_prod.name, prod_list)
         else:
             message = _('<p><strong>Empty list of product variants</strong></p>')
 

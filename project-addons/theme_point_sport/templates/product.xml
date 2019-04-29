@@ -35,6 +35,7 @@
         <xpath expr="//div[hasclass('js_product')]/t[1]" position="after">
             <t t-if="user_access == True and len(product.product_variant_ids) &gt; 1">
                 <input type="hidden" name="product_template" t-att-value="product.id"/>
+                <!--
                 <t t-set="attribute_value_ids" t-value="get_attribute_value_ids(product)"/>
                 <t t-foreach="product.attribute_line_ids.sorted(key=lambda x: x.attribute_id.sequence)" t-as="variant_id">
                     <div class="multi-sizes" t-if="len(variant_id.value_ids) > 1 and variant_id.attribute_id.type == 'radio'">
@@ -50,6 +51,37 @@
                         </t>
                     </div>
                 </t>
+                -->
+                <t t-set="stock_control" t-value="product.inventory_availability in ('always', 'threshold')"/>
+                <div class="multi-sizes">
+                    <div t-att-class="'one-line' if stock_control else 'one-line large-line'">
+                        <div class="one-label"/>
+                        <div class="one-input">To order</div>
+                        <div class="one-stock" t-if="stock_control">Available</div>
+                        <t t-else="">
+                            <div class="one-stock">On hand</div>
+                            <div class="one-stock">Forecast</div>
+                        </t>
+                    </div>
+                    <t t-set="variant_ids" t-value="product.product_variant_ids"/>
+                    <t t-foreach="variant_ids.sorted(key=lambda x: x.name)" t-as="variant">
+                        <div t-att-class="'one-line' if stock_control else 'one-line large-line'">
+                            <div class="one-label">
+                                <label t-att-for="variant.attribute_value_ids[0].id" t-field="variant.attribute_value_ids[0].name"/>
+                            </div>
+                            <t t-set="available" t-value="variant.qty_available - product.available_threshold if product.inventory_availability == 'threshold' else variant.qty_available"/>
+                            <t t-set="available" t-value="available if available &gt; 0 else 0"/>
+                            <div class="one-input">
+                                <span t-if="stock_control and available &lt; 1" class="exhausted">&amp;mdash;</span>
+                                <input t-else="" type="number" min="0" t-att-max="'%d' % available if stock_control else 100"
+                                       t-att-id="variant.attribute_value_ids[0].id"
+                                       t-att-name="'attribute-%s-%s' % (product.id, variant.attribute_value_ids[0].id)"/>
+                            </div>
+                            <div class="one-stock" t-raw="'%d ud.' % available"/>
+                            <div class="one-stock" t-raw="'%d ud.' % (variant.virtual_available if variant.virtual_available &gt; 0 else 0)" t-if="not stock_control"/>
+                        </div>
+                    </t>
+                </div>
             </t>
         </xpath>
 
