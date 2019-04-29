@@ -53,7 +53,7 @@
         'data/legal_data.xml',
         'data/menu_data.xml',
         'data/page_data.xml',
-        # 'templates/head.xml',  # Nothing to load at this moment
+        'templates/head.xml',
         'templates/header.xml',
         'templates/footer.xml',
         'templates/breadcrumbs_bar.xml',
