@@ -46,6 +46,7 @@
         'multi_company_base',
         'website_base_multi_anz',
         'website_sale_hide_price',
+        'base_search_fuzzy',
     ],
     'data': [
         'data/theme_data.xml',
