@@ -32,9 +32,9 @@ class MultiUpdateCart(WebsiteSale):
                     # Check of product stock
                     max_qty = -1
                     if product_id.inventory_availability in ['always', 'threshold']:
-                        max_qty = max(0,product_id.qty_available)
+                        max_qty = max(0,product_id.sudo().qty_available - product_id.sudo().outgoing_qty)
                     elif product_id.inventory_availability in ['always_virtual','threshold_virtual']:
-                        max_qty = max(0,product_id.virtual_available)
+                        max_qty = max(0,product_id.sudo().virtual_available)
                     threshold = template.available_threshold
                     if product_id.inventory_availability in ['threshold','threshold_virtual']
                         and treshold > 0:
