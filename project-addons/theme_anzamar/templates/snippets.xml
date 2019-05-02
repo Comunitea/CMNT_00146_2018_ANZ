@@ -8,6 +8,7 @@
         <link href="/theme_anzamar/static/css/footer.less" rel="stylesheet" type="text/less"/>
         <link href="/theme_anzamar/static/css/blog.less" rel="stylesheet" type="text/less"/>
         <link href="/theme_anzamar/static/css/map.less" rel="stylesheet" type="text/less"/>
+        <link href="/theme_anzamar/static/css/shop.less" rel="stylesheet" type="text/less"/>
         <link href="/theme_anzamar/static/css/product.less" rel="stylesheet" type="text/less"/>
         <link href="/theme_anzamar/static/css/media.less" rel="stylesheet" type="text/less"/>
     </template>

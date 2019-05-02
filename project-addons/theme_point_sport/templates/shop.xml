@@ -60,4 +60,19 @@
         </xpath>-->
     </template>
 
+    <!-- Product item used by /shop and /shop/cart -->
+    <template id="website_sale_products_item" name="Product item" inherit_id="website_sale.products_item">
+        <xpath expr="//div[hasclass('oe_product_image')]/a/span" position="replace">
+            <span>
+                <img t-attf-src="/web/image/product.template/{{product.id}}/image/300x300/" class="img-responsive"
+                     t-att-title="product.name" t-att-alt="product.name"/>
+            </span>
+        </xpath>
+        <xpath expr="//section/h5" position="before">
+            <div class="product_default_code" t-if="product.default_code">
+                <span t-esc="product.default_code"/>
+            </div>
+        </xpath>
+    </template>
+
 </odoo>
