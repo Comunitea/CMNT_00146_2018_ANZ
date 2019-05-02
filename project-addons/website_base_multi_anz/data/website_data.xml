@@ -82,7 +82,7 @@
 <!--                <field name="company_id" ref="base.main_company"/>-->
 <!--                <field name="user_id" ref="base.public_user"/>-->
 <!--                <field name="multi_theme_id"/>-->
-<!--                <field name="favicon" type="base64" file="website_base_multi_anz/static/img/favicon_goalkers.jpeg"/>-->
+<!--                <field name="favicon" type="base64" file="website_base_multi_anz/static/img/favicon_goalkers.png"/>-->
 <!--                &lt;!&ndash;<field name="social_twitter"></field>&ndash;&gt;-->
 <!--                <field name="social_facebook">https://www.facebook.com/goalkers</field>-->
 <!--                &lt;!&ndash;<field name="social_googleplus"></field>&ndash;&gt;-->
@@ -99,7 +99,7 @@
 <!--                <field name="company_id" ref="website_base_multi_anz.bemar_company"/>-->
 <!--                <field name="user_id" ref="base.public_user"/>-->
 <!--                <field name="multi_theme_id"/>-->
-<!--                <field name="favicon" type="base64" file="website_base_multi_anz/static/img/favicon_feel_point.jpeg"/>-->
+<!--                <field name="favicon" type="base64" file="website_base_multi_anz/static/img/favicon_feel_point.png"/>-->
 <!--                &lt;!&ndash;<field name="social_twitter"></field>&ndash;&gt;-->
 <!--                <field name="social_facebook">https://www.facebook.com/FeelPoint.es</field>-->
 <!--                &lt;!&ndash;<field name="social_googleplus"></field>&ndash;&gt;-->
@@ -116,7 +116,7 @@
 <!--                <field name="company_id" ref="base.main_company"/>-->
 <!--                <field name="user_id" ref="base.public_user"/>-->
 <!--                <field name="multi_theme_id"/>-->
-<!--                <field name="favicon" type="base64" file="website_base_multi_anz/static/img/favicon_skipping.jpg"/>-->
+<!--                <field name="favicon" type="base64" file="website_base_multi_anz/static/img/favicon_skipping.png"/>-->
 <!--                &lt;!&ndash;<field name="social_twitter"></field>&ndash;&gt;-->
 <!--                <field name="social_facebook">https://www.facebook.com/Skipping.es</field>-->
 <!--                &lt;!&ndash;<field name="social_googleplus"></field>&ndash;&gt;-->
