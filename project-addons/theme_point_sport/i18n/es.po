@@ -124,6 +124,7 @@ msgstr "Tienda - Confirmado"
 
 #. module: theme_point_sport
 #: model:website.menu,name:theme_point_sport.poi_menu_our_shops
+#: model:website.menu,name:theme_point_sport.poi_menu_our_shops_parent
 #: model:website.page,name:theme_point_sport.poi_page_our_shops
 msgid "Shops"
 msgstr "Tiendas"
