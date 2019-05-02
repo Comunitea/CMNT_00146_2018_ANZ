@@ -28,7 +28,7 @@ header {
         background: none;
     }
     & .navbar-default {
-        padding: 2px 0;
+        padding: 5px 0 1px 0;
         & .navbar-nav > li > a, & .navbar-nav > li > a.dropdown-toggle {
             color: @color-current;
             background: none !important;
@@ -52,6 +52,11 @@ header {
         & .navbar-nav > li > .dropdown-menu {
             margin-right: -3px;
         }
+        & .navbar-toggle {
+            & .icon-bar {
+                background-color: @white;
+            }
+        }
     }
     & a.navbar-brand.logo {
         & img {
@@ -64,7 +69,7 @@ header {
     &.fixed {
         position: fixed;
         top: 0;
-        padding-top: 5px;
+        /*padding-top: 5px;*/
     }
     & .header-fixed-margin {
         display: none;
