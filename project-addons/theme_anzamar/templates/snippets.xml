@@ -81,7 +81,7 @@
                     </div>
                     <div class="col-md-5 hidden-sm hidden-xs"/>
                     <div class="col-md-2 col-sm-4 col-xs-8">
-                        <div class="header-language pull-right">
+                        <!--<div class="header-language pull-right">
                             <t t-foreach="languages" t-as="lg">
                                 <a t-att-href="url_for(request.httprequest.path + '?' + keep_query(), lang=lg[0])"
                                    t-att-data-default-lang="(editable or translatable) and 'true' if website and lg[0] == website.default_lang_code else None"
@@ -95,7 +95,7 @@
                                          style="max-height: 24px;"/>
                                 </a>
                             </t>
-                        </div>
+                        </div>-->
                     </div>
                 </div>
             </div>
