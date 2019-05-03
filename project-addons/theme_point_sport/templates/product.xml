@@ -140,6 +140,13 @@
             </div>
         </xpath>
 
+        <!-- Product delivery information -->
+        <xpath expr="//div[@id='product_details']/p[hasclass('text-muted')]" position="replace">
+            <div class="delivery_description">
+                <p class="text-muted"/>
+            </div>
+        </xpath>
+
     </template>
 
     <!-- Product select quantity template -->
