@@ -1,6 +1,6 @@
 /* Header */
 header {
-    background-color: @color-bg-black;
+    background-color: @color-light;
     width: 100%;
     z-index: 99;
     position: relative;
@@ -9,9 +9,9 @@ header {
         padding: 10px 0;
         color: @white;
         & a {
-            color: @color-light;
+            color: @color-current;
             &:hover {
-                color: @color-dark;
+                text-decoration: underline;
             }
         }
         & .contact-separator {
@@ -28,51 +28,70 @@ header {
         background: none;
     }
     & .navbar-default {
+        padding: 5px 0 1px 0;
         & .navbar-nav > li > a, & .navbar-nav > li > a.dropdown-toggle {
             color: @color-current;
             background: none !important;
-            padding: 15px;
+            padding: 13px;
             line-height: 20px;
             border: none;
             outline-offset: 0;
             &:hover, &:focus {
-                color: @color-dark;
+                color: @color-current;
                 outline: 2px solid @white;
             }
         }
         & .navbar-nav > li.active > a, & .navbar-nav > li.open > a {
-            color: @color-dark;
+            color: @color-current;
             outline: 2px solid @white;
             &:hover, &:focus {
-                color: @color-dark;
+                color: @color-current;
                 outline: 2px solid @white;
             }
         }
         & .navbar-nav > li > .dropdown-menu {
             margin-right: -3px;
         }
+        & .navbar-toggle {
+            & .icon-bar {
+                background-color: @white;
+            }
+        }
     }
     & a.navbar-brand.logo {
         & img {
-            height: 28px;
-            margin-top: 12px;
+            padding-bottom: 5px;
+            height: 99%;
+            margin: 0;
         }
     }
     /* Fixed header part */
     &.fixed {
         position: fixed;
         top: 0;
-        padding-top: 5px;
-        background-color: @color-bg-black;
+        /*padding-top: 5px;*/
     }
     & .header-fixed-margin {
         display: none;
+    }
+    /* Language selector menu */
+    .language_menu {
+        & img {
+            max-height: 21px;
+        }
+        & span {
+            text-transform: uppercase;
+        }
+        & .dropdown-menu {
+            width: 85px;
+            min-width: auto;
+        }
     }
 }
 
 /* Breadcrumbs */
 .wp_breadcrumbs_base {
-    background: none;
+    background: @white;
 }
 .breadcrumbs_base {
     & ol.breadcrumb {
@@ -83,7 +102,82 @@ header {
             color: @color-href;
         }
         & span {
-            color: @color-current;
+            color: @color-text;
         }
+    }
+}
+
+/* Drop-down category dynamic menu */
+.dynamic-cat-menu {
+    position: absolute;
+    width: 860px;
+    left: -200px !important;
+    right: auto !important;
+    margin: 2px 0 0 0 !important;
+    padding: 0 !important;
+    background: @white;
+    box-shadow:         0 0 5px 0 #ddd;
+    -moz-box-shadow:    0 0 5px 0 #ddd;
+    -webkit-box-shadow: 0 0 5px 0 #ddd;
+    /*
+    max-height: 600px;
+    overflow-y: auto;
+    */
+    @media (min-width: 769px){
+        & .first-level {
+            width: 200px;
+            padding: 5px 10px;
+            border-right: 1px solid #E4E4E4;
+            border-bottom: 1px solid #E4E4E4;
+            &:hover {
+                background-color: @color-dark;
+                & .first-level-wp a {
+                    color: @white;
+                }
+                & .first-level-inner {
+                    display: block;
+                }
+            }
+        }
+    }
+    & ul {
+        list-style-type: none;
+    }
+    & .first-level-wp {
+        padding: 2px 0 2px 0;
+        cursor: pointer;
+        & a {
+
+        }
+    }
+    & .first-level-inner {
+        display: none;
+        position: absolute;
+        top: 0;
+        left: 200px;
+        width: 659px;
+        height: 100%;
+        overflow-y: auto;
+        margin: 0;
+        padding: 15px 5px 15px 0;
+    }
+    & .second-level {
+        margin: 0 0 15px 0;
+        width: 32%;
+        display: inline-block;
+        vertical-align: top;
+        & > a {
+            font-weight: 600;
+        }
+    }
+    & .second-level-inner {
+        & ul {
+            padding: 0;
+            margin: 0 0 0 15px;
+        }
+    }
+    & .third-level {
+        line-height: 20px;
+        padding: 2px 0;
     }
 }

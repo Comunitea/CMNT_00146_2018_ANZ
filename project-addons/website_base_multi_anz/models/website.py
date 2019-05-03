@@ -5,7 +5,7 @@
 #
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import http, api, models, fields
+from odoo import http, api, models, fields, _
 from odoo.http import request
 from odoo.addons.seo_base.models.settings import _default_website
 
@@ -22,6 +22,11 @@ class Website(models.Model):
     social_instagram = fields.Char(string='Instagram Account')
     email = fields.Char(string='Website Email')
 
+    def _get_order_type(self):
+        return self.env['sale.order.type'].search([], limit=1)
+
+    sale_type_id = fields.Many2one('sale.order.type', string='Sale type', default=_get_order_type)
+
     @api.multi
     def user_access(self):
         website = self
@@ -33,6 +38,10 @@ class Website(models.Model):
 
         return access
 
+    def dynamic_category_list(self):
+        domain = ['|', ('website_ids', '=', False), ('website_ids', 'in', self.id)]
+        return self.env['product.public.category'].sudo().search(domain)
+
 
 class ResConfigSettings(models.TransientModel):
     _inherit = 'res.config.settings'
@@ -40,6 +49,7 @@ class ResConfigSettings(models.TransientModel):
     website_id = fields.Many2one('website', string="website", default=_default_website, required=True)
     social_instagram = fields.Char(related='website_id.social_instagram')
     email = fields.Char(related='website_id.email')
+    sale_type_id = fields.Many2one(related='website_id.sale_type_id')
 
 
 class WebsiteMenu(models.Model):
@@ -48,3 +58,4 @@ class WebsiteMenu(models.Model):
     not_public = fields.Boolean(string='Show it only if the user is logged in', default=False)
     not_portal = fields.Boolean(string='Available only for public users', default=False)
     website_published = fields.Boolean(string='Published', default=True)
+    dynamic_cat_menu = fields.Boolean(string='Dynamic categories menu', default=False)
