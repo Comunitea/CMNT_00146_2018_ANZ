@@ -5,7 +5,7 @@
 #
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import http, api, models, fields
+from odoo import http, api, models, fields, _
 from odoo.http import request
 from odoo.addons.seo_base.models.settings import _default_website
 
@@ -21,7 +21,11 @@ class Website(models.Model):
     social_googleplus = fields.Char(related=False, store=True)
     social_instagram = fields.Char(string='Instagram Account')
     email = fields.Char(string='Website Email')
-    sale_type_id = fields.Many2one('sale.order.type', string='Order type')
+
+    def _get_order_type(self):
+        return self.env['sale.order.type'].search([], limit=1)
+
+    sale_type_id = fields.Many2one('sale.order.type', string='Sale type', default=_get_order_type)
 
     @api.multi
     def user_access(self):
