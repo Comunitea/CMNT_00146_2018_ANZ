@@ -16,7 +16,7 @@ class WebsiteSaleExtended(WebsiteSale):
         if search:
             domain_search = []
             for srch in search.split(" "):
-                domain_search += ['|', '|', '|',
+                domain_search += ['|', '|', '|', '|',
                                   ('product_variant_ids.attribute_value_ids', 'ilike', srch),
                                   ('public_categ_ids', 'ilike', srch),
                                   ('public_categ_ids.public_categ_tag_ids', 'ilike', srch),
