@@ -161,3 +161,70 @@ msgstr "Email Sitio Web"
 #: model:ir.model,name:website_base_multi_anz.model_website_menu
 msgid "Website Menu"
 msgstr "Menú Sitio Web"
+
+#. module: website_base_multi_anz
+#: model:ir.model,name:website_base_multi_anz.model_product_public_category
+msgid "Website Product Category"
+msgstr "Categoría eCommerce"
+
+#. module: website_base_multi_anz
+#: model:ir.model.fields,field_description:website_base_multi_anz.field_avc_res_config_settings_sale_type_id
+#: model:ir.model.fields,field_description:website_base_multi_anz.field_ftp_server_config_setting_sale_type_id
+#: model:ir.model.fields,field_description:website_base_multi_anz.field_res_config_settings_sale_type_id
+#: model:ir.model.fields,field_description:website_base_multi_anz.field_robots_txt_settings_sale_type_id
+#: model:ir.model.fields,field_description:website_base_multi_anz.field_seo_general_settings_sale_type_id
+#: model:ir.model.fields,field_description:website_base_multi_anz.field_sitemap_base_settings_sale_type_id
+#: model:ir.model.fields,field_description:website_base_multi_anz.field_web_app_settings_sale_type_id
+#: model:ir.model.fields,field_description:website_base_multi_anz.field_website_sale_type_id
+msgid "Sale type"
+msgstr "Tipo de Venta"
+
+#. module: website_base_multi_anz
+#: model:ir.model.fields,field_description:website_base_multi_anz.field_product_public_category_tag_create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: website_base_multi_anz
+#: model:ir.model.fields,field_description:website_base_multi_anz.field_product_public_category_tag___last_update
+msgid "Last Modified on"
+msgstr "Última modificación en"
+
+#. module: website_base_multi_anz
+#: model:ir.model.fields,field_description:website_base_multi_anz.field_product_public_category_tag_write_uid
+msgid "Last Updated by"
+msgstr "Última actualización de"
+
+#. module: website_base_multi_anz
+#: model:ir.model.fields,field_description:website_base_multi_anz.field_product_public_category_tag_write_date
+msgid "Last Updated on"
+msgstr "Última actualización en"
+
+#. module: website_base_multi_anz
+#: model:ir.model.fields,field_description:website_base_multi_anz.field_product_public_category_tag_create_date
+msgid "Created on"
+msgstr "Creado en"
+
+#. module: website_base_multi_anz
+#: model:ir.model.fields,field_description:website_base_multi_anz.field_product_public_category_tag_display_name
+msgid "Display Name"
+msgstr "Nombre a mostrar"
+
+#. module: website_base_multi_anz
+#: model:ir.model.fields,help:website_base_multi_anz.field_product_public_category_public_categ_tag_ids
+msgid "Find Website Categories in Search Box by Related Tags"
+msgstr "Find Website Categories in Search Box by Related Tags"
+
+#. module: website_base_multi_anz
+#: model:ir.model.fields,field_description:website_base_multi_anz.field_product_public_category_tag_name
+msgid "Name"
+msgstr "Nombre"
+
+#. module: website_base_multi_anz
+#: model:ir.model.fields,field_description:website_base_multi_anz.field_website_menu_dynamic_cat_menu
+msgid "Dynamic categories menu"
+msgstr "Dynamic categories menu"
+
+#. module: website_base_multi_anz
+#: model:ir.model.fields,field_description:website_base_multi_anz.field_product_public_category_public_categ_tag_ids
+msgid "Related Tags"
+msgstr "Tags Relacionadas"

@@ -19,6 +19,7 @@ class WebsiteSaleExtended(WebsiteSale):
                 domain_search += ['|', '|', '|',
                                   ('product_variant_ids.attribute_value_ids', 'ilike', srch),
                                   ('public_categ_ids', 'ilike', srch),
+                                  ('public_categ_ids.public_categ_tag_ids', 'ilike', srch),
                                   ('product_variant_ids', 'ilike', srch),
                                   ('product_variant_ids.product_brand_id', 'ilike', srch)]
             domain = expression.OR([domain, domain_search])

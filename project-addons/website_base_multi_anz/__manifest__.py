@@ -59,6 +59,8 @@
         'views/product_attribute.xml',
         'views/res_company_views.xml',
         'views/website_views.xml',
+        'views/public_category.xml',
+        'security/ir.model.access.csv',
     ],
     'images': [
         '/static/description/icon.png',
