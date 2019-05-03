@@ -195,6 +195,13 @@ msgstr "Añadir al Carro Multi"
 
 #. module: theme_point_sport
 #: model:ir.ui.view,arch_db:theme_point_sport.poi_website_sale_product
+#: model:website.page,name:theme_point_sport.poi_website_sale_product
+msgid "Products"
+msgstr "Productos"
+
+#. module: website_sale
+#: model:ir.ui.view,arch_db::website_sale.products
+#: model:website.page,name:website_sale.products
 msgid "Products"
 msgstr "Productos"
 
@@ -347,3 +354,9 @@ msgstr "A mano"
 #: model:ir.ui.view,arch_db:theme_point_sport.poi_website_sale_product
 msgid "Forecast"
 msgstr "Planificado"
+
+#. module: website_sale_wishlist
+#: model:ir.ui.view,arch_db:website_sale_wishlist.product_wishlist
+#: model:website.page,name:website_sale_wishlist.product_wishlist
+msgid "Wishlist Page"
+msgstr "Lista de deseos"
