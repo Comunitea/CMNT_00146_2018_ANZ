@@ -24,7 +24,6 @@ class ProductTemplate(models.Model):
     pvp = fields.Float('PVP', digits=(16, 2))
     ref_template = fields.Char('Ref Template')
     importation_name = fields.Char('Importation name')
-    fields.Many2one('product.attribute')
     numero_de_variantes = fields.Integer('Numero de variantes')
     sql_constraints = [
         ("unique_template_ref", "UNIQUE(ref_template)",
