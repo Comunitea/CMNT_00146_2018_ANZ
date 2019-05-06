@@ -12,7 +12,7 @@
             <!--No es necesario crearla ya que referencia como: ref="base.main_company"-->
             <!--Pero si le añadimos datos fijos-->
             <record id="base.main_company" model="res.company">
-                <field name="logo" type="base64" file="website_base_multi_anz/static/img/anzamar_logo.jpeg"/>
+                <field name="logo" type="base64" file="website_base_multi_anz/static/img/anzamar_logo.png"/>
                 <field name="email">info@anzamar.com</field>
                 <field name="phone">952 23 90 00</field>
             </record>

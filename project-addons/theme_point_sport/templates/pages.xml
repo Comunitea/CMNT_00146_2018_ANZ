@@ -86,6 +86,7 @@
         <field name="parent_id" ref="point_sport_main_menu"/>
         <field name="sequence" type="int">35</field>
         <field name="website_id" ref="website_base_multi_anz.point_sport_website"/>
+        <field name="website_published">False</field>
     </record>
 
     <!-- ======================================= Page Our shops ======================================= -->
@@ -132,13 +133,23 @@
     </record>
 
     <!-- Our shop Page -->
-    <record id="poi_menu_our_shops" model="website.menu">
+
+    <record id="poi_menu_our_shops_parent" model="website.menu">
         <field name="name">Shops</field>
-        <field name="url">/page/our-shops</field>
         <field name="parent_id" ref="point_sport_main_menu"/>
         <field name="sequence" type="int">30</field>
         <field name="website_id" ref="website_base_multi_anz.point_sport_website"/>
-        <field name="not_portal">True</field>
+        <field name="website_published">True</field>
+    </record>
+
+    <record id="poi_menu_our_shops" model="website.menu">
+        <field name="name">Shops</field>
+        <field name="url">/page/our-shops</field>
+        <field name="parent_id" ref="poi_menu_our_shops_parent"/>
+        <field name="sequence" type="int">20</field>
+        <field name="website_id" ref="website_base_multi_anz.point_sport_website"/>
+        <field name="not_portal">False</field>
+        <field name="website_published">True</field>
     </record>
 
     <!-- ======================================= Page Open Your Shop ======================================= -->
@@ -253,14 +264,14 @@
         <field name="parent_id" ref="point_sport_main_menu"/>
         <field name="sequence" type="int">25</field>
         <field name="website_id" ref="website_base_multi_anz.point_sport_website"/>
-        <field name="website_published">True</field>
+        <field name="website_published">False</field>
     </record>
 
     <!-- Open Shop Submenu -->
     <record id="poi_open_shop_submenu_open" model="website.menu">
         <field name="name">Open Your Shop</field>
         <field name="url">/page/open_shop</field>
-        <field name="parent_id" ref="poi_open_shop_menu"/>
+        <field name="parent_id" ref="poi_menu_our_shops_parent"/>
         <field name="sequence" type="int">10</field>
         <field name="website_id" ref="website_base_multi_anz.point_sport_website"/>
         <field name="website_published">True</field>
@@ -271,7 +282,7 @@
         <field name="parent_id" ref="poi_open_shop_menu"/>
         <field name="sequence" type="int">20</field>
         <field name="website_id" ref="website_base_multi_anz.point_sport_website"/>
-        <field name="website_published">True</field>
+        <field name="website_published">False</field>
     </record>
     <record id="poi_open_shop_submenu_request" model="website.menu">
         <field name="name">Open Request</field>
@@ -279,7 +290,7 @@
         <field name="parent_id" ref="poi_open_shop_menu"/>
         <field name="sequence" type="int">30</field>
         <field name="website_id" ref="website_base_multi_anz.point_sport_website"/>
-        <field name="website_published">True</field>
+        <field name="website_published">False</field>
     </record>
 
     <!-- ======================================= Information pages ======================================= -->
@@ -448,7 +459,7 @@
         <field name="parent_id" ref="point_sport_main_menu"/>
         <field name="sequence" type="int">20</field>
         <field name="website_id" ref="website_base_multi_anz.point_sport_website"/>
-        <field name="website_published">True</field>
+        <field name="website_published">False</field>
         <field name="not_public">True</field>
     </record>
 
@@ -470,7 +481,7 @@
         <field name="parent_id" ref="point_sport_main_menu" />
         <field name="sequence" type="int">22</field>
         <field name="website_id" ref="website_base_multi_anz.point_sport_website"/>
-        <field name="website_published">True</field>
+        <field name="website_published">False</field>
         <field name="not_public">True</field>
     </record>
 
@@ -512,6 +523,20 @@
         <field name="sequence" type="int">30</field>
         <field name="website_id" ref="website_base_multi_anz.point_sport_website"/>
         <field name="not_public">True</field>
+        <field name="website_published">False</field>
+    </record>
+
+    <!-- ======================================= Shop categories menu ======================================= -->
+
+    <!-- Our shop Page -->
+    <record id="poi_menu_category_1" model="website.menu">
+        <field name="name">Novedades</field>
+        <field name="url">/category/novedades</field>
+        <field name="parent_id" ref="point_sport_main_menu"/>
+        <field name="sequence" type="int">21</field>
+        <field name="website_id" ref="website_base_multi_anz.point_sport_website"/>
+        <field name="not_public">True</field>
+        <field name="website_published">True</field>
     </record>
 
 </odoo>

@@ -1,13 +1,13 @@
 /* Hide top menu part with scroll */
 $(window).on('scroll', function() {
-    if ($(window).scrollTop() > 145) {
+    if ($(window).scrollTop() > 92) {
         $('.wp-contact-navbar').hide();
         if(!$('header').hasClass('homepage-header') || window.screen.width < 769){
             $('.header-fixed-margin').show();
             if(window.screen.width < 769){
-                $('#wrap').css({'margin-top': '110px'});
+                $('#wrap').css({'margin-top': '79px'});
             }else{
-                $('#wrap').css({'margin-top': '130px'});
+                $('#wrap').css({'margin-top': '95px'});
             }
         }
         $('header').addClass('fixed');
