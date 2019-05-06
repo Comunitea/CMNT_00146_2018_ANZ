@@ -42,8 +42,14 @@ class ProductProduct(models.Model):
             product_id = product.id
             rounding = product.uom_id.rounding
             res[product_id] = {}
-            res[product_id]['incoming'] = float_round(moves_in_res.get(product_id, 0.0), precision_rounding=rounding)
-            res[product_id]['outgoing'] = float_round(moves_out_res.get(product_id, 0.0), precision_rounding=rounding)
+            if moves_in_res[product_id]:
+                res[product_id]['incoming'] = float_round(moves_in_res.get(product_id, 0.0), precision_rounding=rounding)
+            else:
+                res[product_id]['incoming'] = []
+            if moves_out_res[product_id]:
+                res[product_id]['outgoing'] = float_round(moves_out_res.get(product_id, 0.0), precision_rounding=rounding)
+            else:
+                res[product_id]['outgoing'] = []
         return res
 
 class CatalogType(models.Model):
@@ -186,14 +192,10 @@ class ExportCatalogtWzd(models.TransientModel):
             global_domain = [('pricelist_id', '=', self.pricelist_id.id), ('applied_on', '=', '3_global')]
             global_price_template_ids = self.env['product.pricelist.item'].search(global_domain)
             if not global_price_template_ids:
-
                 template_domain = [('pricelist_id', '=', self.pricelist_id.id), ('applied_on', '=', '1_product')]
                 price_template_ids = self.env['product.pricelist.item'].search(template_domain).mapped('product_tmpl_id')
-
                 product_domain = [('pricelist_id', '=', self.pricelist_id.id), ('applied_on', '=', '0_product_variant')]
                 price_product_ids = self.env['product.pricelist.item'].search(product_domain).mapped('product_id').mapped('product_tmpl_id')
-
-
                 domain += [('id', 'in', price_template_ids.ids + price_product_ids.ids)]
         templates = self.env['product.template'].search(domain, limit=self.limit)
         return templates
@@ -275,7 +277,6 @@ class ExportCatalogtWzd(models.TransientModel):
                     else:
                         percent = 0
                     res[tmp.name]['percent'] = percent
-
 
         return res
 
