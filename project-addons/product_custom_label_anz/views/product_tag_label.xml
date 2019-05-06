@@ -48,7 +48,7 @@
                         t-att-style="'vertical-align: middle; text-align: center; width: 50%; height: {}px'.format(product.height_r * (product.rows-1))">
                         <img t-if="product.barcode and len(product.barcode) == 13" t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('EAN13', product.barcode, 400, 200)" style="width:100px; height:40px;"/>
                         <img t-else="" t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('Code128', product.barcode, 450, 200)"
-                             t-att-style="'width:100%;height:{}px;'.format(product.height/2)"/>
+                             t-att-style="'width:100%;height:{}px;'.format(40)"/>
                         <span style="font-size: 8px; height:19px" t-field="product.barcode"/>
                     </td>
                 </tr>
