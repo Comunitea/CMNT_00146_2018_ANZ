@@ -94,16 +94,53 @@ msgid "Available only for public users"
 msgstr "Disponible solo para Usuarios Públicos"
 
 #. module: website_base_multi_anz
-#: code:addons/website_base_multi_anz/controllers/website.py:38
+#: code:addons/website_base_multi_anz/controllers/website.py:54
 #, python-format
-msgid "<p>Añadida(s) %d unidad(s):</p><ul>%s</ul>"
-msgstr ""
+msgid "and %d unit(s) was already in cart"
+msgstr "y %d unidades fueron añadidos al carrito"
 
 #. module: website_base_multi_anz
-#: code:addons/website_base_multi_anz/controllers/website.py:41
+#: code:addons/website_base_multi_anz/controllers/website.py:55
 #, python-format
-msgid "Product variants not found"
-msgstr "Variantes de Producto no encontradas"
+msgid "<p class=\"alert alert-warning\">%s: you ask for %d units but only %d is available %s</p>"
+msgstr "<p class=\"alert alert-warning\">%s: solicita %d unidades, pero solo %d están disponibles %s</p>"
+
+#. module: website_base_multi_anz
+#: code:addons/website_base_multi_anz/controllers/website.py:59
+#, python-format
+msgid "<p class=\"alert alert-warning\">%s: you ask for %d units but %d unit(s) was already in your cart</p>"
+msgstr "<p class=\"alert alert-warning\">%s: solicita %d unidades, pero %d unidades ya estaba en su carrito</p>"
+
+#. module: website_base_multi_anz
+#: code:addons/website_base_multi_anz/controllers/website.py:63
+#, python-format
+msgid "<p class=\"alert alert-danger\">%s: you ask for %d units but this variant is not available in stock</p>"
+msgstr "<p class=\"alert alert-danger\">%s: solicita %d unidades, pero esta variante no está disponible en stock</p>"
+
+#. module: website_base_multi_anz
+#: code:addons/website_base_multi_anz/controllers/website.py:66
+#: code:addons/website_base_multi_anz/controllers/website.py:68
+#, python-format
+msgid "<p class=\"alert alert-success\">%s: %d unit(s)</p>"
+msgstr "<p class=\"alert alert-success\">%s: %d unit(s)</p>"
+
+#. module: website_base_multi_anz
+#: code:addons/website_base_multi_anz/controllers/website.py:76
+#, python-format
+msgid "<p><strong>Was added %d unit(s) of %s:</strong></p>%s"
+msgstr "<p><strong>Fue añadido %d unidades de %s:</strong></p>%s"
+
+#. module: website_base_multi_anz
+#: code:addons/website_base_multi_anz/controllers/website.py:80
+#, python-format
+msgid "<p><strong>Product variants for %s not found:</strong></p>%s"
+msgstr "<p><strong>Variantes de producto para %s no encontrado:</strong></p>%s"
+
+#. module: website_base_multi_anz
+#: code:addons/website_base_multi_anz/controllers/website.py:83
+#, python-format
+msgid "<p><strong>Empty list of product variants</strong></p>"
+msgstr "<p><strong>La lista de variantes está vacía</strong></p>"
 
 #. module: website_base_multi_anz
 #: model:ir.model,name:website_base_multi_anz.model_website
@@ -124,3 +161,70 @@ msgstr "Email Sitio Web"
 #: model:ir.model,name:website_base_multi_anz.model_website_menu
 msgid "Website Menu"
 msgstr "Menú Sitio Web"
+
+#. module: website_base_multi_anz
+#: model:ir.model,name:website_base_multi_anz.model_product_public_category
+msgid "Website Product Category"
+msgstr "Categoría eCommerce"
+
+#. module: website_base_multi_anz
+#: model:ir.model.fields,field_description:website_base_multi_anz.field_avc_res_config_settings_sale_type_id
+#: model:ir.model.fields,field_description:website_base_multi_anz.field_ftp_server_config_setting_sale_type_id
+#: model:ir.model.fields,field_description:website_base_multi_anz.field_res_config_settings_sale_type_id
+#: model:ir.model.fields,field_description:website_base_multi_anz.field_robots_txt_settings_sale_type_id
+#: model:ir.model.fields,field_description:website_base_multi_anz.field_seo_general_settings_sale_type_id
+#: model:ir.model.fields,field_description:website_base_multi_anz.field_sitemap_base_settings_sale_type_id
+#: model:ir.model.fields,field_description:website_base_multi_anz.field_web_app_settings_sale_type_id
+#: model:ir.model.fields,field_description:website_base_multi_anz.field_website_sale_type_id
+msgid "Sale type"
+msgstr "Tipo de Venta"
+
+#. module: website_base_multi_anz
+#: model:ir.model.fields,field_description:website_base_multi_anz.field_product_public_category_tag_create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: website_base_multi_anz
+#: model:ir.model.fields,field_description:website_base_multi_anz.field_product_public_category_tag___last_update
+msgid "Last Modified on"
+msgstr "Última modificación en"
+
+#. module: website_base_multi_anz
+#: model:ir.model.fields,field_description:website_base_multi_anz.field_product_public_category_tag_write_uid
+msgid "Last Updated by"
+msgstr "Última actualización de"
+
+#. module: website_base_multi_anz
+#: model:ir.model.fields,field_description:website_base_multi_anz.field_product_public_category_tag_write_date
+msgid "Last Updated on"
+msgstr "Última actualización en"
+
+#. module: website_base_multi_anz
+#: model:ir.model.fields,field_description:website_base_multi_anz.field_product_public_category_tag_create_date
+msgid "Created on"
+msgstr "Creado en"
+
+#. module: website_base_multi_anz
+#: model:ir.model.fields,field_description:website_base_multi_anz.field_product_public_category_tag_display_name
+msgid "Display Name"
+msgstr "Nombre a mostrar"
+
+#. module: website_base_multi_anz
+#: model:ir.model.fields,help:website_base_multi_anz.field_product_public_category_public_categ_tag_ids
+msgid "Find Website Categories in Search Box by Related Tags"
+msgstr "Find Website Categories in Search Box by Related Tags"
+
+#. module: website_base_multi_anz
+#: model:ir.model.fields,field_description:website_base_multi_anz.field_product_public_category_tag_name
+msgid "Name"
+msgstr "Nombre"
+
+#. module: website_base_multi_anz
+#: model:ir.model.fields,field_description:website_base_multi_anz.field_website_menu_dynamic_cat_menu
+msgid "Dynamic categories menu"
+msgstr "Dynamic categories menu"
+
+#. module: website_base_multi_anz
+#: model:ir.model.fields,field_description:website_base_multi_anz.field_product_public_category_public_categ_tag_ids
+msgid "Related Tags"
+msgstr "Tags Relacionadas"

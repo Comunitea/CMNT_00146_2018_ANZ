@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <template id="report_label_anz">
+    <style>
+        .with_border {
+            border: 0px solid black;
+        }
+        .font_fam
+        {
+        font-family: "HelveticaNeue MediumCond";
+        }
+        .font_size_12 {
+        font-size: 14px;
+        }
+        .font_size_16 {
+        font-size: 16px;
+        }
+        .font_size_18 {
+        font-size: 18px;
+        }
+        .font_size_8 {
+        font-size: 10px;
+        margin-left: 8px
+        }
+    </style>
+       <div style="padding-top:5px; margin:0; border:0">
+       <table style="'border: 0px solid red; border-spacing:2; ;width: {}px'.format(product.anchura)">
+            <tbody>
+                <tr>
+
+                    <td class="with_border"
+                        t-att-style="'text-align: center; vertical-align: middle; height: %s px'%(product.height_r)" colspan="3">
+                        <span class="font_size_12 font_fam" t-field="product.name"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="with_border"
+                        t-att-style="'vertical-align: middle; text-align: left; width: 10%; height: {}px'.format(product.height_r)">
+                      <span class="font_size_8 font_fam">Talla</span>
+                    </td>
+                    <td class="with_border"
+                        t-att-style="'vertical-align: middle; text-align: right; width: 40%; height: {}px'.format(product.height_r)">
+                       <span class="font_size_12 font_fam" t-field="product.attr_name"/>
+                    </td>
+                    <td class="with_border"
+                        t-att-rowspan="'{}'.format(product.rows-1)"
+                        t-att-style="'vertical-align: middle; text-align: center; width: 50%; height: {}px'.format(product.height_r * (product.rows-1))">
+                        <img t-if="product.barcode and len(product.barcode) == 13" t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('EAN13', product.barcode, 400, 200)" style="width:100px; height:40px;"/>
+                        <img t-else="" t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('Code128', product.barcode, 450, 200)"
+                             t-att-style="'width:100%;height:{}px;'.format(40)"/>
+                        <span style="font-size: 8px; height:19px" t-field="product.barcode"/>
+                    </td>
+                </tr>
+
+                <tr t-if="product.discount">
+                  <td class="with_border"
+                      t-att-style="'vertical-align: middle; text-align: left; width: 10%; height: {}px'.format(product.height_r)">
+                      <span class="font_size_8 font_fam">PVC</span>
+                    </td>
+                    <td class="with_border"
+                        t-att-style="'vertical-align: middle; text-align: right; width: 40%; height: {}px'.format(product.height_r)">
+                    <span class="font_size_12 font_fam" t-esc="product.lst_price" t-options="{'widget': 'monetary', 'display_currency': res_company.currency_id}"/>
+                    </td>
+                </tr>
+                <tr t-if="product.discount">
+                    <td class="with_border"
+                      t-att-style="'vertical-align: middle; text-align: left; width: 15%; height: {}px'.format(product.height_r)">
+                      <span class="font_size_8 font_fam">OFERTA</span>
+                    </td>
+                    <td class="with_border"
+                        t-att-style="'vertical-align: middle; text-align: right; width: 40%; height: {}px'.format(product.height_r)">
+                    <span class="font_size_16 font_fam" t-esc="product.price" t-options="{'widget': 'monetary', 'display_currency': res_company.currency_id}"/>
+                    </td>
+
+                </tr>
+                <tr t-if="not product.discount">
+                  <td class="with_border"
+                      t-att-style="'vertical-align: middle; text-align: left; width: 10%; height: {}px'.format(product.height_r)">
+                      <span class="font_size_8 font_fam">PVP</span>
+                    </td>
+                    <td class="with_border"
+                        t-att-style="'vertical-align: middle; text-align: right; width: 40%; height: {}px'.format(product.height_r)">
+                    <span class="font_size_18 font_fam" t-esc="product.price" t-options="{'widget': 'monetary', 'display_currency': res_company.currency_id}"/>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</template>
+
+<template id="report_docs_label_anz">
+    <t t-foreach="docs" t-as="product">
+        <div class="page" style="padding:0; margin:0; border:0">
+            <t t-call="web.basic_layout">
+                <t t-call="product_custom_label_anz.report_label_anz">
+                    <t t-set="product" t-value="product"/>
+                </t>
+            </t>
+        </div>
+    </t>
+</template>
+
+
+        <record id="paperformat_product_tag" model="report.paperformat">
+            <field name="name">Etiquetas</field>
+            <field name="default" eval="True" />
+            <field name="format">custom</field>
+            <field name="page_height">29</field>
+            <field name="page_width">62</field>
+            <field name="orientation">Portrait</field>
+            <field name="margin_top">0</field>
+            <field name="margin_bottom">0</field>
+            <field name="margin_left">0</field>
+            <field name="margin_right">0</field>
+            <field name="header_line" eval="False" />
+            <field name="header_spacing">0</field>
+            <field name="dpi">180</field>
+        </record>
+        <report
+            string="Etiquetas POS OK (Sin rebaja)"
+            id="action_print_label_docs_pricelist"
+            model="product.product.label"
+            report_type="qweb-pdf"
+            name="product_custom_label_anz.report_docs_label_anz"
+            file="product_custom_label_anz.report_docs_label_anz"
+            print_report_name="'Etiqueta: %s' % (object.display_name)"
+            paperformat="product_custom_label_anz.paperformat_product_tag"/>
+
+</odoo>

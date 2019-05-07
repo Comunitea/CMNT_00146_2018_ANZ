@@ -231,7 +231,7 @@ class ProductImportWzd(models.TransientModel):
         categ_id = self._get_category_id(row_vals['category'], idx)
         attr_value = self._get_attr_value(row_vals, idx, categ_id)
 
-        code_attr = row_vals['code_attr'] and str(int(row_vals['code_attr'])) or '%04d' % (attr_value.id)
+        code_attr = attr_value.supplier_code or row_vals['code_attr'] and str(int(row_vals['code_attr'])) or '%04d' % (attr_value.id)
         default_code = row_vals['code_temp'] + '.' + code_attr
 
         vals = {

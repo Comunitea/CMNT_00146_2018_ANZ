@@ -23,6 +23,14 @@
             <attribute name="t-if">not(user_access == True and len(product.product_variant_ids) &gt; 1)</attribute>
         </xpath>
         <xpath expr="//a[@id='add_to_cart']" position="after">
+            <!-- Add to wishlist button -->
+            <t t-if="product.env.ref('website_multi_theme.auto_view_poi_website_sale_wishlist_add_to_wishlist').active">
+                <t t-set="in_wish" t-value="product.product_variant_ids &amp; request.env['product.wishlist'].current().mapped('product_id')"/>
+                <a class="btn btn-default btn-lg mt8 o_add_wishlist_dyn" t-att-disabled='in_wish or None' title="Add to Wishlist" t-att-data-product-product-id="product.product_variant_ids[0].id" data-action="o_wishlist">
+                    <span class="fa fa-heart"/>
+                </a>
+            </t>
+            <!-- Multi cart update button -->
             <div class="add-to-cart-multi" t-if="user_access == True and len(product.product_variant_ids) &gt; 1">
                 <a class="btn btn-success btn-lg mt8 a-submit" href="#">Multi add to Cart</a>
             </div>
@@ -35,6 +43,7 @@
         <xpath expr="//div[hasclass('js_product')]/t[1]" position="after">
             <t t-if="user_access == True and len(product.product_variant_ids) &gt; 1">
                 <input type="hidden" name="product_template" t-att-value="product.id"/>
+                <!--
                 <t t-set="attribute_value_ids" t-value="get_attribute_value_ids(product)"/>
                 <t t-foreach="product.attribute_line_ids.sorted(key=lambda x: x.attribute_id.sequence)" t-as="variant_id">
                     <div class="multi-sizes" t-if="len(variant_id.value_ids) > 1 and variant_id.attribute_id.type == 'radio'">
@@ -50,6 +59,37 @@
                         </t>
                     </div>
                 </t>
+                -->
+                <t t-set="stock_control" t-value="product.inventory_availability in ('always', 'threshold')"/>
+                <div class="multi-sizes">
+                    <div t-att-class="'one-line' if stock_control else 'one-line large-line'">
+                        <div class="one-label"/>
+                        <div class="one-input">To order</div>
+                        <div class="one-stock" t-if="stock_control">Available</div>
+                        <t t-else="">
+                            <div class="one-stock">On hand</div>
+                            <div class="one-stock">Forecast</div>
+                        </t>
+                    </div>
+                    <t t-set="variant_ids" t-value="product.product_variant_ids"/>
+                    <t t-foreach="variant_ids.sorted(key=lambda x: x.name)" t-as="variant">
+                        <div t-att-class="'one-line' if stock_control else 'one-line large-line'">
+                            <div class="one-label">
+                                <label t-att-for="variant.attribute_value_ids[0].id" t-field="variant.attribute_value_ids[0].name"/>
+                            </div>
+                            <t t-set="available" t-value="variant.qty_available - product.available_threshold if product.inventory_availability == 'threshold' else variant.qty_available"/>
+                            <t t-set="available" t-value="available if available &gt; 0 else 0"/>
+                            <div class="one-input">
+                                <span t-if="stock_control and available &lt; 1" class="exhausted">&amp;mdash;</span>
+                                <input t-else="" type="number" min="0" t-att-max="'%d' % available if stock_control else 100"
+                                       t-att-id="variant.attribute_value_ids[0].id"
+                                       t-att-name="'attribute-%s-%s' % (product.id, variant.attribute_value_ids[0].id)"/>
+                            </div>
+                            <div class="one-stock" t-raw="'%d ud.' % available"/>
+                            <div class="one-stock" t-raw="'%d ud.' % (variant.virtual_available if variant.virtual_available &gt; 0 else 0)" t-if="not stock_control"/>
+                        </div>
+                    </t>
+                </div>
             </t>
         </xpath>
 
@@ -99,6 +139,17 @@
                      t-attf-src="/web/image/product.image/{{pimg.id}}/image/"/>
             </div>
         </xpath>
+
+        <!-- Product delivery information -->
+<!--        <xpath expr="//div[@id='product_details']/p[hasclass('text-muted')]" position="replace">-->
+<!--            <div class="delivery_description">-->
+<!--                <p class="text-muted"/>-->
+<!--            </div>-->
+<!--        </xpath>-->
+
+        <!-- Hide guarantee -->
+        <xpath expr="//div[@id='product_details']//hr[last()]" position="replace"/>
+        <xpath expr="//div[@id='product_details']/p[last()]" position="replace"/>
 
     </template>
 

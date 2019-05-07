@@ -29,4 +29,50 @@
         </xpath>
     </template>
 
+    <!-- Shop categories template -->
+    <template id="website_sale_products_categories" name="eCommerce categories Point Sport" inherit_id="website_multi_theme.auto_view_poi_website_sale_products_categories">
+        <xpath expr="//div[@id='products_grid_before']/ul" position="replace">
+            <ul class="nav nav-pills nav-stacked mt16" id="o_shop_collapse_category">
+                <li t-att-class="'active' if not (category or request.params.get('search')) else None">
+                    <a href="/shop" class="o_not_editable">All Products</a>
+                </li>
+                <t t-foreach="categories" t-as="categ">
+                    <t t-call="website_sale.option_collapse_categories_recursive" />
+                </t>
+            </ul>
+        </xpath>
+    </template>
+    <template id="website_sale_option_collapse_categories_recursive" name="Recursive categories Point Sport" inherit_id="website_sale.option_collapse_categories_recursive">
+        <xpath expr="//a" position="attributes">
+            <attribute name="t-att-href">'/category/%s' % categ.slug if categ.slug else keep('/shop/category/' + slug(categ), category=0)</attribute>
+        </xpath>
+    </template>
+
+    <!-- Product attributes -->
+    <template id="website_sale_products_attributes" name="Product attributes" inherit_id="website_multi_theme.auto_view_poi_website_sale_products_attributes">
+        <!-- Only show published product attributes -->
+        <xpath expr="//form[hasclass('js_attributes')]/ul/t" position="attributes">
+            <attribute name="t-foreach">attributes.filtered(lambda x: x.website_published)</attribute>
+        </xpath>
+        <!-- Only show attributes filter if is a category page (not Shop page) -->
+       <!-- <xpath expr="//form[hasclass('js_attributes')]" position="attributes">
+            <attribute name="t-if">not request.httprequest.path == '/shop'</attribute>
+        </xpath>-->
+    </template>
+
+    <!-- Product item used by /shop and /shop/cart -->
+    <template id="website_sale_products_item" name="Product item" inherit_id="website_sale.products_item">
+        <xpath expr="//div[hasclass('oe_product_image')]/a/span" position="replace">
+            <span>
+                <img t-attf-src="/web/image/product.template/{{product.id}}/image/300x300/" class="img-responsive"
+                     t-att-title="product.name" t-att-alt="product.name"/>
+            </span>
+        </xpath>
+        <xpath expr="//section/h5" position="before">
+            <div class="product_default_code">
+                <span t-esc="product.default_code" t-if="product.default_code"/>
+            </div>
+        </xpath>
+    </template>
+
 </odoo>
