@@ -24,7 +24,6 @@ class ProductTemplate(models.Model):
     pvp = fields.Float('PVP', digits=(16, 2))
     ref_template = fields.Char('Ref Template')
     importation_name = fields.Char('Importation name')
-    fields.Many2one('product.attribute')
     numero_de_variantes = fields.Integer('Numero de variantes')
     sql_constraints = [
         ("unique_template_ref", "UNIQUE(ref_template)",
@@ -197,7 +196,7 @@ class ProductProduct(models.Model):
 
 
         model = 'product.product'
-        product_ids = self.env['product.product'].search([('default_code','!=','')])
+        product_ids = self.env['product.product'].search([('barcode','!=','')])
         len_p = len(product_ids)
         print ("Actualizando {} productos".format(len_p))
         i=0
@@ -205,5 +204,5 @@ class ProductProduct(models.Model):
         for p in product_ids:
             i+=1
             print("Van {} de {}".format(i, len_p))
-            create_xml_id(p.default_code, p.id, model)
+            create_xml_id(p.barcode, p.id, model)
 

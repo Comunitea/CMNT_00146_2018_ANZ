@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Grupo para acceso resringido de Asociados -->
+    <record id="see_qty_available_global_group" model="res.groups">
+        <field name="name">Ver cantidads globales</field>
+        <field name="implied_ids" eval="False"/>
+        <field name="comment">Se muestra el campo de qty global a mano</field>
+    </record>
+
+    <!-- Ver solo clientes propios -->
+    <record id="see_qty_available_global_group_field" model="ir.rule">
+        <field name="name">See field qty_available_global</field>
+        <field name="model_id" ref="product.model_product_product"/>
+        <field name="groups" eval="[(4, ref('see_qty_available_global_group'))]"/>
+	</record>
+
+</odoo>

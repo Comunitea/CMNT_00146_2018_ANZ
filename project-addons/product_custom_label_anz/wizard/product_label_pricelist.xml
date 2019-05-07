@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!--   Product Price List -->
+        <record id="view_product_tag_price_list" model="ir.ui.view">
+              <field name="name">Price per unit</field>
+              <field name="model">product.label.pricelist</field>
+              <field name="arch" type="xml">
+                <form string="Price List">
+                    <group string="Print tags with pricelist.">
+                        <field name="price_list" widget="selection"/>
+                        <field name="discount" />
+                        <field name="altura" invisible="1" />
+                        <field name="anchura" invisible="1" />
+                    </group>
+                    <footer>
+                        <button name="print_report" string="Print"  type="object" class="btn-primary"/>
+                        <button string="Cancel" class="btn-default" special="cancel" />
+                    </footer>
+                </form>
+              </field>
+        </record>
+
+        <act_window id="action_product_label_price_list"
+            key2="client_print_multi"
+            name="Labels with pricelist"
+            res_model="product.label.pricelist"
+            src_model="product.product"
+            view_mode="form" target="new" view_type="form" />
+</odoo>

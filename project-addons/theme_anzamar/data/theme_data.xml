@@ -2,15 +2,15 @@
 <odoo>
 
     <!-- Assets that define the Anzamar theme -->
-    <template id="anz_website_assets_frontend" name="Assets Anzamar Template" inherit_id="website.assets_frontend">
-        <xpath expr=".">
-            <link href="/theme_anzamar/static/css/_general.less" rel="stylesheet" type="text/less"/>
-            <t t-call="theme_anzamar.custom_css"/>
-        </xpath>
-        <xpath expr="//script[last()]" position="after">
-            <script type="text/javascript" src="/theme_anzamar/static/js/main.js"/>
-        </xpath>
-    </template>
+<!--    <template id="anz_website_assets_frontend" name="Assets Anzamar Template" inherit_id="website.assets_frontend">-->
+<!--        <xpath expr=".">-->
+<!--            <link href="/theme_anzamar/static/css/_general.less" rel="stylesheet" type="text/less"/>-->
+<!--            <t t-call="theme_anzamar.custom_css"/>-->
+<!--        </xpath>-->
+<!--        <xpath expr="//script[last()]" position="after">-->
+<!--            <script type="text/javascript" src="/theme_anzamar/static/js/main.js"/>-->
+<!--        </xpath>-->
+<!--    </template>-->
 
     <!-- Record that lets website admin to choose this theme -->
     <record model="website.theme" id="theme_anzamar_multi">
@@ -32,9 +32,9 @@
 
     <!-- This method prepare assets and applies Anzamar theme for Anzamar website -->
     <!-- Hook to reload theme on website_multi_theme module updates -->
-    <function model="res.config.settings"
+    <function model="website"
               name="multi_theme_reload"
-              eval="([ref('theme_anzamar.theme_anzamar_multi')])"
+              eval="([ref('website_base_multi_anz.anzamar_website')])"
     />
 
 </odoo>

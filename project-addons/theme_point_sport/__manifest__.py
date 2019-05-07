@@ -41,11 +41,13 @@
     'depends': [
         'theme_anzamar',
         'breadcrumbs_base',
+        'seo_base',
         'website_blog_base',
         'follow_us_base',
         'multi_company_base',
         'website_base_multi_anz',
         'website_sale_hide_price',
+        'base_search_fuzzy',
     ],
     'data': [
         'data/theme_data.xml',
@@ -53,7 +55,7 @@
         'data/legal_data.xml',
         'data/menu_data.xml',
         'data/page_data.xml',
-        # 'templates/head.xml',  # Nothing to load at this moment
+        'templates/head.xml',
         'templates/header.xml',
         'templates/footer.xml',
         'templates/breadcrumbs_bar.xml',

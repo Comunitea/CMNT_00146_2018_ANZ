@@ -480,7 +480,7 @@ msgid "My Portal"
 msgstr "Mi Cuenta"
 
 #. module: theme_point_sport
-#: model:website.page,name:theme_point_sport.poi_portal_my_purchase_orders
+#: model:website.page,name:theme_point_sport.anz_portal_my_purchase_orders
 msgid "My Purchase Orders"
 msgstr "Mis Pedidos de Compra"
 
