@@ -36,12 +36,12 @@ class MultiUpdateCart(WebsiteSale):
                     elif product_id.inventory_availability in ['always_virtual','threshold_virtual']:
                         max_qty = max(0,product_id.sudo().virtual_available)
                     threshold = template.available_threshold
-                    if product_id.inventory_availability in ['threshold','threshold_virtual']
-                        and treshold > 0:
+                    if product_id.inventory_availability in ['threshold','threshold_virtual'] and treshold > 0:
                         max_qty = max(0,max_qty - threshold)
                     # Search this variant qty in the cart
-                    for line in order.order_line if line.product_id == product_id:
-                        cart_qty = line.product_uom_qty
+                    for line in order.order_line:
+                        if line.product_id == product_id:
+                            cart_qty = line.product_uom_qty
 
                     if max_qty >= 0 and max_qty - cart_qty - qty < 0:
                         prod_list += _('<p class="alert alert-warning">{}: you ask for {} units but only {} '
