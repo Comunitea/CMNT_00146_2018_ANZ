@@ -43,9 +43,9 @@ class ProductLabelPricelist(models.TransientModel):
             rows = 3
         for p in res:
             vals = {
-                'name': p.product_tmpl_id.ref_template,
+                'name': p.product_tmpl_id.ref_template or p.product_tmpl_id.default_code,
                 'barcode': p.barcode,
-                'attr_name': p.attribute_value_ids[0].name,
+                'attr_name': p.attribute_value_ids and p.attribute_value_ids[0].name or 'Unica',
                 'price': p.price,
                 'lst_price': p.lst_price,
                 'height_r': h / rows,

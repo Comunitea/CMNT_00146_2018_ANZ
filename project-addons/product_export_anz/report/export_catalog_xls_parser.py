@@ -287,10 +287,9 @@ class ExportCatalogXlsParser(models.AbstractModel):
                     # total %
 
             if catalog_id.show_per_cent and catalog_id.incomings and catalog_id.outgoings:
-                form_per_cent = '={}/{}'.format(total_out, total_in)
+                form_per_cent = '=' + total_out + '/' + total_in
                 sheet.write_formula(row + sum_row - 1, total_col + 1, form_per_cent, percent_with_border)
                 sum_row += 1
-
 
             if catalog_id.grouped:
                 grouped_purchase = tmp_dic['grouped_purchase']
@@ -303,10 +302,7 @@ class ExportCatalogXlsParser(models.AbstractModel):
                     grouped_row+=1
                     sheet.write_number(grouped_row, grouped_col, int(month), f_border)
 
-
-
-
-            row += min(sum_row,3) + row_margin
+            row += max(sum_row, catalog_id.min_template_row) + row_margin
             if not template_len:
                 template_len = row - page_row
             if template_len:
