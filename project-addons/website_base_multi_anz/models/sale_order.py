@@ -9,6 +9,7 @@ class SaleOrder(models.Model):
 
     @api.model
     def create(self, vals):
+
         team_id = vals.get('team_id', False)
         domain = []
         if team_id:
@@ -21,4 +22,5 @@ class SaleOrder(models.Model):
                 vals.update({
                     'type_id': type_id.id
                 })
+
         return super(SaleOrder, self).create(vals)

@@ -115,6 +115,26 @@ class SaleOrder(models.Model):
         res = super(SaleOrder, self)._prepare_invoice()
         res.update(sponsored=self.sponsored)
         return res
+    
+    @api.multi
+    def recalculate_prices(self):
+        """
+        Para las tarifas que muestran el descuento separado, es necesario
+        que este también cambie, repetimos el cálculo original pero para el
+        descuento.
+        """
+        res = super().recalculate_prices()
+        for line in self.mapped('order_line'):
+            dict = line._convert_to_write(line.read()[0])
+            if 'product_tmpl_id' in line._fields:
+                dict['product_tmpl_id'] = line.product_tmpl_id
+            dict['discount'] = 0.0
+            line2 = self.env['sale.order.line'].new(dict)
+            # we make this to isolate changed values:
+            line2._onchange_discount()
+            line.discount = line2.discount
+        return res
+
 
 
 class SaleOrderLine(models.Model):

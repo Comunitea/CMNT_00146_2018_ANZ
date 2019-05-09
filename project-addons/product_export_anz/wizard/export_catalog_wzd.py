@@ -17,6 +17,9 @@ class ProductProduct(models.Model):
 
     def _compute_move_quantities_dict(self, lot_id, owner_id, package_id, from_date=False, to_date=False):
 
+        return self._compute_quantities_dict(lot_id, owner_id, package_id, from_date=from_date, to_date=to_date)
+
+
         domain_quant_loc, domain_move_in_loc, domain_move_out_loc = self._get_domain_locations()
         if to_date and to_date < fields.Datetime.now(): #Only to_date as to_date will correspond to qty_available
             dates_in_the_past = True
@@ -42,8 +45,14 @@ class ProductProduct(models.Model):
             product_id = product.id
             rounding = product.uom_id.rounding
             res[product_id] = {}
-            res[product_id]['incoming'] = float_round(moves_in_res.get(product_id, 0.0), precision_rounding=rounding)
-            res[product_id]['outgoing'] = float_round(moves_out_res.get(product_id, 0.0), precision_rounding=rounding)
+            if moves_in_res[product_id]:
+                res[product_id]['incoming'] = float_round(moves_in_res.get(product_id, 0.0), precision_rounding=rounding)
+            else:
+                res[product_id]['incoming'] = []
+            if moves_out_res[product_id]:
+                res[product_id]['outgoing'] = float_round(moves_out_res.get(product_id, 0.0), precision_rounding=rounding)
+            else:
+                res[product_id]['outgoing'] = []
         return res
 
 class CatalogType(models.Model):
@@ -63,6 +72,7 @@ class CatalogType(models.Model):
     euros = fields.Boolean('€')
     show_per_cent = fields.Boolean('% en resumen')
     grouped = fields.Boolean('Agrupar por meses compras y ventas')
+    min_template_row = fields.Integer('Filas minima', default=6)
 
 class ExportCatalogtWzd(models.TransientModel):
 
@@ -186,14 +196,10 @@ class ExportCatalogtWzd(models.TransientModel):
             global_domain = [('pricelist_id', '=', self.pricelist_id.id), ('applied_on', '=', '3_global')]
             global_price_template_ids = self.env['product.pricelist.item'].search(global_domain)
             if not global_price_template_ids:
-
                 template_domain = [('pricelist_id', '=', self.pricelist_id.id), ('applied_on', '=', '1_product')]
                 price_template_ids = self.env['product.pricelist.item'].search(template_domain).mapped('product_tmpl_id')
-
                 product_domain = [('pricelist_id', '=', self.pricelist_id.id), ('applied_on', '=', '0_product_variant')]
                 price_product_ids = self.env['product.pricelist.item'].search(product_domain).mapped('product_id').mapped('product_tmpl_id')
-
-
                 domain += [('id', 'in', price_template_ids.ids + price_product_ids.ids)]
         templates = self.env['product.template'].search(domain, limit=self.limit)
         return templates
@@ -224,7 +230,7 @@ class ExportCatalogtWzd(models.TransientModel):
             res[tmp.name] = {
                 #'image': tmp.image_medium or False,
                 'tmp_id': tmp.id,
-                'cost': tmp.standard_price,
+                'cost': tmp.standard_price or tmp.product_variant_ids and tmp.product_variant_ids[0].standard_price or 0.00,
                 'pvp': tmp.pvp or tmp.list_price,
                 'attr_names': [],
                 'sales': [],
@@ -256,11 +262,11 @@ class ExportCatalogtWzd(models.TransientModel):
                     res[tmp.name]['purchases'].append(purchases)
 
                 if self.catalog_type_id.incomings:
-                    incomings = stock_info_moves[variant.id]['incoming']
+                    incomings = stock_info_moves[variant.id]['incoming_qty']
                     res[tmp.name]['incomings'].append(incomings)
 
                 if self.catalog_type_id.outgoings:
-                    outgoings = stock_info_moves[variant.id]['outgoing']
+                    outgoings = stock_info_moves[variant.id]['outgoing_qty']
                     res[tmp.name]['outgoings'].append(outgoings)
 
                 if self.catalog_type_id.stocks:
@@ -275,7 +281,6 @@ class ExportCatalogtWzd(models.TransientModel):
                     else:
                         percent = 0
                     res[tmp.name]['percent'] = percent
-
 
         return res
 
