@@ -74,7 +74,6 @@
             </div>
             <xpath expr="//group[@name='purchase']" position="after">
 					<group col="4" name="container_brand" attrs="{'invisible': [('affiliate','=',True)]}">
-						<!-- Show table if haven't value -->
 						<group string="Allowed brand" attrs="{'invisible': [('restricted_brand_ids', '!=', [])]}">
                         <div>
                             <field name="allowed_brand_ids" >

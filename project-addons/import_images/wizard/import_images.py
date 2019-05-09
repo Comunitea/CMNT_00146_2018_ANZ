@@ -178,7 +178,7 @@ class ImportImages(models.TransientModel):
             table = 'product.product'
             code, color = CODECOLOR.match(references[0].reference).groups()
             # domain = [('default_code','=ilike',code+'%' if not color else code+'_'+color+'%')]
-            domain = [('ref_template','=ilike',code+'%' if not color else code+'_'+color+'%')]
+            domain = [('ref_template','=ilike',code+' '+color)]
             if not color and re.match(r'\d{12,14}',code):
                 domain = [('barcode','=',code)]
             tmpl_ids = self.env[table].read_group(domain,['product_tmpl_id'],['product_tmpl_id'])
