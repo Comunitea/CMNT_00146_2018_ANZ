@@ -10,6 +10,8 @@
                     <group string="Print tags with pricelist.">
                         <field name="price_list" widget="selection"/>
                         <field name="discount" />
+                        <field name="taxes" />
+						<field name="baseincrement" />
                         <field name="altura" invisible="1" />
                         <field name="anchura" invisible="1" />
                     </group>

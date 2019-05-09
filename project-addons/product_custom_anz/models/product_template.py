@@ -2,6 +2,7 @@
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
 from odoo import api, fields, models
 from odoo.addons import decimal_precision as dp
+import pdb
 
 class ProductTemplate(models.Model):
 
@@ -24,24 +25,38 @@ class ProductTemplate(models.Model):
     pvp = fields.Float('PVP', digits=(16, 2))
     
     # TODO Mostrar estos campos al editar
-    ref_template = fields.Char('Referencia')
-    ref_template_color = fields.Char('Color code')
-    # TODO Ya hay un campo color, hay que relacionarlo con este
-    # TODO si no mostrar este
-    @api.depends('ref_template','ref_template_color')
-    def referencia(self):
-        return ref_template + " " + ref_template_color
+    ref_template_code = fields.Char('Referencia de plantilla')
+    ref_template_color = fields.Char('Color de la referencia de plantilla')
+    ref_template = fields.Char(compute='_compute_ref_template',
+                               search='_search_ref_template')
+
+    @api.depends('ref_template_code','ref_template_color')
+    def _compute_ref_template(self):
+        return self.ref_template_code + " " + self.ref_template_color
+
+    def _search_ref_template(self,operator,value):
+        if operator.find('like') >= 0 and isinstance(value,(str)):
+            comparator = " ref_template_code || ' ' || ref_template_color "
+            if operator.find('ilike') >= 0:
+                comparator = comparator.lower()
+                value = value.lower()
+            if operator.find('=') >= 0:
+                operator = operator.replace('=','')
+            else:
+                value = '%' + value + '%'
+            self.env.cr.execute("SELECT id FROM product_template WHERE "+comparator+operator+" '"+value+"';")
+        else:
+            ValidationError('The field risk_exception is not searchable '
+                            'with the operator {} and value {}'.format(operator,value))
+        return [('id','in',[i[0] for i in self.env.cr.fetchall()])]
+
 
     importation_name = fields.Char('Importation name')
     numero_de_variantes = fields.Integer('Numero de variantes')
-    inventory_availability = fields.Selection([
-        ('never', 'Sell regardless of inventory'),
-        ('always', 'Show inventory on website and prevent sales if not enough stock'),
-        ('always_virtual', 'Show future inventory on website and prevent sales if not enought stock'),
-        ('threshold', 'Show inventory below a threshold and prevent sales if not enough stock'),
-        ('threshold_virtual', 'Show future inventory below a threshold and prevent sales if not enought stock'),
-        ('custom', 'Show product-specific notifications'),
-    ], string='Inventory Availability', help='Adds an inventory availability status on the web product page.', default='never')
+    inventory_availability = fields.Selection(selection_add=[
+        ('always_virtual', 'Show future and current inventory on website and prevent sales if not enought stock'),
+        ('threshold_virtual', 'Show future and current inventory below a threshold and prevent sales if not enought stock')
+    ])
     sql_constraints = [
         ("unique_template_ref", "UNIQUE(ref_template)",
          "Cannot have more than one template with same code.")

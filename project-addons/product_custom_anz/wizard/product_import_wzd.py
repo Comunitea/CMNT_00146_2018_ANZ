@@ -2,11 +2,34 @@
 # © 2018 Comunitea
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-# TODO
-# Crear los colores como variantes (búsquedas por atributo)
-# añadir un loop para leer todos los campos tras category como tags
-# ??? try color -> tags
-# ??? pandas
+# TODO  PLANTILLA:
+# ref_template_code
+# ref_template_color
+# !!! estas dos columnas son clave y determinan product_template y PT.XXXXXX YYY cuando es posible
+# marca - se crea como atributo y como caracteristica de atributo
+# color general - amazon, hace falta una especie de "color general"
+# composicion de colores - amazon separados por coma o / todos los colores que tiene, se pasa a atributos
+# name - Auto explicativo NOT NULL
+# categoria NOT NULL -- ver si la metemos a palo seco
+# ATRIBUTOS - TODO preguntar a kiko cual era la lógica de esto, por que no recuerdo porque habia tipo y nombre
+# Esto se duplicai en atributo y COMO atributo para facilitar el trabajo a los de front
+# nombre de talla NOT NULL
+# tipo de product - T-Shirt sandalias y eso
+# <!-- Marca, puesto arriba -->
+# Genero - Puede ser falso?
+# edad - puede ser falso?
+# DESCRIPCIONES
+# descripcion corta
+# descripcion larga
+# ESPECIFICO por product_product
+# coste NOT NULL
+# precio de venta NOT NULL - Si es distinto para alguno cambiar
+# valor de la talla - 46,47,etc NOT NULL
+# supplier name - amazon, esto es un campo que vamos aprovechar para crear ls relaciones entre las tallas
+# EAN NOT NULL
+# Campos de longitud VARIABLE, pueden aparecer 30 y no son obligatorios
+# Si el nombre del campo es tag se busca una etuiqueta
+# si el nombre del campo es attribute, se busca un atributo
 
 from odoo import api, models, fields, _
 from odoo.exceptions import UserError
@@ -19,15 +42,15 @@ _logger = logging.getLogger(__name__)
 # Global variable to store the new created templates
 template_ids = []
 
-
 class ProductImportWzd(models.TransientModel):
 
     _name = 'product.import.wzd'
 
     name = fields.Char('Importation name', required=True)
     file = fields.Binary(string='File', required=True)
-    brand_id = fields.Many2one('product.brand', 'Brand', required=True)
     filename = fields.Char(string='Filename')
+
+    brand_id = fields.Many2one('product.brand', 'Brand')
     categ_id = fields.Many2one('product.category', 'Default product category')
     create_attributes = fields.Boolean('Create attributes/values if neccesary')
 
@@ -35,6 +58,9 @@ class ProductImportWzd(models.TransientModel):
     def onchange_filename(self):
         if not self.name and self.filename:
             self.name = self.filename and self.filename.split('.')[0]
+
+    def _parse_rows(self):
+        pass
 
     def _parse_row_vals(self, row, idx):
         res = {
@@ -259,7 +285,7 @@ class ProductImportWzd(models.TransientModel):
             template = product.product_tmpl_id
             tags = self._get_tags(row_vals)
             vals = {
-                'ref_template': row_vals['code_temp'],
+                'ref_template_code': row_vals['code_temp'],
                 'importation_name': self.name,
                 'product_brand_id': self.brand_id.id,
                 'categ_id': categ_id.id
