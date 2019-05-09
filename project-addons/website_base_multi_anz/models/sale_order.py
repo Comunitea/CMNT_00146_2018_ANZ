@@ -9,6 +9,7 @@ class SaleOrder(models.Model):
 
     @api.model
     def create(self, vals):
+
         team_id = vals.get('team_id', False)
         domain = []
         if team_id:
