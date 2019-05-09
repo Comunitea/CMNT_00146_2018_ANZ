@@ -77,7 +77,7 @@
                             <div class="one-label">
                                 <label t-att-for="variant.attribute_value_ids[0].id" t-field="variant.attribute_value_ids[0].name"/>
                             </div>
-                            <t t-set="available" t-value="variant.qty_available - product.available_threshold if product.inventory_availability == 'threshold' else variant.qty_available"/>
+                            <t t-set="available" t-value="variant.sudo().qty_available - product.available_threshold if product.inventory_availability == 'threshold' else variant.sudo().qty_available"/>
                             <t t-set="available" t-value="available if available &gt; 0 else 0"/>
                             <div class="one-input">
                                 <span t-if="stock_control and available &lt; 1" class="exhausted">&amp;mdash;</span>
