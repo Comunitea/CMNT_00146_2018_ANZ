@@ -16,6 +16,7 @@
         'product_virtual_stock_conservative',
         'stock_available_global',
         'partner_custom_anz',
+        'product_brand',
     ],
     'data': [
         'views/partner_view.xml',
