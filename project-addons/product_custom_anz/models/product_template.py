@@ -14,6 +14,7 @@ class ProductTemplate(models.Model):
             template.template_standard_price = template.product_variant_ids and template.product_variant_ids[0].standard_price or 0.00
 
 
+    list_price = fields.Float(company_dependent=True)
     product_color = fields.Many2one('product.attribute.value', string="Color",
                                     domain="[('is_color','=', True)]")
     boot_type = fields.Many2one(
@@ -186,6 +187,8 @@ class ProductTemplate(models.Model):
 class ProductProduct(models.Model):
 
     _inherit = 'product.product'
+
+    standard_price = fields.Float(company_dependent=True)
 
     @api.multi
     def _get_attribute_id(self):
