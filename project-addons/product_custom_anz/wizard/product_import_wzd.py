@@ -30,6 +30,7 @@
 # Campos de longitud VARIABLE, pueden aparecer 30 y no son obligatorios
 # Si el nombre del campo es tag se busca una etuiqueta
 # si el nombre del campo es attribute, se busca un atributo
+# TODO vista para ver errorres o devolver resultados
 
 from odoo import api, models, fields, _
 from odoo.exceptions import UserError
@@ -50,9 +51,16 @@ class ProductImportWzd(models.TransientModel):
     file = fields.Binary(string='File', required=True)
     filename = fields.Char(string='Filename')
 
-    brand_id = fields.Many2one('product.brand', 'Brand')
+    #brand_id = fields.Many2one('product.brand', 'Brand')
     categ_id = fields.Many2one('product.category', 'Default product category')
     create_attributes = fields.Boolean('Create attributes/values if neccesary')
+
+    def _get_brand(self, name, create=False):
+        if name:
+            brand = self.env['product.brand'].search([('name','=like',name)])
+            brand.ensure_one()
+            return brand
+        return None
 
     @api.onchange('file')
     def onchange_filename(self):
@@ -69,18 +77,19 @@ class ProductImportWzd(models.TransientModel):
             'name_color': row[2],
             'name_extra': row[3],
             'attr_name': row[4],
-            'attr_val': row[5],
-            'ean': row[6],
-            'code_attr': row[7],
-            'cost': row[8] or 0.0,
-            'pvp': row[9] or 0.0,
-            'category': row[10],
-            'type': row[11],
-            'gender': row[12],
-            'age': row[13],
-            'tag1': row[14],
-            'tag2': row[15],
-            'tag3': row[16],
+            'brand_id': _get_brand(row[6]).id if _get_brand(row[6]) else None,
+            'attr_val': row[6],
+            'ean': row[7],
+            'code_attr': row[8],
+            'cost': row[9] or 0.0,
+            'pvp': row[10] or 0.0,
+            'category': row[11],
+            'type': row[12],
+            'gender': row[13],
+            'age': row[14],
+            'tag1': row[15],
+            'tag2': row[16],
+            'tag3': row[17],
         }
 
         # Check mandatory values setted
@@ -124,12 +133,12 @@ class ProductImportWzd(models.TransientModel):
         return res
 
 
-    def _get_product_att(self, value, type='type', create=False):
+    def _get_product_att(self, value, brand_id, type='type', create=False):
         at_tag = self.env['product.attribute.tag']
-        domain = [('product_brand_id', '=', self.brand_id.id), ('type', '=', type), ('value', '=', value)]
+        domain = [('product_brand_id', '=', brand_id), ('type', '=', type), ('value', '=', value)]
         tag = at_tag.search(domain, limit=1)
         if not tag and create:
-            vals ={'product_brand_id': self.brand_id.id,
+            vals ={'product_brand_id': brand_id,
                    'type': type,
                    'value': value}
 
@@ -142,29 +151,27 @@ class ProductImportWzd(models.TransientModel):
         """
         Get an Existing attribute or raise an error
         """
-
-
         if not categ_id:
             categ_id = self._get_category_id(row_vals['category'], idx)
 
         domain = [('product_brand_id', '=', self.brand_id.id)]
         tag_type_id=tag_age_id=tag_gender_id=False
         if row_vals['type']:
-            tag_type_id = self._get_product_att(row_vals['type'], 'type', self.create_attributes)
+            tag_type_id = self._get_product_att(row_vals['type'], row_vals['brand_id'], 'type', self.create_attributes)
             if tag_type_id:
                 domain += [('product_type_id', '=', tag_type_id.id)]
             else:
                 domain += [('product_type_id', '=', False)]
 
         if row_vals['gender']:
-            tag_gender_id = self._get_product_att(row_vals['gender'], 'gender', self.create_attributes)
+            tag_gender_id = self._get_product_att(row_vals['gender'], row_vals['brand_id'],'gender', self.create_attributes)
             if tag_gender_id:
                 domain += [('product_gender_id', '=', tag_gender_id.id)]
             else:
                 domain += [('product_gender_id', '=', False)]
 
         if row_vals['age']:
-            tag_age_id = self._get_product_att(row_vals['age'], 'age', self.create_attributes)
+            tag_age_id = self._get_product_att(row_vals['age'], row_vals['brand_id'],'age', self.create_attributes)
             if tag_age_id:
                 domain += [('product_age_id', '=', tag_age_id.id)]
             else:
@@ -173,9 +180,8 @@ class ProductImportWzd(models.TransientModel):
         attr = self.env['product.attribute'].search(domain, limit=1)
         if not attr:
             if self.create_attributes:
-
                 vals = {#'attribute_category_id': categ_id.id,
-                        'product_brand_id': self.brand_id.id,
+                        'product_brand_id': row_vals['brand_id'],
                         'name': row_vals['attr_name'],
                         'product_type_id': tag_type_id and tag_type_id.id,
                         'product_gender_id': tag_gender_id and tag_gender_id.id,
@@ -275,7 +281,6 @@ class ProductImportWzd(models.TransientModel):
             vals.update(product_tmpl_id=template.id)
         product = pp_pool.create(vals)
 
-
         # CREATE PRODUCT XMLID
         self._create_xml_id(
             product.barcode, product.id, 'product.product')
@@ -287,7 +292,7 @@ class ProductImportWzd(models.TransientModel):
             vals = {
                 'ref_template_code': row_vals['code_temp'],
                 'importation_name': self.name,
-                'product_brand_id': self.brand_id.id,
+                'product_brand_id': row_vals['brand_id'],
                 'categ_id': categ_id.id
             }
             if tags:
