@@ -76,7 +76,7 @@ class ProductImportWzd(models.TransientModel):
             'name_color': row[2],
             'name_extra': row[3],
             'attr_name': row[4],
-            'brand_id': row[5],
+            'brand_id': row[5] or False,
             'attr_val': row[6],
             'ean': row[7],
             'code_attr': row[8],
