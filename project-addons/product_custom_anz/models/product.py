@@ -71,4 +71,4 @@ class ProductAttributeValue(models.Model):
     supplier_code = fields.Char("Supplier name")
     name_normalizado = fields.Char()
 
-    price_extra = fields.Float(company_dependent=True)
+    #price_extra = fields.Float(company_dependent=True)
