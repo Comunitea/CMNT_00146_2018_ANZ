@@ -60,6 +60,7 @@
         'views/res_company_views.xml',
         'views/website_views.xml',
         'views/public_category.xml',
+        'views/product_template.xml',
         'security/ir.model.access.csv',
     ],
     'images': [

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <!-- Add field to change website sequence for products in treeView  -->
+    <record id="website_sequence_product_template_tree_view" model="ir.ui.view">
+        <field name="name">Website sequence for product template tree view</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_tree_view"/>
+        <field name="arch" type="xml">
+            <field name="sequence" position="replace">
+                <field name="website_sequence"/>
+                <field name="website_sequence" widget="handle"/>
+            </field>
+        </field>
+    </record>
+
+</odoo>

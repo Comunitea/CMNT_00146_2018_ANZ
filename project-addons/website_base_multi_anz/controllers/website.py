@@ -119,3 +119,6 @@ class WebsiteSaleExtended(WebsiteSale):
             'message': message
         }
         return json.dumps(values)
+
+    def _get_search_order(self, post):
+        return '%s , id asc' % post.get('order', 'website_sequence asc')
