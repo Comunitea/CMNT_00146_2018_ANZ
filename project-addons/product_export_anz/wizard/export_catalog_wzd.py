@@ -247,7 +247,12 @@ class ExportCatalogtWzd(models.TransientModel):
                 'ref_template': tmp.ref_template
             }
             sales=purchases=incomings=outgoings=stocks=0
-            for variant in tmp.product_variant_ids:
+            variants = tmp.product_variant_ids
+            if self.with_stock:
+                variants = variants.filtered(lambda x: x.qty_available > 0)
+
+
+            for variant in variants:
 
                 attr_name = ''
                 if variant.attribute_value_ids:
