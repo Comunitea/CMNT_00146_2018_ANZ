@@ -201,7 +201,11 @@ class ExportCatalogtWzd(models.TransientModel):
                 product_domain = [('pricelist_id', '=', self.pricelist_id.id), ('applied_on', '=', '0_product_variant')]
                 price_product_ids = self.env['product.pricelist.item'].search(product_domain).mapped('product_id').mapped('product_tmpl_id')
                 domain += [('id', 'in', price_template_ids.ids + price_product_ids.ids)]
-        templates = self.env['product.template'].search(domain, limit=self.limit)
+        if self.limit>0:
+            templates = self.env['product.template'].search(domain, limit=self.limit)
+        else:
+            templates = self.env['product.template'].search(domain)
+
         if self.with_stock:
             return templates.filtered(lambda x: x.qty_available >0)
         return templates
