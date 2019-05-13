@@ -1,9 +1,8 @@
-
 # © 2018 Comunitea
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 # TODO  PLANTILLA:
-# ref_template_code
+# ref_template
 # ref_template_color
 # !!! estas dos columnas son clave y determinan product_template y PT.XXXXXX YYY cuando es posible
 # marca - se crea como atributo y como caracteristica de atributo
@@ -51,7 +50,7 @@ class ProductImportWzd(models.TransientModel):
     file = fields.Binary(string='File', required=True)
     filename = fields.Char(string='Filename')
 
-    #brand_id = fields.Many2one('product.brand', 'Brand')
+    brand_id = fields.Many2one('product.brand', 'Brand')
     categ_id = fields.Many2one('product.category', 'Default product category')
     create_attributes = fields.Boolean('Create attributes/values if neccesary')
 
@@ -60,7 +59,7 @@ class ProductImportWzd(models.TransientModel):
             brand = self.env['product.brand'].search([('name','=like',name)])
             brand.ensure_one()
             return brand
-        return None
+        return self.brand_id
 
     @api.onchange('file')
     def onchange_filename(self):
@@ -77,7 +76,7 @@ class ProductImportWzd(models.TransientModel):
             'name_color': row[2],
             'name_extra': row[3],
             'attr_name': row[4],
-            'brand_id': _get_brand(row[6]).id if _get_brand(row[6]) else None,
+            'brand_id': row[5],
             'attr_val': row[6],
             'ean': row[7],
             'code_attr': row[8],
@@ -154,24 +153,24 @@ class ProductImportWzd(models.TransientModel):
         if not categ_id:
             categ_id = self._get_category_id(row_vals['category'], idx)
 
-        domain = [('product_brand_id', '=', self.brand_id.id)]
+        domain = [('product_brand_id', '=', self._get_brand(row_vals['brand_id']))]
         tag_type_id=tag_age_id=tag_gender_id=False
         if row_vals['type']:
-            tag_type_id = self._get_product_att(row_vals['type'], row_vals['brand_id'], 'type', self.create_attributes)
+            tag_type_id = self._get_product_att(row_vals['type'], self._get_brand(row_vals['brand_id']), 'type', self.create_attributes)
             if tag_type_id:
                 domain += [('product_type_id', '=', tag_type_id.id)]
             else:
                 domain += [('product_type_id', '=', False)]
 
         if row_vals['gender']:
-            tag_gender_id = self._get_product_att(row_vals['gender'], row_vals['brand_id'],'gender', self.create_attributes)
+            tag_gender_id = self._get_product_att(row_vals['gender'], self._get_brand(row_vals['brand_id']),'gender', self.create_attributes)
             if tag_gender_id:
                 domain += [('product_gender_id', '=', tag_gender_id.id)]
             else:
                 domain += [('product_gender_id', '=', False)]
 
         if row_vals['age']:
-            tag_age_id = self._get_product_att(row_vals['age'], row_vals['brand_id'],'age', self.create_attributes)
+            tag_age_id = self._get_product_att(row_vals['age'], self._get_brand(row_vals['brand_id']),'age', self.create_attributes)
             if tag_age_id:
                 domain += [('product_age_id', '=', tag_age_id.id)]
             else:
@@ -181,7 +180,7 @@ class ProductImportWzd(models.TransientModel):
         if not attr:
             if self.create_attributes:
                 vals = {#'attribute_category_id': categ_id.id,
-                        'product_brand_id': row_vals['brand_id'],
+                        'product_brand_id': self._get_brand(row_vals['brand_id']),
                         'name': row_vals['attr_name'],
                         'product_type_id': tag_type_id and tag_type_id.id,
                         'product_gender_id': tag_gender_id and tag_gender_id.id,
@@ -290,9 +289,9 @@ class ProductImportWzd(models.TransientModel):
             template = product.product_tmpl_id
             tags = self._get_tags(row_vals)
             vals = {
-                'ref_template_code': row_vals['code_temp'],
+                'ref_template': row_vals['code_temp'],
                 'importation_name': self.name,
-                'product_brand_id': row_vals['brand_id'],
+                'product_brand_id': self._get_brand(row_vals['brand_id']),
                 'categ_id': categ_id.id
             }
             if tags:

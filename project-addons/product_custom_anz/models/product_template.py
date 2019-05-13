@@ -25,18 +25,18 @@ class ProductTemplate(models.Model):
     pvp = fields.Float('PVP', digits=(16, 2))
     
     # TODO Mostrar estos campos al editar
-    ref_template_code = fields.Char('Referencia de plantilla')
+    ref_template = fields.Char('Referencia de plantilla')
     ref_template_color = fields.Char('Color de la referencia de plantilla')
-    ref_template = fields.Char(compute='_compute_ref_template',
+    ref_template_name = fields.Char(compute='_compute_ref_template',
                                search='_search_ref_template')
 
-    @api.depends('ref_template_code','ref_template_color')
+    @api.depends('ref_template','ref_template_color')
     def _compute_ref_template(self):
-        return self.ref_template_code + " " + self.ref_template_color
+        return self.ref_template + " " + self.ref_template_color
 
     def _search_ref_template(self,operator,value):
         if operator.find('like') >= 0 and isinstance(value,(str)):
-            comparator = " ref_template_code || ' ' || ref_template_color "
+            comparator = " ref_template || ' ' || ref_template_color "
             if operator.find('ilike') >= 0:
                 comparator = comparator.lower()
                 value = value.lower()
@@ -53,10 +53,6 @@ class ProductTemplate(models.Model):
 
     importation_name = fields.Char('Importation name')
     numero_de_variantes = fields.Integer('Numero de variantes')
-    inventory_availability = fields.Selection(selection_add=[
-        ('always_virtual', 'Show future and current inventory on website and prevent sales if not enought stock'),
-        ('threshold_virtual', 'Show future and current inventory below a threshold and prevent sales if not enought stock')
-    ])
     sql_constraints = [
         ("unique_template_ref", "UNIQUE(ref_template)",
          "Cannot have more than one template with same code.")

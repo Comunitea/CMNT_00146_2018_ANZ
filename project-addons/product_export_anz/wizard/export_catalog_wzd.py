@@ -242,7 +242,7 @@ class ExportCatalogtWzd(models.TransientModel):
                 'grouped_sale': [],
                 'grouped_purchase': [],
                 'grouped_months': [],
-                'ref_template_code': tmp.ref_template
+                'ref_template': tmp.ref_template
             }
             sales=purchases=incomings=outgoings=stocks=0
             for variant in tmp.product_variant_ids:

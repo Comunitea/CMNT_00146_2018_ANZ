@@ -103,7 +103,7 @@
                     <field name="attribute_id"/>
                     <field name="variant_suffix"/>
 					<group>
-                    	<field name="ref_template_code"/>
+                    	<field name="ref_template"/>
                     	<field name="ref_template_color"/>
 					</group>
                 </group>
