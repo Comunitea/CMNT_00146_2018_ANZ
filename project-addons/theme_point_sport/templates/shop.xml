@@ -75,4 +75,10 @@
         </xpath>
     </template>
 
+    <template id="shop_infinite_scroll" inherit_id="sgeede_infinite_scroll.products_infinite_scroll" name="Infinite Scroll friendly URL's">
+        <xpath expr="//t[1]/td[hasclass('sgeede-infinite-pagination')//a]" position="attributes">
+            <attribute name="t-att-href">'/category/%s/page/%d' % (category.slug, int(pager['page']['num']) + 1) if category.slug else pager['page_next']['url']</attribute>
+        </xpath>
+    </template>
+
 </odoo>
