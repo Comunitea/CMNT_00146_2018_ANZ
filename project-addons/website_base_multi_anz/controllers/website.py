@@ -122,3 +122,9 @@ class WebsiteSaleExtended(WebsiteSale):
 
     def _get_search_order(self, post):
         return '%s , id asc' % post.get('order', 'website_sequence asc')
+
+    @http.route(['/shop/cart/create_order'], type='json', auth="public", methods=['POST'], website=True)
+    def multi_update_create_order(self):
+        order = request.website.sale_get_order(force_create=True)
+        result = True if order else False
+        return result
