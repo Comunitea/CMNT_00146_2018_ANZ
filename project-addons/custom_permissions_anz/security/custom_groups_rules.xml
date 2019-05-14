@@ -50,7 +50,6 @@
     <!-- Grupo para acceso resringido de Asociados -->
     <record id="anz_asociated_user" model="res.groups">
         <field name="name">Asociated</field>
-        <field name="implied_ids" eval="False"/>
         <field name="comment">Asociates have a customiced access</field>
     </record>
 

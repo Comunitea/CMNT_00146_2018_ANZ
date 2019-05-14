@@ -26,6 +26,8 @@ class ProductLabelPricelist(models.TransientModel):
     discount = fields.Boolean('Is discount?', default=False)
     altura = fields.Integer(default=110)
     anchura = fields.Integer(default=350)
+    baseincrement = fields.Integer('% añadido al precio base: ', default = 0)
+    taxes = fields.Boolean('Add taxes? (NO FUNCIONA;NO USAR)', default=True)
 
     @api.multi
     def print_report(self):
@@ -45,9 +47,9 @@ class ProductLabelPricelist(models.TransientModel):
             vals = {
                 'name': p.product_tmpl_id.ref_template or p.product_tmpl_id.default_code,
                 'barcode': p.barcode,
-                'attr_name': p.attribute_value_ids and p.attribute_value_ids[0].name or 'Unica',
+                'attr_name': p.attribute_value_ids and p.attribute_value_ids[0].name or 'Única',
                 'price': p.price,
-                'lst_price': p.lst_price,
+                'lst_price': p.lst_price if not self.discount else p.lst_price * (1 + self.baseincrement/100),
                 'height_r': h / rows,
                 'height_t': h,
                 'discount': self.discount,

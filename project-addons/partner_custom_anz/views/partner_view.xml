@@ -73,8 +73,8 @@
                 </button>
             </div>
             <xpath expr="//group[@name='purchase']" position="after">
-                <group col="4" name="container_brand" attrs="{'invisible': [('affiliate','=',True)]}">
-                    <group string="Allowed brand" attrs="{'invisible': [('restricted_brand_ids', '!=', [])]}">
+					<group col="4" name="container_brand" attrs="{'invisible': [('affiliate','=',True)]}">
+						<group string="Allowed brand" attrs="{'invisible': [('restricted_brand_ids', '!=', [])]}">
                         <div>
                             <field name="allowed_brand_ids" >
                                 <tree>
@@ -83,7 +83,7 @@
                             </field>
                         </div>
                     </group>
-                    <group string="Restricted brand" attrs="{'invisible': [('allowed_brand_ids', '!=', [])]}">
+					<group string="Restricted brand" attrs="{'invisible': [('allowed_brand_ids', '!=', [])]}">
                         <div>
                             <field name="restricted_brand_ids" >
                                 <tree>
@@ -97,7 +97,7 @@
             </xpath>
             <xpath expr="//page[1]" position="after">
                 <page string="Brands">
-                    <group string="Allowed brand" attrs="{'invisible': [('restricted_brand_ids', '!=', [])]}">
+						<group string="Allowed brand" attrs="{'invisible': [('restricted_brand_ids', '!=', [])]}">
                         <div>
                             <field name="allowed_brand_ids" >
                                 <tree>
@@ -106,7 +106,7 @@
                             </field>
                         </div>
                     </group>
-                    <group string="Restricted brand" attrs="{'invisible': [('allowed_brand_ids', '!=', [])]}">
+					<group string="Restricted brand" attrs="{'invisible': [('allowed_brand_ids', '!=', [])]}">
                         <div>
                             <field name="restricted_brand_ids" >
                                 <tree>

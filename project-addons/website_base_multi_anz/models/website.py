@@ -11,6 +11,8 @@ from odoo.addons.seo_base.models.settings import _default_website
 
 
 class Website(models.Model):
+    """ """
+
     _inherit = 'website'
 
     social_twitter = fields.Char(related=False, store=True)
@@ -21,6 +23,9 @@ class Website(models.Model):
     social_googleplus = fields.Char(related=False, store=True)
     social_instagram = fields.Char(string='Instagram Account')
     email = fields.Char(string='Website Email')
+
+    # ??? Multiple locations?
+    warehouse = fields.Many2one(comodel_name='stock.warehouse', string='warehouse')
 
     def _get_order_type(self):
         return self.env['sale.order.type'].search([], limit=1)
