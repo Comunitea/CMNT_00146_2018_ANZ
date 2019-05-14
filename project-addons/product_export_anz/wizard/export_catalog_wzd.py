@@ -84,6 +84,7 @@ class ExportCatalogtWzd(models.TransientModel):
     pricelist_id = fields.Many2one('product.pricelist', string='Pricelist')
     date_start = fields.Date(string='Date Start')
     date_end = fields.Date(string='Date End')
+    with_stock = fields.Boolean("Solo con stock", help="Si está marcado solo artículos con stock")
     catalog_type_id = fields.Many2one('export.catalog.type', 'Catalog type', required=True)
     limit = fields.Integer('Limit', default=50)
     scale = fields.Selection ([('25', '25%'),
@@ -93,7 +94,6 @@ class ExportCatalogtWzd(models.TransientModel):
                                ('100', '100%')], string="Scale")
 
     product_template_ids = fields.Many2many('product.template', string="Lista de plantillas")
-
 
     def get_grouped_moves(self, variant, company= False, done_qty = True):
 
@@ -201,7 +201,13 @@ class ExportCatalogtWzd(models.TransientModel):
                 product_domain = [('pricelist_id', '=', self.pricelist_id.id), ('applied_on', '=', '0_product_variant')]
                 price_product_ids = self.env['product.pricelist.item'].search(product_domain).mapped('product_id').mapped('product_tmpl_id')
                 domain += [('id', 'in', price_template_ids.ids + price_product_ids.ids)]
-        templates = self.env['product.template'].search(domain, limit=self.limit)
+        if self.limit>0:
+            templates = self.env['product.template'].search(domain, limit=self.limit)
+        else:
+            templates = self.env['product.template'].search(domain)
+
+        if self.with_stock:
+            return templates.filtered(lambda x: x.qty_available >0)
         return templates
 
     def get_report_vals(self):
@@ -245,7 +251,13 @@ class ExportCatalogtWzd(models.TransientModel):
                 'ref_template': tmp.ref_template
             }
             sales=purchases=incomings=outgoings=stocks=0
-            for variant in tmp.product_variant_ids:
+            variants = tmp.product_variant_ids
+            if self.with_stock:
+                variants = variants.filtered(lambda x: x.qty_available > 0)
+
+
+            for variant in variants:
+
                 attr_name = ''
                 if variant.attribute_value_ids:
                     attr_name = variant.attribute_value_ids[0].name
