@@ -30,6 +30,35 @@ FOLDERINPUT='/opt/hotfolder/images/'
 SPLITER = re.compile(r'(.*?)(?:_(\d*))?(?:\.(?:\w+))$')
 CODECOLOR = re.compile(r'^([a-z0-9]+)(?:[\,-_ ](\w+))?',re.IGNORECASE)
 
+def coroutine(func):
+    def start(*args,**kwargs):
+        cr = func(*args, **kwargs)
+        cr.next()
+        return cr
+    return start
+
+def listfiles(path, recursive=False):
+        """ Generator """
+        root, dirs, files = next(os.walk(self.folder))
+        for file in files:
+            yield os.path.join(root, file)
+        if recursive:
+            for dir in dirs:
+                yield from listfiles(os.path.join(root, dir))
+
+@coroutine
+def file_filter_access(perm = os.R_OK & os.W_OK):
+    try:
+        while True:
+            file = (yield)
+            if os.access(file,perm):
+                image = ImportImagesValue(file)
+                imported.append(image)
+    except GeneratorExit: # handle Close
+        pass
+        # Done
+    
+
 class ImportImagesValue():
     """  
     TODO:
@@ -119,7 +148,7 @@ class ImportImages(models.TransientModel):
         """ """
         for file in self._get_files():
             type = guess_type(file)
-            if type and type[0].split('/')[0] == 'image':
+            if type[0] and type[0].split('/')[0] == 'image':
                 yield file
     
     # TODO filter for valid types
@@ -148,7 +177,8 @@ class ImportImages(models.TransientModel):
         for ind, references in enumerate(groups):
             table = 'product.product'
             code, color = CODECOLOR.match(references[0].reference).groups()
-            domain = [('default_code','=ilike',code+'%' if not color else code+'_'+color+'%')]
+            # domain = [('default_code','=ilike',code+'%' if not color else code+'_'+color+'%')]
+            domain = [('ref_template','=ilike',code+' '+color)]
             if not color and re.match(r'\d{12,14}',code):
                 domain = [('barcode','=',code)]
             tmpl_ids = self.env[table].read_group(domain,['product_tmpl_id'],['product_tmpl_id'])

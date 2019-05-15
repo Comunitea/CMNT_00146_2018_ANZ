@@ -39,6 +39,18 @@
             </field>
         </record>
 
+        <record id="view_website_form_warehouse" model="ir.ui.view">
+            <field name="model">website</field>
+            <field name="inherit_id" ref="website_multi_company.view_website_multi_company_form"/>
+            <field name="arch" type="xml">
+				<xpath expr="//field[@name='billing_country_ids']" position="after">
+					<group string="Warehouse">
+						<field name="warehouse"/>
+					</group>
+				</xpath>
+            </field>
+        </record>
+
     </data>
 
 </odoo>

@@ -13,6 +13,7 @@ class ProductTemplate(models.Model):
             template.template_standard_price = template.product_variant_ids and template.product_variant_ids[0].standard_price or 0.00
 
 
+    #list_price = fields.Float(company_dependent=True)
     product_color = fields.Many2one('product.attribute.value', string="Color",
                                     domain="[('is_color','=', True)]")
     boot_type = fields.Many2one(
@@ -22,7 +23,34 @@ class ProductTemplate(models.Model):
     attribute_id = fields.Many2one('product.attribute')
     variant_suffix = fields.Char('Variant suffix')
     pvp = fields.Float('PVP', digits=(16, 2))
-    ref_template = fields.Char('Ref Template')
+    
+    # TODO Mostrar estos campos al editar
+    ref_template = fields.Char('Referencia de plantilla')
+    ref_template_color = fields.Char('Color de la referencia de plantilla')
+    ref_template_name = fields.Char(compute='_compute_ref_template',
+                               search='_search_ref_template')
+
+    @api.depends('ref_template','ref_template_color')
+    def _compute_ref_template(self):
+        return self.ref_template + " " + self.ref_template_color
+
+    def _search_ref_template(self,operator,value):
+        if operator.find('like') >= 0 and isinstance(value,(str)):
+            comparator = " ref_template || ' ' || ref_template_color "
+            if operator.find('ilike') >= 0:
+                comparator = comparator.lower()
+                value = value.lower()
+            if operator.find('=') >= 0:
+                operator = operator.replace('=','')
+            else:
+                value = '%' + value + '%'
+            self.env.cr.execute("SELECT id FROM product_template WHERE "+comparator+operator+" '"+value+"';")
+        else:
+            ValidationError('The field risk_exception is not searchable '
+                            'with the operator {} and value {}'.format(operator,value))
+        return [('id','in',[i[0] for i in self.env.cr.fetchall()])]
+
+
     importation_name = fields.Char('Importation name')
     numero_de_variantes = fields.Integer('Numero de variantes')
     sql_constraints = [
@@ -33,7 +61,7 @@ class ProductTemplate(models.Model):
     @api.multi
     @api.onchange("attribute_line_ids")
     def _get_variant_suffix(self):
-
+        """ """
         total = len(self)
         idx = 0
         for template in self:
@@ -154,6 +182,8 @@ class ProductTemplate(models.Model):
 class ProductProduct(models.Model):
 
     _inherit = 'product.product'
+
+    #standard_price = fields.Float(company_dependent=True)
 
     @api.multi
     def _get_attribute_id(self):
