@@ -24,8 +24,10 @@ class Website(models.Model):
     social_instagram = fields.Char(string='Instagram Account')
     email = fields.Char(string='Website Email')
 
-    # ??? Multiple locations?
-    warehouse = fields.Many2one(comodel_name='stock.warehouse', string='warehouse')
+    def _get_warehouse(self):
+        return self.env['stock.warehouse'].search([], limit=1)
+
+    warehouse = fields.Many2one(comodel_name='stock.warehouse', string='Warehouse', default='_get_warehouse')
 
     def _get_order_type(self):
         return self.env['sale.order.type'].search([], limit=1)
@@ -55,6 +57,11 @@ class ResConfigSettings(models.TransientModel):
     social_instagram = fields.Char(related='website_id.social_instagram')
     email = fields.Char(related='website_id.email')
     sale_type_id = fields.Many2one(related='website_id.sale_type_id')
+    inventory_availability = fields.Selection(selection_add=[
+        ('always_virtual', _('Show future and current inventory on website and prevent sales if not enough stock')),
+        ('threshold_virtual',
+         _('Show future and current inventory below a threshold and prevent sales if not enough stock'))
+    ])
 
 
 class WebsiteMenu(models.Model):
