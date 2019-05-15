@@ -60,7 +60,7 @@
                     </div>
                 </t>
                 -->
-                <t t-set="stock_control" t-value="product.inventory_availability in ('always', 'threshold')"/>
+            <t t-set="stock_control" t-value="product.inventory_availability in ('always', 'always_virtual', 'threshold', 'threshold_virtual')"/>
                 <div class="multi-sizes">
                     <div t-att-class="'one-line' if stock_control else 'one-line large-line'">
                         <div class="one-label"/>
@@ -77,7 +77,8 @@
                             <div class="one-label">
                                 <label t-att-for="variant.attribute_value_ids[0].id" t-field="variant.attribute_value_ids[0].name"/>
                             </div>
-                            <t t-set="available" t-value="variant.sudo().qty_available - product.available_threshold if product.inventory_availability == 'threshold' else variant.sudo().qty_available"/>
+                            <t t-set="qty" t-value="(variant.sudo().qty_available + variant.sudo().virtual_available) if product.inventory_availability in ('always_virtual', 'threshold_virtual') else variant.sudo().qty_available"/>
+                            <t t-set="available" t-value="(qty - product.available_threshold) if product.inventory_availability in ('threshold', 'threshold_virtual') else qty"/>
                             <t t-set="available" t-value="available if available &gt; 0 else 0"/>
                             <div class="one-input">
                                 <span t-if="stock_control and available &lt; 1" class="exhausted">&amp;mdash;</span>
