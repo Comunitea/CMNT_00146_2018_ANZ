@@ -18,6 +18,7 @@
                         <field name="date_end" string="Date End"/>
                         <field name="limit" string="Limit"/>
                         <field name="with_stock"/>
+                        <field name="image_scale"/>
 
                         <field name="scale"/>
 

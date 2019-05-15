@@ -82,6 +82,7 @@ class ExportCatalogtWzd(models.TransientModel):
     brand_id = fields.Many2one('product.brand', string='Brand')
     categ_id = fields.Many2one('product.category', string='Category')
     pricelist_id = fields.Many2one('product.pricelist', string='Pricelist')
+    image_scale = fields.Integer('Escala de la imagen (en %)', default=100)
     date_start = fields.Date(string='Date Start')
     date_end = fields.Date(string='Date End')
     with_stock = fields.Boolean("Solo con stock", help="Si está marcado solo artículos con stock")
@@ -91,7 +92,7 @@ class ExportCatalogtWzd(models.TransientModel):
                                ('50', '50%'),
                                ('60', '60%'),
                                ('75', '75%'),
-                               ('100', '100%')], string="Scale")
+                               ('100', '100%')], default='100', string="Tamaño del fichero generado")
 
     product_template_ids = fields.Many2many('product.template', string="Lista de plantillas")
 

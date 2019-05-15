@@ -195,8 +195,8 @@ class ExportCatalogXlsParser(models.AbstractModel):
                 image_data = io.BytesIO(base64.b64decode(tmp_obj.image_medium))
                 img_dic = {
                     'image_data': image_data,
-                    'x_scale': 0.2,
-                    'y_scale': 0.2,
+                    'x_scale': wzd.image_scale/100,
+                    'y_scale': wzd.image_scale/100,
                     'x_offset': 60}
                 sheet.insert_image(row, 0, 'image_medium.png', img_dic)
 
