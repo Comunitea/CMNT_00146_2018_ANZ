@@ -60,7 +60,7 @@
                     </td>
                     <td class="with_border"
                         t-att-style="'vertical-align: middle; text-align: right; width: 40%; height: {}px'.format(product.height_r)">
-                    <span class="font_size_12 font_fam" t-esc="product.lst_price" t-options="{'widget': 'monetary', 'display_currency': res_company.currency_id}"/>
+                    <span class="font_size_12 font_fam" t-att-style="'text-decoration: line-through;'"  t-esc="product.lst_price" t-options="{'widget': 'monetary', 'display_currency': res_company.currency_id}"/>
                     </td>
                 </tr>
                 <tr t-if="product.discount">

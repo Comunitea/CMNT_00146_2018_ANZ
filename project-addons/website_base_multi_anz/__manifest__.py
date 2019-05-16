@@ -37,6 +37,7 @@
     'contributors': [
         'Pavel Smirnov <pavel@comunitea.com>',
         'Rubén Seijas <ruben@comunitea.com>',
+        'Juan Vázquez Moreno <vmjuan90@gmail.com>',
     ],
     'depends': [
         'ecommerce_base',
@@ -45,6 +46,7 @@
         'website_multi_company_blog',
         'mass_mailing',
         'website_form_builder',
+        'product_custom_anz',
         'seo_base',
         'breadcrumbs_base',
         'website_sale_product_brand',
@@ -60,6 +62,8 @@
         'views/res_company_views.xml',
         'views/website_views.xml',
         'views/public_category.xml',
+        'views/product_template.xml',
+        'views/res_config_settings_views.xml',
         'security/ir.model.access.csv',
     ],
     'images': [

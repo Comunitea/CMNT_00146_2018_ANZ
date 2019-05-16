@@ -141,6 +141,7 @@ $(document).ready(function(){
     odoo.define('theme_anzamar.multi_update_cart', function (require) {
         'use strict';
         var ajax = require('web.ajax');
+        var has_order = false
 
         $('form#multi_update').on('submit', function(e){
             e.preventDefault();
@@ -155,32 +156,38 @@ $(document).ready(function(){
                     product_variants[key] = count
                 }
             });
-
-            if(Object.keys(product_variants).length > 0){
-                ajax.jsonRpc('/shop/cart/multi_update', 'call', {
-                    'update_data': JSON.stringify(product_variants),
-                    'product_template': parseInt($('input[name="product_template"]').val())
-                }).then(function (data) {
-                    data = $.parseJSON(data);
-                    if(data['success'] == true){
-                        // SUCCESS ACTION
-                        if(data['quantity'] > 0){
-                            $('.my_cart_quantity').html(data['quantity']);
+            ajax.jsonRpc('/shop/cart/create_order', 'call', {}).then(function (result) {
+                has_order = result;
+                if(has_order === true && Object.keys(product_variants).length > 0){
+                    ajax.jsonRpc('/shop/cart/multi_update', 'call', {
+                        'update_data': JSON.stringify(product_variants),
+                        'product_template': parseInt($('input[name="product_template"]').val())
+                    }).then(function (data) {
+                        data = $.parseJSON(data);
+                        if(data['success'] == true){
+                            // SUCCESS ACTION
+                            if(data['quantity'] > 0){
+                                $('.my_cart_quantity').html(data['quantity']);
+                            }
+                            $('#multi_was_added .modal-body').html(data['message']);
+                            $('#multi_was_added').modal('show');
+                            $('form#multi_update').trigger('reset');
+                        }else {
+                            // ERROR MESSAGE
+                            $('#multi_error .modal-body').html(data['message']);
+                            $('#multi_error').modal('show');
                         }
-                        $('#multi_was_added .modal-body').html(data['message']);
-                        $('#multi_was_added').modal('show');
-                        $('form#multi_update').trigger('reset');
-                    }else {
-                        // ERROR MESSAGE
-                        $('#multi_error .modal-body').html(data['message']);
-                        $('#multi_error').modal('show');
+                    });
+                }else{
+                    // ERROR MESSAGE
+                    if(has_order === true){
+                        $('#multi_error .modal-body').html('<p><strong>Empty list of product variants</strong></p>');
+                    }else{
+                        $('#multi_error .modal-body').html('<p><strong>User access error</strong></p>');
                     }
-                });
-            }else{
-                // ERROR MESSAGE
-                $('#multi_error .modal-body').html('<p><strong>Empty list of product variants</strong></p>');
-                $('#multi_error').modal('show');
-            }
+                    $('#multi_error').modal('show');
+                }
+            });
         });
         // Reload the product page with closing the success window
         $('#multi_was_added').on('hidden.bs.modal', function(){location.reload()});

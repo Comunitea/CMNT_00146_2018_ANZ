@@ -19,3 +19,13 @@ class ProductPublicCategory(models.Model):
                                             'tag_id',
                                             string='Related Tags',
                                             help="Find Website Categories in Search Box by Related Tags")
+
+
+class ProductTemplate(models.Model):
+    _inherit = 'product.template'
+
+    inventory_availability = fields.Selection(selection_add=[
+        ('always_virtual', _('Show future and current inventory on website and prevent sales if not enough stock')),
+        ('threshold_virtual',
+         _('Show future and current inventory below a threshold and prevent sales if not enough stock'))
+    ])

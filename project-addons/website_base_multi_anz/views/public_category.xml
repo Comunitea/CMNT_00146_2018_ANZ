@@ -20,6 +20,9 @@
             <xpath expr="//field[@name='display_name']" position="after">
                 <field name="public_categ_tag_ids" widget="many2many_tags"/>
             </xpath>
+            <xpath expr="//field[@name='sequence']" position="before">
+                <field name="sequence"/>
+            </xpath>
         </field>
     </record>
 
