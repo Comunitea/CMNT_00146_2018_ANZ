@@ -46,7 +46,6 @@
         'website_multi_company_blog',
         'mass_mailing',
         'website_form_builder',
-        'product_custom_anz',
         'seo_base',
         'breadcrumbs_base',
         'website_sale_product_brand',
