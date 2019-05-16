@@ -68,6 +68,9 @@ class CatalogType(models.Model):
     cost = fields.Boolean('Cpst')
     company_header = fields.Char('Company header')
     image = fields.Boolean('Template Image')
+    image_scale = fields.Integer('Escala de la imagen (en %)', default=100)
+    x_offset = fields.Integer('Posición de la imagen', default=80)
+    image_field = fields.Selection([('image', 'Grande'), ('image_medium', 'Mediana'), ('image_small', 'Pequeña')])
     total = fields.Boolean('Total')
     euros = fields.Boolean('€')
     show_per_cent = fields.Boolean('% en resumen')
@@ -83,6 +86,7 @@ class ExportCatalogtWzd(models.TransientModel):
     categ_id = fields.Many2one('product.category', string='Category')
     pricelist_id = fields.Many2one('product.pricelist', string='Pricelist')
     image_scale = fields.Integer('Escala de la imagen (en %)', default=100)
+    x_offset = fields.Integer('Posición de la imagen', default=80)
     date_start = fields.Date(string='Date Start')
     date_end = fields.Date(string='Date End')
     with_stock = fields.Boolean("Solo con stock", help="Si está marcado solo artículos con stock")
@@ -138,7 +142,7 @@ class ExportCatalogtWzd(models.TransientModel):
 
 
         months = list(set(months))
-        print("Meses: {}".format(months))
+
         return sale_lines, purchase_lines, months
 
     def get_variant_sales(self, variant):
