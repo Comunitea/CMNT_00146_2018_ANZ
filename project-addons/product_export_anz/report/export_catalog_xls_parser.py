@@ -192,13 +192,16 @@ class ExportCatalogXlsParser(models.AbstractModel):
             # Write template image
             tmp_obj = self.env['product.template'].browse(tmp_dic['tmp_id'])
             if catalog_id.image and tmp_obj.image_medium:
-                image_data = io.BytesIO(base64.b64decode(tmp_obj.image_medium))
+                image_data = io.BytesIO(base64.b64decode(tmp_obj[wzd.catalog_type_id.image_field]))
+
                 img_dic = {
                     'image_data': image_data,
-                    'x_scale': 0.2,
-                    'y_scale': 0.2,
-                    'x_offset': 60}
-                sheet.insert_image(row, 0, 'image_medium.png', img_dic)
+                    'x_scale': wzd.catalog_type_id.image_scale/100,
+                    'y_scale': wzd.catalog_type_id.image_scale/100,
+                    'x_offset': wzd.catalog_type_id.x_offset}
+                image_name = 'id_{}.jpg'.format(tmp_obj.id)
+                print ('Insertando {}'.format(image_name))
+                sheet.insert_image(row, 0, image_name, img_dic)
 
             col = 3
             # Write attributes table

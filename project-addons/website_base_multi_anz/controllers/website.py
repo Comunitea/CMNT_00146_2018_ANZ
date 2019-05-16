@@ -44,7 +44,7 @@ class WebsiteSaleExtended(WebsiteSale):
         success = False
         quantity = 0
         variants = json.loads(update_data)
-        template = request.env['product.template'].search([('id','=',product_template)])
+        template = request.env['product.template'].search([('id', '=', product_template)])
         variant_ids = template.product_variant_ids
 
         if variants and len(variants) > 0:
@@ -61,24 +61,28 @@ class WebsiteSaleExtended(WebsiteSale):
                     attr_name = '<strong>%s</strong>' % attr_name
                     # Check of product stock
                     max_qty = -1
+                    cart_qty = 0
                     if product_id.inventory_availability in ['always', 'threshold']:
-                        max_qty = max(0,product_id.sudo().qty_available - product_id.sudo().outgoing_qty)
-                    elif product_id.inventory_availability in ['always_virtual','threshold_virtual']:
-                        max_qty = max(0,product_id.sudo().virtual_available)
+                        max_qty = max(0, product_id.sudo().qty_available - product_id.sudo().outgoing_qty)
+                    elif product_id.inventory_availability in ['always_virtual', 'threshold_virtual']:
+                        max_qty = max(0, product_id.sudo().virtual_available)
+
                     threshold = template.sudo().available_threshold
-                    if product_id.inventory_availability in ['threshold','threshold_virtual'] and treshold > 0:
-                        max_qty = max(0,max_qty - threshold)
+                    if product_id.inventory_availability in ['threshold', 'threshold_virtual'] and threshold > 0:
+                        max_qty = max(0, max_qty - threshold)
+
                     # Search this variant qty in the cart
                     for line in order.order_line:
                         if line.product_id == product_id:
                             cart_qty = line.product_uom_qty
 
-                    if max_qty >= 0 and max_qty - cart_qty - qty < 0:
+                    if max_qty >= 0 and (max_qty - cart_qty - qty < 0):
                         prod_list += _('<p class="alert alert-warning">{}: you ask for {} units but only {} '
-                                       'is available</p>'.format(attr_name, qty+cart_qty, max_qty))
+                                       'is available</p>'.format(attr_name, qty + cart_qty, max_qty))
                         qty = min(qty, max_qty)
                     else:
                         prod_list += _('<p class="alert alert-success">%s: %d unit(s)</p>') % (attr_name, qty)
+
                     # Add to cart
                     if qty > 0:
                         order._cart_update(product_id=product_id.id, add_qty=qty)
@@ -87,11 +91,11 @@ class WebsiteSaleExtended(WebsiteSale):
             if qty_total > 0:
                 success = True
                 message = _('<p><strong>Was added %d unit(s) of %s:</strong></p>%s') % (
-                    qty_total, curr_prod.name, prod_list)
+                    qty_total, template.name, prod_list)
                 quantity = order.cart_quantity
             else:
                 message = _('<p><strong>Product variants for %s not found:</strong></p>%s') % (
-                    curr_prod.name, prod_list)
+                    template.name, prod_list)
         else:
             message = _('<p><strong>Empty list of product variants</strong></p>')
 
@@ -102,3 +106,12 @@ class WebsiteSaleExtended(WebsiteSale):
             'message': message
         }
         return json.dumps(values)
+
+    def _get_search_order(self, post):
+        return '%s , id asc' % post.get('order', 'website_sequence asc')
+
+    @http.route(['/shop/cart/create_order'], type='json', auth="public", methods=['POST'], website=True)
+    def multi_update_create_order(self):
+        order = request.website.sale_get_order(force_create=True)
+        result = True if order else False
+        return result

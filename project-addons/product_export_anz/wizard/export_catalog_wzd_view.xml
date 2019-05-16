@@ -1,5 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+
+    <record id="view_export_catalog_wzd_form_type" model="ir.ui.view">
+        <field name="name">view.export.catalog.wzd.form.types</field>
+        <field name="model">export.catalog.type</field>
+        <field name="arch" type="xml">
+            <form string="Tipos de catalogo Products">
+                <h2><field name="name"/> </h2>
+                <group>
+                    <group string="Info a mostrar">
+                        <field name="incomings" string="Entradas"/>
+                        <field name="outgoings" string="Salidas"/>
+                        <field name="purchases" string="Compras"/>
+                        <field name="sales" string="Ventas"/>
+                        <field name="stocks" string="Stocks"/>
+
+                        <field name="pvp" string="P.V.P."/>
+                        <field name="cost" string="Coste"/>
+
+                        <field name="total" string="Totales"/>
+                        <field name="euros" string="€€€"/>
+                    </group>
+                    <group string="Ajustes de formato">
+                        <field name="company_header" string="Cabecera"/>
+                        <field name="show_per_cent" string="Mostrar %"/>
+                        <field name="grouped" string="Agrupación por meses en compras y ventas (No operativo)"/>
+                        <field name="min_template_row" string="Filas por plantilla"/>
+                        <field name="image"/>
+                        <field name="x_offset"  attrs="{'invisible' : [('image', '=', False)]}"/>
+                        <field name="image_scale" attrs="{'invisible' : [('image', '=', False)]}"/>
+                        <field name="image_field" attrs="{'invisible' : [('image', '=', False)]}"/>
+
+                    </group>
+
+
+                    </group>
+
+            </form>
+        </field>
+    </record>
     <record id="view_export_catalog_wzd_form" model="ir.ui.view">
         <field name="name">view.export.catalog.wzd.form</field>
         <field name="model">export.catalog.wzd</field>
@@ -17,6 +56,10 @@
                         <field name="date_start" string="Date Start"/>
                         <field name="date_end" string="Date End"/>
                         <field name="limit" string="Limit"/>
+                        <field name="with_stock"/>
+                        <field name="image_scale" invisible="1"/>
+                        <field name="x_offset" invisible="1"/>
+
                         <field name="scale"/>
 
                     </group>
