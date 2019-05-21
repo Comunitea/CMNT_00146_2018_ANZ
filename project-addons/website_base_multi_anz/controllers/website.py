@@ -19,7 +19,7 @@ class WebsiteSaleExtended(WebsiteSale):
             context = dict(request.env.context)
             if brand and brand != 0:
                 context.setdefault('brand_id', brand)
-            else:
+            elif context.get('brand_id'):
                 context.pop('brand_id')
             request.env.context = context
 
