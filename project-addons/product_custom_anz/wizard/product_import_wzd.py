@@ -56,7 +56,7 @@ class ProductImportWzd(models.TransientModel):
 
     def _get_brand(self, name, create=False):
         if name:
-            brand = self.env['product.brand'].search([('name','=like',name)])
+            brand = self.env['product.brand'].search([('name','=ilike',name)])
             brand.ensure_one()
             return brand
         return self.brand_id
@@ -76,7 +76,7 @@ class ProductImportWzd(models.TransientModel):
             'name_color': row[2],
             'name_extra': row[3],
             'attr_name': row[4],
-            'brand_id': row[5] or False,
+            'brand_id': row[5],
             'attr_val': row[6],
             'ean': row[7],
             'code_attr': row[8],
@@ -86,18 +86,22 @@ class ProductImportWzd(models.TransientModel):
             'type': row[12],
             'gender': row[13],
             'age': row[14],
-            'tag1': row[15],
-            'tag2': row[16],
-            'tag3': row[17],
+            'ecommerce':row[15],
+            'tag1': row[16],
+            'tag2': row[17],
+            'tag3': row[18],
         }
 
         # Check mandatory values setted
         if not row[6]:
             raise UserError(
                 _('Missing EAN in row %s ') % str(idx))
-        if not (row[0] and row[1] and row[2] and row[4] and row[5]):
+        if not (row[0] and row[1] and row[2] and row[4] and row[6]):
             raise UserError(
                 _('The row %s is missing some mandatory column') % str(idx))
+        if not self._get_brand(row[5]):
+            raise UserError(
+                _('The row %s is missing brand') % str(idx))
         return res
 
     def _create_xml_id(self, xml_id, res_id, model):
@@ -153,24 +157,24 @@ class ProductImportWzd(models.TransientModel):
         if not categ_id:
             categ_id = self._get_category_id(row_vals['category'], idx)
 
-        domain = [('product_brand_id', '=', self._get_brand(row_vals['brand_id']))]
+        domain = [('product_brand_id', '=', self._get_brand(row_vals['brand_id']).id)]
         tag_type_id=tag_age_id=tag_gender_id=False
         if row_vals['type']:
-            tag_type_id = self._get_product_att(row_vals['type'], self._get_brand(row_vals['brand_id']), 'type', self.create_attributes)
+            tag_type_id = self._get_product_att(row_vals['type'], self._get_brand(row_vals['brand_id']).id, 'type', self.create_attributes)
             if tag_type_id:
                 domain += [('product_type_id', '=', tag_type_id.id)]
             else:
                 domain += [('product_type_id', '=', False)]
 
         if row_vals['gender']:
-            tag_gender_id = self._get_product_att(row_vals['gender'], self._get_brand(row_vals['brand_id']),'gender', self.create_attributes)
+            tag_gender_id = self._get_product_att(row_vals['gender'], self._get_brand(row_vals['brand_id']).id,'gender', self.create_attributes)
             if tag_gender_id:
                 domain += [('product_gender_id', '=', tag_gender_id.id)]
             else:
                 domain += [('product_gender_id', '=', False)]
 
         if row_vals['age']:
-            tag_age_id = self._get_product_att(row_vals['age'], self._get_brand(row_vals['brand_id']),'age', self.create_attributes)
+            tag_age_id = self._get_product_att(row_vals['age'], self._get_brand(row_vals['brand_id']).id,'age', self.create_attributes)
             if tag_age_id:
                 domain += [('product_age_id', '=', tag_age_id.id)]
             else:
@@ -180,7 +184,7 @@ class ProductImportWzd(models.TransientModel):
         if not attr:
             if self.create_attributes:
                 vals = {#'attribute_category_id': categ_id.id,
-                        'product_brand_id': self._get_brand(row_vals['brand_id']),
+                        'product_brand_id': self._get_brand(row_vals['brand_id']).id,
                         'name': row_vals['attr_name'],
                         'product_type_id': tag_type_id and tag_type_id.id,
                         'product_gender_id': tag_gender_id and tag_gender_id.id,
@@ -291,7 +295,7 @@ class ProductImportWzd(models.TransientModel):
             vals = {
                 'ref_template': row_vals['code_temp'],
                 'importation_name': self.name,
-                'product_brand_id': self._get_brand(row_vals['brand_id']),
+                'product_brand_id': self._get_brand(row_vals['brand_id']).id,
                 'categ_id': categ_id.id
             }
             if tags:
