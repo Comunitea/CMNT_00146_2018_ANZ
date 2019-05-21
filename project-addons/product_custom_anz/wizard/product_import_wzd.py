@@ -295,7 +295,7 @@ class ProductImportWzd(models.TransientModel):
             vals = {
                 'ref_template': row_vals['code_temp'],
                 'importation_name': self.name,
-                'product_brand_id': self._get_brand(row_vals['brand_id']),
+                'product_brand_id': self._get_brand(row_vals['brand_id']).id,
                 'categ_id': categ_id.id
             }
             if tags:
