@@ -32,6 +32,7 @@
     <!-- Shop categories template -->
     <template id="website_sale_products_categories" name="eCommerce categories Point Sport" inherit_id="website_multi_theme.auto_view_poi_website_sale_products_categories">
         <xpath expr="//div[@id='products_grid_before']/ul" position="replace">
+            <h4 class="mt0 text-uppercase">Product categories</h4>
             <ul class="nav nav-pills nav-stacked mt16" id="o_shop_collapse_category">
                 <li t-att-class="'active' if not (category or request.params.get('search')) else None">
                     <a href="/shop" class="o_not_editable">All Products</a>
@@ -40,6 +41,54 @@
                     <t t-call="website_sale.option_collapse_categories_recursive" />
                 </t>
             </ul>
+        </xpath>
+        <xpath expr="//div[@id='products_grid_before']/ul" position="after">
+            <div class="wp-attribute-filters mt32 mb32">
+                <h4 class="mt0 text-uppercase">Filters</h4>
+                <t t-set="current_filter" t-value="request.httprequest.args"/>
+                <form id="product-attributes-filter" method="get">
+                    <div>
+                        <h5>Brand</h5>
+                        <select name="brand" class="form-control">
+                            <option value="0"/>
+                            <t t-foreach="request.env['product.brand'].sudo().search([], order='name').filtered(lambda x: x.products_count != 0)" t-as="option">
+                                <option t-att-value="option.id" t-att-selected="option.id == int(current_filter.get('brand', False))" t-esc="option.name"/>
+                            </t>
+                        </select>
+                    </div>
+                    <div>
+                        <h5>Product type</h5>
+                        <select name="type" class="form-control">
+                            <option value="0"/>
+                            <t t-foreach="request.env['product.attribute.tag'].sudo().search([('type', '=', 'type')], order='value').filtered(lambda x: x.lines_count != 0)" t-as="option">
+                                <option t-att-value="option.id" t-att-selected="option.id == int(current_filter.get('type', False))" t-esc="option.value"/>
+                            </t>
+                        </select>
+                    </div>
+                    <div>
+                        <h5>Gender</h5>
+                        <select name="gender" class="form-control">
+                            <option value="0"/>
+                            <t t-foreach="request.env['product.attribute.tag'].sudo().search([('type', '=', 'gender')], order='value').filtered(lambda x: x.lines_count != 0)" t-as="option">
+                                <option t-att-value="option.id" t-att-selected="option.id == int(current_filter.get('gender', False))" t-esc="option.value"/>
+                            </t>
+                        </select>
+                    </div>
+                    <div>
+                        <h5>Age</h5>
+                        <select name="age" class="form-control">
+                            <option value="0"/>
+                            <t t-foreach="request.env['product.attribute.tag'].sudo().search([('type', '=', 'age')], order='value').filtered(lambda x: x.lines_count != 0)" t-as="option">
+                                <option t-att-value="option.id" t-att-selected="option.id == int(current_filter.get('age', False))" t-esc="option.value"/>
+                            </t>
+                        </select>
+                    </div>
+                    <div class="mt8 text-center">
+                        <button class="btn btn-primary">Apply filters</button>
+                        <a class="btn btn-default" t-att-href="request.httprequest.path">Reset</a>
+                    </div>
+                </form>
+            </div>
         </xpath>
     </template>
     <template id="website_sale_option_collapse_categories_recursive" name="Recursive categories Point Sport" inherit_id="website_sale.option_collapse_categories_recursive">
