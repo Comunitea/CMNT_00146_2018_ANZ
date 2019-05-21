@@ -10,7 +10,37 @@ from odoo.addons.website_sale.controllers.main import WebsiteSale
 class WebsiteSaleExtended(WebsiteSale):
 
     def _get_search_domain(self, search, category, attrib_values):
+        filtered_domain = []
+        filter_args = request.httprequest.args
+        if filter_args:
+            attr_domain = []
+
+            brand = int(filter_args.get('brand', False))
+            context = dict(request.env.context)
+            if brand and brand != 0:
+                context.setdefault('brand_id', brand)
+            else:
+                context.pop('brand_id')
+            request.env.context = context
+
+            type = int(filter_args.get('type', False))
+            if type and type != 0:
+                attr_domain += [('product_type_id', '=', type)]
+            gender = int(filter_args.get('gender', False))
+            if gender and gender != 0:
+                attr_domain += [('product_gender_id', '=', gender)]
+            age = int(filter_args.get('age', False))
+            if age and age != 0:
+                attr_domain += [('product_age_id', '=', age)]
+
+            product_attributes = request.env['product.attribute'].sudo().search(attr_domain)
+            product_attribute_lines = request.env['product.attribute.line'].sudo().search([
+                ('attribute_id', 'in', product_attributes.ids)
+            ])
+            filtered_domain = [('attribute_line_ids', 'ilike', product_attribute_lines.ids)]
+
         domain = super(WebsiteSaleExtended, self)._get_search_domain(search, category, attrib_values)
+        domain += filtered_domain
         domain = expression.normalize_domain(domain)
 
         if search:
