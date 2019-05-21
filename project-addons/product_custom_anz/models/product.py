@@ -72,3 +72,41 @@ class ProductAttributeValue(models.Model):
     name_normalizado = fields.Char()
 
     #price_extra = fields.Float(company_dependent=True)
+
+
+class ProductProduct(models.Model):
+    """ Eliminar cuando todos los artículos se creen con el importador
+        TODO: Add supplier name
+    """
+    _inherit = 'product.product'
+
+    @api.multi
+    def name_get(self):
+        """ Nueva definición de nombre """
+        def _name_get(d):
+            name = d.get('name', '')
+            code = self._context.get('display_default_code',True) and d.get('code',False) or False
+            if not code:
+                return name
+            talla = d.get('talla', '')
+            return '[%s (%s)] %s' % (code, talla, name)
+        results = []
+        self.sudo().read(['name','product_tmpl_id'],load=False)
+        for product in self.sudo():
+            ref_template_name = self.env['product.template'].browse(product.product_tmpl_id.id).ref_template_name
+            if ref_template_name:
+                #display only the attributes with multiple possible values on the template
+                variable_attributes = product.attribute_line_ids.filtered(lambda l: len(l.value_ids) > 1).mapped('attribute_id')
+                variant = product.attribute_value_ids._variant_name(variable_attributes)
+                namedict = {
+                        'code':ref_template_name,
+                        'talla':variant,
+                        'name':product.name}
+                r = _name_get(namedict)
+            else:
+                # ineficiente, pero forma sencilla de mantener el orden
+                r = super(ProductProduct,product).name_get()[0]
+            results.append(r)
+        return results
+
+
