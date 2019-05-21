@@ -77,8 +77,9 @@ class WebsiteSaleExtended(WebsiteSale):
                             cart_qty = line.product_uom_qty
 
                     if max_qty >= 0 and (max_qty - cart_qty - qty < 0):
-                        prod_list += _('<p class="alert alert-warning">{}: you ask for {} units but only {} '
-                                       'is available</p>'.format(attr_name, qty + cart_qty, max_qty))
+                        prod_list += _(
+                            '<p class="alert alert-warning">%s: Ask for %d units but only %d is available</p>' % (
+                                attr_name, (qty + cart_qty), max_qty))
                         qty = min(qty, max_qty)
                     else:
                         prod_list += _('<p class="alert alert-success">%s: %d unit(s)</p>') % (attr_name, qty)
@@ -94,10 +95,9 @@ class WebsiteSaleExtended(WebsiteSale):
                     qty_total, template.name, prod_list)
                 quantity = order.cart_quantity
             else:
-                message = _('<p><strong>Product variants for %s not found:</strong></p>%s') % (
-                    template.name, prod_list)
+                message = _('<p><strong>Product for %s not found:</strong></p>%s') % (template.name, prod_list)
         else:
-            message = _('<p><strong>Empty list of product variants</strong></p>')
+            message = _('<p><strong>Empty product list</strong></p>')
 
         # Return fail/success message
         values = {

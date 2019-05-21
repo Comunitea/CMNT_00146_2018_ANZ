@@ -27,7 +27,7 @@ class Website(models.Model):
     def _get_warehouse(self):
         return self.env['stock.warehouse'].search([], limit=1)
 
-    warehouse = fields.Many2one(comodel_name='stock.warehouse', string='Warehouse', default='_get_warehouse')
+    warehouse = fields.Many2one(comodel_name='stock.warehouse', string='Warehouse', default=_get_warehouse)
 
     def _get_order_type(self):
         return self.env['sale.order.type'].search([], limit=1)
