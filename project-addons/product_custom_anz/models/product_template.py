@@ -24,7 +24,7 @@ class ProductTemplate(models.Model):
     attribute_id = fields.Many2one('product.attribute')
     variant_suffix = fields.Char('Variant suffix')
     pvp = fields.Float('PVP', digits=(16, 2))
-    
+
     # TODO Mostrar estos campos al editar
     ref_template = fields.Char('Referencia de plantilla')
     ref_template_color = fields.Char('Color de la referencia de plantilla')
@@ -54,7 +54,6 @@ class ProductTemplate(models.Model):
             ValidationError(_('The field risk_exception is not searchable '
                             'with the operator {} and value {}'.format(operator,value)))
         return [('id','in',[i[0] for i in self.env.cr.fetchall()])]
-
 
     importation_name = fields.Char('Importation name')
     numero_de_variantes = fields.Integer('Numero de variantes')
