@@ -360,3 +360,8 @@ msgstr "Planificado"
 #: model:website.page,name:website_sale_wishlist.product_wishlist
 msgid "Wishlist Page"
 msgstr "Lista de deseos"
+
+#. module: theme_point_sport
+#: model:website.page,name:theme_point_sport.poi_shop_page
+msgid "Products"
+msgstr "Productos"
