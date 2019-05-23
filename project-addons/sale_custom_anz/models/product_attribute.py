@@ -25,8 +25,9 @@ class ProductAttributeValue(models.Model):
                     if parent and parent.company_id and parent.company_id.stock_global:
                         qty_field = 'qty_available_global'
             for a_value in self:
-                p_a_value = p_ids.filtered(lambda x: a_value in x.attribute_value_ids)
-                res.append([a_value.id, "%s            (%s)" % (a_value.name, p_a_value[qty_field])])
+                p_a_values = p_ids.filtered(lambda x: a_value in x.attribute_value_ids)
+                for p_a_value in p_a_values:
+                    res.append([a_value.id, "%s            (%s)" % (a_value.name, p_a_value[qty_field])])
         else:
             res = super(ProductAttributeValue, self).name_get()
         return res
