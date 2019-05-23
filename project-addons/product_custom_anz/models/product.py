@@ -97,12 +97,10 @@ class ProductProduct(models.Model):
     def name_get(self):
         """ Asegura que si hay referencia de plantilla la usa """
         results = super(ProductProduct,self).name_get()
-        self.read(['name','product_tmpl_id','attribute_line_ids','attribute_value_ids'],load=False)
+        self.read(['name','product_tmpl_id','attribute_value_ids'],load=False)
         for index, product in enumerate(self):
             if product.product_tmpl_id.ref_template:
                 referencia = product.product_tmpl_id.ref_template_name
-                #variable_attributes = product.attribute_line_ids.filtered(lambda l: len(l.value_ids) > 1).mapped('attribute_id')
-                variable_attributes = product.attribute_line_ids.mapped('attribute_id')
                 variant = product.attribute_value_ids
                 if variant:
                     results[index] = (product.id, '[%s (%s)] %s' % (referencia, variant[0].name, product.name))
