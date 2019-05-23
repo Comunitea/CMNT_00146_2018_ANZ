@@ -66,12 +66,10 @@ class ProductImportWzd(models.TransientModel):
         if not self.name and self.filename:
             self.name = self.filename and self.filename.split('.')[0]
 
-    def _parse_rows(self):
-        pass
 
     def _parse_row_vals(self, row, idx):
         res = {
-            'code_temp': row[0],
+            'ref_template': row[0],
             'name_temp': row[1],
             'name_color': row[2],
             'name_extra': row[3],
@@ -92,6 +90,12 @@ class ProductImportWzd(models.TransientModel):
             'tag1': row[18],
             'tag2': row[19],
             'tag3': row[20],
+            'tag4': row[21],
+            'tag5': row[22],
+            'tag6': row[23],
+            'tag7': row[24],
+            'tag8': row[25],
+            'tag9': row[26],
         }
 
         # Check mandatory values setted
@@ -125,12 +129,25 @@ class ProductImportWzd(models.TransientModel):
                 _('The row %s has wrong category (%s) and not default category') % (str(idx), category_name))
         return categ_id
 
+    def _get_category_ecommerce(self, category_name = False, idx=0):
+        categ_ecommerce = False
+        if category_name:
+            categ_ecommerce = self.env['product.public.category'].search([('name', '=ilike', category_name)], limit=1) or False
+
+        if category_name and not categ_ecommerce:
+            raise UserError(
+                _('The row %s has wrong category ecommerce (%s)') % (str(idx), category_name))
+        if categ_ecommerce:
+            return [categ_ecommerce.id]
+        else:
+            return []
+
     def _get_existing_template_obj(self, row_vals):
         """
         Get an existing template by xml id or return false
         """
         res = False
-        xml_id = 'PT.' + row_vals['code_temp']
+        xml_id = 'PT.' + row_vals['ref_template']
         try:
             res = self.env.ref(xml_id)
         except ValueError:
@@ -151,6 +168,18 @@ class ProductImportWzd(models.TransientModel):
             print ("Se ha creado la etiqueta de atributo: {}".format(tag.display_name))
         return tag
 
+    def _get_product_color(self, value, idx=0, create=False):
+        attribute_color = False
+        if attribute_color:
+            attribute_color = self.env['product.attribute.value'].search([('is_color','=',True),('name', '=ilike', value)], limit=1) or False
+
+        if value and not attribute_color:
+            raise UserError(
+                _('The row %s has wrong color (%s)') % (str(idx), value))
+        if attribute_color:
+            return [attribute_color.id]
+        else:
+            return []
 
     def _get_attr_value(self, row_vals, idx, categ_id):
         """
@@ -181,7 +210,6 @@ class ProductImportWzd(models.TransientModel):
                 domain += [('product_age_id', '=', tag_age_id.id)]
             else:
                 domain += [('product_age_id', '=', False)]
-        print (domain)
         attr = self.env['product.attribute'].search(domain, limit=1)
         if not attr:
             if self.create_attributes:
@@ -256,9 +284,27 @@ class ProductImportWzd(models.TransientModel):
             tag_ids.append(tag.id)
 
         tag = find_tag(vals['tag3'])
-
         if tag:
             tag_ids.append(tag.id)
+        tag = find_tag(vals['tag4'])
+        if tag:
+            tag_ids.append(tag.id)
+        tag = find_tag(vals['tag5'])
+        if tag:
+            tag_ids.append(tag.id)
+        tag = find_tag(vals['tag6'])
+        if tag:
+            tag_ids.append(tag.id)
+        tag = find_tag(vals['tag7'])
+        if tag:
+            tag_ids.append(tag.id)
+        tag = find_tag(vals['tag8'])
+        if tag:
+            tag_ids.append(tag.id)
+        tag = find_tag(vals['tag9'])
+        if tag:
+            tag_ids.append(tag.id)
+
         return tag_ids
 
     def create_variant(self, template, row_vals, idx):
@@ -269,7 +315,7 @@ class ProductImportWzd(models.TransientModel):
         attr_value = self._get_attr_value(row_vals, idx, categ_id)
 
         code_attr = attr_value.supplier_code or row_vals['code_attr'] and str(int(row_vals['code_attr'])) or '%04d' % (attr_value.id)
-        default_code = row_vals['code_temp'] + '.' + code_attr
+        default_code = row_vals['ref_template'] + '.' + code_attr
 
         vals = {
             'name': product_name,
@@ -295,15 +341,20 @@ class ProductImportWzd(models.TransientModel):
             template = product.product_tmpl_id
             tags = self._get_tags(row_vals)
             vals = {
-                'ref_template': row_vals['code_temp'],
+                'ref_template': row_vals['ref_template'],
                 'importation_name': self.name,
                 'product_brand_id': self._get_brand(row_vals['brand_id']).id,
                 'categ_id': categ_id.id
             }
+            if row_vals['ecommerce']:
+                vals.update(public_categ_ids=[(6,0,self._get_category_ecommerce(row_vals['ecommerce'],idx))])
+            if row_vals['color']:
+                vals.update(public_categ_ids=[(6,0,self._get_product_color(row_vals['color'],idx))])
             if tags:
                 vals.update(tag_ids=[(6, 0, tags)])
+
             template.write(vals)
-            xml_id = row_vals['code_temp']
+            xml_id = row_vals['ref_template']
             self._create_xml_id(xml_id, template.id, 'product.template')
             template_ids.append(template.id)
             print("Se crea la plantilla {} con xml_id {} \nVals :{} y ".format(template.display_name, template.get_xml_id(), vals))
@@ -319,7 +370,6 @@ class ProductImportWzd(models.TransientModel):
         self.ensure_one()
         _logger.info(_('STARTING PRODUCT IMPORTATION'))
 
-        # get the first worksheet
         file = base64.b64decode(self.file)
         book = xlrd.open_workbook(file_contents=file)
         sh = book.sheet_by_index(0)
@@ -330,7 +380,7 @@ class ProductImportWzd(models.TransientModel):
             idx += 1
             row = sh.row_values(nline)
             row_vals = self._parse_row_vals(row, idx)
-            if row_vals['code_temp'] == "" or row_vals['code_temp'] == 'FIN' or len(row_vals['code_temp']) < 1:
+            if row_vals['ref_template'] == "" or row_vals['ref_template'] == 'FIN' or len(row_vals['ref_template']) < 1:
                 break
             # If existing template, fail, only templates created from this file
             template = self._get_existing_template_obj(row_vals)
