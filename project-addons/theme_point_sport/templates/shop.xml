@@ -51,12 +51,12 @@
                         <h5>Brand</h5>
                         <select name="brand" class="form-control">
                             <option value="0"/>
-                            <t t-foreach="request.env['product.brand'].sudo().search([], order='name').filtered(lambda x: x.products_count != 0)" t-as="option">
+                            <t t-foreach="website.product_brand_list()" t-as="option">
                                 <option t-att-value="option.id" t-att-selected="option.id == int(current_filter.get('brand', False))" t-esc="option.name"/>
                             </t>
                         </select>
                     </div>
-                    <div>
+                    <!--<div>
                         <h5>Product type</h5>
                         <select name="type" class="form-control">
                             <option value="0"/>
@@ -64,26 +64,33 @@
                                 <option t-att-value="option.id" t-att-selected="option.id == int(current_filter.get('type', False))" t-esc="option.value"/>
                             </t>
                         </select>
-                    </div>
+                    </div>-->
                     <div>
                         <h5>Gender</h5>
                         <select name="gender" class="form-control">
-                            <option value="0"/>
-                            <t t-foreach="request.env['product.attribute.tag'].sudo().search([('type', '=', 'gender')], order='value').filtered(lambda x: x.lines_count != 0)" t-as="option">
-                                <option t-att-value="option.id" t-att-selected="option.id == int(current_filter.get('gender', False))" t-esc="option.value"/>
+                            <option value=""/>
+                            <t t-foreach="website.product_gender_list()" t-as="option">
+                                <option t-att-value="option" t-att-selected="option == current_filter.get('gender', False)" t-esc="option"/>
                             </t>
                         </select>
                     </div>
                     <div>
                         <h5>Age</h5>
                         <select name="age" class="form-control">
-                            <option value="0"/>
-                            <t t-foreach="request.env['product.attribute.tag'].sudo().search([('type', '=', 'age')], order='value').filtered(lambda x: x.lines_count != 0)" t-as="option">
-                                <option t-att-value="option.id" t-att-selected="option.id == int(current_filter.get('age', False))" t-esc="option.value"/>
+                            <option value=""/>
+                            <t t-foreach="website.product_age_list()" t-as="option">
+                                <option t-att-value="option" t-att-selected="option == current_filter.get('age', False)" t-esc="option"/>
                             </t>
                         </select>
                     </div>
-                    <div class="mt8 text-center">
+                    <!--<div t-if="category">
+                        <h4>Size</h4>
+                        <label>
+                            <input type="checkbox" name="size" value="xs"/>
+                            <span>XS</span>
+                        </label>
+                    </div>-->
+                    <div class="mt16 text-center">
                         <button class="btn btn-primary">Apply filters</button>
                         <a class="btn btn-default" t-att-href="request.httprequest.path">Reset</a>
                     </div>

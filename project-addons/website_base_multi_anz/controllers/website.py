@@ -10,38 +10,48 @@ from odoo.addons.website_sale.controllers.main import WebsiteSale
 class WebsiteSaleExtended(WebsiteSale):
 
     def _get_search_domain(self, search, category, attrib_values):
-        filtered_domain = []
+        has_att_filter = False
+        attr_domain = []
         filter_args = request.httprequest.args
         if filter_args:
-            attr_domain = []
 
             brand = int(filter_args.get('brand', False))
             context = dict(request.env.context)
+            if context.get('brand_id') == 0:
+                context.pop('brand_id')
             if brand and brand != 0:
                 context.setdefault('brand_id', brand)
-            elif context.get('brand_id'):
-                context.pop('brand_id')
             request.env.context = context
+            # type = int(filter_args.get('type', False))
+            # if type and type != 0:
+            #     attr_domain += [('product_type_id', '=', type)]
 
-            type = int(filter_args.get('type', False))
-            if type and type != 0:
-                attr_domain += [('product_type_id', '=', type)]
-            gender = int(filter_args.get('gender', False))
-            if gender and gender != 0:
-                attr_domain += [('product_gender_id', '=', gender)]
-            age = int(filter_args.get('age', False))
-            if age and age != 0:
-                attr_domain += [('product_age_id', '=', age)]
+            tags = request.env['product.attribute.tag'].sudo()
 
+            gender = filter_args.get('gender', False)
+            if gender:
+                tag_gender = tags.search(['&', ('type', '=', 'gender'), ('value', '=', gender)])
+                if tag_gender:
+                    attr_domain += [('product_gender_id', 'in', tag_gender.ids)]
+                    has_att_filter = True
+
+            age = filter_args.get('age', False)
+            if age:
+                tag_age = tags.search(['&', ('type', '=', 'age'), ('value', '=', age)])
+                if tag_age:
+                    attr_domain += [('product_age_id', 'in', tag_age.ids)]
+                    has_att_filter = True
+
+        domain = super(WebsiteSaleExtended, self)._get_search_domain(search, category, attrib_values)
+        domain = expression.normalize_domain(domain)
+
+        if has_att_filter:
             product_attributes = request.env['product.attribute'].sudo().search(attr_domain)
             product_attribute_lines = request.env['product.attribute.line'].sudo().search([
                 ('attribute_id', 'in', product_attributes.ids)
             ])
-            filtered_domain = [('attribute_line_ids', 'ilike', product_attribute_lines.ids)]
-
-        domain = super(WebsiteSaleExtended, self)._get_search_domain(search, category, attrib_values)
-        domain += filtered_domain
-        domain = expression.normalize_domain(domain)
+            filtered_domain = [('attribute_line_ids', 'in', product_attribute_lines.ids)]
+            domain = expression.AND([domain, filtered_domain])
 
         if search:
             domain_search = []
