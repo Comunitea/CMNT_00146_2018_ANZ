@@ -81,13 +81,11 @@ class ProductProduct(models.Model):
     @api.model
     def name_search(self, name='', args=None, operator='ilike', limit=100):
         if len(str(name)) > 2:
-            ref_args = self.env['product.template']._search_ref_template_name(operator,name)
-            if ref_args[0][2]:
-                ref_args[0][2] = self.env['product.product'].search([('product_tmpl_id','in',ref_args[0][2])]).ids
-                if args:
-                    args = ['|'] + args + ref_args
-                else:
-                    args = ref_args
+            domain = [('product_tmpl_id.ref_template_name',operator,name)]
+            if args:
+                args = ['|'] + args + domain
+            else:
+                args = domain
         return super().name_search(name=name, args=args, operator=operator, limit=limit)
 
     @api.multi
