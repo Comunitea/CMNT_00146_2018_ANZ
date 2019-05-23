@@ -75,23 +75,20 @@ class ProductAttributeValue(models.Model):
 
 
 class ProductProduct(models.Model):
-    """ Eliminar cuando todos los artículos se creen con el importador
-        TODO: Add supplier name
-    """
+    "Eliminar cuando todos los artículos se creen con el importador"
     _inherit = 'product.product'
 
     @api.model
     def name_search(self, name='', args=None, operator='ilike', limit=100):
-        # Original search
-        names1 = super().name_search(
-            name=name, args=args, operator=operator, limit=limit)
-        # Make the other search
-        names2 = []
-        if name:
-            domain = [('product_tmpl_id.ref_template_name', operator, name)]
-            names2 = self.search(domain+args, limit=limit).name_get()
-        # Merge both results
-        return list(set(names2) | set(names1))[:limit]
+        if len(str(name)) > 2:
+            ref_args = self.env['product.template']._search_ref_template_name(operator,name)
+            if ref_args[0][2]:
+                ref_args[0][2] = self.env['product.product'].search([('product_tmpl_id','in',ref_args[0][2])]).ids
+                if args:
+                    args = ['|'] + args + ref_args
+                else:
+                    args = ref_args
+        return super().name_search(name=name, args=args, operator=operator, limit=limit)
 
     @api.multi
     def name_get(self):
@@ -102,5 +99,9 @@ class ProductProduct(models.Model):
                 referencia = product.product_tmpl_id.ref_template_name
                 variant = product.attribute_value_ids
                 if variant:
-                    results[index] = (product.id, '[%s (%s)] %s' % (referencia, variant[0].name, product.name))
+                    if variant[0].supplier_code:
+                        referencia += '.'+variant[0].supplier_code
+                    results[index] = (product.id, '[%s] %s (%s)' % (referencia, product.name, variant[0].name))
+                else:
+                    results[index] = (product.id, '[%s] %s' % (referencia, product.name))
         return results
