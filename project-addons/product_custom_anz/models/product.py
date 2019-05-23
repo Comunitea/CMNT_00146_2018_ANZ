@@ -89,7 +89,7 @@ class ProductProduct(models.Model):
         names2 = []
         if name:
             domain = [('product_tmpl_id.ref_template_name', operator, name)]
-            names2 = self.search(domain, limit=limit).name_get()
+            names2 = self.search(domain+args, limit=limit).name_get()
         # Merge both results
         return list(set(names2) | set(names1))[:limit]
 
