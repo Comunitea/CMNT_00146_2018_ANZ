@@ -103,6 +103,7 @@ class ProductProduct(models.Model):
                 referencia = product.product_tmpl_id.ref_template_name
                 #variable_attributes = product.attribute_line_ids.filtered(lambda l: len(l.value_ids) > 1).mapped('attribute_id')
                 variable_attributes = product.attribute_line_ids.mapped('attribute_id')
-                variant = product.attribute_value_ids._variant_name(variable_attributes)
-                results[index] = (product.id, '[%s (%s)] %s' % (referencia, variant, product.name))
+                variant = product.attribute_value_ids
+                if variant:
+                    results[index] = (product.id, '[%s (%s)] %s' % (referencia, variant[0].name, product.name))
         return results
