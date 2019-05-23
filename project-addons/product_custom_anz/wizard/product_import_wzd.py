@@ -86,10 +86,12 @@ class ProductImportWzd(models.TransientModel):
             'type': row[12],
             'gender': row[13],
             'age': row[14],
-            'ecommerce':row[15],
-            'tag1': row[16],
-            'tag2': row[17],
-            'tag3': row[18],
+            'color': row[15],
+            'ecommerce':row[16],
+            'description':row[17],
+            'tag1': row[18],
+            'tag2': row[19],
+            'tag3': row[20],
         }
 
         # Check mandatory values setted

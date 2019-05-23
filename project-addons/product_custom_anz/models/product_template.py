@@ -57,10 +57,6 @@ class ProductTemplate(models.Model):
 
     importation_name = fields.Char('Importation name')
     numero_de_variantes = fields.Integer('Numero de variantes')
-    sql_constraints = [
-        ("unique_template_ref", "UNIQUE(ref_template)",
-         "Cannot have more than one template with same code.")
-    ]
 
     @api.multi
     @api.onchange("attribute_line_ids")
