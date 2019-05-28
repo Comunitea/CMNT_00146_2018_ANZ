@@ -29,3 +29,7 @@ class ProductTemplate(models.Model):
         ('threshold_virtual',
          _('Show future and current inventory below a threshold and prevent sales if not enough stock'))
     ])
+
+    def websitevisibility(self,webid=None):
+        """ Update website visibility"""
+        pass

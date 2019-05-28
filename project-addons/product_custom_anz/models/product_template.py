@@ -58,6 +58,9 @@ class ProductTemplate(models.Model):
     importation_name = fields.Char('Importation name')
     numero_de_variantes = fields.Integer('Numero de variantes')
 
+    template_colors = fields.Many2many('product.attribute.value', string="Colors",
+                                    domain="[('is_color','=', True)]")
+
     @api.multi
     @api.onchange("attribute_line_ids")
     def _get_variant_suffix(self):
