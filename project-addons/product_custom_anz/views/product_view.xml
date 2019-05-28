@@ -100,7 +100,7 @@
                     <field name="boot_type"/>
 
                     <field name="product_color"/>
-                    <field name="template_colors"/>
+					<field name="template_colors" widget="many2many_tags" options="{'no_create': True}"/>
                     <field name="attribute_id"/>
                     <field name="variant_suffix"/>
                 </group>

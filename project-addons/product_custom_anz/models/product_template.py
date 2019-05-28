@@ -17,6 +17,12 @@ class ProductTemplate(models.Model):
     #list_price = fields.Float(company_dependent=True)
     product_color = fields.Many2one('product.attribute.value', string="Color",
                                     domain="[('is_color','=', True)]")
+    template_colors = fields.Many2many(comodel_name='product.attribute.value',
+                                        relation='rel_color_product_tempalte_product_attribute_value',
+                                        column2='name',
+                                        string="Colors",
+                                        domain="[('is_color','=', True)]")
+
     boot_type = fields.Many2one(
         'product.attribute.value',
         string="Tipo de bota", domain="[('is_tboot','=', True)]")
@@ -57,9 +63,6 @@ class ProductTemplate(models.Model):
 
     importation_name = fields.Char('Importation name')
     numero_de_variantes = fields.Integer('Numero de variantes')
-
-    template_colors = fields.Many2many('product.attribute.value', string="Colors",
-                                    domain="[('is_color','=', True)]")
 
     @api.multi
     @api.onchange("attribute_line_ids")
