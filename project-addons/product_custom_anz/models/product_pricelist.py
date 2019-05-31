@@ -176,14 +176,14 @@ class ProductPricelistItem(models.Model):
     _inherit = "product.pricelist.item"
 
     applied_on = fields.Selection(selection_add=[
-         ('11_brand', 'Brand'),
+         ('1_product_brand', 'Brand'),
     ])
     brand_id = fields.Many2one('product.brand', 'Brand')
 
     @api.onchange('applied_on')
     def _onchange_applied_on(self):
         super(ProductPricelistItem, self)._onchange_applied_on()
-        if self.applied_on != '11_brand':
+        if self.applied_on != '1_product_brand':
             self.brand_id = False
 
     @api.one

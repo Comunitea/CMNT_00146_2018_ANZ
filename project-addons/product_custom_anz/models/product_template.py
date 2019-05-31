@@ -2,6 +2,7 @@
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
 from odoo import api, fields, models
 from odoo.addons import decimal_precision as dp
+from odoo.exceptions import ValidationError
 
 class ProductTemplate(models.Model):
 
@@ -23,20 +24,24 @@ class ProductTemplate(models.Model):
     attribute_id = fields.Many2one('product.attribute')
     variant_suffix = fields.Char('Variant suffix')
     pvp = fields.Float('PVP', digits=(16, 2))
-    
+
     # TODO Mostrar estos campos al editar
     ref_template = fields.Char('Referencia de plantilla')
     ref_template_color = fields.Char('Color de la referencia de plantilla')
-    ref_template_name = fields.Char(compute='_compute_ref_template',
-                               search='_search_ref_template')
+    ref_template_name = fields.Char(compute='_compute_ref_template_name',
+                               search='_search_ref_template_name')
 
     @api.depends('ref_template','ref_template_color')
-    def _compute_ref_template(self):
-        return self.ref_template + " " + self.ref_template_color
+    def _compute_ref_template_name(self):
+        for record in self:
+            record.ref_template_name = record.ref_template
+            if record.ref_template_color:
+                record.ref_template_name += " " + record.ref_template_color
 
-    def _search_ref_template(self,operator,value):
-        if operator.find('like') >= 0 and isinstance(value,(str)):
-            comparator = " ref_template || ' ' || ref_template_color "
+    def _search_ref_template_name(self,operator,value):
+        if operator.find('like') >= 0:
+            value = str(value)
+            comparator = " concat(ref_template,'[ -]',ref_template_color) "
             if operator.find('ilike') >= 0:
                 comparator = comparator.lower()
                 value = value.lower()
@@ -46,17 +51,12 @@ class ProductTemplate(models.Model):
                 value = '%' + value + '%'
             self.env.cr.execute("SELECT id FROM product_template WHERE "+comparator+operator+" '"+value+"';")
         else:
-            ValidationError('The field risk_exception is not searchable '
-                            'with the operator {} and value {}'.format(operator,value))
+            ValidationError(_('The field risk_exception is not searchable '
+                            'with the operator {} and value {}'.format(operator,value)))
         return [('id','in',[i[0] for i in self.env.cr.fetchall()])]
-
 
     importation_name = fields.Char('Importation name')
     numero_de_variantes = fields.Integer('Numero de variantes')
-    sql_constraints = [
-        ("unique_template_ref", "UNIQUE(ref_template)",
-         "Cannot have more than one template with same code.")
-    ]
 
     @api.multi
     @api.onchange("attribute_line_ids")
@@ -77,7 +77,7 @@ class ProductTemplate(models.Model):
                     template.variant_suffix = 'Sin variantes'
                 else:
                     template.variant_suffix = 'Sin valores en variantes'
-            print("{} de {}  -> {}: Variantes: {} Sufijo: {}".format(idx, total, template.name, template.numero_de_variantes, template.variant_suffix))
+            #print("{} de {}  -> {}: Variantes: {} Sufijo: {}".format(idx, total, template.name, template.numero_de_variantes, template.variant_suffix))
 
     @api.model
     def _search(self, args, offset=0, limit=None, order=None,

@@ -43,6 +43,7 @@ class WebsiteSaleExtended(WebsiteSale):
                     has_att_filter = True
 
         domain = super(WebsiteSaleExtended, self)._get_search_domain(search, category, attrib_values)
+        domain += [('stock_website_published', '=', True)]
         domain = expression.normalize_domain(domain)
 
         if has_att_filter:

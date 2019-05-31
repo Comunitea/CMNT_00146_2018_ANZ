@@ -11,22 +11,38 @@ class ProductAttributeValue(models.Model):
 
     @api.multi
     def name_get(self):
+        """
+        Heredo el nombre de la plantilla y si en el contexto viene
+        qty_variant_name y una plantilla entonces añado al name_get el
+        campo stock de  qty_available o el qty_available_global si la compañia
+        tiene padre.
+        """
+        a_model = self._context.get('active_model', False)
+        if a_model in ('sale.order', 'sale.order.line') and \
+                self._context.get('default_product_tmpl_id'):
 
-        #Heredo el nombre de la plantilla y si en el contexto viene qty_variant_name y una plantilla entonces ....
-        if self._context.get('active_model', False) in ('sale.order', 'sale.order.line') and self._context.get('default_product_tmpl_id'):
-            p_ids = self.env['product.product'].search([('product_tmpl_id','=', self._context['default_product_tmpl_id'])])
-            res = []
-            qty_field = 'qty_available'
-            active_model = self._context.get('active_model', False)
-            if active_model:
-                id = self._context.get('active_id', False)
-                if id:
-                    parent = self.env[active_model].browse(id)
-                    if parent and parent.company_id and parent.company_id.stock_global:
-                        qty_field = 'qty_available_global'
-            for a_value in self:
-                p_a_value = p_ids.filtered(lambda x: a_value in x.attribute_value_ids)
-                res.append([a_value.id, "%s            (%s)" % (a_value.name, p_a_value[qty_field])])
-        else:
-            res = super(ProductAttributeValue, self).name_get()
+            tmp_obj = self.env['product.template'].browse(
+                self._context.get('default_product_tmpl_id'))
+
+            # Solo si en el producto hay una línea de atributos
+            if len(tmp_obj.attribute_line_ids) == 1:
+                p_ids = tmp_obj.product_variant_ids
+                res = []
+                qty_field = 'qty_available'
+                active_model = self._context.get('active_model', False)
+                if active_model:
+                    id = self._context.get('active_id', False)
+                    if id:
+                        parent = self.env[active_model].browse(id)
+                        if parent and parent.company_id and \
+                                parent.company_id.stock_global:
+                            qty_field = 'qty_available_global'
+
+                # Añado el campo stock en al nombre del atributo
+                for product in p_ids.filtered(lambda x: x.attribute_value_ids):
+                    a_value = product.attribute_value_ids[0]
+                    res.append([a_value.id, "%s (%s)" %
+                                (a_value.name, product[qty_field])])
+                return res
+        res = super(ProductAttributeValue, self).name_get()
         return res
