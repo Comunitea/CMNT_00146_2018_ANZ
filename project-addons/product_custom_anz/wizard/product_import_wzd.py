@@ -177,9 +177,7 @@ class ProductImportWzd(models.TransientModel):
             raise UserError(
                 _('The row %s has wrong color (%s)') % (str(idx), value))
         if attribute_color:
-            return [attribute_color.id]
-        else:
-            return []
+            return attribute_color.id
 
     def _get_attr_value(self, row_vals, idx, categ_id):
         """

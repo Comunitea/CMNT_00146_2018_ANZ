@@ -14,7 +14,7 @@ class ProductTemplate(models.Model):
             template.template_standard_price = template.product_variant_ids and template.product_variant_ids[0].standard_price or 0.00
 
 
-    #list_price = fields.Float(company_dependent=True)
+    list_price = fields.Float(company_dependent=True)
     product_color = fields.Many2one('product.attribute.value', string="Color",
                                     domain="[('is_color','=', True)]")
     template_colors = fields.Many2many(comodel_name='product.attribute.value',
@@ -31,7 +31,6 @@ class ProductTemplate(models.Model):
     variant_suffix = fields.Char('Variant suffix')
     pvp = fields.Float('PVP', digits=(16, 2))
 
-    # TODO Mostrar estos campos al editar
     ref_template = fields.Char('Referencia de plantilla')
     ref_template_color = fields.Char('Color de la referencia de plantilla')
     ref_template_name = fields.Char(compute='_compute_ref_template_name',
@@ -83,7 +82,6 @@ class ProductTemplate(models.Model):
                     template.variant_suffix = 'Sin variantes'
                 else:
                     template.variant_suffix = 'Sin valores en variantes'
-            #print("{} de {}  -> {}: Variantes: {} Sufijo: {}".format(idx, total, template.name, template.numero_de_variantes, template.variant_suffix))
 
     @api.model
     def _search(self, args, offset=0, limit=None, order=None,
@@ -125,19 +123,14 @@ class ProductTemplate(models.Model):
             change_template = False
             values = tmpl.attribute_id.value_ids
             variant_ids = tmpl.product_variant_ids.filtered(lambda x: not x.attribute_value_ids and x.oldname)
-            print ("\n\nBusco \n{} en \n{}".format(values.mapped('name'), variant_ids.mapped('oldname')))
             for variant in variant_ids.sorted(key=lambda l: len(l.oldname), reverse=True):
-                print ("\n -------------> {}".format(variant.oldname))
                 val_id = False
                 if not variant.force_attribute_value:
                     for val in values.sorted(key=lambda l: len(l.name), reverse=True):
-                        print ('{} -> {}'.format(val.name, variant.oldname))
                         if val.name in variant.oldname or (val.name_normalizado and val.name_normalizado in variant.oldname_normalizado):
-                            print('-------------> ---> Encuentro {} la variante {}'.format(variant.oldname, val.name))
                             if val_id:
                                 val_id = False
                                 variant.need_fix = True
-                                print ('-------------> XXX> Duplicado {} -> {}'.format(val.name, variant.oldname))
                             else:
                                 val_id = val
                 else:
@@ -145,13 +138,8 @@ class ProductTemplate(models.Model):
                 if val_id:
                     variant.need_fix = False
                     change_template = True
-                    print('-------------> ---> ---> Escribo en {} la variante {}'.format(variant.oldname, val_id.name))
                     variant.write({'attribute_value_ids': [(6,0,[val_id.id])]})
                     tmpl.attribute_line_ids[0].with_context(ctx).write({'value_ids': [(4, val_id.id)]})
-                else:
-                    print('-------------> ---> La variante {} no tiene talla'.format(variant.oldname))
-                #else:
-                #    variant.write({'attribute_value_ids': [(5)]})
             if change_template:
                 tmpl._get_variant_suffix()
 
@@ -175,7 +163,6 @@ class ProductTemplate(models.Model):
         model = 'product.template'
         product_ids = self.env[model].search(['|', ('ref_template','=', ''), ('default_code', '!=', '')])
         len_p = len(product_ids)
-        print("Actualizando {} registros".format(len_p))
         i = 0
         delete_xml_id(model)
         for p in product_ids:
@@ -188,8 +175,6 @@ class ProductTemplate(models.Model):
 class ProductProduct(models.Model):
 
     _inherit = 'product.product'
-
-    #standard_price = fields.Float(company_dependent=True)
 
     @api.multi
     def _get_attribute_id(self):
@@ -229,16 +214,17 @@ class ProductProduct(models.Model):
             }
             self.env['ir.model.data'].create(vals)
 
-
-
         model = 'product.product'
         product_ids = self.env['product.product'].search([('barcode','!=','')])
         len_p = len(product_ids)
-        print ("Actualizando {} productos".format(len_p))
         i=0
         delete_xml_id(model)
         for p in product_ids:
             i+=1
-            print("Van {} de {}".format(i, len_p))
             create_xml_id(p.barcode, p.id, model)
 
+class ProductAttributePrice(models.Model):
+    """ """
+    _inherit = "product.attribute.price"
+
+    price_extra = fields.Float(company_dependent=True)
