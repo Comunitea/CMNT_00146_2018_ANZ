@@ -19,6 +19,16 @@ class ProductPublicCategory(models.Model):
                                             'tag_id',
                                             string='Related Tags',
                                             help="Find Website Categories in Search Box by Related Tags")
+    complete_name = fields.Char('Complete Name', compute='_compute_complete_name', store=True)
+
+    @api.depends('name', 'parent_id.complete_name')
+    def _compute_complete_name(self):
+        for category in self:
+            if category.parent_id:
+                category.complete_name = '%s / %s' % (category.parent_id.complete_name, category.name)
+            else:
+                category.complete_name = category.name
+
 
 class ProductTemplate(models.Model):
     _inherit = 'product.template'
@@ -28,22 +38,3 @@ class ProductTemplate(models.Model):
         ('threshold_virtual',
          _('Show future and current inventory below a threshold and prevent sales if not enough stock'))
     ])
-
-    stock_website_published = fields.Boolean('Publicado sin stock')
-
-
-    @api.multi
-    def act_stock_published(self, domain=[]):
-
-        if domain:
-            domain += [('type', '=', 'product'), ('website_published', '=', True)]
-        templates = self.filtered(lambda x: x.type == 'product' and x.website_published == 'True') or self.search(domain)
-        for tmpl in templates:
-            tmpl.stock_website_published = tmpl.website_published and tmpl.virtual_available > 0
-
-class StockMoveLine(models.Model):
-    _inherit = 'stock.move.line'
-
-    def _action_done(self):
-        super(StockMoveLine, self)._action_done()
-        self.mapped('product_id').mapped('product_tmpl_id').act_stock_published()

@@ -2,7 +2,6 @@
 
 import json
 from odoo import http, _
-from odoo.osv import expression
 from odoo.http import request
 from odoo.addons.website_sale.controllers.main import WebsiteSale
 
@@ -10,74 +9,58 @@ from odoo.addons.website_sale.controllers.main import WebsiteSale
 class WebsiteSaleExtended(WebsiteSale):
 
     def _get_search_domain(self, search, category, attrib_values):
-        has_att_filter = False
+        domain_origin = super(WebsiteSaleExtended, self)._get_search_domain(search, category, attrib_values)
         attr_domain = []
+        has_att_filter = False
         filter_args = request.httprequest.args
-        if filter_args:
 
+        if filter_args:
             brand = int(filter_args.get('brand', False))
             context = dict(request.env.context)
             if context.get('brand_id') == 0:
                 context.pop('brand_id')
-            if brand and brand != 0:
-                context.setdefault('brand_id', brand)
-            request.env.context = context
-            # type = int(filter_args.get('type', False))
-            # if type and type != 0:
-            #     attr_domain += [('product_type_id', '=', type)]
+                domain_origin.remove([d for d in domain_origin if 'product_brand_id' in d][0])
 
             tags = request.env['product.attribute.tag'].sudo()
 
             gender = filter_args.get('gender', False)
             if gender:
-                tag_gender = tags.search(['&', ('type', '=', 'gender'), ('value', '=', gender)])
+                gender_domain = ['&', ('type', '=', 'gender'), ('value', '=', gender)]
+                if brand and brand != 0:
+                    gender_domain += [('product_brand_id', '=', brand)]
+                tag_gender = tags.search(gender_domain)
                 if tag_gender:
                     attr_domain += [('product_gender_id', 'in', tag_gender.ids)]
                     has_att_filter = True
 
             age = filter_args.get('age', False)
             if age:
-                tag_age = tags.search(['&', ('type', '=', 'age'), ('value', '=', age)])
+                tag_domain = ['&', ('type', '=', 'age'), ('value', '=', age)]
+                if brand and brand != 0:
+                    tag_domain += [('product_brand_id', '=', brand)]
+                tag_age = tags.search(tag_domain)
                 if tag_age:
                     attr_domain += [('product_age_id', 'in', tag_age.ids)]
                     has_att_filter = True
-
-        domain = super(WebsiteSaleExtended, self)._get_search_domain(search, category, attrib_values)
-        domain += [('stock_website_published', '=', True)]
-        domain = expression.normalize_domain(domain)
 
         if has_att_filter:
             product_attributes = request.env['product.attribute'].sudo().search(attr_domain)
             product_attribute_lines = request.env['product.attribute.line'].sudo().search([
                 ('attribute_id', 'in', product_attributes.ids)
             ])
-            filtered_domain = [('attribute_line_ids', 'in', product_attribute_lines.ids)]
-            domain = expression.AND([domain, filtered_domain])
+            domain_origin += [('attribute_line_ids', 'in', product_attribute_lines.ids)]
 
         if search:
-            domain_search = []
             for srch in search.split(" "):
-                domain_search += ['|', '|', '|', '|',
+                domain_origin.insert(-1, '|')
+                domain_origin += ['|', '|', '|', '|',
                                   ('product_variant_ids.attribute_value_ids', 'ilike', srch),
-                                  ('public_categ_ids', 'ilike', srch),
+                                  ('public_categ_ids.complete_name', 'ilike', srch),
                                   ('public_categ_ids.public_categ_tag_ids', 'ilike', srch),
                                   ('product_variant_ids', 'ilike', srch),
                                   ('product_variant_ids.product_brand_id', 'ilike', srch)]
-            domain = expression.OR([domain, domain_search])
 
-        if category:
-            categories = request.env['product.public.category']
-            # Search sub-categories of first and second depth level
-            sub_cat_l1 = categories.sudo().search([('parent_id', '=', int(category))], order='sequence')
-            sub_cat_l2 = categories.sudo().search([('parent_id', 'in', sub_cat_l1.ids)], order='sequence')
-            # Create new list of categories to show
-            list_cat = [int(category)]
-            list_cat.extend(sub_cat_l1.ids)
-            list_cat.extend(sub_cat_l2.ids)
-            # Search products from sub-categories of first and second depth level
-            domain += [('public_categ_ids', 'in', list_cat)]
-
-        return domain
+        return domain_origin
 
     @http.route(['/shop/cart/multi_update'], type='json', auth="public", methods=['POST'], website=True)
     def multi_update_cart(self, update_data, product_template):
