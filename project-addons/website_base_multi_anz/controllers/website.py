@@ -11,6 +11,7 @@ class WebsiteSaleExtended(WebsiteSale):
 
     def _get_search_domain(self, search, category, attrib_values):
         domain = super(WebsiteSaleExtended, self)._get_search_domain(search, category, attrib_values)
+        domain += [('stock_website_published', '=', True)]
         domain = expression.normalize_domain(domain)
 
         if search:

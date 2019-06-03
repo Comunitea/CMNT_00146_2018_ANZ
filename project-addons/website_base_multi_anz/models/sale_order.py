@@ -24,3 +24,10 @@ class SaleOrder(models.Model):
                 })
 
         return super(SaleOrder, self).create(vals)
+
+    class SaleOrder(models.Model):
+        _inherit = 'sale.order'
+
+        def action_confirm(self):
+            super().action_confirm()
+            self.mapped('order_line').mapped('product_id').mapped('product_tmpl_id').act_stock_published()
