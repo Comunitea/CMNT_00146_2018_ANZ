@@ -14,7 +14,7 @@ class ProductTemplate(models.Model):
             template.template_standard_price = template.product_variant_ids and template.product_variant_ids[0].standard_price or 0.00
 
 
-    list_price = fields.Float(company_dependent=True)
+    #list_price = fields.Float(company_dependent=True)
     product_color = fields.Many2one('product.attribute.value', string="Color",
                                     domain="[('is_color','=', True)]")
     template_colors = fields.Many2many(comodel_name='product.attribute.value',
@@ -227,4 +227,4 @@ class ProductAttributePrice(models.Model):
     """ """
     _inherit = "product.attribute.price"
 
-    price_extra = fields.Float(company_dependent=True)
+    #price_extra = fields.Float(company_dependent=True)

@@ -347,7 +347,7 @@ class ProductImportWzd(models.TransientModel):
             if row_vals['ecommerce']:
                 vals.update(public_categ_ids=[(6,0,self._get_category_ecommerce(row_vals['ecommerce'],idx))])
             if row_vals['color']:
-                vals.update(product_color=[(6,0,self._get_product_color(row_vals['color'],idx))])
+                vals.update({product_color=self._get_product_color(row_vals['color'],idx)})
             if tags:
                 vals.update(tag_ids=[(6, 0, tags)])
 

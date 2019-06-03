@@ -84,7 +84,7 @@ class ProductProduct(models.Model):
             ref_args = self.env['product.product'].search([('product_tmpl_id.ref_template_name',operator,name)]).ids
             if ref_args:
                 ref_args = [('id','in',ref_args)]
-                args = ['|'] + args + ref_args if args else ref_args
+                args = args + ref_args if args else ref_args
         return super().name_search(name=name, args=args, operator=operator, limit=limit)
 
     @api.multi
