@@ -1,36 +1,6 @@
 # © 2018 Comunitea
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-# TODO  PLANTILLA:
-# ref_template
-# ref_template_color
-# !!! estas dos columnas son clave y determinan product_template y PT.XXXXXX YYY cuando es posible
-# marca - se crea como atributo y como caracteristica de atributo
-# color general - amazon, hace falta una especie de "color general"
-# composicion de colores - amazon separados por coma o / todos los colores que tiene, se pasa a atributos
-# name - Auto explicativo NOT NULL
-# categoria NOT NULL -- ver si la metemos a palo seco
-# ATRIBUTOS - TODO preguntar a kiko cual era la lógica de esto, por que no recuerdo porque habia tipo y nombre
-# Esto se duplicai en atributo y COMO atributo para facilitar el trabajo a los de front
-# nombre de talla NOT NULL
-# tipo de product - T-Shirt sandalias y eso
-# <!-- Marca, puesto arriba -->
-# Genero - Puede ser falso?
-# edad - puede ser falso?
-# DESCRIPCIONES
-# descripcion corta
-# descripcion larga
-# ESPECIFICO por product_product
-# coste NOT NULL
-# precio de venta NOT NULL - Si es distinto para alguno cambiar
-# valor de la talla - 46,47,etc NOT NULL
-# supplier name - amazon, esto es un campo que vamos aprovechar para crear ls relaciones entre las tallas
-# EAN NOT NULL
-# Campos de longitud VARIABLE, pueden aparecer 30 y no son obligatorios
-# Si el nombre del campo es tag se busca una etuiqueta
-# si el nombre del campo es attribute, se busca un atributo
-# TODO vista para ver errorres o devolver resultados
-
 from odoo import api, models, fields, _
 from odoo.exceptions import UserError
 import xlrd
@@ -69,7 +39,7 @@ class ProductImportWzd(models.TransientModel):
 
     def _parse_row_vals(self, row, idx):
         res = {
-            'ref_template': row[0],
+            'ref_template': str(row[0]),
             'name_temp': row[1],
             'name_color': row[2],
             'name_extra': row[3],
@@ -99,13 +69,13 @@ class ProductImportWzd(models.TransientModel):
         }
 
         # Check mandatory values setted
-        if not row[6]:
+        if not row[7]:
             raise UserError(
                 _('Missing EAN in row %s ') % str(idx))
         if not (row[0] and row[1] and row[2] and row[4] and row[6]):
             raise UserError(
                 _('The row %s is missing some mandatory column') % str(idx))
-        if not self._get_brand(row[5]):
+        if not self._get_brand(row[6]):
             raise UserError(
                 _('The row %s is missing brand') % str(idx))
         return res
@@ -178,6 +148,7 @@ class ProductImportWzd(models.TransientModel):
                 _('The row %s has wrong color (%s)') % (str(idx), value))
         if attribute_color:
             return attribute_color.id
+        return None
 
     def _get_attr_value(self, row_vals, idx, categ_id):
         """
@@ -333,7 +304,6 @@ class ProductImportWzd(models.TransientModel):
         # CREATE PRODUCT XMLID
         self._create_xml_id(
             product.barcode, product.id, 'product.product')
-        print("Se crea el producto {} con xml_id {} \nVals :{} y ".format(product.display_name, product.get_xml_id(), vals))
         # WRITE TEMPLATE REF AND XMLID TO THE NEW CREATED TEMPLATE
         if not template:
             template = product.product_tmpl_id
@@ -347,7 +317,7 @@ class ProductImportWzd(models.TransientModel):
             if row_vals['ecommerce']:
                 vals.update(public_categ_ids=[(6,0,self._get_category_ecommerce(row_vals['ecommerce'],idx))])
             if row_vals['color']:
-                vals.update({product_color=self._get_product_color(row_vals['color'],idx)})
+                vals.update(product_color=self._get_product_color(row_vals['color'],idx))
             if tags:
                 vals.update(tag_ids=[(6, 0, tags)])
 
@@ -355,7 +325,6 @@ class ProductImportWzd(models.TransientModel):
             xml_id = row_vals['ref_template']
             self._create_xml_id(xml_id, template.id, 'product.template')
             template_ids.append(template.id)
-            print("Se crea la plantilla {} con xml_id {} \nVals :{} y ".format(template.display_name, template.get_xml_id(), vals))
             if len(template.product_variant_ids)>1:
                 raise UserError(
                     "Linea %s: Plantilla %s. Si la plantilla tiene más de una variante debes de crear variantes y el codigo del atributo debe ser distinto a 'NO'" %(idx, template.display_name))
