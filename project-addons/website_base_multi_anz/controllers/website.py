@@ -9,10 +9,24 @@ from odoo.addons.website_sale.controllers.main import WebsiteSale
 class WebsiteSaleExtended(WebsiteSale):
 
     def _get_search_domain(self, search, category, attrib_values):
+        """
+            Incluye varios dominios nuevos.
+            domain_swp: controla que no se muestren los productos sin stock en conjunto con el cron act_stock_published
+            de product.py
+            attr_domain: para buscar productos dentro del contexto por filtros de atributos.
+            search: limpia el contexto y amplia la busqueda por los terminos introducidos en el search box.
+
+        """
         domain_origin = super(WebsiteSaleExtended, self)._get_search_domain(search, category, attrib_values)
         attr_domain = []
         has_att_filter = False
         filter_args = request.httprequest.args
+
+        website = request.website
+        domain_swp = [('website_id', '=', website.id), ('stock_website_published', '=', True)]
+        product_ids = request.env['template.stock.web'].sudo().search(domain_swp).mapped('product_id').ids
+        # TODO: Descomentar despues de ejecutar el cron por primera vez
+        # domain_origin += [('id', 'in', product_ids)]
 
         if filter_args:
             brand = int(filter_args.get('brand', False))
@@ -64,7 +78,9 @@ class WebsiteSaleExtended(WebsiteSale):
 
     @http.route(['/shop/cart/multi_update'], type='json', auth="public", methods=['POST'], website=True)
     def multi_update_cart(self, update_data, product_template):
-        """ Añade multiples variantes de una plantilla al carrito """
+        """
+            Añade multiples variantes de una plantilla al carrito
+        """
         success = False
         quantity = 0
         variants = json.loads(update_data)
@@ -84,17 +100,8 @@ class WebsiteSaleExtended(WebsiteSale):
                     attr_name = product_id.attribute_value_ids.sudo().search([('id', '=', int(key, 10))], limit=1).name
                     attr_name = '<strong>%s</strong>' % attr_name
                     # Check of product stock
-                    max_qty = -1
+                    max_qty = product_id.sudo().get_web_max_qty()
                     cart_qty = 0
-                    if product_id.inventory_availability in ['always', 'threshold']:
-                        max_qty = max(0, product_id.sudo().qty_available - product_id.sudo().outgoing_qty)
-                    elif product_id.inventory_availability in ['always_virtual', 'threshold_virtual']:
-                        max_qty = max(0, product_id.sudo().virtual_available)
-
-                    threshold = template.sudo().available_threshold
-                    if product_id.inventory_availability in ['threshold', 'threshold_virtual'] and threshold > 0:
-                        max_qty = max(0, max_qty - threshold)
-
                     # Search this variant qty in the cart
                     for line in order.order_line:
                         if line.product_id == product_id:
