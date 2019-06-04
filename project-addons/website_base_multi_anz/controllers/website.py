@@ -4,6 +4,7 @@ import json
 from odoo import http, _
 from odoo.http import request
 from odoo.addons.website_sale.controllers.main import WebsiteSale
+from odoo.addons.seo_base.controllers.redirecting import ProductRedirect
 
 
 class WebsiteSaleExtended(WebsiteSale):
@@ -146,3 +147,17 @@ class WebsiteSaleExtended(WebsiteSale):
         order = request.website.sale_get_order(force_create=True)
         result = True if order else False
         return result
+
+
+class ProductRedirectContext(ProductRedirect):
+    def _update_context(self):
+        """
+        Update request.env.context to keep in redirections and super calls
+        """
+        context = dict(request.env.context)
+        context.update({
+            # Show product stock by website warehouse
+            'warehouse': request.website.warehouse.id
+        })
+        request.env.context = context
+        return
