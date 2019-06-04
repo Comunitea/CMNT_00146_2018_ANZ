@@ -126,7 +126,7 @@
         </xpath>
         <xpath expr="//section/h5" position="before">
             <div class="product_default_code">
-                <span t-esc="product.default_code" t-if="product.default_code"/>
+                <span t-esc="product.ref_template" t-if="product.ref_template"/>
             </div>
         </xpath>
     </template>

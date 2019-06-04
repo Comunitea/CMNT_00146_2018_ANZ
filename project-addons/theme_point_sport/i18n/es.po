@@ -191,7 +191,7 @@ msgstr "Grupo Anzamar"
 #. module: theme_point_sport
 #: model:ir.ui.view,arch_db:theme_point_sport.poi_website_sale_product
 msgid "Add to Cart"
-msgstr "Añadir al Carro"
+msgstr "Añadir al Carrito"
 
 #. module: theme_point_sport
 #: model:ir.ui.view,arch_db:theme_point_sport.poi_website_sale_product
