@@ -32,7 +32,7 @@
             </t>
             <!-- Multi cart update button -->
             <div class="add-to-cart-multi" t-if="user_access == True and len(product.product_variant_ids) &gt; 1">
-                <a class="btn btn-success btn-lg mt8 a-submit" href="#">Multi add to Cart</a>
+                <a class="btn btn-success btn-lg mt8 a-submit" href="#">Add to Cart</a>
             </div>
         </xpath>
 
