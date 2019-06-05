@@ -101,19 +101,22 @@ class WebsiteSaleExtended(WebsiteSale):
                     attr_name = '<strong>%s</strong>' % attr_name
                     # Check of product stock
                     max_qty = product_id.sudo().get_web_max_qty()
-                    cart_qty = 0
-                    # Search this variant qty in the cart
-                    for line in order.order_line:
-                        if line.product_id == product_id:
-                            cart_qty = line.product_uom_qty
+                    product_line = order.order_line.filtered(lambda x: x.product_id == product_id)
+                    cart_qty = product_line and product_line[0].product_uom_qty or 0
 
                     if max_qty >= 0 and (max_qty - cart_qty - qty < 0):
+                        in_cart = _('and %d unit(s) are already in cart') % cart_qty if cart_qty > 0 else ''
                         prod_list += _(
-                            '<p class="alert alert-warning">%s: Ask for %d units but only %d is available</p>' % (
-                                attr_name, (qty + cart_qty), max_qty))
+                            '<p class="alert alert-warning">%s: Ask for %d units but only %d is available %s</p>' % (
+                                attr_name, qty, max_qty, in_cart))
                         qty = min(qty, max_qty)
                     else:
-                        prod_list += _('<p class="alert alert-success">%s: %d unit(s)</p>') % (attr_name, qty)
+                        if cart_qty > 0:
+                            prod_list += _('<p class="alert alert-warning">%s: Added %d unit(s) but %d '
+                                           'unit(s) was already in your cart</p>') \
+                                         % (attr_name, qty, cart_qty)
+                        else:
+                            prod_list += _('<p class="alert alert-success">%s: Added %d unit(s)</p>') % (attr_name, qty)
 
                     # Add to cart
                     if qty > 0:

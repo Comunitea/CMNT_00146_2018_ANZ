@@ -94,37 +94,43 @@ msgid "Available only for public users"
 msgstr "Disponible solo para Usuarios Públicos"
 
 #. module: website_base_multi_anz
-#: code:addons/website_base_multi_anz/controllers/website.py:54
+#: code:addons/website_base_multi_anz/controllers/website.py:108
 #, python-format
-msgid "and %d unit(s) was already in cart"
-msgstr "y %d unidades fueron añadidos al carrito"
+msgid "and %d unit(s) are already in cart"
+msgstr "y %d ud(s) ya están en el carrito"
 
 #. module: website_base_multi_anz
-#: code:addons/website_base_multi_anz/controllers/website.py:82
+#: code:addons/website_base_multi_anz/controllers/website.py:110
 #, python-format
-msgid "<p class="alert alert-warning">%s: Ask for %d units but only %d is available</p>"
-msgstr "<p class=\"alert alert-warning\">%s: Solicita %d ud(s), pero solo %d están disponibles</p>"
+msgid "<p class=\"alert alert-warning\">%s: Ask for %d units but only %d is available %s</p>"
+msgstr "<p class=\"alert alert-warning\">%s: Solicita %d ud(s), pero solo %d están disponibles %s</p>"
 
 #. module: website_base_multi_anz
-#: code:addons/website_base_multi_anz/controllers/website.py:85
+#: code:addons/website_base_multi_anz/controllers/website.py:115
 #, python-format
-msgid "<p class=\"alert alert-success\">%s: %d unit(s)</p>"
-msgstr "<p class=\"alert alert-success\">%s: %d unidad(s)</p>"
+msgid "<p class=\"alert alert-warning\">%s: Added %d unit(s) but %d unit(s) was already in your cart</p>"
+msgstr "<p class=\"alert alert-warning\">%s: Añadidas %d ud(s) aunque %d ud(s) ya estaban en el carrito</p>"
 
 #. module: website_base_multi_anz
-#: code:addons/website_base_multi_anz/controllers/website.py:94
+#: code:addons/website_base_multi_anz/controllers/website.py:119
+#, python-format
+msgid "<p class=\"alert alert-success\">%s: Added %d unit(s)</p>"
+msgstr "<p class=\"alert alert-success\">%s: Añadidas %d ud(s)</p>"
+
+#. module: website_base_multi_anz
+#: code:addons/website_base_multi_anz/controllers/website.py:128
 #, python-format
 msgid "<p><strong>Was added %d unit(s) of %s:</strong></p>%s"
 msgstr "<p><strong>Añadidas %d ud(s) de %s:</strong></p>%s"
 
 #. module: website_base_multi_anz
-#: code:addons/website_base_multi_anz/controllers/website.py:98
+#: code:addons/website_base_multi_anz/controllers/website.py:132
 #, python-format
 msgid "<p><strong>Product for %s not found:</strong></p>%s"
 msgstr "<p><strong>Producto para %s no encontrado:</strong></p>%s"
 
 #. module: website_base_multi_anz
-#: code:addons/website_base_multi_anz/controllers/website.py:100
+#: code:addons/website_base_multi_anz/controllers/website.py:134
 #, python-format
 msgid "<p><strong>Empty product list</strong></p>"
 msgstr "<p><strong>Lista de productos vacía</strong></p>"
