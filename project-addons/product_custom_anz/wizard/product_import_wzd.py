@@ -27,7 +27,6 @@ class ProductImportWzd(models.TransientModel):
     def _get_brand(self, name, create=False):
         if name:
             brand = self.env['product.brand'].search([('name','=ilike',name)])
-            print("Marca: "+name)
             brand.ensure_one()
             return brand
         return self.brand_id
