@@ -72,7 +72,7 @@ class ProductImportWzd(models.TransientModel):
         if not row[7]:
             raise UserError(
                 _('Missing EAN in row %s ') % str(idx))
-        if not (row[0] and row[1] and row[2] and row[4] and row[6]):
+        if not (row[0] and row[1] and row[4] and row[6]):
             raise UserError(
                 _('The row %s is missing some mandatory column') % str(idx))
         if not self._get_brand(row[6]):
@@ -89,11 +89,11 @@ class ProductImportWzd(models.TransientModel):
 
 
     def _get_category_id(self, category_name = False, idx=0):
-        categ_id = False
-        if category_name:
-            categ_id = self.env['product.category'].search([('name', '=', category_name)], limit=1)
+        if not category_name:
+            return self.categ_id
+        category = self.env['product.category'].search([('complete_name', '=ilike', category_name)], limit=1)
 
-        categ_id = categ_id or self.categ_id
+        categ_id = category.id or self.categ_id
         if not categ_id:
             raise UserError(
                 _('The row %s has wrong category (%s) and not default category') % (str(idx), category_name))
@@ -314,6 +314,8 @@ class ProductImportWzd(models.TransientModel):
                 'product_brand_id': self._get_brand(row_vals['brand_id']).id,
                 'categ_id': categ_id.id
             }
+            if row_vals['description']:
+                vals.update(description=row_vals['description'])
             if row_vals['ecommerce']:
                 vals.update(public_categ_ids=[(6,0,self._get_category_ecommerce(row_vals['ecommerce'],idx))])
             if row_vals['color']:
