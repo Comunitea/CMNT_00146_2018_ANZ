@@ -27,6 +27,7 @@ class ProductImportWzd(models.TransientModel):
     def _get_brand(self, name, create=False):
         if name:
             brand = self.env['product.brand'].search([('name','=ilike',name)])
+            print("Marca: "+name)
             brand.ensure_one()
             return brand
         return self.brand_id
@@ -75,7 +76,7 @@ class ProductImportWzd(models.TransientModel):
         if not (row[0] and row[1] and row[4] and row[6]):
             raise UserError(
                 _('The row %s is missing some mandatory column') % str(idx))
-        if not self._get_brand(row[6]):
+        if not self._get_brand(row[5]):
             raise UserError(
                 _('The row %s is missing brand') % str(idx))
         return res
@@ -88,12 +89,12 @@ class ProductImportWzd(models.TransientModel):
                         (virual_module_name, xml_id, res_id, model))
 
 
-    def _get_category_id(self, category_name = False, idx=0):
+    def _get_category(self, category_name = False, idx=0):
         if not category_name:
             return self.categ_id
         category = self.env['product.category'].search([('complete_name', '=ilike', category_name)], limit=1)
 
-        categ_id = category.id or self.categ_id
+        categ_id = category or self.categ_id
         if not categ_id:
             raise UserError(
                 _('The row %s has wrong category (%s) and not default category') % (str(idx), category_name))
@@ -140,7 +141,7 @@ class ProductImportWzd(models.TransientModel):
 
     def _get_product_color(self, value, idx=0, create=False):
         attribute_color = False
-        if attribute_color:
+        if value:
             attribute_color = self.env['product.attribute.value'].search([('is_color','=',True),('name', '=ilike', value)], limit=1) or False
 
         if value and not attribute_color:
@@ -155,7 +156,7 @@ class ProductImportWzd(models.TransientModel):
         Get an Existing attribute or raise an error
         """
         if not categ_id:
-            categ_id = self._get_category_id(row_vals['category'], idx)
+            categ_id = self._get_category(row_vals['category'], idx)
 
         domain = [('product_brand_id', '=', self._get_brand(row_vals['brand_id']).id)]
         tag_type_id=tag_age_id=tag_gender_id=False
@@ -280,7 +281,7 @@ class ProductImportWzd(models.TransientModel):
 
         pp_pool = self.env['product.product']
         product_name = row_vals['name_temp'] + ' ' + row_vals['name_color'] + row_vals['name_extra']
-        categ_id = self._get_category_id(row_vals['category'], idx)
+        categ_id = self._get_category(row_vals['category'], idx)
         attr_value = self._get_attr_value(row_vals, idx, categ_id)
 
         code_attr = attr_value.supplier_code or row_vals['code_attr'] and str(int(row_vals['code_attr'])) or '%04d' % (attr_value.id)

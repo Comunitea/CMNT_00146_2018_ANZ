@@ -32,6 +32,7 @@ class ProductTemplate(models.Model):
     pvp = fields.Float('PVP', digits=(16, 2))
 
     ref_template = fields.Char('Referencia de plantilla')
+    _sql_constraints = [('ref_template_uniq','unique (ref_template)','The tempalte reference must be unique!')]
     ref_template_color = fields.Char('Color de la referencia de plantilla')
     ref_template_name = fields.Char(compute='_compute_ref_template_name',
                                search='_search_ref_template_name')
