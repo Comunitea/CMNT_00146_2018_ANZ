@@ -24,6 +24,15 @@
                     'required': [('inventory_availability', 'in', ('threshold', 'threshold_virtual')), ('type', '=', 'product')]}
                 </attribute>
             </field>
+            <field name="available_threshold" position="after">
+                <field name="visibility_stock_web">
+                    <tree editable="bottom" >
+                        <field name="website_id"/>
+                        <field name="stock_website_published"/>
+                    </tree>
+
+                </field>
+            </field>
         </field>
     </record>
 

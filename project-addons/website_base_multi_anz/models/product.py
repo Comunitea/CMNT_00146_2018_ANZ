@@ -1,5 +1,8 @@
 # -*- coding: utf-8 -*-
 from odoo import api, fields, models, _
+import logging
+
+_logger = logging.getLogger(__name__)
 
 
 class ProductPublicCategoryTag(models.Model):
@@ -38,32 +41,43 @@ class ProductTemplate(models.Model):
         ('threshold_virtual',
          _('Show future and current inventory below a threshold and prevent sales if not enough stock'))
     ])
+    visibility_stock_web = fields.One2many('template.stock.web', 'product_id')
 
-    @api.multi
-    def act_stock_published(self, domain=[]):
-        # campos que mostraran siempre independiente del inventario
-        tsw = self.env['template.stock.web']
-        swp_fields = ['always', 'always_virtual', 'threshold_virtual']
+    def create_tsw(self, website):
         ctx = self._context.copy()
+        swp_fields = ['always_virtual', 'threshold_virtual']
+        inventory_availability = self.inventory_availability or website.inventory_availability
+        if inventory_availability in swp_fields:
+            stock_website_published = True
+        else:
+            ctx.update(warehouse_id=website.warehouse.id)
+            stock_website_published = self.with_context().qty_available > 0
+
+        vals = {'product_id': self.id, 'website_id': website.id,
+                'stock_website_published': stock_website_published}
+        domain = [('product_id', '=', self.id), ('website_id', '=', website.id)]
+        tsw_id = self.env['template.stock.web'].search(domain)
+        if tsw_id:
+            tsw_id.stock_website_published = stock_website_published
+        else:
+            self.env['template.stock.web'].create(vals)
+
+    @api.model
+    def act_stock_published(self):
 
         template_ids = self.env['product.template'].search([('website_published', '=', True)])
-        for template in template_ids:
-            for website in template.website_ids:
-                inventory_availability = template.inventory_availability or website.inventory_availability
-                if inventory_availability in swp_fields:
-                    stock_website_published = True
-                else:
-                    ctx.update(warehouse_id=website.warehouse_id.id)
-                    stock_website_published = template.with_context().qty_available > 0
 
-                vals = {'product_id': template.id, 'website_id': website.id,
-                        'stock_website_published': stock_website_published}
-                domain = [('product_id', '=', template.id), ('website_id', '=', website.id)]
-                tsw_id = tsw.search(domain)
-                if tsw_id:
-                    tsw_id.stock_website_published = stock_website_published
-                else:
-                    self.env['template.stock.web'].create(vals)
+        cont=0
+        tot = len(template_ids)
+        for template in template_ids:
+
+            cont+=1
+            _logger.info('{} de {}: {}'.format(cont, tot, template.name))
+
+
+            websites = template.website_ids or self.env['website'].search([])
+            for website in websites:
+                template.create_tsw(website)
 
 
 class TemplateStockWeb(models.Model):
