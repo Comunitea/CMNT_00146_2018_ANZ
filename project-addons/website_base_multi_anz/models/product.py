@@ -58,7 +58,7 @@ class ProductTemplate(models.Model):
 
                 vals = {'product_id': template.id, 'website_id': website.id,
                         'stock_website_published': stock_website_published}
-                domain = [('product_id', '=', template.id), ('website', '=', website.id)]
+                domain = [('product_id', '=', template.id), ('website_id', '=', website.id)]
                 tsw_id = tsw.search(domain)
                 if tsw_id:
                     tsw_id.stock_website_published = stock_website_published
