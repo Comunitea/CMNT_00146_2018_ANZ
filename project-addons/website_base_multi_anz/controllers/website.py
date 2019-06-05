@@ -26,8 +26,7 @@ class WebsiteSaleExtended(WebsiteSale):
         website = request.website
         domain_swp = [('website_id', '=', website.id), ('stock_website_published', '=', True)]
         product_ids = request.env['template.stock.web'].sudo().search(domain_swp).mapped('product_id').ids
-        # TODO: Descomentar despues de ejecutar el cron por primera vez
-        # domain_origin += [('id', 'in', product_ids)]
+        domain_origin += [('id', 'in', product_ids)]
 
         if filter_args:
             brand = int(filter_args.get('brand', False))
