@@ -365,3 +365,38 @@ msgstr "Lista de deseos"
 #: model:website.page,name:theme_point_sport.poi_shop_page
 msgid "Products"
 msgstr "Productos"
+
+#. module: theme_point_sport
+#: model:ir.ui.view,arch_db:theme_point_sport.website_sale_products_categories
+msgid "Product categories"
+msgstr "Categorías de productos"
+
+#. module: theme_point_sport
+#: model:ir.ui.view,arch_db:theme_point_sport.website_sale_products_categories
+msgid "Apply filters"
+msgstr "Filtrar"
+
+#. module: theme_point_sport
+#: model:ir.ui.view,arch_db:theme_point_sport.website_sale_products_categories
+msgid "Filters"
+msgstr "Filtros"
+
+#. module: theme_point_sport
+#: model:ir.ui.view,arch_db:theme_point_sport.website_sale_products_categories
+msgid "Brand"
+msgstr "Marca"
+
+#. module: theme_point_sport
+#: model:ir.ui.view,arch_db:theme_point_sport.website_sale_products_categories
+msgid "Gender"
+msgstr "Género"
+
+#. module: theme_point_sport
+#: model:ir.ui.view,arch_db:theme_point_sport.website_sale_products_categories
+msgid "Age"
+msgstr "Edad"
+
+#. module: theme_point_sport
+#: model:ir.ui.view,arch_db:theme_point_sport.website_sale_products_categories
+msgid "Reset"
+msgstr "Limpiar"

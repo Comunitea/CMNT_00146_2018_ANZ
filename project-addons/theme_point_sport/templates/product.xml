@@ -105,7 +105,8 @@
                         </div>
                         <div class="modal-body"/>
                         <div class="modal-footer">
-                            <a class="btn btn-default" href="/shop"><i class="fa fa-chevron-left"/> <span class="hidden-xs">Continue Shopping</span><span class="visible-xs-inline">Continue</span></a>
+                            <!--<a class="btn btn-default" href="/shop"><i class="fa fa-chevron-left"/> <span class="hidden-xs">Continue Shopping</span><span class="visible-xs-inline">Continue</span></a>-->
+                            <button type="button" class="btn btn-default" data-dismiss="modal" aria-hidden="true"><i class="fa fa-chevron-left"/> <span class="hidden-xs">Continue Shopping</span><span class="visible-xs-inline">Continue</span></button>
                             <a class="btn btn-primary pull-right" href="/shop/cart"><i class="fa fa-shopping-cart fa-fw"/> <span class="hidden-xs">Proceed to Checkout</span><span class="visible-xs-inline">Checkout</span></a>
                         </div>
                     </div>
