@@ -453,6 +453,14 @@
 
     <!-- ======================================= Shop menu ======================================= -->
 
+    <template id="poi_products_view" name="Brands Point Template" inherit_id="website_sale.products"/>
+    <record id="poi_shop_page" model="website.page">
+        <field name="name">Products</field>
+        <field name="website_published">True</field>
+        <field name="website_ids" eval="[(6, 0, [ref('website_base_multi_anz.point_sport_website')])]"/>
+        <field name="url">/shop</field>
+        <field name="view_id" ref="poi_products_view"/>
+    </record>
     <record id="poi_shop_menu" model="website.menu">
         <field name="name">Shop</field>
         <field name="url">/shop</field>

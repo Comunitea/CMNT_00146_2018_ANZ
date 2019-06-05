@@ -2,46 +2,85 @@
 
 import json
 from odoo import http, _
-from odoo.osv import expression
 from odoo.http import request
 from odoo.addons.website_sale.controllers.main import WebsiteSale
+from odoo.addons.seo_base.controllers.redirecting import ProductRedirect
 
 
 class WebsiteSaleExtended(WebsiteSale):
 
     def _get_search_domain(self, search, category, attrib_values):
-        domain = super(WebsiteSaleExtended, self)._get_search_domain(search, category, attrib_values)
-        domain += [('stock_website_published', '=', True)]
-        domain = expression.normalize_domain(domain)
+        """
+            Incluye varios dominios nuevos.
+            domain_swp: controla que no se muestren los productos sin stock en conjunto con el cron act_stock_published
+            de product.py
+            attr_domain: para buscar productos dentro del contexto por filtros de atributos.
+            search: limpia el contexto y amplia la busqueda por los terminos introducidos en el search box.
+
+        """
+        domain_origin = super(WebsiteSaleExtended, self)._get_search_domain(search, category, attrib_values)
+        attr_domain = []
+        has_att_filter = False
+        filter_args = request.httprequest.args
+
+        website = request.website
+        domain_swp = [('website_id', '=', website.id), ('stock_website_published', '=', True)]
+        product_ids = request.env['template.stock.web'].sudo().search(domain_swp).mapped('product_id').ids
+        domain_origin += [('id', 'in', product_ids)]
+
+        if filter_args:
+            brand = int(filter_args.get('brand', False))
+            context = dict(request.env.context)
+            if context.get('brand_id') == 0:
+                context.pop('brand_id')
+                domain_origin.remove([d for d in domain_origin if 'product_brand_id' in d][0])
+
+            tags = request.env['product.attribute.tag'].sudo()
+
+            gender = filter_args.get('gender', False)
+            if gender:
+                gender_domain = ['&', ('type', '=', 'gender'), ('value', '=', gender)]
+                if brand and brand != 0:
+                    gender_domain += [('product_brand_id', '=', brand)]
+                tag_gender = tags.search(gender_domain)
+                if tag_gender:
+                    attr_domain += [('product_gender_id', 'in', tag_gender.ids)]
+                    has_att_filter = True
+
+            age = filter_args.get('age', False)
+            if age:
+                tag_domain = ['&', ('type', '=', 'age'), ('value', '=', age)]
+                if brand and brand != 0:
+                    tag_domain += [('product_brand_id', '=', brand)]
+                tag_age = tags.search(tag_domain)
+                if tag_age:
+                    attr_domain += [('product_age_id', 'in', tag_age.ids)]
+                    has_att_filter = True
+
+        if has_att_filter:
+            product_attributes = request.env['product.attribute'].sudo().search(attr_domain)
+            product_attribute_lines = request.env['product.attribute.line'].sudo().search([
+                ('attribute_id', 'in', product_attributes.ids)
+            ])
+            domain_origin += [('attribute_line_ids', 'in', product_attribute_lines.ids)]
 
         if search:
-            domain_search = []
             for srch in search.split(" "):
-                domain_search += ['|', '|', '|', '|',
+                domain_origin.insert(-1, '|')
+                domain_origin += ['|', '|', '|', '|',
                                   ('product_variant_ids.attribute_value_ids', 'ilike', srch),
-                                  ('public_categ_ids', 'ilike', srch),
+                                  ('public_categ_ids.complete_name', 'ilike', srch),
                                   ('public_categ_ids.public_categ_tag_ids', 'ilike', srch),
                                   ('product_variant_ids', 'ilike', srch),
                                   ('product_variant_ids.product_brand_id', 'ilike', srch)]
-            domain = expression.OR([domain, domain_search])
 
-        if category:
-            categories = request.env['product.public.category']
-            # Search sub-categories of first and second depth level
-            sub_cat_l1 = categories.sudo().search([('parent_id', '=', int(category))], order='sequence')
-            sub_cat_l2 = categories.sudo().search([('parent_id', 'in', sub_cat_l1.ids)], order='sequence')
-            # Create new list of categories to show
-            list_cat = [int(category)]
-            list_cat.extend(sub_cat_l1.ids)
-            list_cat.extend(sub_cat_l2.ids)
-            # Search products from sub-categories of first and second depth level
-            domain += [('public_categ_ids', 'in', list_cat)]
-
-        return domain
+        return domain_origin
 
     @http.route(['/shop/cart/multi_update'], type='json', auth="public", methods=['POST'], website=True)
     def multi_update_cart(self, update_data, product_template):
-        """ Añade multiples variantes de una plantilla al carrito """
+        """
+            Añade multiples variantes de una plantilla al carrito
+        """
         success = False
         quantity = 0
         variants = json.loads(update_data)
@@ -61,25 +100,17 @@ class WebsiteSaleExtended(WebsiteSale):
                     attr_name = product_id.attribute_value_ids.sudo().search([('id', '=', int(key, 10))], limit=1).name
                     attr_name = '<strong>%s</strong>' % attr_name
                     # Check of product stock
-                    max_qty = -1
+                    max_qty = product_id.sudo().get_web_max_qty()
                     cart_qty = 0
-                    if product_id.inventory_availability in ['always', 'threshold']:
-                        max_qty = max(0, product_id.sudo().qty_available - product_id.sudo().outgoing_qty)
-                    elif product_id.inventory_availability in ['always_virtual', 'threshold_virtual']:
-                        max_qty = max(0, product_id.sudo().virtual_available)
-
-                    threshold = template.sudo().available_threshold
-                    if product_id.inventory_availability in ['threshold', 'threshold_virtual'] and threshold > 0:
-                        max_qty = max(0, max_qty - threshold)
-
                     # Search this variant qty in the cart
                     for line in order.order_line:
                         if line.product_id == product_id:
                             cart_qty = line.product_uom_qty
 
                     if max_qty >= 0 and (max_qty - cart_qty - qty < 0):
-                        prod_list += _('<p class="alert alert-warning">{}: you ask for {} units but only {} '
-                                       'is available</p>'.format(attr_name, qty + cart_qty, max_qty))
+                        prod_list += _(
+                            '<p class="alert alert-warning">%s: Ask for %d units but only %d is available</p>' % (
+                                attr_name, (qty + cart_qty), max_qty))
                         qty = min(qty, max_qty)
                     else:
                         prod_list += _('<p class="alert alert-success">%s: %d unit(s)</p>') % (attr_name, qty)
@@ -95,10 +126,9 @@ class WebsiteSaleExtended(WebsiteSale):
                     qty_total, template.name, prod_list)
                 quantity = order.cart_quantity
             else:
-                message = _('<p><strong>Product variants for %s not found:</strong></p>%s') % (
-                    template.name, prod_list)
+                message = _('<p><strong>Product for %s not found:</strong></p>%s') % (template.name, prod_list)
         else:
-            message = _('<p><strong>Empty list of product variants</strong></p>')
+            message = _('<p><strong>Empty product list</strong></p>')
 
         # Return fail/success message
         values = {
@@ -116,3 +146,17 @@ class WebsiteSaleExtended(WebsiteSale):
         order = request.website.sale_get_order(force_create=True)
         result = True if order else False
         return result
+
+
+class ProductRedirectContext(ProductRedirect):
+    def _update_context(self):
+        """
+        Update request.env.context to keep in redirections and super calls
+        """
+        context = dict(request.env.context)
+        context.update({
+            # Show product stock by website warehouse
+            'warehouse': request.website.warehouse.id
+        })
+        request.env.context = context
+        return

@@ -1,6 +1,7 @@
 # © 2016 Comunitea - Javier Colmenero <javier@comunitea.com>
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
 from odoo import fields, models,api
+from odoo.http import request
 
 class ProductAttributeCategory(models.Model):
     _name = 'product.attribute.category'
@@ -20,6 +21,13 @@ class ProductAttributeTag(models.Model):
     product_brand_id = fields.Many2one('product.brand', 'Brand', required=1)
     type = fields.Selection([('type', 'Tipo de articulo'), ('gender', 'Género'), ('age', 'Edad')], required=1)
     value = fields.Char('Valor', required=1)
+    lines_count = fields.Integer(string='Number of products', compute='_get_attr_lines')
+
+    @api.multi
+    def _get_attr_lines(self):
+        for tag in self:
+            lines = request.env['product.attribute.line'].sudo().search([('attribute_id', '=', tag.id)])
+            tag.lines_count = len(lines)
 
 
 class ProductAttribute(models.Model):

@@ -504,3 +504,17 @@ msgstr "Confirmación Pedido de Venta"
 msgid "Sales Order"
 msgstr "Pedido de Venta"
 
+#. module: theme_anzamar
+#. openerp-web
+#: code:addons/theme_anzamar/static/js/main.js:188
+#, python-format
+msgid "<p><strong>Empty product list. Please, select one.</strong></p>"
+msgstr "<p><strong>Lista de Productos Vacia. Seleccione uno.</strong></p>"
+
+#. module: theme_anzamar
+#. openerp-web
+#: code:addons/theme_anzamar/static/js/main.js:190
+#, python-format
+msgid "<p><strong>User access error</strong></p>"
+msgstr "<p><strong>Error Acceso Usuario</strong></p>"
+

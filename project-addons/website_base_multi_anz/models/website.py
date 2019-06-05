@@ -27,7 +27,7 @@ class Website(models.Model):
     def _get_warehouse(self):
         return self.env['stock.warehouse'].search([], limit=1)
 
-    warehouse = fields.Many2one(comodel_name='stock.warehouse', string='Warehouse', default='_get_warehouse')
+    warehouse = fields.Many2one(comodel_name='stock.warehouse', string='Warehouse', default=_get_warehouse)
 
     def _get_order_type(self):
         return self.env['sale.order.type'].search([], limit=1)
@@ -48,6 +48,34 @@ class Website(models.Model):
     def dynamic_category_list(self):
         domain = ['|', ('website_ids', '=', False), ('website_ids', 'in', self.id)]
         return self.env['product.public.category'].sudo().search(domain)
+
+    def product_brand_list(self):
+        # .sudo() ?
+        return self.env['product.brand'].search([], order='name').filtered(lambda x: x.products_count != 0)
+
+    def product_gender_list(self):
+        genders = []
+        # .sudo() ?
+        gender_list = self.env['product.attribute.tag'].search([('type', '=', 'gender')], order='value')
+        # Add gender types to list without duplicate elements
+        for gender in gender_list.filtered(lambda x: x.lines_count != 0):
+            value = gender.value
+            if not genders.count(value) > 0:
+                genders.append(value)
+        genders.sort()
+        return genders
+
+    def product_age_list(self):
+        ages = []
+        # .sudo() ?
+        age_list = self.env['product.attribute.tag'].search([('type', '=', 'age')], order='value')
+        # Add age types to list without duplicate elements
+        for age in age_list.filtered(lambda x: x.lines_count != 0):
+            value = age.value
+            if not ages.count(value) > 0:
+                ages.append(value)
+        ages.sort()
+        return ages
 
 
 class ResConfigSettings(models.TransientModel):

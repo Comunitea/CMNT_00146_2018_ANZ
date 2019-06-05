@@ -142,6 +142,8 @@ $(document).ready(function(){
         'use strict';
         var ajax = require('web.ajax');
         var has_order = false
+        var core = require('web.core');
+        var _t = core._t;
 
         $('form#multi_update').on('submit', function(e){
             e.preventDefault();
@@ -180,11 +182,15 @@ $(document).ready(function(){
                     });
                 }else{
                     // ERROR MESSAGE
+                    var message = _t('<p><strong>Error</strong></p>');
+
                     if(has_order === true){
-                        $('#multi_error .modal-body').html('<p><strong>Empty list of product variants</strong></p>');
+                        message = _t('<p><strong>Empty product list. Please, select one.</strong></p>');
                     }else{
-                        $('#multi_error .modal-body').html('<p><strong>User access error</strong></p>');
+                        message = _t('<p><strong>User access error</strong></p>');
                     }
+
+                    $('#multi_error .modal-body').html(message);
                     $('#multi_error').modal('show');
                 }
             });
