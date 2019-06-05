@@ -56,9 +56,9 @@ class ProductTemplate(models.Model):
                     ctx.update(warehouse_id=website.warehouse_id.id)
                     stock_website_published = template.with_context().qty_available > 0
 
-                vals = {'tmpl_id': template.id, 'website_id': website.id,
+                vals = {'product_id': template.id, 'website_id': website.id,
                         'stock_website_published': stock_website_published}
-                domain = [('tmpl_id', '=', template.id), ('website', '=', website.id)]
+                domain = [('product_id', '=', template.id), ('website', '=', website.id)]
                 tsw_id = tsw.search(domain)
                 if tsw_id:
                     tsw_id.stock_website_published = stock_website_published
