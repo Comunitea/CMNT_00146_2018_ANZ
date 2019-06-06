@@ -11,11 +11,11 @@ class WebsiteSaleExtended(WebsiteSale):
 
     def _get_search_domain(self, search, category, attrib_values):
         """
-            Incluye varios dominios nuevos.
+            Modifica el domain original para mostrar los productos en funcion de los nuevos subdominios.
             domain_swp: controla que no se muestren los productos sin stock en conjunto con el cron act_stock_published
-            de product.py
+            de product.py. El resto de domains solo busca dentro de esos ids.
             attr_domain: para buscar productos dentro del contexto por filtros de atributos.
-            search: limpia el contexto y amplia la busqueda por los terminos introducidos en el search box.
+            search: pasa del contexto y realiza la busqueda por los terminos introducidos en el search box.
 
         """
         domain_origin = super(WebsiteSaleExtended, self)._get_search_domain(search, category, attrib_values)
@@ -28,6 +28,7 @@ class WebsiteSaleExtended(WebsiteSale):
         product_ids = request.env['template.stock.web'].sudo().search(domain_swp).mapped('product_id').ids
         domain_origin += [('id', 'in', product_ids)]
 
+        # Only added to domain by filter args or search. Never both them
         if filter_args:
             brand = int(filter_args.get('brand', False))
             context = dict(request.env.context)
@@ -57,16 +58,14 @@ class WebsiteSaleExtended(WebsiteSale):
                     attr_domain += [('product_age_id', 'in', tag_age.ids)]
                     has_att_filter = True
 
-        if has_att_filter:
-            product_attributes = request.env['product.attribute'].sudo().search(attr_domain)
-            product_attribute_lines = request.env['product.attribute.line'].sudo().search([
-                ('attribute_id', 'in', product_attributes.ids)
-            ])
-            domain_origin += [('attribute_line_ids', 'in', product_attribute_lines.ids)]
-
-        if search:
+            if has_att_filter:
+                product_attributes = request.env['product.attribute'].sudo().search(attr_domain)
+                product_attribute_lines = request.env['product.attribute.line'].sudo().search([
+                    ('attribute_id', 'in', product_attributes.ids)
+                ])
+                domain_origin += [('attribute_line_ids', 'in', product_attribute_lines.ids)]
+        elif search:
             for srch in search.split(" "):
-                domain_origin.insert(-1, '|')
                 domain_origin += ['|', '|', '|', '|',
                                   ('product_variant_ids.attribute_value_ids', 'ilike', srch),
                                   ('public_categ_ids.complete_name', 'ilike', srch),

@@ -69,11 +69,6 @@ msgid "Show it only if the user is logged in"
 msgstr "Mostrar solo si el usuario está logueado"
 
 #. module: website_base_multi_anz
-#: model:ir.model,name:website_base_multi_anz.model_website
-msgid "Website"
-msgstr "Sitio Web"
-
-#. module: website_base_multi_anz
 #: model:ir.model.fields,field_description:website_base_multi_anz.field_res_config_settings_email
 #: model:ir.model.fields,field_description:website_base_multi_anz.field_robots_txt_settings_email
 #: model:ir.model.fields,field_description:website_base_multi_anz.field_seo_general_settings_email
@@ -134,11 +129,6 @@ msgstr "<p><strong>Producto para %s no encontrado:</strong></p>%s"
 #, python-format
 msgid "<p><strong>Empty product list</strong></p>"
 msgstr "<p><strong>Lista de productos vacía</strong></p>"
-
-#. module: website_base_multi_anz
-#: model:ir.model,name:website_base_multi_anz.model_website
-msgid "Website"
-msgstr "Sitio Web"
 
 #. module: website_base_multi_anz
 #: model:ir.model.fields,field_description:website_base_multi_anz.field_res_config_settings_email
@@ -258,3 +248,29 @@ msgstr "El modo de disponibilidad predeterminado se aplica a los productos almac
 #: model:ir.ui.view,arch_db:website_base_multi_anz.res_config_settings_view_form_custom
 msgid "Default threshold"
 msgstr "Umbral predeterminado"
+
+#. module: website_base_multi_anz
+#: model:ir.model.fields,field_description:website_base_multi_anz.field_product_product_visibility_stock_web
+#: model:ir.model.fields,field_description:website_base_multi_anz.field_product_template_visibility_stock_web
+msgid "Visibility Stock Web"
+msgstr "Visibilidad Stock Web"
+
+#. module: website_base_multi_anz
+#: selection:robots_txt.settings,inventory_availability:0
+#: selection:seo_general.settings,inventory_availability:0
+#: selection:sitemap_base.settings,inventory_availability:0
+#: selection:web_app.settings,inventory_availability:0
+msgid "Show product-specific notifications"
+msgstr "Mostrar notificaciones sobre el producto"
+
+#. module: website_base_multi_anz
+#: model:ir.model,name:website_base_multi_anz.model_website
+#: model:ir.model.fields,field_description:website_base_multi_anz.field_template_stock_web_website_id
+msgid "Website"
+msgstr "Sitio web"
+
+#. module: website_base_multi_anz
+#: model:ir.model.fields,field_description:website_base_multi_anz.field_avc_res_config_settings_website_id
+#: model:ir.model.fields,field_description:website_base_multi_anz.field_ftp_server_config_setting_website_id
+msgid "website"
+msgstr "sitio web"

@@ -30,7 +30,6 @@
                         <field name="website_id"/>
                         <field name="stock_website_published"/>
                     </tree>
-
                 </field>
             </field>
         </field>

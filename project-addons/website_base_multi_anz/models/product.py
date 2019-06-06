@@ -44,6 +44,9 @@ class ProductTemplate(models.Model):
     visibility_stock_web = fields.One2many('template.stock.web', 'product_id')
 
     def create_tsw(self, website):
+        """
+        Associate product with his website setting stock_website_published to true.
+        """
         ctx = self._context.copy()
         swp_fields = ['always_virtual', 'threshold_virtual']
         inventory_availability = self.inventory_availability or website.inventory_availability
@@ -64,17 +67,20 @@ class ProductTemplate(models.Model):
 
     @api.model
     def act_stock_published(self):
-
+        """
+        Update product visibility in websites by stock.
+        If product have assigned one or more website the visibility will be for them.
+        If product have assigned none website the visibility will be for all websites.
+        Only products with stock > 0 are visible except if in inventory_availability check for future stock.
+        You can run this by programmer action in backend.
+        You can check visibility for every website on product in backend menu.
+        """
         template_ids = self.env['product.template'].search([('website_published', '=', True)])
-
-        cont=0
+        cont = 0
         tot = len(template_ids)
         for template in template_ids:
-
-            cont+=1
-            _logger.info('{} de {}: {}'.format(cont, tot, template.name))
-
-
+            cont += 1
+            _logger.info('{}: {} de {}: {}'.format('Update Website Visibility by Stock', cont, tot, template.name))
             websites = template.website_ids or self.env['website'].search([])
             for website in websites:
                 template.create_tsw(website)
@@ -84,8 +90,8 @@ class TemplateStockWeb(models.Model):
     _name = "template.stock.web"
 
     product_id = fields.Many2one('product.template')
-    website_id = fields.Many2one('website', 'Website')
-    stock_website_published = fields.Boolean('Publicado sin stock')
+    website_id = fields.Many2one('website', string='Website')
+    stock_website_published = fields.Boolean(string='Stock Visible')
 
 
 class ProductProduct(models.Model):

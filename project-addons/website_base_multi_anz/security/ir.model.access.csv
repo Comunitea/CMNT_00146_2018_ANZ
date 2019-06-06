@@ -3,3 +3,6 @@
 "access_product_public_category_tag_user","product_public_category_tag_user","model_product_public_category_tag","base.group_user",1,0,0,0
 "access_product_public_category_tag_website_publisher","product_public_category_tag_website_publisher","model_product_public_category_tag","website.group_website_publisher",1,1,1,0
 "access_product_public_category_tag_website_designer","product_public_category_tag_website_designer","model_product_public_category_tag","website.group_website_designer",1,1,1,0
+
+"access_template_stock_web_website_publisher","template_stock_web_website_publisher","model_template_stock_web","website.group_website_publisher",1,1,1,0
+"access__template_stock_web_website_designer","template_stock_web_website_designer","model_template_stock_web","website.group_website_designer",1,1,1,0
