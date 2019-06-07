@@ -64,9 +64,9 @@ msgid "Published"
 msgstr "Publicado"
 
 #. module: website_base_multi_anz
-#: model:ir.model.fields,field_description:website_base_multi_anz.field_website_menu_not_public
-msgid "Show it only if the user is logged in"
-msgstr "Mostrar solo si el usuario está logueado"
+#: model:ir.model.fields,field_description:website_base_multi_anz.field_website_menu_only_retailer
+msgid "Only for B2B retailers"
+msgstr "Solo para retail-usuarios B2B"
 
 #. module: website_base_multi_anz
 #: model:ir.model.fields,field_description:website_base_multi_anz.field_res_config_settings_email
@@ -84,9 +84,9 @@ msgid "Website Menu"
 msgstr "Menú del Sitio Web"
 
 #. module: website_base_multi_anz
-#: model:ir.model.fields,field_description:website_base_multi_anz.field_website_menu_not_portal
-msgid "Available only for public users"
-msgstr "Disponible solo para Usuarios Públicos"
+#: model:ir.model.fields,field_description:website_base_multi_anz.field_website_menu_not_retailer
+msgid "Only for B2C users"
+msgstr "Solo para usuarios B2C"
 
 #. module: website_base_multi_anz
 #: code:addons/website_base_multi_anz/controllers/website.py:108

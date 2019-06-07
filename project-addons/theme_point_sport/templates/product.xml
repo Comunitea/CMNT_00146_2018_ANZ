@@ -5,22 +5,22 @@
     <template id="poi_website_sale_product" name="Product Point Content Template" inherit_id="website_multi_theme.auto_view_poi_website_sale_product">
         <!-- User access control -->
         <xpath expr="//section[@id='product_detail']" position="before">
-            <t t-set="user_access" t-value="website.user_access()"/>
+            <t t-set="retailer" t-value="website.retailer_access()"/>
         </xpath>
-        <xpath expr="//section[@id='product_detail']" position="attributes">
-            <attribute name="t-if">user_access == True and product</attribute>
+        <!--<xpath expr="//section[@id='product_detail']" position="attributes">
+            <attribute name="t-if">retailer == True and product</attribute>
         </xpath>
         <xpath expr="//section[@id='product_detail']" position="after">
-            <t t-if="user_access == False or not product" t-call="theme_anzamar.only_logged_in_users_advise"/>
-        </xpath>
+            <t t-if="retailer == False or not product" t-call="theme_anzamar.only_logged_in_users_advise"/>
+        </xpath>-->
 
         <!-- Retailer multi-add-to-cart action in the form -->
         <xpath expr="//form[hasclass('js_add_cart_variants')]" position="attributes">
-            <attribute name="t-attf-action">#{'/shop/cart/multi_update' if (user_access == True and len(product.product_variant_ids) &gt; 1) else '/shop/cart/update'}</attribute>
-            <attribute name="t-att-id">'multi_update' if (user_access == True and len(product.product_variant_ids) &gt; 1) else None</attribute>
+            <attribute name="t-attf-action">#{'/shop/cart/multi_update' if (retailer == True and len(product.product_variant_ids) &gt; 1) else '/shop/cart/update'}</attribute>
+            <attribute name="t-att-id">'multi_update' if (retailer and len(product.product_variant_ids) &gt; 1) else None</attribute>
         </xpath>
         <xpath expr="//a[@id='add_to_cart']" position="attributes">
-            <attribute name="t-if">not(user_access == True and len(product.product_variant_ids) &gt; 1)</attribute>
+            <attribute name="t-if">not(retailer and len(product.product_variant_ids) &gt; 1)</attribute>
         </xpath>
         <xpath expr="//a[@id='add_to_cart']" position="after">
             <!-- Add to wishlist button -->
@@ -31,17 +31,17 @@
                 </a>
             </t>
             <!-- Multi cart update button -->
-            <div class="add-to-cart-multi" t-if="user_access == True and len(product.product_variant_ids) &gt; 1">
+            <div class="add-to-cart-multi" t-if="retailer and len(product.product_variant_ids) &gt; 1">
                 <a class="btn btn-success btn-lg mt8 a-submit" href="#">Add to Cart</a>
             </div>
         </xpath>
 
         <!-- Retailer product variants grid -->
         <xpath expr="//div[hasclass('js_product')]/t[1]" position="attributes">
-            <attribute name="t-if">not(user_access == True and len(product.product_variant_ids) &gt; 1)</attribute>
+            <attribute name="t-if">not(retailer and len(product.product_variant_ids) &gt; 1)</attribute>
         </xpath>
         <xpath expr="//div[hasclass('js_product')]/t[1]" position="after">
-            <t t-if="user_access == True and len(product.product_variant_ids) &gt; 1">
+            <t t-if="retailer and len(product.product_variant_ids) &gt; 1">
                 <input type="hidden" name="product_template" t-att-value="product.id"/>
                 <!--
                 <t t-set="attribute_value_ids" t-value="get_attribute_value_ids(product)"/>
@@ -158,10 +158,10 @@
     <!-- Product select quantity template -->
     <template id="website_sale_product_quantity" name="Product Quantity Point Content Template" inherit_id="website_multi_theme.auto_view_poi_website_sale_product_quantity">
         <xpath expr="//div[hasclass('css_quantity')]" position="before">
-            <t t-set="user_access" t-value="website.user_access()"/>
+            <t t-set="retailer" t-value="website.retailer_access()"/>
         </xpath>
         <xpath expr="//div[hasclass('css_quantity')]" position="attributes">
-            <attribute name="t-if">not(user_access == True and len(product.product_variant_ids) &gt; 1)</attribute>
+            <attribute name="t-if">not(retailer and len(product.product_variant_ids) &gt; 1)</attribute>
         </xpath>
     </template>
 

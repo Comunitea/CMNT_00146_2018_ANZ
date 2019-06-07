@@ -64,6 +64,7 @@
         'templates/pages_brands.xml',
         'templates/shop.xml',
         'templates/product.xml',
+        'templates/blog.xml',
     ],
     'images': [
         '/static/description/icon.png',

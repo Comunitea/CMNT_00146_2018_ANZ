@@ -23,8 +23,8 @@
             <field name="arch" type="xml">
                 <field name="parent_id" position="after">
                     <field name="website_published"/>
-                    <field name="not_public"/>
-                    <field name="not_portal"/>
+                    <field name="only_retailer"/>
+                    <field name="not_retailer"/>
                 </field>
             </field>
         </record>

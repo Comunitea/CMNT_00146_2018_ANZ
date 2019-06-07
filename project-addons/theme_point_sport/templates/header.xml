@@ -5,7 +5,6 @@
     <template id="website_layout" name="Layout Point Template" inherit_id="website_multi_theme.auto_layout_website_poi">
         <xpath expr="//div[@id='wrapwrap']//div[hasclass('navbar')]" position="before">
             <div groups="base.group_user" class="clearfix mt32 header-fixed-margin"/>
-            <!--<t t-call="theme_anzamar.custom_header"/>-->
         </xpath>
         <xpath expr="//div[@id='wrapwrap']//div[hasclass('navbar')]" position="after">
             <t t-call="breadcrumbs_base.bcb_main_wrap" t-if="not xmlid == 'website.homepage'"/>
@@ -13,16 +12,6 @@
         <xpath expr="//div[@id='wrapwrap']/header" position="attributes">
             <attribute name="t-att-class">'homepage-header' if xmlid == 'website.homepage' else None</attribute>
         </xpath>
-        <!-- Public user redirection -->
-        <!--<xpath expr="//div[@id='wrapwrap']/header" position="inside">
-            <t t-if="request.env.user.has_group('base.group_public')">
-                <script>
-                    if(window.location.pathname != '/'){
-                        window.location.replace("/");
-                    }
-                </script>
-            </t>
-        </xpath>-->
         <xpath expr="//header//ul[@id='top_menu']/li[@id='my_cart']" position="after">
             <t t-if="request.env.ref('website_multi_theme.auto_view_poi_website_sale_wishlist_add_to_wishlist').active">
                 <t t-set='wishcount' t-value="len(request.env['product.wishlist'].current())"/>
@@ -80,18 +69,18 @@
         <xpath expr="//li[1]" position="attributes">
             <attribute name="t-if">
                 submenu.is_visible and submenu.website_published and not submenu.child_id.filtered(lambda menu: menu.is_visible) and ((
-                    request.env.user.has_group('base.group_public') and not submenu.not_public
+                    request.env.user.has_group('sale.group_show_price_total') and not submenu.only_retailer
                 ) or (
-                    not request.env.user.has_group('base.group_public') and not submenu.not_portal
+                    request.env.user.has_group('sale.group_show_price_subtotal') and not submenu.not_retailer
                 )) and not submenu.dynamic_cat_menu
             </attribute>
         </xpath>
         <xpath expr="//li[2]" position="attributes">
             <attribute name="t-if">
                 submenu.child_id.filtered(lambda menu: menu.is_visible) and submenu.website_published and ((
-                    request.env.user.has_group('base.group_public') and not submenu.not_public
+                    request.env.user.has_group('sale.group_show_price_total') and not submenu.only_retailer
                 ) or (
-                    not request.env.user.has_group('base.group_public') and not submenu.not_portal
+                    request.env.user.has_group('sale.group_show_price_subtotal') and not submenu.not_retailer
                 )) and not submenu.dynamic_cat_menu
             </attribute>
         </xpath>
@@ -99,8 +88,8 @@
         <!-- Add dynamic category menu -->
         <xpath expr="//li[2]" position="after">
             <li t-if="submenu.dynamic_cat_menu and submenu.is_visible and submenu.website_published
-                      and ((request.env.user.has_group('base.group_public') and not submenu.not_public)
-                      or (not request.env.user.has_group('base.group_public') and not submenu.not_portal))"
+                      and ((request.env.user.has_group('sale.group_show_price_total') and not submenu.only_retailer)
+                      or (request.env.user.has_group('sale.group_show_price_subtotal') and not submenu.not_retailer))"
                 class="dropdown cat_dynamic_menu" >
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                     <span t-field="submenu.name"/> <span class="caret" t-ignore="true"/>

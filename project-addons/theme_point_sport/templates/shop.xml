@@ -4,29 +4,29 @@
     <!-- Shop/category page template -->
     <template id="website_sale_products" name="Products Point Content Template" inherit_id="website_sale.products">
         <!-- User access control -->
-        <xpath expr="//div[@id='wrap']" position="before">
-            <t t-set="user_access" t-value="website.user_access()"/>
+        <!--<xpath expr="//div[@id='wrap']" position="before">
+            <t t-set="retailer" t-value="website.retailer_access()"/>
         </xpath>
         <xpath expr="//div[hasclass('oe_website_sale')]" position="attributes">
-            <attribute name="t-if">user_access == True</attribute>
+            <attribute name="t-if">retailer</attribute>
         </xpath>
         <xpath expr="//div[hasclass('oe_website_sale')]" position="after">
-            <t t-if="user_access == False" t-call="theme_anzamar.only_logged_in_users_advise"/>
-        </xpath>
+            <t t-if="not retailer" t-call="theme_anzamar.only_logged_in_users_advise"/>
+        </xpath>-->
     </template>
 
     <!-- Brand page template -->
     <template id="website_sale_product_brand_product_brands" name="Brands Point Content Template" inherit_id="website_sale_product_brand.product_brands">
         <!-- User access control -->
-        <xpath expr="//div[hasclass('container')]" position="before">
-            <t t-set="user_access" t-value="website.user_access()"/>
+        <!--<xpath expr="//div[hasclass('container')]" position="before">
+            <t t-set="user_access" t-value="website.retailer_access()"/>
         </xpath>
         <xpath expr="//div[hasclass('container')]" position="attributes">
-            <attribute name="t-if">user_access == True</attribute>
+            <attribute name="t-if">retailer</attribute>
         </xpath>
         <xpath expr="//div[hasclass('container')]" position="after">
-            <t t-if="user_access == False" t-call="theme_anzamar.only_logged_in_users_advise"/>
-        </xpath>
+            <t t-if="not retailer" t-call="theme_anzamar.only_logged_in_users_advise"/>
+        </xpath>-->
     </template>
 
     <!-- Shop categories template -->

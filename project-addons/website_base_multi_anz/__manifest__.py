@@ -63,6 +63,7 @@
         'views/public_category.xml',
         'views/product_template.xml',
         'views/res_config_settings_views.xml',
+        'views/blog_blog.xml',
         'security/ir.model.access.csv',
     ],
     'images': [

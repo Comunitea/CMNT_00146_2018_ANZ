@@ -35,13 +35,34 @@ class Website(models.Model):
     sale_type_id = fields.Many2one('sale.order.type', string='Sale type', default=_get_order_type)
 
     @api.multi
-    def user_access(self):
+    def retailer_access(self):
         website = self
         user = request.env.user
         access = True
 
         if website.name == 'Point Sport':
-            access = False if user.has_group('base.group_public') else True
+            is_b2b = user.has_group('sale.group_show_price_subtotal')
+            access = True if is_b2b else False
+
+        return access
+
+    @api.multi
+    def access_to_blog(self, blog):
+        website = self
+        user = request.env.user
+        access = True
+
+        if website.name == 'Point Sport':
+            access = False
+            user_b2b = user.has_group('sale.group_show_price_subtotal')
+            user_b2c = user.has_group('sale.group_show_price_total') or user.has_group('base.group_public')
+            user_admin = user.has_group('website.group_website_publisher') \
+                         or user.has_group('website.group_website_designer')
+
+            if (blog.for_retailers and user_b2b) or (blog.for_customers and user_b2c and not user_b2b) or user_admin:
+                access = True
+
+            # import ipdb; ipdb.set_trace()
 
         return access
 
@@ -95,7 +116,7 @@ class ResConfigSettings(models.TransientModel):
 class WebsiteMenu(models.Model):
     _inherit = 'website.menu'
 
-    not_public = fields.Boolean(string='Show it only if the user is logged in', default=False)
-    not_portal = fields.Boolean(string='Available only for public users', default=False)
+    only_retailer = fields.Boolean(string='Only for B2B retailers', default=False)
+    not_retailer = fields.Boolean(string='Only for B2C users', default=False)
     website_published = fields.Boolean(string='Published', default=True)
     dynamic_cat_menu = fields.Boolean(string='Dynamic categories menu', default=False)
