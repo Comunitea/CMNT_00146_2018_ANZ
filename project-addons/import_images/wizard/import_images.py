@@ -26,7 +26,7 @@ from hashlib import sha1
 
 _logger = logging.getLogger(__name__)
 
-FOLDERINPUT='/opt/hotfolder/images/'
+FOLDERINPUT='/srv/multimedia'
 SPLITER = re.compile(r'(.*?)(?:_(\d*))?(?:\.(?:\w+))$')
 CODECOLOR = re.compile(r'^([a-z0-9]+)(?:[\,-_ ](\w+))?',re.IGNORECASE)
 
@@ -135,14 +135,16 @@ class ImportImages(models.TransientModel):
     recursive = fields.Boolean('Recursive search', default=False)
     update_default = fields.Boolean('Update default image', default=False)
 
-    def _get_files(self):
+    def _get_files(self, path=None):
         """ """
-        root, dirs, files = next(os.walk(self.folder))
+        if not path:
+            path = self.folder
+        root, dirs, files = next(os.walk(path))
         for file in files:
             yield os.path.join(root, file)
         if self.recursive:
             for dir in dirs:
-                yield from get_files(os.path.join(root, dir))
+                yield from self._get_files(os.path.join(root, dir))
     
     def _get_file_images(self):
         """ """
@@ -178,9 +180,13 @@ class ImportImages(models.TransientModel):
             table = 'product.product'
             code, color = CODECOLOR.match(references[0].reference).groups()
             # domain = [('default_code','=ilike',code+'%' if not color else code+'_'+color+'%')]
-            domain = [('ref_template','=ilike',code+' '+color)]
-            if not color and re.match(r'\d{12,14}',code):
-                domain = [('barcode','=',code)]
+            if not color:
+                if re.match(r'\d{12,14}',code):
+                    domain = [('barcode','=',code)]
+                else:
+                    domain = [('ref_template','=ilike',code)]
+            else:
+                domain = [('ref_template','=ilike',code+'_'+color)]
             tmpl_ids = self.env[table].read_group(domain,['product_tmpl_id'],['product_tmpl_id'])
             if not len(tmpl_ids) == 1:
                 rem.append(ind)
