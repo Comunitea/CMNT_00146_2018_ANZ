@@ -51,6 +51,17 @@ class ProductAttribute(models.Model):
             res.append((record.id, new_name))
         return res
 
+    @api.multi
+    def _get_count_line_ids(self):
+        for attr in self:
+            attr.count_line_ids = len(attr.value_ids)
+
+
+    def action_show_attribute_values(self):
+        action = self.env.ref('product.variants_action').read()[0]
+        action['domain'] = [('attribute_id', '=', self.id)]
+        action['context'] = {'default_attribute_id': self.id}
+        return action
 
 
     is_color = fields.Boolean("Is color",
@@ -64,7 +75,7 @@ class ProductAttribute(models.Model):
     product_type_id = fields.Many2one('product.attribute.tag', 'Tipo de producto', required=1)
     product_gender_id = fields.Many2one('product.attribute.tag', 'Género',)
     product_age_id = fields.Many2one('product.attribute.tag', 'Edad',)
-
+    count_line_ids = fields.Integer('Valores', compute=_get_count_line_ids)
 
 class ProductAttributeValue(models.Model):
 
