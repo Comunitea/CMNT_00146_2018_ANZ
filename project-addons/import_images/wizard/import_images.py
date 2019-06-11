@@ -178,7 +178,10 @@ class ImportImages(models.TransientModel):
         rem = []
         for ind, references in enumerate(groups):
             table = 'product.product'
-            code, color = CODECOLOR.match(references[0].reference).groups()
+            match = CODECOLOR.match(references[0].reference)
+            if not match:
+                continue
+            code, color = match.groups()
             # domain = [('default_code','=ilike',code+'%' if not color else code+'_'+color+'%')]
             if not color:
                 if re.match(r'\d{12,14}',code):
