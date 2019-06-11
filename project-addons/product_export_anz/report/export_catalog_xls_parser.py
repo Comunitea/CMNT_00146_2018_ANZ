@@ -3,9 +3,10 @@
 from odoo import models
 import base64
 import io
+from io import BytesIO
 import time
 from xlsxwriter.utility import xl_rowcol_to_cell
-
+from PIL import Image
 
 class ExportCatalogXlsParser(models.AbstractModel):
     """
@@ -13,6 +14,23 @@ class ExportCatalogXlsParser(models.AbstractModel):
     """
     _name = 'report.product_export_anz.export_catalog_xls.xlsx'
     _inherit = 'report.report_xlsx.abstract'
+
+    def adap_image(self, odoo_image, image_scale, x_offset):
+        image_data = io.BytesIO(base64.b64decode(odoo_image))
+        image = Image.open(image_data)
+        buffer = BytesIO()
+        factor = max(image.size) / 200
+        new_size = int(image.size[0] / factor), int(image.size[1] / factor)
+        image.resize((new_size), Image.ANTIALIAS)
+        ##image.thumbnail(size, Image.ANTIALIAS)
+        image.save(buffer, format='png')
+        img_dic = {
+            'image_data': buffer,
+            'x_scale': image_scale / 100 / factor,
+            'y_scale': image_scale / 100 / factor,
+            'x_offset': x_offset}
+
+        return img_dic
 
     def generate_xlsx_report(self, workbook, data, objs):
         row_margin = 2
@@ -110,7 +128,7 @@ class ExportCatalogXlsParser(models.AbstractModel):
             sheet.write(row_info, 1, categ_id.name)
             row_info +=1
         
-        
+        report_vals, header_values = wzd.get_report_vals()
         row_header  = initial_row
 
         col = 3
@@ -126,37 +144,37 @@ class ExportCatalogXlsParser(models.AbstractModel):
 
         if catalog_id.purchases:
             sheet.write(row_header, col + 1, 'COMPRAS', f_header)
-            sheet.write(row_header, col + 2, '', f_border)
+            sheet.write(row_header, col + 2, header_values['purchases'], f_border)
             sheet.write(row_header, col + 3, '', f_border)
             row_header +=1
 
         if catalog_id.incomings:
             sheet.write(row_header, col + 1, 'ENTRADAS', f_header)
-            sheet.write(row_header, col + 2, '', f_border)
+            sheet.write(row_header, col + 2, header_values['incomings'], f_border)
             sheet.write(row_header, col + 3, '', f_border)
             row_header+=1
 
         if catalog_id.sales:
             sheet.write(row_header, col + 1, 'VENTAS', f_header)
-            sheet.write(row_header, col + 2, '', f_border)
+            sheet.write(row_header, col + 2, header_values['sales'], f_border)
             sheet.write(row_header, col + 3, '', f_border)
             row_header += 1
 
         if catalog_id.outgoings:
             sheet.write(row_header, col + 1, 'SALIDAS', f_header)
-            sheet.write(row_header, col + 2, '', f_border)
+            sheet.write(row_header, col + 2 , header_values['outgoings'], f_border)
             sheet.write(row_header, col + 3, '', f_border)
             row_header += 1
 
         if catalog_id.stocks:
             sheet.write(row_header, col + 1, 'STOCKS', f_header)
-            sheet.write(row_header, col + 2, '', f_border)
+            sheet.write(row_header, col + 2, header_values['stocks'], f_border)
             sheet.write(row_header, col + 3, '', f_border)
 
 
         # TEMPLATE BLOCKS
         row = initial_row + max(row_header, row_info) + row_margin
-        report_vals = wzd.get_report_vals()
+
         page_breakers = []
         page_row = row
         template_len = 0
@@ -182,8 +200,13 @@ class ExportCatalogXlsParser(models.AbstractModel):
                 cols+=1
             if catalog_id.pvp:
                 sheet.write(row, cols, 'Precio', f_header)
-                sheet.write(row + 1, cols, tmp_dic['pvp'], money_with_border)
+                sheet.write(row + 1, cols, tmp_dic['lst_price'], money_with_border)
                 pvp_cell = xl_rowcol_to_cell(row + 1, cols)
+                if pricelist_id:
+                    sheet.write(row, cols +1 , 'P.V.P.', f_header)
+                    sheet.write(row + 1, cols +1 , tmp_dic['pvp'], money_with_border)
+
+
             row += 1
 
             # First row Values
@@ -192,15 +215,8 @@ class ExportCatalogXlsParser(models.AbstractModel):
             # Write template image
             tmp_obj = self.env['product.template'].browse(tmp_dic['tmp_id'])
             if catalog_id.image and tmp_obj.image_medium:
-                image_data = io.BytesIO(base64.b64decode(tmp_obj[wzd.catalog_type_id.image_field]))
-
-                img_dic = {
-                    'image_data': image_data,
-                    'x_scale': wzd.catalog_type_id.image_scale/100,
-                    'y_scale': wzd.catalog_type_id.image_scale/100,
-                    'x_offset': wzd.catalog_type_id.x_offset}
                 image_name = 'id_{}.jpg'.format(tmp_obj.id)
-                print ('Insertando {}'.format(image_name))
+                img_dic = self.adap_image(tmp_obj[wzd.catalog_type_id.image_field], wzd.catalog_type_id.image_scale, wzd.catalog_type_id.x_offset)
                 sheet.insert_image(row, 0, image_name, img_dic)
 
             col = 3
@@ -289,9 +305,16 @@ class ExportCatalogXlsParser(models.AbstractModel):
                 sum_col = 0
                     # total %
 
-            if catalog_id.show_per_cent and catalog_id.incomings and catalog_id.outgoings:
-                form_per_cent = '=' + total_out + '/' + total_in
-                sheet.write_formula(row + sum_row - 1, total_col + 1, form_per_cent, percent_with_border)
+            if catalog_id.show_per_cent:
+
+                if catalog_id.sales:
+                    sheet.write_number(sales_row, total_col + 1, tmp_dic['ventas_percent']/100, percent_with_border)
+
+                if catalog_id.outgoings:
+                    sheet.write_number(outgoings_row, total_col + 1, tmp_dic['moves_percent']/100, percent_with_border)
+
+
+
                 sum_row += 1
 
             if catalog_id.grouped:

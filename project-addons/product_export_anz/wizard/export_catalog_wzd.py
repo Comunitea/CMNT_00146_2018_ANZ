@@ -6,7 +6,7 @@ from odoo import models, fields, _
 from odoo.exceptions import UserError
 from odoo.addons import decimal_precision as dp
 from odoo.tools.float_utils import float_round
-
+from pprint import pprint
 import logging
 
 _logger = logging.getLogger(__name__)
@@ -15,16 +15,18 @@ class ProductProduct(models.Model):
 
     _inherit = 'product.product'
 
-    def _compute_move_quantities_dict(self, lot_id, owner_id, package_id, from_date=False, to_date=False):
+    def _compute_move_quantities_dict(self, lot_id, owner_id, package_id, from_date=False, to_date=False, filter_state= 'all'):
 
-        return self._compute_quantities_dict(lot_id, owner_id, package_id, from_date=from_date, to_date=to_date)
-
+        #return self._compute_quantities_dict(lot_id, owner_id, package_id, from_date=from_date, to_date=to_date)
+        if filter_state == 'all':
+            filter_state= [('state', 'not in', ('cancel', 'draft'))]
+        elif filter_state == 'done':
+            filter_state = [('state', '=', 'done')]
+        else:
+            filter_state = [('state', 'not in', ('done', 'cancel', 'draft'))]
 
         domain_quant_loc, domain_move_in_loc, domain_move_out_loc = self._get_domain_locations()
-        if to_date and to_date < fields.Datetime.now(): #Only to_date as to_date will correspond to qty_available
-            dates_in_the_past = True
-        if not to_date:
-            to_date = fields.Datetime.now()
+
         domain_move_in = [('product_id', 'in', self.ids)] + domain_move_in_loc
         domain_move_out = [('product_id', 'in', self.ids)] + domain_move_out_loc
         if from_date:
@@ -35,8 +37,8 @@ class ProductProduct(models.Model):
             domain_move_out += [('date', '<=', to_date)]
 
         Move = self.env['stock.move']
-        domain_move_in_todo = [('state', '=', 'done')] + domain_move_in
-        domain_move_out_todo = [('state', '=', 'done')] + domain_move_out
+        domain_move_in_todo = filter_state + domain_move_in
+        domain_move_out_todo = filter_state + domain_move_out
         moves_in_res = dict((item['product_id'][0], item['product_qty']) for item in Move.read_group(domain_move_in_todo, ['product_id', 'product_qty'], ['product_id'], orderby='id'))
         moves_out_res = dict((item['product_id'][0], item['product_qty']) for item in Move.read_group(domain_move_out_todo, ['product_id', 'product_qty'], ['product_id'], orderby='id'))
 
@@ -45,15 +47,23 @@ class ProductProduct(models.Model):
             product_id = product.id
             rounding = product.uom_id.rounding
             res[product_id] = {}
-            if moves_in_res[product_id]:
-                res[product_id]['incoming'] = float_round(moves_in_res.get(product_id, 0.0), precision_rounding=rounding)
-            else:
-                res[product_id]['incoming'] = []
-            if moves_out_res[product_id]:
-                res[product_id]['outgoing'] = float_round(moves_out_res.get(product_id, 0.0), precision_rounding=rounding)
-            else:
-                res[product_id]['outgoing'] = []
+            res[product_id]['incoming_qty'] = float_round(moves_in_res.get(product_id, 0.0), precision_rounding=rounding)
+            res[product_id]['outgoing_qty'] = float_round(moves_out_res.get(product_id, 0.0), precision_rounding=rounding)
+            # if moves_in_res[product_id]:
+            #     res[product_id]['incoming'] = float_round(moves_in_res.get(product_id, 0.0), precision_rounding=rounding)
+            # else:
+            #     res[product_id]['incoming'] = []
+            # if moves_out_res[product_id]:
+            #     res[product_id]['outgoing'] = float_round(moves_out_res.get(product_id, 0.0), precision_rounding=rounding)
+            # else:
+            #     res[product_id]['outgoing'] = []
         return res
+
+
+class ProductCategory(models.Model):
+    _inherit = "product.category"
+
+    sequence = fields.Integer('Sequence', default=1, help="The first in the sequence is the default one.")
 
 class CatalogType(models.Model):
     _name = 'export.catalog.type'
@@ -76,7 +86,10 @@ class CatalogType(models.Model):
     show_per_cent = fields.Boolean('% en resumen')
     grouped = fields.Boolean('Agrupar por meses compras y ventas')
     min_template_row = fields.Integer('Filas minima', default=6)
-
+    filter_state = fields.Selection(
+        [('all', 'Todos los movimientos'), ('done', 'Moviemintos realizados'), ('not_done', 'Moviemientos pendientes')],
+        string="Filtro de movimientos",
+        help="Filtra los movimientos según el estado. Permite visualizar entradas y salidas a futuro.")
 class ExportCatalogtWzd(models.TransientModel):
 
     _name = 'export.catalog.wzd'
@@ -99,6 +112,9 @@ class ExportCatalogtWzd(models.TransientModel):
                                ('100', '100%')], default='100', string="Tamaño del fichero generado")
 
     product_template_ids = fields.Many2many('product.template', string="Lista de plantillas")
+    filter_state = fields.Selection([('all', 'Todos los movimientos'), ('done', 'Moviemintos realizados'), ('not_done', 'Moviemientos pendientes')],
+                                    string="Filtro de movimientos",
+                                    help="Filtra los movimientos según el estado. Permite visualizar entradas y salidas a futuro.")
 
     def get_grouped_moves(self, variant, company= False, done_qty = True):
 
@@ -189,6 +205,10 @@ class ExportCatalogtWzd(models.TransientModel):
 
     def get_templates(self):
         domain = []
+        ctx = self._context.copy()
+        if self.pricelist_id:
+            ctx.update(pricelist=self.pricelist_id.id)
+
         if self.scheduled_id:
             domain += [('scheduled_sale_id', '=', self.scheduled_id.id)]
         if self.brand_id:
@@ -205,44 +225,55 @@ class ExportCatalogtWzd(models.TransientModel):
                 price_template_ids = self.env['product.pricelist.item'].search(template_domain).mapped('product_tmpl_id')
                 product_domain = [('pricelist_id', '=', self.pricelist_id.id), ('applied_on', '=', '0_product_variant')]
                 price_product_ids = self.env['product.pricelist.item'].search(product_domain).mapped('product_id').mapped('product_tmpl_id')
-                domain += [('id', 'in', price_template_ids.ids + price_product_ids.ids)]
+                domain += [('id', 'in', price_template_ids.ids + price_product_ids.ids + self.product_template_ids.ids) ]
         if self.limit>0:
-            templates = self.env['product.template'].search(domain, limit=self.limit)
+            templates = self.env['product.template'].with_context(ctx).search(domain, limit=self.limit)
         else:
-            templates = self.env['product.template'].search(domain)
+            templates = self.env['product.template'].with_context(ctx).search(domain)
 
         if self.with_stock:
             return templates.filtered(lambda x: x.qty_available >0)
         return templates
 
+
+    def get_ordered_obj(self, templates):
+
+        return templates.sorted(lambda x: x.categ_id.sequence * 1000 + (x.pvp or x.list_price))
+
+
     def get_report_vals(self):
         res = {}
-        templates = self.get_templates()
 
+
+
+        templates = self.get_templates()
         if not templates:
             raise UserError(_('No templates founded to export'))
 
         domain = [
             ('product_tmpl_id', 'in', templates.ids)
         ]
-        all_variants = self.env['product.product'].search(domain)
+        all_variants = templates.mapped("product_variant_ids")
         stock_info = all_variants._compute_quantities_dict(
             False, False, False,
             from_date=self.date_start, to_date=self.date_end)
         stock_info_moves = all_variants._compute_move_quantities_dict(
             False, False, False,
-            from_date=self.date_start, to_date=self.date_end)
+            from_date=self.date_start, to_date=self.date_end, filter_state = self.catalog_type_id.filter_state)
 
         idx = 0
         tot = len(templates)
-        for tmp in templates:
+
+
+        for tmp in self.get_ordered_obj(templates):
             idx += 1
             _logger.info("Export template %s / %s" % (str(idx), str(tot)))
-            res[tmp.name] = {
+            new_template = {
                 #'image': tmp.image_medium or False,
                 'tmp_id': tmp.id,
                 'cost': tmp.standard_price or tmp.product_variant_ids and tmp.product_variant_ids[0].standard_price or 0.00,
-                'pvp': tmp.pvp or tmp.list_price,
+                'lst_price': tmp.pvp or tmp.lst_price,
+                'pvp': tmp.price,
                 'attr_names': [],
                 'sales': [],
                 'purchases': [],
@@ -255,40 +286,53 @@ class ExportCatalogtWzd(models.TransientModel):
                 'grouped_months': [],
                 'ref_template': tmp.ref_template
             }
-            sales=purchases=incomings=outgoings=stocks=0
+            sales = purchases = incomings = outgoings = stocks = 0
+            t_sales = t_purchases = t_incomings = t_outgoings = t_stocks = 0
             variants = tmp.product_variant_ids
             if self.with_stock:
                 variants = variants.filtered(lambda x: x.qty_available > 0)
-
+            total_field = []
 
             for variant in variants:
 
                 attr_name = ''
                 if variant.attribute_value_ids:
                     attr_name = variant.attribute_value_ids[0].name
-                res[tmp.name]['attr_names'].append(attr_name)
+                new_template['attr_names'].append(attr_name)
+
                 if self.catalog_type_id.grouped:
-                    res[tmp.name]['grouped_sale'], res[tmp.name]['grouped_purchase'], res[tmp.name]['grouped_months'] = self.get_grouped_moves(variant)
+                    new_template['grouped_sale'], new_template['grouped_purchase'], new_template['grouped_months'] = self.get_grouped_moves(variant)
 
                 if self.catalog_type_id.sales:
                     sales = self.get_variant_sales(variant)
-                    res[tmp.name]['sales'].append(sales)
+                    new_template['sales'].append(sales)
+                    t_sales = sales
+                    total_field+=['sales']
 
                 if self.catalog_type_id.purchases:
                     purchases = self.get_variant_purchases(variant)
-                    res[tmp.name]['purchases'].append(purchases)
+                    new_template['purchases'].append(purchases)
+                    t_purchases += purchases
+                    total_field += ['purchases']
+
 
                 if self.catalog_type_id.incomings:
                     incomings = stock_info_moves[variant.id]['incoming_qty']
-                    res[tmp.name]['incomings'].append(incomings)
+                    new_template['incomings'].append(incomings)
+                    t_incomings = incomings
+                    total_field += ['incomings']
 
                 if self.catalog_type_id.outgoings:
                     outgoings = stock_info_moves[variant.id]['outgoing_qty']
-                    res[tmp.name]['outgoings'].append(outgoings)
+                    new_template['outgoings'].append(outgoings)
+                    t_outgoings = outgoings
+                    total_field += ['outgoings']
 
                 if self.catalog_type_id.stocks:
                     stocks = stock_info[variant.id]['qty_available']
-                    res[tmp.name]['stocks'].append(stocks)
+                    new_template['stocks'].append(stocks)
+                    t_stocks += stocks
+                    total_field += ['stocks']
 
                 if self.catalog_type_id.show_per_cent:
                     if incomings and outgoings:
@@ -297,9 +341,24 @@ class ExportCatalogtWzd(models.TransientModel):
                         percent = round(sales/purchases * 100, 2)
                     else:
                         percent = 0
-                    res[tmp.name]['percent'] = percent
+                    new_template['percent'] = percent
 
-        return res
+                for f in total_field:
+                    new_template['total_' + f] = sum(x for x in new_template[f])
+                new_template['ventas_percent'] = int(100*(new_template['total_sales']/ new_template['total_purchases']) if new_template['total_purchases'] else 0.0)
+                new_template['moves_percent'] = int(100*(new_template['total_outgoings']/ new_template['total_incomings']) if new_template['total_incomings'] else 0.0)
+
+
+            res[tmp.name] = new_template
+
+        header_values = {}
+
+        for f in total_field:
+            header_values.update({f: 0})
+        for tmp in res:
+            for f in total_field:
+                header_values[f] += res[tmp]['total_' + f]
+        return res, header_values
 
     def export_catalog_xls(self):
         self.ensure_one()
