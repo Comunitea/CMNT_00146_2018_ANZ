@@ -301,11 +301,11 @@ class InvoiceTxtImport(models.Model):
         if self.associate_name and self.type == 'in_invoice':
             self.get_partner_shipping_id_from_associate_name()
         else:
-            if self.type == 'in_refund':
+            if self.type == 'in_refund' and not self.partner_shipping_id:
                 domain = ['|', ('supplier_invoice_number', '=', '{}'.format(self.original_rectificatica)), ('reference', '=', '{}'.format(self.original_rectificatica))]
                 refund_inv = self.env['account.invoice'].search(domain, limit=1)
                 if refund_inv:
-                    self.partner_shipping_id = refund_inv.partner_id
+                    self.partner_shipping_id = refund_inv.associate_shipping_id
 
         if not self.partner_shipping_id:
             if self.associate_name:
