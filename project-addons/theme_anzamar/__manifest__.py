@@ -69,6 +69,8 @@
         # 'templates/page_newsletter.xml',  # Using follow_us_base template at this moment
         'templates/page_open_shop.xml',
         'templates/page_work_with_us.xml',
+        'templates/shop.xml',
+        'templates/product.xml',
     ],
     'images': [
         '/static/description/icon.png',

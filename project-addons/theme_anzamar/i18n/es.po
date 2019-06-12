@@ -518,3 +518,53 @@ msgstr "<p><strong>Lista de Productos Vacia. Seleccione uno.</strong></p>"
 msgid "<p><strong>User access error</strong></p>"
 msgstr "<p><strong>Error Acceso Usuario</strong></p>"
 
+#. module: theme_anzamar
+#: model:ir.ui.view,arch_db:theme_anzamar.anz_products_view
+#: model:website.page,name:theme_anzamar.anz_shop_page
+msgid "Products"
+msgstr "Productos"
+
+#. module: theme_anzamar
+#: model:website.menu,name:theme_anzamar.anz_shop_menu
+msgid "Shop"
+msgstr "Tienda"
+
+#. module: theme_anzamar
+#: model:ir.ui.view,arch_db:theme_anzamar.website_sale_products_categories
+msgid "All Products"
+msgstr "Todos los Productos"
+
+#. module: theme_anzamar
+#: model:ir.ui.view,arch_db:theme_anzamar.website_sale_products_categories
+msgid "Product categories"
+msgstr "Categorías de productos"
+
+#. module: theme_anzamar
+#: model:ir.ui.view,arch_db:theme_anzamar.website_sale_products_categories
+msgid "Apply filters"
+msgstr "Filtrar"
+
+#. module: theme_anzamar
+#: model:ir.ui.view,arch_db:theme_anzamar.website_sale_products_categories
+msgid "Filters"
+msgstr "Filtros"
+
+#. module: theme_anzamar
+#: model:ir.ui.view,arch_db:theme_anzamar.website_sale_products_categories
+msgid "Brand"
+msgstr "Marca"
+
+#. module: theme_anzamar
+#: model:ir.ui.view,arch_db:theme_anzamar.website_sale_products_categories
+msgid "Gender"
+msgstr "Género"
+
+#. module: theme_anzamar
+#: model:ir.ui.view,arch_db:theme_anzamar.website_sale_products_categories
+msgid "Age"
+msgstr "Edad"
+
+#. module: theme_anzamar
+#: model:ir.ui.view,arch_db:theme_anzamar.website_sale_products_categories
+msgid "Reset"
+msgstr "Limpiar"

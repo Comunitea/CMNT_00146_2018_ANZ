@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <!-- Product template -->
+    <template id="anz_website_sale_product" name="Anzamar product template" inherit_id="website_multi_theme.auto_view_anz_website_sale_product">
+        <xpath expr="//a[@id='add_to_cart']" position="after">
+            <!-- Add to wishlist button -->
+            <t t-if="product.env.ref('website_multi_theme.auto_view_anz_website_sale_wishlist_add_to_wishlist').active">
+                <t t-set="in_wish" t-value="product.product_variant_ids &amp; request.env['product.wishlist'].current().mapped('product_id')"/>
+                <a class="btn btn-default btn-lg mt8 o_add_wishlist_dyn" t-att-disabled='in_wish or None' title="Add to Wishlist" t-att-data-product-product-id="product.product_variant_ids[0].id" data-action="o_wishlist">
+                    <span class="fa fa-heart"/>
+                </a>
+            </t>
+        </xpath>
+    </template>
+
+</odoo>
