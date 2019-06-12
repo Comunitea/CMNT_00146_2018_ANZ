@@ -16,7 +16,7 @@
                 <field name="parent_id" ref="anzamar_main_menu"/>
                 <field name="sequence" type="int">10</field>
                 <field name="website_id" ref="website_base_multi_anz.anzamar_website"/>
-                <field name="website_published">True</field>
+                <field name="website_published">False</field>
             </record>
 
             <!-- split between ir_ui_view & website_page record to keep external_id on ir_ui_view -->
