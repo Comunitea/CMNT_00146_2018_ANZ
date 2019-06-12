@@ -345,8 +345,8 @@ class ExportCatalogtWzd(models.TransientModel):
 
                 for f in total_field:
                     new_template['total_' + f] = sum(x for x in new_template[f])
-                new_template['ventas_percent'] = int(100*(new_template['total_sales']/ new_template['total_purchases']) if new_template['total_purchases'] else 0.0)
-                new_template['moves_percent'] = int(100*(new_template['total_outgoings']/ new_template['total_incomings']) if new_template['total_incomings'] else 0.0)
+                new_template['ventas_percent'] = int(100*(new_template['total_sales']/ new_template['total_purchases']) if new_template.get('total_purchases') else 0.0)
+                new_template['moves_percent'] = int(100*(new_template['total_outgoings']/ new_template['total_incomings']) if new_template.get('total_incomings') else 0.0)
 
 
             res[tmp.name] = new_template
