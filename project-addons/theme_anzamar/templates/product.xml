@@ -12,6 +12,30 @@
                 </a>
             </t>
         </xpath>
+
+        <!-- Hide guarantee -->
+        <xpath expr="//div[@id='product_details']//hr[last()]" position="replace"/>
+        <xpath expr="//div[@id='product_details']/p[last()]" position="replace"/>
+
+        <!-- Add short product description -->
+        <xpath expr="//div[@id='product_details']//hr[@t-if='product.description_sale']" position="attributes">
+            <attribute name="t-if">product.description_short</attribute>
+        </xpath>
+        <xpath expr="//div[@id='product_details']//div[hasclass('o_not_editable')]/p" position="attributes">
+            <attribute name="t-field">product.description_short</attribute>
+        </xpath>
+
+        <!-- Add full product HTML description -->
+        <xpath expr="//div[@id='product_full_description']" position="replace">
+            <div class="oe_structure mt16 mb16" id="product_full_description" t-if="product.description">
+                <div class="container" t-if="len(product.description) > 15" itemprop="description">
+                    <div class="row">
+                        <div class="col-md-12" t-field="product.description"/>
+                    </div>
+                </div>
+            </div>
+        </xpath>
+
     </template>
 
 </odoo>

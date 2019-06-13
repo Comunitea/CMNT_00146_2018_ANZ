@@ -23,6 +23,10 @@
             <attribute name="t-if">not(user_access == True and len(product.product_variant_ids) &gt; 1)</attribute>
         </xpath>
         <xpath expr="//a[@id='add_to_cart']" position="after">
+            <!-- Multi cart update button -->
+            <div class="add-to-cart-multi" t-if="user_access == True and len(product.product_variant_ids) &gt; 1">
+                <a class="btn btn-success btn-lg mt8 a-submit" href="#">Add to Cart</a>
+            </div>
             <!-- Add to wishlist button -->
             <t t-if="product.env.ref('website_multi_theme.auto_view_poi_website_sale_wishlist_add_to_wishlist').active">
                 <t t-set="in_wish" t-value="product.product_variant_ids &amp; request.env['product.wishlist'].current().mapped('product_id')"/>
@@ -30,10 +34,6 @@
                     <span class="fa fa-heart"/>
                 </a>
             </t>
-            <!-- Multi cart update button -->
-            <div class="add-to-cart-multi" t-if="user_access == True and len(product.product_variant_ids) &gt; 1">
-                <a class="btn btn-success btn-lg mt8 a-submit" href="#">Add to Cart</a>
-            </div>
         </xpath>
 
         <!-- Retailer product variants grid -->
@@ -142,16 +142,28 @@
             </div>
         </xpath>
 
-        <!-- Product delivery information -->
-<!--        <xpath expr="//div[@id='product_details']/p[hasclass('text-muted')]" position="replace">-->
-<!--            <div class="delivery_description">-->
-<!--                <p class="text-muted"/>-->
-<!--            </div>-->
-<!--        </xpath>-->
-
         <!-- Hide guarantee -->
         <xpath expr="//div[@id='product_details']//hr[last()]" position="replace"/>
         <xpath expr="//div[@id='product_details']/p[last()]" position="replace"/>
+
+        <!-- Add short product description -->
+        <xpath expr="//div[@id='product_details']//hr[@t-if='product.description_sale']" position="attributes">
+            <attribute name="t-if">product.description_short</attribute>
+        </xpath>
+        <xpath expr="//div[@id='product_details']//div[hasclass('o_not_editable')]/p" position="attributes">
+            <attribute name="t-field">product.description_short</attribute>
+        </xpath>
+
+        <!-- Add full product HTML description -->
+        <xpath expr="//div[@id='product_full_description']" position="replace">
+            <div class="oe_structure mt16 mb16" id="product_full_description" t-if="product.description">
+                <div class="container" t-if="len(product.description) > 15" itemprop="description">
+                    <div class="row">
+                        <div class="col-md-12" t-field="product.description"/>
+                    </div>
+                </div>
+            </div>
+        </xpath>
 
     </template>
 
