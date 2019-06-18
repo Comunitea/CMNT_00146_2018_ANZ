@@ -182,15 +182,15 @@ $(document).ready(function(){
                     });
                 }else{
                     // ERROR MESSAGE
-                    var message = _t('<p><strong>Error</strong></p>');
+                    var message = _t('Error');
 
                     if(has_order === true){
-                        message = _t('<p><strong>Empty product list. Please, select one.</strong></p>');
+                        message = _t('Empty product list. Please, select one.');
                     }else{
-                        message = _t('<p><strong>User access error</strong></p>');
+                        message = _t('User access error');
                     }
 
-                    $('#multi_error .modal-body').html(message);
+                    $('#multi_error .modal-body').html("<p><strong>"+message+"</strong></p>");
                     $('#multi_error').modal('show');
                 }
             });

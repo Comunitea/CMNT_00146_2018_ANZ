@@ -54,6 +54,7 @@
         'templates/head.xml',
         'templates/header.xml',
         'templates/footer.xml',
+        'templates/forms.xml',
         'templates/breadcrumbs_bar.xml',
         'templates/account.xml',
         'templates/newsletter.xml',

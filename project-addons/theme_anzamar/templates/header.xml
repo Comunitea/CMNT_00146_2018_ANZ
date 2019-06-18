@@ -4,7 +4,31 @@
     <!--Header Template-->
     <template id="anz_website_layout" name="Layout Anzamar Template" inherit_id="website_multi_theme.auto_layout_website_anz">
         <xpath expr="//div[@id='wrapwrap']//div[hasclass('navbar')]" position="before">
-            <t t-call="theme_anzamar.custom_header"/>
+            <div groups="website.group_website_publisher" class="clearfix mt32 header-fixed-margin"/>
+            <div class="wp-contact-navbar">
+                <div class="container contact-navbar">
+                    <div class="row">
+                        <div class="visible-xs col-xs-4">
+                            <a t-att-href="'tel:%s' %res_company.phone"><i class="fa fa-phone mr4"/></a>
+                            <a t-att-href="'mailto:%s' %website.email"><i class="fa fa-envelope"/></a>
+                        </div>
+                        <div class="col-md-2 col-sm-3 hidden-xs">
+                            <div class="header-phone">
+                                <i class="fa fa-phone"/>
+                                <a t-field="res_company.phone" t-att-href="'tel:%s' %res_company.phone"/>
+                            </div>
+                            <div class="contact-separator hidden-sm"/>
+                        </div>
+                        <div class="col-md-3 col-sm-4 hidden-xs">
+                            <div class="header-email">
+                                <i class="fa fa-envelope"/>
+                                <a t-field="website.email" t-att-href="'mailto:%s' %website.email"/>
+                            </div>
+                        </div>
+                        <div class="col-md-7 hidden-sm hidden-xs"/>
+                    </div>
+                </div>
+            </div>
         </xpath>
         <xpath expr="//div[@id='wrapwrap']//div[hasclass('navbar')]" position="after">
             <t t-call="breadcrumbs_base.bcb_main_wrap"/>
