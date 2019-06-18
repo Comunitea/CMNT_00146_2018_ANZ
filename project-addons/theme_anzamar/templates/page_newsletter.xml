@@ -2,7 +2,7 @@
 <odoo>
 
     <template id="anz_newsletter_content_template" name="Newsletter Anzamar Content Template" inherit_id="theme_anzamar.page_newsletter">
-        <xpath expr="//div[@class='container']" position="inside">
+        <xpath expr="//div[hasclass('container')]" position="inside">
             <div class="row mt32 mb32">
                 <div class="col-md-12">
                     <h1>Newsletter</h1>

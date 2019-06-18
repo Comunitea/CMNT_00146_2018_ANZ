@@ -2,7 +2,7 @@
 <odoo>
 
     <template id="anz_brand_skipping_content_template" name="Brand Skipping Anzamar Content Template" inherit_id="theme_anzamar.page_brand_skipping">
-        <xpath expr="//div[@class='container']" position="inside">
+        <xpath expr="//div[hasclass('container')]" position="inside">
             <div id="carousel_brand_umbro" class="carousel slide" data-ride="carousel">
                 <ol class="carousel-indicators">
                     <li data-target="#carousel_brand_umbro" data-slide-to="0" class="active"></li>
