@@ -65,58 +65,14 @@ msgid "Brands of our group"
 msgstr "Marcas de nuestro grupo"
 
 #. module: theme_anzamar
-#: model:ir.ui.view,arch_db:theme_anzamar.custom_footer
-#: model:ir.ui.view,arch_db:theme_anzamar.empty_footer
-#: model:ir.ui.view,arch_db:theme_anzamar.only_logged_in_users_advise
-msgid "Contact Us"
-msgstr "Contáctenos"
-
-#. module: theme_anzamar
-#: model:ir.ui.view,arch_db:theme_anzamar.custom_footer
-#: model:ir.ui.view,arch_db:theme_anzamar.empty_footer
-#: model:ir.ui.view,arch_db:theme_anzamar.only_logged_in_users_advise
-msgid "Contactus"
-msgstr "Contáctenos"
-
-#. module: theme_anzamar
 #: model:website.page,name:theme_anzamar.anz_contactus_thanks_page
 msgid "Contact Us (Thanks)"
 msgstr "Contáctenos (Gracias)"
 
 #. module: theme_anzamar
-#: model:ir.ui.view,arch_db:theme_anzamar.custom_footer
-#: model:ir.ui.view,arch_db:theme_anzamar.empty_footer
-msgid "Delivery"
-msgstr "Métodos de Entrega"
-
-#. module: theme_anzamar
-#: model:ir.ui.view,arch_db:theme_anzamar.custom_footer
-#: model:ir.ui.view,arch_db:theme_anzamar.empty_footer
-msgid "About us"
-msgstr "Sobre Nosotros"
-
-#. module: theme_anzamar
-#: model:ir.ui.view,arch_db:theme_anzamar.custom_footer
-#: model:ir.ui.view,arch_db:theme_anzamar.empty_footer
-msgid "Our Shops"
-msgstr "Nuestras Tiendas"
-
-#. module: theme_anzamar
-#: model:ir.ui.view,arch_db:theme_anzamar.custom_footer
-#: model:ir.ui.view,arch_db:theme_anzamar.empty_footer
-msgid "Our Group"
-msgstr "Nuestro Grupo"
-
-#. module: theme_anzamar
 #: model:ir.ui.view,arch_db:theme_anzamar.theme_anz_website_footer_custom
 msgid "Feel Point Brand Page"
 msgstr "Grupo Anzamar - Marca Feel Point"
-
-#. module: theme_anzamar
-#: model:ir.ui.view,arch_db:theme_anzamar.custom_footer
-#: model:ir.ui.view,arch_db:theme_anzamar.empty_footer
-msgid "Follow us"
-msgstr "Síguenos"
 
 #. module: theme_anzamar
 #: model:ir.ui.view,arch_db:theme_anzamar.page_anzamar_group
@@ -139,17 +95,6 @@ msgstr "Un gran equipo para apoyarte"
 #: model:website.page,name:theme_anzamar.anzamar_homepage_page
 msgid "Home"
 msgstr "Inicio"
-
-#. module: theme_anzamar
-#: model:ir.ui.view,arch_db:theme_anzamar.demo_page_content
-msgid "Image"
-msgstr "Imagen"
-
-#. module: theme_anzamar
-#: model:ir.ui.view,arch_db:theme_anzamar.custom_footer
-#: model:ir.ui.view,arch_db:theme_anzamar.empty_footer
-msgid "Information / Franchises"
-msgstr "Información / Franquicias"
 
 #. module: theme_anzamar
 #: model:ir.ui.view,arch_db:theme_anzamar.page_open_shop
@@ -204,16 +149,12 @@ msgid "Newsletter"
 msgstr "Noticias"
 
 #. module: theme_anzamar
-#: model:ir.ui.view,arch_db:theme_anzamar.custom_footer
-#: model:ir.ui.view,arch_db:theme_anzamar.empty_footer
 #: model:ir.ui.view,arch_db:theme_anzamar.page_open_shop
 #: model:website.menu,name:theme_anzamar.open_shop_submenu_request
 msgid "Open Request"
 msgstr "Solicitud de Apertura"
 
 #. module: theme_anzamar
-#: model:ir.ui.view,arch_db:theme_anzamar.custom_footer
-#: model:ir.ui.view,arch_db:theme_anzamar.empty_footer
 #: model:ir.ui.view,arch_db:theme_anzamar.page_open_shop
 #: model:website.menu,name:theme_anzamar.open_shop_menu
 #: model:website.menu,name:theme_anzamar.open_shop_submenu_open
@@ -226,12 +167,6 @@ msgstr "Abre tu Tienda"
 #: model:website.menu,name:theme_anzamar.open_shop_submenu_steps
 msgid "Open Your Shop Steps"
 msgstr "Pasos para Abrir tu Tienda"
-
-#. module: theme_anzamar
-#: model:ir.ui.view,arch_db:theme_anzamar.custom_footer
-#: model:ir.ui.view,arch_db:theme_anzamar.empty_footer
-msgid "Payment method"
-msgstr "Métodos de Pago"
 
 #. module: theme_anzamar
 #: model:ir.ui.view,arch_db:theme_anzamar.page_work_with_us
@@ -272,12 +207,6 @@ msgstr "Noticias"
 #: model:ir.ui.view,arch_db:theme_anzamar.only_logged_in_users_advise
 msgid "Start page"
 msgstr "Página de Inicio"
-
-#. module: theme_anzamar
-#: model:ir.ui.view,arch_db:theme_anzamar.custom_footer
-#: model:ir.ui.view,arch_db:theme_anzamar.empty_footer
-msgid "Steps to Open Your Shop"
-msgstr "Pasos para Abrir tu Tienda"
 
 #. module: theme_anzamar
 #: model:ir.ui.view,arch_db:theme_anzamar.page_open_shop
@@ -322,24 +251,14 @@ msgid "Umbro Brand Page"
 msgstr "Grupo Anzamar - Marca Umbro"
 
 #. module: theme_anzamar
-#: model:ir.ui.view,arch_db:theme_anzamar.custom_footer
-#: model:ir.ui.view,arch_db:theme_anzamar.empty_footer
 #: model:ir.ui.view,arch_db:theme_anzamar.theme_anz_website_footer_custom
 msgid "Work with Us"
 msgstr "Trabaje con Nosotros"
 
 #. module: theme_anzamar
-#: model:ir.ui.view,arch_db:theme_anzamar.custom_footer
-#: model:ir.ui.view,arch_db:theme_anzamar.empty_footer
 #: model:ir.ui.view,arch_db:theme_anzamar.theme_anz_website_footer_custom
 msgid "Work with Us Link"
 msgstr "Enlace a Trabaje con Nosotros"
-
-#. module: theme_anzamar
-#: model:ir.ui.view,arch_db:theme_anzamar.custom_footer
-#: model:ir.ui.view,arch_db:theme_anzamar.empty_footer
-msgid "Work with us"
-msgstr "Trabaje con Nosotros"
 
 #. module: theme_anzamar
 #: model:ir.ui.view,arch_db:theme_anzamar.only_logged_in_users_advise
@@ -479,11 +398,6 @@ msgstr "Mis Facturas y Pagos"
 msgid "My Portal"
 msgstr "Mi Cuenta"
 
-#. module: theme_point_sport
-#: model:website.page,name:theme_point_sport.anz_portal_my_purchase_orders
-msgid "My Purchase Orders"
-msgstr "Mis Pedidos de Compra"
-
 #. module: theme_anzamar
 #: model:website.page,name:theme_anzamar.portal_my_quotations
 msgid "My Quotations"
@@ -508,15 +422,15 @@ msgstr "Pedido de Venta"
 #. openerp-web
 #: code:addons/theme_anzamar/static/js/main.js:188
 #, python-format
-msgid "<p><strong>Empty product list. Please, select one.</strong></p>"
-msgstr "<p><strong>Lista de Productos Vacia. Seleccione uno.</strong></p>"
+msgid "Empty product list. Please, select one."
+msgstr "Lista de productos vacia. Seleccione uno."
 
 #. module: theme_anzamar
 #. openerp-web
 #: code:addons/theme_anzamar/static/js/main.js:190
 #, python-format
-msgid "<p><strong>User access error</strong></p>"
-msgstr "<p><strong>Error Acceso Usuario</strong></p>"
+msgid "User access error"
+msgstr "Error de acceso del usuario"
 
 #. module: theme_anzamar
 #: model:ir.ui.view,arch_db:theme_anzamar.anz_products_view

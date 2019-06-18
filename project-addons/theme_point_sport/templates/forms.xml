@@ -1,6 +1,20 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
 
+    <!-- Accept terms of use -->
+    <template id="privacy_policy_contact_form" name="Full Legal Terms Anzamar Snippet">
+        <div class="form-group form-field o_website_form_required" t-if="website.env.user == request.website.user_id">
+            <div class="col-md-7 col-md-offset-3 col-sm-8 col-sm-offset-4">
+                <div class="checkbox">
+                    <input type="checkbox" value="accepted" id="privacy_policy" name="privacy_policy" class="o_website_form_input ml0" required="required"/>
+                    <label for="privacy_policy">
+                        <t t-call="website_legal_page.acceptance_full"/>
+                    </label>
+                </div>
+            </div>
+        </div>
+    </template>
+
     <!-- Google recaptcha -->
     <template id="google_recaptcha_contact_form" name="Recaptcha Anzamar Snippet">
         <div class="form-group form-field o_website_form_required_custom">

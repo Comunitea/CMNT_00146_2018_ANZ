@@ -39,7 +39,7 @@
         'Rubén Seijas <ruben@comunitea.com>',
     ],
     'depends': [
-        'theme_anzamar',
+        # 'theme_anzamar',
         'breadcrumbs_base',
         'seo_base',
         'website_blog_base',
