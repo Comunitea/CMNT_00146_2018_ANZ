@@ -11,7 +11,7 @@
             <attribute name="t-if">user_access == True and product</attribute>
         </xpath>
         <xpath expr="//section[@id='product_detail']" position="after">
-            <t t-if="user_access == False or not product" t-call="theme_anzamar.only_logged_in_users_advise"/>
+            <t t-if="user_access == False or not product" t-call="theme_point_sport.only_logged_in_users_advise"/>
         </xpath>
 
         <!-- Retailer multi-add-to-cart action in the form -->
@@ -67,10 +67,10 @@
                             <div class="one-input">
                                 <span t-if="stock_control and available &lt; 1" class="exhausted">&amp;mdash;</span>
                                 <input t-elif="len(product.product_variant_ids) &gt; 1" type="number" min="0"
-                                       t-att-max="'%d' % available if stock_control else 100"
+                                       t-att-max="'%d' % available if stock_control else None"
                                        t-att-id="variant.attribute_value_ids[0].id"
                                        t-att-name="'attribute-%s-%s' % (product.id, variant.attribute_value_ids[0].id)"/>
-                                <input t-else="" type="number" min="0" t-att-max="'%d' % available if stock_control else 100"
+                                <input t-else="" type="number" min="0" t-att-max="'%d' % available if stock_control else None"
                                            t-att-id="variant.id"
                                            t-att-name="'attribute-%s-%s' % (product.id, variant.id)"/>
                             </div>

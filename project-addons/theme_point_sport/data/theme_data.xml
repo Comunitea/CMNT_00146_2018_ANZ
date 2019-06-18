@@ -1,17 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
-    <!-- Assets that define the Point Sport theme -->
-<!--    <template id="poi_website_assets_frontend" name="Assets Point Template" inherit_id="_theme reload">-->
-<!--        <xpath expr="link[last()]" position="after">-->
-<!--            <link href="/theme_point_sport/static/css/_general.less" rel="stylesheet" type="text/less"/>-->
-<!--            <t t-call="theme_anzamar.custom_css"/>-->
-<!--        </xpath>-->
-<!--        <xpath expr="//script[last()]" position="after">-->
-<!--            <script type="text/javascript" src="/theme_anzamar/static/js/main.js"/>-->
-<!--        </xpath>-->
-<!--    </template>-->
-
     <!-- Record that lets website admin to choose this theme -->
     <record model="website.theme" id="theme_point_sport_multi">
         <field name="name">Multi Website Point Sport Theme</field>

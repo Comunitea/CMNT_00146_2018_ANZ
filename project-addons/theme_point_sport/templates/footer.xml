@@ -3,7 +3,54 @@
 
     <template id="poi_website_footer_custom" name="Footer Custom Point Template" inherit_id="website_multi_theme.auto_view_poi_website_footer_custom">
         <xpath expr="//div[@id='footer']//div[hasclass('row')]" position="replace">
-            <t t-call="theme_anzamar.custom_footer"/>
+            <div class="row">
+                <div class="col-md-4 col-sm-3 col-xs-5">
+                    <h4 t-esc="website.name"/>
+                    <ul class="list-unstyled">
+                        <li><a href="/page/about-us">About us</a></li>
+                        <li><a href="/page/our-shops">Our Shops</a></li>
+                        <li><a href="/contactus">Contactus</a></li>
+                        <li><a href="/page/newsletter">Follow us</a></li>
+                    </ul>
+                    <h2 class="mt4">
+                        <a t-att-href="website.social_facebook" t-if="website.social_facebook" rel="nofollow" target="_blank"><i class="fa fa-facebook-square"/></a>
+                        <a t-att-href="website.social_twitter" t-if="website.social_twitter" rel="nofollow" target="_blank"><i class="fa fa-twitter"/></a>
+                        <a t-att-href="website.social_linkedin" t-if="website.social_linkedin" rel="nofollow" target="_blank"><i class="fa fa-linkedin"/></a>
+                        <a t-att-href="website.social_youtube" t-if="website.social_youtube" rel="nofollow" target="_blank"><i class="fa fa-youtube-play"/></a>
+                        <a t-att-href="website.social_googleplus" t-if="website.social_googleplus" rel="publisher" target="_blank"><i class="fa fa-google-plus-square"/></a>
+                        <a t-att-href="website.social_github" t-if="website.social_github" rel="nofollow" target="_blank"><i class="fa fa-github"/></a>
+                        <a t-att-href="website.social_instagram" t-if="website.social_instagram" rel="nofollow" target="_blank"><i class="fa fa-instagram"/></a>
+                    </h2>
+                </div>
+                <div class="col-md-4 col-sm-4 col-xs-7">
+                    <h4>Information / Franchises</h4>
+                    <ul class="list-unstyled">
+                        <li><a href="/page/delivery">Delivery</a></li>
+                        <li><a href="/page/payment">Payment method</a></li>
+                        <li><a href="/page/open_shop">Open Your Shop</a></li>
+                        <li><a href="/page/open_shop#step_section">Steps to Open Your Shop</a></li>
+                        <li><a href="/page/open_shop#request_section">Open Request</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4 col-sm-5 col-xs-12">
+                    <h4>Our Group</h4>
+                    <ul class="list-unstyled">
+                        <t t-set="group_anz" t-value="request.env['res.company'].search([('name', 'ilike', 'Anzamar')])"/>
+                        <li><a t-att-href="group_anz.website" target="_blank" rel="nofollow" t-esc="group_anz.name"/></li>
+                        <li>
+                            <i class="fa fa-map-marker"/>
+                            <a href="https://goo.gl/maps/Hm78jxSEG5B2" target="_blank" alt="Company Link" title="Company" rel="nofollow">
+                                <t t-esc="group_anz.street"/>,
+                                <t t-esc="group_anz.zip"/>,
+                                <t t-esc="group_anz.city"/>
+                            </a>
+                        </li>
+                        <li><i class="fa fa-phone"/><a t-field="group_anz.phone" t-att-href="'tel:%s' %group_anz.phone"/></li>
+                        <li><i class="fa fa-envelope"/><a t-field="group_anz.email" t-att-href="'mailto:%s' %group_anz.email"/></li>
+                    </ul>
+                    <h4><a href="/page/page_work_with_us" alt="Work with Us Link" title="Work with Us">Work with us</a></h4>
+                </div>
+            </div>
         </xpath>
     </template>
 
