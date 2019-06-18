@@ -99,3 +99,9 @@ class WebsiteMenu(models.Model):
     not_portal = fields.Boolean(string='Available only for public users', default=False)
     website_published = fields.Boolean(string='Published', default=True)
     dynamic_cat_menu = fields.Boolean(string='Dynamic categories menu', default=False)
+
+
+class IrUiView(models.Model):
+    _inherit = 'ir.ui.view'
+
+    name = fields.Char(string='View Name', required=True, translate=True)

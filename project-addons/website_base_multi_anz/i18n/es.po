@@ -274,3 +274,13 @@ msgstr "Sitio web"
 #: model:ir.model.fields,field_description:website_base_multi_anz.field_ftp_server_config_setting_website_id
 msgid "website"
 msgstr "sitio web"
+
+#. module: website_sale
+#: model:ir.ui.view,name:website_sale.cart
+msgid "Shopping Cart"
+msgstr "Carrito de la compra"
+
+#. module: website_sale
+#: model:ir.ui.view,name:website_sale.address
+msgid "Address Management"
+msgstr "Facturación y envío"
