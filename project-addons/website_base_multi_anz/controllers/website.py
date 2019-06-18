@@ -117,16 +117,15 @@ class WebsiteSaleExtended(WebsiteSale):
                         line_id = product_line.id
 
                     if max_qty >= 0 and (max_qty - cart_qty - qty < 0):
-                        in_cart = _('and %d unit(s) are already in cart') % cart_qty if cart_qty > 0 else ''
-                        prod_list += _(
-                            '<p class="alert alert-warning">%s: Ask for %d units but only %d is available %s</p>' % (
-                                attr_name, qty, max_qty, in_cart))
+                        in_cart_msg = _('and %d unit(s) are already in cart')
+                        ask_msg = _('<p class="alert alert-warning">%s: Ask for %d units but only %d is available %s</p>')
+                        in_cart = in_cart_msg % cart_qty if cart_qty > 0 else ''
+                        prod_list += ask_msg % (attr_name, qty, max_qty, in_cart)
                         qty = min(qty, max_qty)
                     else:
                         if cart_qty > 0:
-                            prod_list += _('<p class="alert alert-warning">%s: Added %d unit(s) but %d '
-                                           'unit(s) was already in your cart</p>') \
-                                         % (attr_name, qty, cart_qty)
+                            but_msg = _('<p class="alert alert-warning">%s: Added %d unit(s) but %d unit(s) was already in your cart</p>')
+                            prod_list += but_msg % (attr_name, qty, cart_qty)
                         else:
                             prod_list += _('<p class="alert alert-success">%s: Added %d unit(s)</p>') % (attr_name, qty)
 
