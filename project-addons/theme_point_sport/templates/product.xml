@@ -74,7 +74,7 @@
                                            t-att-id="variant.id"
                                            t-att-name="'attribute-%s-%s' % (product.id, variant.id)"/>
                             </div>
-                            <div class="one-stock" t-raw="'%s ud.' % str('+10') if available &gt; 10 else str(int(available))"/>
+                            <div class="one-stock" t-raw="'%s ud.' % (str('+10') if available &gt; 10 else str(int(available)))"/>
                             <div class="one-stock" t-raw="'%s ud.' % (str('+10') if variant.virtual_available &gt; 10 else str(int(available)) if variant.virtual_available &gt; 0 else 0)" t-if="not stock_control"/>
                         </div>
                     </t>

@@ -158,9 +158,10 @@
         <xpath expr="//input[@type='text'][hasclass('quantity')]" position="before">
             <t t-set="variant" t-value="line.product_id.with_context(warehouse=request.website.warehouse.id).sudo() if request.website.warehouse else line.product_id.sudo()"/>
             <t t-set="qty" t-value="(variant.sudo().qty_available + variant.sudo().virtual_available) if variant.inventory_availability in ('always_virtual', 'threshold_virtual') else variant.sudo().qty_available"/>
+            <t t-set="stock_control" t-value="variant.inventory_availability in ('always', 'always_virtual', 'threshold', 'threshold_virtual')"/>
         </xpath>
         <xpath expr="//input[@type='text'][hasclass('quantity')]" position="attributes">
-            <attribute name="t-att-data-max">(qty - variant.available_threshold) if variant.inventory_availability in ('threshold', 'threshold_virtual') else qty</attribute>
+            <attribute name="t-att-data-max">((qty - variant.available_threshold) if variant.inventory_availability in ('threshold', 'threshold_virtual') else qty) if stock_control else None</attribute>
         </xpath>
     </template>
 
