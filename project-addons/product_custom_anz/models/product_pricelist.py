@@ -7,6 +7,23 @@ from itertools import chain
 class ProductPricelist(models.Model):
     _inherit = "product.pricelist"
 
+
+    @api.multi
+    def _get_pricelist_item_count(self):
+        for list in self:
+            list.pricelist_item_count = len(list.item_ids)
+
+    pricelist_item_count = fields.Integer("Nº de precios", compute="_get_pricelist_item_count")
+
+
+    def show_pricelist_item_tree(self):
+        action = self.env.ref(
+            'sale_custom_anz.product_pricelist_action_tree').read()[0]
+        action['domain'] = [('pricelist_id', '=', self.id)]
+        action['context'] = {'default_pricelist_id': self.id}
+        return action
+
+
     @api.multi
     def _compute_price_rule(self, products_qty_partner, date=False, uom_id=False):
         """ OVERWRITED TO ADD BRAND , all changes marked with # NEW coment
@@ -90,7 +107,7 @@ class ProductPricelist(models.Model):
             if qty_uom_id != product.uom_id.id:
                 try:
                     qty_in_product_uom = self.env['product.uom'].browse([self._context['uom']])._compute_quantity(qty, product.uom_id)
-                except UserError:
+                except:
                     # Ignored - incompatible UoM in context, use default product UoM
                     pass
 

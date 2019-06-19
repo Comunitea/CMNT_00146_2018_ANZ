@@ -11,8 +11,10 @@
                     <group string="Info a mostrar">
                         <field name="incomings" string="Entradas"/>
                         <field name="outgoings" string="Salidas"/>
+                        <field name="filter_state"/>
                         <field name="purchases" string="Compras"/>
                         <field name="sales" string="Ventas"/>
+
                         <field name="stocks" string="Stocks"/>
 
                         <field name="pvp" string="P.V.P."/>
@@ -56,6 +58,7 @@
                         <field name="date_start" string="Date Start"/>
                         <field name="date_end" string="Date End"/>
                         <field name="limit" string="Limit"/>
+
                         <field name="with_stock"/>
                         <field name="image_scale" invisible="1"/>
                         <field name="x_offset" invisible="1"/>

@@ -17,14 +17,7 @@ class ProductTemplate(models.Model):
     @api.multi
     def write(self, vals):
         if 'scheduled_sale_id' in vals:
-            if len(self)==1:
-                ids = self.id
-                sig = '='
-            else:
-                sig = 'in'
-                ids = tuple(self.ids)
-            sql = "update product_product set scheduled_sale_id = {} where product_tmpl_id {} {}".format(vals.get('scheduled_sale_id', False), sig, ids)
-            self._cr.execute(sql)
+            self.product_variant_ids.write({'scheduled_sale_id': vals['scheduled_sale_id']})
         return super(ProductTemplate, self).write(vals)
 
 
@@ -63,8 +56,6 @@ class ProductProduct(models.Model):
     def action_unlink_product(self):
         scheduled_sale_id = self._context.get('scheduled_sale_id', False)
         set_active = self._context.get('set_active', False)
-
-
         if scheduled_sale_id:
             if set_active:
                 self.write({'active': True})

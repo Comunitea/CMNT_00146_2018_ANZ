@@ -16,7 +16,7 @@
                 <separator/>
                 <filter name="fixed" string="Fixed" domain="[('compute_price','=','fixed')]"/>
                 <filter name="percentage" string="Percentage" domain="[('compute_price','=','percentage')]"/>
-                <filter name="formula" string="Percentage" domain="[('compute_price','=','formula')]"/>
+                <filter name="formula" string="Fórmula" domain="[('compute_price','=','formula')]"/>
                 <separator/>
 
                 <filter string="Pricelist" name="groupby_pricelist" domain="[]" context="{'group_by' : 'pricelist_id'}"/>
@@ -32,7 +32,7 @@
                     <field name="product_id" groups="product.group_product_variant" invisible="1"/>
                     <field name="product_tmpl_id" invisible="1"/>
                     <field name="applied_on"/>
-                    <field name="percent_price"/>
+                    <field name="price"/>
                     <field name="compute_price" invisible="1"/>
                     <field name="pricelist_id" invisible="1"/>
                 </tree>

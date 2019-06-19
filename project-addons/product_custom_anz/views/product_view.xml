@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
 
+        <record id="attribute_action" model="ir.actions.act_window">
+            <field name="name">Attributes</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">product.attribute</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_type">form</field>
+        </record>
 
     <record id="product_attribute_view_form_add_custom" model="ir.ui.view">
         <field name="name">product.attribute.form.add.custom</field>
@@ -21,6 +28,17 @@
                 <field name="is_tboot"/>
                 <field name="is_color"/>
             </field>
+            <field name="value_ids" position="replace">
+
+            </field>
+            <xpath expr="//group" position="before">
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_show_attribute_values" type="object" class="oe_stat_button" icon="fa-pencil-square-o">
+                            <field name="count_line_ids" widget="statinfo" string="Valores"/>
+                        </button>
+                    </div>
+            </xpath>
+
         </field>
     </record>
 
