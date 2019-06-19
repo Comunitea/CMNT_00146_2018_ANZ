@@ -284,3 +284,28 @@ msgstr "Carrito de la compra"
 #: model:ir.ui.view,name:website_sale.address
 msgid "Address Management"
 msgstr "Facturación y envío"
+
+#. module: website_sale
+#: model:ir.ui.view,name:website_sale.checkout
+msgid "checkout"
+msgstr "Facturación y envío"
+
+#. module: website_sale
+#: model:ir.ui.view,name:website_sale.payment
+msgid "Payment"
+msgstr "Pago"
+
+#. module: web
+#: model:ir.ui.view,name:web.login
+msgid "Login"
+msgstr "Iniciar sesión"
+
+#. module: auth_signup
+#: model:ir.ui.view,name:auth_signup.signup
+msgid "Sign up login"
+msgstr "Registrarse"
+
+#. module: auth_signup
+#: model:ir.ui.view,name:auth_signup.reset_password
+msgid "Reset password"
+msgstr "Restablecer Contraseña"
