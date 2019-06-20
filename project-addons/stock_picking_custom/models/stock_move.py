@@ -6,7 +6,6 @@ from odoo import api, models, fields
 class StockMove(models.Model):
     _inherit = 'stock.move'
 
-
     @api.multi
     def _get_product_default_location_id(self):
         reserved_moves = self.filtered(lambda x: x.move_line_ids)
@@ -42,13 +41,13 @@ class StockMove(models.Model):
         for move in self.filtered(lambda x: x.qty_available and not x.quantity_done):
             move.quantity_done = move.qty_available
 
-
-
     @api.depends('state', 'picking_id')
     def _compute_is_initial_demand_editable(self):
         for move in self:
 
             move.is_initial_demand_editable = (move.picking_id and move.picking_id.is_locked or True) and move.state != 'done'
-
-
-
+    
+    def _prepare_move_line_vals(self, quantity=None, reserved_quant=None):
+        vals = super(StockMove, self)._prepare_move_line_vals(quantity=quantity, reserved_quant=reserved_quant)
+        vals.update(picking_type_id=self.picking_type_id.id)
+        return vals

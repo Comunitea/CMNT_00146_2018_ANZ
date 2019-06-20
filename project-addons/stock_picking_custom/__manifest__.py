@@ -14,6 +14,7 @@
     ],
     'data': [
         'data/res_partner_category.xml',
+        'data/stock_location_cron.xml',
         #'views/stock_batch_picking.xml',
         'views/stock_location.xml',
         'views/stock_picking.xml',

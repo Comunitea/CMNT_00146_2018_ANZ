@@ -1,12 +1,14 @@
 # © 2018 Comunitea
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 from odoo import api, models, fields
+from pprint import pprint
 
 
 class StockMoveLine(models.Model):
     _inherit = 'stock.move.line'
-    _order = "barcode, barcode_dest, result_package_id desc, id"
+    _order = "sequence, barcode, barcode_dest, result_package_id desc, id"
 
+    sequence = fields.Integer(string='Location order', default = 0)
 
     @api.multi
     def _get_product_default_location_id(self):
@@ -76,3 +78,27 @@ class StockMoveLine(models.Model):
                 if quants:
                     move.location_id = quants[0].location_id
 
+    @api.model
+    def create(self, vals):
+        sequence = 0
+        pt = self.env['stock.picking.type']
+        if 'picking_type_id' in vals:
+            pt = pt.browse(vals['picking_type_id'])
+        order_vals = pt.get_move_order_field()
+        obj = self.env[order_vals['model']].browse(vals[order_vals['order_field']])
+
+        sequence = obj and obj[order_vals['field']] or 0
+
+        vals.update(sequence=sequence)
+        return super(StockMoveLine, self).create(vals)
+ 
+    @api.multi
+    def write(self, vals):        
+        res = super(StockMoveLine, self).write(vals)
+        if 'location_id' in vals or 'location_dest_id' in vals:
+            for ml in self:
+                order_vals = ml.picking_type_id.get_move_order_field()
+                obj = self.env[order_vals['model']].browse(vals[order_vals['order_field']])
+                sequence = obj and obj[order_vals['field']] or 0
+                ml.sequence = sequence
+        return res

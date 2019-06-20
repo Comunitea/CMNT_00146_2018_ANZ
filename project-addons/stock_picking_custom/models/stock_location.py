@@ -8,8 +8,11 @@ from odoo.exceptions import ValidationError
 class StockLocation(models.Model):
 
     _inherit = 'stock.location'
+    _order = "sequence asc"
 
     ubic = fields.Integer('Ubicación', default=0, help="Optional ubication details, for information purpose only")
+    inverse_order = fields.Boolean(string='Inverse order', help="Mark for inverse order.")
+    sequence = fields.Integer(string='Location order')    
 
     @api.multi
     def set_barcode_field(self):
@@ -23,8 +26,10 @@ class StockLocation(models.Model):
             inc += 1
             print ('{} de {} >> {}: Codigo: {}'.format(inc, total, location.display_name, location.barcode))
 
-    @api.onchange('posx', 'posy', 'posz')
+    @api.onchange('posx', 'posy', 'posz', 'location_id')
     def onchange_act_barcode(self):
+        for location in self:
+            location._set_order()
         self.set_barcode_field()
 
     def check_vals(self, usage, posx, posy, posz, barcode):
@@ -48,3 +53,21 @@ class StockLocation(models.Model):
                 locs = self.env['stock.location'].search([('usage','=', 'internal'), ('location_id', '=', loc.id)])
                 locs.set_barcode_field()
         return res
+
+    @api.model
+    def _set_order(self):
+        for location in self:
+            if location.location_id:
+                pasillo = location.posy if not location.location_id.inverse_order else (100-location.posy)
+            else:
+                pasillo = location.posy
+            sequence = int('{}{}{}'.format('%0*d' % (2, location.posx), '%0*d' % (2, pasillo), '%0*d' % (2, location.posz)))
+            location.update({
+                'sequence': sequence
+            })
+
+    @api.model
+    def order_full_list(self):
+        locations = self.env['stock.location'].search([])
+        for location in locations:
+            location._set_order()
