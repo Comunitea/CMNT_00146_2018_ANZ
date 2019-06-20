@@ -3,7 +3,7 @@
 
     <template id="anz_home_content_template" name="Home Anzamar Content Template">
         <t t-call="website.layout">
-            <t t-call="theme_point_sport.carousel_homepage"/>
+            <t t-call="theme_anzamar.carousel_homepage"/>
             <section class="oe_structure oe_empty"/>
             <section id="brands_section" class="mt32 oe_structure">
                 <div class="row mt32 mb32">
@@ -51,6 +51,7 @@
                 <t t-set="latest_posts" t-value="website.latest_posts(3, 3, 'Our latest news', 'Read all our news')"/>
                 <t t-call="website_blog_base.wbb_latest_post_wrap"/>
             </section>
+            <div class="clearfix"/>
             <section class="oe_structure oe_empty"/>
         </t>
     </template>
