@@ -26,11 +26,11 @@ msgid "<span> &amp; Shipping</span>"
 msgstr "<span> y Envío</span>"
 
 #. module: theme_anzamar
-#: model:ir.ui.view,arch_db:theme_anzamar.theme_anz_website_footer_custom
-#: model:ir.ui.view,arch_db:theme_anzamar.page_anzamar_group
+#: model:ir.ui.view,arch_db:theme_anzamar.anz_anzamar_group_content_template
+#: model:ir.ui.view,arch_db:theme_anzamar.anz_website_footer_custom
 #: model:website.menu,name:theme_anzamar.group_menu
 #: model:website.menu,name:theme_anzamar.group_submenu_group
-#: model:website.page,name:theme_anzamar.
+#: model:website.page,name:theme_anzamar.id_page_anzamar_group
 msgid "Anzamar Group"
 msgstr "Grupo Anzamar"
 
@@ -538,3 +538,25 @@ msgstr "A mano"
 #: model:ir.ui.view,arch_db:theme_anzamar.anz_website_sale_product
 msgid "Forecast"
 msgstr "Planificado"
+
+#. module: theme_anzamar
+#: model:ir.ui.view,arch_db:theme_anzamar.anz_work_with_us_content_template
+msgid "<span class=\"btn btn-primary btn-lg o_website_form_send\">Send</span>\n"
+"            <span id=\"o_website_form_result\"/>"
+msgstr "<span class=\"btn btn-primary btn-lg o_website_form_send\">Enviar</span>\n"
+"            <span id=\"o_website_form_result\"/>"
+
+#. module: theme_anzamar
+#: model:ir.ui.view,arch_db:theme_anzamar.anz_anzamar_group_content_template
+msgid "Anzamar Group is ..."
+msgstr "El Grupo Anzamar es ..."
+
+#. module: theme_anzamar
+#: model:ir.ui.view,arch_db:theme_anzamar.carousel_homepage
+msgid "Anzamar Stores"
+msgstr "Almacenes Anzamar"
+
+#. module: theme_anzamar
+#: model:ir.ui.view,arch_db:theme_anzamar.anz_website_footer_custom
+msgid "Anzamar group"
+msgstr "Grupo Anzamar"
