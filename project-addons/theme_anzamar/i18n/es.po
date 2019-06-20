@@ -30,27 +30,27 @@ msgstr "<span> y Envío</span>"
 #: model:ir.ui.view,arch_db:theme_anzamar.anz_website_footer_custom
 #: model:website.menu,name:theme_anzamar.group_menu
 #: model:website.menu,name:theme_anzamar.group_submenu_group
-#: model:website.page,name:theme_anzamar.id_page_anzamar_group
+#: model:website.page,name:theme_anzamar.anz_anzamar_group_content_template
 msgid "Anzamar Group"
 msgstr "Grupo Anzamar"
 
 #. module: theme_anzamar
-#: model:ir.ui.view,arch_db:theme_anzamar.theme_anz_website_footer_custom
+#: model:ir.ui.view,arch_db:theme_anzamar.anz_website_footer_custom
 msgid "Anzamar Group Link"
 msgstr "Enlace Grupo Anzamar"
 
 #. module: theme_anzamar
-#: model:ir.ui.view,arch_db:theme_anzamar.page_anzamar_group
+#: model:ir.ui.view,arch_db:theme_anzamar.anz_anzamar_group_content_template
 msgid "Anzamar Group is ..."
 msgstr "El Grupo Anzamar es ..."
 
 #. module: theme_anzamar
-#: model:ir.ui.view,arch_db:theme_anzamar.theme_anz_website_footer_custom
+#: model:ir.ui.view,arch_db:theme_anzamar.anz_website_footer_custom
 msgid "Black Laces Brand Page"
 msgstr "Grupo Anzamar - Marca Black Laces"
 
 #. module: theme_anzamar
-#: model:ir.ui.view,arch_db:theme_anzamar.theme_anz_website_footer_custom
+#: model:ir.ui.view,arch_db:theme_anzamar.anz_website_footer_custom
 msgid "Blog Link"
 msgstr "Enlace al Blog"
 
@@ -67,26 +67,26 @@ msgstr "Marcas de nuestro grupo"
 #. module: theme_anzamar
 #: model:website.page,name:theme_anzamar.anz_contactus_thanks_page
 msgid "Contact Us (Thanks)"
-msgstr "Contáctenos (Gracias)"
+msgstr "Contacto (Gracias)"
 
 #. module: theme_anzamar
-#: model:ir.ui.view,arch_db:theme_anzamar.theme_anz_website_footer_custom
+#: model:ir.ui.view,arch_db:theme_anzamar.anz_website_footer_custom
 msgid "Feel Point Brand Page"
 msgstr "Grupo Anzamar - Marca Feel Point"
 
 #. module: theme_anzamar
-#: model:ir.ui.view,arch_db:theme_anzamar.page_anzamar_group
+#: model:ir.ui.view,arch_db:theme_anzamar.anz_anzamar_group_content_template
 #: model:ir.ui.view,arch_db:theme_anzamar.anz_open_shop_content_template
 msgid "Form to open your shop with Anzamar Group"
 msgstr "Formulario para abrir tu tienda con el Grupo Anzamar"
 
 #. module: theme_anzamar
-#: model:ir.ui.view,arch_db:theme_anzamar.theme_anz_website_footer_custom
+#: model:ir.ui.view,arch_db:theme_anzamar.anz_website_footer_custom
 msgid "Goalkers Brand Page"
 msgstr "Grupo Anzamar - Marca Goalkers"
 
 #. module: theme_anzamar
-#: model:ir.ui.view,arch_db:theme_anzamar.page_anzamar_group
+#: model:ir.ui.view,arch_db:theme_anzamar.anz_anzamar_group_content_template
 msgid "Great team to support you"
 msgstr "Un gran equipo para apoyarte"
 
@@ -102,7 +102,7 @@ msgid "Instructions to open your shop with Anzamar Group"
 msgstr "Instrucciones para Abrir tu Tienda con el Grupo Anzamar"
 
 #. module: theme_anzamar
-#: model:ir.ui.view,arch_db:theme_anzamar.theme_anz_website_footer_custom
+#: model:ir.ui.view,arch_db:theme_anzamar.anz_website_footer_custom
 #: model:ir.ui.view,arch_db:theme_anzamar.page_newsletter
 msgid "LinkedIn Link"
 msgstr "Enlace LinkeIn"
@@ -118,7 +118,7 @@ msgid "Main Menu"
 msgstr "Menú Principal"
 
 #. module: theme_anzamar
-#: model:ir.ui.view,arch_db:theme_anzamar.page_anzamar_group
+#: model:ir.ui.view,arch_db:theme_anzamar.anz_anzamar_group_content_template
 msgid "Map of national presence"
 msgstr "Mapa de Presencia Nacional"
 
@@ -128,7 +128,7 @@ msgid "Multi Website Anzamar Theme"
 msgstr "Tema Anzamar Multi Website"
 
 #. module: theme_anzamar
-#: model:ir.ui.view,arch_db:theme_anzamar.page_anzamar_group
+#: model:ir.ui.view,arch_db:theme_anzamar.anz_anzamar_group_content_template
 msgid "National Presence"
 msgstr "Presencia Nacional"
 
@@ -143,7 +143,7 @@ msgid "Need to"
 msgstr "Necesario para"
 
 #. module: theme_anzamar
-#: model:ir.ui.view,arch_db:theme_anzamar.theme_anz_website_footer_custom
+#: model:ir.ui.view,arch_db:theme_anzamar.anz_website_footer_custom
 #: model:ir.ui.view,arch_db:theme_anzamar.page_newsletter
 msgid "Newsletter"
 msgstr "Noticias"
@@ -169,7 +169,7 @@ msgid "Open Your Shop Steps"
 msgstr "Pasos para Abrir tu Tienda"
 
 #. module: theme_anzamar
-#: model:ir.ui.view,arch_db:theme_anzamar.page_work_with_us
+#: model:ir.ui.view,arch_db:theme_anzamar.anz_work_with_us_content_template
 msgid "Phone Number"
 msgstr "Número de Teléfono"
 
@@ -179,27 +179,27 @@ msgid "Please, follow the instructions"
 msgstr "Por favor, siga las instrucciones"
 
 #. module: theme_anzamar
-#: model:ir.ui.view,arch_db:theme_anzamar.theme_anz_website_footer_custom
+#: model:ir.ui.view,arch_db:theme_anzamar.anz_website_footer_custom
 msgid "Point Sport Brand Page"
 msgstr "Grupo Anzamar - Marca Point Sport"
 
 #. module: theme_anzamar
-#: model:ir.ui.view,arch_db:theme_anzamar.theme_anz_website_footer_custom
+#: model:ir.ui.view,arch_db:theme_anzamar.anz_website_footer_custom
 msgid "Presence"
 msgstr "Presencia"
 
 #. module: theme_anzamar
-#: model:ir.ui.view,arch_db:theme_anzamar.theme_anz_website_footer_custom
+#: model:ir.ui.view,arch_db:theme_anzamar.anz_website_footer_custom
 msgid "Presence Link"
 msgstr "Enlace Presencia Nacional"
 
 #. module: theme_anzamar
-#: model:ir.ui.view,arch_db:theme_anzamar.theme_anz_website_footer_custom
+#: model:ir.ui.view,arch_db:theme_anzamar.anz_website_footer_custom
 msgid "Skipping Brand Page"
 msgstr "Grupo Anzamar - Marca Skipping"
 
 #. module: theme_anzamar
-#: model:ir.ui.view,arch_db:theme_anzamar.theme_anz_website_footer_custom
+#: model:ir.ui.view,arch_db:theme_anzamar.anz_website_footer_custom
 msgid "Newsletter"
 msgstr "Noticias"
 
@@ -214,7 +214,7 @@ msgid "Steps to open your shop with Anzamar Group"
 msgstr "Pasos para Abrir tu Tienda con el Grupo Anzamar"
 
 #. module: theme_anzamar
-#: model:ir.ui.view,arch_db:theme_anzamar.page_work_with_us
+#: model:ir.ui.view,arch_db:theme_anzamar.anz_work_with_us_content_template
 msgid "Subject"
 msgstr "Asunto"
 
@@ -230,7 +230,7 @@ msgid "Team Wear"
 msgstr "Ropa de Equipo"
 
 #. module: theme_anzamar
-#: model:ir.ui.view,arch_db:theme_anzamar.page_anzamar_group
+#: model:ir.ui.view,arch_db:theme_anzamar.anz_anzamar_group_content_template
 msgid "The Anzamar companies are ..."
 msgstr "Las compañias del Grupo Anzamar son ..."
 
@@ -240,23 +240,18 @@ msgid "These are the instructions:"
 msgstr "Estas son las instrucciones:"
 
 #. module: theme_anzamar
-#: model:ir.ui.view,arch_db:theme_anzamar.page_anzamar_group
+#: model:ir.ui.view,arch_db:theme_anzamar.anz_anzamar_group_content_template
 #: model:ir.ui.view,arch_db:theme_anzamar.anz_open_shop_content_template
 msgid "These are the requirements:"
 msgstr "Estos son los requisitos:"
 
 #. module: theme_anzamar
-#: model:ir.ui.view,arch_db:theme_anzamar.theme_anz_website_footer_custom
+#: model:ir.ui.view,arch_db:theme_anzamar.anz_website_footer_custom
 msgid "Umbro Brand Page"
 msgstr "Grupo Anzamar - Marca Umbro"
 
 #. module: theme_anzamar
-#: model:ir.ui.view,arch_db:theme_anzamar.theme_anz_website_footer_custom
-msgid "Work with Us"
-msgstr "Trabaje con Nosotros"
-
-#. module: theme_anzamar
-#: model:ir.ui.view,arch_db:theme_anzamar.theme_anz_website_footer_custom
+#: model:ir.ui.view,arch_db:theme_anzamar.anz_website_footer_custom
 msgid "Work with Us Link"
 msgstr "Enlace a Trabaje con Nosotros"
 
@@ -266,12 +261,12 @@ msgid "You do not have access to this page"
 msgstr "Usted no tiene permiso para acceder a esta página"
 
 #. module: theme_anzamar
-#: model:ir.ui.view,arch_db:theme_anzamar.page_work_with_us
+#: model:ir.ui.view,arch_db:theme_anzamar.anz_work_with_us_content_template
 msgid "Your Company"
 msgstr "Su Compañía"
 
 #. module: theme_anzamar
-#: model:ir.ui.view,arch_db:theme_anzamar.page_work_with_us
+#: model:ir.ui.view,arch_db:theme_anzamar.anz_work_with_us_content_template
 msgid "Send"
 msgstr "Enviar"
 
@@ -295,13 +290,13 @@ msgstr "Sus Documentos"
 
 #. module: theme_anzamar
 #: model:ir.ui.view,arch_db:theme_anzamar.portal_my_details_ir_ui_view
-#: model:ir.ui.view,arch_db:theme_anzamar.page_work_with_us
+#: model:ir.ui.view,arch_db:theme_anzamar.anz_work_with_us_content_template
 #: model:website.page,arch_db:theme_anzamar.portal_my_details
 msgid "Your Name"
 msgstr "Su Nombre"
 
 #. module: theme_anzamar
-#: model:ir.ui.view,arch_db:theme_anzamar.page_work_with_us
+#: model:ir.ui.view,arch_db:theme_anzamar.anz_work_with_us_content_template
 msgid "Your Question"
 msgstr "Su Pregunta"
 
@@ -311,7 +306,7 @@ msgid "how a retailer user"
 msgstr "como un usuario retailer"
 
 #. module: theme_anzamar
-#: model:ir.ui.view,arch_db:theme_anzamar.theme_anz_web_login
+#: model:ir.ui.view,arch_db:theme_anzamar.anz_legal_login
 msgid "With entering"
 msgstr "Al entrar"
 
@@ -560,3 +555,199 @@ msgstr "Almacenes Anzamar"
 #: model:ir.ui.view,arch_db:theme_anzamar.anz_website_footer_custom
 msgid "Anzamar group"
 msgstr "Grupo Anzamar"
+
+#. module: theme_anzamar
+#: model:website.page,name:theme_anzamar.anz_contactus_page
+msgid "Contact Us"
+msgstr "Contacto"
+
+#. module: theme_anzamar
+#: model:ir.ui.view,arch_db:theme_anzamar.anz_brand_black_laces_content_template
+#: model:ir.ui.view,arch_db:theme_anzamar.anz_brand_feel_point_content_template
+#: model:ir.ui.view,arch_db:theme_anzamar.anz_brand_goalkers_content_template
+#: model:ir.ui.view,arch_db:theme_anzamar.anz_brand_point_sport_content_template
+#: model:ir.ui.view,arch_db:theme_anzamar.anz_brand_skipping_content_template
+#: model:ir.ui.view,arch_db:theme_anzamar.anz_brand_umbro_content_template
+msgid "Specialists in you"
+msgstr "Especialistas en tí"
+
+#. module: theme_anzamar
+#: model:ir.ui.view,arch_db:theme_anzamar.anz_brand_black_laces_content_template
+#: model:ir.ui.view,arch_db:theme_anzamar.anz_brand_feel_point_content_template
+#: model:ir.ui.view,arch_db:theme_anzamar.anz_brand_goalkers_content_template
+#: model:ir.ui.view,arch_db:theme_anzamar.anz_brand_point_sport_content_template
+#: model:ir.ui.view,arch_db:theme_anzamar.anz_brand_skipping_content_template
+#: model:ir.ui.view,arch_db:theme_anzamar.anz_brand_umbro_content_template
+msgid "About us?"
+msgstr "Sobre nosotros"
+
+#. module: theme_anzamar
+#: model:ir.ui.view,arch_db:theme_anzamar.anz_brand_black_laces_content_template
+#: model:ir.ui.view,arch_db:theme_anzamar.anz_brand_feel_point_content_template
+#: model:ir.ui.view,arch_db:theme_anzamar.anz_brand_goalkers_content_template
+#: model:ir.ui.view,arch_db:theme_anzamar.anz_brand_point_sport_content_template
+#: model:ir.ui.view,arch_db:theme_anzamar.anz_brand_skipping_content_template
+#: model:ir.ui.view,arch_db:theme_anzamar.anz_brand_umbro_content_template
+msgid "Our 90 years of history are a source of constant inspiration, but the goal is always the future. In 2017, Umbro has created the equipment of some of the best football teams in the world, a great collection of professional boots, cutting-edge sports equipment and elegant streetwear inspired by the greatness of this sport"
+msgstr "Nuestros 90 años de historia son una fuente de inspiración constante, pero la meta siempre es el futuro. En 2017, Umbro ha creado las equipaciones de algunos de los mejores equipos de fútbol del mundo, una estupenda colección de botas profesionales, material deportivo de vanguardia y elegante ropa de calle inspirada en la grandeza de este deporte."
+
+#. module: theme_anzamar
+#: model:ir.ui.view,arch_db:theme_anzamar.anz_brand_black_laces_content_template
+#: model:ir.ui.view,arch_db:theme_anzamar.anz_brand_feel_point_content_template
+#: model:ir.ui.view,arch_db:theme_anzamar.anz_brand_goalkers_content_template
+#: model:ir.ui.view,arch_db:theme_anzamar.anz_brand_point_sport_content_template
+#: model:ir.ui.view,arch_db:theme_anzamar.anz_brand_skipping_content_template
+#: model:ir.ui.view,arch_db:theme_anzamar.anz_brand_umbro_content_template
+msgid "Dress with pride, play with passion"
+msgstr "Viste con orgullo, juega con pasión"
+
+#. module: theme_anzamar
+#: model:ir.ui.view,arch_db:theme_anzamar.anz_brand_black_laces_content_template
+#: model:ir.ui.view,arch_db:theme_anzamar.anz_brand_feel_point_content_template
+#: model:ir.ui.view,arch_db:theme_anzamar.anz_brand_goalkers_content_template
+#: model:ir.ui.view,arch_db:theme_anzamar.anz_brand_point_sport_content_template
+#: model:ir.ui.view,arch_db:theme_anzamar.anz_brand_skipping_content_template
+#: model:ir.ui.view,arch_db:theme_anzamar.anz_brand_umbro_content_template
+msgid "Wherever the mythical double diamond <strong><em>sneakers or boots, shirts or kits</em></strong> appear, it will always be a guarantee of quality and authenticity. Each and every one of the items that sport the Umbro logo have been designed by people who know and love the sport."
+msgstr "Allá donde aparezca el mítico doble diamante <strong><em>zapatillas o botas, camisetas o equipaciones</em></strong>, siempre será garantía de calidad y autenticidad. Todos y cada uno de los artículos que lucen el logo de Umbro han sido diseñados por personas que conocen y aman el deporte."
+
+#. module: theme_anzamar
+#: model:ir.ui.view,arch_db:theme_anzamar.anz_brand_black_laces_content_template
+#: model:ir.ui.view,arch_db:theme_anzamar.anz_brand_feel_point_content_template
+#: model:ir.ui.view,arch_db:theme_anzamar.anz_brand_goalkers_content_template
+#: model:ir.ui.view,arch_db:theme_anzamar.anz_brand_point_sport_content_template
+#: model:ir.ui.view,arch_db:theme_anzamar.anz_brand_skipping_content_template
+#: model:ir.ui.view,arch_db:theme_anzamar.anz_brand_umbro_content_template
+msgid "The visionary Harold Humphreys wanted to give a touch of sartorial style to sportswear to cover with style the practical needs of the contemporary athlete. From the Speciali boots <strong><em>the lightweight revolution that continues to be a key piece in the dressing rooms around the world</em></strong>, from the pitch to the training track, Umbro remains true to that ideal."
+msgstr "El visionario Harold Humphreys quería darle un toque de estilo sartorial a la ropa deportiva para cubrir con estilo las necesidades prácticas del atleta contemporáneo. Desde las botas Speciali <strong><em>la revolución ligera que continúa siendo una pieza clave en los vestuarios del mundo</em></strong> del terreno de juego a la pista de entrenamiento, Umbro permanece fiel a ese ideal."
+
+#. module: theme_anzamar
+#: model:ir.ui.view,arch_db:theme_anzamar.anz_brand_black_laces_content_template
+#: model:ir.ui.view,arch_db:theme_anzamar.anz_brand_feel_point_content_template
+#: model:ir.ui.view,arch_db:theme_anzamar.anz_brand_goalkers_content_template
+#: model:ir.ui.view,arch_db:theme_anzamar.anz_brand_point_sport_content_template
+#: model:ir.ui.view,arch_db:theme_anzamar.anz_brand_skipping_content_template
+#: model:ir.ui.view,arch_db:theme_anzamar.anz_brand_umbro_content_template
+msgid "The most memorable parties have one thing in common:"
+msgstr "Los partidos más memorables tienen una cosa en común:"
+
+#. module: theme_anzamar
+#: model:ir.ui.view,arch_db:theme_anzamar.anz_brand_black_laces_content_template
+#: model:ir.ui.view,arch_db:theme_anzamar.anz_brand_feel_point_content_template
+#: model:ir.ui.view,arch_db:theme_anzamar.anz_brand_goalkers_content_template
+#: model:ir.ui.view,arch_db:theme_anzamar.anz_brand_point_sport_content_template
+#: model:ir.ui.view,arch_db:theme_anzamar.anz_brand_skipping_content_template
+#: model:ir.ui.view,arch_db:theme_anzamar.anz_brand_umbro_content_template
+msgid "Know Us"
+msgstr "Conócenos"
+
+#. module: theme_anzamar
+#: model:ir.ui.view,arch_db:theme_anzamar.anz_brand_black_laces_content_template
+#: model:ir.ui.view,arch_db:theme_anzamar.anz_brand_feel_point_content_template
+#: model:ir.ui.view,arch_db:theme_anzamar.anz_brand_goalkers_content_template
+#: model:ir.ui.view,arch_db:theme_anzamar.anz_brand_point_sport_content_template
+#: model:ir.ui.view,arch_db:theme_anzamar.anz_brand_skipping_content_template
+#: model:ir.ui.view,arch_db:theme_anzamar.anz_brand_umbro_content_template
+msgid "You can visit the official Umbro store at this link:"
+msgstr "Puedes visitar la tienda oficial de Umbro en este enlace:"
+
+#. module: theme_anzamar
+#: model:ir.ui.view,arch_db:theme_anzamar.anz_website_footer_custom
+msgid "Who we are"
+msgstr "Quienes somos"
+
+#. module: theme_anzamar
+#: model:ir.ui.view,arch_db:theme_anzamar.anz_website_footer_custom
+#: model:website.menu,name:theme_anzamar.group_submenu_presence
+msgid "National presence"
+msgstr "Presencia Nacional"
+
+#. module: theme_anzamar
+#: model:ir.ui.view,arch_db:theme_anzamar.anz_website_footer_custom
+msgid "Anzamar group"
+msgstr "Grupo Anzamar"
+
+#. module: theme_anzamar
+#: model:ir.ui.view,arch_db:theme_anzamar.anz_website_footer_custom
+msgid "Work with us"
+msgstr "Trabaja con nosotros"
+
+#. module: theme_anzamar
+#: model:ir.ui.view,arch_db:theme_anzamar.anz_open_shop_content_template
+msgid "We put at your disposal the opportunity to be part of our family riding your own sports store, for it you must be an entrepreneur, with a great dynamism and energy capable of growing professionally as part of our team working in the franchise area ."
+msgstr "Ponemos a tu disposición la oportunidad de formar parte de nuestra familia montando tu propia tienda de deportes, para ello debes de ser una persona emprendedora, con un gran dinamismo y energía capaz de crecer profesionalmente formando parte de nuestro equipo de trabajo en la vertiente de franquicias."
+
+#. module: theme_anzamar
+#: model:ir.ui.view,arch_db:theme_anzamar.anz_open_shop_content_template
+msgid "We will give you all the necessary logistics, with a visual image of the modern sports establishment totally identifying with the sports chain, as well as the product, in all its aspects of textiles, footwear and accessories, to be a reference sports store in your area of influence accompanied by the computer system necessary to be in constant communication with us about your needs. All this franchise project is focused on that you only dedicate yourself to the sale and customer service, in such a way that \"THE MORE YOU SELL, THE MORE YOU WILL WIN\"."
+msgstr "Nosotros le otorgaremos toda la logística necesaria,con una imagen visual del establecimiento deportivo moderno totalmente identificativo con la cadena de deportes, así como el producto, en todas sus vertientes de textil , calzado y complementos, para ser una tienda de deportes referencia en su zona de influencia acompañado del sistema informático necesario para estar en permanente comunicación con nosotros acerca de sus necesidades. Este proyecto de franquicias esta enfocado a que sólo te dediques a la venta y atención al cliente, de tal manera que \"CUANTO MÁS VENDA, MÁS GANARÁ\"."
+
+#. module: theme_anzamar
+#: model:ir.ui.view,arch_db:theme_anzamar.anz_open_shop_content_template
+msgid "Please, follow the steps"
+msgstr "Siga los pasos, por favor"
+
+#. module: theme_anzamar
+#: model:ir.ui.view,arch_db:theme_anzamar.anz_open_shop_content_template
+msgid "Please, fill all fields"
+msgstr "Rellene los campos, por favor"
+
+#. module: theme_anzamar
+#: model:ir.ui.view,arch_db:theme_anzamar.anz_anzamar_group_content_template
+msgid "In Anzamar S.L. We have been dedicated to the sports sector for more than 25 years. Our purpose is to supply and advise our customers with the maximum guarantee and quality, which has led us to be a reference in the national distribution market."
+msgstr "En Anzamar S.L. nos dedicamos al sector deportivo desde hace más de 25 años. Nuestra finalidad consiste en surtir y asesorar a nuestros clientes con la máxima garantía y calidad, lo cual nos ha llevado a ser un referente en el mercado de distribución Nacional."
+
+#. module: theme_anzamar
+#: model:ir.ui.view,arch_db:theme_anzamar.anz_anzamar_group_content_template
+msgid "In our facilities you will find everything you need for sports practice with a wide variety of brands and suppliers achieved throughout our career."
+msgstr "En nuestras instalaciones podrá encontrar lo necesario para la práctica deportiva contando con una gran variedad de marcas y proveedores conseguidas a lo largo de nuestra trayectoria."
+
+#. module: theme_anzamar
+#: model:ir.ui.view,arch_db:theme_anzamar.anz_anzamar_group_content_template
+msgid "Throughout our history we have been taking small steps always together with our customers becoming what we are today, a great Wholesaler, a large Purchasing Group and eventually a great Franchise."
+msgstr "A lo largo de nuestra historia hemos ido dando pequeños pasos siempre junto con nuestros clientes llegando a ser lo que hoy en día somos, un gran Mayorista, un gran Grupo de Compras y con el tiempo una gran Franquicia."
+
+#. module: theme_anzamar
+#: model:ir.ui.view,arch_db:theme_anzamar.anz_website_footer_custom
+msgid "Press"
+msgstr "Prensa"
+
+#. module: theme_anzamar
+#: model:ir.ui.view,arch_db:theme_anzamar.anz_website_footer_custom
+msgid "Contact"
+msgstr "Contacto"
+
+#. module: theme_anzamar
+#: model:ir.ui.view,arch_db:theme_anzamar.anz_website_footer_custom
+msgid "Group brands"
+msgstr "Marcas del grupo"
+
+#. module: theme_anzamar
+#: model:ir.ui.view,arch_db:theme_anzamar.anz_website_footer_custom
+msgid "Follow us"
+msgstr "Síguenos"
+
+#. module: theme_anzamar
+#: model:ir.ui.view,arch_db:theme_anzamar.anz_work_with_us_content_template
+msgid "Would you like to join our team?"
+msgstr "¿Le gustaría unirse a nuestro equipo?"
+
+#. module: theme_anzamar
+#: model:ir.ui.view,arch_db:theme_anzamar.anz_work_with_us_content_template
+msgid "Work With Us"
+msgstr "Trabaje con nosotros"
+
+#. module: theme_anzamar
+#: model:ir.ui.view,arch_db:theme_anzamar.anz_work_with_us_content_template
+msgid "Fill in the form and send it to us. We will contact you"
+msgstr "Rellene el formulario y envíenoslo. Nos pondremos en contacto usted"
+
+#. module: theme_anzamar
+#: model:ir.ui.view,arch_db:theme_anzamar.anz_work_with_us_content_template
+msgid "Form"
+msgstr "Formulario"
+
+#. module: theme_anzamar
+#: model:ir.ui.view,arch_db:theme_anzamar.anz_work_with_us_content_template
+msgid "You must fill in all the required fields"
+msgstr "Debe rellenar todos los campos obligatorios"

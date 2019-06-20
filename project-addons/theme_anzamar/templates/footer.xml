@@ -53,7 +53,7 @@
                             <li><i class="fa fa-phone"/><a t-field="res_company.phone" t-att-href="'tel:%s' %res_company.phone"/></li>
                             <li><i class="fa fa-envelope"/><a t-field="res_company.email" t-att-href="'mailto:%s' %res_company.email"/></li>
                         </ul>
-                        <h4><a href="/page/page_work_with_us" alt="Work with Us Link" title="Work with Us" rel="nofollow">Trabaja con nosotros</a></h4>
+                        <h4><a href="/page/page_work_with_us" alt="Work with Us Link" title="Work with Us" rel="nofollow">Work with us</a></h4>
                     </section>
                 </div>
             </div>
