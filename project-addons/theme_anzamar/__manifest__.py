@@ -27,7 +27,7 @@
 
 {
     'name': 'Anzamar Theme',
-    'version': '1.0',
+    'version': '11.0.0.0.0',
     'summary': 'FrontEnd customization for Anzamar Website',
     'description': '',
     'category': 'Theme',
