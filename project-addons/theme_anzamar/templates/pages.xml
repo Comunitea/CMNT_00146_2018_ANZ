@@ -304,20 +304,6 @@
         <field name="view_id" ref="page_work_with_us"/>
     </record>
 
-    <!-- ======================================= Page Newsletter ======================================= -->
-
-    <!--Newsletter Template-->
-    <template id="page_newsletter"  name="Newsletter Anzamar Template" inherit_id="follow_us_base.fub_newsletter_page_template"/>
-
-    <!-- Newsletter Page -->
-    <record id="id_page_newsletter" model="website.page">
-        <field name="name">Newsletter</field>
-        <field name="website_ids" eval="[(6, 0, [ref('website_base_multi_anz.anzamar_website')])]"/>
-        <field name="website_published">True</field>
-        <field name="url">/page/newsletter</field>
-        <field name="view_id" ref="page_newsletter"/>
-    </record>
-
     <!-- ======================================= Shop menu ======================================= -->
 
     <template id="anz_products_view" name="Anzamar shop template" inherit_id="website_sale.products"/>

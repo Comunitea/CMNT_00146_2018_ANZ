@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
 
-    <template id="anz_work_with_us_content_template" name="Work With Us Anzamar Content Template" inherit_id="theme_anzamar.page_work_with_us">
+    <template id="poi_work_with_us_content_template" name="Work With Us Point Content Template" inherit_id="theme_point_sport.poi_page_work_with_us">
 
         <xpath expr="//div[hasclass('container')]" position="before">
-            <t t-call="theme_anzamar.carousel_homepage"/>
+            <t t-call="theme_point_sport.poi_home_carousel_b2c" t-if="request.env.user.has_group('base.group_public')"/>
+                <t t-call="theme_point_sport.poi_home_carousel_b2b" t-else=""/>
         </xpath>
 
         <xpath expr="//div[hasclass('container')]" position="inside">

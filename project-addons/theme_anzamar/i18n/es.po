@@ -60,7 +60,7 @@ msgid "Brands"
 msgstr "Marcas"
 
 #. module: theme_anzamar
-#: model:ir.ui.view,arch_db:theme_anzamar.anzamar_homepage_content
+#: model:ir.ui.view,arch_db:theme_anzamar.anz_home_content_template
 msgid "Brands of our group"
 msgstr "Marcas de nuestro grupo"
 
@@ -76,7 +76,7 @@ msgstr "Grupo Anzamar - Marca Feel Point"
 
 #. module: theme_anzamar
 #: model:ir.ui.view,arch_db:theme_anzamar.page_anzamar_group
-#: model:ir.ui.view,arch_db:theme_anzamar.page_open_shop
+#: model:ir.ui.view,arch_db:theme_anzamar.anz_open_shop_content_template
 msgid "Form to open your shop with Anzamar Group"
 msgstr "Formulario para abrir tu tienda con el Grupo Anzamar"
 
@@ -97,7 +97,7 @@ msgid "Home"
 msgstr "Inicio"
 
 #. module: theme_anzamar
-#: model:ir.ui.view,arch_db:theme_anzamar.page_open_shop
+#: model:ir.ui.view,arch_db:theme_anzamar.anz_open_shop_content_template
 msgid "Instructions to open your shop with Anzamar Group"
 msgstr "Instrucciones para Abrir tu Tienda con el Grupo Anzamar"
 
@@ -149,13 +149,13 @@ msgid "Newsletter"
 msgstr "Noticias"
 
 #. module: theme_anzamar
-#: model:ir.ui.view,arch_db:theme_anzamar.page_open_shop
+#: model:ir.ui.view,arch_db:theme_anzamar.anz_open_shop_content_template
 #: model:website.menu,name:theme_anzamar.open_shop_submenu_request
 msgid "Open Request"
 msgstr "Solicitud de Apertura"
 
 #. module: theme_anzamar
-#: model:ir.ui.view,arch_db:theme_anzamar.page_open_shop
+#: model:ir.ui.view,arch_db:theme_anzamar.anz_open_shop_content_template
 #: model:website.menu,name:theme_anzamar.open_shop_menu
 #: model:website.menu,name:theme_anzamar.open_shop_submenu_open
 #: model:website.page,name:theme_anzamar.
@@ -163,7 +163,7 @@ msgid "Open Your Shop"
 msgstr "Abre tu Tienda"
 
 #. module: theme_anzamar
-#: model:ir.ui.view,arch_db:theme_anzamar.page_open_shop
+#: model:ir.ui.view,arch_db:theme_anzamar.anz_open_shop_content_template
 #: model:website.menu,name:theme_anzamar.open_shop_submenu_steps
 msgid "Open Your Shop Steps"
 msgstr "Pasos para Abrir tu Tienda"
@@ -174,7 +174,7 @@ msgid "Phone Number"
 msgstr "Número de Teléfono"
 
 #. module: theme_anzamar
-#: model:ir.ui.view,arch_db:theme_anzamar.page_open_shop
+#: model:ir.ui.view,arch_db:theme_anzamar.anz_open_shop_content_template
 msgid "Please, follow the instructions"
 msgstr "Por favor, siga las instrucciones"
 
@@ -209,7 +209,7 @@ msgid "Start page"
 msgstr "Página de Inicio"
 
 #. module: theme_anzamar
-#: model:ir.ui.view,arch_db:theme_anzamar.page_open_shop
+#: model:ir.ui.view,arch_db:theme_anzamar.anz_open_shop_content_template
 msgid "Steps to open your shop with Anzamar Group"
 msgstr "Pasos para Abrir tu Tienda con el Grupo Anzamar"
 
@@ -235,13 +235,13 @@ msgid "The Anzamar companies are ..."
 msgstr "Las compañias del Grupo Anzamar son ..."
 
 #. module: theme_anzamar
-#: model:ir.ui.view,arch_db:theme_anzamar.page_open_shop
+#: model:ir.ui.view,arch_db:theme_anzamar.anz_open_shop_content_template
 msgid "These are the instructions:"
 msgstr "Estas son las instrucciones:"
 
 #. module: theme_anzamar
 #: model:ir.ui.view,arch_db:theme_anzamar.page_anzamar_group
-#: model:ir.ui.view,arch_db:theme_anzamar.page_open_shop
+#: model:ir.ui.view,arch_db:theme_anzamar.anz_open_shop_content_template
 msgid "These are the requirements:"
 msgstr "Estos son los requisitos:"
 

@@ -62,6 +62,7 @@
         'templates/pages.xml',
         'templates/page_home.xml',
         'templates/pages_brands.xml',
+        'templates/page_work_with_us.xml',
         'templates/shop.xml',
         'templates/product.xml',
         'templates/account.xml',

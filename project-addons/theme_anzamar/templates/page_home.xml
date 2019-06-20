@@ -1,60 +1,57 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<odoo noupdate="1">
+<odoo>
 
     <template id="anz_home_content_template" name="Home Anzamar Content Template">
         <t t-call="website.layout">
-            <div id="wrap">
-                <!-- Slider section -->
-                <t t-call="theme_anzamar.carousel_homepage"/>
-                <div class="container">
-                    <!-- Brands section -->
-                    <div class="row mt32 mb32">
-                        <h2 class="text-center mt32 mb32">Brands of our group</h2>
-                        <div class="col-md-2 col-sm-4 mb16">
-                            <a href="https://umbro.es/" target="_blank" rel="nofollow">
-                                <img src="/theme_anzamar/static/img/home/brand-umbro.png"
-                                     class="img-responsive img-circle img-thumbnail" alt="Umbro"/>
-                            </a>
-                        </div>
-                        <div class="col-md-2 col-sm-4 mb16">
-                            <a href="http://www.point-sport.com/" target="_blank" rel="nofollow">
-                                <img src="/theme_anzamar/static/img/home/brand-point-sport.png"
-                                     class="img-responsive img-circle img-thumbnail" alt="Point Sport"/>
-                            </a>
-                        </div>
-                        <div class="col-md-2 col-sm-4 mb16">
-                            <a href="https://blacklaces.es/" target="_blank" rel="nofollow">
-                                <img src="/theme_anzamar/static/img/home/brand-black-laces.png"
-                                     class="img-responsive img-circle img-thumbnail" alt="Black Laces"/>
-                            </a>
-                        </div>
-                        <div class="col-md-2 col-sm-4 mb16">
-                            <a href="http://www.goalkers.com/" target="_blank" rel="nofollow">
-                                <img src="/theme_anzamar/static/img/home/brand-goalkers.png"
-                                     class="img-responsive img-circle img-thumbnail" alt="Goalkers"/>
-                            </a>
-                        </div>
-                        <div class="col-md-2 col-sm-4 mb16">
-                            <a href="http://www.feel-point.com/" target="_blank" rel="nofollow">
-                                <img src="/theme_anzamar/static/img/home/brand-feel-point.png"
-                                     class="img-responsive img-circle img-thumbnail" alt="Feel Point"/>
-                            </a>
-                        </div>
-                        <div class="col-md-2 col-sm-4 mb16">
-                            <a href="https://skipping.es/es/" target="_blank" rel="nofollow">
-                                <img src="/theme_anzamar/static/img/home/brand-skipping.png"
-                                     class="img-responsive img-circle img-thumbnail" alt="Skipping"/>
-                            </a>
-                        </div>
+            <t t-call="theme_point_sport.carousel_homepage"/>
+            <section class="oe_structure oe_empty"/>
+            <section id="brands_section" class="mt32 oe_structure">
+                <div class="row mt32 mb32">
+                    <h2 class="text-center mt32 mb32">Brands of our group</h2>
+                    <div class="col-md-2 col-sm-4 mb16">
+                        <a href="https://umbro.es/" target="_blank" rel="nofollow">
+                            <img src="/theme_anzamar/static/img/home/brand-umbro.png"
+                                 class="img-responsive img-circle img-thumbnail" alt="Umbro"/>
+                        </a>
+                    </div>
+                    <div class="col-md-2 col-sm-4 mb16">
+                        <a href="http://www.point-sport.com/" target="_blank" rel="nofollow">
+                            <img src="/theme_anzamar/static/img/home/brand-point-sport.png"
+                                 class="img-responsive img-circle img-thumbnail" alt="Point Sport"/>
+                        </a>
+                    </div>
+                    <div class="col-md-2 col-sm-4 mb16">
+                        <a href="https://blacklaces.es/" target="_blank" rel="nofollow">
+                            <img src="/theme_anzamar/static/img/home/brand-black-laces.png"
+                                 class="img-responsive img-circle img-thumbnail" alt="Black Laces"/>
+                        </a>
+                    </div>
+                    <div class="col-md-2 col-sm-4 mb16">
+                        <a href="http://www.goalkers.com/" target="_blank" rel="nofollow">
+                            <img src="/theme_anzamar/static/img/home/brand-goalkers.png"
+                                 class="img-responsive img-circle img-thumbnail" alt="Goalkers"/>
+                        </a>
+                    </div>
+                    <div class="col-md-2 col-sm-4 mb16">
+                        <a href="http://www.feel-point.com/" target="_blank" rel="nofollow">
+                            <img src="/theme_anzamar/static/img/home/brand-feel-point.png"
+                                 class="img-responsive img-circle img-thumbnail" alt="Feel Point"/>
+                        </a>
+                    </div>
+                    <div class="col-md-2 col-sm-4 mb16">
+                        <a href="https://skipping.es/es/" target="_blank" rel="nofollow">
+                            <img src="/theme_anzamar/static/img/home/brand-skipping.png"
+                                 class="img-responsive img-circle img-thumbnail" alt="Skipping"/>
+                        </a>
                     </div>
                 </div>
-                <section class="oe_structure oe_empty"/>
-                <div class="container">
-                    <!-- Latest news section -->
-                    <t t-set="latest_posts" t-value="website.latest_posts(3, 3, 'Our latest news', 'Read all our news')"/>
-                    <t t-call="website_blog_base.wbb_latest_post_wrap"/>
-                </div>
-            </div>
+            </section>
+            <section class="oe_structure oe_empty"/>
+            <section id="news_section" class="mt32 oe_structure">
+                <t t-set="latest_posts" t-value="website.latest_posts(3, 3, 'Our latest news', 'Read all our news')"/>
+                <t t-call="website_blog_base.wbb_latest_post_wrap"/>
+            </section>
+            <section class="oe_structure oe_empty"/>
         </t>
     </template>
 
