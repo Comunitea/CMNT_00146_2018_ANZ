@@ -27,10 +27,10 @@
 
 {
     'name': 'Anzamar Theme',
-    'version': '11.0.0.0.0',
+    'version': '1.0',
     'summary': 'FrontEnd customization for Anzamar Website',
     'description': '',
-    'category': 'Theme',
+    'category': 'Website',
     'author': 'Comunitea',
     'website': 'http://www.comunitea.com',
     'license': 'AGPL-3',
