@@ -5,7 +5,6 @@
     <template id="website_layout" name="Layout Point Template" inherit_id="website_multi_theme.auto_layout_website_poi">
         <xpath expr="//div[@id='wrapwrap']//div[hasclass('navbar')]" position="before">
             <div groups="base.group_user" class="clearfix mt32 header-fixed-margin"/>
-            <!--<t t-call="theme_anzamar.custom_header"/>-->
         </xpath>
         <xpath expr="//div[@id='wrapwrap']//div[hasclass('navbar')]" position="after">
             <t t-call="breadcrumbs_base.bcb_main_wrap" t-if="not xmlid == 'website.homepage'"/>
@@ -13,16 +12,6 @@
         <xpath expr="//div[@id='wrapwrap']/header" position="attributes">
             <attribute name="t-att-class">'homepage-header' if xmlid == 'website.homepage' else None</attribute>
         </xpath>
-        <!-- Public user redirection -->
-        <!--<xpath expr="//div[@id='wrapwrap']/header" position="inside">
-            <t t-if="request.env.user.has_group('base.group_public')">
-                <script>
-                    if(window.location.pathname != '/'){
-                        window.location.replace("/");
-                    }
-                </script>
-            </t>
-        </xpath>-->
         <xpath expr="//header//ul[@id='top_menu']/li[@id='my_cart']" position="after">
             <t t-if="request.env.ref('website_multi_theme.auto_view_poi_website_sale_wishlist_add_to_wishlist').active">
                 <t t-set='wishcount' t-value="len(request.env['product.wishlist'].current())"/>

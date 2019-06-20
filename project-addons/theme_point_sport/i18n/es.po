@@ -400,3 +400,147 @@ msgstr "Edad"
 #: model:ir.ui.view,arch_db:theme_point_sport.website_sale_products_categories
 msgid "Reset"
 msgstr "Limpiar"
+
+#. module: theme_point_sport
+#: model:ir.ui.view,arch_db:theme_point_sport.poi_website_footer_custom
+#: model:ir.ui.view,arch_db:theme_point_sport.only_logged_in_users_advise
+msgid "Contact Us"
+msgstr "Contáctenos"
+
+#. module: theme_point_sport
+#: model:ir.ui.view,arch_db:theme_point_sport.poi_website_footer_custom
+#: model:ir.ui.view,arch_db:theme_point_sport.only_logged_in_users_advise
+msgid "Contactus"
+msgstr "Contáctenos"
+
+#. module: theme_point_sport
+#: model:ir.ui.view,arch_db:theme_point_sport.poi_website_footer_custom
+msgid "Delivery"
+msgstr "Métodos de Entrega"
+
+#. module: theme_point_sport
+#: model:ir.ui.view,arch_db:theme_point_sport.poi_website_footer_custom
+msgid "About us"
+msgstr "Sobre Nosotros"
+
+#. module: theme_point_sport
+#: model:ir.ui.view,arch_db:theme_point_sport.poi_website_footer_custom
+msgid "Our Shops"
+msgstr "Nuestras Tiendas"
+
+#. module: theme_point_sport
+#: model:ir.ui.view,arch_db:theme_point_sport.poi_website_footer_custom
+msgid "Our Group"
+msgstr "Nuestro Grupo"
+
+#. module: theme_point_sport
+#: model:ir.ui.view,arch_db:theme_point_sport.poi_website_footer_custom
+msgid "Follow us"
+msgstr "Síguenos"
+
+#. module: theme_point_sport
+#: model:ir.ui.view,arch_db:theme_point_sport.poi_website_footer_custom
+msgid "Information / Franchises"
+msgstr "Información / Franquicias"
+
+#. module: theme_point_sport
+#: model:ir.ui.view,arch_db:theme_point_sport.only_logged_in_users_advise
+msgid "Log In"
+msgstr "Iniciar Sesión"
+
+#. module: theme_point_sport
+#: model:ir.ui.view,arch_db:theme_point_sport.only_logged_in_users_advise
+msgid "Need to"
+msgstr "Necesario para"
+
+#. module: theme_point_sport
+#: model:ir.ui.view,arch_db:theme_point_sport.poi_website_footer_custom
+msgid "Open Request"
+msgstr "Solicitud de Apertura"
+
+#. module: theme_point_sport
+#: model:ir.ui.view,arch_db:theme_point_sport.poi_website_footer_custom
+msgid "Open Your Shop"
+msgstr "Abre tu Tienda"
+
+#. module: theme_point_sport
+#: model:ir.ui.view,arch_db:theme_point_sport.poi_website_footer_custom
+msgid "Payment method"
+msgstr "Métodos de Pago"
+
+#. module: theme_point_sport
+#: model:ir.ui.view,arch_db:theme_point_sport.only_logged_in_users_advise
+msgid "Start page"
+msgstr "Página de Inicio"
+
+#. module: theme_point_sport
+#: model:ir.ui.view,arch_db:theme_point_sport.poi_website_footer_custom
+msgid "Steps to Open Your Shop"
+msgstr "Pasos para Abrir tu Tienda"
+
+#. module: theme_point_sport
+#: model:ir.ui.view,arch_db:theme_point_sport.poi_website_footer_custom
+msgid "Work with Us"
+msgstr "Trabaje con Nosotros"
+
+#. module: theme_point_sport
+#: model:ir.ui.view,arch_db:theme_point_sport.poi_website_footer_custom
+msgid "Work with Us Link"
+msgstr "Enlace a Trabaje con Nosotros"
+
+#. module: theme_point_sport
+#: model:ir.ui.view,arch_db:theme_point_sport.poi_website_footer_custom
+msgid "Work with us"
+msgstr "Trabaje con Nosotros"
+
+#. module: theme_point_sport
+#: model:ir.ui.view,arch_db:theme_point_sport.only_logged_in_users_advise
+msgid "You do not have access to this page"
+msgstr "Usted no tiene permiso para acceder a esta página"
+
+#. module: theme_point_sport
+#: model:ir.ui.view,arch_db:theme_point_sport.only_logged_in_users_advise
+msgid "how a retailer user"
+msgstr "como un usuario retailer"
+
+#. module: theme_point_sport
+#: model:ir.ui.view,arch_db:theme_point_sport.privacy_policy_advise
+msgid "I accept the"
+msgstr "Acepto el"
+
+#. module: theme_point_sport
+#: model:ir.ui.view,arch_db:theme_point_sport.privacy_policy_advise
+msgid ", the"
+msgstr ", la"
+
+#. module: theme_point_sport
+#: model:ir.ui.view,arch_db:theme_point_sport.privacy_policy_advise
+msgid ", and the"
+msgstr "y los"
+
+#. module: theme_point_sport
+#: model:ir.ui.view,arch_db:theme_point_sport.privacy_policy_advise
+msgid "of this website."
+msgstr "de este Sitio Web."
+
+#. module: theme_point_sport
+#: model:ir.ui.view,arch_db:theme_point_sport.google_recaptcha_contact_form
+msgid "Is human?"
+msgstr "¿Eres humano?"
+
+#. module: theme_point_sport
+#: model:ir.ui.view,arch_db:theme_point_sport.default_contact_form
+msgid "<span class=\"btn btn-primary btn-lg o_website_form_send\">Send</span>\n"
+"                    <span id=\"o_website_form_result\"/>"
+msgstr "<span class=\"btn btn-primary btn-lg o_website_form_send\">Enviar</span>\n"
+"                    <span id=\"o_website_form_result\"/>"
+
+#. module: theme_point_sport
+#: model:ir.ui.view,arch_db:theme_point_sport.default_contact_form
+msgid "Email"
+msgstr "Correo electrónico"
+
+#. module: theme_point_sport
+#: model:website.page,name:theme_point_sport.poi_portal_my_purchase_orders_view
+msgid "My Purchase Orders"
+msgstr "Mis Pedidos de Compra"

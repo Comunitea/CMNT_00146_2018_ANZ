@@ -89,31 +89,31 @@ msgid "Available only for public users"
 msgstr "Disponible solo para Usuarios Públicos"
 
 #. module: website_base_multi_anz
-#: code:addons/website_base_multi_anz/controllers/website.py:108
+#: code:addons/website_base_multi_anz/controllers/website.py:120
 #, python-format
 msgid "and %d unit(s) are already in cart"
 msgstr "y %d ud(s) ya están en el carrito"
 
 #. module: website_base_multi_anz
-#: code:addons/website_base_multi_anz/controllers/website.py:110
+#: code:addons/website_base_multi_anz/controllers/website.py:121
 #, python-format
 msgid "<p class=\"alert alert-warning\">%s: Ask for %d units but only %d is available %s</p>"
 msgstr "<p class=\"alert alert-warning\">%s: Solicita %d ud(s), pero solo %d están disponibles %s</p>"
 
 #. module: website_base_multi_anz
-#: code:addons/website_base_multi_anz/controllers/website.py:115
+#: code:addons/website_base_multi_anz/controllers/website.py:127
 #, python-format
 msgid "<p class=\"alert alert-warning\">%s: Added %d unit(s) but %d unit(s) was already in your cart</p>"
 msgstr "<p class=\"alert alert-warning\">%s: Añadidas %d ud(s) aunque %d ud(s) ya estaban en el carrito</p>"
 
 #. module: website_base_multi_anz
-#: code:addons/website_base_multi_anz/controllers/website.py:119
+#: code:addons/website_base_multi_anz/controllers/website.py:131
 #, python-format
 msgid "<p class=\"alert alert-success\">%s: Added %d unit(s)</p>"
 msgstr "<p class=\"alert alert-success\">%s: Añadidas %d ud(s)</p>"
 
 #. module: website_base_multi_anz
-#: code:addons/website_base_multi_anz/controllers/website.py:128
+#: code:addons/website_base_multi_anz/controllers/website.py:140
 #, python-format
 msgid "<p><strong>Was added %d unit(s) of %s:</strong></p>%s"
 msgstr "<p><strong>Añadidas %d ud(s) de %s:</strong></p>%s"
@@ -274,3 +274,38 @@ msgstr "Sitio web"
 #: model:ir.model.fields,field_description:website_base_multi_anz.field_ftp_server_config_setting_website_id
 msgid "website"
 msgstr "sitio web"
+
+#. module: website_sale
+#: model:ir.ui.view,name:website_sale.cart
+msgid "Shopping Cart"
+msgstr "Carrito de la compra"
+
+#. module: website_sale
+#: model:ir.ui.view,name:website_sale.address
+msgid "Address Management"
+msgstr "Facturación y envío"
+
+#. module: website_sale
+#: model:ir.ui.view,name:website_sale.checkout
+msgid "checkout"
+msgstr "Facturación y envío"
+
+#. module: website_sale
+#: model:ir.ui.view,name:website_sale.payment
+msgid "Payment"
+msgstr "Pago"
+
+#. module: web
+#: model:ir.ui.view,name:web.login
+msgid "Login"
+msgstr "Iniciar sesión"
+
+#. module: auth_signup
+#: model:ir.ui.view,name:auth_signup.signup
+msgid "Sign up login"
+msgstr "Registrarse"
+
+#. module: auth_signup
+#: model:ir.ui.view,name:auth_signup.reset_password
+msgid "Reset password"
+msgstr "Restablecer Contraseña"

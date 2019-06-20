@@ -91,35 +91,47 @@ class WebsiteSaleExtended(WebsiteSale):
             order = request.website.sale_get_order(force_create=True)
             qty_total = 0
             prod_list = ''
-            # Search product.product with current attributes
+
             for key in variants:
                 qty = variants[key]
-                product_id = variant_ids.filtered(lambda x: int(key, 10) in x.attribute_value_ids.ids)
+                line_id = None
+                attr_name = ''
+
+                if len(variant_ids) == 1 and variant_ids.id == int(key, 10):
+                    # Search product.product for a non-variants template
+                    product_id = request.env['product.product'].sudo().search([('id', '=', variant_ids.id)])
+                    attr_name = '<strong>%s</strong>' % product_id.name
+                else:
+                    # Search product.product with current attributes for multi-variant template
+                    product_id = variant_ids.filtered(lambda x: int(key, 10) in x.attribute_value_ids.ids)
+                    if product_id:
+                        attr_name = product_id.attribute_value_ids.sudo().search([('id', '=', int(key, 10))], limit=1).name
+                        attr_name = '<strong>%s</strong>' % attr_name
+
                 if product_id:
-                    attr_name = product_id.attribute_value_ids.sudo().search([('id', '=', int(key, 10))], limit=1).name
-                    attr_name = '<strong>%s</strong>' % attr_name
-                    # Check of product stock
+                    # Check of product in stock and shop cart
                     max_qty = product_id.sudo().get_web_max_qty()
                     product_line = order.order_line.filtered(lambda x: x.product_id == product_id)
                     cart_qty = product_line and product_line[0].product_uom_qty or 0
+                    if cart_qty:
+                        line_id = product_line.id
 
                     if max_qty >= 0 and (max_qty - cart_qty - qty < 0):
-                        in_cart = _('and %d unit(s) are already in cart') % cart_qty if cart_qty > 0 else ''
-                        prod_list += _(
-                            '<p class="alert alert-warning">%s: Ask for %d units but only %d is available %s</p>' % (
-                                attr_name, qty, max_qty, in_cart))
+                        in_cart_msg = _('and %d unit(s) are already in cart')
+                        ask_msg = _('<p class="alert alert-warning">%s: Ask for %d units but only %d is available %s</p>')
+                        in_cart = in_cart_msg % cart_qty if cart_qty > 0 else ''
+                        prod_list += ask_msg % (attr_name, qty, max_qty, in_cart)
                         qty = min(qty, max_qty)
                     else:
                         if cart_qty > 0:
-                            prod_list += _('<p class="alert alert-warning">%s: Added %d unit(s) but %d '
-                                           'unit(s) was already in your cart</p>') \
-                                         % (attr_name, qty, cart_qty)
+                            but_msg = _('<p class="alert alert-warning">%s: Added %d unit(s) but %d unit(s) was already in your cart</p>')
+                            prod_list += but_msg % (attr_name, qty, cart_qty)
                         else:
                             prod_list += _('<p class="alert alert-success">%s: Added %d unit(s)</p>') % (attr_name, qty)
 
                     # Add to cart
                     if qty > 0:
-                        order._cart_update(product_id=product_id.id, add_qty=qty)
+                        order._cart_update(product_id=product_id.id, line_id=line_id, add_qty=qty)
                         qty_total += qty
 
             if qty_total > 0:

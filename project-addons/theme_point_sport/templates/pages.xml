@@ -17,14 +17,12 @@
     <!-- ======================================= Page Work with Us ======================================= -->
 
     <!-- A Work with Us Template -->
-    <template id="poi_page_work_with_us" name="Page Work with Us Point Template" inherit_id="theme_anzamar.anz_work_with_us_content_template">
-        <!--<t t-call="website.layout">
+    <template id="poi_page_work_with_us" name="Page Work with Us Point Template">
+        <t t-call="website.layout">
             <div id="wrap">
-                <div class="container">
-                    <t t-call="theme_anzamar.demo_page_content"/>
-                </div>
+                <div class="container"/>
             </div>
-        </t>-->
+        </t>
     </template>
 
     <!-- Work with Us Page -->
@@ -231,8 +229,8 @@
                                         <textarea class="form-control o_website_form_input" name="description" required=""><t t-esc="request.params.get('description', '')"/></textarea>
                                     </div>
                                 </div>
-                                <t t-call="theme_anzamar.google_recaptcha_contact_form"/>
-                                <t t-call="theme_anzamar.privacy_policy_contact_form"/>
+                                <t t-call="theme_point_sport.google_recaptcha_contact_form"/>
+                                <t t-call="theme_point_sport.privacy_policy_contact_form"/>
                                 <div class="form-group">
                                     <div class="col-md-offset-3 col-sm-offset-4 col-sm-8 col-md-7">
                                         <span class="btn btn-primary btn-lg o_website_form_send">Enviar</span>
@@ -299,9 +297,7 @@
     <template id="poi_template_delivery" name="Delivery Point Template">
         <t t-call="website.layout">
             <div id="wrap">
-                <div class="container">
-                    <t t-call="theme_anzamar.demo_page_content"/>
-                </div>
+                <div class="container"/>
             </div>
         </t>
     </template>
@@ -319,9 +315,7 @@
     <template id="poi_template_payment">
         <t t-call="website.layout">
             <div id="wrap">
-                <div class="container">
-                    <t t-call="theme_anzamar.demo_page_content"/>
-                </div>
+                <div class="container"/>
             </div>
         </t>
     </template>
@@ -352,7 +346,7 @@
                             </div>
                             <!-- Contact form -->
                             <div>
-                                <t t-call="theme_anzamar.default_contact_form"/>
+                                <t t-call="theme_point_sport.default_contact_form"/>
                             </div>
                         </div>
                         <div class="col-md-4 mb32">

@@ -1,17 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
-    <!-- Assets that define the Anzamar theme -->
-<!--    <template id="anz_website_assets_frontend" name="Assets Anzamar Template" inherit_id="website.assets_frontend">-->
-<!--        <xpath expr=".">-->
-<!--            <link href="/theme_anzamar/static/css/_general.less" rel="stylesheet" type="text/less"/>-->
-<!--            <t t-call="theme_anzamar.custom_css"/>-->
-<!--        </xpath>-->
-<!--        <xpath expr="//script[last()]" position="after">-->
-<!--            <script type="text/javascript" src="/theme_anzamar/static/js/main.js"/>-->
-<!--        </xpath>-->
-<!--    </template>-->
-
     <!-- Record that lets website admin to choose this theme -->
     <record model="website.theme" id="theme_anzamar_multi">
         <field name="name">Multi Website Anzamar Theme</field>

@@ -2,11 +2,18 @@
 <odoo>
 
     <!-- Custom styles already load at theme_data.xml -->
-<!--    <template id="poi_website_assets_frontend" name="Assets Point Template" inherit_id="website_multi_theme.auto_assets_website_poi">-->
+    <!--    <template id="poi_website_assets_frontend" name="Assets Point Template" inherit_id="website_multi_theme.auto_assets_website_poi">-->
     <template id="poi_website_assets_frontend" name="Assets Point Template" inherit_id="website.assets_frontend">
         <xpath expr="link[last()]" position="after">
             <link href="/theme_point_sport/static/css/_general.less" rel="stylesheet" type="text/less"/>
-            <t t-call="theme_anzamar.custom_css"/>
+            <link href="/theme_anzamar/static/css/elements.less" rel="stylesheet" type="text/less"/>
+            <link href="/theme_anzamar/static/css/header.less" rel="stylesheet" type="text/less"/>
+            <link href="/theme_anzamar/static/css/footer.less" rel="stylesheet" type="text/less"/>
+            <link href="/theme_anzamar/static/css/blog.less" rel="stylesheet" type="text/less"/>
+            <link href="/theme_anzamar/static/css/map.less" rel="stylesheet" type="text/less"/>
+            <link href="/theme_anzamar/static/css/shop.less" rel="stylesheet" type="text/less"/>
+            <link href="/theme_anzamar/static/css/product.less" rel="stylesheet" type="text/less"/>
+            <link href="/theme_anzamar/static/css/media.less" rel="stylesheet" type="text/less"/>
         </xpath>
         <xpath expr="//script[last()]" position="after">
             <script type="text/javascript" src="/theme_anzamar/static/js/main.js"/>

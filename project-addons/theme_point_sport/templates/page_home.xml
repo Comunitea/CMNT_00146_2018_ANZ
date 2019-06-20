@@ -1,7 +1,37 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo noupdate="1">
 
-    <template id="poi_home_carousel" name="Point sport homepage carousel">
+    <template id="poi_home_carousel_b2c" name="Point sport homepage carousel b2c">
+        <div id="carousel_point_sport" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+                <li data-target="#carousel_point_sport" data-slide-to="0" class="active"/>
+                <li data-target="#carousel_point_sport" data-slide-to="1"/>
+                <li data-target="#carousel_point_sport" data-slide-to="2"/>
+            </ol>
+            <div class="carousel-inner" role="listbox">
+                <div class="item active">
+                    <img class="img-responsive" src="/theme_point_sport/static/img/descubre_ultimas_novedades.png" alt="Last Novelties"/>
+                </div>
+                <div class="item">
+                    <img class="img-responsive" src="/theme_point_sport/static/img/encuentra_productos.png" alt="Find Products"/>
+                </div>
+                <div class="item">
+                    <img class="img-responsive" src="/theme_point_sport/static/img/primavera_verano.png" alt="Spring_Summer"/>
+                </div>
+            </div>
+            <!-- Controls -->
+            <a class="left carousel-control" href="#carousel_point_sport" role="button" data-slide="prev">
+                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"/>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="right carousel-control" href="#carousel_point_sport" role="button" data-slide="next">
+                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"/>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+    </template>
+
+    <template id="poi_home_carousel_b2b" name="Point sport homepage carousel b2b">
         <div id="carousel_point_sport" class="carousel slide" data-ride="carousel">
             <ol class="carousel-indicators">
                 <li data-target="#carousel_point_sport" data-slide-to="0" class="active"/>
@@ -35,11 +65,11 @@
         <t t-call="website.layout">
             <div id="wrap">
                 <!-- Slider with access control for public and retail users -->
-                <t t-call="theme_point_sport.poi_home_carousel" t-if="request.env.user.has_group('base.group_public')"/>
-                <t t-call="theme_point_sport.poi_home_carousel" t-else=""/>
+                <t t-call="theme_point_sport.poi_home_carousel_b2c" t-if="request.env.user.has_group('base.group_public')"/>
+                <t t-call="theme_point_sport.poi_home_carousel_b2b" t-else=""/>
                 <!-- Content section -->
                 <div class="container">
-                     <div class="row mt64 mb64">
+                    <div class="row mt64 mb64">
                         <div class="col-md-12 mb32">
                             <h1 class="text-center mb32">Point Sport</h1>
                             <p>Point Sport es una marca de tienda multideporte que en la actualidad está presente con más de 140 tiendas en España, enfocada al <strong>pequeño</strong> y mediano comercio especializado en deporte.</p>
@@ -65,8 +95,13 @@
                             </ul>
                             <p>Si quieres obtener más información acerca de <strong>Point Sport</strong> y montar tu propia tienda, puedes ver la sección <a href="/page/open_shop">cómo abrir una tienda</a> o escribirnos a <a href="mailto:info@anzamar.com" target="_blank">info@anzamar.com</a></p>
                         </div>
-                     </div>
+                    </div>
                 </div>
+                <!-- Newsletter banner -->
+                <t t-call="follow_us_base.newsletter_banner">
+                    <t t-set="channel" t-value="2"/>
+                    <t t-set="hash_tag" t-value="'@pointsport.es'"/>
+                </t>
             </div>
         </t>
     </template>

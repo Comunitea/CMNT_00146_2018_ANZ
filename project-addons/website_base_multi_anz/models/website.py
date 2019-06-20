@@ -41,7 +41,7 @@ class Website(models.Model):
         access = True
 
         if website.name == 'Point Sport':
-            access = False if user.has_group('base.group_public') else True
+            access = True if user.has_group('sale.group_show_price_subtotal') else False
 
         return access
 
