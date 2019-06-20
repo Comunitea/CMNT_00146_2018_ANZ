@@ -43,7 +43,7 @@
         'breadcrumbs_base',
         'seo_base',
         'website_blog_base',
-        'follow_us_base',
+        # 'follow_us_base',
         'multi_company_base',
         'website_base_multi_anz',
         'website_sale_hide_price',

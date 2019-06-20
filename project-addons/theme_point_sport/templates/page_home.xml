@@ -69,7 +69,7 @@
                 <t t-call="theme_point_sport.poi_home_carousel_b2b" t-else=""/>
                 <!-- Content section -->
                 <div class="container">
-                     <div class="row mt64 mb64">
+                    <div class="row mt64 mb64">
                         <div class="col-md-12 mb32">
                             <h1 class="text-center mb32">Point Sport</h1>
                             <p>Point Sport es una marca de tienda multideporte que en la actualidad está presente con más de 140 tiendas en España, enfocada al <strong>pequeño</strong> y mediano comercio especializado en deporte.</p>
@@ -95,8 +95,13 @@
                             </ul>
                             <p>Si quieres obtener más información acerca de <strong>Point Sport</strong> y montar tu propia tienda, puedes ver la sección <a href="/page/open_shop">cómo abrir una tienda</a> o escribirnos a <a href="mailto:info@anzamar.com" target="_blank">info@anzamar.com</a></p>
                         </div>
-                     </div>
+                    </div>
                 </div>
+                <!-- Newsletter banner -->
+                <t t-call="follow_us_base.newsletter_banner">
+                    <t t-set="channel" t-value="2"/>
+                    <t t-set="hash_tag" t-value="'@pointsport.es'"/>
+                </t>
             </div>
         </t>
     </template>
