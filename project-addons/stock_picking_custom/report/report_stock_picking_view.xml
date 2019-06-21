@@ -336,13 +336,13 @@
         </xpath>
 
         <!-- Descomentar para forzar que el fondo del PDF sea blanco. -->
-        <xpath expr="//div[hasclass('page')]" position="inside">
+        <!-- <xpath expr="//div[hasclass('page')]" position="inside">
             <style type="text/css">
                 body.container {
                     background-color:#fff !important;
                 }
             </style>
-        </xpath>
+        </xpath> -->
     </template>
 
     <template id="report_shipping_custom_customer_anz">

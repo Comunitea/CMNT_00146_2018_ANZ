@@ -47,7 +47,7 @@
     </template>
 
     <!-- Descomentar para forzar que el fondo del PDF sea blanco. -->
-    <template id="report_batch_picking_force_white" inherit_id="stock_batch_picking.report_batch_picking">
+    <!-- <template id="report_batch_picking_force_white" inherit_id="stock_batch_picking.report_batch_picking">
         <xpath expr="//div[hasclass('page')]" position="inside">
             <style type="text/css">
                 body.container {
@@ -55,5 +55,5 @@
                 }
             </style>
         </xpath>
-    </template>
+    </template> -->
 </odoo>
