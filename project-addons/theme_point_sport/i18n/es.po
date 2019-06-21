@@ -450,8 +450,8 @@ msgstr "Iniciar Sesión"
 
 #. module: theme_point_sport
 #: model:ir.ui.view,arch_db:theme_point_sport.only_logged_in_users_advise
-msgid "Need to"
-msgstr "Necesario para"
+msgid "You need to"
+msgstr "Es necesario"
 
 #. module: theme_point_sport
 #: model:ir.ui.view,arch_db:theme_point_sport.poi_website_footer_custom
@@ -500,8 +500,8 @@ msgstr "Usted no tiene permiso para acceder a esta página"
 
 #. module: theme_point_sport
 #: model:ir.ui.view,arch_db:theme_point_sport.only_logged_in_users_advise
-msgid "how a retailer user"
-msgstr "como un usuario retailer"
+msgid "to see the content"
+msgstr "para ver el contenido"
 
 #. module: theme_point_sport
 #: model:ir.ui.view,arch_db:theme_point_sport.privacy_policy_advise
