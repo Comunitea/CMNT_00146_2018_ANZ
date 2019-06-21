@@ -44,7 +44,7 @@ class Website(models.Model):
             is_b2b = user.has_group('sale.group_show_price_subtotal')
             is_portal = user.has_group('base.group_portal') \
                         or user.has_group('website.group_website_publisher') \
-                        or user.has_group('website.group_website_publisher')
+                        or user.has_group('website.group_website_designer')
             access = True if is_b2b and is_portal else False
 
         return access

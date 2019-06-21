@@ -41,7 +41,7 @@
     'depends': [
         # 'theme_anzamar',
         'breadcrumbs_base',
-        'seo_base',
+        # 'seo_base',
         'website_blog_base',
         # 'follow_us_base',
         'multi_company_base',
