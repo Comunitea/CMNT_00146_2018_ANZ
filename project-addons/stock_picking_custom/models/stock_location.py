@@ -10,9 +10,9 @@ class StockLocation(models.Model):
     _inherit = 'stock.location'
     _order = "sequence asc"
 
-    ubic = fields.Integer('Ubicación', default=0, help="Optional ubication details, for information purpose only")
+    ubic = fields.Integer('Secuencia de recorrido', default=0, help="Optional ubication details, for information purpose only")
     inverse_order = fields.Boolean(string='Inverse order', help="Mark for inverse order.")
-    sequence = fields.Integer(string='Location order')    
+    sequence = fields.Integer(string='Location order')
 
     @api.multi
     def set_barcode_field(self):
@@ -26,10 +26,10 @@ class StockLocation(models.Model):
             inc += 1
             print ('{} de {} >> {}: Codigo: {}'.format(inc, total, location.display_name, location.barcode))
 
-    @api.onchange('posx', 'posy', 'posz', 'location_id')
+    @api.onchange('posx', 'posy', 'posz', 'location_id', 'location_id.ubic')
     def onchange_act_barcode(self):
-        for location in self:
-            location._set_order()
+
+        #self._set_order()
         self.set_barcode_field()
 
     def check_vals(self, usage, posx, posy, posz, barcode):
@@ -55,20 +55,26 @@ class StockLocation(models.Model):
                 locs.set_barcode_field()
         return res
 
-    @api.model
+    @api.multi
     def _set_order(self):
+        count =len(self)
+        index=0
         for location in self:
+            index+=1
+            print ('Ordenando {}  {}/{}'.format(location.name, index, count))
             if location.location_id:
                 pasillo = location.posy if not location.location_id.inverse_order else (100-location.posy)
             else:
                 pasillo = location.posy
-            sequence = int('{}{}{}'.format('%0*d' % (2, location.posx), '%0*d' % (2, pasillo), '%0*d' % (2, location.posz)))
+            #sequence = int('{}{}{}'.format('%0*d' % (2, location.location_id.ubic), '%0*d' % (2, pasillo), '%0*d' % (2, location.posz)))
+            sequence = "{:02d}{:02d}{:02d}".format(location.location_id.ubic or location.posx, pasillo, location.posz)
+
             location.update({
-                'sequence': sequence
+                'sequence': int(sequence)
             })
 
-    @api.model
+    @api.multi
     def order_full_list(self):
         locations = self.env['stock.location'].search([])
-        for location in locations:
-            location._set_order()
+
+        locations.filtered(lambda x: x.usage =='internal' and x.posx and x.posy and x.posz)._set_order()
