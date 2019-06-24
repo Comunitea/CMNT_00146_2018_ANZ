@@ -77,4 +77,4 @@ class StockLocation(models.Model):
     def order_full_list(self):
         locations = self.env['stock.location'].search([])
 
-        locations.filtered(lambda x: x.usage =='internal' and x.posx and x.posy and x.posz)._set_order()
+        locations.filtered(lambda x: x.usage =='internal' and x.posx)._set_order()
