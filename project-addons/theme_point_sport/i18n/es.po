@@ -402,6 +402,11 @@ msgid "Reset"
 msgstr "Limpiar"
 
 #. module: theme_point_sport
+#: model:ir.ui.view,arch_db:theme_point_sport.website_sale_products_categories
+msgid "Filters and categories"
+msgstr "Filtros y categorías"
+
+#. module: theme_point_sport
 #: model:ir.ui.view,arch_db:theme_point_sport.poi_website_footer_custom
 #: model:ir.ui.view,arch_db:theme_point_sport.only_logged_in_users_advise
 msgid "Contact Us"

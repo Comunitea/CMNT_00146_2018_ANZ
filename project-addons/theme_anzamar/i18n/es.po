@@ -479,6 +479,11 @@ msgid "Reset"
 msgstr "Limpiar"
 
 #. module: theme_anzamar
+#: model:ir.ui.view,arch_db:theme_anzamar.website_sale_products_categories
+msgid "Filters and categories"
+msgstr "Filtros y categorías"
+
+#. module: theme_anzamar
 #: model:ir.ui.view,arch_db:theme_anzamar.anz_website_sale_product
 msgid "Add to Cart"
 msgstr "Añadir al Carrito"

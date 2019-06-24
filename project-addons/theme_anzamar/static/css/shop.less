@@ -44,3 +44,24 @@
         font-size: 18px;
     }
 }
+.filters-navbar {
+    margin-bottom: 0;
+    & h4 {
+        display: inline-block;
+    }
+    & .navbar-header {
+        & .navbar-toggle {
+            background-color: @color-dark;
+            & .icon-bar {
+                background-color: @white;
+            }
+        }
+    }
+}
+#products_grid_before {
+    z-index: 90;
+    margin-bottom: 20px;
+}
+#products_grid {
+    z-index: 50;
+}
