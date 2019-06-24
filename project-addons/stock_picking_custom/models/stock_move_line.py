@@ -97,7 +97,7 @@ class StockMoveLine(models.Model):
         res = super(StockMoveLine, self).write(vals)
         if 'location_id' in vals or 'location_dest_id' in vals:
             for ml in self:
-                order_vals = ml.picking_type_id.get_move_order_field()
+                order_vals = ml.move_id.picking_type_id.get_move_order_field()
                 obj = self.env[order_vals['model']].browse(vals[order_vals['order_field']])
                 sequence = obj and obj[order_vals['field']] or 0
                 ml.sequence = sequence
