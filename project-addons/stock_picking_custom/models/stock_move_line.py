@@ -85,11 +85,10 @@ class StockMoveLine(models.Model):
         if 'picking_type_id' in vals:
             pt = pt.browse(vals['picking_type_id'])
         order_vals = pt.get_move_order_field()
-        obj = self.env[order_vals['model']].browse(vals[order_vals['order_field']])
-
-        sequence = obj and obj[order_vals['field']] or 0
-
-        vals.update(sequence=sequence)
+        if vals.get(order_vals['order_field'], False):
+            obj = self.env[order_vals['model']].browse(vals[order_vals['order_field']])
+            sequence = obj and obj[order_vals['field']] or 0
+            vals.update(sequence=sequence)
         return super(StockMoveLine, self).create(vals)
  
     @api.multi
@@ -98,7 +97,8 @@ class StockMoveLine(models.Model):
         if 'location_id' in vals or 'location_dest_id' in vals:
             for ml in self:
                 order_vals = ml.move_id.picking_type_id.get_move_order_field()
-                obj = self.env[order_vals['model']].browse(vals[order_vals['order_field']])
-                sequence = obj and obj[order_vals['field']] or 0
-                ml.sequence = sequence
+                if vals.get(order_vals['order_field'], False):
+                    obj = self.env[order_vals['model']].browse(vals[order_vals['order_field']])
+                    sequence = obj and obj[order_vals['field']] or 0
+                    ml.sequence = sequence
         return res
