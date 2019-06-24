@@ -37,10 +37,11 @@ class StockLocation(models.Model):
             raise ValidationError('Las ubicaciones internas  los campos cliente, tarifa, compañia y tipo de venta')
         if usage=='internal' and not barcode:
             raise ValidationError('Las ubicaciones internas deben tener un código de barras')
+        return True
 
     @api.model
     def create(self, vals):
-        # self.check_vals(vals.get('usage'), vals.get('posx'), vals.get('posy'), vals.get('posz'), vals.get('barcode'))
+        self.check_vals(vals.get('usage'), vals.get('posx'), vals.get('posy'), vals.get('posz'), vals.get('barcode'))
         return super().create(vals)
 
     @api.multi
