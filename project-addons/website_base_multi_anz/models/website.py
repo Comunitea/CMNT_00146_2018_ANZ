@@ -81,6 +81,26 @@ class Website(models.Model):
         ages.sort()
         return ages
 
+    @api.multi
+    def get_filter_labels(self):
+        filter_args = request.httprequest.args
+        brand_id = int(filter_args.get('brand', False))
+        gender = filter_args.get('gender', False)
+        age = filter_args.get('age', False)
+        labels = []
+
+        if brand_id and brand_id != 0:
+            brand = self.env['product.brand'].search([('id', '=', brand_id)])
+            labels.append(brand.name) if brand else None
+
+        if gender and gender != '0':
+            labels.append(gender)
+
+        if age and age != '0':
+            labels.append(age)
+
+        return labels
+
 
 class ResConfigSettings(models.TransientModel):
     _inherit = 'res.config.settings'
