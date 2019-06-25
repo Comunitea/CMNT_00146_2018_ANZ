@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <template id="poi_contact_us_content_template" name="Contact Us Point Content Template" inherit_id="theme_point_sport.poi_template_contactus">
+
+        <xpath expr="//div[hasclass('container')]" position="inside">
+            <section class="oe_structure oe_empty"/>
+            <div class="row">
+                <div class="col-md-12">
+                    <h1 class="text-center">Contact us</h1>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-8">
+                    <section id="contact_section" class="mt32 oe_structure">
+                        <p>Contact us for anything related to our company or services.</p>
+                        <p>We will do our best to respond to you as soon as possible.</p>
+                    </section>
+                    <t t-call="theme_point_sport.default_contact_form"/>
+                </div>
+                <div class="col-md-4">
+                    <section id="canal_section" class="mt32 oe_structure">
+                        <p>Do you have any questions? You can contact us through the following channels:</p>
+                    </section>
+                    <h4 class="mt16">Email</h4>
+                    <p>
+                        <i class="fa fa-envelope"/>
+                        <a t-field="website.email" t-att-href="'mailto:%s' %website.email"/>
+                    </p>
+                    <h4 class="mt16">Phone</h4>
+                    <p>
+                        <i class="fa fa-phone"/>
+                        <a t-field="res_company.phone" t-att-href="'tel:%s' %res_company.phone"/>
+                        <br/>
+                        <i class="fa fa-phone"/>
+                        <a href="tel:691413453">691 41 34 53</a>
+                    </p>
+                    <h4 class="mt16">Social networks</h4>
+                    <p>
+                        Facebook: <a href="https://www.facebook.com/POINTSPORT" target="_blank" rel="nofollow">@PointSport</a>
+                        <br/>
+                        Instagram: <a href="https://www.instagram.com/PointSport.es/" target="_blank" rel="nofollow">@PointSport.es</a>
+                    </p>
+                    <section id="hour_section" class="oe_structure">
+                        <h4 class="mt16">Customer service</h4>
+                        <p>
+                            Monday to Friday from 8 a.m. to 3 p.m.
+                            <br/>
+                            Monday and Wednesday from 5:00 p.m. to 7:30 p.m.
+                        </p>
+                    </section>
+                    <h4>Location:</h4>
+                    <p class="mt16">
+                        <t t-set="group_anz" t-value="request.env['res.company'].search([('name', 'ilike', 'Anzamar')])"/>
+                        <i class="fa fa-map-marker"/>
+                        <a href="https://goo.gl/maps/Hm78jxSEG5B2" target="_blank" alt="Company Link" title="Company" rel="nofollow">
+                            <t t-esc="group_anz.street"/>,
+                            <t t-esc="group_anz.zip"/>,
+                            <t t-esc="group_anz.city"/>
+                        </a>
+                    </p>
+                </div>
+            </div>
+            <section class="oe_structure oe_empty"/>
+        </xpath>
+
+    </template>
+</odoo>

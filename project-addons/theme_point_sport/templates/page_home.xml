@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<odoo noupdate="1">
+<odoo>
 
     <template id="poi_home_carousel_b2c" name="Point sport homepage carousel b2c">
         <div id="carousel_point_sport" class="carousel slide" data-ride="carousel">
@@ -68,35 +68,37 @@
                 <t t-call="theme_point_sport.poi_home_carousel_b2c" t-if="request.env.user.has_group('base.group_public')"/>
                 <t t-call="theme_point_sport.poi_home_carousel_b2b" t-else=""/>
                 <!-- Content section -->
+                <section class="oe_structure oe_empty"/>
                 <div class="container">
-                    <div class="row mt64 mb64">
-                        <div class="col-md-12 mb32">
+                    <div class="row">
+                        <div class="col-md-12 mt32 mb32">
                             <h1 class="text-center mb32">Point Sport</h1>
-                            <p>Point Sport es una marca de tienda multideporte que en la actualidad está presente con más de 140 tiendas en España, enfocada al <strong>pequeño</strong> y mediano comercio especializado en deporte.</p>
-                            <h2>¿Quieres abrir tu tienda deportiva Point Sport?</h2>
-                            <p>Si quieres emprender y abrir tu tienda especialista en el sector <strong>deportivo</strong>, o ya tienes una y quieres acceder a precios más competitivos con total libertad de programación, este es tu proyecto. <strong>Point Sport</strong> te permitirá competir en precio y en producto con el resto de tiendas y grandes superficies.</p>
-                            <p>Encontrarás una gran selección de artículos deportivos, con más de 100 marcas referentes del mundo deportivo; <i>Adidas, Umbro, Munich, New Balance, Fila, Puma, Converse</i>, y muchas más. Y una amplia variedad de artículos de las principales disciplinas deportivas; <i>fútbol, running, training, fitness, baloncesto, natación, tenis/pádel, voleibol</i>, etc.</p>
-                            <h2>¿Cuáles son las principales ventajas?</h2>
+                            <p>Point Sport is a multisport store brand that is currently present with more than 140 stores in Spain, focused on <strong> small </strong> and medium-sized retail specialized in sports.</p>
+                            <h2>Do you want to open your Point Sport sports store?</h2>
+                            <p>If you want to start and open your specialist store in the sports <strong> sector </strong>, or you already have one and want to access more competitive prices with complete freedom of programming, this is your project. <strong> Point Sport </strong> will allow you to compete on price and product with the rest of stores and supermarkets.</p>
+                            <p>You will find a large selection of sporting goods, with more than 100 leading brands in the sports world; <i> Adidas, Umbro, Munich, New Balance, Row, Puma, Converse </i>, and many more. And a wide variety of articles from the main sports disciplines; <i> football, running, training, fitness, basketball, swimming, tennis / paddle, volleyball </i>, etc.</p>
+                            <h2>What are the main advantages?</h2>
                             <ul>
-                                <li>Experiencia en el mercado deportivo</li>
-                                <li>Acceso a marcas deportivas líderes</li>
-                                <li>Descuentos en compras a mayorista (Grupo Anzamar)</li>
-                                <li>Envío en 24/48 horas</li>
-                                <li>Sistema de devolución garantizado</li>
-                                <li>Acceso a ofertas y productos exclusivos</li>
-                                <li>Libertad de compra sin importes mínimos ni máximos</li>
-                                <li>Apoyo en marketing y comunicación</li>
-                                <li>Acceso a dropshipping</li>
-                                <li>Atención personalizada al asociado/a</li>
-                                <li>Comerciales especialistas por toda España</li>
-                                <li>Exclusividad de zona</li>
-                                <li>Jornadas de compra para compartir experiencias y acceder a ofertas especiales</li>
-                                <li>Sector en crecimiento y alta demanda</li>
+                                <li>Experience in the sports market</li>
+                                <li>Access to leading sports brands</li>
+                                <li>Discounts on wholesale purchase (Anzamar Group)</li>
+                                <li>Shipping in 24/48 hours</li>
+                                <li>Guaranteed return system</li>
+                                <li>Access to exclusive offers and products</li>
+                                <li>Freedom to buy without minimum or maximum amounts</li>
+                                <li>Marketing and communication support</li>
+                                <li>Access to dropshipping</li>
+                                <li>Personal attention to the associate</li>
+                                <li>Commercial specialists throughout Spain</li>
+                                <li>Zone Exclusivity</li>
+                                <li>Shopping days to share experiences and access special offers</li>
+                                <li>Growing sector and high demand</li>
                             </ul>
-                            <p>Si quieres obtener más información acerca de <strong>Point Sport</strong> y montar tu propia tienda, puedes ver la sección <a href="/page/open_shop">cómo abrir una tienda</a> o escribirnos a <a href="mailto:info@anzamar.com" target="_blank">info@anzamar.com</a></p>
+                            <p>If you want more information about <strong> Point Sport </strong> and set up your own store, you can see the <a href="/page/open_shop#opem_section">how to open a store </a> section or write to <a href="mailto:info@anzamar.com" target="_blank">info@anzamar.com</a></p>
                         </div>
                     </div>
                 </div>
+                <section class="oe_structure oe_empty"/>
                 <!-- Newsletter banner -->
                 <t t-call="follow_us_base.newsletter_banner">
                     <t t-set="channel" t-value="2"/>

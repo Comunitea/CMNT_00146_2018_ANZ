@@ -8,8 +8,8 @@
                     <h4 t-esc="website.name"/>
                     <ul class="list-unstyled">
                         <li><a href="/page/about-us">About us</a></li>
-                        <li><a href="/page/our-shops">Our Shops</a></li>
-                        <li><a href="/contactus">Contactus</a></li>
+                        <li><a href="/contactus">Contact us</a></li>
+                        <li><a href="/page/our-shops">Our shops</a></li>
                         <li><a href="/page/newsletter">Follow us</a></li>
                     </ul>
                     <h2 class="mt4">
@@ -25,15 +25,17 @@
                 <div class="col-md-4 col-sm-4 col-xs-7">
                     <h4>Information / Franchises</h4>
                     <ul class="list-unstyled">
-                        <li><a href="/page/delivery">Delivery</a></li>
-                        <li><a href="/page/payment">Payment method</a></li>
-                        <li><a href="/page/open_shop">Open Your Shop</a></li>
-                        <li><a href="/page/open_shop#step_section">Steps to Open Your Shop</a></li>
-                        <li><a href="/page/open_shop#request_section">Open Request</a></li>
+                        <li><a href="/page/open_shop">Open your shop</a></li>
+                        <li><a href="/page/open_shop#step_section">Steps to open your shop</a></li>
+                        <li><a href="/page/open_shop#request_section">Open request</a></li>
+                    </ul>
+                    <h4>About Shopping</h4>
+                    <ul class="list-unstyled">
+                        <li><a href="/page/delivery-and-payment">Delivery and payment</a></li>
                     </ul>
                 </div>
                 <div class="col-md-4 col-sm-5 col-xs-12">
-                    <h4>Our Group</h4>
+                    <h4>Our group</h4>
                     <ul class="list-unstyled">
                         <t t-set="group_anz" t-value="request.env['res.company'].search([('name', 'ilike', 'Anzamar')])"/>
                         <li><a t-att-href="group_anz.website" target="_blank" rel="nofollow" t-esc="group_anz.name"/></li>

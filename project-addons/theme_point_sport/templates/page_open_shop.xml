@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <template id="poi_open_shop_content_template" name="Open Shop Point Content Template" inherit_id="theme_point_sport.poi_template_open_shop">
+
+        <xpath expr="//div[hasclass('container')]" position="inside">
+            <section class="oe_structure oe_empty"/>
+            <section id="open_section" class="mt32 oe_structure">
+                <h1>Open Your Shop</h1>
+                <h2>Instructions to open your shop with Anzamar Group</h2>
+                <p>We put at your disposal the opportunity to be part of our family riding your own sports store, for it you must be an entrepreneur, with a great dynamism and energy capable of growing professionally as part of our team working in the franchise area .</p>
+                <p>We will give you all the necessary logistics, with a visual image of the modern sports establishment totally identifying with the sports chain, as well as the product, in all its aspects of textiles, footwear and accessories, to be a reference sports store in your area of influence accompanied by the computer system necessary to be in constant communication with us about your needs. All this franchise project is focused on that you only dedicate yourself to the sale and customer service, in such a way that "THE MORE YOU SELL, THE MORE YOU WILL WIN".</p>
+            </section>
+            <section class="oe_structure oe_empty"/>
+            <section id="step_section" class="mt32 oe_structure">
+                <h1>Open Your Shop Steps</h1>
+                <h2>Steps to open your shop with Anzamar Group</h2>
+                <p>Please, follow the steps</p>
+            </section>
+            <section class="oe_structure oe_empty"/>
+            <section id="request_section" class="mt32 oe_structure">
+                <h1>Open Request</h1>
+                <h2>Form to open your shop with Anzamar Group</h2>
+                <p>Please, fill all fields</p>
+            </section>
+            <section id="request_section_form" class="mt32">
+                <form action="/website_form/" method="post" data-model_name="crm.lead" data-success_page="/contactus-thank-you" class="s_website_form form-horizontal mt32 mb32" enctype="multipart/form-data" data-editable-form="false">
+                    <input type="hidden" name="name" value="Nueva solicitud de apertura" />
+                    <div class="form-group form-field o_website_form_required_custom">
+                        <label class="col-md-3 col-sm-4 control-label" for="contact_name">Nombre y apellidos</label>
+                        <div class="col-md-7 col-sm-8">
+                            <input type="text" class="form-control o_website_form_input" name="contact_name" t-att-value="request.params.get('contact_name', '')" required=""/>
+                        </div>
+                    </div>
+                    <div class="form-group form-field o_website_form_required_custom">
+                        <label class="col-md-3 col-sm-4 control-label" for="phone">Teléfono</label>
+                        <div class="col-md-7 col-sm-8">
+                            <input type="text" class="form-control o_website_form_input" name="phone" t-att-value="request.params.get('phone', '')" required=""/>
+                        </div>
+                    </div>
+                    <div class="form-group form-field o_website_form_required_custom">
+                        <label class="col-md-3 col-sm-4 control-label" for="email_from">Email</label>
+                        <div class="col-md-7 col-sm-8">
+                            <input type="text" class="form-control o_website_form_input" name="email_from" required="" t-att-value="request.params.get('email_from', '')" />
+                        </div>
+                    </div>
+                    <div class="form-group form-field o_website_form_required_custom">
+                        <label class="col-md-3 col-sm-4 control-label" for="city">Ciudad</label>
+                        <div class="col-md-7 col-sm-8">
+                            <input type="text" class="form-control o_website_form_input" name="city" t-att-value="request.params.get('city', '')" required=""/>
+                        </div>
+                    </div>
+                    <div class="form-group form-field o_website_form_required_custom">
+                        <label class="col-md-3 col-sm-4 control-label" for="state">Provincia</label>
+                        <div class="col-md-7 col-sm-8">
+                            <input type="text" class="form-control o_website_form_input" name="state" t-att-value="request.params.get('state', '')" required=""/>
+                        </div>
+                    </div>
+                    <div class="form-group form-field o_website_form_required_custom">
+                        <label class="col-md-3 col-sm-4 control-label" for="country">País</label>
+                        <div class="col-md-7 col-sm-8">
+                            <input type="text" class="form-control o_website_form_input" name="country" t-att-value="request.params.get('country', '')" required=""/>
+                        </div>
+                    </div>
+                    <div class="form-group form-field o_website_form_required">
+                        <label class="col-md-3 col-sm-4 control-label" for="brand">Marca sobre la que desea información</label>
+                        <div class="col-md-7 col-sm-8">
+                            <input type="text" class="form-control o_website_form_input" name="brand" required="" t-att-value="request.params.get('brand', '')" />
+                        </div>
+                    </div>
+                    <div class="form-group form-field o_website_form_required_custom">
+                        <label class="col-md-3 col-sm-4 control-label" for="description">Escribe tu consulta</label>
+                        <div class="col-md-7 col-sm-8">
+                            <textarea class="form-control o_website_form_input" name="description" required=""><t t-esc="request.params.get('description', '')"/></textarea>
+                        </div>
+                    </div>
+                    <t t-call="theme_point_sport.google_recaptcha_contact_form"/>
+                    <t t-call="theme_point_sport.privacy_policy_contact_form"/>
+                    <div class="form-group">
+                        <div class="col-md-offset-3 col-sm-offset-4 col-sm-8 col-md-7">
+                            <span class="btn btn-primary btn-lg o_website_form_send">Enviar</span>
+                            <span id="o_website_form_result"/>
+                        </div>
+                    </div>
+                </form>
+            </section>
+            <section class="oe_structure oe_empty"/>
+        </xpath>
+
+    </template>
+</odoo>

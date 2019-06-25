@@ -18,35 +18,82 @@ msgstr ""
 #. module: theme_point_sport
 #: model:website.menu,name:theme_point_sport.poi_menu_about_us
 msgid "About us"
-msgstr "Sobre Nosotros"
+msgstr "nosotros"
 
 #. module: theme_point_sport
 #: model:website.page,name:theme_point_sport.poi_id_page_work_with_us
-msgid "Work with Us"
-msgstr "Trabaje Con Nosotros"
+msgid "Work With Us"
+msgstr "Trabaje con nosotros"
+
+#. module: theme_point_sport
+#: model:ir.ui.view,arch_db:theme_point_sport.poi_work_with_us_content_template
+msgid "Would you like to join our team?"
+msgstr "¿Le gustaría unirse a nuestro equipo?"
+
+#. module: theme_point_sport
+#: model:ir.ui.view,arch_db:theme_point_sport.poi_work_with_us_content_template
+msgid "Fill in the form and send it to us. We will contact you"
+msgstr "Rellene el formulario y envíenoslo. Nos pondremos en contacto usted"
+
+#. module: theme_point_sport
+#: model:ir.ui.view,arch_db:theme_point_sport.poi_work_with_us_content_template
+msgid "You must fill in all the required fields"
+msgstr "Debe rellenar todos los campos obligatorios"
+
+#. module: theme_point_sport
+#: model:ir.ui.view,arch_db:theme_point_sport.poi_work_with_us_content_template
+msgid "Form"
+msgstr "Formulario"
+
+#. module: theme_point_sport
+#: model:ir.ui.view,arch_db:theme_point_sport.poi_work_with_us_content_template
+msgid "Your Name"
+msgstr "Su Nombre"
+
+#. module: theme_point_sport
+#: model:ir.ui.view,arch_db:theme_point_sport.poi_work_with_us_content_template
+msgid "Your Company"
+msgstr "Su Compañía"
+
+#. module: theme_point_sport
+#: model:ir.ui.view,arch_db:theme_point_sport.poi_work_with_us_content_template
+msgid "Your Question"
+msgstr "Su Pregunta"
+
+#. module: theme_point_sport
+#: model:ir.ui.view,arch_db:theme_point_sport.poi_work_with_us_content_template
+msgid "<span class=\"btn btn-primary btn-lg o_website_form_send\">Send</span>\n"
+"                                <span id=\"o_website_form_result\"/>"
+msgstr "<span class=\"btn btn-primary btn-lg o_website_form_send\">Enviar</span>\n"
+"                                <span id=\"o_website_form_result\"/>"
+
 
 #. module: theme_point_sport
 #: model:ir.ui.view,arch_db:theme_point_sport.poi_contactus_page_ir_ui_view
 #: model:ir.ui.view,arch_db:theme_point_sport.poi_template_contactus
-#: model:website.page,arch_db:theme_point_sport.poi_contactus_page
-#: model:website.page,name:theme_point_sport.poi_contactus_page
-msgid "Contact Us"
-msgstr "Contáctenos"
+#: model:website.page,arch_db:theme_point_sport.poi_contact_us_content_template
+#: model:website.page,name:theme_point_sport.poi_contact_us_content_template
+#: model:website.page,name:theme_point_sport.poi_contact_us_content_template
+msgid "Contact us"
+msgstr "Contacto"
 
 #. module: theme_point_sport
 #: model:website.menu,name:theme_point_sport.poi_contact_us_menu
-msgid "Contactus"
-msgstr "Contáctenos"
+msgid "Contact us"
+msgstr "Contacto"
 
 #. module: theme_point_sport
+#: model:ir.ui.view,arch_db:theme_point_sport.poi_contact_us_content_template
+#: model:ir.ui.view,arch_db:theme_point_sport.poi_website_footer_custom
+#: model:website.menu,name:theme_point_sport.poi_contact_us_menu
 #: model:website.page,name:theme_point_sport.poi_contactus_page
-msgid "Contact Us"
-msgstr "Contáctenos"
+msgid "Contact us"
+msgstr "Contacto"
 
 #. module: theme_point_sport
 #: model:website.page,name:theme_point_sport.poi_contactus_thanks
 msgid "Contactus thanks"
-msgstr "Contáctenos (Gracias)"
+msgstr "Contacto (Gracias)"
 
 #. module: theme_point_sport
 #: model:website.menu,name:theme_point_sport.poi_product_brands_menu
@@ -86,7 +133,7 @@ msgstr "Solicitud Apertura"
 #: model:website.menu,name:theme_point_sport.poi_open_shop_submenu_open
 #: model:website.page,name:theme_point_sport.poi_page_open_shop
 msgid "Open Your Shop"
-msgstr "Abre tu Tienda"
+msgstr "Abre tu tienda"
 
 #. module: theme_point_sport
 #: model:website.menu,name:theme_point_sport.poi_open_shop_submenu_steps
@@ -227,14 +274,14 @@ msgstr "<span class=\"btn btn-primary btn-lg o_website_form_send\">Enviar</span>
 #. module: theme_point_sport
 #: model:ir.ui.view,arch_db:theme_point_sport.poi_contactus_page_ir_ui_view
 #: model:ir.ui.view,arch_db:theme_point_sport.poi_template_contactus
-#: model:website.page,arch_db:theme_point_sport.poi_contactus_page
+#: model:website.page,arch_db:theme_point_sport.poi_contact_us_content_template
 msgid "Company"
 msgstr "Compañía"
 
 #. module: theme_point_sport
 #: model:ir.ui.view,arch_db:theme_point_sport.poi_contactus_page_ir_ui_view
 #: model:ir.ui.view,arch_db:theme_point_sport.poi_template_contactus
-#: model:website.page,arch_db:theme_point_sport.poi_contactus_page
+#: model:website.page,arch_db:theme_point_sport.poi_contact_us_content_template
 msgid "Company Link"
 msgstr "Enlace a Compañia"
 
@@ -263,7 +310,7 @@ msgstr "Cerrar"
 #: model:website.page,name:theme_point_sport.poi_page_about_us
 #: model:ir.ui.view,arch_db:theme_point_sport.poi_template_about_us
 msgid "About Us"
-msgstr "Sobre Nosotros"
+msgstr "Nosotros"
 
 #. module: theme_point_sport
 #: model:website.page,name:theme_point_sport.poi_advise_page
@@ -409,34 +456,28 @@ msgstr "Filtros y categorías"
 #. module: theme_point_sport
 #: model:ir.ui.view,arch_db:theme_point_sport.poi_website_footer_custom
 #: model:ir.ui.view,arch_db:theme_point_sport.only_logged_in_users_advise
-msgid "Contact Us"
-msgstr "Contáctenos"
+msgid "Contact us"
+msgstr "Contacto"
 
 #. module: theme_point_sport
 #: model:ir.ui.view,arch_db:theme_point_sport.poi_website_footer_custom
-#: model:ir.ui.view,arch_db:theme_point_sport.only_logged_in_users_advise
-msgid "Contactus"
-msgstr "Contáctenos"
-
-#. module: theme_point_sport
-#: model:ir.ui.view,arch_db:theme_point_sport.poi_website_footer_custom
-msgid "Delivery"
-msgstr "Métodos de Entrega"
+msgid "Delivery and payment"
+msgstr "Entrega y pago"
 
 #. module: theme_point_sport
 #: model:ir.ui.view,arch_db:theme_point_sport.poi_website_footer_custom
 msgid "About us"
-msgstr "Sobre Nosotros"
+msgstr "Nosotros"
 
 #. module: theme_point_sport
 #: model:ir.ui.view,arch_db:theme_point_sport.poi_website_footer_custom
-msgid "Our Shops"
-msgstr "Nuestras Tiendas"
+msgid "Our shops"
+msgstr "Nuestras tiendas"
 
 #. module: theme_point_sport
 #: model:ir.ui.view,arch_db:theme_point_sport.poi_website_footer_custom
-msgid "Our Group"
-msgstr "Nuestro Grupo"
+msgid "Our group"
+msgstr "Nuestro grupo"
 
 #. module: theme_point_sport
 #: model:ir.ui.view,arch_db:theme_point_sport.poi_website_footer_custom
@@ -460,18 +501,13 @@ msgstr "Es necesario"
 
 #. module: theme_point_sport
 #: model:ir.ui.view,arch_db:theme_point_sport.poi_website_footer_custom
-msgid "Open Request"
-msgstr "Solicitud de Apertura"
+msgid "Open request"
+msgstr "Solicitud de apertura"
 
 #. module: theme_point_sport
 #: model:ir.ui.view,arch_db:theme_point_sport.poi_website_footer_custom
-msgid "Open Your Shop"
-msgstr "Abre tu Tienda"
-
-#. module: theme_point_sport
-#: model:ir.ui.view,arch_db:theme_point_sport.poi_website_footer_custom
-msgid "Payment method"
-msgstr "Métodos de Pago"
+msgid "Open your shop"
+msgstr "Abre tu tienda"
 
 #. module: theme_point_sport
 #: model:ir.ui.view,arch_db:theme_point_sport.only_logged_in_users_advise
@@ -480,23 +516,18 @@ msgstr "Página de Inicio"
 
 #. module: theme_point_sport
 #: model:ir.ui.view,arch_db:theme_point_sport.poi_website_footer_custom
-msgid "Steps to Open Your Shop"
-msgstr "Pasos para Abrir tu Tienda"
-
-#. module: theme_point_sport
-#: model:ir.ui.view,arch_db:theme_point_sport.poi_website_footer_custom
-msgid "Work with Us"
-msgstr "Trabaje con Nosotros"
+msgid "Steps to open your shop"
+msgstr "Pasos para abrir tu tienda"
 
 #. module: theme_point_sport
 #: model:ir.ui.view,arch_db:theme_point_sport.poi_website_footer_custom
 msgid "Work with Us Link"
-msgstr "Enlace a Trabaje con Nosotros"
+msgstr "Enlace a trabaje con nosotros"
 
 #. module: theme_point_sport
 #: model:ir.ui.view,arch_db:theme_point_sport.poi_website_footer_custom
 msgid "Work with us"
-msgstr "Trabaje con Nosotros"
+msgstr "Trabaje con nosotros"
 
 #. module: theme_point_sport
 #: model:ir.ui.view,arch_db:theme_point_sport.only_logged_in_users_advise
@@ -554,3 +585,340 @@ msgstr "Mis Pedidos de Compra"
 #: model:ir.ui.view,arch_db:theme_point_sport.website_sale_products
 msgid "Delete all"
 msgstr "Borrar todo"
+
+#. module: theme_point_sport
+#: model:ir.ui.view,arch_db:theme_point_sport.poi_home_content
+msgid "Point Sport is a multisport store brand that is currently present with more than 140 stores in Spain, focused on <strong> small </strong> and medium-sized retail specialized in sports."
+msgstr "Point Sport es una marca de tienda multideporte que en la actualidad está presente con más de 140 tiendas en España, enfocada al <strong>pequeño</strong> y mediano comercio especializado en deporte."
+
+#. module: theme_point_sport
+#: model:ir.ui.view,arch_db:theme_point_sport.poi_home_content
+msgid "Do you want to open your Point Sport sports store?"
+msgstr "Quieres abrir tu tienda deportiva Point Sport?"
+
+#. module: theme_point_sport
+#: model:ir.ui.view,arch_db:theme_point_sport.poi_home_content
+msgid "If you want to start and open your specialist store in the sports <strong> sector </strong>, or you already have one and want to access more competitive prices with complete freedom of programming, this is your project. <strong> Point Sport </strong> will allow you to compete on price and product with the rest of stores and supermarkets."
+msgstr "Si quieres emprender y abrir tu tienda especialista en el sector <strong>deportivo</strong>, o ya tienes una y quieres acceder a precios más competitivos con total libertad de programación, este es tu proyecto. <strong>Point Sport</strong> te permitirá competir en precio y en producto con el resto de tiendas y grandes superficies."
+
+#. module: theme_point_sport
+#: model:ir.ui.view,arch_db:theme_point_sport.poi_home_content
+msgid "You will find a large selection of sporting goods, with more than 100 leading brands in the sports world; <i> Adidas, Umbro, Munich, New Balance, Row, Puma, Converse </i>, and many more. And a wide variety of articles from the main sports disciplines; <i> football, running, training, fitness, basketball, swimming, tennis / paddle, volleyball </i>, etc."
+msgstr "Encontrarás una gran selección de artículos deportivos, con más de 100 marcas referentes del mundo deportivo; <i>Adidas, Umbro, Munich, New Balance, Fila, Puma, Converse</i>, y muchas más. Y una amplia variedad de artículos de las principales disciplinas deportivas; <i>fútbol, running, training, fitness, baloncesto, natación, tenis/pádel, voleibol</i>, etc."
+
+#. module: theme_point_sport
+#: model:ir.ui.view,arch_db:theme_point_sport.poi_home_content
+msgid "What are the main advantages?"
+msgstr "¿Cuáles son las principales ventajas?"
+
+#. module: theme_point_sport
+#: model:ir.ui.view,arch_db:theme_point_sport.poi_home_content
+msgid "Access to leading sports brands"
+msgstr "Acceso a marcas deportivas líderes"
+
+#. module: theme_point_sport
+#: model:ir.ui.view,arch_db:theme_point_sport.poi_home_content
+msgid "Discounts on wholesale purchase (Anzamar Group)"
+msgstr "Descuentos en compras a mayorista (Grupo Anzamar)"
+
+#. module: theme_point_sport
+#: model:ir.ui.view,arch_db:theme_point_sport.poi_home_content
+msgid "Shipping in 24/48 hours"
+msgstr "Envío en 24/48 horas"
+
+#. module: theme_point_sport
+#: model:ir.ui.view,arch_db:theme_point_sport.poi_home_content
+msgid "Guaranteed return system"
+msgstr "Sistema de devolución garantizado"
+
+#. module: theme_point_sport
+#: model:ir.ui.view,arch_db:theme_point_sport.poi_home_content
+msgid "Access to exclusive offers and products"
+msgstr "Acceso a ofertas y productos exclusivos"
+
+#. module: theme_point_sport
+#: model:ir.ui.view,arch_db:theme_point_sport.poi_home_content
+msgid "Freedom to buy without minimum or maximum amounts"
+msgstr "Libertad de compra sin importes mínimos ni máximos"
+
+#. module: theme_point_sport
+#: model:ir.ui.view,arch_db:theme_point_sport.poi_home_content
+msgid "Marketing and communication support"
+msgstr "poyo en marketing y comunicación"
+
+#. module: theme_point_sport
+#: model:ir.ui.view,arch_db:theme_point_sport.poi_home_content
+msgid "Access to dropshipping"
+msgstr "Acceso a dropshipping"
+
+#. module: theme_point_sport
+#: model:ir.ui.view,arch_db:theme_point_sport.poi_home_content
+msgid "Personal attention to the associate"
+msgstr "Atención personalizada al asociado/a"
+
+#. module: theme_point_sport
+#: model:ir.ui.view,arch_db:theme_point_sport.poi_home_content
+msgid "Commercial specialists throughout Spain"
+msgstr "Comerciales especialistas por toda España"
+
+#. module: theme_point_sport
+#: model:ir.ui.view,arch_db:theme_point_sport.poi_home_content
+msgid "Zone Exclusivity"
+msgstr "Exclusividad de zona"
+
+#. module: theme_point_sport
+#: model:ir.ui.view,arch_db:theme_point_sport.poi_home_content
+msgid "Shopping days to share experiences and access special offers"
+msgstr "Jornadas de compra para compartir experiencias y acceder a ofertas especiales"
+
+#. module: theme_point_sport
+#: model:ir.ui.view,arch_db:theme_point_sport.poi_home_content
+msgid "Growing sector and high demand"
+msgstr "Sector en crecimiento y alta demanda"
+
+#. module: theme_point_sport
+#: model:ir.ui.view,arch_db:theme_point_sport.poi_home_content
+msgid "If you want more information about <strong> Point Sport </strong> and set up your own store, you can see the"
+msgstr "Si quieres obtener más información acerca de <strong>Point Sport</strong> y montar tu propia tienda, puedes ver la sección"
+
+#. module: theme_point_sport
+#: model:ir.ui.view,arch_db:theme_point_sport.poi_home_content
+msgid "how to open a store"
+msgstr "cómo abrir una tienda"
+
+#. module: theme_point_sport
+#: model:ir.ui.view,arch_db:theme_point_sport.poi_home_content
+msgid "section or write to"
+msgstr "o escribirnos a"
+
+#. module: theme_point_sport
+#: model:ir.ui.view,arch_db:theme_point_sport.poi_contact_us_content_template
+msgid "Contact us for anything related to our company or services."
+msgstr "Contacte con nosotros para cualquier cosa relacionada con nuestra empresa o servicios."
+
+#. module: theme_point_sport
+#: model:ir.ui.view,arch_db:theme_point_sport.poi_contact_us_content_template
+msgid "Customer service"
+msgstr "Horario de atención"
+
+#. module: theme_point_sport
+#: model:ir.ui.view,arch_db:theme_point_sport.poi_contact_us_content_template
+msgid "Do you have any questions? You can contact us through the following channels:"
+msgstr "¿Tienes alguna consulta? Puedes contactar con nosotros a través de los siguientes canales:"
+
+#. module: theme_point_sport
+#: model:ir.ui.view,arch_db:theme_point_sport.default_contact_form
+#: model:ir.ui.view,arch_db:theme_point_sport.poi_contact_us_content_template
+#: model:ir.ui.view,arch_db:theme_point_sport.poi_open_shop_content_template
+#: model:ir.ui.view,arch_db:theme_point_sport.poi_work_with_us_content_template
+msgid "Email"
+msgstr "Correo electrónico"
+
+#. module: theme_point_sport
+#: model:ir.ui.view,arch_db:theme_point_sport.poi_contact_us_content_template
+msgid "Location:"
+msgstr "Localización:"
+
+#. module: theme_point_sport
+#: model:ir.ui.view,arch_db:theme_point_sport.poi_contact_us_content_template
+msgid "Monday to Friday from 8 a.m. to 3 p.m.\n"
+"                            <br/>\n"
+"                            Monday and Wednesday from 5:00 p.m. to 7:30 p.m."
+msgstr "De lunes a viernes de 8.00 a 15.00 horas\n"
+"                            <br/>\n"
+"                            Lunes y miércoles de 17.00 a 19.30 horas"
+
+#. module: theme_point_sport
+#: model:ir.ui.view,arch_db:theme_point_sport.poi_contact_us_content_template
+msgid "Phone"
+msgstr "Teléfono"
+
+#. module: theme_point_sport
+#: model:ir.ui.view,arch_db:theme_point_sport.poi_contact_us_content_template
+msgid "Social networks"
+msgstr "Redes sociales"
+
+#. module: theme_point_sport
+#: model:ir.ui.view,arch_db:theme_point_sport.poi_contact_us_content_template
+msgid "We will do our best to respond to you as soon as possible."
+msgstr "Haremos lo posible por responderle a la mayor brevedad."
+
+#. module: theme_point_sport
+#: model:ir.ui.view,arch_db:theme_point_sport.poi_about_us_content_template
+#: model:ir.ui.view,arch_db:theme_point_sport.poi_website_footer_custom
+msgid "About us"
+msgstr "Nosotros"
+
+#. module: theme_point_sport
+#: model:ir.ui.view,arch_db:theme_point_sport.poi_about_us_content_template
+msgid "Anzamar Group has storage facilities totaling more than 3,000 square meters, in which we have more than 12,500 references. These references are the expression of our selection of the articles with the highest prospective sales based on our experience, specialized studies and the reciprocity of our relations with the rest of the retail dedicated to sports and retailers in the market. Our experience and trajectory added to our potential and capacity, makes us one of the references among sports retailers in the national sports market."
+msgstr "Grupo Anzamar cuenta con unas instalaciones de almacenaje que suman una superficie de más de 3.000 metros cuadrados, en la cual contamos con más de 12.500 referencias. Estas referencias son la expresión de nuestra selección de los artículos con mayor prospectiva de venta basados en nuestra experiencia, estudios especializados y la reciprocidad de nuestras relaciones con el resto del retail dedicados al deporte y minoristas del mercado. Nuestra experiencia y trayectoria sumada a nuestro potencial y capacidad, nos convierte en uno de los referentes entre los detallistas deportivos en el mercado deportivo nacional."
+
+#. module: theme_point_sport
+#: model:ir.ui.view,arch_db:theme_point_sport.poi_about_us_content_template
+msgid "As a wholesaler, our main objective is to supply all the necessary products for the execution of sports practice to any establishment. For this our professionals with decades of experience in the sports sector continuously analyze the market, the offer and the latest trends to have the best news available for sale."
+msgstr "Como mayorista, nuestro principal objetivo es surtir de todos los productos necesarios para la ejecución de la práctica deportiva a cualquier establecimiento. Para ello nuestros profesionales con décadas de experiencia en sector deportivo analizan continuamente el mercado, la oferta y las últimas tendencias para disponer de las mejores novedades disponibles para la venta."
+
+#. module: theme_point_sport
+#: model:ir.ui.view,arch_db:theme_point_sport.poi_about_us_content_template
+msgid "Point Sport belongs to the Anzamar Group; shopping center and distributor of sporting goods founded more than 30 years ago. As a purchasing center, we combine a large number of associates with whom we gain competitiveness and visibility in the market thanks to collective strength. In this way any member of our group can access a series of brands, promotions and prices that would be impossible to access alone. Our catalog of more than 100 brands integrates the best and most important in the market with the most competitive prices."
+msgstr "Point Sport pertenece al Grupo Anzamar; central de compras y distribuidor de artículos deportivos fundado hace más de 30 años. Como central de compras, aunamos una gran cantidad de asociados con los que ganamos competitividad y visibilidad en el mercado gracias a la fuerza colectiva. De esta forma cualquier integrante de nuestro grupo puede acceder a una serie de marcas, promociones y precios que a los que serían imposibles acceder en solitario. Nuestro catálogo de más de 100 marcas integra las mejores y más importantes del mercado con los precios más competitivos."
+
+#. module: theme_point_sport
+#: model:ir.ui.view,arch_db:theme_point_sport.poi_delivery_and_payment_content_template
+msgid "Delivery"
+msgstr "Entrega"
+
+#. module: theme_point_sport
+#: model:ir.ui.view,arch_db:theme_point_sport.poi_delivery_and_payment_content_template
+msgid "Payment"
+msgstr "Pago"
+
+#. module: theme_point_sport
+#: model:ir.ui.view,arch_db:theme_point_sport.poi_open_shop_content_template
+msgid "Please, fill all fields"
+msgstr "Rellene los campos, por favor"
+
+#. module: theme_point_sport
+#: model:ir.ui.view,arch_db:theme_point_sport.poi_open_shop_content_template
+msgid "Please, follow the steps"
+msgstr "Siga los pasos, por favor"
+
+#. module: theme_point_sport
+#: model:ir.ui.view,arch_db:theme_point_sport.poi_open_shop_content_template
+msgid "Steps to open your shop with Anzamar Group"
+msgstr "Pasos para Abrir tu Tienda con el Grupo Anzamar"
+
+#. module: theme_point_sport
+#: model:ir.ui.view,arch_db:theme_point_sport.poi_open_shop_content_template
+msgid "We put at your disposal the opportunity to be part of our family riding your own sports store, for it you must be an entrepreneur, with a great dynamism and energy capable of growing professionally as part of our team working in the franchise area ."
+msgstr "Ponemos a tu disposición la oportunidad de formar parte de nuestra familia montando tu propia tienda de deportes, para ello debes de ser una persona emprendedora, con un gran dinamismo y energía capaz de crecer profesionalmente formando parte de nuestro equipo de trabajo en la vertiente de franquicias."
+
+#. module: theme_point_sport
+#: model:ir.ui.view,arch_db:theme_point_sport.poi_open_shop_content_template
+msgid "We will give you all the necessary logistics, with a visual image of the modern sports establishment totally identifying with the sports chain, as well as the product, in all its aspects of textiles, footwear and accessories, to be a reference sports store in your area of influence accompanied by the computer system necessary to be in constant communication with us about your needs. All this franchise project is focused on that you only dedicate yourself to the sale and customer service, in such a way that \"THE MORE YOU SELL, THE MORE YOU WILL WIN\"."
+msgstr "Nosotros le otorgaremos toda la logística necesaria,con una imagen visual del establecimiento deportivo moderno totalmente identificativo con la cadena de deportes, así como el producto, en todas sus vertientes de textil , calzado y complementos, para ser una tienda de deportes referencia en su zona de influencia acompañado del sistema informático necesario para estar en permanente comunicación con nosotros acerca de sus necesidades. Este proyecto de franquicias esta enfocado a que sólo te dediques a la venta y atención al cliente, de tal manera que \"CUANTO MÁS VENDA, MÁS GANARÁ\"."
+
+#. module: theme_point_sport
+#: model:ir.ui.view,arch_db:theme_point_sport.poi_open_shop_content_template
+msgid "<span class=\"btn btn-primary btn-lg o_website_form_send\">Send</span>\n"
+"                            <span id=\"o_website_form_result\"/>"
+msgstr "<span class=\"btn btn-primary btn-lg o_website_form_send\">Enviar</span>\n"
+"                            <span id=\"o_website_form_result\"/>"
+
+#. module: theme_point_sport
+#: model:ir.ui.view,arch_db:theme_point_sport.poi_open_shop_content_template
+msgid "Form to open your shop with Anzamar Group"
+msgstr "Formulario para abrir tu tienda con el Grupo Anzamar"
+
+#. module: theme_point_sport
+#: model:ir.ui.view,arch_db:theme_point_sport.poi_open_shop_content_template
+msgid "Instructions to open your shop with Anzamar Group"
+msgstr "Instrucciones para Abrir tu Tienda con el Grupo Anzamar"
+
+#. module: theme_point_sport
+#: model:ir.ui.view,arch_db:theme_point_sport.poi_open_shop_content_template
+#: model:website.menu,name:theme_point_sport.poi_open_shop_submenu_request
+msgid "Open Request"
+msgstr "Solicitud de Apertura"
+
+#. module: theme_point_sport
+#: model:ir.ui.view,arch_db:theme_point_sport.poi_open_shop_content_template
+#: model:website.menu,name:theme_point_sport.poi_open_shop_menu
+#: model:website.menu,name:theme_point_sport.poi_open_shop_submenu_open
+#: model:website.page,name:theme_point_sport.poi_page_open_shop
+msgid "Open Your Shop"
+msgstr "Abre tu Tienda"
+
+#. module: theme_point_sport
+#: model:ir.ui.view,arch_db:theme_point_sport.poi_open_shop_content_template
+#: model:website.menu,name:theme_point_sport.poi_open_shop_submenu_steps
+msgid "Open Your Shop Steps"
+msgstr "Pasos para Abrir tu Tienda"
+
+#. module: theme_point_sport
+#: model:ir.ui.view,arch_db:theme_point_sport.poi_contact_us_thanks_content_template
+msgid "We will reply shortly."
+msgstr "Le contestaremos en breve."
+
+#. module: theme_point_sport
+#: model:ir.ui.view,arch_db:theme_point_sport.poi_contact_us_thanks_content_template
+msgid "Your message has been sent correctly."
+msgstr "Su mensaje se ha enviado correctamente."
+
+#. module: theme_point_sport
+#: model:ir.ui.view,arch_db:theme_point_sport.poi_contact_us_thanks_content_template
+msgid "Thank you!"
+msgstr "¡Gracias!"
+
+#. module: theme_point_sport
+#: model:ir.ui.view,arch_db:theme_point_sport.poi_contact_us_thanks_content_template
+msgid "If you have an emergency, do not hesitate to contact us:"
+msgstr "Si tiene una emergencia, no dude en contactarnos:"
+
+#. module: theme_point_sport
+#: model:ir.ui.view,arch_db:theme_point_sport.default_contact_form
+#: model:ir.ui.view,arch_db:theme_point_sport.poi_work_with_us_content_template
+msgid "Subject"
+msgstr "Asunto"
+
+#. module: theme_point_sport
+#: model:ir.ui.view,arch_db:theme_point_sport.google_recaptcha_contact_form
+msgid "Is human?"
+msgstr "¿Eres humano?"
+
+#. module: theme_point_sport
+#: model:ir.ui.view,arch_db:theme_point_sport.poi_our_shops_content_template
+msgid "48 hours"
+msgstr "48 horas"
+
+#. module: theme_point_sport
+#: model:ir.ui.view,arch_db:theme_point_sport.poi_our_shops_content_template
+msgid "<strong>\"Your point of reference in sports\"</strong>"
+msgstr "<strong>\"Tu punto de referencia en el deporte\"</strong>"
+
+#. module: theme_point_sport
+#: model:ir.ui.view,arch_db:theme_point_sport.poi_our_shops_content_template
+msgid "<strong>Point Sport</strong>, online store of sports equipment, is composed of two stores located in Malaga Capital with more than 16 years of experience."
+msgstr "<strong>Point Sport</strong>, tienda online de material deportivo, está compuesta de dos tiendas situadas en Málaga Capital con más de 16 años de experiencia."
+
+#. module: theme_point_sport
+#: model:ir.ui.view,arch_db:theme_point_sport.poi_our_shops_content_template
+msgid "All your purchases and doubts will be endorsed and attended by a qualified staff and always supported by a company of more than 26 years specialized in sports."
+msgstr "Todas tus compras y dudas serán avaladas y atendidas por un personal cualificado y respaldado siempre por una empresa de más de 26 años especialista en deporte."
+
+#. module: theme_point_sport
+#: model:ir.ui.view,arch_db:theme_point_sport.poi_our_shops_content_template
+msgid "Both in our online store and in our sports stores in Malaga you can find the sports items you need, among others, sportswear, sports shoes and the latest in sportswear."
+msgstr "Tanto en nuestra tienda online como en nuestras tiendas deportivas en Málaga podrás encontrar los artículos deportivos que necesitas entre otras, ropa deportiva, calzado deportivo y lo último en moda sport."
+
+#. module: theme_point_sport
+#: model:ir.ui.view,arch_db:theme_point_sport.poi_our_shops_content_template
+msgid "If you are a lover of Running, Padel, Football or any other sport, our highly qualified staff will answer all your questions and help you choose the material you need."
+msgstr "Si eres amante del Running, del Padel, del Fútbol o de cualquier otro deporte, nuestro personal altamente cualificado resolverán todas tus dudas y te ayudarán a elegir el material que necesites."
+
+#. module: theme_point_sport
+#: model:ir.ui.view,arch_db:theme_point_sport.poi_our_shops_content_template
+msgid "In addition, in 2000 we joined the <strong>Point Sport Shopping Group</strong>, dedicated company and sports specialist since 1986, that is, with more than 25 years of experience in the sports market being one of the major distributors at the National Level, with more than 130 stores throughout Spain."
+msgstr "Además, en el año 2000 nos unimos al <strong>Grupo de Compras Point Sport</strong>, empresa dedicada y especialista en el deporte desde 1986, es decir, con más de 25 años de experiencia en el mercado deportivo siendo uno de los principales distribuidores a Nivel Nacional, contando con más de 130 tiendas por toda España."
+
+#. module: theme_point_sport
+#: model:ir.ui.view,arch_db:theme_point_sport.poi_our_shops_content_template
+msgid "We adapt to you and your available time thanks to our online store! In it you can make inquiries to our specialists and they will contact you to help you in your choice to receive the sports equipment that best suits you as comfortably and as soon as possible at your home to practice your favorite sport in less than"
+msgstr "Nos adaptamos a ti y a tu tiempo disponible gracias a nuestra tienda online!! En ella podrás realizar consultas a nuestros especialistas y ellos se pondrán en contacto contigo para ayudarte en tu elección para recibir el material deportivo que mejor se te adapte con la mayor comodidad y lo antes posible en tu domicilio para practicar tu deporte favorito en menos de"
+
+#. module: theme_point_sport
+#: model:ir.ui.view,arch_db:theme_point_sport.poi_our_shops_content_template
+msgid "We only sell original products and only the main brands of the sports market."
+msgstr "Sólo vendemos productos originales y sólo las principales marcas del mercado deportivo."
+
+#. module: theme_point_sport
+#: model:ir.ui.view,arch_db:theme_point_sport.poi_our_shops_content_template
+msgid "Where can you find your Sports Shop, sportswear, running shoes and accessories to buy online or in Malaga?"
+msgstr "¿Dónde encontrar tu Tienda de deportes, ropa deportiva, zapatillas deportivas running y accesorios para comprar online o en Málaga?"
+
+#. module: theme_point_sport
+#: model:ir.ui.view,arch_db:theme_point_sport.poi_website_footer_custom
+msgid "About Shopping"
+msgstr "Comprar"
+

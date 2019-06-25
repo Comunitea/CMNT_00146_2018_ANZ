@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <template id="poi_contact_us_thanks_content_template" name="Contact Us (Thanks) Point Content Template" inherit_id="theme_point_sport.poi_template_contactus_thanks">
+
+        <xpath expr="//div[hasclass('container')]" position="inside">
+            <section class="oe_structure oe_empty"/>
+            <section id="message_section" class="mt32 oe_structure">
+                <h1>Thank you!</h1>
+            </section>
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="alert alert-success">
+                        Your message has been sent correctly.
+                        <button type="button" class="close" data-dismiss="alert">&amp;times;</button>
+                    </div>
+                    <section id="response_section" class="mt32 oe_structure">
+                        <p>We will reply shortly.</p>
+                        <p>If you have an emergency, do not hesitate to contact us:</p>
+                    </section>
+                    <ul class="list-unstyled">
+                        <li><i class="fa fa-phone"/> <span t-field="res_company.phone"/></li>
+                        <li><i class="fa fa-envelope"/> <span t-field="website.email"/></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <!-- Right bar -->
+                    <section class="oe_structure oe_empty"/>
+                </div>
+            </div>
+            <section class="oe_structure oe_empty"/>
+        </xpath>
+
+    </template>
+</odoo>
