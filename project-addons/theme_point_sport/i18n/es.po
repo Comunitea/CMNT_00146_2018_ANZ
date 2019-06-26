@@ -922,3 +922,34 @@ msgstr "¿Dónde encontrar tu Tienda de deportes, ropa deportiva, zapatillas dep
 msgid "About Shopping"
 msgstr "Comprar"
 
+#. module: theme_point_sport
+#: model:ir.ui.view,arch_db:theme_point_sport.poi_template_our_group_content_template
+msgid "<strong>Anzamar S.L.</strong> is a company dedicated to the distribution of sporting goods since 1986. Our main objective has been to supply all the necessary products for the execution of sports practice in any establishment. We currently have more than 12,500 references providing this being one of the references in the sports market Nacional.es is a company dedicated to the distribution of sporting goods since 1986. Our main objective has been to supply all the necessary products for the execution of sports practice in any establishment. We currently have more than 12,500 references providing this being one of the references in the national sports market."
+msgstr "<strong>Anzamar S.L.</strong> es una empresa dedicada a la distribución de artículos deportivos desde el año 1986. Nuestro principal objetivo ha sido surtir de todos los productos necesarios para la ejecución de la práctica deportiva en cualquier establecimiento. Actualmente contamos con más de 12.500 referencias proporcionándonos esto ser uno de los referentes en el mercado deportivo Nacional."
+
+#. module: theme_point_sport
+#: model:ir.ui.view,arch_db:theme_point_sport.poi_template_our_group_content_template
+msgid "Anzamar Group"
+msgstr "Grupo Anzamar"
+
+#. module: theme_point_sport
+#: model:ir.ui.view,arch_db:theme_point_sport.poi_contact_us_content_template
+#: model:ir.ui.view,arch_db:theme_point_sport.poi_template_our_group_content_template
+#: model:ir.ui.view,arch_db:theme_point_sport.poi_website_footer_custom
+msgid "The Company"
+msgstr "La empresa"
+
+#. module: theme_point_sport
+#: model:ir.ui.view,arch_db:theme_point_sport.poi_template_our_group_content_template
+msgid "One of our basic principles in the purchasing group <strong>POINT SPORT</strong> is to make things easy, and for this we have negotiated the best conditions with more than 50 sports providers that will provide you with the most adequate product and with the best conditions necessary to carry out your favorite sport."
+msgstr "Uno de nuestros principios básicos en el grupo de compras <strong>POINT SPORT</strong> es hacer las cosas fáciles, y para ello tenemos negociadas las mejores condiciones con más de 50 proveedores deportivos que os proporcionará tener siempre el producto más adecuado y con las mejores condiciones necesarias para realizar vuestro deporte favorito."
+
+#. module: theme_point_sport
+#: model:ir.ui.view,arch_db:theme_point_sport.poi_template_our_group_content_template
+msgid "Our more than 20 years of experience as wholesalers gives us access to the best and most profitable brands in the national sports world, providing our clients with the highest quality advice. In 1999, the <strong> POINT SPORT </strong> Shopping Group was born, being one of the national reference groups according to the sports magazine CMD (Correo del Mercado Deportivo) which places us as the sixth National operator."
+msgstr "Nuestros más de 20 años de experiencia como mayoristas nos facilita el acceso a las mejores y más rentables marcas del mundo deportivo Nacional proporcionando a nuestros clientes un asesoramiento de maxima calidad. En el año 1999 nació el Grupo de Compras <strong> POINT SPORT </strong> siendo uno de los grupos de referencia a nivel Nacional según la revista deportiva CMD (Correo del Mercado Deportivo) que nos sitúa como el sexto operador Nacional."
+
+#. module: theme_point_sport
+#: model:ir.ui.view,arch_db:theme_point_sport.poi_template_our_group_content_template
+msgid "We currently have 132 establishments with 107 associates distributed in 112 cities throughout Spain."
+msgstr "Actualmente sumamos 132 establecimientos con 107 asociados distribuidos en 112 ciudades de toda España."

@@ -274,17 +274,7 @@
     <template id="poi_template_our_group" name="Our Shop Point Template" >
         <t t-call="website.layout">
             <div id="wrap">
-                <div class="container">
-                    <h1 class="text-center mb32">Empresa</h1>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <p><strong>Anzamar S.L.</strong> es una empresa dedicada a la distribución de artículos deportivos desde el año 1986. Nuestro principal objetivo ha sido surtir de todos los productos necesarios para la ejecución de la práctica deportiva en cualquier establecimiento. Actualmente contamos con más de 12.500 referencias proporcionándonos esto ser uno de los referentes en el mercado deportivo Nacional.</p>
-                            <p>Nuestros más de 20 años de experiencia como mayoristas nos facilita el acceso a las mejores y/o más rentables marcas del mundo deportivo Nacional proporcionando a nuestros clientes un asesoramiento de maxima calidad. En el año 1999 nació el Grupo de Compras <strong>POINT SPORT</strong>, siendo uno de los grupos de referencia a nivel Nacional según la revista deportiva CMD (Correo del Mercado Deportivo) que nos sitúa como el sexto operador Nacional.</p>
-                            <p>Uno de nuestros principios básicos en el grupo de compras <strong>POINT SPORT</strong> es hacer las cosas fáciles, y para ello tenemos negociadas las mejores condiciones con más de 50 proveedores deportivos que os proporcionará tener siempre el producto más adecuado y con las mejores condiciones necesarias para realizar vuestro deporte favorito.</p>
-                            <p>Actualmente sumamos 132 establecimientos con 107 asociados distribuidos en 112 ciudades de toda España.</p>
-                        </div>
-                    </div>
-                </div>
+                <div class="container"/>
             </div>
         </t>
     </template>

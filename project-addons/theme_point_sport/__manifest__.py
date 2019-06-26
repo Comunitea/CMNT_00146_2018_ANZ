@@ -68,6 +68,7 @@
         'templates/page_our_shops.xml',
         'templates/page_open_shop.xml',
         'templates/page_delivery_and_payment.xml',
+        'templates/page_our_group.xml',
         'templates/shop.xml',
         'templates/product.xml',
         'templates/account.xml',
