@@ -24,65 +24,7 @@
                 <p>Please, fill all fields</p>
             </section>
             <section id="request_section_form" class="mt32">
-                <form action="/website_form/" method="post" data-model_name="crm.lead" data-success_page="/contactus-thank-you" class="s_website_form form-horizontal mt32 mb32" enctype="multipart/form-data" data-editable-form="false">
-                    <input type="hidden" name="name" value="Nueva solicitud de apertura" />
-                    <div class="form-group form-field o_website_form_required_custom">
-                        <label class="col-md-3 col-sm-4 control-label" for="contact_name">Nombre y apellidos</label>
-                        <div class="col-md-7 col-sm-8">
-                            <input type="text" class="form-control o_website_form_input" name="contact_name" t-att-value="request.params.get('contact_name', '')" required=""/>
-                        </div>
-                    </div>
-                    <div class="form-group form-field o_website_form_required_custom">
-                        <label class="col-md-3 col-sm-4 control-label" for="phone">Teléfono</label>
-                        <div class="col-md-7 col-sm-8">
-                            <input type="text" class="form-control o_website_form_input" name="phone" t-att-value="request.params.get('phone', '')" required=""/>
-                        </div>
-                    </div>
-                    <div class="form-group form-field o_website_form_required_custom">
-                        <label class="col-md-3 col-sm-4 control-label" for="email_from">Email</label>
-                        <div class="col-md-7 col-sm-8">
-                            <input type="text" class="form-control o_website_form_input" name="email_from" required="" t-att-value="request.params.get('email_from', '')" />
-                        </div>
-                    </div>
-                    <div class="form-group form-field o_website_form_required_custom">
-                        <label class="col-md-3 col-sm-4 control-label" for="city">Ciudad</label>
-                        <div class="col-md-7 col-sm-8">
-                            <input type="text" class="form-control o_website_form_input" name="city" t-att-value="request.params.get('city', '')" required=""/>
-                        </div>
-                    </div>
-                    <div class="form-group form-field o_website_form_required_custom">
-                        <label class="col-md-3 col-sm-4 control-label" for="state">Provincia</label>
-                        <div class="col-md-7 col-sm-8">
-                            <input type="text" class="form-control o_website_form_input" name="state" t-att-value="request.params.get('state', '')" required=""/>
-                        </div>
-                    </div>
-                    <div class="form-group form-field o_website_form_required_custom">
-                        <label class="col-md-3 col-sm-4 control-label" for="country">País</label>
-                        <div class="col-md-7 col-sm-8">
-                            <input type="text" class="form-control o_website_form_input" name="country" t-att-value="request.params.get('country', '')" required=""/>
-                        </div>
-                    </div>
-                    <div class="form-group form-field o_website_form_required">
-                        <label class="col-md-3 col-sm-4 control-label" for="brand">Marca sobre la que desea información</label>
-                        <div class="col-md-7 col-sm-8">
-                            <input type="text" class="form-control o_website_form_input" name="brand" required="" t-att-value="request.params.get('brand', '')" />
-                        </div>
-                    </div>
-                    <div class="form-group form-field o_website_form_required_custom">
-                        <label class="col-md-3 col-sm-4 control-label" for="description">Escribe tu consulta</label>
-                        <div class="col-md-7 col-sm-8">
-                            <textarea class="form-control o_website_form_input" name="description" required=""><t t-esc="request.params.get('description', '')"/></textarea>
-                        </div>
-                    </div>
-                    <t t-call="theme_point_sport.google_recaptcha_contact_form"/>
-                    <t t-call="theme_point_sport.privacy_policy_contact_form"/>
-                    <div class="form-group">
-                        <div class="col-md-offset-3 col-sm-offset-4 col-sm-8 col-md-7">
-                            <span class="btn btn-primary btn-lg o_website_form_send">Enviar</span>
-                            <span id="o_website_form_result"/>
-                        </div>
-                    </div>
-                </form>
+                <t t-call="theme_point_sport.work_contact_form"/>
             </section>
             <section class="oe_structure oe_empty"/>
         </xpath>

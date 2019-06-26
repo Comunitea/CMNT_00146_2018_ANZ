@@ -562,7 +562,7 @@ msgstr "de este Sitio Web."
 #. module: theme_point_sport
 #: model:ir.ui.view,arch_db:theme_point_sport.google_recaptcha_contact_form
 msgid "Is human?"
-msgstr "¿Eres humano?"
+msgstr "¿Es humano?"
 
 #. module: theme_point_sport
 #: model:ir.ui.view,arch_db:theme_point_sport.default_contact_form
@@ -865,7 +865,7 @@ msgstr "Asunto"
 #. module: theme_point_sport
 #: model:ir.ui.view,arch_db:theme_point_sport.google_recaptcha_contact_form
 msgid "Is human?"
-msgstr "¿Eres humano?"
+msgstr "¿Es humano?"
 
 #. module: theme_point_sport
 #: model:ir.ui.view,arch_db:theme_point_sport.poi_our_shops_content_template
@@ -953,3 +953,56 @@ msgstr "Nuestros más de 20 años de experiencia como mayoristas nos facilita el
 #: model:ir.ui.view,arch_db:theme_point_sport.poi_template_our_group_content_template
 msgid "We currently have 132 establishments with 107 associates distributed in 112 cities throughout Spain."
 msgstr "Actualmente sumamos 132 establecimientos con 107 asociados distribuidos en 112 ciudades de toda España."
+
+#. module: theme_point_sport
+#: model:ir.ui.view,arch_db:theme_point_sport.default_contact_form
+#: model:ir.ui.view,arch_db:theme_point_sport.work_contact_form
+msgid "<span class=\"btn btn-primary btn-lg o_website_form_send\">Send</span>\n"
+"                    <span id=\"o_website_form_result\"/>"
+msgstr "<span class=\"btn btn-primary btn-lg o_website_form_send\">Enviar</span>\n"
+"                    <span id=\"o_website_form_result\"/>"
+
+#. module: theme_point_sport
+#: model:ir.ui.view,arch_db:theme_point_sport.work_contact_form
+msgid "City"
+msgstr "Ciudad"
+
+#. module: theme_point_sport
+#: model:ir.ui.view,arch_db:theme_point_sport.work_contact_form
+msgid "Country"
+msgstr "País"
+
+#. module: theme_point_sport
+#: model:ir.ui.view,arch_db:theme_point_sport.default_contact_form
+#: model:ir.ui.view,arch_db:theme_point_sport.poi_contact_us_content_template
+#: model:ir.ui.view,arch_db:theme_point_sport.poi_work_with_us_content_template
+#: model:ir.ui.view,arch_db:theme_point_sport.work_contact_form
+msgid "Email"
+msgstr "Correo electrónico"
+
+#. module: theme_point_sport
+#: model:ir.ui.view,arch_db:theme_point_sport.work_contact_form
+msgid "Mark you want information about"
+msgstr "Marca sobre la que desea información."
+
+#. module: theme_point_sport
+#: model:ir.ui.view,arch_db:theme_point_sport.poi_contact_us_content_template
+#: model:ir.ui.view,arch_db:theme_point_sport.work_contact_form
+msgid "Phone"
+msgstr "Teléfono"
+
+#. module: theme_point_sport
+#: model:ir.ui.view,arch_db:theme_point_sport.work_contact_form
+msgid "State"
+msgstr "Provincia"
+
+#. module: theme_point_sport
+#: model:ir.ui.view,arch_db:theme_point_sport.work_contact_form
+msgid "Write your question"
+msgstr "Escriba tu consulta"
+
+#. module: theme_point_sport
+#: model:ir.ui.view,arch_db:theme_point_sport.default_contact_form
+#: model:ir.ui.view,arch_db:theme_point_sport.work_contact_form
+msgid "Your name"
+msgstr "Su nombre completo"
