@@ -151,6 +151,7 @@
     <template id="website_sale_products" inherit_id="website_sale.products" name="Products grid">
         <xpath expr="//div[@id='products_grid']/table" position="before">
             <t t-set="labels" t-value="website.get_filter_labels()"/>
+            <span t-esc="Filters" class="label label-primary"/>
             <div class="filter-labels mb16" t-if="len(labels) &gt; 0 or category">
                 <t t-foreach="labels" t-as="label">
                     <span t-esc="label" class="label label-primary"/>
