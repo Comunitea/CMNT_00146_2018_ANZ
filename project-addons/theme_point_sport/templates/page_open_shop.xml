@@ -24,7 +24,7 @@
                 <p>Please, fill all fields</p>
             </section>
             <section id="request_section_form" class="mt32">
-                <t t-call="theme_point_sport.work_contact_form"/>
+                <t t-call="theme_point_sport.open_shop_contact_form"/>
             </section>
             <section class="oe_structure oe_empty"/>
         </xpath>

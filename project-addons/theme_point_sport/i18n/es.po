@@ -47,21 +47,17 @@ msgstr "Formulario"
 
 #. module: theme_point_sport
 #: model:ir.ui.view,arch_db:theme_point_sport.poi_work_with_us_content_template
-msgid "Your Name"
-msgstr "Su Nombre"
+msgid "Name"
+msgstr "Nombre"
 
 #. module: theme_point_sport
 #: model:ir.ui.view,arch_db:theme_point_sport.poi_work_with_us_content_template
-msgid "Your Company"
-msgstr "Su Compañía"
+msgid "Company"
+msgstr "Compañía"
 
 #. module: theme_point_sport
 #: model:ir.ui.view,arch_db:theme_point_sport.poi_work_with_us_content_template
-msgid "Your Question"
-msgstr "Su Pregunta"
-
-#. module: theme_point_sport
-#: model:ir.ui.view,arch_db:theme_point_sport.poi_work_with_us_content_template
+#: model:ir.ui.view,arch_db:theme_point_sport.default_send_forms
 msgid "<span class=\"btn btn-primary btn-lg o_website_form_send\">Send</span>\n"
 "                                <span id=\"o_website_form_result\"/>"
 msgstr "<span class=\"btn btn-primary btn-lg o_website_form_send\">Enviar</span>\n"
@@ -566,6 +562,7 @@ msgstr "¿Es humano?"
 
 #. module: theme_point_sport
 #: model:ir.ui.view,arch_db:theme_point_sport.default_contact_form
+#: model:ir.ui.view,arch_db:theme_point_sport.default_send_forms
 msgid "<span class=\"btn btn-primary btn-lg o_website_form_send\">Send</span>\n"
 "                    <span id=\"o_website_form_result\"/>"
 msgstr "<span class=\"btn btn-primary btn-lg o_website_form_send\">Enviar</span>\n"
@@ -801,6 +798,7 @@ msgstr "Nosotros le otorgaremos toda la logística necesaria,con una imagen visu
 
 #. module: theme_point_sport
 #: model:ir.ui.view,arch_db:theme_point_sport.poi_open_shop_content_template
+#: model:ir.ui.view,arch_db:theme_point_sport.default_send_forms
 msgid "<span class=\"btn btn-primary btn-lg o_website_form_send\">Send</span>\n"
 "                            <span id=\"o_website_form_result\"/>"
 msgstr "<span class=\"btn btn-primary btn-lg o_website_form_send\">Enviar</span>\n"
@@ -956,19 +954,22 @@ msgstr "Actualmente sumamos 132 establecimientos con 107 asociados distribuidos 
 
 #. module: theme_point_sport
 #: model:ir.ui.view,arch_db:theme_point_sport.default_contact_form
-#: model:ir.ui.view,arch_db:theme_point_sport.work_contact_form
+#: model:ir.ui.view,arch_db:theme_point_sport.open_shop_contact_form
+#: model:ir.ui.view,arch_db:theme_point_sport.default_send_forms
 msgid "<span class=\"btn btn-primary btn-lg o_website_form_send\">Send</span>\n"
 "                    <span id=\"o_website_form_result\"/>"
 msgstr "<span class=\"btn btn-primary btn-lg o_website_form_send\">Enviar</span>\n"
 "                    <span id=\"o_website_form_result\"/>"
 
 #. module: theme_point_sport
-#: model:ir.ui.view,arch_db:theme_point_sport.work_contact_form
+#: model:ir.ui.view,arch_db:theme_point_sport.open_shop_contact_form
+#: model:ir.ui.view,arch_db:theme_point_sport.default_fields_forms
 msgid "City"
 msgstr "Ciudad"
 
 #. module: theme_point_sport
-#: model:ir.ui.view,arch_db:theme_point_sport.work_contact_form
+#: model:ir.ui.view,arch_db:theme_point_sport.open_shop_contact_form
+#: model:ir.ui.view,arch_db:theme_point_sport.default_fields_forms
 msgid "Country"
 msgstr "País"
 
@@ -976,33 +977,48 @@ msgstr "País"
 #: model:ir.ui.view,arch_db:theme_point_sport.default_contact_form
 #: model:ir.ui.view,arch_db:theme_point_sport.poi_contact_us_content_template
 #: model:ir.ui.view,arch_db:theme_point_sport.poi_work_with_us_content_template
-#: model:ir.ui.view,arch_db:theme_point_sport.work_contact_form
+#: model:ir.ui.view,arch_db:theme_point_sport.open_shop_contact_form
+#: model:ir.ui.view,arch_db:theme_point_sport.default_fields_forms
 msgid "Email"
 msgstr "Correo electrónico"
 
 #. module: theme_point_sport
-#: model:ir.ui.view,arch_db:theme_point_sport.work_contact_form
-msgid "Mark you want information about"
+#: model:ir.ui.view,arch_db:theme_point_sport.open_shop_contact_form
+msgid "Brand you want information about"
 msgstr "Marca sobre la que desea información."
 
 #. module: theme_point_sport
 #: model:ir.ui.view,arch_db:theme_point_sport.poi_contact_us_content_template
-#: model:ir.ui.view,arch_db:theme_point_sport.work_contact_form
+#: model:ir.ui.view,arch_db:theme_point_sport.open_shop_contact_form
+#: model:ir.ui.view,arch_db:theme_point_sport.default_contact_form
+#: model:ir.ui.view,arch_db:theme_point_sport.default_fields_forms
 msgid "Phone"
 msgstr "Teléfono"
 
 #. module: theme_point_sport
-#: model:ir.ui.view,arch_db:theme_point_sport.work_contact_form
+#: model:ir.ui.view,arch_db:theme_point_sport.open_shop_contact_form
 msgid "State"
 msgstr "Provincia"
 
 #. module: theme_point_sport
-#: model:ir.ui.view,arch_db:theme_point_sport.work_contact_form
-msgid "Write your question"
-msgstr "Escriba tu consulta"
+#: model:ir.ui.view,arch_db:theme_point_sport.open_shop_contact_form
+#: model:ir.ui.view,arch_db:theme_point_sport.default_contact_form
+#: model:ir.ui.view,arch_db:theme_point_sport.default_fields_forms
+msgid "Question"
+msgstr "Consulta"
+
+#. module: theme_point_sport
+#: model:ir.ui.view,arch_db:theme_point_sport.open_shop_contact_form
+msgid "Name"
+msgstr "Nombre completo"
 
 #. module: theme_point_sport
 #: model:ir.ui.view,arch_db:theme_point_sport.default_contact_form
-#: model:ir.ui.view,arch_db:theme_point_sport.work_contact_form
-msgid "Your name"
-msgstr "Su nombre completo"
+#: model:ir.ui.view,arch_db:theme_point_sport.default_fields_forms
+msgid "Name"
+msgstr "Nombre"
+
+#. module: theme_point_sport
+#: model:ir.ui.view,arch_db:theme_point_sport.default_file_forms
+msgid "Attach CV"
+msgstr "Adjuntar CV"
