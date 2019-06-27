@@ -52,13 +52,15 @@ class ProductTemplate(models.Model):
         inventory_availability = self.inventory_availability or website.inventory_availability
         if inventory_availability in swp_fields:
             stock_website_published = True
-            
+
         else:
             ctx.update(warehouse_id=website.warehouse.id)
             stock_website_published = self.with_context().qty_available > 0
 
-        vals = {'product_id': self.id, 'website_id': website.id,
+        vals = {'product_id': self.id,
+                'website_id': website.id,
                 'stock_website_published': stock_website_published}
+
         domain = [('product_id', '=', self.id), ('website_id', '=', website.id)]
         tsw_id = self.env['template.stock.web'].search(domain)
         if tsw_id:

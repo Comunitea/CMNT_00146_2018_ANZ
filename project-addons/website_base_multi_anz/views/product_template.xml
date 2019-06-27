@@ -25,9 +25,9 @@
                 </attribute>
             </field>
             <field name="available_threshold" position="after">
-                <field name="visibility_stock_web">
+                <field name="visibility_stock_web" groups="website.group_website_publisher">
                     <tree editable="bottom" >
-                        <field name="website_id"/>
+                        <field name="website_id" />
                         <field name="stock_website_published" groups="website.group_website_publisher"/>
                     </tree>
                 </field>
