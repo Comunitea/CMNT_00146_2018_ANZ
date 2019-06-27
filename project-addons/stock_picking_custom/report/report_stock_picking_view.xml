@@ -40,22 +40,22 @@
                     </th>
                     <!--th width="0%">Quantity</th-->
                     <th width="15%" class="text-center">
-                        <t align="right">Demanda</t>
+                        <t >Demanda</t>
                     </th>
-                    <th width="15%">
-                        <t align="right">Reservada</t>
+                    <th width="15%" class="text-center">
+                        <t >Reservada</t>
                     </th>
-                    <th width="15%">
-                        <t align="right">Hecha</t>
+                    <th width="15%" class="text-center">
+                        <t>Hecha</t>
                     </th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
                     <td></td>
-                    <td class="text-right"><span t-field="o.product_uom_qty"/></td>
-                    <td class="text-right"><span t-field="o.reserved_availability"/></td>
-                    <td class="text-right"><span t-field="o.quantity_done"/></td>
+                    <td class="text-center"><span t-field="o.product_uom_qty"/></td>
+                    <td class="text-center"><span t-field="o.reserved_availability"/></td>
+                    <td class="text-center"><span t-field="o.quantity_done"/></td>
                 </tr>
             </tbody>
         </table>

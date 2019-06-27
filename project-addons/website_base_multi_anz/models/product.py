@@ -52,6 +52,7 @@ class ProductTemplate(models.Model):
         inventory_availability = self.inventory_availability or website.inventory_availability
         if inventory_availability in swp_fields:
             stock_website_published = True
+            
         else:
             ctx.update(warehouse_id=website.warehouse.id)
             stock_website_published = self.with_context().qty_available > 0
@@ -64,6 +65,20 @@ class ProductTemplate(models.Model):
             tsw_id.stock_website_published = stock_website_published
         else:
             self.env['template.stock.web'].create(vals)
+
+
+    @api.multi
+    def multi_act_stock_published(self):
+
+        cont = 0
+        template_ids = self.filtered(lambda x: x.website_published)
+        tot = len(template_ids)
+        for template in template_ids:
+            cont += 1
+            _logger.info('{}: {} de {}: {}'.format('Update Website Visibility by Stock', cont, tot, template.name))
+            websites = template.website_ids or self.env['website'].search([])
+            for website in websites:
+                template.create_tsw(website)
 
     @api.model
     def act_stock_published(self):
