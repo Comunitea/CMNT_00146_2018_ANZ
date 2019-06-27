@@ -1,13 +1,13 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#       * custom_documents
+#	* custom_documents
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-01-03 23:03+0000\n"
-"PO-Revision-Date: 2019-01-03 23:03+0000\n"
+"POT-Creation-Date: 2019-06-24 07:24+0000\n"
+"PO-Revision-Date: 2019-06-24 07:24+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -103,19 +103,19 @@ msgid "Invoice"
 msgstr "Factura"
 
 #. module: custom_documents
-#: model:ir.model,name:custom_documents.model_account_invoice
-msgid "Invoice:"
-msgstr "Factura:"
-
-#. module: custom_documents
 #: model:ir.model,name:custom_documents.model_account_invoice_line
 msgid "Invoice Line"
-msgstr "Linea de la Factura"
+msgstr "Línea de factura"
 
 #. module: custom_documents
 #: model:ir.ui.view,arch_db:custom_documents.report_invoice_document_custom
 msgid "Invoice date:"
 msgstr "Fecha de factura:"
+
+#. module: custom_documents
+#: model:ir.ui.view,arch_db:custom_documents.report_invoice_document_custom
+msgid "Invoice:"
+msgstr "Invoice:"
 
 #. module: custom_documents
 #: model:ir.ui.view,arch_db:custom_documents.report_invoice_document_custom
@@ -130,7 +130,7 @@ msgstr "Unidad operacional"
 #. module: custom_documents
 #: model:ir.model.fields,field_description:custom_documents.field_account_invoice_line_template_order_id
 msgid "Order"
-msgstr "Pedido"
+msgstr "Pedir"
 
 #. module: custom_documents
 #: model:ir.model.fields,field_description:custom_documents.field_account_invoice_line_order_id
@@ -166,6 +166,12 @@ msgstr "Producto"
 #: model:ir.model,name:custom_documents.model_product_template
 msgid "Product Template"
 msgstr "Plantilla de producto"
+
+#. module: custom_documents
+#: model:ir.actions.act_window,name:custom_documents.view_purchase_line_action
+#: model:ir.ui.menu,name:custom_documents.purchase_line_menu
+msgid "Purchase order lines"
+msgstr "Purchase order lines"
 
 #. module: custom_documents
 #: model:ir.ui.view,arch_db:custom_documents.report_invoice_document_custom
@@ -229,3 +235,64 @@ msgstr "Peso"
 #: model:ir.model,name:custom_documents.model_account_invoice_line_template
 msgid "account.invoice.line.template"
 msgstr "account.invoice.line.template"
+
+#. module: custom_documents
+#: model:ir.ui.view,name:custom_documents.contact
+msgid "contact"
+msgstr "contact"
+
+#. module: custom_documents
+#: model:ir.ui.view,name:custom_documents.contact_name
+msgid "contact_name"
+msgstr "contact_name"
+
+#. module: custom_documents
+#: model:ir.ui.view,name:custom_documents.external_layout_custom
+msgid "external_layout_custom"
+msgstr "external_layout_custom"
+
+#. module: custom_documents
+#: model:ir.ui.view,name:custom_documents.external_layout_standard_custom
+msgid "external_layout_standard_custom"
+msgstr "external_layout_standard_custom"
+
+#. module: custom_documents
+#: model:ir.ui.view,name:custom_documents.report_assets_comon
+msgid "report_assets_comon"
+msgstr "report_assets_comon"
+
+#. module: custom_documents
+#: model:ir.ui.view,name:custom_documents.report_invoice_custom
+msgid "report_invoice_custom"
+msgstr "report_invoice_custom"
+
+#. module: custom_documents
+#: model:ir.ui.view,name:custom_documents.report_invoice_document_custom
+msgid "report_invoice_document_custom"
+msgstr "report_invoice_document_custom"
+
+#. module: custom_documents
+#: model:ir.ui.view,name:custom_documents.report_invoice_payment_mode
+msgid "report_invoice_payment_mode"
+msgstr "report_invoice_payment_mode"
+
+#. module: custom_documents
+#: model:ir.ui.view,name:custom_documents.report_invoice_with_payments_custom
+msgid "report_invoice_with_payments_custom"
+msgstr "report_invoice_with_payments_custom"
+
+#. module: custom_documents
+#: model:ir.ui.view,name:custom_documents.report_sale_order_custom
+msgid "report_sale_order_custom"
+msgstr "report_sale_order_custom"
+
+#. module: custom_documents
+#: model:ir.ui.view,name:custom_documents.report_saleorder_with_images
+msgid "report_saleorder_with_images"
+msgstr "report_saleorder_with_images"
+
+#. module: custom_documents
+#: model:ir.ui.view,name:custom_documents.view_company_form
+msgid "res.company.inherit.view.form"
+msgstr "res.company.inherit.view.form"
+

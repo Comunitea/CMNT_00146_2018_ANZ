@@ -21,6 +21,8 @@ class ExportCatalogXlsParser(models.AbstractModel):
         buffer = BytesIO()
         factor = max(image.size) / 200
         new_size = int(image.size[0] / factor), int(image.size[1] / factor)
+        if image.mode == "CMYK":
+            image = image.convert("RGB")
         image.resize((new_size), Image.ANTIALIAS)
         ##image.thumbnail(size, Image.ANTIALIAS)
         image.save(buffer, format='png')
