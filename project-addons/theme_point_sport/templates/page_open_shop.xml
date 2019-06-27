@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
 
-    <template id="anz_open_shop_content_template" name="open Shop Anzamar Content Template" inherit_id="theme_anzamar.page_open_shop">
-
-        <xpath expr="//div[hasclass('container')]" position="before">
-            <t t-call="theme_anzamar.carousel_homepage"/>
-        </xpath>
+    <template id="poi_open_shop_content_template" name="Open Shop Point Content Template" inherit_id="theme_point_sport.poi_template_open_shop">
 
         <xpath expr="//div[hasclass('container')]" position="inside">
             <section class="oe_structure oe_empty"/>
@@ -28,10 +24,10 @@
                 <p>Please, fill all fields</p>
             </section>
             <section id="request_section_form" class="mt32">
-                <t t-call="theme_anzamar.open_shop_contact_form"/>
+                <t t-call="theme_point_sport.open_shop_contact_form"/>
             </section>
             <section class="oe_structure oe_empty"/>
         </xpath>
-    </template>
 
+    </template>
 </odoo>

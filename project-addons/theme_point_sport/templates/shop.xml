@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
 
-    <template id="only_logged_in_users_advise" name="Access Page Advice Anzamar Snippet">
+    <template id="only_logged_in_users_advise" name="Access Page Advice Point Snippet">
         <div class="container">
             <div class="col-md-12 text-center">
                 <div class="mt32 mb32">
                     <h2 class="mb32">You do not have access to this page</h2>
-                    <p class="mb32">Need to <a href="/web/login">Log In</a> how a retailer user</p>
+                    <p class="mb32">You need to <a href="/web/login">Log In</a> to see the content</p>
                     <div>
                         <a href="/" class="btn btn-warning btn-large">Start page</a>
                         <a href="/web/login" class="btn btn-success btn-large">Log In</a>
@@ -17,100 +17,83 @@
         </div>
     </template>
 
-    <!-- Shop/category page template -->
-    <template id="website_sale_products" name="Products Point Content Template" inherit_id="website_sale.products">
-        <!-- User access control -->
-        <xpath expr="//div[@id='wrap']" position="before">
-            <t t-set="user_access" t-value="website.user_access()"/>
-        </xpath>
-        <xpath expr="//div[hasclass('oe_website_sale')]" position="attributes">
-            <attribute name="t-if">user_access == True</attribute>
-        </xpath>
-        <xpath expr="//div[hasclass('oe_website_sale')]" position="after">
-            <t t-if="user_access == False" t-call="theme_point_sport.only_logged_in_users_advise"/>
-        </xpath>
-    </template>
-
-    <!-- Brand page template -->
-    <template id="website_sale_product_brand_product_brands" name="Brands Point Content Template" inherit_id="website_sale_product_brand.product_brands">
-        <!-- User access control -->
-        <xpath expr="//div[hasclass('container')]" position="before">
-            <t t-set="user_access" t-value="website.user_access()"/>
-        </xpath>
-        <xpath expr="//div[hasclass('container')]" position="attributes">
-            <attribute name="t-if">user_access == True</attribute>
-        </xpath>
-        <xpath expr="//div[hasclass('container')]" position="after">
-            <t t-if="user_access == False" t-call="theme_point_sport.only_logged_in_users_advise"/>
-        </xpath>
-    </template>
-
     <!-- Shop categories template -->
     <template id="website_sale_products_categories" name="eCommerce categories Point Sport" inherit_id="website_multi_theme.auto_view_poi_website_sale_products_categories">
         <xpath expr="//div[@id='products_grid_before']/ul" position="replace">
-            <h4 class="mt0 text-uppercase">Product categories</h4>
-            <ul class="nav nav-pills nav-stacked mt16" id="o_shop_collapse_category">
-                <li t-att-class="'active' if not (category or request.params.get('search')) else None">
-                    <a href="/shop" class="o_not_editable">All Products</a>
-                </li>
-                <t t-foreach="categories" t-as="categ">
-                    <t t-call="website_sale.option_collapse_categories_recursive" />
-                </t>
-            </ul>
-        </xpath>
-        <xpath expr="//div[@id='products_grid_before']/ul" position="after">
-            <div class="wp-attribute-filters mt32 mb32">
-                <h4 class="mt0 text-uppercase">Filters</h4>
-                <t t-set="current_filter" t-value="request.httprequest.args"/>
-                <form id="product-attributes-filter" method="get">
-                    <div>
-                        <h5>Brand</h5>
-                        <select name="brand" class="form-control">
-                            <option value="0"/>
-                            <t t-foreach="website.product_brand_list()" t-as="option">
-                                <option t-att-value="option.id" t-att-selected="option.id == int(current_filter.get('brand', False))" t-esc="option.name"/>
-                            </t>
-                        </select>
-                    </div>
-                    <!--<div>
-                        <h5>Product type</h5>
-                        <select name="type" class="form-control">
-                            <option value="0"/>
-                            <t t-foreach="request.env['product.attribute.tag'].sudo().search([('type', '=', 'type')], order='value').filtered(lambda x: x.lines_count != 0)" t-as="option">
-                                <option t-att-value="option.id" t-att-selected="option.id == int(current_filter.get('type', False))" t-esc="option.value"/>
-                            </t>
-                        </select>
-                    </div>-->
-                    <div>
-                        <h5>Gender</h5>
-                        <select name="gender" class="form-control">
-                            <option value="0"/>
-                            <t t-foreach="website.product_gender_list()" t-as="option">
-                                <option t-att-value="option" t-att-selected="option == current_filter.get('gender', False)" t-esc="option"/>
-                            </t>
-                        </select>
-                    </div>
-                    <div>
-                        <h5>Age</h5>
-                        <select name="age" class="form-control">
-                            <option value="0"/>
-                            <t t-foreach="website.product_age_list()" t-as="option">
-                                <option t-att-value="option" t-att-selected="option == current_filter.get('age', False)" t-esc="option"/>
-                            </t>
-                        </select>
-                    </div>
-                    <!--<div t-if="category">
-                        <h4>Size</h4>
-                        <label>
-                            <input type="checkbox" name="size" value="xs"/>
-                            <span>XS</span>
-                        </label>
-                    </div>-->
-                    <div class="mt16 text-center">
-                        <button class="btn btn-primary">Apply filters</button>
-                        <a class="btn btn-default" t-att-href="request.httprequest.path">Reset</a>
-                    </div>
-                </form>
+            <div class="navbar filters-navbar hidden-md hidden-sm hidden-lg">
+                <div class="navbar-header">
+                    <h4 class="mt16 text-uppercase">Filters and categories</h4>
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#wrap-collapse-filters">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"/>
+                        <span class="icon-bar"/>
+                        <span class="icon-bar"/>
+                    </button>
+                </div>
+            </div>
+            <div class="collapse navbar-collapse" id="wrap-collapse-filters">
+                <h4 class="mt0 text-uppercase hidden-xs mb16">Product categories</h4>
+                <ul class="nav nav-pills nav-stacked" id="o_shop_collapse_category">
+                    <li t-att-class="'active' if not (category or request.params.get('search')) else None">
+                        <a href="/shop" class="o_not_editable">All Products</a>
+                    </li>
+                    <t t-foreach="categories" t-as="categ">
+                        <t t-call="website_sale.option_collapse_categories_recursive" />
+                    </t>
+                </ul>
+                <div class="wp-attribute-filters mt32 mb32">
+                    <h4 class="mt0 text-uppercase hidden-xs">Filters</h4>
+                    <t t-set="current_filter" t-value="request.httprequest.args"/>
+                    <form id="product-attributes-filter" method="get">
+                        <div>
+                            <h5>Brand</h5>
+                            <select name="brand" class="form-control">
+                                <option value="0"/>
+                                <t t-foreach="website.product_brand_list()" t-as="option">
+                                    <option t-att-value="option.id" t-att-selected="option.id == int(current_filter.get('brand', False))" t-esc="option.name"/>
+                                </t>
+                            </select>
+                        </div>
+                        <!--<div>
+                            <h5>Product type</h5>
+                            <select name="type" class="form-control">
+                                <option value="0"/>
+                                <t t-foreach="request.env['product.attribute.tag'].sudo().search([('type', '=', 'type')], order='value').filtered(lambda x: x.lines_count != 0)" t-as="option">
+                                    <option t-att-value="option.id" t-att-selected="option.id == int(current_filter.get('type', False))" t-esc="option.value"/>
+                                </t>
+                            </select>
+                        </div>-->
+                        <div>
+                            <h5>Gender</h5>
+                            <select name="gender" class="form-control">
+                                <option value="0"/>
+                                <t t-foreach="website.product_gender_list()" t-as="option">
+                                    <option t-att-value="option" t-att-selected="option == current_filter.get('gender', False)" t-esc="option"/>
+                                </t>
+                            </select>
+                        </div>
+                        <div>
+                            <h5>Age</h5>
+                            <select name="age" class="form-control">
+                                <option value="0"/>
+                                <t t-foreach="website.product_age_list()" t-as="option">
+                                    <option t-att-value="option" t-att-selected="option == current_filter.get('age', False)" t-esc="option"/>
+                                </t>
+                            </select>
+                        </div>
+                        <!--<div t-if="category">
+                            <h4>Size</h4>
+                            <label>
+                                <input type="checkbox" name="size" value="xs"/>
+                                <span>XS</span>
+                            </label>
+                        </div>-->
+                        <div class="mt16 text-center">
+                            <button class="btn btn-primary">Apply filters</button>
+                            <a class="btn btn-default" t-att-href="request.httprequest.path">Reset</a>
+                        </div>
+                    </form>
+                </div>
             </div>
         </xpath>
     </template>
@@ -162,6 +145,20 @@
         </xpath>
         <xpath expr="//input[@type='text'][hasclass('quantity')]" position="attributes">
             <attribute name="t-att-data-max">((qty - variant.available_threshold) if variant.inventory_availability in ('threshold', 'threshold_virtual') else qty) if stock_control else None</attribute>
+        </xpath>
+    </template>
+
+    <template id="website_sale_products" inherit_id="website_sale.products" name="Products grid">
+        <xpath expr="//div[@id='products_grid']/table" position="before">
+            <t t-set="labels" t-value="website.get_filter_labels()"/>
+            <span t-esc="Filters" class="label label-primary"/>
+            <div class="filter-labels mb16" t-if="len(labels) &gt; 0 or category">
+                <t t-foreach="labels" t-as="label">
+                    <span t-esc="label" class="label label-primary"/>
+                </t>
+                <span t-if="category" t-esc="category.name" class="label label-primary"/>
+                <a href="/shop" class="label label-danger">Delete all</a>
+            </div>
         </xpath>
     </template>
 

@@ -44,3 +44,55 @@
         font-size: 18px;
     }
 }
+.filters-navbar {
+    margin-bottom: 0;
+    & h4 {
+        display: inline-block;
+    }
+    & .navbar-header {
+        & .navbar-toggle {
+            background-color: @color-dark;
+            & .icon-bar {
+                background-color: @white;
+            }
+        }
+    }
+}
+#products_grid_before {
+    z-index: 90;
+    margin-bottom: 20px;
+}
+#products_grid {
+    z-index: 50;
+}
+.filter-labels {
+    & .label {
+        font-size: 90%;
+        font-weight: 400;
+        color: @label-text;
+        border: @label-border;
+        background-color: @label-color;
+        &.label-danger {
+            background-color: @label-danger-color;
+            color: @label-danger-text;
+        }
+    }
+}
+.oe_cart {
+    & .wizard {
+        & a.text-success {
+            color: @color-dark;
+            &:hover {
+                color: @color-light;
+            }
+        }
+        & li.text-primary {
+            background: #fbfbfb;
+            font-weight: 600;
+            color: @color-text;
+            & .chevron:before {
+                border-left: 10px solid #fbfbfb;
+            }
+        }
+    }
+}

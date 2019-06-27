@@ -309,3 +309,8 @@ msgstr "Registrarse"
 #: model:ir.ui.view,name:auth_signup.reset_password
 msgid "Reset password"
 msgstr "Restablecer Contraseña"
+
+#. module: website_blog
+#: model:ir.ui.view,name:website_blog.latest_blogs
+msgid "Reset password"
+msgstr "Últimas Publicaciones"

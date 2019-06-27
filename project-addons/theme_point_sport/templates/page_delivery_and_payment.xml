@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <template id="poi_delivery_and_payment_content_template" name="Delivery and Payment Point Content Template" inherit_id="theme_point_sport.poi_template_delivery_and_payment">
+
+        <xpath expr="//div[hasclass('container')]" position="inside">
+            <section class="oe_structure oe_empty"/>
+            <div class="row">
+                <div class="col-md-12">
+                    <h1>Delivery</h1>
+                </div>
+                <div class="col-md-12">
+                    <p>...</p>
+                </div>
+            </div>
+            <section class="oe_structure oe_empty"/>
+            <div class="row">
+                <div class="col-md-12">
+                    <h1>Payment</h1>
+                </div>
+                <div class="col-md-12">
+                    <p>...</p>
+                </div>
+            </div>
+            <section class="oe_structure oe_empty"/>
+        </xpath>
+
+    </template>
+</odoo>

@@ -2,7 +2,7 @@
 <odoo>
 
     <!-- Accept terms of use -->
-    <template id="privacy_policy_contact_form" name="Full Legal Terms Anzamar Snippet">
+    <template id="privacy_policy_contact_form" name="Full Legal Terms Point Snippet">
         <div class="form-group form-field o_website_form_required" t-if="website.env.user == request.website.user_id">
             <div class="col-md-7 col-md-offset-3 col-sm-8 col-sm-offset-4">
                 <div class="checkbox">
@@ -16,7 +16,7 @@
     </template>
 
     <!-- Google recaptcha -->
-    <template id="google_recaptcha_contact_form" name="Recaptcha Anzamar Snippet">
+    <template id="google_recaptcha_contact_form" name="Recaptcha Point Snippet">
         <div class="form-group form-field o_website_form_required_custom">
             <label class="col-md-3 col-sm-4 control-label" for="g-recaptcha-response">Is human?</label>
             <div class="col-md-7 col-sm-8">
@@ -26,57 +26,106 @@
     </template>
 
     <!-- Terms of use without checkbox -->
-    <template id="privacy_policy_advise" name="Legal Terms Anzamar Snippet">
+    <template id="privacy_policy_advise" name="Legal Terms Point Snippet">
         I accept the <a href="/legal/advice">legal advice</a>, the <a href="/legal/privacy-policy">privacy policy</a>, and the <a href="/legal/terms-of-use">terms of use</a> of this website.
     </template>
 
+    <template id="default_fields_forms" name="Default Form Fields Point Snippet">
+       <div class="form-group form-field o_website_form_required_custom">
+           <label class="col-md-3 col-sm-4 control-label" for="contact_name">Name</label>
+           <div class="col-md-7 col-sm-8">
+               <input type="text" class="form-control o_website_form_input" name="contact_name" t-att-value="request.params.get('contact_name', '')" required=""/>
+           </div>
+       </div>
+        <div class="form-group form-field">
+            <label class="col-md-3 col-sm-4 control-label" for="phone">Phone</label>
+            <div class="col-md-7 col-sm-8">
+                <input type="text" class="form-control o_website_form_input" name="phone" t-att-value="request.params.get('phone', '')" />
+            </div>
+        </div>
+        <div class="form-group form-field o_website_form_required_custom">
+            <label class="col-md-3 col-sm-4 control-label" for="email_from">Email</label>
+            <div class="col-md-7 col-sm-8">
+                <input type="text" class="form-control o_website_form_input" name="email_from" required="" t-att-value="request.params.get('email_from', '')" />
+            </div>
+        </div>
+        <div class="form-group form-field o_website_form_required_custom">
+            <label class="col-md-3 col-sm-4 control-label" for="partner_name">Company</label>
+            <div class="col-md-7 col-sm-8">
+                <input type="text" class="form-control o_website_form_input" name="partner_name" required="" t-att-value="request.params.get('partner_name', '')" />
+            </div>
+        </div>
+        <div class="form-group form-field o_website_form_required">
+            <label class="col-md-3 col-sm-4 control-label" for="name">Subject</label>
+            <div class="col-md-7 col-sm-8">
+                <input type="text" class="form-control o_website_form_input" name="name" required="" t-att-value="request.params.get('name', '')" />
+            </div>
+        </div>
+        <div class="form-group form-field o_website_form_required_custom">
+            <label class="col-md-3 col-sm-4 control-label" for="description">Question</label>
+            <div class="col-md-7 col-sm-8">
+                <textarea class="form-control o_website_form_input" name="description" required=""><t t-esc="request.params.get('description', '')"/></textarea>
+            </div>
+        </div>
+    </template>
+
+    <template id="default_send_forms" name="Default Send Form Point Snippet">
+        <div class="form-group">
+            <div class="col-md-offset-3 col-sm-offset-4 col-sm-8 col-md-7">
+                <span class="btn btn-primary btn-lg o_website_form_send">Send</span>
+                <span id="o_website_form_result"/>
+            </div>
+        </div>
+    </template>
+
+    <template id="default_file_forms" name="Default File Document Form Point Snippet">
+        <div class="form-group form-field o_website_form_custom">
+            <div class="col-md-3 col-sm-4 text-right-not-xs">
+                <label class="control-label" for="a_document">Attach CV</label>
+            </div>
+            <div class="col-md-7 col-sm-8">
+                <input type="file" class="form-control o_website_form_input" name="a_document" required=""/>
+            </div>
+        </div>
+    </template>
+
     <!-- Default contact form with google recapthca and terms of use-->
-    <template id="default_contact_form" name="Contact Form Anzamar Snippet">
+    <template id="default_contact_form" name="Contact Form Point Snippet">
         <form action="/website_form/" method="post" data-model_name="crm.lead" data-success_page="/contactus-thank-you" class="s_website_form form-horizontal container-fluid mt32" enctype="multipart/form-data" data-editable-form="false">
-            <div class="form-group form-field o_website_form_required_custom">
-                <label class="col-md-3 col-sm-4 control-label" for="contact_name">Your name</label>
-                <div class="col-md-7 col-sm-8">
-                    <input type="text" class="form-control o_website_form_input" name="contact_name" t-att-value="request.params.get('contact_name', '')" required=""/>
-                </div>
-            </div>
-            <div class="form-group form-field">
-                <label class="col-md-3 col-sm-4 control-label" for="phone">Phone number</label>
-                <div class="col-md-7 col-sm-8">
-                    <input type="text" class="form-control o_website_form_input" name="phone" t-att-value="request.params.get('phone', '')" />
-                </div>
-            </div>
-            <div class="form-group form-field o_website_form_required_custom">
-                <label class="col-md-3 col-sm-4 control-label" for="email_from">Email</label>
-                <div class="col-md-7 col-sm-8">
-                    <input type="text" class="form-control o_website_form_input" name="email_from" required="" t-att-value="request.params.get('email_from', '')" />
-                </div>
-            </div>
-            <div class="form-group form-field o_website_form_required_custom">
-                <label class="col-md-3 col-sm-4 control-label" for="partner_name">Your company</label>
-                <div class="col-md-7 col-sm-8">
-                    <input type="text" class="form-control o_website_form_input" name="partner_name" required="" t-att-value="request.params.get('partner_name', '')" />
-                </div>
-            </div>
+            <input type="hidden" name="name" value="Nueva solicitud de contacto" />
+            <t t-call="theme_point_sport.default_fields_forms"/>
+            <t t-call="theme_point_sport.google_recaptcha_contact_form"/>
+            <t t-call="theme_point_sport.privacy_policy_contact_form"/>
+            <t t-call="theme_point_sport.default_send_forms"/>
+        </form>
+    </template>
+
+    <!-- Work contact form with google recapthca and terms of use-->
+    <template id="work_contact_form" name="Work Form Point Snippet">
+        <form action="/website_form/" method="post" data-model_name="crm.lead" data-success_page="/contactus-thank-you" class="s_website_form form-horizontal container-fluid mt32" enctype="multipart/form-data" data-editable-form="false">
+            <input type="hidden" name="name" value="Nueva solicitud de trabajo" />
+            <t t-call="theme_point_sport.default_fields_forms"/>
+            <t t-call="theme_point_sport.default_file_forms"/>
+            <t t-call="theme_point_sport.google_recaptcha_contact_form"/>
+            <t t-call="theme_point_sport.privacy_policy_contact_form"/>
+            <t t-call="theme_point_sport.default_send_forms"/>
+        </form>
+    </template>
+
+    <!-- Open Shop with us contact form with google recapthca and terms of use-->
+    <template id="open_shop_contact_form" name="Open Shop Form Point Snippet">
+        <form action="/website_form/" method="post" data-model_name="crm.lead" data-success_page="/contactus-thank-you" class="s_website_form form-horizontal mt32 mb32" enctype="multipart/form-data" data-editable-form="false">
+            <input type="hidden" name="name" value="Nueva solicitud de apertura" />
+             <t t-call="theme_point_sport.default_fields_forms"/>
             <div class="form-group form-field o_website_form_required">
-                <label class="col-md-3 col-sm-4 control-label" for="name">Subject</label>
+                <label class="col-md-3 col-sm-4 control-label" for="brand">Brand you want information about</label>
                 <div class="col-md-7 col-sm-8">
-                    <input type="text" class="form-control o_website_form_input" name="name" required="" t-att-value="request.params.get('name', '')" />
-                </div>
-            </div>
-            <div class="form-group form-field o_website_form_required_custom">
-                <label class="col-md-3 col-sm-4 control-label" for="description">Your question</label>
-                <div class="col-md-7 col-sm-8">
-                    <textarea class="form-control o_website_form_input" name="description" required=""><t t-esc="request.params.get('description', '')"/></textarea>
+                    <input type="text" class="form-control o_website_form_input" name="brand" required="" t-att-value="request.params.get('brand', '')" />
                 </div>
             </div>
             <t t-call="theme_point_sport.google_recaptcha_contact_form"/>
             <t t-call="theme_point_sport.privacy_policy_contact_form"/>
-            <div class="form-group">
-                <div class="col-md-offset-3 col-sm-offset-4 col-sm-8 col-md-7">
-                    <span class="btn btn-primary btn-lg o_website_form_send">Send</span>
-                    <span id="o_website_form_result"/>
-                </div>
-            </div>
+            <t t-call="theme_point_sport.default_send_forms"/>
         </form>
     </template>
 

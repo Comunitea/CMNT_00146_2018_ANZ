@@ -3,28 +3,18 @@
 
     <!-- Product page template -->
     <template id="poi_website_sale_product" name="Product Point Content Template" inherit_id="website_multi_theme.auto_view_poi_website_sale_product">
-        <!-- User access control -->
-        <xpath expr="//section[@id='product_detail']" position="before">
-            <t t-set="user_access" t-value="website.user_access()"/>
-        </xpath>
-        <xpath expr="//section[@id='product_detail']" position="attributes">
-            <attribute name="t-if">user_access == True and product</attribute>
-        </xpath>
-        <xpath expr="//section[@id='product_detail']" position="after">
-            <t t-if="user_access == False or not product" t-call="theme_point_sport.only_logged_in_users_advise"/>
-        </xpath>
 
-        <!-- Retailer multi-add-to-cart action in the form -->
+        <!-- Multi add-to-cart action in the form -->
         <xpath expr="//form[hasclass('js_add_cart_variants')]" position="attributes">
-            <attribute name="t-attf-action">#{'/shop/cart/multi_update' if (user_access == True and len(product.product_variant_ids) &gt; 0) else '/shop/cart/update'}</attribute>
-            <attribute name="t-att-id">'multi_update' if (user_access == True and len(product.product_variant_ids) &gt; 0) else None</attribute>
+            <attribute name="t-attf-action">#{'/shop/cart/multi_update' if len(product.product_variant_ids) &gt; 0 else '/shop/cart/update'}</attribute>
+            <attribute name="t-att-id">'multi_update' if len(product.product_variant_ids) &gt; 0 else None</attribute>
         </xpath>
         <xpath expr="//a[@id='add_to_cart']" position="attributes">
-            <attribute name="t-if">not(user_access == True and len(product.product_variant_ids) &gt; 0)</attribute>
+            <attribute name="t-if">not len(product.product_variant_ids) &gt; 0</attribute>
         </xpath>
         <xpath expr="//a[@id='add_to_cart']" position="after">
             <!-- Multi cart update button -->
-            <div class="add-to-cart-multi" t-if="user_access == True and len(product.product_variant_ids) &gt; 0">
+            <div class="add-to-cart-multi" t-if="len(product.product_variant_ids) &gt; 0">
                 <a class="btn btn-primary btn-lg mt8 a-submit" href="#">Add to Cart</a>
             </div>
             <!-- Add to wishlist button -->
@@ -38,10 +28,10 @@
 
         <!-- Retailer product variants grid -->
         <xpath expr="//div[hasclass('js_product')]/t[1]" position="attributes">
-            <attribute name="t-if">not(user_access == True and len(product.product_variant_ids) &gt; 0)</attribute>
+            <attribute name="t-if">not len(product.product_variant_ids) &gt; 0</attribute>
         </xpath>
         <xpath expr="//div[hasclass('js_product')]/t[1]" position="after">
-            <t t-if="user_access == True and len(product.product_variant_ids) &gt; 0">
+            <t t-if="len(product.product_variant_ids) &gt; 0">
             <input type="hidden" name="product_template" t-att-value="product.id"/>
             <t t-set="stock_control" t-value="product.inventory_availability in ('always', 'always_virtual', 'threshold', 'threshold_virtual')"/>
                 <div class="multi-sizes">
@@ -82,7 +72,7 @@
             </t>
         </xpath>
 
-        <!-- Retailer multi-add-to-cart success/fail windows -->
+        <!-- Multi add-to-cart success/fail windows -->
         <xpath expr="//form[hasclass('js_add_cart_variants')]" position="after">
             <div id="multi_was_added" class="modal fade multi-add-result" tabindex="-1" role="dialog">
                 <div class="modal-dialog modal-md">
@@ -120,13 +110,15 @@
         <xpath expr="//div[hasclass('carousel-inner')]/div[2]" position="replace">
             <div t-attf-class="item#{'' if variant_img else ' active'}">
                 <img t-att-alt="product.name" t-att-title="product.name" class="product_detail_img js_variant_img"
-                     t-attf-src="/website/image/product.template/{{product.id}}/image/"/>
+                     t-attf-src="/website/image/product.template/{{product.id}}/image/" data-zoom="1"
+                     t-attf-data-zoom-image="/website/image/product.template/{{product.id}}/image/"/>
             </div>
         </xpath>
         <xpath expr="//div[hasclass('carousel-inner')]/t/div[hasclass('item')]" position="replace">
             <div class="item">
                 <img t-att-alt="pimg.name" t-att-title="pimg.name" class="product_detail_img"
-                     t-attf-src="/web/image/product.image/{{pimg.id}}/image/"/>
+                     t-attf-src="/web/image/product.image/{{pimg.id}}/image/" data-zoom="1"
+                     t-attf-data-zoom-image="/web/image/product.image/{{pimg.id}}/image/"/>
             </div>
         </xpath>
 
@@ -153,16 +145,6 @@
             </div>
         </xpath>
 
-    </template>
-
-    <!-- Product select quantity template -->
-    <template id="website_sale_product_quantity" name="Product Quantity Point Content Template" inherit_id="website_multi_theme.auto_view_poi_website_sale_product_quantity">
-        <xpath expr="//div[hasclass('css_quantity')]" position="before">
-            <t t-set="user_access" t-value="website.user_access()"/>
-        </xpath>
-        <xpath expr="//div[hasclass('css_quantity')]" position="attributes">
-            <attribute name="t-if">not(user_access == True and len(product.product_variant_ids) &gt; 0)</attribute>
-        </xpath>
     </template>
 
 </odoo>
