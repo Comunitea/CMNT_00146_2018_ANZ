@@ -34,7 +34,7 @@ class StockLocation(models.Model):
 
     def check_vals(self, usage, posx, posy, posz, barcode):
         if usage=='internal' and not posx and not posy and not posz:
-            raise ValidationError('Las ubicaciones internas  los campos cliente, tarifa, compañia y tipo de venta')
+            raise ValidationError('Las ubicaciones internas  debenm tener valor en los campos  Pasillo (x), Estatntería (Y) Altura (Z)')
         if usage=='internal' and not barcode:
             raise ValidationError('Las ubicaciones internas deben tener un código de barras')
         return True

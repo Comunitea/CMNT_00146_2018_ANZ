@@ -35,6 +35,8 @@ class WebsiteSaleExtended(WebsiteSale):
             if context.get('brand_id') == 0:
                 context.pop('brand_id')
                 domain_origin.remove([d for d in domain_origin if 'product_brand_id' in d][0])
+            if brand and brand != 0:
+                domain_origin.append(('product_brand_id', '=', brand))
 
             tags = request.env['product.attribute.tag'].sudo()
 
