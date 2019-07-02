@@ -115,12 +115,22 @@ class ProductProduct(models.Model):
     @api.multi
     def name_get(self):
         """ Asegura que si hay referencia de plantilla la usa """
-        results = super(ProductProduct,self).name_get()
-        self.read(['name','product_tmpl_id'],load=False)
+        results = super(ProductProduct, self).name_get()
+        self.read(['name','product_tmpl_id'], load=False)
         for index, product in enumerate(self):
             if product.product_tmpl_id.ref_template:
                 referencia = product.product_tmpl_id.ref_template_name
-                variable_attributes = product.attribute_line_ids.filtered(lambda l: len(l.value_ids) > 1).mapped('attribute_id')
-                variant = product.attribute_value_ids._variant_name(variable_attributes)
-                results[index] = (product.id, '[%s (%s)] %s' % (referencia, variant, product.name))
+                # Como tienen plantillas cuyo atributo no es el mismo que el de 
+                # las variantes aunque se llamen igual.
+                # No hacemos este filtro y cogemos los nombres del atributo
+                # directamente
+                # variable_attributes = product.attribute_line_ids.filtered(lambda l: len(l.value_ids) > 1).mapped('attribute_id')
+                variable_attributes = product.attribute_value_ids.\
+                    mapped('attribute_id')
+                variant = product.attribute_value_ids._variant_name(
+                    variable_attributes)
+                if variant:
+                    results[index] = (product.id, '[%s (%s)] %s' % (referencia, variant, product.name))
+                else:
+                    results[index] = (product.id, '[%s] %s' % (referencia, product.name))
         return results
