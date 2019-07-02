@@ -330,7 +330,7 @@ class ProductImportWzd(models.TransientModel):
             idx += 1
             row = sh.row_values(nline)
             row_vals = self._parse_row_vals(row, idx)
-            if row_vals['code_temp'] == "" or row_vals['code_temp'] == 'FIN' or len(row_vals['code_temp']) < 1:
+            if not row_vals['code_temp'] or row_vals['code_temp'] == 'FIN':
                 break
             # If existing template, fail, only templates created from this file
             template = self._get_existing_template_obj(row_vals)
