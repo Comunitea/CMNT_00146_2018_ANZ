@@ -71,29 +71,28 @@ class ProductImportWzd(models.TransientModel):
 
     def _parse_row_vals(self, row, idx):
         res = {
-            'code_temp': row[0],
-            'name_temp': row[1],
-            'name_color': row[2],
-            'name_extra': row[3],
-            'attr_name': row[4],
-            'brand_id': row[5],
-            'attr_val': row[6],
-            'ean': row[7],
-            'code_attr': row[8],
+            'code_temp': str(row[0]),
+            'name_temp': str(row[1]),
+            'name_color': str(row[2]),
+            'name_extra': str(row[3]),
+            'attr_name': str(row[4]),
+            'brand_id': str(row[5]),
+            'attr_val': str(row[6]),
+            'ean': str(row[7]),
+            'code_attr': str(row[8]),
             'cost': row[9] or 0.0,
             'pvp': row[10] or 0.0,
-            'category': row[11],
-            'type': row[12],
-            'gender': row[13],
-            'age': row[14],
-            'color': row[15],
-            'ecommerce':row[16],
-            'description':row[17],
-            'tag1': row[18],
-            'tag2': row[19],
-            'tag3': row[20],
+            'category': str(row[11]),
+            'type': str(row[12]),
+            'gender': str(row[13]),
+            'age': str(row[14]),
+            'color': str(row[15]),
+            'ecommerce': str(row[16]),
+            'description': str(row[17]),
+            'tag1': str(row[18]),
+            'tag2': str(row[19]),
+            'tag3': str(row[20]),
         }
-
         # Check mandatory values setted
         if not row[6]:
             raise UserError(
@@ -268,7 +267,7 @@ class ProductImportWzd(models.TransientModel):
         categ_id = self._get_category_id(row_vals['category'], idx)
         attr_value = self._get_attr_value(row_vals, idx, categ_id)
 
-        code_attr = attr_value.supplier_code or row_vals['code_attr'] and str(int(row_vals['code_attr'])) or '%04d' % (attr_value.id)
+        code_attr = attr_value.supplier_code or row_vals['code_attr'] and row_vals['code_attr'] or '%04d' % (attr_value.id)
         default_code = row_vals['code_temp'] + '.' + code_attr
 
         vals = {
@@ -276,7 +275,7 @@ class ProductImportWzd(models.TransientModel):
             'default_code': default_code,
             'available_in_pos': False,
             'attribute_value_ids': [(4, attr_value.id)],
-            'barcode': str(int(row_vals['ean'])),
+            'barcode': row_vals['ean'],
             'importation_name': self.name,
             'lst_price': row_vals['pvp'],
             'standard_price': row_vals['cost'],
