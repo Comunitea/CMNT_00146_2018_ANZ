@@ -10,7 +10,8 @@
     'depends': [
         'base',
         'product_brand',
-        'sale_commission'
+        'sale_commission',
+        'account_reinvoice'
     ],
     'data': [
         'security/security.xml',

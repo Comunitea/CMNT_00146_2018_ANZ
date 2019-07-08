@@ -40,4 +40,15 @@ class AccountInvoiceLine(models.Model):
                     self2 += line
         res = super().write(vals)
         self2.recompute_agents()
-        return res
+        return res    
+
+
+class AccountInvoice(models.Model):
+    _inherit = "account.invoice"
+
+    @api.multi
+    def do_reinvoice(self):
+        invoices = super().do_reinvoice()
+        if invoices:
+            invoices.recompute_lines_agents()
+        return invoices
