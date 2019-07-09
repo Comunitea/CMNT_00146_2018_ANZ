@@ -2,7 +2,7 @@
 <odoo>
 
     <!-- Product template -->
-    <template id="anz_website_sale_product" name="Anzamar product template" inherit_id="website_multi_theme.auto_view_anz_website_sale_product">
+    <template id="anz_website_sale_product" name="Product Anzamar Template" inherit_id="website_multi_theme.auto_view_anz_website_sale_product">
 
         <!-- Multi-add-to-cart action in the form -->
         <xpath expr="//form[hasclass('js_add_cart_variants')]" position="attributes">
@@ -144,6 +144,19 @@
             </div>
         </xpath>
 
+    </template>
+
+    <template id="auto_view_anz_website_sale_products_add_to_cart" name="Add to Cart Anzamar Template" inherit_id="website_multi_theme.auto_view_anz_website_sale_products_add_to_cart">
+        <!-- Replace add to cart miniature -->
+        <xpath expr="//t[2]/a" position="attributes">
+            <attribute name="t-att-href">keep('/product/%s', page=(pager['page']['num'] if pager['page']['num']&gt;1 else None)) % product.slug if product.slug else keep('/shop/product/%s' % slug(product), page=(pager['page']['num'] if pager['page']['num']&gt;1 else None))</attribute>
+        </xpath>
+
+        <xpath expr="//div[hasclass('product_price')]//t[1]/a" position="replace">
+            <a class="btn btn-default btn-xs" t-att-href="keep('/product/%s', page=(pager['page']['num'] if pager['page']['num']&gt;1 else None)) % product.slug if product.slug else keep('/shop/product/%s' % slug(product), page=(pager['page']['num'] if pager['page']['num']&gt;1 else None))">
+                <span class="fa fa-shopping-cart" />
+            </a>
+        </xpath>
     </template>
 
 </odoo>
