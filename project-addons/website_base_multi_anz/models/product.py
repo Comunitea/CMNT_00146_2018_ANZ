@@ -50,37 +50,37 @@ class ProductTemplate(models.Model):
         ctx = self._context.copy()
         swp_fields = ['always_virtual', 'threshold_virtual']
         inventory_availability = self.inventory_availability or website.inventory_availability
+
         if inventory_availability in swp_fields:
             stock_website_published = True
-
         else:
-            ctx.update(warehouse_id=website.warehouse.id)
-            stock_website_published = self.with_context().qty_available > 0
+            ctx.update(warehouse=website.warehouse.id)
+            stock_website_published = self.with_context(ctx).get_web_max_qty() > 0
 
-        vals = {'product_id': self.id,
-                'website_id': website.id,
+        vals = {'product_id': self.id, 'website_id': website.id,
                 'stock_website_published': stock_website_published}
-
         domain = [('product_id', '=', self.id), ('website_id', '=', website.id)]
         tsw_id = self.env['template.stock.web'].search(domain)
+
         if tsw_id:
             tsw_id.stock_website_published = stock_website_published
         else:
             self.env['template.stock.web'].create(vals)
 
+    def get_web_max_qty(self):
+        """
+        Determina la cantidad maxima disponible del producto a partir de la cual se va a mostrar el stock del
+        producto en la web. Esto se realiza en función de las diferentes opciones de inventory_availability.
 
-    @api.multi
-    def multi_act_stock_published(self):
+        :return: max_qty
+        """
+        max_qty = -1
+        if self.inventory_availability in ['always', 'threshold']:
+            max_qty = max(0, self.qty_available - self.sudo().outgoing_qty)
 
-        cont = 0
-        template_ids = self.filtered(lambda x: x.website_published)
-        tot = len(template_ids)
-        for template in template_ids:
-            cont += 1
-            _logger.info('{}: {} de {}: {}'.format('Update Website Visibility by Stock', cont, tot, template.name))
-            websites = template.website_ids or self.env['website'].search([])
-            for website in websites:
-                template.create_tsw(website)
+        if self.inventory_availability in ['threshold'] and self.available_threshold > 0:
+            max_qty = max(0, max_qty - self.available_threshold)
+        return max_qty
 
     @api.model
     def act_stock_published(self):

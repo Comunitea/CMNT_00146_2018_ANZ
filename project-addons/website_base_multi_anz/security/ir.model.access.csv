@@ -1,4 +1,5 @@
 "id","name","model_id:id","group_id:id","perm_read","perm_write","perm_create","perm_unlink"
+"access_product_public_category_tag_public","product_public_category_tag_public","model_product_public_category_tag","base.group_public",1,0,0,0
 "access_product_public_category_tag_portal","product_public_category_tag_portal","model_product_public_category_tag","base.group_portal",1,0,0,0
 "access_product_public_category_tag_user","product_public_category_tag_user","model_product_public_category_tag","base.group_user",1,0,0,0
 "access_product_public_category_tag_website_publisher","product_public_category_tag_website_publisher","model_product_public_category_tag","website.group_website_publisher",1,1,1,0

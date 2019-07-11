@@ -45,6 +45,15 @@
                     <h4 class="mt0 text-uppercase hidden-xs">Filters</h4>
                     <t t-set="current_filter" t-value="request.httprequest.args"/>
                     <form id="product-attributes-filter" method="get">
+                        <div t-if="current_filter.get('search', False)">
+                            <h5>Search</h5>
+                            <select name="search" class="form-control">
+                                <t t-foreach="current_filter.get('search').split(' ')" t-as="option">
+                                    <option t-att-value="option" t-att-selected="option" t-esc="option"/>
+                                </t>
+                                <option t-att-value="current_filter.get('search', False)" t-att-selected="current_filter.get('search', False)" t-esc="search"/>
+                            </select>
+                        </div>
                         <div>
                             <h5>Brand</h5>
                             <select name="brand" class="form-control">
@@ -151,8 +160,13 @@
     <template id="website_sale_products" inherit_id="website_sale.products" name="Products grid">
         <xpath expr="//div[@id='products_grid']/table" position="before">
             <t t-set="labels" t-value="website.get_filter_labels()"/>
+            <t t-set="search" t-value="request.httprequest.args.get('search', False)"/>
+            <t t-set="labels_search" t-value="search if search else ''"/>
             <span t-esc="Filters" class="label label-primary"/>
             <div class="filter-labels mb16" t-if="len(labels) &gt; 0 or category">
+                <t t-foreach="labels_search.split(' ')" t-as="label_search" t-if="len(labels_search)">
+                    <span t-esc="label_search" class="label label-primary"/>
+                </t>
                 <t t-foreach="labels" t-as="label">
                     <span t-esc="label" class="label label-primary"/>
                 </t>
