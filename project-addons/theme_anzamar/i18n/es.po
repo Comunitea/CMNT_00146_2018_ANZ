@@ -447,6 +447,11 @@ msgstr "Filtros"
 
 #. module: theme_anzamar
 #: model:ir.ui.view,arch_db:theme_anzamar.website_sale_products_categories
+msgid "Search"
+msgstr "Buscador"
+
+#. module: theme_anzamar
+#: model:ir.ui.view,arch_db:theme_anzamar.website_sale_products_categories
 msgid "Brand"
 msgstr "Marca"
 

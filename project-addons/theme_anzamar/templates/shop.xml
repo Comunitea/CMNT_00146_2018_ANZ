@@ -29,6 +29,15 @@
                     <h4 class="mt0 text-uppercase hidden-xs">Filters</h4>
                     <t t-set="current_filter" t-value="request.httprequest.args"/>
                     <form id="product-attributes-filter" method="get">
+                        <div t-if="current_filter.get('search', False)">
+                            <h5>Search</h5>
+                            <select name="search" class="form-control">
+                                <t t-foreach="current_filter.get('search').split(' ') if len(current_filter.get('search').split(' ')) > 1 else current_filter.get('search')" t-as="option">
+                                    <option t-att-value="option" t-att-selected="option" t-esc="option"/>
+                                </t>
+                                <option t-att-value="current_filter.get('search', False)" t-att-selected="current_filter.get('search', False)" t-esc="search"/>
+                            </select>
+                        </div>
                         <div>
                             <h5>Brand</h5>
                             <select name="brand" class="form-control">
