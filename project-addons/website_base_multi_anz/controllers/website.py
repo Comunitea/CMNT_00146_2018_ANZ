@@ -83,15 +83,7 @@ class WebsiteSaleExtended(WebsiteSale):
         website = request.website
         domain_swp = [('website_id', '=', website.id), ('stock_website_published', '=', True)]
         product_ids = request.env['template.stock.web'].sudo().search(domain_swp).mapped('product_id').ids
-
-        for product in product_ids:
-            if product == 20533:
-                import ipdb;
-                ipdb.set_trace()
-
         domain_origin += [('id', 'in', product_ids)]
-
-        import ipdb;ipdb.set_trace()
 
         return domain_origin
 
