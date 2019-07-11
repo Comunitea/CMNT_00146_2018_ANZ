@@ -1,4 +1,3 @@
-odoo_repos/
 odoo-repos/
 var/
 parts/
@@ -24,3 +23,6 @@ devel-*
 .mr.developer.cfg
 it-projects-llc/
 .vscode
+.local/
+.local/*
+.local*

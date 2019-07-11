@@ -5,6 +5,7 @@ from odoo import http, _
 from odoo.http import request
 from odoo.addons.website_sale.controllers.main import WebsiteSale
 from odoo.addons.seo_base.controllers.redirecting import ProductRedirect
+from odoo.osv import expression
 
 
 class WebsiteSaleExtended(WebsiteSale):
@@ -18,17 +19,27 @@ class WebsiteSaleExtended(WebsiteSale):
             search: pasa del contexto y realiza la busqueda por los terminos introducidos en el search box.
 
         """
+        # Set fuzzy search for more results
+        request.env.cr.execute("SELECT set_limit(0.2);")
         domain_origin = super(WebsiteSaleExtended, self)._get_search_domain(search, category, attrib_values)
         attr_domain = []
         has_att_filter = False
         filter_args = request.httprequest.args
 
-        website = request.website
-        domain_swp = [('website_id', '=', website.id), ('stock_website_published', '=', True)]
-        product_ids = request.env['template.stock.web'].sudo().search(domain_swp).mapped('product_id').ids
-        domain_origin += [('id', 'in', product_ids)]
+        # Search and filters work together
+        if search and search != 0:
+            for srch in search.split(" "):
+                domain_search = ['|', '|', '|', '|', '|',
+                                 ('name', '%', srch),
+                                 ('product_color', 'ilike', srch),
+                                 ('product_variant_ids.attribute_value_ids', 'ilike', srch),
+                                 ('public_categ_ids.complete_name', 'ilike', srch),
+                                 ('public_categ_ids.public_categ_tag_ids', 'ilike', srch),
+                                 # ('product_variant_ids', 'ilike', srch),
+                                 ('product_variant_ids.product_brand_id', 'ilike', srch)]
+                domain_origin = expression.normalize_domain(domain_origin)
+                domain_origin = expression.OR([domain_origin, domain_search])
 
-        # Only added to domain by filter args or search. Never both them
         if filter_args:
             brand = int(filter_args.get('brand', False))
             context = dict(request.env.context)
@@ -66,14 +77,21 @@ class WebsiteSaleExtended(WebsiteSale):
                     ('attribute_id', 'in', product_attributes.ids)
                 ])
                 domain_origin += [('attribute_line_ids', 'in', product_attribute_lines.ids)]
-        elif search:
-            for srch in search.split(" "):
-                domain_origin += ['|', '|', '|', '|',
-                                  ('product_variant_ids.attribute_value_ids', 'ilike', srch),
-                                  ('public_categ_ids.complete_name', 'ilike', srch),
-                                  ('public_categ_ids.public_categ_tag_ids', 'ilike', srch),
-                                  ('product_variant_ids', 'ilike', srch),
-                                  ('product_variant_ids.product_brand_id', 'ilike', srch)]
+
+        # Only can put on context products with stock > 0 or with stock = 0 but published
+        # search and filters and all domain have to respect this. So that we need add this like an AND
+        website = request.website
+        domain_swp = [('website_id', '=', website.id), ('stock_website_published', '=', True)]
+        product_ids = request.env['template.stock.web'].sudo().search(domain_swp).mapped('product_id').ids
+
+        for product in product_ids:
+            if product == 20533:
+                import ipdb;
+                ipdb.set_trace()
+
+        domain_origin += [('id', 'in', product_ids)]
+
+        import ipdb;ipdb.set_trace()
 
         return domain_origin
 
