@@ -11,13 +11,13 @@
     <template id="external_layout_custom" inherit_id="web.external_layout">
         <xpath expr="//t[@t-set='company']/.." position="after">
             <t t-if="o and 'operating_unit_id' in o">
-                <t t-set="operating_unit" t-value="o.operating_unit_id"/>
+                <t t-set="operating_unit" t-value="o.sudo().operating_unit_id"/>
                 <t t-set="partner" t-value="operating_unit.partner_id"/>
             </t>
             <t t-if="o and 'operating_unit_id' not in o">
                 <t t-set="partner" t-value="company.partner_id"/>
             </t>
-            <t t-if="o and 'operating_unit_id' in o and not o.operating_unit_id">
+            <t t-if="o and 'operating_unit_id' in o and not o.sudo().operating_unit_id">
                 <t t-set="partner" t-value="company.partner_id"/>
             </t>
         </xpath>
