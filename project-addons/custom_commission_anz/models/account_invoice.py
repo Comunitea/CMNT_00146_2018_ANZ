@@ -43,12 +43,12 @@ class AccountInvoiceLine(models.Model):
         return res    
 
 
-# class AccountInvoice(models.Model):
-#     _inherit = "account.invoice"
+class AccountInvoice(models.Model):
+    _inherit = "account.invoice"
 
-#     @api.multi
-#     def do_reinvoice(self):
-#         invoices = super().do_reinvoice()
-#         if invoices:
-#             invoices.recompute_lines_agents()
-#         return invoices
+    @api.multi
+    def do_reinvoice(self):
+        invoices = super().do_reinvoice()
+        if invoices:
+            invoices.recompute_lines_agents()
+        return invoices
