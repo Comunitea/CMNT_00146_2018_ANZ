@@ -80,7 +80,7 @@ class AccountInvoice(models.Model):
 
     @api.multi
     def do_reinvoice(self):
-        new_invoices = []
+        new_invoices = self.env['account.invoice']
         ctx = self._context.copy()
         for inv in self:
             sale_type = inv.get_invoice_sale_type()
@@ -93,7 +93,7 @@ class AccountInvoice(models.Model):
                         new_invoice.partner_id.name))
                     new_invoices += new_invoice
 
-        return self.browse(new_invoices)
+        return new_invoices
 
     @api.multi
     def unlink(self):
