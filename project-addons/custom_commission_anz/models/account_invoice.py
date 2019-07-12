@@ -49,6 +49,6 @@ class AccountInvoice(models.Model):
     @api.multi
     def do_reinvoice(self):
         invoices = super().do_reinvoice()
-        if invoices:
-            invoices.recompute_lines_agents()
+        for inv in invoices:
+            inv.recompute_lines_agents()
         return invoices
