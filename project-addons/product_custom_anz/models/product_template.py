@@ -34,9 +34,12 @@ class ProductTemplate(models.Model):
     @api.depends('ref_template', 'ref_template_color')
     def _compute_ref_template_name(self):
         for record in self:
-            if record.ref_template and record.ref_template_color:
-                record.ref_template_name = record.ref_template + " " + \
-                    record.ref_template_color
+            ref_template_name = ''
+            if record.ref_template:
+                ref_template_name = record.ref_template
+                if record.ref_template_color:
+                    ref_template_name += " " + record.ref_template_color
+            record.ref_template_name = ref_template_name                
 
     def _search_ref_template_name(self,operator,value):
         if operator.find('like') >= 0:
