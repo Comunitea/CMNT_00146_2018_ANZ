@@ -19,7 +19,8 @@
         'views/agent_commission_brand_view.xml',
         'views/partner_view.xml',
         'views/product_brand_view.xml',
-        'views/report_settlement_grouped_template.xml'
+        'views/report_settlement_grouped_template.xml',
+        'wizard/recompute_commission_wzd_view.xml',
     ],
     'installable': True,
 }
