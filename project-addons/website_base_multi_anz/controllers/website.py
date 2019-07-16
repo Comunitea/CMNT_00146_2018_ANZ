@@ -29,8 +29,9 @@ class WebsiteSaleExtended(WebsiteSale):
         # Search and filters work together
         if search and search != 0:
             for srch in search.split(" "):
-                domain_search = ['|', '|', '|', '|', '|',
+                domain_search = ['|', '|', '|', '|', '|', '|',
                                  ('name', '%', srch),
+                                 ('ref_template', 'ilike', srch),
                                  ('product_color', 'ilike', srch),
                                  ('product_variant_ids.attribute_value_ids', 'ilike', srch),
                                  ('public_categ_ids.complete_name', 'ilike', srch),
