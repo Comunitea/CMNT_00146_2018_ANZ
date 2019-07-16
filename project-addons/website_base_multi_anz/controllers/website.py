@@ -31,6 +31,7 @@ class WebsiteSaleExtended(WebsiteSale):
             for srch in search.split(" "):
                 domain_search = ['|', '|', '|', '|', '|',
                                  ('name', '%', srch),
+                                 ('ref_template', 'ilike', srch),
                                  ('product_color', 'ilike', srch),
                                  ('product_variant_ids.attribute_value_ids', 'ilike', srch),
                                  ('public_categ_ids.complete_name', 'ilike', srch),
