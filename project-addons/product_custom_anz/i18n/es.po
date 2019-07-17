@@ -122,7 +122,7 @@ msgstr "Contacto"
 #: model:ir.model.fields,field_description:product_custom_anz.field_product_check_barcodes_create_attributes
 #: model:ir.model.fields,field_description:product_custom_anz.field_product_import_wzd_create_attributes
 msgid "Create attributes/values if neccesary"
-msgstr "Create attributes/values if neccesary"
+msgstr "Crear atributos/valores si es necesario"
 
 #. module: product_custom_anz
 #: model:ir.model.fields,field_description:product_custom_anz.field_product_attribute_category_create_uid
@@ -146,7 +146,7 @@ msgstr "Creado en"
 #: model:ir.model.fields,field_description:product_custom_anz.field_product_check_barcodes_categ_id
 #: model:ir.model.fields,field_description:product_custom_anz.field_product_import_wzd_categ_id
 msgid "Default product category"
-msgstr "Default product category"
+msgstr "Categoría por defecto del producto"
 
 #. module: product_custom_anz
 #: model:ir.model.fields,field_description:product_custom_anz.field_product_attribute_category_display_name
@@ -167,19 +167,19 @@ msgstr "Edad"
 #: code:addons/product_custom_anz/wizard/product_check_barcodes.py:150
 #, python-format
 msgid "Error getting attribute %s in line %s:                    Not found"
-msgstr "Error getting attribute %s in line %s:                    Not found"
+msgstr "Error obteniendo el atributo %s en línea %s:                    No encontrado"
 
 #. module: product_custom_anz
 #: code:addons/product_custom_anz/wizard/product_import_wzd.py:212
 #, python-format
 msgid "Error getting attribute %s with value %s in line %s:                         Not found"
-msgstr "Error getting attribute %s with value %s in line %s:                         Not found"
+msgstr "Error obteniendo el atributo %s con valor %s en la línea %s:                         No encontrado"
 
 #. module: product_custom_anz
 #: code:addons/product_custom_anz/wizard/product_check_barcodes.py:159
 #, python-format
 msgid "Error getting attribute %s with value %s in line %s:                     Not found"
-msgstr "Error getting attribute %s with value %s in line %s:                     Not found"
+msgstr "Error obteniendo el atributo %s with value %s en la línea %s:                     No encontrado"
 
 #. module: product_custom_anz
 #: code:addons/product_custom_anz/wizard/product_import_wzd.py:197
