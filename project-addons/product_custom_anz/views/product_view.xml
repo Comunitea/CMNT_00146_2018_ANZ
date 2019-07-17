@@ -79,6 +79,7 @@
         <field name="inherit_id" ref="product.attribute_tree_view"/>
         <field name="arch" type="xml">
             <field name="name" position="after">
+                <field name="display_name" invisible="1"/>
                 <field name="product_brand_id"/>
                 <!--field name="attribute_category_id"/-->
                  <field name="product_type_id" domain = "[('product_brand_id','=',product_brand_id), ('type','=','type')]"
@@ -95,16 +96,40 @@
             </field>
         </field>
     </record>
+
+    <!-- Búsqueda por el nombre de atributo completo (el display name tiene la forma del name get) -->
+    <record id="attr_search_view" model="ir.ui.view">
+        <field name="name">attr_search_view</field>
+        <field name="model">product.attribute</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="display_name" string="Attribute"/>
+            </search>
+        </field>
+    </record>
+
+    <!-- Busqueda en valores de atributo por el campo display name del attributo, no por name -->
     <record id="variants_tree_view_add_custom" model="ir.ui.view">
         <field name="name">variants.tree.view.add.custom</field>
         <field name="model">product.attribute.value</field>
         <field name="inherit_id" ref="product.variants_tree_view"/>
         <field name="arch" type="xml">
             <field name="name" position="after">
+                <field name="attr_name" invisible="1"/>
                 <field name="supplier_code"/>
                 <field name="is_tboot"/>
                 <field name="is_color"/>
             </field>
+        </field>
+    </record>
+     <record id="attribute_value_view_search" model="ir.ui.view">
+        <field name="name">attribute_value_view_search</field>
+        <field name="model">product.attribute.value</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="attr_name" string="Attribute"/>
+                <field name="name"/>
+            </search>
         </field>
     </record>
 

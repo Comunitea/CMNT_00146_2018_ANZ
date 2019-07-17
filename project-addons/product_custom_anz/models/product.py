@@ -34,6 +34,8 @@ class ProductAttribute(models.Model):
 
     _inherit = "product.attribute"
 
+    display_name = fields.Char(store=True, string='Complet Name')
+
     @api.multi
     def name_get(self):
         res = []
@@ -89,6 +91,7 @@ class ProductAttributeValue(models.Model):
                               readonly=True)
     supplier_code = fields.Char("Supplier name")
     name_normalizado = fields.Char()
+    attr_name = fields.Char('Attribute', related="attribute_id.display_name")
 
     #price_extra = fields.Float(company_dependent=True)
 

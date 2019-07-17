@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-01-13 20:14+0000\n"
-"PO-Revision-Date: 2019-01-13 20:14+0000\n"
+"POT-Creation-Date: 2019-07-17 11:25+0000\n"
+"PO-Revision-Date: 2019-07-17 11:25+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,10 +16,35 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: product_custom_anz
+#: model:ir.ui.view,arch_db:product_custom_anz.produt_attribute_tag_search_view
+msgid "Age"
+msgstr "Edad"
+
+#. module: product_custom_anz
 #: model:ir.model.fields,field_description:product_custom_anz.field_res_partner_allowed_boot_ids
 #: model:ir.model.fields,field_description:product_custom_anz.field_res_users_allowed_boot_ids
 msgid "Allowed boots"
 msgstr "Modelos asociados"
+
+#. module: product_custom_anz
+#: model:ir.model.fields,field_description:product_custom_anz.field_product_attribute_value_attr_name
+#: model:ir.model.fields,field_description:product_custom_anz.field_product_product_attribute_id
+#: model:ir.model.fields,field_description:product_custom_anz.field_product_product_tmpl_attribute_id
+#: model:ir.model.fields,field_description:product_custom_anz.field_product_template_attribute_id
+#: model:ir.ui.view,arch_db:product_custom_anz.attr_search_view
+#: model:ir.ui.view,arch_db:product_custom_anz.attribute_value_view_search
+msgid "Attribute"
+msgstr "Atributo"
+
+#. module: product_custom_anz
+#: model:ir.ui.view,arch_db:product_custom_anz.view_produt_attribute_tag_tree
+msgid "Attribute tags"
+msgstr "Etiquetas atributo"
+
+#. module: product_custom_anz
+#: model:ir.actions.act_window,name:product_custom_anz.attribute_action
+msgid "Attributes"
+msgstr "Atributos"
 
 #. module: product_custom_anz
 #: model:ir.model.fields,field_description:product_custom_anz.field_sale_order_line_is_player_boot
@@ -27,12 +52,17 @@ msgid "Bota de jugador"
 msgstr "Bota de jugador"
 
 #. module: product_custom_anz
+#: model:ir.model.fields,field_description:product_custom_anz.field_product_attribute_product_brand_id
+#: model:ir.model.fields,field_description:product_custom_anz.field_product_attribute_tag_product_brand_id
+#: model:ir.model.fields,field_description:product_custom_anz.field_product_check_barcodes_brand_id
+#: model:ir.model.fields,field_description:product_custom_anz.field_product_import_wzd_brand_id
 #: model:ir.model.fields,field_description:product_custom_anz.field_product_pricelist_item_brand_id
+#: model:ir.ui.view,arch_db:product_custom_anz.produt_attribute_tag_search_view
 msgid "Brand"
 msgstr "Marca"
 
 #. module: product_custom_anz
-#: code:addons/product_custom_anz/models/product_pricelist.py:198
+#: code:addons/product_custom_anz/models/product_pricelist.py:216
 #, python-format
 msgid "Brand: %s"
 msgstr "Marca: %s"
@@ -43,9 +73,16 @@ msgid "Brands"
 msgstr "Marcas"
 
 #. module: product_custom_anz
+#: model:ir.ui.view,arch_db:product_custom_anz.view_product_check_barcodes_form
 #: model:ir.ui.view,arch_db:product_custom_anz.view_product_import_wzd_form
 msgid "Cancel"
 msgstr "Cancelar"
+
+#. module: product_custom_anz
+#: model:ir.model.fields,field_description:product_custom_anz.field_product_attribute_attribute_category_id
+#: model:ir.model.fields,field_description:product_custom_anz.field_product_attribute_category_name
+msgid "Category"
+msgstr "Categoría"
 
 #. module: product_custom_anz
 #: model:ir.model.fields,help:product_custom_anz.field_product_attribute_is_tboot
@@ -66,43 +103,103 @@ msgid "Color"
 msgstr "Color"
 
 #. module: product_custom_anz
+#: model:ir.model.fields,field_description:product_custom_anz.field_product_product_ref_template_color
+#: model:ir.model.fields,field_description:product_custom_anz.field_product_template_ref_template_color
+msgid "Color de la referencia de plantilla"
+msgstr "Color de la referencia de plantilla"
+
+#. module: product_custom_anz
+#: model:ir.ui.view,arch_db:product_custom_anz.view_product_check_barcodes_form
+msgid "Comprobar códigos"
+msgstr "Comprobar códigos"
+
+#. module: product_custom_anz
 #: model:ir.model,name:product_custom_anz.model_res_partner
 msgid "Contact"
 msgstr "Contacto"
 
 #. module: product_custom_anz
+#: model:ir.model.fields,field_description:product_custom_anz.field_product_check_barcodes_create_attributes
+#: model:ir.model.fields,field_description:product_custom_anz.field_product_import_wzd_create_attributes
+msgid "Create attributes/values if neccesary"
+msgstr "Create attributes/values if neccesary"
+
+#. module: product_custom_anz
+#: model:ir.model.fields,field_description:product_custom_anz.field_product_attribute_category_create_uid
+#: model:ir.model.fields,field_description:product_custom_anz.field_product_attribute_tag_create_uid
+#: model:ir.model.fields,field_description:product_custom_anz.field_product_check_barcodes_create_uid
 #: model:ir.model.fields,field_description:product_custom_anz.field_product_import_wzd_create_uid
+#: model:ir.model.fields,field_description:product_custom_anz.field_product_supplier_tag_create_uid
 msgid "Created by"
 msgstr "Creado por"
 
 #. module: product_custom_anz
+#: model:ir.model.fields,field_description:product_custom_anz.field_product_attribute_category_create_date
+#: model:ir.model.fields,field_description:product_custom_anz.field_product_attribute_tag_create_date
+#: model:ir.model.fields,field_description:product_custom_anz.field_product_check_barcodes_create_date
 #: model:ir.model.fields,field_description:product_custom_anz.field_product_import_wzd_create_date
+#: model:ir.model.fields,field_description:product_custom_anz.field_product_supplier_tag_create_date
 msgid "Created on"
 msgstr "Creado en"
 
 #. module: product_custom_anz
-#: model:ir.model.fields,field_description:product_custom_anz.field_product_import_wzd_display_name
-msgid "Display Name"
-msgstr "Nombre mostrado"
+#: model:ir.model.fields,field_description:product_custom_anz.field_product_check_barcodes_categ_id
+#: model:ir.model.fields,field_description:product_custom_anz.field_product_import_wzd_categ_id
+msgid "Default product category"
+msgstr "Default product category"
 
 #. module: product_custom_anz
-#: code:addons/product_custom_anz/wizard/product_import_wzd.py:71
+#: model:ir.model.fields,field_description:product_custom_anz.field_product_attribute_category_display_name
+#: model:ir.model.fields,field_description:product_custom_anz.field_product_attribute_tag_display_name
+#: model:ir.model.fields,field_description:product_custom_anz.field_product_check_barcodes_display_name
+#: model:ir.model.fields,field_description:product_custom_anz.field_product_import_wzd_display_name
+#: model:ir.model.fields,field_description:product_custom_anz.field_product_supplier_tag_display_name
+msgid "Display Name"
+msgstr "Nombre a mostrar"
+
+#. module: product_custom_anz
+#: model:ir.model.fields,field_description:product_custom_anz.field_product_attribute_product_age_id
+#: selection:product.attribute.tag,type:0
+msgid "Edad"
+msgstr "Edad"
+
+#. module: product_custom_anz
+#: code:addons/product_custom_anz/wizard/product_check_barcodes.py:150
 #, python-format
 msgid "Error getting attribute %s in line %s:                    Not found"
-msgstr "Error obteniendo el atributo %s en la línea %s:                    No encontrado"
+msgstr "Error getting attribute %s in line %s:                    Not found"
 
 #. module: product_custom_anz
-#: code:addons/product_custom_anz/wizard/product_import_wzd.py:81
+#: code:addons/product_custom_anz/wizard/product_import_wzd.py:212
 #, python-format
-msgid "Error getting attribute %s with value %s in line %s:                    Not found"
-msgstr "Error obteniendo el atributo %scon valor %s en la línea%s:                    No encontrado"
+msgid "Error getting attribute %s with value %s in line %s:                         Not found"
+msgstr "Error getting attribute %s with value %s in line %s:                         Not found"
 
 #. module: product_custom_anz
+#: code:addons/product_custom_anz/wizard/product_check_barcodes.py:159
+#, python-format
+msgid "Error getting attribute %s with value %s in line %s:                     Not found"
+msgstr "Error getting attribute %s with value %s in line %s:                     Not found"
+
+#. module: product_custom_anz
+#: code:addons/product_custom_anz/wizard/product_import_wzd.py:197
+#, python-format
+msgid "Error: El atributo %s in line %s no existe"
+msgstr "Error: El atributo %s in line %s no existe"
+
+#. module: product_custom_anz
+#: model:ir.ui.view,arch_db:product_custom_anz.view_product_check_barcodes_form
+msgid "Fichero"
+msgstr "Fichero"
+
+#. module: product_custom_anz
+#: model:ir.model.fields,field_description:product_custom_anz.field_product_check_barcodes_file
 #: model:ir.model.fields,field_description:product_custom_anz.field_product_import_wzd_file
 msgid "File"
 msgstr "Archivo"
 
 #. module: product_custom_anz
+#: model:ir.model.fields,field_description:product_custom_anz.field_product_check_barcodes_filename
 #: model:ir.model.fields,field_description:product_custom_anz.field_product_import_wzd_filename
 msgid "Filename"
 msgstr "Nombre de archivo"
@@ -113,12 +210,38 @@ msgid "Fix variants"
 msgstr "Arreglar variantes"
 
 #. module: product_custom_anz
+#: model:ir.model.fields,field_description:product_custom_anz.field_product_product_force_attribute_value
+msgid "Forzar esta talla"
+msgstr "Forzar esta talla"
+
+#. module: product_custom_anz
+#: model:ir.ui.view,arch_db:product_custom_anz.produt_attribute_tag_search_view
+msgid "Gender"
+msgstr "Género"
+
+#. module: product_custom_anz
+#: model:ir.ui.view,arch_db:product_custom_anz.produt_attribute_tag_search_view
+msgid "Group By"
+msgstr "Agrupar por"
+
+#. module: product_custom_anz
+#: model:ir.model.fields,field_description:product_custom_anz.field_product_attribute_product_gender_id
+#: selection:product.attribute.tag,type:0
+msgid "Género"
+msgstr "Género"
+
+#. module: product_custom_anz
+#: model:ir.model.fields,field_description:product_custom_anz.field_product_attribute_category_id
+#: model:ir.model.fields,field_description:product_custom_anz.field_product_attribute_tag_id
+#: model:ir.model.fields,field_description:product_custom_anz.field_product_check_barcodes_id
 #: model:ir.model.fields,field_description:product_custom_anz.field_product_import_wzd_id
+#: model:ir.model.fields,field_description:product_custom_anz.field_product_supplier_tag_id
 msgid "ID"
 msgstr "ID (identificación)"
 
 #. module: product_custom_anz
-#: code:addons/product_custom_anz/wizard/product_import_wzd.py:177
+#: code:addons/product_custom_anz/wizard/product_check_barcodes.py:279
+#: code:addons/product_custom_anz/wizard/product_import_wzd.py:342
 #, python-format
 msgid "IMPORTED PRODUCT %s / %s"
 msgstr "PRODUCTO IMPORTADO %s / %s"
@@ -129,6 +252,7 @@ msgid "If empty, all brands"
 msgstr "Marcas permitidas, todas si está vacío"
 
 #. module: product_custom_anz
+#: model:ir.actions.act_window,name:product_custom_anz.action_check_barcodes
 #: model:ir.actions.act_window,name:product_custom_anz.action_import_products
 #: model:ir.ui.menu,name:product_custom_anz.menu_import_product
 #: model:ir.ui.view,arch_db:product_custom_anz.view_product_import_wzd_form
@@ -136,6 +260,7 @@ msgid "Import Products"
 msgstr "Importar productos"
 
 #. module: product_custom_anz
+#: model:ir.model.fields,field_description:product_custom_anz.field_product_check_barcodes_name
 #: model:ir.model.fields,field_description:product_custom_anz.field_product_import_wzd_name
 #: model:ir.model.fields,field_description:product_custom_anz.field_product_product_importation_name
 #: model:ir.model.fields,field_description:product_custom_anz.field_product_template_importation_name
@@ -165,24 +290,99 @@ msgid "Journal Item"
 msgstr "Apunte contable"
 
 #. module: product_custom_anz
+#: model:ir.model.fields,field_description:product_custom_anz.field_product_attribute_category___last_update
+#: model:ir.model.fields,field_description:product_custom_anz.field_product_attribute_tag___last_update
+#: model:ir.model.fields,field_description:product_custom_anz.field_product_check_barcodes___last_update
 #: model:ir.model.fields,field_description:product_custom_anz.field_product_import_wzd___last_update
+#: model:ir.model.fields,field_description:product_custom_anz.field_product_supplier_tag___last_update
 msgid "Last Modified on"
 msgstr "Última modificación en"
 
 #. module: product_custom_anz
+#: model:ir.model.fields,field_description:product_custom_anz.field_product_attribute_category_write_uid
+#: model:ir.model.fields,field_description:product_custom_anz.field_product_attribute_tag_write_uid
+#: model:ir.model.fields,field_description:product_custom_anz.field_product_check_barcodes_write_uid
 #: model:ir.model.fields,field_description:product_custom_anz.field_product_import_wzd_write_uid
+#: model:ir.model.fields,field_description:product_custom_anz.field_product_supplier_tag_write_uid
 msgid "Last Updated by"
 msgstr "Última actualización de"
 
 #. module: product_custom_anz
+#: model:ir.model.fields,field_description:product_custom_anz.field_product_attribute_category_write_date
+#: model:ir.model.fields,field_description:product_custom_anz.field_product_attribute_tag_write_date
+#: model:ir.model.fields,field_description:product_custom_anz.field_product_check_barcodes_write_date
 #: model:ir.model.fields,field_description:product_custom_anz.field_product_import_wzd_write_date
+#: model:ir.model.fields,field_description:product_custom_anz.field_product_supplier_tag_write_date
 msgid "Last Updated on"
 msgstr "Última actualización en"
+
+#. module: product_custom_anz
+#: model:ir.ui.view,arch_db:product_custom_anz.product_pricelist_view_form_custom
+msgid "Lista de precios"
+msgstr "Lista de precios"
+
+#. module: product_custom_anz
+#: model:ir.model.fields,field_description:product_custom_anz.field_product_supplier_tag_tag_id
+msgid "Local tag"
+msgstr "Local tag"
+
+#. module: product_custom_anz
+#: model:ir.ui.view,arch_db:product_custom_anz.produt_attribute_tag_search_view
+msgid "Marca"
+msgstr "Marca"
+
+#. module: product_custom_anz
+#: code:addons/product_custom_anz/wizard/product_check_barcodes.py:51
+#: code:addons/product_custom_anz/wizard/product_import_wzd.py:99
+#, python-format
+msgid "Missing EAN in row %s "
+msgstr "Missing EAN in row %s "
+
+#. module: product_custom_anz
+#: model:ir.model.fields,field_description:product_custom_anz.field_product_supplier_tag_name
+msgid "Name"
+msgstr "Nombre"
+
+#. module: product_custom_anz
+#: model:ir.model.fields,field_description:product_custom_anz.field_product_attribute_value_name_normalizado
+msgid "Name Normalizado"
+msgstr "Name Normalizado"
+
+#. module: product_custom_anz
+#: model:ir.model.fields,field_description:product_custom_anz.field_product_product_need_fix
+msgid "Need Fix"
+msgstr "Need Fix"
+
+#. module: product_custom_anz
+#: model:ir.ui.view,arch_db:product_custom_anz.view_product_check_barcodes_form
+msgid "Nombre de la importación"
+msgstr "Nombre de la importación"
+
+#. module: product_custom_anz
+#: model:ir.model.fields,field_description:product_custom_anz.field_product_attribute_tag_lines_count
+msgid "Number of products"
+msgstr "Número de productos"
+
+#. module: product_custom_anz
+#: model:ir.model.fields,field_description:product_custom_anz.field_product_product_numero_de_variantes
+#: model:ir.model.fields,field_description:product_custom_anz.field_product_template_numero_de_variantes
+msgid "Numero de variantes"
+msgstr "Numero de variantes"
+
+#. module: product_custom_anz
+#: model:ir.model.fields,field_description:product_custom_anz.field_product_pricelist_pricelist_item_count
+msgid "Nº de precios"
+msgstr "Nº de precios"
 
 #. module: product_custom_anz
 #: model:ir.model.fields,field_description:product_custom_anz.field_product_product_oldname
 msgid "Oldname"
 msgstr "Nombre antiguo"
+
+#. module: product_custom_anz
+#: model:ir.model.fields,field_description:product_custom_anz.field_product_product_oldname_normalizado
+msgid "Oldname Normalizado"
+msgstr "Oldname Normalizado"
 
 #. module: product_custom_anz
 #: model:ir.model,name:product_custom_anz.model_operating_unit
@@ -201,10 +401,9 @@ msgid "PVP"
 msgstr "PVP"
 
 #. module: product_custom_anz
-#: model:ir.model.fields,field_description:product_custom_anz.field_product_product_template_standard_price
-#: model:ir.model.fields,field_description:product_custom_anz.field_product_template_template_standard_price
-msgid "Precio de coste"
-msgstr "Precio de coste"
+#: model:ir.model.fields,field_description:product_custom_anz.field_product_supplier_tag_partner_id
+msgid "Partner"
+msgstr "Empresa"
 
 #. module: product_custom_anz
 #: model:ir.model,name:product_custom_anz.model_product_pricelist
@@ -218,6 +417,8 @@ msgstr "Regla de precio"
 
 #. module: product_custom_anz
 #: model:ir.model,name:product_custom_anz.model_product_product
+#: model:ir.ui.view,arch_db:product_custom_anz.product_template_search_view_custom_anz
+#: model:ir.ui.view,arch_db:product_custom_anz.produt_attribute_tag_search_view
 msgid "Product"
 msgstr "Producto"
 
@@ -227,9 +428,28 @@ msgid "Product Attribute"
 msgstr "Atributo de producto"
 
 #. module: product_custom_anz
+#: model:ir.model,name:product_custom_anz.model_product_tag
+msgid "Product Tags"
+msgstr "Etiquetas de producto"
+
+#. module: product_custom_anz
 #: model:ir.model,name:product_custom_anz.model_product_template
 msgid "Product Template"
 msgstr "Plantilla de producto"
+
+#. module: product_custom_anz
+#: model:ir.actions.act_window,name:product_custom_anz.action_view_produt_attribute_tag_tree
+#: model:ir.ui.menu,name:product_custom_anz.menu_product_attribute_tag
+#: model:ir.ui.view,arch_db:product_custom_anz.view_produt_attribute_tag_form
+#: model:ir.ui.view,name:product_custom_anz.view_produt_attribute_tag_form
+#: model:ir.ui.view,name:product_custom_anz.view_produt_attribute_tag_tree
+msgid "Product attribute tag"
+msgstr "Product attribute tag"
+
+#. module: product_custom_anz
+#: model:ir.ui.view,name:product_custom_anz.produt_attribute_tag_search_view
+msgid "Product attribute tag.search"
+msgstr "Product attribute tag.search"
 
 #. module: product_custom_anz
 #: model:ir.model,name:product_custom_anz.model_sale_order
@@ -237,10 +457,26 @@ msgid "Quotation"
 msgstr "Presupuesto"
 
 #. module: product_custom_anz
+#: model:ir.model.fields,field_description:product_custom_anz.field_product_product_ref_template_name
+#: model:ir.model.fields,field_description:product_custom_anz.field_product_template_ref_template_name
+msgid "Ref Template Name"
+msgstr "Ref Template Name"
+
+#. module: product_custom_anz
 #: model:ir.model.fields,field_description:product_custom_anz.field_product_product_ref_template
 #: model:ir.model.fields,field_description:product_custom_anz.field_product_template_ref_template
-msgid "Ref Template"
-msgstr "Ref. Plantilla"
+msgid "Referencia de plantilla"
+msgstr "Referencia de plantilla"
+
+#. module: product_custom_anz
+#: model:ir.ui.menu,name:product_custom_anz.menu_action_check_barcodes
+msgid "Reimportar codigos"
+msgstr "Reimportar codigos"
+
+#. module: product_custom_anz
+#: model:ir.ui.view,arch_db:product_custom_anz.view_product_check_barcodes_form
+msgid "Reimportar códigos de barras"
+msgstr "Reimportar códigos de barras"
 
 #. module: product_custom_anz
 #: model:ir.model.fields,field_description:product_custom_anz.field_product_product_replication
@@ -249,7 +485,8 @@ msgid "Replication"
 msgstr "Replication"
 
 #. module: product_custom_anz
-#: code:addons/product_custom_anz/wizard/product_import_wzd.py:156
+#: code:addons/product_custom_anz/wizard/product_check_barcodes.py:259
+#: code:addons/product_custom_anz/wizard/product_import_wzd.py:319
 #, python-format
 msgid "STARTING PRODUCT IMPORTATION"
 msgstr "EMPEZANDO IMPORTACIÓN DE PRODUCTOS"
@@ -257,7 +494,17 @@ msgstr "EMPEZANDO IMPORTACIÓN DE PRODUCTOS"
 #. module: product_custom_anz
 #: model:ir.model,name:product_custom_anz.model_sale_order_line
 msgid "Sales Order Line"
-msgstr "Línea de pedido de ventas"
+msgstr "Línea de pedido de venta"
+
+#. module: product_custom_anz
+#: model:res.groups,comment:product_custom_anz.see_qty_available_global_group
+msgid "Se muestra el campo de qty global a mano"
+msgstr "Se muestra el campo de qty global a mano"
+
+#. module: product_custom_anz
+#: model:ir.ui.view,arch_db:product_custom_anz.view_product_check_barcodes_form
+msgid "Selecciona un fichero para importar"
+msgstr "Selecciona un fichero para importar"
 
 #. module: product_custom_anz
 #: model:ir.ui.view,arch_db:product_custom_anz.view_product_import_wzd_form
@@ -277,22 +524,79 @@ msgid "Size"
 msgstr "Tamaño"
 
 #. module: product_custom_anz
-#: code:addons/product_custom_anz/wizard/product_import_wzd.py:41
+#: model:ir.model.fields,field_description:product_custom_anz.field_product_tag_sup_tag_ids
+msgid "Sup. tag"
+msgstr "Sup. tag"
+
+#. module: product_custom_anz
+#: model:ir.model.fields,field_description:product_custom_anz.field_product_attribute_value_supplier_code
+msgid "Supplier name"
+msgstr "Supplier name"
+
+#. module: product_custom_anz
+#: code:addons/product_custom_anz/models/product_template.py:58
+#, python-format
+msgid "The field risk_exception is not searchable with the operator {} and value {}"
+msgstr "The field risk_exception is not searchable with the operator {} and value {}"
+
+#. module: product_custom_anz
+#: code:addons/product_custom_anz/wizard/product_check_barcodes.py:87
+#: code:addons/product_custom_anz/wizard/product_import_wzd.py:124
+#, python-format
+msgid "The row %s has wrong category (%s) and not default category"
+msgstr "The row %s has wrong category (%s) and not default category"
+
+#. module: product_custom_anz
+#: code:addons/product_custom_anz/wizard/product_import_wzd.py:105
+#, python-format
+msgid "The row %s is missing brand"
+msgstr "The row %s is missing brand"
+
+#. module: product_custom_anz
+#: code:addons/product_custom_anz/wizard/product_check_barcodes.py:54
+#: code:addons/product_custom_anz/wizard/product_import_wzd.py:102
 #, python-format
 msgid "The row %s is missing some mandatory column"
 msgstr "A la fila %s le falta alguna columna obligatoria"
 
 #. module: product_custom_anz
-#: code:addons/product_custom_anz/wizard/product_import_wzd.py:173
+#: code:addons/product_custom_anz/wizard/product_import_wzd.py:338
 #, python-format
 msgid "The template %s already exists"
 msgstr "La plantilla %s ya existe"
+
+#. module: product_custom_anz
+#: selection:product.attribute.tag,type:0
+msgid "Tipo de articulo"
+msgstr "Tipo de articulo"
 
 #. module: product_custom_anz
 #: model:ir.model.fields,field_description:product_custom_anz.field_product_product_boot_type
 #: model:ir.model.fields,field_description:product_custom_anz.field_product_template_boot_type
 msgid "Tipo de bota"
 msgstr "Tipo de bota"
+
+#. module: product_custom_anz
+#: model:ir.model.fields,field_description:product_custom_anz.field_product_attribute_product_type_id
+msgid "Tipo de producto"
+msgstr "Tipo de producto"
+
+#. module: product_custom_anz
+#: model:ir.model.fields,field_description:product_custom_anz.field_product_attribute_tag_type
+#: model:ir.ui.view,arch_db:product_custom_anz.produt_attribute_tag_search_view
+msgid "Type"
+msgstr "Tipo"
+
+#. module: product_custom_anz
+#: model:ir.model.fields,field_description:product_custom_anz.field_product_attribute_tag_value
+msgid "Valor"
+msgstr "Valor"
+
+#. module: product_custom_anz
+#: model:ir.model.fields,field_description:product_custom_anz.field_product_attribute_count_line_ids
+#: model:ir.ui.view,arch_db:product_custom_anz.product_attribute_view_form_add_custom
+msgid "Valores"
+msgstr "Valores"
 
 #. module: product_custom_anz
 #: model:ir.model.fields,field_description:product_custom_anz.field_product_product_variant_suffix
@@ -306,12 +610,122 @@ msgid "Variants"
 msgstr "Variantes"
 
 #. module: product_custom_anz
+#: model:res.groups,name:product_custom_anz.see_qty_available_global_group
+msgid "Ver cantidads globales"
+msgstr "Ver cantidads globales"
+
+#. module: product_custom_anz
+#: model:ir.ui.view,name:product_custom_anz.attr_search_view
+msgid "attr_search_view"
+msgstr "attr_search_view"
+
+#. module: product_custom_anz
+#: model:ir.ui.view,name:product_custom_anz.attribute_value_view_search
+msgid "attribute_value_view_search"
+msgstr "attribute_value_view_search"
+
+#. module: product_custom_anz
+#: model:ir.ui.view,name:product_custom_anz.view_operating_unit_form_custom_anz
+msgid "operating.unit.custom.anz"
+msgstr "operating.unit.custom.anz"
+
+#. module: product_custom_anz
+#: model:ir.model,name:product_custom_anz.model_product_attribute_category
+msgid "product.attribute.category"
+msgstr "product.attribute.category"
+
+#. module: product_custom_anz
+#: model:ir.ui.view,name:product_custom_anz.product_attribute_view_form_add_custom
+msgid "product.attribute.form.add.custom"
+msgstr "product.attribute.form.add.custom"
+
+#. module: product_custom_anz
+#: model:ir.model,name:product_custom_anz.model_product_attribute_tag
+msgid "product.attribute.tag"
+msgstr "product.attribute.tag"
+
+#. module: product_custom_anz
+#: model:ir.ui.view,name:product_custom_anz.attribute_tree_view_add_custom
+msgid "product.attribute.tree.add.custom"
+msgstr "product.attribute.tree.add.custom"
+
+#. module: product_custom_anz
 #: model:ir.model,name:product_custom_anz.model_product_attribute_value
 msgid "product.attribute.value"
 msgstr "product.attribute.value"
 
 #. module: product_custom_anz
+#: model:ir.model,name:product_custom_anz.model_product_check_barcodes
+msgid "product.check.barcodes"
+msgstr "product.check.barcodes"
+
+#. module: product_custom_anz
 #: model:ir.model,name:product_custom_anz.model_product_import_wzd
 msgid "product.import.wzd"
 msgstr "product.import.wzd"
+
+#. module: product_custom_anz
+#: model:ir.ui.view,name:product_custom_anz.product_pricelist_view_form_custom
+msgid "product.pricelist.form.inherit.product.custom"
+msgstr "product.pricelist.form.inherit.product.custom"
+
+#. module: product_custom_anz
+#: model:ir.ui.view,name:product_custom_anz.product_pricelist_item_form_view_add_brand
+msgid "product.pricelist.item.form.add.brand"
+msgstr "product.pricelist.item.form.add.brand"
+
+#. module: product_custom_anz
+#: model:ir.ui.view,name:product_custom_anz.product_variant_easy_edit_view_fix_variant
+msgid "product.product.easy_view_fix_variant"
+msgstr "product.product.easy_view_fix_variant"
+
+#. module: product_custom_anz
+#: model:ir.ui.view,name:product_custom_anz.product_product_tree_view_visible_price
+msgid "product.product.tree.visible_price"
+msgstr "product.product.tree.visible_price"
+
+#. module: product_custom_anz
+#: model:ir.ui.view,name:product_custom_anz.product_product_for_view_anz
+msgid "product.product.view.custom.anz"
+msgstr "product.product.view.custom.anz"
+
+#. module: product_custom_anz
+#: model:ir.model,name:product_custom_anz.model_product_supplier_tag
+msgid "product.supplier.tag"
+msgstr "product.supplier.tag"
+
+#. module: product_custom_anz
+#: model:ir.ui.view,name:product_custom_anz.view_product_tag_tag_ids
+msgid "product.tag.tag_ids"
+msgstr "product.tag.tag_ids"
+
+#. module: product_custom_anz
+#: model:ir.ui.view,name:product_custom_anz.product_template_search_view_custom_anz
+msgid "product.template.search.view.custom.anz"
+msgstr "product.template.search.view.custom.anz"
+
+#. module: product_custom_anz
+#: model:ir.ui.view,name:product_custom_anz.product_template_for_view_anz
+msgid "product.template.view.custom.anz"
+msgstr "product.template.view.custom.anz"
+
+#. module: product_custom_anz
+#: model:ir.ui.view,name:product_custom_anz.view_partner_form
+msgid "res.partner.inherit.view.form"
+msgstr "res.partner.inherit.view.form"
+
+#. module: product_custom_anz
+#: model:ir.ui.view,name:product_custom_anz.variants_tree_view_add_custom
+msgid "variants.tree.view.add.custom"
+msgstr "variants.tree.view.add.custom"
+
+#. module: product_custom_anz
+#: model:ir.ui.view,name:product_custom_anz.view_product_check_barcodes_form
+msgid "view.product.check.barcodes.wzd.form"
+msgstr "view.product.check.barcodes.wzd.form"
+
+#. module: product_custom_anz
+#: model:ir.ui.view,name:product_custom_anz.view_product_import_wzd_form
+msgid "view.product.import.wzd.form"
+msgstr "view.product.import.wzd.form"
 
