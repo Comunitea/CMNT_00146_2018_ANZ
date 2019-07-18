@@ -5,6 +5,16 @@
 from odoo import _, api, models, fields
 from odoo.exceptions import ValidationError
 
+
+class StockWarehouse(models.Model):
+    _inherit = 'stock.warehouse'
+
+    @api.model
+    def create(self, vals):
+        self2 = self.with_context(no_check_locations=True)
+        return super(StockWarehouse, self2).create(vals)
+
+
 class StockLocation(models.Model):
 
     _inherit = 'stock.location'
@@ -29,10 +39,12 @@ class StockLocation(models.Model):
     @api.onchange('posx', 'posy', 'posz', 'location_id', 'location_id.ubic')
     def onchange_act_barcode(self):
 
-        #self._set_order()
+        # self._set_order()
         self.set_barcode_field()
 
     def check_vals(self, usage, posx, posy, posz, barcode):
+        if self._context.get('no_check_locations'):
+            return True
         if usage=='internal' and not posx and not posy and not posz:
             raise ValidationError('Las ubicaciones internas  debenm tener valor en los campos  Pasillo (x), Estatntería (Y) Altura (Z)')
         if usage=='internal' and not barcode:
