@@ -37,6 +37,8 @@ class ProductAttribute(models.Model):
     display_name = fields.Char(store=True, string='Complet Name')
 
     @api.multi
+    @api.depends('name', 'product_brand_id', 'product_type_id', 
+                 'product_gender_id', 'product_age_id')
     def name_get(self):
         res = []
         for record in self:
