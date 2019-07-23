@@ -35,6 +35,8 @@ class ProductAttribute(models.Model):
     _inherit = "product.attribute"
 
     @api.multi
+    @api.depends('name', 'product_brand_id', 'product_type_id', 
+                 'product_gender_id', 'product_age_id')
     def _get_srch_name(self):
         for att in self:
             att.srch_name = att.display_name
@@ -44,8 +46,6 @@ class ProductAttribute(models.Model):
                             compute="_get_srch_name")
 
     @api.multi
-    @api.depends('name', 'product_brand_id', 'product_type_id', 
-                 'product_gender_id', 'product_age_id')
     def name_get(self):
         res = []
         for record in self:
