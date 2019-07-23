@@ -34,7 +34,14 @@ class ProductAttribute(models.Model):
 
     _inherit = "product.attribute"
 
-    display_name = fields.Char(store=True, string='Complet Name')
+    @api.multi
+    def _get_srch_name(self):
+        for att in self:
+            att.srch_name = att.display_name
+
+    display_name = fields.Char(store=False, string='Complet Name')
+    srch_name = fields.Char(store=True, string='Search Name',
+                            compute="_get_srch_name")
 
     @api.multi
     @api.depends('name', 'product_brand_id', 'product_type_id', 
@@ -93,7 +100,7 @@ class ProductAttributeValue(models.Model):
                               readonly=True)
     supplier_code = fields.Char("Supplier name")
     name_normalizado = fields.Char()
-    attr_name = fields.Char('Attribute', related="attribute_id.display_name")
+    attr_name = fields.Char('Attribute', related="attribute_id.srch_name")
 
     #price_extra = fields.Float(company_dependent=True)
 

@@ -9,9 +9,6 @@ class ProductAttributeValue(models.Model):
 
     _inherit = "product.attribute.value"
 
-    @api.multi
-    @api.depends('name', 'product_brand_id', 'product_type_id', 
-                 'product_gender_id', 'product_age_id')
     def name_get(self):
         """
         Heredo el nombre de la plantilla y si en el contexto viene
