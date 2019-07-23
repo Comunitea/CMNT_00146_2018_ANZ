@@ -53,9 +53,9 @@ class ProductTemplate(models.Model):
             else:
                 value = '%' + value + '%'
             self.env.cr.execute("SELECT id FROM product_template WHERE "+comparator+operator+" '"+value+"';")
-        else:
-            ValidationError(_('The field risk_exception is not searchable '
-                            'with the operator {} and value {}'.format(operator,value)))
+        # else:
+        #     ValidationError(_('The field risk_exception is not searchable '
+        #                     'with the operator {} and value {}'.format(operator,value)))
         return [('id','in',[i[0] for i in self.env.cr.fetchall()])]
 
     importation_name = fields.Char('Importation name')

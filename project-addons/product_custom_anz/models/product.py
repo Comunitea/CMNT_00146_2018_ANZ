@@ -120,6 +120,8 @@ class ProductProduct(models.Model):
         names2 = []
         if name:
             domain = [('product_tmpl_id.ref_template_name', operator, name)]
+            if not args:
+                args = []
             names2 = self.search(domain+args, limit=limit).name_get()
         # Merge both results
         return list(set(names2) | set(names1))[:limit]
