@@ -104,7 +104,7 @@
         <field name="model">product.attribute</field>
         <field name="arch" type="xml">
             <search>
-                <field name="display_name" string="Attribute"/>
+                <field name="srch_name" string="Attribute"/>
             </search>
         </field>
     </record>
