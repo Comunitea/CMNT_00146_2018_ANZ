@@ -1,11 +1,14 @@
 # -*- coding: utf-8 -*-
 
 import json
+import shlex
+
 from odoo import http, _
 from odoo.http import request
+from odoo.osv import expression
+
 from odoo.addons.website_sale.controllers.main import WebsiteSale
 from odoo.addons.seo_base.controllers.redirecting import ProductRedirect
-from odoo.osv import expression
 
 
 class WebsiteSaleExtended(WebsiteSale):
@@ -28,18 +31,19 @@ class WebsiteSaleExtended(WebsiteSale):
 
         # Search and filters work together
         if search and search != 0:
-            for srch in search.split(" "):
-                domain_search = ['|', '|', '|', '|', '|', '|',
-                                 ('name', '%', srch),
-                                 ('ref_template', 'ilike', srch),
-                                 ('product_color', 'ilike', srch),
-                                 ('product_variant_ids.attribute_value_ids', 'ilike', srch),
-                                 ('public_categ_ids.complete_name', 'ilike', srch),
-                                 ('public_categ_ids.public_categ_tag_ids', 'ilike', srch),
-                                 # ('product_variant_ids', 'ilike', srch),
-                                 ('product_variant_ids.product_brand_id', 'ilike', srch)]
-                domain_origin = expression.normalize_domain(domain_origin)
-                domain_origin = expression.OR([domain_origin, domain_search])
+            for srch in shlex.split(search):
+                if len(srch) > 2:
+                    domain_search = ['|', '|', '|', '|', '|', '|',
+                                     ('name', '%', srch),
+                                     ('ref_template', 'ilike', srch),
+                                     ('product_color', 'ilike', srch),
+                                     ('product_variant_ids.attribute_value_ids', 'ilike', srch),
+                                     ('public_categ_ids.complete_name', 'ilike', srch),
+                                     ('public_categ_ids.public_categ_tag_ids', 'ilike', srch),
+                                     # ('product_variant_ids', 'ilike', srch),
+                                     ('product_variant_ids.product_brand_id', 'ilike', srch)]
+                    domain_origin = expression.normalize_domain(domain_origin)
+                    domain_origin = expression.OR([domain_origin, domain_search])
 
         if filter_args:
             brand = int(filter_args.get('brand', False))
