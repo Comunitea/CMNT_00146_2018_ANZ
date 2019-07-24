@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-11-08 18:38+0000\n"
-"PO-Revision-Date: 2018-11-08 18:38+0000\n"
+"POT-Creation-Date: 2019-07-24 09:22+0000\n"
+"PO-Revision-Date: 2019-07-24 09:22+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -63,7 +63,7 @@ msgstr "(%) Descuento"
 #. module: sale_order_line_tree
 #: model:ir.model.fields,field_description:sale_order_line_tree.field_sale_order_line_template_group_display_name
 msgid "Display Name"
-msgstr "Nombre mostrado"
+msgstr "Nombre a mostrar"
 
 #. module: sale_order_line_tree
 #: selection:sale.order.line.template.group,state:0
@@ -79,6 +79,11 @@ msgstr "Peso bruto"
 #: model:ir.model.fields,field_description:sale_order_line_tree.field_sale_order_line_template_group_id
 msgid "ID"
 msgstr "ID (identificación)"
+
+#. module: sale_order_line_tree
+#: model:ir.model.fields,field_description:sale_order_line_tree.field_sale_order_line_template_group_idlist
+msgid "Idlist"
+msgstr "Id lista"
 
 #. module: sale_order_line_tree
 #: model:ir.ui.view,arch_db:sale_order_line_tree.sale_order_line_form_view
@@ -108,17 +113,17 @@ msgstr "Modificar variantes"
 #. module: sale_order_line_tree
 #: model:ir.model.fields,field_description:sale_order_line_tree.field_sale_order_line_template_group_order_id
 msgid "Order"
-msgstr "Orden"
+msgstr "Pedido"
+
+#. module: sale_order_line_tree
+#: model:ir.ui.menu,name:sale_order_line_tree.menu_sale_order_line
+msgid "Order Lines"
+msgstr "Líneas Pedido"
 
 #. module: sale_order_line_tree
 #: model:ir.model.fields,field_description:sale_order_line_tree.field_sale_order_line_template_group_name
 msgid "Order Reference"
 msgstr "Referencia del pedido"
-
-#. module: sale_order_line_tree
-#: model:ir.model.fields,field_description:sale_order_line_tree.field_sale_order_sale_order_line_count
-msgid "Order line count"
-msgstr "Nº de líneas"
 
 #. module: sale_order_line_tree
 #: model:ir.actions.act_window,name:sale_order_line_tree.sale_order_line_tree_view_action
@@ -135,6 +140,11 @@ msgstr "Ctdad pedida"
 #: model:ir.ui.view,arch_db:sale_order_line_tree.sale_order_line_form_view
 msgid "Ordered Quantity"
 msgstr "Cantidad pedida"
+
+#. module: sale_order_line_tree
+#: model:ir.model.fields,field_description:sale_order_line_tree.field_sale_order_line_template_group_price_unit
+msgid "Price Unit"
+msgstr "Unidad de precio"
 
 #. module: sale_order_line_tree
 #: model:ir.model.fields,field_description:sale_order_line_tree.field_sale_order_line_template_group_pricelist_id
@@ -182,6 +192,11 @@ msgid "Quotation Sent"
 msgstr "Presupuesto enviado"
 
 #. module: sale_order_line_tree
+#: model:ir.model.fields,field_description:sale_order_line_tree.field_sale_order_line_template_group_ref_change
+msgid "Ref Change"
+msgstr "Cambio de referencia"
+
+#. module: sale_order_line_tree
 #: model:ir.model.fields,field_description:sale_order_line_tree.field_sale_order_line_template_group_team_id
 msgid "Sales Channel"
 msgstr "Canal de ventas"
@@ -199,13 +214,13 @@ msgstr "Ventas"
 #. module: sale_order_line_tree
 #: model:ir.model,name:sale_order_line_tree.model_sale_order_line
 msgid "Sales Order Line"
-msgstr "Línea pedido de venta"
+msgstr "Línea de pedido de venta"
 
 #. module: sale_order_line_tree
 #: model:ir.ui.view,arch_db:sale_order_line_tree.sale_order_line_form_view
 #: model:ir.ui.view,arch_db:sale_order_line_tree.sale_order_line_tree_view
 msgid "Sales Order Lines"
-msgstr "Líneas de pedidos de venta"
+msgstr "Líneas pedido de ventas"
 
 #. module: sale_order_line_tree
 #: model:ir.model,name:sale_order_line_tree.model_sale_order_line_template_group
@@ -218,10 +233,20 @@ msgid "Status"
 msgstr "Estado"
 
 #. module: sale_order_line_tree
+#: model:ir.model.fields,field_description:sale_order_line_tree.field_sale_order_line_template_group_tax_id
+msgid "Tax"
+msgstr "Impuesto"
+
+#. module: sale_order_line_tree
 #: model:ir.model.fields,field_description:sale_order_line_tree.field_sale_order_line_product_tmpl_id
 #: model:ir.ui.view,arch_db:sale_order_line_tree.view_sales_order_line_filter
 msgid "Template"
 msgstr "Plantilla"
+
+#. module: sale_order_line_tree
+#: model:ir.model.fields,field_description:sale_order_line_tree.field_sale_order_template_lines
+msgid "Template Lines"
+msgstr "Líneas de plantillla"
 
 #. module: sale_order_line_tree
 #: model:ir.model.fields,field_description:sale_order_line_tree.field_sale_order_sale_order_line_template_count
@@ -269,14 +294,49 @@ msgid "days"
 msgstr "días"
 
 #. module: sale_order_line_tree
+#: model:ir.model.fields,field_description:sale_order_line_tree.field_sale_order_line_template_group_product_ref
+msgid "referenece"
+msgstr "referencia"
+
+#. module: sale_order_line_tree
 #: model:ir.model,name:sale_order_line_tree.model_sale_manage_variant
 msgid "sale.manage.variant"
-msgstr "Gestión de variantes"
+msgstr "Variantes en venta"
+
+#. module: sale_order_line_tree
+#: model:ir.ui.view,name:sale_order_line_tree.sale_order_form_order_line_tree
+msgid "sale.order.form.order.line.tree"
+msgstr "sale.order.form.order.line.tree"
+
+#. module: sale_order_line_tree
+#: model:ir.ui.view,name:sale_order_line_tree.view_sales_order_line_filter
+msgid "sale.order.line search"
+msgstr "sale.order.line search"
+
+#. module: sale_order_line_tree
+#: model:ir.ui.view,name:sale_order_line_tree.sale_order_line_form_view
+msgid "sale.order.line.form"
+msgstr "sale.order.line.form"
 
 #. module: sale_order_line_tree
 #: model:ir.actions.act_window,name:sale_order_line_tree.view_sale_order_line_group_template_tree_action
 msgid "sale.order.line.template.group.tree.action"
 msgstr "Plantillas"
+
+#. module: sale_order_line_tree
+#: model:ir.ui.view,name:sale_order_line_tree.view_sale_order_line_group_template_tree
+msgid "sale.order.line.template.group.tree.view"
+msgstr "sale.order.line.template.group.tree.view"
+
+#. module: sale_order_line_tree
+#: model:ir.ui.view,name:sale_order_line_tree.sale_order_line_tree_view
+msgid "sale.order.line.tree"
+msgstr "sale.order.line.tree"
+
+#. module: sale_order_line_tree
+#: model:ir.ui.view,name:sale_order_line_tree.sale_order_form_order_line_template
+msgid "sale_order_form_order_line_template"
+msgstr "sale_order_form_order_line_template"
 
 #. module: sale_order_line_tree
 #: model:ir.model.fields,field_description:sale_order_line_tree.field_sale_order_line_template_group_sequence

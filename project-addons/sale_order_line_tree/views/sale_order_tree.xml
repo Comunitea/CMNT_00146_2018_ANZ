@@ -127,6 +127,12 @@
         <field name="search_view_id" ref="sale.view_sales_order_line_filter"/>
     </record>
 
+    <menuitem id="menu_sale_order_line"
+            name="Order Lines"
+            action="sale_order_line_tree_view_action"
+            parent="sale.sale_order_menu"
+            sequence="3" groups="sales_team.group_sale_salesman"/>
+
     <record id="sale_order_form_order_line_tree" model="ir.ui.view">
         <field name="name">sale.order.form.order.line.tree</field>
         <field name="model">sale.order</field>
