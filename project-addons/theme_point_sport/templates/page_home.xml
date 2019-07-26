@@ -69,6 +69,8 @@
                 <t t-call="theme_point_sport.poi_home_carousel_b2b" t-else=""/>
                 <!-- Content section -->
                 <section class="oe_structure oe_empty"/>
+                <t t-call="website_blog_base.s_latest_post"/>
+                <section class="oe_structure oe_empty"/>
                 <div class="container">
                     <div class="row">
                         <div class="col-md-12 mt32 mb32">
