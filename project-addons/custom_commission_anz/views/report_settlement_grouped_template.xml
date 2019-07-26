@@ -25,14 +25,16 @@
                                 <tr>
                                     <th>Invoice date</th>
                                     <th>Invoice</th>
+                                    <th>Partner</th>
                                     <th>Commission</th>
                                     <th class="text-right">Amount settled</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr t-foreach="o.lines.read_group([('id', 'in', o.lines._ids)], ['date', 'invoice', 'commission', 'settled_amount'], ['date:day', 'invoice', 'commission'], lazy=False)" t-as="l">
+                                <tr t-foreach="o.lines.read_group([('id', 'in', o.lines._ids)], ['date', 'invoice', 'partner_id', 'commission', 'settled_amount'], ['date:day', 'invoice', 'partner_id', 'commission'], lazy=False)" t-as="l">
                                     <td><span t-esc="l['date:day']"/></td>
                                     <td><span t-esc="l['invoice'][1]"/></td>
+                                    <td><span t-esc="l['partner_id'][1]"/></td>
                                     <td><span t-esc="l['commission'][1]"/></td>
                                     <td class="text-right"><span t-esc="l['settled_amount']"  t-esc-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: &quot;o.currency_id&quot;}"/></td>
                                 </tr>
@@ -61,7 +63,7 @@
     <report
         id="action_report_settlement"
         model="sale.commission.settlement"
-        string="Settlement report"
+        string="Settlement report by invoices"
         report_type="qweb-pdf"
         name="custom_commission_anz.report_settlement"
         file="custom_commission_anz.report_settlement"

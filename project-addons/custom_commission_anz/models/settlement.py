@@ -7,4 +7,6 @@ class SettlementLine(models.Model):
     _inherit = 'sale.commission.settlement.line'
 
     invoice = fields.Many2one(store=True)
+    partner_id = fields.Many2one('res.partner', 
+                                 related='invoice.partner_id', store=True)
     commission = fields.Many2one(store=True)
