@@ -238,7 +238,7 @@ class ExportCatalogtWzd(models.TransientModel):
 
     def get_ordered_obj(self, templates):
 
-        return templates.sorted(lambda x: x.categ_id.sequence * 1000 + (x.pvp or x.list_price))
+        return templates.sorted(lambda x: x.categ_id.sequence * 1000 + (x.pvp or x.list_price), reverse=True)
 
 
     def get_report_vals(self):
@@ -289,7 +289,8 @@ class ExportCatalogtWzd(models.TransientModel):
             sales = purchases = incomings = outgoings = stocks = 0
             t_sales = t_purchases = t_incomings = t_outgoings = t_stocks = 0
             variants = tmp.product_variant_ids.sorted(
-                lambda x: x.attribute_value_ids[0].sequence)
+                lambda x: x.attribute_value_ids and
+                x.attribute_value_ids[0].sequence or 0)
 
             # Si la plantilla no tiene variantes evitar el calculo
             #  sino el total_field = [], pisará el de la última iteración
