@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Menú importar líneas pedido -->
+    <menuitem action="stock.action_inventory_line_tree" name="Inventory lines" id="menu_action_inventory_line_tree" parent="stock.menu_stock_warehouse_mgmt" sequence="30"/>
+</odoo>
