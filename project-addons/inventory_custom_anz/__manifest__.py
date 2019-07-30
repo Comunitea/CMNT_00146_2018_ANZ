@@ -11,5 +11,8 @@
     'depends': [
         'stock',
     ],
+    'data': [
+        'views/stock_inventory.xml',
+    ],
     'installable': True,
 }

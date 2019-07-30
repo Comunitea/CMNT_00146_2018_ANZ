@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="action_custom_inventory_line_tree" model="ir.actions.act_window">
+        <field name="name">Inventory Lines</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">stock.inventory.line</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="stock.stock_inventory_line_tree2"/>
+    </record>
+    <!-- Menú importar líneas pedido -->
+    <menuitem action="action_custom_inventory_line_tree" name="Inventory lines" id="menu_action_inventory_line_tree" parent="stock.menu_stock_warehouse_mgmt" sequence="30"/>
+</odoo>
