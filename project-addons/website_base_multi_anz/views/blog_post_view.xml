@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record id="affiliate_view_blog_post_form" model="ir.ui.view">
+        <field name="name">Affiliate access control blog.post view</field>
+        <field name="model">blog.post</field>
+        <field name="inherit_id" ref="website_blog.view_blog_post_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='ranking']/.." position="before">
+                <group name="blog_user_access" string="Access control" colspan="2" cols="4" groups="website.group_website_publisher">
+                <field name="only_affiliates"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
