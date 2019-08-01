@@ -314,3 +314,88 @@ msgstr "Restablecer Contraseña"
 #: model:ir.ui.view,name:website_blog.latest_blogs
 msgid "Reset password"
 msgstr "Últimas Publicaciones"
+
+#. module: website_base_multi_anz
+#: model:ir.ui.view,arch_db:website_base_multi_anz.affiliate_access_view_blog_blog_form
+#: model:ir.ui.view,arch_db:website_base_multi_anz.affiliate_view_blog_post_form
+msgid "Access control"
+msgstr "Control de Acceso"
+
+#. module: website_base_multi_anz
+#: code:addons/website_base_multi_anz/models/blog_blog.py:9
+#: code:addons/website_base_multi_anz/models/blog_post.py:9
+#: model:ir.model.fields,field_description:website_base_multi_anz.field_blog_blog_only_affiliates
+#: model:ir.model.fields,field_description:website_base_multi_anz.field_blog_post_only_affiliates
+#, python-format
+msgid "Only available for affiliate partners"
+msgstr "Solo disponible para asociados"
+
+#. module: website_base_multi_anz
+#: model:ir.ui.view,arch_db:website_base_multi_anz.wbma_wbb_website_blog_blog_post_complete
+msgid "403: Forbidden"
+msgstr "403: Prohibido"
+
+#. module: website_base_multi_anz
+#: model:ir.ui.view,arch_db:website_base_multi_anz.wbma_wbb_website_blog_blog_post_complete
+msgid "You do not have access to this page"
+msgstr "Usted no tiene permiso para acceder a esta página"
+
+#. module: website_base_multi_anz
+#: model:ir.ui.view,arch_db:website_base_multi_anz.wbma_wbb_website_blog_blog_post_complete
+msgid "You need to be"
+msgstr "Necesita estar"
+
+#. module: website_base_multi_anz
+#: model:ir.ui.view,arch_db:website_base_multi_anz.wbma_wbb_website_blog_blog_post_complete
+msgid "Logged"
+msgstr "Logueado"
+
+#. module: website_base_multi_anz
+#: model:ir.ui.view,arch_db:website_base_multi_anz.wbma_wbb_website_blog_blog_post_complete
+msgid "and your user must have enough permissions."
+msgstr "y que su usuario tenga los permisos necesarios"
+
+#. module: website_base_multi_anz
+#: model:ir.ui.view,arch_db:website_base_multi_anz.wbma_wbb_website_blog_blog_post_complete
+msgid "If you have any problem, please"
+msgstr "Si tiene algun problema, por favor"
+
+#. module: website_base_multi_anz
+#: model:ir.ui.view,arch_db:website_base_multi_anz.wbma_wbb_website_blog_blog_post_complete
+msgid "contact with us"
+msgstr "pónganse en contacto con nosotros"
+
+#. module: website_base_multi_anz
+#: model:ir.ui.view,arch_db:website_base_multi_anz.wbma_wbb_website_blog_blog_post_complete
+msgid "by phone"
+msgstr "por teléfono"
+
+#. module: website_base_multi_anz
+#: model:ir.ui.view,arch_db:website_base_multi_anz.wbma_wbb_website_blog_blog_post_complete
+msgid "or email"
+msgstr "o correo electrónico"
+
+#. module: website_base_multi_anz
+#: model:ir.ui.view,arch_db:website_base_multi_anz.wbma_wbb_website_blog_blog_post_complete
+msgid "Start page"
+msgstr "Página de Inicio"
+
+#. module: website_base_multi_anz
+#: model:ir.ui.view,arch_db:website_base_multi_anz.wbma_wbb_website_blog_blog_post_complete
+msgid "Log In"
+msgstr "Entrar"
+
+#. module: website_base_multi_anz
+#: model:ir.ui.view,arch_db:website_base_multi_anz.wbma_wbb_website_blog_blog_post_complete
+msgid "Contact"
+msgstr "Contacto"
+
+#. module: website_multi_company_blog
+#: model:ir.model.fields,field_description:website_multi_company_blog.field_blog_blog_website_ids
+msgid "Allowed websites"
+msgstr "Sitios Web Permitidos"
+
+#. module: website_multi_company_blog
+#: model:ir.model.fields,help:website_multi_company_blog.field_blog_blog_website_ids
+msgid "Set the websites your blog should be available on. Leave empty to post the blog on each website you created."
+msgstr "Establece en que sitios web estará disponible el blog. Dejarlo vacio implica que estará disponible para TODOS los sitios web."
