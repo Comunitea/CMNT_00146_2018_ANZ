@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    
+    <record id="account_invoice_form_reinvoice_commercial" model="ir.ui.view">
+        <field name="name">account_invoice_form_reinvoice_commercial</field>
+        <field name="model">account.invoice</field>
+        <field name="inherit_id" ref="account_reinvoice.account_invoice_form_import_custom_anz"/>
+        <field name="arch" type="xml">
+            <field name="customer_invoice_id" position="after">
+                <field name="reinvoice_commercial" domain="[('agent', '=', True)]"/>
+            </field>
+        </field>
+    </record>
+    
+</odoo>
+
