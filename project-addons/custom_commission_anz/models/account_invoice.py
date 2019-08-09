@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from odoo import api, models
+from odoo import api, models, fields
 
 
 class AccountInvoiceLine(models.Model):
@@ -46,8 +46,13 @@ class AccountInvoiceLine(models.Model):
 class AccountInvoice(models.Model):
     _inherit = "account.invoice"
 
+    reinvoice_commercial = fields.Many2one('res.users', 'Reinvoice commercial')
+
     @api.multi
     def do_reinvoice(self):
+        """
+        Recalculo de comisiones cuando se importan por texto
+        """
         invoices = super().do_reinvoice()
         if invoices:
             invoices.recompute_lines_agents()

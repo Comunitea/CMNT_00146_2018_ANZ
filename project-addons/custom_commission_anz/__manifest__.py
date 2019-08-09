@@ -11,13 +11,15 @@
         'base',
         'product_brand',
         'sale_commission',
-        'account_reinvoice'
+        'account_reinvoice',
+        'account_reinvoice_import_txt',
     ],
     'data': [
         'security/security.xml',
         'security/ir.model.access.csv',
         'views/agent_commission_brand_view.xml',
         'views/partner_view.xml',
+        'views/invoice_view.xml',
         'views/product_brand_view.xml',
         'views/report_settlement_grouped_template.xml',
         'wizard/recompute_commission_wzd_view.xml',

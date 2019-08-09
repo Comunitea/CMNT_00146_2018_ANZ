@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-07-26 08:59+0000\n"
-"PO-Revision-Date: 2019-07-26 08:59+0000\n"
+"POT-Creation-Date: 2019-08-09 11:01+0000\n"
+"PO-Revision-Date: 2019-08-09 11:01+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -248,6 +248,11 @@ msgid "Recompute Agents Commisions"
 msgstr "Recalcular agentes y comisiones"
 
 #. module: custom_commission_anz
+#: model:ir.model.fields,field_description:custom_commission_anz.field_account_invoice_reinvoice_commercial
+msgid "Reinvoice commercial"
+msgstr "Comercial factura asociado"
+
+#. module: custom_commission_anz
 #: model:ir.model,name:custom_commission_anz.model_sale_order_line
 msgid "Sales Order Line"
 msgstr "Línea de pedido de venta"
@@ -283,6 +288,11 @@ msgstr "Ver reglas de comisiones"
 #, python-format
 msgid "You can not define same, agent, brand and from discount rule"
 msgstr "No puedes definir el mismo agente, marca y desde descuento que uno ya existente"
+
+#. module: custom_commission_anz
+#: model:ir.ui.view,name:custom_commission_anz.account_invoice_form_reinvoice_commercial
+msgid "account_invoice_form_reinvoice_commercial"
+msgstr "account_invoice_form_reinvoice_commercial"
 
 #. module: custom_commission_anz
 #: model:ir.model,name:custom_commission_anz.model_agent_brand
