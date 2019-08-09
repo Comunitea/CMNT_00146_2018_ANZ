@@ -7,10 +7,4 @@
         </xpath>
     </template>
 
-    <template id="poi_auth_signup_signup" name="Sign up login Point Template" inherit_id="auth_signup.signup">
-        <xpath expr="//form[hasclass('oe_signup_form')]" position="attributes">
-            <attribute name="t-if">not message and not website.name == 'Point Sport'</attribute>
-        </xpath>
-    </template>
-
 </odoo>

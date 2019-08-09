@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <!-- Hook to hide add to cart by website_sale_hide_price module -->
+    <template id="wbm_website_sale_wishlist_product_wishlist" name="Wishlist Page Template" inherit_id="website_sale_wishlist.product_wishlist">
+        <!-- Hide add to cart check -->
+        <xpath expr="//div[hasclass('checkbox')]" position="attributes">
+            <attribute name="t-if">website.website_show_price</attribute>
+        </xpath>
+        <!-- Hide price -->
+        <xpath expr="//td[@style='width:80px']" position="attributes">
+            <attribute name="t-if">website.website_show_price</attribute>
+        </xpath>
+        <!-- Hide add to cart button -->
+        <xpath expr="//td[hasclass('text-center', 'td-wish-btn')]" position="attributes">
+            <attribute name="t-if">website.website_show_price</attribute>
+        </xpath>
+    </template>
+
+</odoo>

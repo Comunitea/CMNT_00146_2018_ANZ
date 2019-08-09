@@ -40,13 +40,13 @@
     ],
     'depends': [
         # 'theme_anzamar',
-        'breadcrumbs_base',
+        # 'breadcrumbs_base',
         # 'seo_base',
-        'website_blog_base',
+        # 'website_blog_base',
         # 'follow_us_base',
-        'multi_company_base',
+        # 'multi_company_base',
         'website_base_multi_anz',
-        'website_sale_hide_price',
+        # 'website_sale_hide_price',
     ],
     'data': [
         'data/theme_data.xml',

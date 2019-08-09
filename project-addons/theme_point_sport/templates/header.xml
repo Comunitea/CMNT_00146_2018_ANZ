@@ -65,31 +65,10 @@
     </template>
 
     <template id="website_submenu" inherit_id="website.submenu">
-        <!-- Control of user access to the website menu -->
-        <xpath expr="//li[1]" position="attributes">
-            <attribute name="t-if">
-                submenu.is_visible and submenu.website_published and not submenu.child_id.filtered(lambda menu: menu.is_visible) and ((
-                    request.env.user.has_group('base.group_public') and not submenu.not_public
-                ) or (
-                    not request.env.user.has_group('base.group_public') and not submenu.not_portal
-                )) and not submenu.dynamic_cat_menu
-            </attribute>
-        </xpath>
-        <xpath expr="//li[2]" position="attributes">
-            <attribute name="t-if">
-                submenu.child_id.filtered(lambda menu: menu.is_visible) and submenu.website_published and ((
-                    request.env.user.has_group('base.group_public') and not submenu.not_public
-                ) or (
-                    not request.env.user.has_group('base.group_public') and not submenu.not_portal
-                )) and not submenu.dynamic_cat_menu
-            </attribute>
-        </xpath>
 
         <!-- Add dynamic category menu -->
         <xpath expr="//li[2]" position="after">
-            <li t-if="submenu.dynamic_cat_menu and submenu.is_visible and submenu.website_published
-                      and ((request.env.user.has_group('base.group_public') and not submenu.not_public)
-                      or (not request.env.user.has_group('base.group_public') and not submenu.not_portal))"
+            <li t-if="submenu.dynamic_cat_menu and submenu.is_visible"
                 class="dropdown cat_dynamic_menu" >
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                     <span t-field="submenu.name"/> <span class="caret" t-ignore="true"/>

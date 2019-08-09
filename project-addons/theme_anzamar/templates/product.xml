@@ -14,7 +14,7 @@
         </xpath>
         <xpath expr="//a[@id='add_to_cart']" position="after">
             <!-- Multi cart update button -->
-            <div class="add-to-cart-multi" t-if="len(product.product_variant_ids) &gt; 0">
+            <div class="add-to-cart-multi" t-if="len(product.product_variant_ids) &gt; 0 and website.website_show_price">
                 <a class="btn btn-primary btn-lg mt8 a-submit" href="#">Add to Cart</a>
             </div>
             <!-- Add to wishlist button -->
@@ -152,6 +152,7 @@
             <attribute name="t-att-href">keep('/product/%s', page=(pager['page']['num'] if pager['page']['num']&gt;1 else None)) % product.slug if product.slug else keep('/shop/product/%s' % slug(product), page=(pager['page']['num'] if pager['page']['num']&gt;1 else None))</attribute>
         </xpath>
 
+        <!-- Replace add to cart miniature. Force product without variants to multi add to cart -->
         <xpath expr="//div[hasclass('product_price')]//t[1]/a" position="replace">
             <a class="btn btn-default btn-xs" t-att-href="keep('/product/%s', page=(pager['page']['num'] if pager['page']['num']&gt;1 else None)) % product.slug if product.slug else keep('/shop/product/%s' % slug(product), page=(pager['page']['num'] if pager['page']['num']&gt;1 else None))">
                 <span class="fa fa-shopping-cart" />

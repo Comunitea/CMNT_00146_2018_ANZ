@@ -46,7 +46,7 @@
             <field name="sequence" type="int">23</field>
             <field name="website_id" ref="website_base_multi_anz.point_sport_website"/>
             <field name="website_published">False</field>
-            <field name="not_public">True</field>
+<!--            <field name="not_public">True</field>-->
             <field name="dynamic_cat_menu">True</field>
         </record>
 
