@@ -64,9 +64,14 @@
     <template id="poi_home_content" name="Home Point Content Template">
         <t t-call="website.layout">
             <div id="wrap">
-                <!-- Slider with access control for public and retail users -->
-                <t t-call="theme_point_sport.poi_home_carousel_b2c" t-if="request.env.user.has_group('base.group_public')"/>
-                <t t-call="theme_point_sport.poi_home_carousel_b2b" t-else=""/>
+                <!-- Slider with access control for public and retail users. Both visible for web designers -->
+                <t t-call="theme_point_sport.poi_home_carousel_b2c" groups="website.group_website_designer, base.group_public"/>
+                <strong>
+                    <p class="text-center mt32 mb32" groups="website.group_website_designer">
+                        <span class="glyphicon glyphicon-arrow-down"></span> Carousel B2B ------------ Carousel B2C <span class="glyphicon glyphicon-arrow-up"></span>
+                    </p>
+                </strong>
+                <t t-call="theme_point_sport.poi_home_carob2b" groups="website.group_website_designer"/>
                 <!-- Content section -->
                 <section class="oe_structure oe_empty"/>
                 <t t-call="website_blog_base.s_latest_post"/>

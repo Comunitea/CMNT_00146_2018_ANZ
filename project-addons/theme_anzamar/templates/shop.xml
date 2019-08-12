@@ -17,14 +17,16 @@
             </div>
             <div class="collapse navbar-collapse" id="wrap-collapse-filters">
                 <h4 class="mt0 text-uppercase hidden-xs mb16">Product categories</h4>
-                <ul class="nav nav-pills nav-stacked" id="o_shop_collapse_category">
-                    <li t-att-class="'active' if not (category or request.params.get('search')) else None">
-                        <a href="/shop" class="o_not_editable">All Products</a>
-                    </li>
-                    <t t-foreach="categories" t-as="categ">
-                        <t t-call="website_sale.option_collapse_categories_recursive" />
-                    </t>
-                </ul>
+                <div id="products_grid_before">
+                    <ul class="nav nav-pills nav-stacked" id="o_shop_collapse_category">
+                        <li t-att-class="'active' if not (category or request.params.get('search')) else None">
+                            <a href="/shop" class="o_not_editable">All Products</a>
+                        </li>
+                        <t t-foreach="categories" t-as="c">
+                            <t t-call="website_sale.categories_recursive" />
+                        </t>
+                    </ul>
+                </div>
                 <div class="wp-attribute-filters mt32 mb32">
                     <h4 class="mt0 text-uppercase hidden-xs">Filters</h4>
                     <t t-set="current_filter" t-value="request.httprequest.args"/>

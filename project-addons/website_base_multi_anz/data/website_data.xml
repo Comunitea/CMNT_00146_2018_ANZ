@@ -9,6 +9,7 @@
             <record id="anzamar_website" model="website">
                 <field name="name">Anzamar</field>
                 <field name="domain">anzamar</field>
+                <field name="canonical_domain">anzamar</field>
                 <field name="company_id" ref="base.main_company"/>
                 <field name="user_id" ref="base.public_user"/>
                 <field name="multi_theme_id"/>
@@ -26,6 +27,7 @@
             <record id="point_sport_website" model="website">
                 <field name="name">Point Sport</field>
                 <field name="domain">point-sport</field>
+                <field name="canonical_domain">pointsport</field>
                 <field name="company_id" ref="base.main_company"/>
                 <field name="user_id" ref="base.public_user"/>
                 <field name="multi_theme_id"/>
