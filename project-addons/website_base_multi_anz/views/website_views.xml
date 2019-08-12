@@ -16,15 +16,15 @@
             </field>
         </record>
 
-        <record id="view_website_menu_form" model="ir.ui.view">
-            <field name="name">view.website.menu.form</field>
+        <!-- Add Display to user booleans -->
+        <record id="website_menu_form_display_user" model="ir.ui.view">
+            <field name="name">Website.menu.form: Display to user booleans</field>
             <field name="model">website.menu</field>
             <field name="inherit_id" ref="website_multi_company.menu_form"/>
             <field name="arch" type="xml">
                 <field name="parent_id" position="after">
-                    <field name="website_published"/>
-                    <field name="not_public"/>
-                    <field name="not_portal"/>
+                    <field name="user_logged"/>
+                    <field name="user_not_logged"/>
                 </field>
             </field>
         </record>

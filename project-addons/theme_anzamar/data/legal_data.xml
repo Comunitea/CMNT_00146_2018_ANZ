@@ -1,20 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
 
-    <template id="poi_advise_page_tmp" name="Aviso legal - Point sport Template">
+    <template id="anz_advise_page_tmp" name="Aviso legal Anzamar Template">
         <t t-call="website.layout">
             <div id="wrap" class="oe_structure oe_empty"/>
         </t>
     </template>
 
-    <template id="poi_privacy_page_tmp" name="Política de privacidad - Point sport Template">
+    <template id="anz_privacy_page_tmp" name="Política de privacidad Anzamar Template">
         <t t-call="website.layout">
             <div id="wrap" class="oe_structure oe_empty"/>
         </t>
     </template>
 
-    <template id="poi_terms_page_tmp" name="Terminos legales - Point sport Template">
-        <p>sss</p>
+    <template id="anz_terms_page_tmp" name="Terminos legales Anzamar Template">
         <t t-call="website.layout">
             <div id="wrap" class="oe_structure oe_empty"/>
         </t>

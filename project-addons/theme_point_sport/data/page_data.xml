@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-    <data noupdate="1">
+    <data>
 
         <!-- // Portal part -->
-
         <template id="poi_portal_my_home_view" name="My Portal Point View" inherit_id="portal.portal_my_home"/>
         <record id="poi_portal_my_home" model="website.page">
             <field name="name">My Portal</field>
@@ -92,22 +91,22 @@
         </record>
 
         <!-- // Error pages part -->
-        <template id="poi_page_404_view" name="Error 404 Point View" inherit_id="website.page_404"/>
-        <record id="poi_page_404" model="website.page">
-            <field name="name">Error 404</field>
-            <field name="website_published">True</field>
-            <field name="website_ids" eval="[(6, 0, [ref('website_base_multi_anz.point_sport_website')])]"/>
-            <field name="url">/page_404</field>
-            <field name="view_id" ref="poi_page_404_view"/>
-        </record>
+<!--        <template id="poi_page_404_view" name="Error 404 Point View" inherit_id="website.page_404"/>-->
+<!--        <record id="poi_page_404" model="website.page">-->
+<!--            <field name="name">Error 404</field>-->
+<!--            <field name="website_published">True</field>-->
+<!--            <field name="website_ids" eval="[(6, 0, [ref('website_base_multi_anz.point_sport_website')])]"/>-->
+<!--            <field name="url">/page_404</field>-->
+<!--            <field name="view_id" ref="poi_page_404_view"/>-->
+<!--        </record>-->
 
-        <!-- // Legal pages part -->
+         <!-- Legal pages part -->
         <record id="poi_advise_page" model="website.page">
             <field name="name">Legal Advise</field>
             <field name="website_published">True</field>
             <field name="website_ids" eval="[(6, 0, [ref('website_base_multi_anz.point_sport_website')])]"/>
             <field name="url">/legal/advice</field>
-            <field name="view_id" ref="poi_advise_page_tmp"/>
+            <field name="view_id" ref="theme_point_sport.poi_advise_page_tmp"/>
         </record>
 
         <record id="poi_privacy_page" model="website.page">
@@ -115,7 +114,7 @@
             <field name="website_published">True</field>
             <field name="website_ids" eval="[(6, 0, [ref('website_base_multi_anz.point_sport_website')])]"/>
             <field name="url">/legal/privacy-policy</field>
-            <field name="view_id" ref="poi_privacy_page_tmp"/>
+            <field name="view_id" ref="theme_point_sport.poi_privacy_page_tmp"/>
         </record>
 
         <record id="poi_terms_page" model="website.page">
@@ -123,8 +122,33 @@
             <field name="website_published">True</field>
             <field name="website_ids" eval="[(6, 0, [ref('website_base_multi_anz.point_sport_website')])]"/>
             <field name="url">/legal/terms-of-use</field>
-            <field name="view_id" ref="poi_terms_page_tmp"/>
+            <field name="view_id" ref="theme_point_sport.poi_terms_page_tmp"/>
         </record>
+
+<!--         &lt;!&ndash; Legal pages &ndash;&gt;-->
+<!--        <record id="website_legal_page.advise_page" model="website.page">-->
+<!--            <field name="name">Legal Advise</field>-->
+<!--            <field name="website_published">True</field>-->
+<!--            <field name="website_ids" eval="[(6, 0, [ref('website_base_multi_anz.point_sport_website')])]"/>-->
+<!--            <field name="url">/legal/advice</field>-->
+<!--            <field name="view_id" ref="theme_point_sport.poi_advise_page_view"/>-->
+<!--        </record>-->
+
+<!--        <record id="website_legal_page.privacy_page" model="website.page">-->
+<!--            <field name="name">Privacy Policy</field>-->
+<!--            <field name="website_published">True</field>-->
+<!--            <field name="website_ids" eval="[(6, 0, [ref('website_base_multi_anz.point_sport_website')])]"/>-->
+<!--            <field name="url">/legal/privacy-policy</field>-->
+<!--            <field name="view_id" ref="theme_point_sport.poi_privacy_page"/>-->
+<!--        </record>-->
+
+<!--        <record id="website_legal_page.terms_page" model="website.page">-->
+<!--            <field name="name">Terms of Use</field>-->
+<!--            <field name="website_published">True</field>-->
+<!--            <field name="website_ids" eval="[(6, 0, [ref('website_base_multi_anz.point_sport_website')])]"/>-->
+<!--            <field name="url">/legal/terms-of-use</field>-->
+<!--            <field name="view_id" ref="theme_point_sport.poi_terms_page"/>-->
+<!--        </record>-->
 
     </data>
 </odoo>
