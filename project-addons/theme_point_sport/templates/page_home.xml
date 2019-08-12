@@ -71,7 +71,7 @@
                         <span class="glyphicon glyphicon-arrow-down"></span> Carousel B2B ------------ Carousel B2C <span class="glyphicon glyphicon-arrow-up"></span>
                     </p>
                 </strong>
-                <t t-call="theme_point_sport.poi_home_carob2b" groups="website.group_website_designer"/>
+                <t t-call="theme_point_sport.poi_home_carousel_b2b" groups="website.group_website_designer"/>
                 <!-- Content section -->
                 <section class="oe_structure oe_empty"/>
                 <t t-call="website_blog_base.s_latest_post"/>
