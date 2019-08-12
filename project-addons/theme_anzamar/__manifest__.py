@@ -49,6 +49,7 @@
         'data/theme_data.xml',
         'data/website_data.xml',
         'data/menu_data.xml',
+        'data/legal_data.xml',
         'data/page_data.xml',
         'templates/snippets.xml',
         'templates/head.xml',
