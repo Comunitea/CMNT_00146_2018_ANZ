@@ -2,11 +2,11 @@
 <odoo>
 
     <template id="poi_home_carousel_b2c" name="Point sport homepage carousel b2c">
-        <div id="carousel_point_sport" class="carousel slide" data-ride="carousel">
+        <div id="carousel_point_sport_b2c" class="carousel slide" data-ride="carousel">
             <ol class="carousel-indicators">
-                <li data-target="#carousel_point_sport" data-slide-to="0" class="active"/>
-                <li data-target="#carousel_point_sport" data-slide-to="1"/>
-                <li data-target="#carousel_point_sport" data-slide-to="2"/>
+                <li data-target="#carousel_point_sport_b2c" data-slide-to="0" class="active"/>
+                <li data-target="#carousel_point_sport_b2c" data-slide-to="1"/>
+                <li data-target="#carousel_point_sport_b2c" data-slide-to="2"/>
             </ol>
             <div class="carousel-inner" role="listbox">
                 <div class="item active">
@@ -20,11 +20,11 @@
                 </div>
             </div>
             <!-- Controls -->
-            <a class="left carousel-control" href="#carousel_point_sport" role="button" data-slide="prev">
+            <a class="left carousel-control" href="#carousel_point_sport_b2c" role="button" data-slide="prev">
                 <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"/>
                 <span class="sr-only">Previous</span>
             </a>
-            <a class="right carousel-control" href="#carousel_point_sport" role="button" data-slide="next">
+            <a class="right carousel-control" href="#carousel_point_sport_b2c" role="button" data-slide="next">
                 <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"/>
                 <span class="sr-only">Next</span>
             </a>
@@ -32,11 +32,11 @@
     </template>
 
     <template id="poi_home_carousel_b2b" name="Point sport homepage carousel b2b">
-        <div id="carousel_point_sport" class="carousel slide" data-ride="carousel">
+        <div id="carousel_point_sport_b2b" class="carousel slide" data-ride="carousel">
             <ol class="carousel-indicators">
-                <li data-target="#carousel_point_sport" data-slide-to="0" class="active"/>
-                <li data-target="#carousel_point_sport" data-slide-to="1"/>
-                <li data-target="#carousel_point_sport" data-slide-to="2"/>
+                <li data-target="#carousel_point_sport_b2b" data-slide-to="0" class="active"/>
+                <li data-target="#carousel_point_sport_b2b" data-slide-to="1"/>
+                <li data-target="#carousel_point_sport_b2b" data-slide-to="2"/>
             </ol>
             <div class="carousel-inner" role="listbox">
                 <div class="item active">
@@ -50,11 +50,11 @@
                 </div>
             </div>
             <!-- Controls -->
-            <a class="left carousel-control" href="#carousel_point_sport" role="button" data-slide="prev">
+            <a class="left carousel-control" href="#carousel_point_sport_b2b" role="button" data-slide="prev">
                 <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"/>
                 <span class="sr-only">Previous</span>
             </a>
-            <a class="right carousel-control" href="#carousel_point_sport" role="button" data-slide="next">
+            <a class="right carousel-control" href="#carousel_point_sport_b2b" role="button" data-slide="next">
                 <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"/>
                 <span class="sr-only">Next</span>
             </a>
@@ -71,12 +71,46 @@
                         <span class="glyphicon glyphicon-arrow-down"></span> Carousel B2B ------------ Carousel B2C <span class="glyphicon glyphicon-arrow-up"></span>
                     </p>
                 </strong>
-                <t t-call="theme_point_sport.poi_home_carousel_b2b" groups="website.group_website_designer"/>
+                <t t-call="theme_point_sport.poi_home_carousel_b2b" groups="website.group_website_designer, base.group_portal"/>
                 <!-- Content section -->
                 <section class="oe_structure oe_empty"/>
                 <t t-call="website_blog_base.s_latest_post"/>
                 <section class="oe_structure oe_empty"/>
-                <div class="container">
+                <div class="container" groups="website.group_website_designer, base.group_public">
+                    <div class="row">
+                        <div class="col-md-12 mt32 mb32">
+                            <h1 class="text-center mb32">Point Sport</h1>
+                            <p>Point Sport is a multisport store brand that is currently present with more than 140 stores in Spain, focused on <strong> small </strong> and medium-sized retail specialized in sports.</p>
+                            <h2>Do you want to open your Point Sport sports store?</h2>
+                            <p>If you want to start and open your specialist store in the sports <strong> sector </strong>, or you already have one and want to access more competitive prices with complete freedom of programming, this is your project. <strong> Point Sport </strong> will allow you to compete on price and product with the rest of stores and supermarkets.</p>
+                            <p>You will find a large selection of sporting goods, with more than 100 leading brands in the sports world; <i> Adidas, Umbro, Munich, New Balance, Row, Puma, Converse </i>, and many more. And a wide variety of articles from the main sports disciplines; <i> football, running, training, fitness, basketball, swimming, tennis / paddle, volleyball </i>, etc.</p>
+                            <h2>What are the main advantages?</h2>
+                            <ul>
+                                <li>Experience in the sports market</li>
+                                <li>Access to leading sports brands</li>
+                                <li>Discounts on wholesale purchase (Anzamar Group)</li>
+                                <li>Shipping in 24/48 hours</li>
+                                <li>Guaranteed return system</li>
+                                <li>Access to exclusive offers and products</li>
+                                <li>Freedom to buy without minimum or maximum amounts</li>
+                                <li>Marketing and communication support</li>
+                                <li>Access to dropshipping</li>
+                                <li>Personal attention to the associate</li>
+                                <li>Commercial specialists throughout Spain</li>
+                                <li>Zone Exclusivity</li>
+                                <li>Shopping days to share experiences and access special offers</li>
+                                <li>Growing sector and high demand</li>
+                            </ul>
+                            <p>If you want more information about <strong> Point Sport </strong> and set up your own store, you can see the <a href="/page/open_shop#opem_section">how to open a store </a> section or write to <a href="mailto:info@anzamar.com" target="_blank">info@anzamar.com</a></p>
+                        </div>
+                    </div>
+                </div>
+                 <strong>
+                    <p class="text-center mt32 mb32" groups="website.group_website_designer">
+                        <span class="glyphicon glyphicon-arrow-down"></span> Texto B2B ------------ Texto B2C <span class="glyphicon glyphicon-arrow-up"></span>
+                    </p>
+                </strong>
+                <div class="container" groups="website.group_website_designer, base.group_portal">
                     <div class="row">
                         <div class="col-md-12 mt32 mb32">
                             <h1 class="text-center mb32">Point Sport</h1>
