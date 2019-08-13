@@ -119,7 +119,4 @@ class ResConfigSettings(models.TransientModel):
 class WebsiteMenu(models.Model):
     _inherit = 'website.menu'
 
-    # not_public = fields.Boolean(string='Show it only if the user is logged in', default=False)
-    # not_portal = fields.Boolean(string='Available only for public users', default=False)
-    # website_published = fields.Boolean(string='Published', default=True)
     dynamic_cat_menu = fields.Boolean(string='Dynamic categories menu', default=False)
