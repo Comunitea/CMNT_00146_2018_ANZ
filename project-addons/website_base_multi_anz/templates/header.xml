@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template id="wbm_website_sale_header" name="Header my cart link without text" inherit_id="website_sale.header">
+        <!-- Hook to hide cart icon in header by website_sale_hide_price module or show without text if exist -->
+        <xpath expr="//li[@id='my_cart']/a" position="replace">
+            <a href="/shop/cart" t-if="website.website_show_price">
+                <i class="fa fa-shopping-cart"/>
+                <sup t-attf-class="my_cart_quantity label label-primary" t-esc="website_sale_order and website_sale_order.cart_quantity or ''" />
+            </a>
+        </xpath>
+    </template>
+</odoo>
