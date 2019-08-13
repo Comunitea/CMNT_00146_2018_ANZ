@@ -2,7 +2,7 @@
 <odoo>
 
     <!-- Shop categories template -->
-    <template id="website_sale_products_categories" name="eCommerce categories Point Sport" inherit_id="website_multi_theme.auto_view_poi_website_sale_products_categories">
+    <template id="website_sale_products_categories" name="eCommerce categories Point Sport" active="True" customize_show="True" inherit_id="website_multi_theme.auto_view_poi_website_sale_products_categories">
         <xpath expr="//div[@id='products_grid_before']/ul" position="replace">
             <div class="navbar filters-navbar hidden-md hidden-sm hidden-lg">
                 <div class="navbar-header">
@@ -22,8 +22,8 @@
                         <li t-att-class="'active' if not (category or request.params.get('search')) else None">
                             <a href="/shop" class="o_not_editable">All Products</a>
                         </li>
-                        <t t-foreach="categories" t-as="c">
-                            <t t-call="website_sale.categories_recursive" />
+                        <t t-foreach="categories" t-as="categ">
+                            <t t-call="website_sale.option_collapse_categories_recursive"/>
                         </t>
                     </ul>
                 </div>
