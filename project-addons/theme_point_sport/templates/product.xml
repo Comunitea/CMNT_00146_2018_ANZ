@@ -34,7 +34,7 @@
             <t t-if="len(product.product_variant_ids) &gt; 0">
             <input type="hidden" name="product_template" t-att-value="product.id"/>
             <t t-set="stock_control" t-value="product.inventory_availability in ('always', 'always_virtual', 'threshold', 'threshold_virtual')"/>
-                <div class="multi-sizes">
+                <div class="multi-sizes" t-if="website.website_show_price">
                     <div t-att-class="'one-line' if stock_control else 'one-line large-line'">
                         <div class="one-label"/>
                         <div class="one-input">To order</div>
