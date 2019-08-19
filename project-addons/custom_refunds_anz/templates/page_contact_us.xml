@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <template id="anz_contact_us_content_template" name="Contact Us Anzamar Content Template" inherit_id="theme_anzamar.anz_contactus_view">
+
+        <xpath expr="//div[hasclass('container')]" position="inside">
+            <section class="oe_structure oe_empty"/>
+            <div class="row">
+                <div class="col-md-12">
+                    <h1 class="text-center">Contact us</h1>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-8">
+                    <section id="contact_section" class="mt32 oe_structure">
+                        <p>Contact us for anything related to our company or services.</p>
+                        <p>We will do our best to respond to you as soon as possible.</p>
+                    </section>
+                    <t t-call="theme_anzamar.default_contact_form"/>
+                </div>
+                <div class="col-md-4">
+                    <section id="canal_section" class="mt32 oe_structure">
+                        <p>Do you have any questions? You can contact us through the following channels:</p>
+                    </section>
+                    <h4 class="mt16">Email</h4>
+                    <p>
+                        <i class="fa fa-envelope"/>
+                        <a t-field="website.email" t-att-href="'mailto:%s' %website.email"/>
+                    </p>
+                    <h4 class="mt16">Phone</h4>
+                    <p>
+                        <i class="fa fa-phone"/>
+                        <a t-field="res_company.phone" t-att-href="'tel:%s' %res_company.phone"/>
+                    </p>
+                    <h4>Location:</h4>
+                    <p class="mt16">
+                        <t t-set="group_anz" t-value="request.env['res.company'].search([('name', 'ilike', 'Anzamar')])"/>
+                        <i class="fa fa-map-marker"/>
+                        <a href="https://goo.gl/maps/Hm78jxSEG5B2" target="_blank" alt="Company Link" title="Company" rel="nofollow">
+                            <t t-esc="group_anz.street"/>,
+                            <t t-esc="group_anz.zip"/>,
+                            <t t-esc="group_anz.city"/>
+                        </a>
+                    </p>
+                </div>
+            </div>
+            <section class="oe_structure oe_empty"/>
+        </xpath>
+
+    </template>
+</odoo>
