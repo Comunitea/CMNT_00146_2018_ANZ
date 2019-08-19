@@ -9,6 +9,32 @@
             <field name="type" position="after">
                 <field name="ref_change_code"/>
             </field>
+            <xpath expr="//field[@name='item_ids']/tree" position="attributes">
+                <attribute name="editable"/>
+            </xpath>
+            <xpath expr="//field[@name='item_ids']/tree/field[@name='fixed_price']" position="replace">
+                <field name="price" string="Price"/>
+            </xpath>
+            <field name="item_ids" position="attributes">
+                <attribute name="context">{'default_base':'list_price', 'default_applied_on' :'1_product', 'default_product_tmpl_id': active_id}</attribute>
+            </field>
+        </field>
+    </record>
+
+    <record id="product_normal_form_view_no_price_inline" model="ir.ui.view">
+        <field name="name">product.product.form.no_price_inline</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.product_normal_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='item_ids']/tree" position="attributes">
+                <attribute name="editable"/>
+            </xpath>
+            <field name="item_ids" position="attributes">
+                <attribute name="context">{'default_base':'list_price', 'default_applied_on' :'1_product', 'default_product_tmpl_id': product_tmpl_id}</attribute>
+            </field>
+            <xpath expr="//field[@name='item_ids']/tree/field[@name='fixed_price']" position="replace">
+                <field name="price" string="Price"/>
+            </xpath>
         </field>
     </record>
 
