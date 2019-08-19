@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template id="anz_portal_my_orders_view" name="My Sales Orders Anzamar View" inherit_id="sale.portal_my_orders">
+        <xpath expr="//thead/tr[hasclass('active')]" position="inside">
+            <th>
+                Refund
+            </th>
+        </xpath>
+        <xpath expr="//t[@t-foreach='orders']/tr" position="inside">
+            <th>
+                <a t-attf-href="/contactus?order_id={{order.id}}"><i class="fa fa-envelope-o" aria-hidden="true"></i></a>
+            </th>
+        </xpath>
+    </template>
+    
+</odoo>
