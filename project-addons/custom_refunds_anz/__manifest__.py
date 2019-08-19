@@ -43,9 +43,9 @@
     ],
     'data': [
         'templates/portal.xml',
+        'templates/forms.xml',
         'templates/page_contact_us.xml',
         'templates/page_contact_us_thanks.xml',
-        'templates/forms.xml',
     ],
     'images': [
         '/static/description/icon.png',
