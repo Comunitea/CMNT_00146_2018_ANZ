@@ -26,7 +26,7 @@
 ##############################################################################
 
 {
-    'name': 'Anzamar Custom Refunds',
+    'name': 'Custom Refunds Multi Base',
     'version': '1.0',
     'summary': 'FrontEnd contact us form modification.',
     'description': '',
@@ -39,18 +39,19 @@
         'Rubén Seijas <ruben@comunitea.com>',
     ],
     'depends': [
-        'theme_anzamar',
+        'website_base_multi_anz',
     ],
     'data': [
+        'views/website_views.xml',
         'templates/portal.xml',
         'templates/forms.xml',
         'templates/page_contact_us.xml',
-        'templates/page_contact_us_thanks.xml',
     ],
     'images': [
         '/static/description/icon.png',
     ],
     'qweb': [
+        
     ],
     'installable': True,
     'application': False,
