@@ -51,7 +51,7 @@
                                 <label t-att-for="variant.attribute_value_ids[0].id" t-field="variant.attribute_value_ids[0].name" t-if="len(product.product_variant_ids) &gt; 1"/>
                                 <label t-att-for="variant.id" t-field="variant.variant_suffix" t-else=""/>
                             </div>
-                            <t t-set="qty" t-value="(variant.sudo().qty_available + variant.sudo().virtual_available) if product.inventory_availability in ('always_virtual', 'threshold_virtual') else variant.sudo().qty_available"/>
+                            <t t-set="qty" t-value="(variant.sudo().virtual_stock_conservative + variant.sudo().virtual_available) if product.inventory_availability in ('always_virtual', 'threshold_virtual') else variant.sudo().virtual_stock_conservative"/>
                             <t t-set="available" t-value="(qty - product.available_threshold) if product.inventory_availability in ('threshold', 'threshold_virtual') else qty"/>
                             <t t-set="available" t-value="available if available &gt; 0 else 0"/>
                             <div class="one-input">
@@ -157,6 +157,29 @@
             <a class="btn btn-default btn-xs" t-att-href="keep('/product/%s', page=(pager['page']['num'] if pager['page']['num']&gt;1 else None)) % product.slug if product.slug else keep('/shop/product/%s' % slug(product), page=(pager['page']['num'] if pager['page']['num']&gt;1 else None))">
                 <span class="fa fa-shopping-cart" />
             </a>
+        </xpath>
+    </template>
+
+    <template id="anz_website_sale_sort" inherit_id="website_multi_theme.auto_view_anz_website_sale_sort" active="True" name="Filters Anzamar Show Sort by">
+        <xpath expr="//t[@t-set='website_sale_sortable_current']" position="after">
+            <t t-set="brand" t-if="request.params.get('brand', 0)" t-value="[request.params.get('brand', 0)]"/>
+            <t t-set="gender" t-if="request.params.get('gender', 0)" t-value="[request.params.get('gender', 0)]"/>
+            <t t-set="age" t-if="request.params.get('age', 0)" t-value="[request.params.get('age', 0)]"/>
+        </xpath>
+
+        <xpath expr="//ul/li[@t-foreach='website_sale_sortable']" position="replace">
+            <li t-foreach="website_sale_sortable" t-as="sortby">
+                <t t-if="brand or gender or age">
+                    <a t-att-href="keep('/shop', order=sortby[1], brand=brand, gender=gender, age=age)">
+                        <span t-raw="sortby[0]"/>
+                    </a>
+                </t>
+                <t t-else="">
+                    <a t-att-href="keep('/shop', order=sortby[1])">
+                        <span t-raw="sortby[0]"/>
+                    </a>
+                </t>
+            </li>
         </xpath>
     </template>
 

@@ -52,6 +52,7 @@
         'website_sale_product_brand',
         'payment_redsys',
         'website_sale_hide_price',
+        'product_virtual_stock_conservative',
     ],
     'data': [
         'data/company_data.xml',

@@ -47,7 +47,6 @@
         # 'multi_company_base',
         'website_base_multi_anz',
         # 'website_sale_hide_price',
-        'product_virtual_stock_conservative',
     ],
     'data': [
         'data/theme_data.xml',
