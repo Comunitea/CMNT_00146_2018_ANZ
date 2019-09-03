@@ -1,0 +1,99 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* custom_refunds_multi_base
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 11.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-09-03 17:16+0000\n"
+"PO-Revision-Date: 2019-09-03 17:16+0000\n"
+"Last-Translator: Rubén <ruben@comunitea.com>\n"
+"Language-Team: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: custom_refunds_multi_base
+#: model:ir.ui.view,arch_db:custom_refunds_multi_base.default_send_forms
+msgid "<span class=\"btn btn-primary btn-lg o_website_form_send\">Send</span>\n"
+"                <span id=\"o_website_form_result\"/>"
+msgstr "<span class=\"btn btn-primary btn-lg o_website_form_send\">Enviar</span>\n"
+"            <span id=\"o_website_form_result\"/>"
+
+#. module: custom_refunds_multi_base
+#: model:ir.model.fields,help:custom_refunds_multi_base.field_website_refunds_contact
+msgid "Active to recieve refund petitions from the Contact Us form."
+msgstr "Activar para recibir devoluciones desde el formulario de contacto"
+
+#. module: custom_refunds_multi_base
+#: model:ir.ui.view,name:custom_refunds_multi_base.order_refund_contact_form
+msgid "Contact Form Refund Snippet"
+msgstr "Contact Form Multi Base Snippet"
+
+#. module: custom_refunds_multi_base
+#: model:ir.ui.view,name:custom_refunds_multi_base.multi_base_contact_us_content_template
+msgid "Contact Us Refund"
+msgstr "Contacto (devoluciones)"
+
+#. module: custom_refunds_multi_base
+#: model:ir.ui.view,name:custom_refunds_multi_base.default_send_forms
+msgid "Default Send Form Snippet"
+msgstr "Default Send Form Snippet"
+
+#. module: custom_refunds_multi_base
+#: model:ir.ui.view,name:custom_refunds_multi_base.default_order_hidden_fields_forms
+msgid "Default order Form Hidden Fields Snippet"
+msgstr "Default order Form Hidden Fields Snippet"
+
+#. module: custom_refunds_multi_base
+#: model:ir.ui.view,name:custom_refunds_multi_base.privacy_policy_contact_form
+msgid "Full Legal Terms Snippet"
+msgstr "Full Legal Terms Snippet"
+
+#. module: custom_refunds_multi_base
+#: model:ir.ui.view,arch_db:custom_refunds_multi_base.google_recaptcha_contact_form
+msgid "Is human?"
+msgstr "¿Eres humano?"
+
+#. module: custom_refunds_multi_base
+#: model:ir.ui.view,name:custom_refunds_multi_base.multi_base_sale_portal_my_orders_view
+msgid "My Sales Orders Add Refund"
+msgstr "My Sales Orders Add Refund"
+
+#. module: custom_refunds_multi_base
+#: model:ir.ui.view,arch_db:custom_refunds_multi_base.multi_base_contact_us_content_template
+msgid "Or you could use our contact form."
+msgstr "O puede usar el formulario de contacto:"
+
+#. module: custom_refunds_multi_base
+#: model:ir.ui.view,arch_db:custom_refunds_multi_base.default_order_hidden_fields_forms
+msgid "Refound question"
+msgstr "Motivo devolución"
+
+#. module: custom_refunds_multi_base
+#: model:ir.ui.view,name:custom_refunds_multi_base.google_recaptcha_contact_form
+msgid "Recaptcha Snippet"
+msgstr "Recaptcha Snippet"
+
+#. module: custom_refunds_multi_base
+#: model:ir.ui.view,arch_db:custom_refunds_multi_base.multi_base_sale_portal_my_orders_view
+msgid "Refund"
+msgstr "Devolución"
+
+#. module: custom_refunds_multi_base
+#: model:ir.model.fields,field_description:custom_refunds_multi_base.field_website_refunds_contact
+msgid "Refunds in contact form"
+msgstr "Refunds in contact form"
+
+#. module: custom_refunds_multi_base
+#: model:ir.model,name:custom_refunds_multi_base.model_website
+msgid "Website"
+msgstr "Sitio web"
+
+#. module: custom_refunds_multi_base
+#: model:ir.ui.view,name:custom_refunds_multi_base.view_website_form_refunds_contact
+msgid "view.website.form.refunds_contact"
+msgstr "view.website.form.refunds_contact"
+
