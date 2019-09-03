@@ -17,6 +17,7 @@
         'stock_available_global',
         'partner_custom_anz',
         'product_brand',
+        'barcodes_generator_abstract'
 
     ],
     'data': [

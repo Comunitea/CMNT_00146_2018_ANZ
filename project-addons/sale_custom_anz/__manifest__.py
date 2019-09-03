@@ -18,7 +18,7 @@
         'data/ir_sequence.xml',
         'views/sale_order.xml',
         'views/account_invoice.xml',
-        'views/account_invoice.xml',
+        'views/product_product.xml',
         'views/pricelist.xml',
         'wizard/sale_manage_variant_view.xml',
         'report/sale_report_views.xml',

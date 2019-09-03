@@ -84,6 +84,16 @@ odoo.define('pos.custom_anz.models', function (require) {
             var name_ref = this.simplified_invoice || this.name
             var res = name_ref.toLocaleUpperCase()
             return res;
+        },
+        export_for_printing: function(){
+            var res = order_super.export_for_printing.apply(this, arguments);
+            res['company']['email'] = this.pos.config.company_partner_email;
+            res['company']['vat'] = this.pos.config.company_partner_vat;
+            res['company']['website'] = this.pos.config.company_partner_website;
+            res['company']['contact_address'] = this.pos.config.company_partner_contact_address;
+            res['company']['name'] = this.pos.config.company_partner_name;
+            res['company']['phone'] = this.pos.config.company_partner_phone;
+            return res;
         }
     });
 
@@ -93,9 +103,9 @@ odoo.define('pos.custom_anz.models', function (require) {
         // Avoid load products with no stock
         load_server_data: function(){
             var self = this;
-            
+
             var loaded = PosModelSuper.load_server_data.call(this);
-            
+
             var prod_model = _.find(this.models, function(model){
                 return model.model === 'product.product';
             });
