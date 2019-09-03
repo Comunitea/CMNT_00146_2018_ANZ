@@ -37,11 +37,11 @@
                 <div class="multi-sizes" t-if="website.website_show_price">
                     <div t-att-class="'one-line' if stock_control else 'one-line large-line'">
                         <div class="one-label"/>
-                        <div class="one-input">To order</div>
-                        <div class="one-stock" t-if="stock_control">Available</div>
+                        <div class="one-input"><label>TO ORDER</label></div>
+                        <div class="one-stock" t-if="stock_control"><label>AVAILABLE</label></div>
                         <t t-else="">
-                            <div class="one-stock">On hand</div>
-                            <div class="one-stock">Forecast</div>
+                            <div class="one-stock"><label>ON HAND</label></div>
+                            <div class="one-stock"><label>FORECAST</label></div>
                         </t>
                     </div>
                     <t t-set="variant_ids" t-value="product.product_variant_ids"/>
@@ -65,7 +65,7 @@
                                            t-att-name="'attribute-%s-%s' % (product.id, variant.id)"/>
                             </div>
                             <div class="one-stock" t-raw="str('+10') if available &gt; 10 else str(int(available))"/>
-                            <div class="one-stock" t-raw="(str('+10') if variant.virtual_available &gt; 10 else str(int(available)) if variant.virtual_available &gt; 0 else 0)" t-if="not stock_control"/>
+                            <div class="one-stock" t-raw="(str('+10') if variant.sudo().virtual_available &gt; 10 else str(int(available)) if variant.sudo().virtual_available &gt; 0 else 0)" t-if="not stock_control"/>
                         </div>
                     </t>
                 </div>

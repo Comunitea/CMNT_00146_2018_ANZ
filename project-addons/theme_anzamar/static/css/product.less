@@ -6,7 +6,7 @@
     & input {
         padding: 4px 3px 5px;
         margin: 2px 0;
-        border: 1px dotted #333333;
+        border: 1px dashed #333333;
         border-radius: 0;
         text-align: center;
         max-width: 60px;
@@ -39,18 +39,29 @@
             width: 70px;
             text-align: center;
         }
+        /* New multi add to cart grid */
+        &:nth-child(1n+2) {
+            border: 1px solid #333333;
+        }
+        &:nth-child(1n+3) {
+            border-top: none;
+        }
+        /* old multi add to cart grid
         &:nth-child(2n-1){
-            background-color: @color-1;
+            background-color: rgb(255, 255, 255);
+            border: 1px solid #333333;
             & input {
-                background-color: @color-1;
+                background-color: rgb(255, 255, 255);
             }
         }
         &:nth-child(2n){
-            background-color: @color-light;
+            background-color: rgb(255, 255, 255);
+            border: 1px solid #333333;
             & input {
-                background-color: @color-light;
+                background-color: rgb(255, 255, 255);
             }
         }
+        */
     }
 }
 .multi-add-result {
