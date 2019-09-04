@@ -381,12 +381,12 @@ msgstr "Categorías"
 #. module: theme_point_sport
 #: model:ir.ui.view,arch_db:theme_point_sport.poi_website_sale_product
 msgid "TO ORDER"
-msgstr "SOLICITUD"
+msgstr "PEDIR"
 
 #. module: theme_point_sport
 #: model:ir.ui.view,arch_db:theme_point_sport.poi_website_sale_product
-msgid "AVAILABLE"
-msgstr "DISPONIBLE"
+msgid "STOCK"
+msgstr "STOCK"
 
 #. module: theme_point_sport
 #: model:ir.ui.view,arch_db:theme_point_sport.poi_website_sale_product
@@ -396,7 +396,7 @@ msgstr "A MANO"
 #. module: theme_point_sport
 #: model:ir.ui.view,arch_db:theme_point_sport.poi_website_sale_product
 msgid "FORECAST"
-msgstr "PLANIFICADO"
+msgstr "PREVISTO"
 
 #. module: website_sale_wishlist
 #: model:ir.ui.view,arch_db:website_sale_wishlist.product_wishlist

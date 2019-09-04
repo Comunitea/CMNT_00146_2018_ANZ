@@ -38,7 +38,7 @@
                     <div t-att-class="'one-line' if stock_control else 'one-line large-line'">
                         <div class="one-label"/>
                         <div class="one-input"><label>TO ORDER</label></div>
-                        <div class="one-stock" t-if="stock_control"><label>AVAILABLE</label></div>
+                        <div class="one-stock" t-if="stock_control"><label>STOCK</label></div>
                         <t t-else="">
                             <div class="one-stock"><label>ON HAND</label></div>
                             <div class="one-stock"><label>FORECAST</label></div>

@@ -1,8 +1,5 @@
 # -*- coding: utf-8 -*-
 #
-# © 2018 Comunitea
-# Pavel Smirnov <pavel@comunitea.com>
-# Rubén Seijas <ruben@comunitea.com>
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
 #
 ##############################################################################
@@ -38,6 +35,7 @@
         'Pavel Smirnov <pavel@comunitea.com>',
         'Rubén Seijas <ruben@comunitea.com>',
         'Juan Vázquez Moreno <vmjuan90@gmail.com>',
+        'Vicente Gutiérrez, <vicente@comunitea.com>',
     ],
     'depends': [
         'ecommerce_base',
@@ -53,6 +51,7 @@
         'payment_redsys',
         'website_sale_hide_price',
         'product_virtual_stock_conservative',
+        # 'portal_refunds_request',
     ],
     'data': [
         'data/company_data.xml',

@@ -514,12 +514,12 @@ msgstr "Cerrar"
 #. module: theme_anzamar
 #: model:ir.ui.view,arch_db:theme_anzamar.anz_website_sale_product
 msgid "TO ORDER"
-msgstr "SOLICITUD"
+msgstr "PEDIR"
 
 #. module: theme_anzamar
 #: model:ir.ui.view,arch_db:theme_anzamar.anz_website_sale_product
-msgid "AVAILABLE"
-msgstr "DISPONIBLE"
+msgid "STOCK"
+msgstr "STOCK"
 
 #. module: theme_anzamar
 #: model:ir.ui.view,arch_db:theme_anzamar.anz_website_sale_product
@@ -529,7 +529,7 @@ msgstr "A MANO"
 #. module: theme_anzamar
 #: model:ir.ui.view,arch_db:theme_anzamar.anz_website_sale_product
 msgid "FORECAST"
-msgstr "PLANIFICADO"
+msgstr "PREVISTO"
 
 #. module: theme_anzamar
 #: model:ir.ui.view,arch_db:theme_anzamar.default_send_forms
