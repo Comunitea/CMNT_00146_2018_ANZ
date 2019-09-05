@@ -37,7 +37,7 @@
                 <div class="multi-sizes" t-if="website.website_show_price">
                     <div t-att-class="'one-line' if stock_control else 'one-line large-line'">
                         <div class="one-label"/>
-                        <div class="one-input"><label>TO ORDER</label></div>
+                        <div class="one-input"><label class="exhausted">TO ORDER</label></div>
                         <div class="one-stock" t-if="stock_control"><label>STOCK</label></div>
                         <t t-else="">
                             <div class="one-stock"><label>ON HAND</label></div>
@@ -46,27 +46,42 @@
                     </div>
                     <t t-set="variant_ids" t-value="product.product_variant_ids"/>
                     <t t-foreach="variant_ids.sorted(key=lambda x: x.name)" t-as="variant">
-                        <div t-att-class="'one-line' if stock_control else 'one-line large-line'">
-                            <div class="one-label">
-                                <label t-att-for="variant.attribute_value_ids[0].id" t-field="variant.attribute_value_ids[0].name" t-if="len(product.product_variant_ids) &gt; 1"/>
-                                <label t-att-for="variant.id" t-field="variant.variant_suffix" t-else=""/>
-                            </div>
-                            <t t-set="qty" t-value="(variant.sudo().virtual_stock_conservative + variant.sudo().virtual_available) if product.inventory_availability in ('always_virtual', 'threshold_virtual') else variant.sudo().virtual_stock_conservative"/>
-                            <t t-set="available" t-value="(qty - product.available_threshold) if product.inventory_availability in ('threshold', 'threshold_virtual') else qty"/>
-                            <t t-set="available" t-value="available if available &gt; 0 else 0"/>
-                            <div class="one-input">
-                                <span t-if="stock_control and available &lt; 1" class="exhausted">&amp;mdash;</span>
-                                <input t-elif="len(product.product_variant_ids) &gt; 1" type="number" min="0"
-                                       t-att-max="'%d' % available if stock_control else None"
-                                       t-att-id="variant.attribute_value_ids[0].id"
-                                       t-att-name="'attribute-%s-%s' % (product.id, variant.attribute_value_ids[0].id)"/>
-                                <input t-else="" type="number" min="0" t-att-max="'%d' % available if stock_control else None"
+                        <t t-if="variant.attribute_value_ids">
+                            <div t-att-class="'one-line' if stock_control else 'one-line large-line'">
+                                <div class="one-label">
+                                    <label t-att-for="variant.attribute_value_ids[0].id" t-field="variant.attribute_value_ids[0].name" t-if="len(product.product_variant_ids) &gt; 1"/>
+                                    <label t-att-for="variant.id" t-field="variant.variant_suffix" t-else=""/>
+                                </div>
+                                <t t-set="qty" t-value="(variant.sudo().virtual_stock_conservative + variant.sudo().virtual_available) if product.inventory_availability in ('always_virtual', 'threshold_virtual') else variant.sudo().virtual_stock_conservative"/>
+                                <t t-set="available" t-value="(qty - product.available_threshold) if product.inventory_availability in ('threshold', 'threshold_virtual') else qty"/>
+                                <t t-set="available" t-value="available if available &gt; 0 else 0"/>
+                                <div class="one-input">
+                                    <span t-if="stock_control and available &lt; 1" class="exhausted">&amp;mdash;</span>
+                                    <input t-elif="len(product.product_variant_ids) &gt; 1" type="number" min="0"
+                                           t-att-max="'%d' % available if stock_control else None"
+                                           t-att-id="variant.attribute_value_ids[0].id"
+                                           t-att-name="'attribute-%s-%s' % (product.id, variant.attribute_value_ids[0].id)"/>
+                                    <input t-else="" type="number" min="0" t-att-max="'%d' % available if stock_control else None"
                                            t-att-id="variant.id"
                                            t-att-name="'attribute-%s-%s' % (product.id, variant.id)"/>
+                                </div>
+                                <div class="one-stock" t-raw="str('+5') if available &gt; 5 else str(int(available))"/>
+                                <div class="one-stock" t-raw="(str('+5') if variant.sudo().virtual_available &gt; 5 else str(int(available)) if variant.sudo().virtual_available &gt; 0 else 0)" t-if="not stock_control"/>
                             </div>
-                            <div class="one-stock" t-raw="str('+5') if available &gt; 5 else str(int(available))"/>
-                            <div class="one-stock" t-raw="(str('+5') if variant.sudo().virtual_available &gt; 5 else str(int(available)) if variant.sudo().virtual_available &gt; 0 else 0)" t-if="not stock_control"/>
-                        </div>
+                        </t>
+                        <t t-else="">
+                            <!-- Only if a variant has no attribute value -->
+                            <div t-att-class="'one-line' if stock_control else 'one-line large-line'">
+                                <div class="one-label">
+                                    <label>N/D</label>
+                                </div>
+                                <div class="one-input">
+                                    <span class="exhausted">&amp;mdash;</span>
+                                </div>
+                                <div class="one-stock" t-raw="str('N/D')"/>
+                                <div class="one-stock" t-raw="str('N/D')" t-if="not stock_control"/>
+                            </div>
+                        </t>
                     </t>
                 </div>
             </t>
