@@ -51,7 +51,7 @@
         'payment_redsys',
         'website_sale_hide_price',
         'product_virtual_stock_conservative',
-        # 'portal_refunds_request',
+        'portal_refunds_request',
     ],
     'data': [
         'data/company_data.xml',
