@@ -31,7 +31,7 @@ class StockImportWzd(models.TransientModel):
             'barcode': row[1],
             'articulo': row[2],
             'cantidad': row[3],
-            'ref': row[4],
+            # 'ref': row[4],
         }
 
 
@@ -58,19 +58,20 @@ class StockImportWzd(models.TransientModel):
                 print("No encuentro la referencia: {}".format(ref))
         return product_id
 
-    def _get_product_id_by_ref(self, ref):
-        domain = [('default_code', '=', ref)]
-        product_id = self.env['product.product'].search(domain, limit=1)
-        if not product_id:
-            print("No encuentro la referencia: {}".format(ref))
-        return product_id
+    # def _get_product_id_by_ref(self, ref):
+    #     domain = [('default_code', '=', ref)]
+    #     product_id = self.env['product.product'].search(domain, limit=1)
+    #     if not product_id:
+    #         print("No encuentro la referencia: {}".format(ref))
+    #     return product_id
 
     def _get_move_line(self, vals, picking_id):
 
-        if vals.get('ref'):
-            product_id = self._get_product_id_by_ref(vals['ref'])
-        else:
-            product_id = self._get_product_id(str(int(vals['barcode'])))
+        product_id = self._get_product_id(str(int(vals['barcode'])))
+        # if vals.get('ref'):
+        #     product_id = self._get_product_id_by_ref(vals['ref'])
+        # else:
+        #     product_id = self._get_product_id(str(int(vals['barcode'])))
         if not product_id:
             picking_id.message_post(body='No se ha encontrado nada {}'.format(vals))
         else:
