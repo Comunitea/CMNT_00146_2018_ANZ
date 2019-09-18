@@ -73,6 +73,12 @@ class StockPicking(models.Model):
             domain = []
         return domain
 
+    @api.multi
+    def _count_product_ids(self):
+        for pick in self:
+            count = len(pick.move_line_ids.mapped('product_id'))
+            pick.product_ids_count = count
+
     delivery_note = fields.Text('Delivery note')
     carrier_partner_id = fields.Many2one('res.partner', string="Carrier partner", domain=lambda self: self.get_domain())
     reserved_availability = fields.Float(
@@ -84,6 +90,8 @@ class StockPicking(models.Model):
     product_uom_qty = fields.Float(
         'Quantity', compute='compute_picking_qties',
         digits=dp.get_precision('Product Unit of Measure'))
+    product_ids_count = fields.Integer('# Products',
+                                       compute='_count_product_ids')
 
     @api.multi
     def compute_picking_qties(self):
@@ -141,3 +149,19 @@ class StockPicking(models.Model):
         domain = [('picking_id.picking_type_code', '=', 'outgoing'), ('state', 'in', ('confirmed', 'partially_available'))]
         self.env['stock.move'].search(domain)._action_assign()
 
+    @api.multi
+    def action_view_product_lst(self):
+        self.ensure_one()
+        products = self.move_line_ids.mapped('product_id')
+        action = self.env.ref(
+            'product.product_normal_action').read()[0]
+        if len(products) > 1:
+            action['domain'] = [('id', 'in', products.ids)]
+        elif len(products) == 1:
+            form_view_name = 'product.product_normal_form_view'
+            action['views'] = [
+                (self.env.ref(form_view_name).id, 'form')]
+            action['res_id'] = products.id
+        else:
+            action = {'type': 'ir.actions.act_window_close'}
+        return action

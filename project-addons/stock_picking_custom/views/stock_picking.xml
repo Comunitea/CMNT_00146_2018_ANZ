@@ -2,8 +2,6 @@
 <odoo>
     <delete id="view_picking_delivery_note" model="ir.ui.view"/>
 
-
-
     <record id="view_picking_form_custom" model="ir.ui.view">
             <field name="name">view.picking.form.custom</field>
             <field name="model">stock.picking</field>
@@ -27,6 +25,14 @@
                 <!--xpath expr="//field[@name='move_lines']/tree/field[@name='product_id']" position="before">
                     <field name="packing_list_id" attrs="{'column_invisible': [('parent.need_packing_list','=',False)]}"/>
                 </xpath-->
+
+            <!-- Que me lleve a la vista para poder imprimir las etiquetas -->
+            <div name="button_box" position="inside">
+                <button name="action_view_product_lst" type="object" class="oe_stat_button"
+                    icon="fa-list">
+                        <field name="product_ids_count" widget="statinfo" string="Products"/>
+                </button>
+            </div>
 
 
             <field name="move_lines" position="after">
