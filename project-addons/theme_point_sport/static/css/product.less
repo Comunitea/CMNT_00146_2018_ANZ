@@ -1,0 +1,77 @@
+.multi-sizes {
+    & label {
+        cursor: pointer;
+        margin: 0;
+    }
+    & input {
+        padding: 4px 3px 5px;
+        margin: 2px 0;
+        border: 1px dashed #333333;
+        border-radius: 0;
+        text-align: center;
+        max-width: 60px;
+    }
+    .one-line{
+        margin: 0 -2px 0 -6px;
+        padding: 2px 2px 2px 6px;
+        max-width: 260px;
+        width: 99%;
+        &.large-line {
+            max-width: 99%;
+        }
+        & > div {
+            display: inline-block;
+            vertical-align: middle;
+        }
+        & .one-label {
+            width: 100px;
+        }
+        & .one-input {
+            width: 65px;
+            padding: 0 5px 0 0;
+            & .exhausted {
+                padding: 7px 0 8px 0;
+                display: block;
+                text-align: center;
+            }
+        }
+        & .one-stock {
+            width: 70px;
+            text-align: center;
+        }
+        /* New multi add to cart grid */
+        &:nth-child(1n+2) {
+            border: 1px solid #333333;
+        }
+        &:nth-child(1n+3) {
+            border-top: none;
+        }
+        /* old multi add to cart grid
+        &:nth-child(2n-1){
+            background-color: rgb(255, 255, 255);
+            border: 1px solid #333333;
+            & input {
+                background-color: rgb(255, 255, 255);
+            }
+        }
+        &:nth-child(2n){
+            background-color: rgb(255, 255, 255);
+            border: 1px solid #333333;
+            & input {
+                background-color: rgb(255, 255, 255);
+            }
+        }
+        */
+    }
+}
+.multi-add-result {
+    .modal-body {
+        & .alert {
+            padding: 7px 4px 4px 8px;
+            margin-bottom: 8px;
+        }
+    }
+}
+.add-to-cart-multi {
+    display: inline-block;
+}

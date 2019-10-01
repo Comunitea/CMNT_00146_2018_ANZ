@@ -1,6 +1,6 @@
 /* Hide top menu part with scroll */
 $(window).on('scroll', function() {
-    if ($(window).scrollTop() > 92) {
+    if ($(window).scrollTop() > 60) {
         $('.wp-contact-navbar').hide();
         if(!$('header').hasClass('homepage-header') || window.screen.width < 769){
             $('.header-fixed-margin').show();
@@ -35,7 +35,7 @@ $(document).ready(function(){
 });
 
 $(document).ready(function(){
-    odoo.define('theme_anzamar.multi_update_cart', function (require) {
+    odoo.define('website_base_multi_anz.multi_update_cart', function (require) {
         'use strict';
         var ajax = require('web.ajax');
         var has_order = false

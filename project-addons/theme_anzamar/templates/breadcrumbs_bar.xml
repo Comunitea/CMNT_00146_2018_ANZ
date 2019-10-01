@@ -8,18 +8,18 @@
         </xpath>
     </template>
 
-    <!-- Remove the My Account breadcrumb's bar -->
-    <template id="anz_breadcrumbs_account_remove" name="Remove Account BreadCrumbs Anzamar Template" inherit_id="portal.portal_layout">
-        <xpath expr="//div[hasclass('o_portal')]" position="attributes">
-            <attribute name="t-if">True == False</attribute>
-        </xpath>
-    </template>
+    <!-- Remove the My Account breadcrumb's bar. Done in breadcrumbs base module -->
+<!--    <template id="anz_breadcrumbs_account_remove" name="Remove Account BreadCrumbs Anzamar Template" inherit_id="portal.portal_layout">-->
+<!--        <xpath expr="//div[hasclass('o_portal')]" position="attributes">-->
+<!--            <attribute name="t-if">True == False</attribute>-->
+<!--        </xpath>-->
+<!--    </template>-->
 
-    <!-- Remove the Blog breadcrumb's bar -->
-    <template id="anz_breadcrumbs_blog_remove" name="Remove Blog BreadCrumbs Anzamar Template" inherit_id="website_blog.blog_breadcrumb">
-        <xpath expr="//div[hasclass('container')]" position="attributes">
-            <attribute name="t-if">True == False</attribute>
-        </xpath>
-    </template>
+    <!-- Remove the Blog breadcrumb's bar. Done in website_blog_base module -->
+<!--    <template id="anz_breadcrumbs_blog_remove" name="Remove Blog BreadCrumbs Anzamar Template" inherit_id="website_blog.blog_breadcrumb">-->
+<!--        <xpath expr="//div[hasclass('container')]" position="attributes">-->
+<!--            <attribute name="t-if">True == False</attribute>-->
+<!--        </xpath>-->
+<!--    </template>-->
 
 </odoo>

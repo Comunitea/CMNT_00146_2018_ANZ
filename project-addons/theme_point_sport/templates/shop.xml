@@ -2,7 +2,7 @@
 <odoo>
 
     <!-- Shop categories template -->
-    <template id="website_sale_products_categories" name="eCommerce categories Point Sport" active="True" customize_show="True" inherit_id="website_multi_theme.auto_view_poi_website_sale_products_categories">
+    <template id="website_sale_products_categories" name="eCommerce categories Point Sport" inherit_id="website_multi_theme.auto_view_poi_website_sale_products_categories">
         <xpath expr="//div[@id='products_grid_before']/ul" position="replace">
             <div class="navbar filters-navbar hidden-md hidden-sm hidden-lg">
                 <div class="navbar-header">
@@ -94,6 +94,20 @@
         </xpath>
     </template>
 
+    <!-- Shop Collapsible Categories template -->
+<!--    <template id="website_sale_option_collapse_products_categories" name="Collapsible Category List Point Sport" inherit_id="website_multi_theme.auto_view_poi_website_sale_option_collapse_products_categories">-->
+<!--        <xpath expr="//div[@id='products_grid_before']/ul" position="replace">-->
+<!--            <ul class="nav nav-pills nav-stacked" id="o_shop_collapse_category">-->
+<!--                <li t-att-class="'active' if not (category or request.params.get('search')) else None">-->
+<!--                    <a href="/shop" class="o_not_editable">All Products</a>-->
+<!--                </li>-->
+<!--                <t t-foreach="categories" t-as="categ">-->
+<!--                    <t t-call="website_sale.option_collapse_categories_recursive"/>-->
+<!--                </t>-->
+<!--            </ul>-->
+<!--        </xpath>-->
+<!--    </template>-->
+
     <!-- Product attributes -->
     <template id="website_sale_products_attributes" name="Product attributes" inherit_id="website_multi_theme.auto_view_poi_website_sale_products_attributes">
         <!-- Only show published product attributes -->
@@ -115,7 +129,8 @@
         </xpath>
     </template>
 
-    <template id="shop_infinite_scroll" inherit_id="website_multi_theme.auto_view_poi_sgeede_infinite_scroll_products_infinite_scroll" name="Infinite Scroll friendly URL's">
+    <!-- friendly URL's -->
+    <template id="shop_infinite_scroll" name="SGEEDE Infinite Scroll Point Sport" inherit_id="website_multi_theme.auto_view_poi_sgeede_infinite_scroll_products_infinite_scroll">
         <xpath expr="//t[1]/tr[hasclass('sgeede-infinite-pagination')]//a" position="attributes">
             <attribute name="t-att-href">'/category/%s/page/%d' % (category.slug, int(pager['page']['num']) + 1) if category.slug else pager['page_next']['url']</attribute>
         </xpath>

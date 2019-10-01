@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-        <data noupdate="1">
+        <data>
 
             <!--Main menu-->
             <record id="anzamar_main_menu" model="website.menu">
-                <field name="name">Main Menu</field>
+                <field name="name">Anzamar Main Menu</field>
                 <field name="website_id" ref="website_base_multi_anz.anzamar_website"/>
-                <field name="website_published">True</field>
             </record>
 
             <!--Home Menu-->
             <record id="anzamar_menu_homepage" model="website.menu">
-                <field name="name">Home</field>
+                <field name="name">Home Anzamar</field>
                 <field name="url">/</field>
-                <field name="parent_id" ref="anzamar_main_menu"/>
+                <field name="parent_id" ref="theme_anzamar.anzamar_main_menu"/>
                 <field name="sequence" type="int">10</field>
                 <field name="website_id" ref="website_base_multi_anz.anzamar_website"/>
-                <field name="website_published">False</field>
+                <field name="user_logged">False</field>
+                <field name="user_not_logged">False</field>
             </record>
 
             <!-- split between ir_ui_view & website_page record to keep external_id on ir_ui_view -->
@@ -36,6 +36,55 @@
                 <field name="url">/</field>
                 <field name="view_id" ref="anzamar_homepage" />
                 <field name="website_ids" eval="[(6, 0, [ref('website_base_multi_anz.anzamar_website')])]"/>
+            </record>
+
+            <!-- Shop -->
+            <record id="website_sale.menu_shop" model="website.menu">
+                <field name="name">Shop</field>
+                <field name="url">/shop</field>
+                <field name="parent_id" ref="theme_anzamar.anzamar_main_menu"/>
+                <field name="sequence" type="int">20</field>
+                <field name="website_id" ref="website_base_multi_anz.anzamar_website"/>
+                <field name="user_logged">True</field>
+                <field name="user_not_logged">True</field>
+            </record>
+
+            <!-- Shop by Brands -->
+            <record id="website_sale_product_brand.menu_website_sale_brand" model="website.menu">
+                <field name="name">Brands</field>
+                <field name="url">/page/product_brands</field>
+                <field name="parent_id" ref="theme_anzamar.anzamar_main_menu"/>
+                <field name="sequence" type="int">30</field>
+                <field name="website_id" ref="website_base_multi_anz.anzamar_website"/>
+                <field name="user_logged">True</field>
+                <field name="user_not_logged">True</field>
+            </record>
+
+            <!--Blog Menu-->
+            <record id="website_blog.menu_news" model="website.menu">
+                <field name="name">Blog</field>
+                <!--<field name="url" eval="'/blog/'+str(ref('website_blog.blog_blog_1'))"/>-->
+                <field name="url">/blog</field>
+                <field name="parent_id" ref="theme_anzamar.anzamar_main_menu"/>
+                <field name="sequence" type="int">80</field>
+                <field name="website_id" ref="website_base_multi_anz.anzamar_website"/>
+                <field name="user_logged">True</field>
+                <field name="user_not_logged">True</field>
+            </record>
+
+            <record id="website_blog.action_open_website" model="ir.actions.act_url">
+                <field name="url" eval="'/blog'"/>
+            </record>
+
+            <!-- Contact -->
+            <record id="website.menu_contactus" model="website.menu">
+                <field name="name">Contact Us</field>
+                <field name="url">/contactus</field>
+                <field name="parent_id" ref="theme_anzamar.anzamar_main_menu"/>
+                <field name="sequence" type="int">90</field>
+                <field name="website_id" ref="website_base_multi_anz.anzamar_website"/>
+                <field name="user_logged">False</field>
+                <field name="user_not_logged">False</field>
             </record>
 
         </data>

@@ -45,7 +45,7 @@
                         </t>
                     </div>
                     <t t-set="variant_ids" t-value="product.product_variant_ids"/>
-                    <t t-foreach="variant_ids.sorted(key=lambda x: x.name)" t-as="variant">
+                    <t t-foreach="variant_ids.sorted(key=lambda x: x.attribute_value_ids[0].sequence)" t-as="variant">
                         <t t-if="variant.attribute_value_ids">
                             <div t-att-class="'one-line' if stock_control else 'one-line large-line'">
                                 <div class="one-label">

@@ -25,7 +25,7 @@
 {
     'name': 'MultiWebsite Base Module Anzamar',
     'version': '1.0',
-    'summary': 'BackEnd customization for all companies and their websites.',
+    'summary': 'Backend customization for all companies and their websites.',
     'description': '',
     'category': 'Website',
     'author': 'Comunitea',
@@ -34,7 +34,6 @@
     'contributors': [
         'Pavel Smirnov <pavel@comunitea.com>',
         'Rubén Seijas <ruben@comunitea.com>',
-        'Juan Vázquez Moreno <vmjuan90@gmail.com>',
         'Vicente Gutiérrez, <vicente@comunitea.com>',
     ],
     'depends': [
@@ -59,6 +58,7 @@
         # 'data/menu_data.xml',
         'data/page_data.xml',
         'data/website_data.xml',
+        'templates/head.xml',
         'templates/blog.xml',
         'templates/cart.xml',
         'templates/header.xml',

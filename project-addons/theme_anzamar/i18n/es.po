@@ -55,9 +55,14 @@ msgid "Blog Link"
 msgstr "Enlace al Blog"
 
 #. module: theme_anzamar
-#: model:website.menu,name:theme_anzamar.brands_menu
+#: model:website.menu,name:website_sale_product_brand.menu_website_sale_brand
 msgid "Brands"
 msgstr "Marcas"
+
+#. module: theme_anzamar
+#: model:website.menu,name:theme_anzamar.brands_menu
+msgid "Group Brands"
+msgstr "Marcas grupo"
 
 #. module: theme_anzamar
 #: model:ir.ui.view,arch_db:theme_anzamar.anz_home_content_template
@@ -422,6 +427,7 @@ msgstr "Productos"
 
 #. module: theme_anzamar
 #: model:website.menu,name:theme_anzamar.anz_shop_menu
+#: model:website.menu,name:website_sale.menu_shop
 msgid "Shop"
 msgstr "Tienda"
 

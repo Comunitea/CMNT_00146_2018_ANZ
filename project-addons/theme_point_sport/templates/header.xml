@@ -3,15 +3,20 @@
 
     <!--Header Template-->
     <template id="website_layout" name="Layout Point Template" inherit_id="website_multi_theme.auto_layout_website_poi">
+
+        <!-- Fixed header with editor bar and NOT phone and mail before menu -->
         <xpath expr="//div[@id='wrapwrap']//div[hasclass('navbar')]" position="before">
             <div groups="base.group_user" class="clearfix mt32 header-fixed-margin"/>
         </xpath>
+
         <xpath expr="//div[@id='wrapwrap']//div[hasclass('navbar')]" position="after">
             <t t-call="breadcrumbs_base.bcb_main_wrap" t-if="not xmlid == 'website.homepage'"/>
         </xpath>
+
         <xpath expr="//div[@id='wrapwrap']/header" position="attributes">
             <attribute name="t-att-class">'homepage-header' if xmlid == 'website.homepage' else None</attribute>
         </xpath>
+
         <xpath expr="//header//ul[@id='top_menu']/li[@id='my_cart']" position="after">
             <t t-if="request.env.ref('website_multi_theme.auto_view_poi_website_sale_wishlist_add_to_wishlist').active">
                 <t t-set='wishcount' t-value="len(request.env['product.wishlist'].current())"/>
@@ -66,17 +71,26 @@
 
     <template id="website_submenu" inherit_id="website.submenu">
 
+        <!-- Hide previous menu. Just used for set the real dynamic menu -->
+        <xpath expr="//li[1]" position="attributes">
+            <attribute name="t-if">submenu.is_visible and not submenu.dynamic_cat_menu and not submenu.child_id.filtered(lambda menu: menu.is_visible)</attribute>
+        </xpath>
+        <xpath expr="//li[2]" position="attributes">
+            <attribute name="t-if">not submenu.dynamic_cat_menu and submenu.child_id.filtered(lambda menu: menu.is_visible)</attribute>
+        </xpath>
+
         <!-- Add dynamic category menu -->
         <xpath expr="//li[2]" position="after">
-            <li t-if="submenu.dynamic_cat_menu and submenu.is_visible"
+            <li t-if="submenu.dynamic_cat_menu and ((submenu.user_not_logged and request.website.is_public_user()) or (submenu.user_logged and not request.website.is_public_user()))"
                 class="dropdown cat_dynamic_menu" >
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                    <span t-field="submenu.name"/> <span class="caret" t-ignore="true"/>
+                    <span t-field="submenu.name"/>
+                    <span class="caret" t-ignore="true"/>
                 </a>
                 <t t-set="categories" t-value="website.dynamic_category_list()"/>
                 <div t-if="categories" class="dropdown-menu dynamic-cat-menu">
                     <t t-foreach="categories" t-as="cat">
-                        <div t-if="not cat.parent_id" class="first-level">
+                        <div t-if="not cat.parent_id and len(cat.child_id) > 0" class="first-level">
                             <div class="first-level-wp">
                                 <a t-att-href="'/category/%s' %cat.slug if cat.slug else '/shop/category/%s' %slug(cat)"
                                    t-field="cat.name" />
