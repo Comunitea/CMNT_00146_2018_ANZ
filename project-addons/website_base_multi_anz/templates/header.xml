@@ -19,7 +19,7 @@
                 <li class="divider"/>
                 <li class="dropdown language_menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        <img t-att-src="'/theme_anzamar/static/img/flags/flag_%s.png' % lang.split('_')[0]" style="max-height: 21px;"/>
+                        <img t-att-src="'/website_base_multi_anz/static/img/flags/flag_%s.png' % lang.split('_')[0]" style="max-height: 21px;"/>
                         <span t-esc="lang.split('_')[0]"/>
                         <span class="caret"/>
                     </a>
@@ -31,7 +31,7 @@
                                    t-att-data-lang="lg[0]"
                                    class="js_change_lang"
                                    rel="nofollow">
-                                    <img t-att-src="'/theme_anzamar/static/img/flags/flag_%s.png' % lg[0].split('_')[0]"
+                                    <img t-att-src="'/website_base_multi_anz/static/img/flags/flag_%s.png' % lg[0].split('_')[0]"
                                          t-att-title="lg[1].split('/').pop()"
                                          t-att-alt="lg[1].split('/').pop()"
                                          t-att-href="url_for(request.httprequest.path + '?' + keep_query(), lang=lg[0])"/>
