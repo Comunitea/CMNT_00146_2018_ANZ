@@ -1,57 +1,91 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
 
-    <template id="anz_home_content_template" name="Home Anzamar Content Template">
+    <template id="anz_home_content_template" name="Home Anzamar">
         <t t-call="website.layout">
             <t t-call="theme_anzamar.carousel_homepage"/>
             <section class="oe_structure oe_empty"/>
             <section id="brands_section" class="mt32 oe_structure">
-                <div class="row mt32 mb32">
-                    <h2 class="text-center mt32 mb32">Brands of our group</h2>
-                    <div class="col-md-2 col-sm-4 mb16">
-                        <a href="https://umbro.es/" target="_blank" rel="nofollow">
-                            <img src="/theme_anzamar/static/img/home/brand-umbro.png"
-                                 class="img-responsive img-circle img-thumbnail" alt="Umbro"/>
-                        </a>
+                <section class="s_three_columns" style="height: 456px; overflow: hidden;">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-4 mt32 mb48">
+                                <a href="/category/textil">
+                                    <img class="img img-responsive" src="/theme_anzamar/static/img/home/lifestyle.png" alt="lifestyle" title="lifestyle"/>
+                                </a>
+                            </div>
+                            <div class="col-md-4 mt32 mb48">
+                                <a href="/category/running">
+                                    <img class="img img-responsive" src="/theme_anzamar/static/img/home/running.png" alt="running" title="running"/>
+                                </a>
+                                <h4 class="mt16">&amp;nbsp;</h4>
+                            </div>
+                            <div class="col-md-4 mt32 mb48">
+                                <a href="/category/mallas-y-leggins">
+                                    <img class="img img-responsive" src="/theme_anzamar/static/img/home/fitness.png" alt="fitness" title="fitness"/>
+                                </a>
+                            </div>
+                        </div>
                     </div>
-                    <div class="col-md-2 col-sm-4 mb16">
-                        <a href="http://www.point-sport.com/" target="_blank" rel="nofollow">
-                            <img src="/theme_anzamar/static/img/home/brand-point-sport.png"
-                                 class="img-responsive img-circle img-thumbnail" alt="Point Sport"/>
-                        </a>
+                </section>
+                <section class="s_three_columns">
+                    <div class="container">
+                        <div class="row">
+                            <div class="mt32 mb48 col-md-3">
+                                <img class="img img-responsive center-block" src="/theme_anzamar/static/img/home/candado.png" alt="candado" title="candado"/>
+                                <h4 class="mt16" style="text-align: center; ">
+                                    <b>Pago 100% seguro</b>
+                                </h4>
+                                <p style="text-align: center; "> Pago seguro a través de&amp;nbsp;Mastercard, Visa, y Paypal.</p>
+                            </div>
+                            <div class="mt32 mb48 col-md-3">
+                                <img class="img img-responsive center-block" src="/theme_anzamar/static/img/home/envio24h.png" alt="envio24h" title="envio24h"/>
+                                <h4 class="mt16" style="text-align: center; ">
+                                    <b>Envío en 24/48 horas</b>
+                                </h4>
+                                <p style="text-align: center; "> Entrega en 1-2 días laborables en península.</p>
+                            </div>
+                            <div class="mt32 mb48 col-md-3">
+                                <img class="img img-responsive center-block" src="/theme_anzamar/static/img/home/etiqueta.png" alt="etiqueta" title="etiqueta"/>
+                                <h4 class="mt16" style="text-align: center; ">
+                                    <b>Marcas líderes</b>
+                                </h4>
+                                <p style="text-align: center; ">Principales marcas referentes del mercado deportivo<i>.</i></p>
+                            </div>
+                            <div class="mt32 mb48 col-md-3">
+                                <img class="img img-responsive center-block" src="/theme_anzamar/static/img/home/enviogratis.png" alt="enviogratis" title="enviogratis"/>
+                                <h4 class="mt16" style="text-align: center; ">
+                                    <b>Envío gratis</b>
+                                </h4>
+                                <p style="text-align: center; ">Envío gratuito en compras a partir de 49,99€.</p>
+                            </div>
+                        </div>
                     </div>
-                    <div class="col-md-2 col-sm-4 mb16">
-                        <a href="https://blacklaces.es/" target="_blank" rel="nofollow">
-                            <img src="/theme_anzamar/static/img/home/brand-black-laces.png"
-                                 class="img-responsive img-circle img-thumbnail" alt="Black Laces"/>
-                        </a>
-                    </div>
-                    <div class="col-md-2 col-sm-4 mb16">
-                        <a href="http://www.goalkers.com/" target="_blank" rel="nofollow">
-                            <img src="/theme_anzamar/static/img/home/brand-goalkers.png"
-                                 class="img-responsive img-circle img-thumbnail" alt="Goalkers"/>
-                        </a>
-                    </div>
-                    <div class="col-md-2 col-sm-4 mb16">
-                        <a href="http://www.feel-point.com/" target="_blank" rel="nofollow">
-                            <img src="/theme_anzamar/static/img/home/brand-feel-point.png"
-                                 class="img-responsive img-circle img-thumbnail" alt="Feel Point"/>
-                        </a>
-                    </div>
-                    <div class="col-md-2 col-sm-4 mb16">
-                        <a href="https://skipping.es/es/" target="_blank" rel="nofollow">
-                            <img src="/theme_anzamar/static/img/home/brand-skipping.png"
-                                 class="img-responsive img-circle img-thumbnail" alt="Skipping"/>
-                        </a>
-                    </div>
-                </div>
+                </section>
             </section>
-            <section class="oe_structure oe_empty"/>
+            <section class="oe_structure oe_empty">
+                <section class="jumbotron s_button bg-gray-lighter" style="height: 152px; overflow: hidden;">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-9">
+                                <p class="mb0">
+                                    <strong>¿Tienes alguna duda?</strong>
+                                </p>
+                                <p class="mb0">Escríbenos y te atenderemos a la mayor brevedad posible</p>
+                            </div>
+                            <div class="col-md-3">
+                                <a href="/contactus" class="btn btn-lg btn-primary mt8 pull-right" title="contacto" rel="nofollow"> Contacta ahora <i class="fa fa-chevron-right"/></a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </section>
             <section id="news_section" class="mt32 oe_structure">
                 <t t-set="latest_posts" t-value="website.latest_posts(6, 6, 'Our latest news', 'Read all our news')"/>
                 <t t-call="website_blog_base.wbb_latest_post_wrap" t-if="latest_posts['posts']"/>
             </section>
             <div class="clearfix"/>
+
             <section class="oe_structure oe_empty"/>
         </t>
     </template>

@@ -2,7 +2,12 @@
 <odoo>
 
     <!-- Product template -->
-    <template id="anz_website_sale_product" name="Product Anzamar Template" inherit_id="website_multi_theme.auto_view_anz_website_sale_product">
+    <template id="anz_website_sale_product" name="Product Anzamar" inherit_id="website_multi_theme.auto_view_anz_website_sale_product">
+
+         <!-- Remove the product breadcrumb's bar -->
+        <xpath expr="//ol[hasclass('breadcrumb')]" position="attributes">
+            <attribute name="t-if">True == False</attribute>
+        </xpath>
 
         <!-- Multi-add-to-cart action in the form -->
         <xpath expr="//form[hasclass('js_add_cart_variants')]" position="attributes">
@@ -161,7 +166,7 @@
 
     </template>
 
-    <template id="auto_view_anz_website_sale_products_add_to_cart" name="Add to Cart Anzamar Template" inherit_id="website_multi_theme.auto_view_anz_website_sale_products_add_to_cart">
+    <template id="auto_view_anz_website_sale_products_add_to_cart" name="Add to Cart Anzamar" inherit_id="website_multi_theme.auto_view_anz_website_sale_products_add_to_cart">
         <!-- Replace add to cart miniature -->
         <xpath expr="//t[2]/a" position="attributes">
             <attribute name="t-att-href">keep('/product/{}', page=(pager['page']['num'] if pager['page']['num']&gt;1 else None)).format(product.slug) if product.slug else keep('/shop/product/%s' % slug(product), page=(pager['page']['num'] if pager['page']['num']&gt;1 else None))</attribute>
@@ -175,7 +180,7 @@
         </xpath>
     </template>
 
-    <template id="anz_website_sale_sort" inherit_id="website_multi_theme.auto_view_anz_website_sale_sort" active="True" name="Filters Anzamar Show Sort by">
+    <template id="anz_website_sale_sort" name="Show Sort by Anzamar" inherit_id="website_multi_theme.auto_view_anz_website_sale_sort">
         <xpath expr="//t[@t-set='website_sale_sortable_current']" position="after">
             <t t-set="brand" t-if="request.params.get('brand', 0)" t-value="[request.params.get('brand', 0)]"/>
             <t t-set="gender" t-if="request.params.get('gender', 0)" t-value="[request.params.get('gender', 0)]"/>

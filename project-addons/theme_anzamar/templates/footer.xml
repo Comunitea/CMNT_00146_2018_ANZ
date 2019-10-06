@@ -45,7 +45,7 @@
                 <div class="col-md-4">
                     <div class="clearfix"/>
                     <section id="contact_section" class="oe_structure">
-                        <h4>Contact</h4>
+                        <h4><a href="/contactus" alt="Contact" title="Contact" rel="nofollow">Contact</a></h4>
                         <ul class="list-unstyled">
                             <li>Anzamar group</li>
                             <li>

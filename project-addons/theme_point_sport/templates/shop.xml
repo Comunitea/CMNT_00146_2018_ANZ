@@ -120,50 +120,10 @@
         </xpath>-->
     </template>
 
-    <!-- Product item used by /shop and /shop/cart -->
-    <template id="website_sale_products_item" name="Product item" inherit_id="website_sale.products_item">
-        <xpath expr="//section/h5" position="before">
-            <div class="product_default_code">
-                <span t-esc="product.ref_template" t-if="product.ref_template"/>
-            </div>
-        </xpath>
-    </template>
-
     <!-- friendly URL's -->
     <template id="shop_infinite_scroll" name="SGEEDE Infinite Scroll Point Sport" inherit_id="website_multi_theme.auto_view_poi_sgeede_infinite_scroll_products_infinite_scroll">
         <xpath expr="//t[1]/tr[hasclass('sgeede-infinite-pagination')]//a" position="attributes">
             <attribute name="t-att-href">'/category/%s/page/%d' % (category.slug, int(pager['page']['num']) + 1) if category.slug else pager['page_next']['url']</attribute>
-        </xpath>
-    </template>
-
-    <!-- Shopping Cart Lines with website warehouse context -->
-    <template id="website_sale_stock_website_sale_stock_cart_lines" name="Shopping Cart Lines with website warehouse" inherit_id="website_sale_stock.website_sale_stock_cart_lines">
-        <xpath expr="//input[@type='text'][hasclass('quantity')]" position="before">
-            <t t-set="variant" t-value="line.product_id.with_context(warehouse=request.website.warehouse.id).sudo() if request.website.warehouse else line.product_id.sudo()"/>
-            <t t-set="qty" t-value="(variant.sudo().qty_available + variant.sudo().virtual_available) if variant.inventory_availability in ('always_virtual', 'threshold_virtual') else variant.sudo().qty_available"/>
-            <t t-set="stock_control" t-value="variant.inventory_availability in ('always', 'always_virtual', 'threshold', 'threshold_virtual')"/>
-        </xpath>
-        <xpath expr="//input[@type='text'][hasclass('quantity')]" position="attributes">
-            <attribute name="t-att-data-max">((qty - variant.available_threshold) if variant.inventory_availability in ('threshold', 'threshold_virtual') else qty) if stock_control else None</attribute>
-        </xpath>
-    </template>
-
-    <template id="website_sale_products" inherit_id="website_sale.products" name="Products grid">
-        <xpath expr="//div[@id='products_grid']/table" position="before">
-            <t t-set="labels" t-value="website.get_filter_labels()"/>
-            <t t-set="search" t-value="request.httprequest.args.get('search', False)"/>
-            <t t-set="labels_search" t-value="search if search else ''"/>
-            <span t-esc="Filters" class="label label-primary"/>
-            <div class="filter-labels mb16" t-if="len(labels) &gt; 0 or category">
-                <t t-foreach="labels_search.split(' ')" t-as="label_search" t-if="len(labels_search)">
-                    <span t-esc="label_search" class="label label-primary"/>
-                </t>
-                <t t-foreach="labels" t-as="label">
-                    <span t-esc="label" class="label label-primary"/>
-                </t>
-                <span t-if="category" t-esc="category.name" class="label label-primary"/>
-                <a href="/shop" class="label label-danger">Delete all</a>
-            </div>
         </xpath>
     </template>
 

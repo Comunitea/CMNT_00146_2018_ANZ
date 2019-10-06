@@ -5,7 +5,7 @@
     <template id="anz_website_layout" name="Layout Anzamar Template" inherit_id="website_multi_theme.auto_layout_website_anz">
 
         <xpath expr="//div[@id='wrapwrap']/header" position="attributes">
-            <attribute name="t-att-class">'homepage-header' if xmlid == 'website.homepage' else None</attribute>
+            <attribute name="t-att-class">'homepage-header' if xmlid == 'website.homepage' or 'home' in xmlid else None</attribute>
         </xpath>
 
         <xpath expr="//div[@id='wrapwrap']//div[hasclass('navbar')]" position="before">

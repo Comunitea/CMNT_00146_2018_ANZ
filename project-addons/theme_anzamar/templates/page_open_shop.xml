@@ -1,37 +1,37 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
 
-    <template id="anz_open_shop_content_template" name="open Shop Anzamar Content Template" inherit_id="theme_anzamar.page_open_shop">
-
-        <xpath expr="//div[hasclass('container')]" position="before">
-            <t t-call="theme_anzamar.carousel_homepage"/>
-        </xpath>
-
-        <xpath expr="//div[hasclass('container')]" position="inside">
-            <section class="oe_structure oe_empty"/>
-            <section id="open_section" class="mt32 oe_structure">
-                <h1>Open Your Shop</h1>
-                <h2>Instructions to open your shop with Anzamar Group</h2>
-                <p>We put at your disposal the opportunity to be part of our family riding your own sports store, for it you must be an entrepreneur, with a great dynamism and energy capable of growing professionally as part of our team working in the franchise area .</p>
-                <p>We will give you all the necessary logistics, with a visual image of the modern sports establishment totally identifying with the sports chain, as well as the product, in all its aspects of textiles, footwear and accessories, to be a reference sports store in your area of influence accompanied by the computer system necessary to be in constant communication with us about your needs. All this franchise project is focused on that you only dedicate yourself to the sale and customer service, in such a way that "THE MORE YOU SELL, THE MORE YOU WILL WIN".</p>
-            </section>
-            <section class="oe_structure oe_empty"/>
-            <section id="step_section" class="mt32 oe_structure">
-                <h1>Open Your Shop Steps</h1>
-                <h2>Steps to open your shop with Anzamar Group</h2>
-                <p>Please, follow the steps</p>
-            </section>
-            <section class="oe_structure oe_empty"/>
-            <section id="request_section" class="mt32 oe_structure">
-                <h1>Open Request</h1>
-                <h2>Form to open your shop with Anzamar Group</h2>
-                <p>Please, fill all fields</p>
-            </section>
-            <section id="request_section_form" class="mt32">
-                <t t-call="theme_anzamar.open_shop_contact_form"/>
-            </section>
-            <section class="oe_structure oe_empty"/>
-        </xpath>
+    <template id="anz_open_shop_content_template" name="Open Shop Anzamar">
+        <t t-call="website.layout">
+            <div id="wrap">
+                <t t-call="theme_anzamar.carousel_homepage"/>
+                <div class="container">
+                    <section class="oe_structure oe_empty"/>
+                    <section id="open_section" class="mt32 oe_structure">
+                        <h1>Open Your Shop</h1>
+                        <h2>Instructions to open your shop with Anzamar Group</h2>
+                        <p>We put at your disposal the opportunity to be part of our family riding your own sports store, for it you must be an entrepreneur, with a great dynamism and energy capable of growing professionally as part of our team working in the franchise area .</p>
+                        <p>We will give you all the necessary logistics, with a visual image of the modern sports establishment totally identifying with the sports chain, as well as the product, in all its aspects of textiles, footwear and accessories, to be a reference sports store in your area of influence accompanied by the computer system necessary to be in constant communication with us about your needs. All this franchise project is focused on that you only dedicate yourself to the sale and customer service, in such a way that "THE MORE YOU SELL, THE MORE YOU WILL WIN".</p>
+                    </section>
+                    <section class="oe_structure oe_empty"/>
+                    <section id="step_section" class="mt32 oe_structure">
+                        <h1>Open Your Shop Steps</h1>
+                        <h2>Steps to open your shop with Anzamar Group</h2>
+                        <p>Please, follow the steps</p>
+                    </section>
+                    <section class="oe_structure oe_empty"/>
+                    <section id="request_section" class="mt32 oe_structure">
+                        <h1>Open Request</h1>
+                        <h2>Form to open your shop with Anzamar Group</h2>
+                        <p>Please, fill all fields</p>
+                    </section>
+                    <section id="request_section_form" class="mt32">
+                        <t t-call="website_base_multi_anz.open_shop_contact_form"/>
+                    </section>
+                    <section class="oe_structure oe_empty"/>
+                </div>
+            </div>
+        </t>
     </template>
 
 </odoo>

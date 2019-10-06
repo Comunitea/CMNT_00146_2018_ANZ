@@ -100,48 +100,48 @@
             <field name="view_id" ref="anz_page_404_view"/>
         </record>
 
-        <record id="website_legal_page.advise_page" model="website.page">
-            <field name="name">Legal Advise</field>
-            <field name="website_published">True</field>
-            <field name="website_ids" eval="[(6, 0, [ref('website_base_multi_anz.anzamar_website')])]"/>
-            <field name="url">/legal/advice</field>
-            <field name="view_id" ref="theme_anzamar.anz_advise_page_tmp"/>
-        </record>
+<!--        <record id="website_legal_page.advise_page" model="website.page">-->
+<!--            <field name="name">Legal Advise</field>-->
+<!--            <field name="website_published">True</field>-->
+<!--            <field name="website_ids" eval="[(6, 0, [ref('website_base_multi_anz.anzamar_website')])]"/>-->
+<!--            <field name="url">/legal/advice</field>-->
+<!--            <field name="view_id" ref="theme_anzamar.anz_advise_page_tmp"/>-->
+<!--        </record>-->
 
-        <record id="website_legal_page.privacy_page" model="website.page">
-            <field name="name">Privacy Policy</field>
-            <field name="website_published">True</field>
-            <field name="website_ids" eval="[(6, 0, [ref('website_base_multi_anz.anzamar_website')])]"/>
-            <field name="url">/legal/privacy-policy</field>
-            <field name="view_id" ref="theme_anzamar.anz_privacy_page_tmp"/>
-        </record>
+<!--        <record id="website_legal_page.privacy_page" model="website.page">-->
+<!--            <field name="name">Privacy Policy</field>-->
+<!--            <field name="website_published">True</field>-->
+<!--            <field name="website_ids" eval="[(6, 0, [ref('website_base_multi_anz.anzamar_website')])]"/>-->
+<!--            <field name="url">/legal/privacy-policy</field>-->
+<!--            <field name="view_id" ref="theme_anzamar.anz_privacy_page_tmp"/>-->
+<!--        </record>-->
 
-        <record id="website_legal_page.terms_page" model="website.page">
-            <field name="name">Terms of Use</field>
-            <field name="website_published">True</field>
-            <field name="website_ids" eval="[(6, 0, [ref('website_base_multi_anz.anzamar_website')])]"/>
-            <field name="url">/legal/terms-of-use</field>
-            <field name="view_id" ref="theme_anzamar.anz_terms_page_tmp"/>
-        </record>
+<!--        <record id="website_legal_page.terms_page" model="website.page">-->
+<!--            <field name="name">Terms of Use</field>-->
+<!--            <field name="website_published">True</field>-->
+<!--            <field name="website_ids" eval="[(6, 0, [ref('website_base_multi_anz.anzamar_website')])]"/>-->
+<!--            <field name="url">/legal/terms-of-use</field>-->
+<!--            <field name="view_id" ref="theme_anzamar.anz_terms_page_tmp"/>-->
+<!--        </record>-->
 
         <!-- // Contact Us part -->
-        <template id="anz_contactus_view" name="Contact Us Anzamar View" inherit_id="website.contactus"/>
-        <record id="anz_contactus_page" model="website.page">
-            <field name="name">Contact Us</field>
-            <field name="website_published">True</field>
-            <field name="website_ids" eval="[(6, 0, [ref('website_base_multi_anz.anzamar_website')])]"/>
-            <field name="url">/contactus</field>
-            <field name="view_id" ref="anz_contactus_view"/>
-        </record>
+<!--        <template id="anz_contactus_view" name="Contact Us Anzamar View" inherit_id="website.contactus"/>-->
+<!--        <record id="anz_contactus_page" model="website.page">-->
+<!--            <field name="name">Contact Us</field>-->
+<!--            <field name="website_published">True</field>-->
+<!--            <field name="website_ids" eval="[(6, 0, [ref('website_base_multi_anz.anzamar_website')])]"/>-->
+<!--            <field name="url">/contactus</field>-->
+<!--            <field name="view_id" ref="anz_contactus_view"/>-->
+<!--        </record>-->
 
-        <template id="anz_contactus_thanks_view" name="Contact Us (Thanks) Anzamar View" inherit_id="website_crm.contactus_thanks_ir_ui_view"/>
-        <record id="anz_contactus_thanks_page" model="website.page">
-            <field name="name">Contact Us (Thanks)</field>
-            <field name="website_published">True</field>
-            <field name="website_ids" eval="[(6, 0, [ref('website_base_multi_anz.anzamar_website')])]"/>
-            <field name="url">/contactus-thank-you</field>
-            <field name="view_id" ref="anz_contactus_thanks_view"/>
-        </record>
+<!--        <template id="anz_contactus_thanks_view" name="Contact Us (Thanks) Anzamar View" inherit_id="website_crm.contactus_thanks_ir_ui_view"/>-->
+<!--        <record id="anz_contactus_thanks_page" model="website.page">-->
+<!--            <field name="name">Contact Us (Thanks)</field>-->
+<!--            <field name="website_published">True</field>-->
+<!--            <field name="website_ids" eval="[(6, 0, [ref('website_base_multi_anz.anzamar_website')])]"/>-->
+<!--            <field name="url">/contactus-thank-you</field>-->
+<!--            <field name="view_id" ref="anz_contactus_thanks_view"/>-->
+<!--        </record>-->
 
     </data>
 </odoo>

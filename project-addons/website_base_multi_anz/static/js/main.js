@@ -5,12 +5,12 @@ $(window).on('scroll', function() {
         if(!$('header').hasClass('homepage-header') || window.screen.width < 769){
             $('.header-fixed-margin').show();
             if(window.screen.width < 769){
-                $('#wrap').css({'margin-top': '79px'});
+                $('#wrap').css({'margin-top': '60px'});
             }else{
-                $('#wrap').css({'margin-top': '95px'});
+                $('#wrap').css({'margin-top': '35px'});
             }
         }
-        $('header').addClass('fixed');
+//        $('header').addClass('fixed');
     } else {
         $('header').removeClass('fixed');
         if(!$('header').hasClass('homepage-header') || window.screen.width < 769){

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
+
     <template id="wbm_website_sale_header" name="Header my cart link without text" inherit_id="website_sale.header">
         <!-- Hook to hide cart icon in header by website_sale_hide_price module or show without text if exist -->
         <xpath expr="//li[@id='my_cart']/a" position="replace">
@@ -9,4 +10,93 @@
             </a>
         </xpath>
     </template>
+
+
+    <!-- New language selector -->
+    <template id="portal_frontend_layout" name="Main Frontend Layout Base" inherit_id="portal.frontend_layout">
+        <xpath expr="//ul[@id='top_menu']" position="inside">
+            <t t-if="(request and request.is_frontend_multilang and len(languages) &gt; 1)">
+                <li class="divider"/>
+                <li class="dropdown language_menu">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <img t-att-src="'/theme_anzamar/static/img/flags/flag_%s.png' % lang.split('_')[0]" style="max-height: 21px;"/>
+                        <span t-esc="lang.split('_')[0]"/>
+                        <span class="caret"/>
+                    </a>
+                    <ul class="dropdown-menu" role="menu">
+                        <t t-foreach="languages" t-as="lg">
+                            <li t-if="lg[0] != lang">
+                                <a t-att-href="url_for(request.httprequest.path + '?' + keep_query(), lang=lg[0])"
+                                   t-att-data-default-lang="(editable or translatable) and 'true' if website and lg[0] == website.default_lang_code else None"
+                                   t-att-data-lang="lg[0]"
+                                   class="js_change_lang"
+                                   rel="nofollow">
+                                    <img t-att-src="'/theme_anzamar/static/img/flags/flag_%s.png' % lg[0].split('_')[0]"
+                                         t-att-title="lg[1].split('/').pop()"
+                                         t-att-alt="lg[1].split('/').pop()"
+                                         t-att-href="url_for(request.httprequest.path + '?' + keep_query(), lang=lg[0])"/>
+                                    <span t-esc="lg[0].split('_')[0]"/>
+                                </a>
+                            </li>
+                        </t>
+                    </ul>
+                </li>
+            </t>
+        </xpath>
+    </template>
+
+    <!-- Dynamic category menu  -->
+    <template id="website_submenu" inherit_id="website.submenu">
+
+        <!-- Hide previous menu. Just used for set the real dynamic menu -->
+        <xpath expr="//li[1]" position="attributes">
+            <attribute name="t-if">submenu.is_visible and not submenu.dynamic_cat_menu and not submenu.child_id.filtered(lambda menu: menu.is_visible)</attribute>
+        </xpath>
+        <xpath expr="//li[2]" position="attributes">
+            <attribute name="t-if">not submenu.dynamic_cat_menu and submenu.child_id.filtered(lambda menu: menu.is_visible)</attribute>
+        </xpath>
+
+        <!-- Add dynamic category menu -->
+        <xpath expr="//li[2]" position="after">
+            <li t-if="submenu.dynamic_cat_menu and ((submenu.user_not_logged and request.website.is_public_user()) or (submenu.user_logged and not request.website.is_public_user()))"
+                class="dropdown cat_dynamic_menu" >
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                    <span t-field="submenu.name"/>
+                    <span class="caret" t-ignore="true"/>
+                </a>
+                <t t-set="categories" t-value="website.dynamic_category_list()"/>
+                <div t-if="categories" class="dropdown-menu dynamic-cat-menu">
+                    <t t-foreach="categories" t-as="cat">
+                        <div t-if="not cat.parent_id and len(cat.child_id) > 0" class="first-level">
+                            <div class="first-level-wp">
+                                <a t-att-href="'/category/%s' %cat.slug if cat.slug else '/shop/category/%s' %slug(cat)"
+                                   t-field="cat.name" />
+                            </div>
+                            <div class="first-level-inner" t-if="cat.child_id">
+                                <ul>
+                                    <t t-foreach="cat.child_id" t-as="sub_cat">
+                                        <li class="second-level">
+                                            <a t-att-href="'/category/%s' %sub_cat.slug if sub_cat.slug else '/shop/category/%s' %slug(sub_cat)"
+                                               t-field="sub_cat.name"/>
+                                            <div class="second-level-inner" t-if="sub_cat.child_id">
+                                                <ul>
+                                                    <t t-foreach="sub_cat.child_id" t-as="sub_2_cat">
+                                                        <li class="third-level">
+                                                            <a t-att-href="'/category/%s' %sub_2_cat.slug if sub_2_cat.slug else '/shop/category/%s' %slug(sub_2_cat)"
+                                                               t-field="sub_2_cat.name"/>
+                                                        </li>
+                                                    </t>
+                                                </ul>
+                                            </div>
+                                        </li>
+                                    </t>
+                                </ul>
+                            </div>
+                        </div>
+                    </t>
+                </div>
+            </li>
+        </xpath>
+    </template>
+
 </odoo>

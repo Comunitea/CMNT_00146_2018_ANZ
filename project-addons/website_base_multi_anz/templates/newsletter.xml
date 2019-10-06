@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <template id="website_mail_follow" name="Follow Base" inherit_id="website_mail.follow">
+        <xpath expr="//div[hasclass('js_follow')]" position="after">
+            <div class="on_subscribe_advise small mt4" t-if="object.id and not object.message_is_follower">
+                With subscribe <t t-call="theme_anzamar.privacy_policy_advise"/>
+            </div>
+        </xpath>
+    </template>
+
+</odoo>

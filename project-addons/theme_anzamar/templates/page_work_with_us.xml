@@ -1,35 +1,35 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
 
-    <template id="anz_work_with_us_content_template" name="Work With Us Anzamar Content Template" inherit_id="theme_anzamar.page_work_with_us">
-
-        <xpath expr="//div[hasclass('container')]" position="before">
-            <t t-call="theme_anzamar.carousel_homepage"/>
-        </xpath>
-
-        <xpath expr="//div[hasclass('container')]" position="inside">
-            <section class="oe_structure oe_empty"/>
-            <section id="work_section" class="oe_structure">
-                <div class="col-md-12">
-                    <h1>Work With Us</h1>
-                    <h2>Would you like to join our team?</h2>
-                    <p>Fill in the form and send it to us. We will contact you</p>
+    <template id="anz_work_with_us_content_template" name="Work With Us Anzamar">
+        <t t-call="website.layout">
+            <div id="wrap">
+                <t t-call="theme_anzamar.carousel_homepage"/>
+                <div class="container">
+                    <section class="oe_structure oe_empty"/>
+                    <section id="work_section" class="oe_structure">
+                        <div class="col-md-12">
+                            <h1>Work With Us</h1>
+                            <h2>Would you like to join our team?</h2>
+                            <p>Fill in the form and send it to us. We will contact you</p>
+                        </div>
+                    </section>
+                    <div class="clearfix"/>
+                    <section class="oe_structure oe_empty"/>
+                    <section id="form_section" class="oe_structure">
+                        <div class="col-md-12">
+                            <h1>Form</h1>
+                            <h2>You must fill in all the required fields</h2>
+                            <br/>
+                        </div>
+                    </section>
+                    <section id="request_section_form" class="mt32">
+                        <t t-call="website_base_multi_anz.work_contact_form"/>
+                    </section>
+                    <section class="oe_structure oe_empty"/>
                 </div>
-            </section>
-            <div class="clearfix"/>
-            <section class="oe_structure oe_empty"/>
-            <section id="form_section" class="oe_structure">
-                <div class="col-md-12">
-                    <h1>Form</h1>
-                    <h2>You must fill in all the required fields</h2>
-                    <br/>
-                </div>
-            </section>
-            <section id="request_section_form" class="mt32">
-                <t t-call="theme_anzamar.work_contact_form"/>
-            </section>
-            <section class="oe_structure oe_empty"/>
-        </xpath>
+            </div>
+        </t>
     </template>
 
 </odoo>

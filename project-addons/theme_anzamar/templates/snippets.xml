@@ -2,7 +2,7 @@
 <odoo>
 
     <!-- Custom carousel for demo child-pages -->
-    <template id="carousel_homepage" name="Carousel Home Anzamar Snippet">
+    <template id="carousel_homepage" name="Carousel Home Anzamar">
         <div id="carousel_demo" class="carousel slide" data-ride="carousel">
             <ol class="carousel-indicators">
                 <li data-target="#carousel_demo" data-slide-to="0" class="active"/>
@@ -11,13 +11,13 @@
             </ol>
             <div class="carousel-inner" role="listbox">
                 <div class="item active">
-                    <img class="img-responsive" src="/theme_anzamar/static/img/home/anzamar_140_establecimientos.png" alt="Anzamar Stores"/>
+                    <img class="img-responsive" src="/theme_anzamar/static/img/home/skipping_deporte.png" alt="Skipping Deporte"/>
                 </div>
                 <div class="item">
-                    <img class="img-responsive" src="/theme_anzamar/static/img/home/anzamar_goalkers_abre_granada.png" alt="Goalkers Granada"/>
+                    <img class="img-responsive" src="/theme_anzamar/static/img/home/skipping_backtoschool.png" alt="Skipping Backtoschool"/>
                 </div>
                 <div class="item">
-                    <img class="img-responsive" src="/theme_anzamar/static/img/home/anzamar_goalkers_catalogo_100_marcas.png" alt="Goalkers Brands Catalogue"/>
+                    <img class="img-responsive" src="/theme_anzamar/static/img/home/catalogo_100_marcas.png" alt="Skipping Cataloguo"/>
                 </div>
             </div>
             <!-- Controls -->

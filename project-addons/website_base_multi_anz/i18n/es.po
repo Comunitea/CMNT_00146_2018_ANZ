@@ -399,3 +399,23 @@ msgstr "Sitios Web Permitidos"
 #: model:ir.model.fields,help:website_multi_company_blog.field_blog_blog_website_ids
 msgid "Set the websites your blog should be available on. Leave empty to post the blog on each website you created."
 msgstr "Establece en que sitios web estará disponible el blog. Dejarlo vacio implica que estará disponible para TODOS los sitios web."
+
+#. module: theme_point_sport
+#: model:ir.ui.view,arch_db:theme_point_sport.privacy_policy_advise
+msgid "I accept the"
+msgstr "Acepto los"
+
+#. module: theme_point_sport
+#: model:ir.ui.view,arch_db:theme_point_sport.privacy_policy_advise
+msgid ", the"
+msgstr ", la"
+
+#. module: theme_point_sport
+#: model:ir.ui.view,arch_db:theme_point_sport.privacy_policy_advise
+msgid ", and the"
+msgstr "y los"
+
+#. module: theme_point_sport
+#: model:ir.ui.view,arch_db:theme_point_sport.privacy_policy_advise
+msgid "of this website."
+msgstr "de este Sitio Web."

@@ -30,6 +30,13 @@
 <!--        <field name="active">True</field>-->
 <!--    </record>-->
 
+        <!-- SGEEDE Infinite Scroll  -->
+    <!-- Only available with sgeede_infinite_scroll module. We provided in -->
+    <!-- Provided in external_ecommerce_modules comunitea repo -->
+<!--    <record id="website_multi_theme.auto_view_poi_sgeede_infinite_scroll_products_infinite_scroll" model="ir.ui.view">-->
+<!--        <field name="active">True</field>-->
+<!--    </record>-->
+
     <!-- Add to Cart -->
     <record id="website_multi_theme.auto_view_poi_website_sale_products_add_to_cart" model="ir.ui.view">
         <field name="active">True</field>
@@ -65,13 +72,6 @@
 <!--        <field name="active">True</field>-->
 <!--    </record>-->
 
-    <!-- SGEEDE Infinite Scroll  -->
-    <!-- Only available with sgeede_infinite_scroll module. We provided in -->
-    <!-- Provided in external_ecommerce_modules comunitea repo -->
-<!--    <record id="website_multi_theme.auto_view_poi_sgeede_infinite_scroll_products_infinite_scroll" model="ir.ui.view">-->
-<!--        <field name="active">True</field>-->
-<!--    </record>-->
-
     <!-- Show Sort by -->
     <record id="website_multi_theme.auto_view_poi_website_sale_sort" model="ir.ui.view">
         <field name="active">True</field>
@@ -100,7 +100,7 @@
 <!--    </record>-->
 
     <!-- Select Quantity -->
-    <record id="website_multi_theme.auto_view_poi_website_sale_wishlist_add_to_wishlist" model="ir.ui.view">
+    <record id="website_multi_theme.auto_view_poi_website_sale_product_quantity" model="ir.ui.view">
         <!-- Special in this case by multi_add_to_cart -->
         <field name="active">False</field>
         <field name="customize_show">False</field>
@@ -112,6 +112,11 @@
 <!--    <record id="website_multi_theme.auto_view_poi_website_sale_extra_info_option" model="ir.ui.view">-->
 <!--        <field name="active">True</field>-->
 <!--    </record>-->
+
+    <!-- Checkout - Continue Shopping Button -->
+    <record id="website_multi_theme.auto_view_poi_website_sale_continue_shopping" model="ir.ui.view">
+        <field name="active">True</field>
+    </record>
 
     <!-- Checkout - Promo Code -->
 <!--    <record id="website_multi_theme.auto_view_poi_website_sale_reduction_code" model="ir.ui.view">-->
@@ -156,11 +161,11 @@
     </record>
 
     <!-- Grid View -->
-    <record id="website_multi_theme.auto_view_poi_website_sale_product_quantity" model="ir.ui.view">
-<!--        <field name="active">True</field>-->
-        <!-- Until bug will be fix. Now broken -->
+    <record id="website_multi_theme.auto_view_poi_website_blog_opt_blog_post_grid_layout" model="ir.ui.view">
         <field name="active">False</field>
-        <field name="customize_show">False</field>
+        <!-- Until bug will be fix. Now broken -->
+<!--        <field name="active">False</field>-->
+<!--        <field name="customize_show">False</field>-->
     </record>
 
     <!-- Author avatar  -->
