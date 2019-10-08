@@ -23,7 +23,7 @@
         <record id="anzamar_homepage" model="ir.ui.view">
             <field name="name">Home</field>
             <field name="type">qweb</field>
-            <field name="key">website.homepage</field>
+            <field name="key">theme_anzamar.homepage</field>
             <field name="arch" type="xml">
                 <t name="Home" priority="29" t-name="anzamar_homepage">
                     <t t-call="theme_anzamar.anz_home_content_template"/>
@@ -98,18 +98,6 @@
             <!--        <field name="page_id" ref="theme_anzamar.id_page_open_shop"/>-->
             <field name="parent_id" ref="theme_anzamar.open_shop_menu"/>
             <field name="sequence" type="int">43</field>
-            <field name="website_id" ref="website_base_multi_anz.anzamar_website"/>
-            <field name="user_logged">True</field>
-            <field name="user_not_logged">True</field>
-        </record>
-
-        <!--Blog Menu-->
-        <record id="website_blog.menu_news" model="website.menu">
-            <field name="name">Blog</field>
-            <!--<field name="url" eval="'/blog/'+str(ref('website_blog.blog_blog_1'))"/>-->
-            <field name="url">/blog</field>
-            <field name="parent_id" ref="theme_anzamar.anzamar_main_menu"/>
-            <field name="sequence" type="int">70</field>
             <field name="website_id" ref="website_base_multi_anz.anzamar_website"/>
             <field name="user_logged">True</field>
             <field name="user_not_logged">True</field>
@@ -225,12 +213,24 @@
             <field name="user_not_logged">False</field>
         </record>
 
+        <!--Blog Menu-->
+        <record id="website_blog.menu_news" model="website.menu">
+            <field name="name">Blog</field>
+            <!--<field name="url" eval="'/blog/'+str(ref('website_blog.blog_blog_1'))"/>-->
+            <field name="url">/blog</field>
+            <field name="parent_id" ref="theme_anzamar.anzamar_main_menu"/>
+            <field name="sequence" type="int">100</field>
+            <field name="website_id" ref="website_base_multi_anz.anzamar_website"/>
+            <field name="user_logged">True</field>
+            <field name="user_not_logged">True</field>
+        </record>
+
         <!-- Contact -->
         <record id="website.menu_contactus" model="website.menu">
             <field name="name">Contact Us</field>
             <field name="url">/contactus</field>
             <field name="parent_id" ref="theme_anzamar.anzamar_main_menu"/>
-            <field name="sequence" type="int">100</field>
+            <field name="sequence" type="int">110</field>
             <field name="website_id" ref="website_base_multi_anz.anzamar_website"/>
             <field name="user_logged">False</field>
             <field name="user_not_logged">False</field>

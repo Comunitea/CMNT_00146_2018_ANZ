@@ -2,26 +2,8 @@
 <odoo>
 
     <!-- Product template -->
-    <template id="anz_website_sale_product" name="Product Anzamar" inherit_id="website_multi_theme.auto_view_anz_website_sale_product">
-
-         <!-- Remove the product breadcrumb's bar -->
-        <xpath expr="//ol[hasclass('breadcrumb')]" position="attributes">
-            <attribute name="t-if">True == False</attribute>
-        </xpath>
-
-        <!-- Multi-add-to-cart action in the form -->
-        <xpath expr="//form[hasclass('js_add_cart_variants')]" position="attributes">
-            <attribute name="t-attf-action">#{'/shop/cart/multi_update' if len(product.product_variant_ids) &gt; 0 else '/shop/cart/update'}</attribute>
-            <attribute name="t-att-id">'multi_update' if len(product.product_variant_ids) &gt; 0 else None</attribute>
-        </xpath>
-        <xpath expr="//a[@id='add_to_cart']" position="attributes">
-            <attribute name="t-if">not len(product.product_variant_ids) &gt; 0</attribute>
-        </xpath>
-        <xpath expr="//a[@id='add_to_cart']" position="after">
-            <!-- Multi cart update button -->
-            <div class="add-to-cart-multi" t-if="len(product.product_variant_ids) &gt; 0 and website.website_show_price">
-                <a class="btn btn-primary btn-lg mt8 a-submit" href="#">Add to Cart</a>
-            </div>
+    <template id="anz_website_sale_product" name="Product Anzamar" inherit_id="website_base_multi_anz.base_website_sale_product">
+        <xpath expr="//div[hasclass('add-to-cart-multi')]" position="after">
             <!-- Add to wishlist button -->
             <t t-if="product.env.ref('website_multi_theme.auto_view_anz_website_sale_wishlist_add_to_wishlist').active">
                 <t t-set="in_wish" t-value="product.product_variant_ids &amp; request.env['product.wishlist'].current().mapped('product_id')"/>
@@ -30,176 +12,11 @@
                 </a>
             </t>
         </xpath>
-
-        <!-- Retailer product variants grid -->
-        <xpath expr="//div[hasclass('js_product')]/t[1]" position="attributes">
-            <attribute name="t-if">not len(product.product_variant_ids) &gt; 0</attribute>
+        <xpath expr="//t[@t-if='variant.attribute_value_ids']//div[@class='one-stock'][1]" position="attributes">
+            <attribute name="t-raw">str('+5') if available &gt; 5 else str(int(available))</attribute>
         </xpath>
-        <xpath expr="//div[hasclass('js_product')]/t[1]" position="after">
-            <t t-if="len(product.product_variant_ids) &gt; 0">
-            <input type="hidden" name="product_template" t-att-value="product.id"/>
-            <t t-set="stock_control" t-value="product.inventory_availability in ('always', 'always_virtual', 'threshold', 'threshold_virtual')"/>
-                <div class="multi-sizes" t-if="website.website_show_price">
-                    <div t-att-class="'one-line' if stock_control else 'one-line large-line'">
-                        <div class="one-label"/>
-                        <div class="one-input"><label class="exhausted">TO ORDER</label></div>
-                        <div class="one-stock" t-if="stock_control"><label>STOCK</label></div>
-                        <t t-else="">
-                            <div class="one-stock"><label>ON HAND</label></div>
-                            <div class="one-stock"><label>FORECAST</label></div>
-                        </t>
-                    </div>
-                    <t t-set="variant_ids" t-value="product.product_variant_ids"/>
-                    <t t-foreach="variant_ids.sorted(key=lambda x: x.attribute_value_ids[0].sequence)" t-as="variant">
-                        <t t-if="variant.attribute_value_ids">
-                            <div t-att-class="'one-line' if stock_control else 'one-line large-line'">
-                                <div class="one-label">
-                                    <label t-att-for="variant.attribute_value_ids[0].id" t-field="variant.attribute_value_ids[0].name" t-if="len(product.product_variant_ids) &gt; 1"/>
-                                    <label t-att-for="variant.id" t-field="variant.variant_suffix" t-else=""/>
-                                </div>
-                                <t t-set="qty" t-value="(variant.sudo().virtual_stock_conservative + variant.sudo().virtual_available) if product.inventory_availability in ('always_virtual', 'threshold_virtual') else variant.sudo().virtual_stock_conservative"/>
-                                <t t-set="available" t-value="(qty - product.available_threshold) if product.inventory_availability in ('threshold', 'threshold_virtual') else qty"/>
-                                <t t-set="available" t-value="available if available &gt; 0 else 0"/>
-                                <div class="one-input">
-                                    <span t-if="stock_control and available &lt; 1" class="exhausted">&amp;mdash;</span>
-                                    <input t-elif="len(product.product_variant_ids) &gt; 1" type="number" min="0"
-                                           t-att-max="'%d' % available if stock_control else None"
-                                           t-att-id="variant.attribute_value_ids[0].id"
-                                           t-att-name="'attribute-%s-%s' % (product.id, variant.attribute_value_ids[0].id)"/>
-                                    <input t-else="" type="number" min="0" t-att-max="'%d' % available if stock_control else None"
-                                           t-att-id="variant.id"
-                                           t-att-name="'attribute-%s-%s' % (product.id, variant.id)"/>
-                                </div>
-                                <div class="one-stock" t-raw="str('+5') if available &gt; 5 else str(int(available))"/>
-                                <div class="one-stock" t-raw="(str('+5') if variant.sudo().virtual_available &gt; 5 else str(int(available)) if variant.sudo().virtual_available &gt; 0 else 0)" t-if="not stock_control"/>
-                            </div>
-                        </t>
-                        <t t-else="">
-                            <!-- Only if a variant has no attribute value -->
-                            <div t-att-class="'one-line' if stock_control else 'one-line large-line'">
-                                <div class="one-label">
-                                    <label>N/D</label>
-                                </div>
-                                <div class="one-input">
-                                    <span class="exhausted">&amp;mdash;</span>
-                                </div>
-                                <div class="one-stock" t-raw="str('N/D')"/>
-                                <div class="one-stock" t-raw="str('N/D')" t-if="not stock_control"/>
-                            </div>
-                        </t>
-                    </t>
-                </div>
-            </t>
-        </xpath>
-
-        <!-- Multi-add-to-cart success/fail windows -->
-        <xpath expr="//form[hasclass('js_add_cart_variants')]" position="after">
-            <div id="multi_was_added" class="modal fade multi-add-result" tabindex="-1" role="dialog">
-                <div class="modal-dialog modal-md">
-                    <div class="modal-content">
-                        <div class="modal-header bg-success">
-                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-                            <h4 class="modal-title">This product was added to cart</h4>
-                        </div>
-                        <div class="modal-body"/>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal" aria-hidden="true"><i class="fa fa-chevron-left"/> <span class="hidden-xs">Continue Shopping</span><span class="visible-xs-inline">Continue</span></button>
-                            <a class="btn btn-primary pull-right" href="/shop/cart"><i class="fa fa-shopping-cart fa-fw"/> <span class="hidden-xs">Proceed to Checkout</span><span class="visible-xs-inline">Checkout</span></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div id="multi_error" class="modal fade multi-add-result" tabindex="-1" role="dialog">
-                <div class="modal-dialog modal-md">
-                    <div class="modal-content">
-                        <div class="modal-header bg-danger">
-                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-                            <h4 class="modal-title text-danger">An error has occurred</h4>
-                        </div>
-                        <div class="modal-body"/>
-                        <div class="modal-footer">
-                            <a class="btn btn-default pull-right" data-dismiss="modal" aria-hidden="true">Close</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </xpath>
-
-        <!-- Image URL and attributes -->
-        <xpath expr="//div[hasclass('carousel-inner')]/div[2]" position="replace">
-            <div t-attf-class="item#{'' if variant_img else ' active'}">
-                <img t-att-alt="product.name" t-att-title="product.name" class="product_detail_img js_variant_img"
-                     t-attf-src="/website/image/product.template/{{product.id}}/image/" data-zoom="1"
-                     t-attf-data-zoom-image="/website/image/product.template/{{product.id}}/image/"/>
-            </div>
-        </xpath>
-        <xpath expr="//div[hasclass('carousel-inner')]/t/div[hasclass('item')]" position="replace">
-            <div class="item">
-                <img t-att-alt="pimg.name" t-att-title="pimg.name" class="product_detail_img"
-                     t-attf-src="/web/image/product.image/{{pimg.id}}/image/" data-zoom="1"
-                     t-attf-data-zoom-image="/web/image/product.image/{{pimg.id}}/image/"/>
-            </div>
-        </xpath>
-
-        <!-- Hide guarantee -->
-        <xpath expr="//div[@id='product_details']//hr[last()]" position="replace"/>
-        <xpath expr="//div[@id='product_details']/p[last()]" position="replace"/>
-
-        <!-- Add short product description -->
-        <xpath expr="//div[@id='product_details']//hr[@t-if='product.description_sale']" position="attributes">
-            <attribute name="t-if">product.description_short</attribute>
-        </xpath>
-        <xpath expr="//div[@id='product_details']//div[hasclass('o_not_editable')]/p" position="attributes">
-            <attribute name="t-field">product.description_short</attribute>
-        </xpath>
-
-        <!-- Add full product HTML description -->
-        <xpath expr="//div[@id='product_full_description']" position="replace">
-            <div class="oe_structure mt16 mb16" id="product_full_description" t-if="product.description">
-                <div class="container" t-if="len(product.description) > 15" itemprop="description">
-                    <div class="row">
-                        <div class="col-md-12" t-field="product.description"/>
-                    </div>
-                </div>
-            </div>
-        </xpath>
-
-    </template>
-
-    <template id="auto_view_anz_website_sale_products_add_to_cart" name="Add to Cart Anzamar" inherit_id="website_multi_theme.auto_view_anz_website_sale_products_add_to_cart">
-        <!-- Replace add to cart miniature -->
-        <xpath expr="//t[2]/a" position="attributes">
-            <attribute name="t-att-href">keep('/product/{}', page=(pager['page']['num'] if pager['page']['num']&gt;1 else None)).format(product.slug) if product.slug else keep('/shop/product/%s' % slug(product), page=(pager['page']['num'] if pager['page']['num']&gt;1 else None))</attribute>
-        </xpath>
-
-        <!-- Replace add to cart miniature. Force product without variants to multi add to cart -->
-        <xpath expr="//div[hasclass('product_price')]//t[1]/a" position="replace">
-            <a class="btn btn-default btn-xs" t-att-href="keep('/product/{}', page=(pager['page']['num'] if pager['page']['num']&gt;1 else None)).format(product.slug) if product.slug else keep('/shop/product/%s' % slug(product), page=(pager['page']['num'] if pager['page']['num']&gt;1 else None))">
-                <span class="fa fa-shopping-cart" />
-            </a>
-        </xpath>
-    </template>
-
-    <template id="anz_website_sale_sort" name="Show Sort by Anzamar" inherit_id="website_multi_theme.auto_view_anz_website_sale_sort">
-        <xpath expr="//t[@t-set='website_sale_sortable_current']" position="after">
-            <t t-set="brand" t-if="request.params.get('brand', 0)" t-value="[request.params.get('brand', 0)]"/>
-            <t t-set="gender" t-if="request.params.get('gender', 0)" t-value="[request.params.get('gender', 0)]"/>
-            <t t-set="age" t-if="request.params.get('age', 0)" t-value="[request.params.get('age', 0)]"/>
-        </xpath>
-
-        <xpath expr="//ul/li[@t-foreach='website_sale_sortable']" position="replace">
-            <li t-foreach="website_sale_sortable" t-as="sortby">
-                <t t-if="brand or gender or age">
-                    <a t-att-href="keep('/shop', order=sortby[1], brand=brand, gender=gender, age=age)">
-                        <span t-raw="sortby[0]"/>
-                    </a>
-                </t>
-                <t t-else="">
-                    <a t-att-href="keep('/shop', order=sortby[1])">
-                        <span t-raw="sortby[0]"/>
-                    </a>
-                </t>
-            </li>
+        <xpath expr="//t[@t-if='variant.attribute_value_ids']//div[@class='one-stock'][2]" position="attributes">
+            <attribute name="t-raw">(str('+5') if variant.sudo().virtual_available &gt; 5 else str(int(available)) if variant.sudo().virtual_available &gt; 0 else 0)</attribute>
         </xpath>
     </template>
 

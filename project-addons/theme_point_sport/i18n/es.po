@@ -80,7 +80,7 @@ msgstr "Contacto"
 
 #. module: theme_point_sport
 #: model:ir.ui.view,arch_db:theme_point_sport.poi_contact_us_content_template
-#: model:ir.ui.view,arch_db:theme_point_sport.poi_website_footer_custom
+#: model:ir.ui.view,arch_db:theme_point_sport.poi_website_footer_default
 #: model:website.menu,name:theme_point_sport.poi_contact_us_menu
 #: model:website.page,name:theme_point_sport.poi_contactus_page
 msgid "Contact us"
@@ -455,38 +455,38 @@ msgid "Filters and categories"
 msgstr "Filtros y categorías"
 
 #. module: theme_point_sport
-#: model:ir.ui.view,arch_db:theme_point_sport.poi_website_footer_custom
+#: model:ir.ui.view,arch_db:theme_point_sport.poi_website_footer_default
 #: model:ir.ui.view,arch_db:theme_point_sport.only_logged_in_users_advise
 msgid "Contact us"
 msgstr "Contacto"
 
 #. module: theme_point_sport
-#: model:ir.ui.view,arch_db:theme_point_sport.poi_website_footer_custom
+#: model:ir.ui.view,arch_db:theme_point_sport.poi_website_footer_default
 msgid "Delivery and payment"
 msgstr "Entrega y pago"
 
 #. module: theme_point_sport
-#: model:ir.ui.view,arch_db:theme_point_sport.poi_website_footer_custom
+#: model:ir.ui.view,arch_db:theme_point_sport.poi_website_footer_default
 msgid "About us"
 msgstr "Nosotros"
 
 #. module: theme_point_sport
-#: model:ir.ui.view,arch_db:theme_point_sport.poi_website_footer_custom
+#: model:ir.ui.view,arch_db:theme_point_sport.poi_website_footer_default
 msgid "Our shops"
 msgstr "Nuestras tiendas"
 
 #. module: theme_point_sport
-#: model:ir.ui.view,arch_db:theme_point_sport.poi_website_footer_custom
+#: model:ir.ui.view,arch_db:theme_point_sport.poi_website_footer_default
 msgid "Our group"
 msgstr "Nuestro grupo"
 
 #. module: theme_point_sport
-#: model:ir.ui.view,arch_db:theme_point_sport.poi_website_footer_custom
+#: model:ir.ui.view,arch_db:theme_point_sport.poi_website_footer_default
 msgid "Follow us"
 msgstr "Síguenos"
 
 #. module: theme_point_sport
-#: model:ir.ui.view,arch_db:theme_point_sport.poi_website_footer_custom
+#: model:ir.ui.view,arch_db:theme_point_sport.poi_website_footer_default
 msgid "Information / Franchises"
 msgstr "Información / Franquicias"
 
@@ -501,12 +501,12 @@ msgid "You need to"
 msgstr "Es necesario"
 
 #. module: theme_point_sport
-#: model:ir.ui.view,arch_db:theme_point_sport.poi_website_footer_custom
+#: model:ir.ui.view,arch_db:theme_point_sport.poi_website_footer_default
 msgid "Open request"
 msgstr "Solicitud de apertura"
 
 #. module: theme_point_sport
-#: model:ir.ui.view,arch_db:theme_point_sport.poi_website_footer_custom
+#: model:ir.ui.view,arch_db:theme_point_sport.poi_website_footer_default
 msgid "Open your shop"
 msgstr "Abre tu tienda"
 
@@ -516,17 +516,17 @@ msgid "Start page"
 msgstr "Página de Inicio"
 
 #. module: theme_point_sport
-#: model:ir.ui.view,arch_db:theme_point_sport.poi_website_footer_custom
+#: model:ir.ui.view,arch_db:theme_point_sport.poi_website_footer_default
 msgid "Steps to open your shop"
 msgstr "Pasos para abrir tu tienda"
 
 #. module: theme_point_sport
-#: model:ir.ui.view,arch_db:theme_point_sport.poi_website_footer_custom
+#: model:ir.ui.view,arch_db:theme_point_sport.poi_website_footer_default
 msgid "Work with Us Link"
 msgstr "Enlace a trabaje con nosotros"
 
 #. module: theme_point_sport
-#: model:ir.ui.view,arch_db:theme_point_sport.poi_website_footer_custom
+#: model:ir.ui.view,arch_db:theme_point_sport.poi_website_footer_default
 msgid "Work with us"
 msgstr "Trabaje con nosotros"
 
@@ -747,7 +747,7 @@ msgstr "Haremos lo posible por responderle a la mayor brevedad."
 
 #. module: theme_point_sport
 #: model:ir.ui.view,arch_db:theme_point_sport.poi_about_us_content_template
-#: model:ir.ui.view,arch_db:theme_point_sport.poi_website_footer_custom
+#: model:ir.ui.view,arch_db:theme_point_sport.poi_website_footer_default
 msgid "About us"
 msgstr "Nosotros"
 
@@ -921,7 +921,7 @@ msgid "Where can you find your Sports Shop, sportswear, running shoes and access
 msgstr "¿Dónde encontrar tu Tienda de deportes, ropa deportiva, zapatillas deportivas running y accesorios para comprar online o en Málaga?"
 
 #. module: theme_point_sport
-#: model:ir.ui.view,arch_db:theme_point_sport.poi_website_footer_custom
+#: model:ir.ui.view,arch_db:theme_point_sport.poi_website_footer_default
 msgid "About Shopping"
 msgstr "Comprar"
 
@@ -938,7 +938,7 @@ msgstr "Grupo Anzamar"
 #. module: theme_point_sport
 #: model:ir.ui.view,arch_db:theme_point_sport.poi_contact_us_content_template
 #: model:ir.ui.view,arch_db:theme_point_sport.poi_template_our_group_content_template
-#: model:ir.ui.view,arch_db:theme_point_sport.poi_website_footer_custom
+#: model:ir.ui.view,arch_db:theme_point_sport.poi_website_footer_default
 msgid "The Company"
 msgstr "La empresa"
 

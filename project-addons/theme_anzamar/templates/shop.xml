@@ -95,12 +95,4 @@
 <!--        </xpath>-->
 <!--    </template>-->
 
-
-    <template id="sgeede_infinite_scroll_products_infinite_scroll" name="SGEEDE Infinite Scroll Anzamar" inherit_id="website_multi_theme.auto_view_anz_sgeede_infinite_scroll_products_infinite_scroll">
-        <!-- friendly URL's -->
-        <xpath expr="//t[1]/tr[hasclass('sgeede-infinite-pagination')]//a" position="attributes">
-            <attribute name="t-att-href">'/category/%s/page/%d' % (category.slug, int(pager['page']['num']) + 1) if category.slug else pager['page_next']['url']</attribute>
-        </xpath>
-    </template>
-
 </odoo>

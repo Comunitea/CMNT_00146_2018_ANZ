@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
 
-    <template id="anz_website_footer_custom" name="Footer Custom Anzamar Template" inherit_id="website_multi_theme.auto_view_anz_website_footer_custom">
+    <template id="anz_website_footer_default" name="Automatic Footer Anzamar" inherit_id="website_multi_theme.auto_view_anz_website_footer_default">
 
         <!-- Put footer on checkout again -->
         <xpath expr="//div[@id='footer']" position="attributes">

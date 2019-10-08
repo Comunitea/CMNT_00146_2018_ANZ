@@ -1,36 +1,8 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
 
-    <!--Header Template-->
-    <template id="website_layout" name="Layout Point Template" inherit_id="website_multi_theme.auto_layout_website_poi">
-
-        <!-- Fixed header with editor bar and NOT phone and mail before menu -->
-        <xpath expr="//div[@id='wrapwrap']//div[hasclass('navbar')]" position="before">
-            <div groups="base.group_user" class="clearfix mt32 header-fixed-margin"/>
-        </xpath>
-
-        <xpath expr="//div[@id='wrapwrap']//div[hasclass('navbar')]" position="after">
-            <t t-call="breadcrumbs_base.bcb_main_wrap" t-if="not xmlid == 'website.homepage'"/>
-        </xpath>
-
-        <xpath expr="//div[@id='wrapwrap']/header" position="attributes">
-            <attribute name="t-att-class">'homepage-header' if xmlid == 'website.homepage' or 'home' in xmlid else None</attribute>
-        </xpath>
-
-        <xpath expr="//header//ul[@id='top_menu']/li[@id='my_cart']" position="after">
-            <t t-if="request.env.ref('website_multi_theme.auto_view_poi_website_sale_wishlist_add_to_wishlist').active">
-                <t t-set='wishcount' t-value="len(request.env['product.wishlist'].current())"/>
-                <li id="my_wish" t-att-style="not wishcount and 'display:none;'">
-                    <a href="/shop/wishlist">
-                        <i class="fa fa-heart"/>
-                        <sup t-attf-class="my_wish_quantity o_animate_blink label label-primary"><t t-esc='wishcount'/></sup>
-                    </a>
-                </li>
-            </t>
-        </xpath>
-    </template>
-
-    <template id="logo_show" name="Logo Show Point Template" inherit_id="website_multi_theme.auto_view_poi_website_layout_logo_show">
+    <!-- Logo -->
+    <template id="logo_show" name="Logo Show Point" inherit_id="website_multi_theme.auto_view_poi_website_layout_logo_show">
         <xpath expr="//a[hasclass('navbar-brand')]/span" position="replace">
             <img class="img img-responsive" src="/theme_point_sport/static/img/logo-horizontal-white.png" alt="website.name"/>
         </xpath>

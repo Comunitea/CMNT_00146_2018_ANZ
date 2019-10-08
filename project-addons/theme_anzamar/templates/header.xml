@@ -1,17 +1,9 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
 
-    <!--Header Template-->
-    <template id="anz_website_layout" name="Layout Anzamar Template" inherit_id="website_multi_theme.auto_layout_website_anz">
-
-        <xpath expr="//div[@id='wrapwrap']/header" position="attributes">
-            <attribute name="t-att-class">'homepage-header' if xmlid == 'website.homepage' or 'home' in xmlid else None</attribute>
-        </xpath>
-
-        <xpath expr="//div[@id='wrapwrap']//div[hasclass('navbar')]" position="before">
-            <!-- Fixed header with editor bar and NOT phone and mail before menu -->
-            <div groups="website.group_website_publisher" class="clearfix mt32 header-fixed-margin"/>
-
+<!--    <template id="anz_layout_website" name="Main Layout Anzamar" inherit_id="website_multi_theme.auto_view_anz_website_base_multi_anz_base_layout_website">-->
+        <!-- Phone header bar -->
+<!--        <xpath expr="//div[@id='wrapwrap']//div[hasclass('navbar')]" position="before">-->
             <!-- Add phone and mail before menu. If yuo can use this, needs uncomment main.js header-fixed-margin part and their css in header.less too-->
 <!--            <div class="wp-contact-navbar">-->
 <!--                <div class="container contact-navbar">-->
@@ -37,25 +29,8 @@
 <!--                    </div>-->
 <!--                </div>-->
 <!--            </div>-->
-        </xpath>
-
-        <xpath expr="//div[@id='wrapwrap']//div[hasclass('navbar')]" position="after">
-            <t t-call="breadcrumbs_base.bcb_main_wrap" t-if="not xmlid == 'website.homepage'"/>
-        </xpath>
-
-        <!-- Add wishlist menu -->
-        <xpath expr="//header//ul[@id='top_menu']/li[@id='my_cart']" position="after">
-            <t t-if="request.env.ref('website_multi_theme.auto_view_anz_website_sale_wishlist_add_to_wishlist').active">
-                <t t-set='wishcount' t-value="len(request.env['product.wishlist'].current())"/>
-                <li id="my_wish" t-att-style="not wishcount and 'display:none;'">
-                    <a href="/shop/wishlist">
-                        <i class="fa fa-heart"/>
-                        <sup t-attf-class="my_wish_quantity o_animate_blink label label-primary"><t t-esc='wishcount'/></sup>
-                    </a>
-                </li>
-            </t>
-        </xpath>
-    </template>
+<!--        </xpath>-->
+<!--    </template>-->
 
     <template id="anz_logo_show" name="Logo Show Anzamar Template" inherit_id="website_multi_theme.auto_view_anz_website_layout_logo_show">
         <xpath expr="//a[hasclass('navbar-brand')]/span" position="replace">

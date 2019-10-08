@@ -19,11 +19,11 @@
         'data/theme_data.xml',
         'data/website_data.xml',
         'data/menu_data.xml',
-        'data/legal_data.xml',
         # 'data/page_data.xml',
         'templates/head.xml',
         'templates/header.xml',
         'templates/footer.xml',
+        'templates/legal.xml',
         'templates/page_home.xml',
         'templates/page_work_with_us.xml',
         'templates/page_about_us.xml',
@@ -40,7 +40,7 @@
         'views/customize_views.xml',
     ],
     'images': [
-        '/static/img/logo-horizontal.png',
+        '/static/description/icon.png',
     ],
     'qweb': [
     ],

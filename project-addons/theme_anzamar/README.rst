@@ -1,8 +1,38 @@
-Anzamar Theme
-=============
+Skipping Multi Theme
+====================
 
-FrontEnd customization for Anzamar Website
-------------------------------------------
+.. |badge1| image:: https://img.shields.io/badge/maturity-Production-green.png
+    :target: https://odoo-community.org/page/development-status
+    :alt: Production
+.. |badge2| image:: https://img.shields.io/badge/licence-LGPL--3-blue.png
+    :target: https://www.gnu.org/licenses/lgpl-3.0-standalone.html
+    :alt: License: LGPL-3
+.. |badge3| image:: https://img.shields.io/badge/github-Comunitea-gray.png?logo=github
+    :target: https://github.com/Comunitea/
+    :alt: Comunitea
+.. |badge4| image:: https://img.shields.io/badge/github-Comunitea%2FAnzamar-lightgray.png?logo=github
+    :target: https://github.com/Comunitea/CMNT_00146_2018_ANZ/tree/master/project-addons/theme_anzamar
+    :alt: Comunitea / Anzamar
+.. |badge5| image:: https://img.shields.io/badge/Spanish-Translated-F47D42.png
+    :target: https://github.com/Comunitea/CMNT_00146_2018_ANZ/tree/master/project-addons/theme_anzamar/i18n/es.po
+    :alt: Spanish Translated
+
+
+|badge1| |badge2| |badge3| |badge4| |badge5|
+
+**Attention!**
+
+    #. Note that this theme was made for Anzamar Group website but was changed for Skipping website.
+    #. Technical name is still "theme_anzamar"
+    #. The xmlid for views are keep using "anz_" key yet.
+
+**Table of contents**
+
+.. contents::
+   :local:
+
+FrontEnd customization for Skipping Website
+-------------------------------------------
 
 This is a theme module that contains styles and layout elements for front-end part.
 

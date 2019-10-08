@@ -23,7 +23,7 @@
         <record id="point_sport_homepage" model="ir.ui.view">
             <field name="name">Home</field>
             <field name="type">qweb</field>
-            <field name="key">website.homepage</field>
+            <field name="key">theme_point_sport.homepage</field>
             <field name="arch" type="xml">
                 <t name="Home" priority="29" t-name="point_sport_homepage">
                     <t t-call="theme_point_sport.poi_home_content"/>

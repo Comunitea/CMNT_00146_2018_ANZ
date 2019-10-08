@@ -27,7 +27,7 @@ msgstr "<span> y Envío</span>"
 
 #. module: theme_anzamar
 #: model:ir.ui.view,arch_db:theme_anzamar.anz_anzamar_group_content_template
-#: model:ir.ui.view,arch_db:theme_anzamar.anz_website_footer_custom
+#: model:ir.ui.view,arch_db:theme_anzamar.anz_website_footer_default
 #: model:website.menu,name:theme_anzamar.group_menu
 #: model:website.menu,name:theme_anzamar.group_submenu_group
 #: model:website.page,name:theme_anzamar.anz_anzamar_group_content_template
@@ -35,7 +35,7 @@ msgid "Anzamar Group"
 msgstr "Grupo Anzamar"
 
 #. module: theme_anzamar
-#: model:ir.ui.view,arch_db:theme_anzamar.anz_website_footer_custom
+#: model:ir.ui.view,arch_db:theme_anzamar.anz_website_footer_default
 msgid "Anzamar Group Link"
 msgstr "Enlace Grupo Anzamar"
 
@@ -45,12 +45,12 @@ msgid "Anzamar Group is ..."
 msgstr "El Grupo Anzamar es ..."
 
 #. module: theme_anzamar
-#: model:ir.ui.view,arch_db:theme_anzamar.anz_website_footer_custom
+#: model:ir.ui.view,arch_db:theme_anzamar.anz_website_footer_default
 msgid "Black Laces Brand Page"
 msgstr "Grupo Anzamar - Marca Black Laces"
 
 #. module: theme_anzamar
-#: model:ir.ui.view,arch_db:theme_anzamar.anz_website_footer_custom
+#: model:ir.ui.view,arch_db:theme_anzamar.anz_website_footer_default
 msgid "Blog Link"
 msgstr "Enlace al Blog"
 
@@ -75,7 +75,7 @@ msgid "Contact Us (Thanks)"
 msgstr "Contacto (Gracias)"
 
 #. module: theme_anzamar
-#: model:ir.ui.view,arch_db:theme_anzamar.anz_website_footer_custom
+#: model:ir.ui.view,arch_db:theme_anzamar.anz_website_footer_default
 msgid "Feel Point Brand Page"
 msgstr "Grupo Anzamar - Marca Feel Point"
 
@@ -86,7 +86,7 @@ msgid "Form to open your shop with Anzamar Group"
 msgstr "Formulario para abrir tu tienda con el Grupo Anzamar"
 
 #. module: theme_anzamar
-#: model:ir.ui.view,arch_db:theme_anzamar.anz_website_footer_custom
+#: model:ir.ui.view,arch_db:theme_anzamar.anz_website_footer_default
 msgid "Goalkers Brand Page"
 msgstr "Grupo Anzamar - Marca Goalkers"
 
@@ -107,7 +107,7 @@ msgid "Instructions to open your shop with Anzamar Group"
 msgstr "Instrucciones para Abrir tu Tienda con el Grupo Anzamar"
 
 #. module: theme_anzamar
-#: model:ir.ui.view,arch_db:theme_anzamar.anz_website_footer_custom
+#: model:ir.ui.view,arch_db:theme_anzamar.anz_website_footer_default
 #: model:ir.ui.view,arch_db:theme_anzamar.page_newsletter
 msgid "LinkedIn Link"
 msgstr "Enlace LinkeIn"
@@ -148,7 +148,7 @@ msgid "Need to"
 msgstr "Necesario para"
 
 #. module: theme_anzamar
-#: model:ir.ui.view,arch_db:theme_anzamar.anz_website_footer_custom
+#: model:ir.ui.view,arch_db:theme_anzamar.anz_website_footer_default
 #: model:ir.ui.view,arch_db:theme_anzamar.page_newsletter
 msgid "Newsletter"
 msgstr "Noticias"
@@ -184,27 +184,27 @@ msgid "Please, follow the instructions"
 msgstr "Por favor, siga las instrucciones"
 
 #. module: theme_anzamar
-#: model:ir.ui.view,arch_db:theme_anzamar.anz_website_footer_custom
+#: model:ir.ui.view,arch_db:theme_anzamar.anz_website_footer_default
 msgid "Point Sport Brand Page"
 msgstr "Grupo Anzamar - Marca Point Sport"
 
 #. module: theme_anzamar
-#: model:ir.ui.view,arch_db:theme_anzamar.anz_website_footer_custom
+#: model:ir.ui.view,arch_db:theme_anzamar.anz_website_footer_default
 msgid "Presence"
 msgstr "Presencia"
 
 #. module: theme_anzamar
-#: model:ir.ui.view,arch_db:theme_anzamar.anz_website_footer_custom
+#: model:ir.ui.view,arch_db:theme_anzamar.anz_website_footer_default
 msgid "Presence Link"
 msgstr "Enlace Presencia Nacional"
 
 #. module: theme_anzamar
-#: model:ir.ui.view,arch_db:theme_anzamar.anz_website_footer_custom
+#: model:ir.ui.view,arch_db:theme_anzamar.anz_website_footer_default
 msgid "Skipping Brand Page"
 msgstr "Grupo Anzamar - Marca Skipping"
 
 #. module: theme_anzamar
-#: model:ir.ui.view,arch_db:theme_anzamar.anz_website_footer_custom
+#: model:ir.ui.view,arch_db:theme_anzamar.anz_website_footer_default
 msgid "Newsletter"
 msgstr "Noticias"
 
@@ -251,12 +251,12 @@ msgid "These are the requirements:"
 msgstr "Estos son los requisitos:"
 
 #. module: theme_anzamar
-#: model:ir.ui.view,arch_db:theme_anzamar.anz_website_footer_custom
+#: model:ir.ui.view,arch_db:theme_anzamar.anz_website_footer_default
 msgid "Umbro Brand Page"
 msgstr "Grupo Anzamar - Marca Umbro"
 
 #. module: theme_anzamar
-#: model:ir.ui.view,arch_db:theme_anzamar.anz_website_footer_custom
+#: model:ir.ui.view,arch_db:theme_anzamar.anz_website_footer_default
 msgid "Work with Us Link"
 msgstr "Enlace a Trabaje con Nosotros"
 
@@ -555,7 +555,7 @@ msgid "Anzamar Stores"
 msgstr "Almacenes Anzamar"
 
 #. module: theme_anzamar
-#: model:ir.ui.view,arch_db:theme_anzamar.anz_website_footer_custom
+#: model:ir.ui.view,arch_db:theme_anzamar.anz_website_footer_default
 msgid "Anzamar group"
 msgstr "Grupo Anzamar"
 
@@ -655,23 +655,23 @@ msgid "You can visit the official Umbro store at this link:"
 msgstr "Puedes visitar la tienda oficial de Umbro en este enlace:"
 
 #. module: theme_anzamar
-#: model:ir.ui.view,arch_db:theme_anzamar.anz_website_footer_custom
+#: model:ir.ui.view,arch_db:theme_anzamar.anz_website_footer_default
 msgid "Who we are"
 msgstr "Quienes somos"
 
 #. module: theme_anzamar
-#: model:ir.ui.view,arch_db:theme_anzamar.anz_website_footer_custom
+#: model:ir.ui.view,arch_db:theme_anzamar.anz_website_footer_default
 #: model:website.menu,name:theme_anzamar.group_submenu_presence
 msgid "National presence"
 msgstr "Presencia Nacional"
 
 #. module: theme_anzamar
-#: model:ir.ui.view,arch_db:theme_anzamar.anz_website_footer_custom
+#: model:ir.ui.view,arch_db:theme_anzamar.anz_website_footer_default
 msgid "Anzamar group"
 msgstr "Grupo Anzamar"
 
 #. module: theme_anzamar
-#: model:ir.ui.view,arch_db:theme_anzamar.anz_website_footer_custom
+#: model:ir.ui.view,arch_db:theme_anzamar.anz_website_footer_default
 msgid "Work with us"
 msgstr "Trabaja con nosotros"
 
@@ -711,22 +711,22 @@ msgid "Throughout our history we have been taking small steps always together wi
 msgstr "A lo largo de nuestra historia hemos ido dando pequeños pasos siempre junto con nuestros clientes llegando a ser lo que hoy en día somos, un gran Mayorista, un gran Grupo de Compras y con el tiempo una gran Franquicia."
 
 #. module: theme_anzamar
-#: model:ir.ui.view,arch_db:theme_anzamar.anz_website_footer_custom
+#: model:ir.ui.view,arch_db:theme_anzamar.anz_website_footer_default
 msgid "Press"
 msgstr "Prensa"
 
 #. module: theme_anzamar
-#: model:ir.ui.view,arch_db:theme_anzamar.anz_website_footer_custom
+#: model:ir.ui.view,arch_db:theme_anzamar.anz_website_footer_default
 msgid "Contact"
 msgstr "Contacto"
 
 #. module: theme_anzamar
-#: model:ir.ui.view,arch_db:theme_anzamar.anz_website_footer_custom
+#: model:ir.ui.view,arch_db:theme_anzamar.anz_website_footer_default
 msgid "Group brands"
 msgstr "Marcas del grupo"
 
 #. module: theme_anzamar
-#: model:ir.ui.view,arch_db:theme_anzamar.anz_website_footer_custom
+#: model:ir.ui.view,arch_db:theme_anzamar.anz_website_footer_default
 msgid "Follow us"
 msgstr "Síguenos"
 
@@ -786,7 +786,7 @@ msgid "Subject"
 msgstr "Asunto"
 
 #. module: theme_anzamar
-#: model:ir.ui.view,arch_db:theme_anzamar.anz_website_footer_custom
+#: model:ir.ui.view,arch_db:theme_anzamar.anz_website_footer_default
 #: model:ir.ui.view,arch_db:theme_anzamar.default_fields_forms
 msgid "Company"
 msgstr "Empresa"

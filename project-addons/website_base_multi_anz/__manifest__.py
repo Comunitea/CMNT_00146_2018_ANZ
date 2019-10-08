@@ -65,6 +65,7 @@
         'templates/cart.xml',
         'templates/header.xml',
         'templates/shop.xml',
+        'templates/product.xml',
         'templates/newsletter.xml',
         'templates/reusable_templates.xml',
         'templates/wishlist.xml',

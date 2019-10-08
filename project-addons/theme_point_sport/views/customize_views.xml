@@ -12,9 +12,9 @@
     </record>
 
     <!-- Automatic Footer -->
-<!--    <record id="website_multi_theme.auto_view_poi_website_footer_default" model="ir.ui.view">-->
-<!--        <field name="active">True</field>-->
-<!--    </record>-->
+    <record id="website_multi_theme.auto_view_poi_website_footer_default" model="ir.ui.view">
+        <field name="active">True</field>
+    </record>
 
     <!-- ======================================== Shop ================================================ -->
 
@@ -109,9 +109,9 @@
     <!-- ======================================== Checkout ================================================ -->
 
     <!-- Checkout - Extra Step Option -->
-<!--    <record id="website_multi_theme.auto_view_poi_website_sale_extra_info_option" model="ir.ui.view">-->
-<!--        <field name="active">True</field>-->
-<!--    </record>-->
+    <record id="website_multi_theme.auto_view_poi_website_sale_extra_info_option" model="ir.ui.view">
+        <field name="active">True</field>
+    </record>
 
     <!-- Checkout - Continue Shopping Button -->
     <record id="website_multi_theme.auto_view_poi_website_sale_continue_shopping" model="ir.ui.view">

@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 {
-    'name': 'Anzamar Multi Theme',
+    'name': 'Skipping Multi Theme',
     'version': '2.0',
-    'summary': 'Frontend customization for Anzamar Website',
+    'summary': 'Frontend customization for Skipping Website',
     'description': '',
     'category': 'Website',
     'author': 'Comunitea',
@@ -19,13 +19,13 @@
         'data/theme_data.xml',
         'data/website_data.xml',
         'data/menu_data.xml',
-        'data/legal_data.xml',
         # 'data/page_data.xml',
         'templates/snippets.xml',
         'templates/head.xml',
         'templates/header.xml',
         'templates/footer.xml',
         'templates/page_home.xml',
+        'templates/page_legal.xml',
         'templates/page_anzamar_group.xml',
         'templates/page_brand_black_laces.xml',
         'templates/page_brand_feel_point.xml',
@@ -41,7 +41,7 @@
         'views/customize_views.xml',
     ],
     'images': [
-        '/static/img/anzamar/favicon_anz.png',
+        '/static/description/icon.png',
     ],
     'qweb': [
     ],

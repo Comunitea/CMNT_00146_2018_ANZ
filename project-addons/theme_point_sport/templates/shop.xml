@@ -108,23 +108,4 @@
 <!--        </xpath>-->
 <!--    </template>-->
 
-    <!-- Product attributes -->
-    <template id="website_sale_products_attributes" name="Product attributes" inherit_id="website_multi_theme.auto_view_poi_website_sale_products_attributes">
-        <!-- Only show published product attributes -->
-        <xpath expr="//form[hasclass('js_attributes')]/ul/t" position="attributes">
-            <attribute name="t-foreach">attributes.filtered(lambda x: x.website_published)</attribute>
-        </xpath>
-        <!-- Only show attributes filter if is a category page (not Shop page) -->
-       <!-- <xpath expr="//form[hasclass('js_attributes')]" position="attributes">
-            <attribute name="t-if">not request.httprequest.path == '/shop'</attribute>
-        </xpath>-->
-    </template>
-
-    <!-- friendly URL's -->
-    <template id="shop_infinite_scroll" name="SGEEDE Infinite Scroll Point Sport" inherit_id="website_multi_theme.auto_view_poi_sgeede_infinite_scroll_products_infinite_scroll">
-        <xpath expr="//t[1]/tr[hasclass('sgeede-infinite-pagination')]//a" position="attributes">
-            <attribute name="t-att-href">'/category/%s/page/%d' % (category.slug, int(pager['page']['num']) + 1) if category.slug else pager['page_next']['url']</attribute>
-        </xpath>
-    </template>
-
 </odoo>
