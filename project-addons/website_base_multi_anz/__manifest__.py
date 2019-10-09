@@ -51,7 +51,7 @@
         'website_sale_hide_price',
         'product_virtual_stock_conservative',
         'portal_refunds_request',
-        'portal_multi_access_management',
+        # 'portal_multi_access_management',
     ],
     'data': [
         'data/company_data.xml',
