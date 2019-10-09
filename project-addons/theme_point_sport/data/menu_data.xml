@@ -88,7 +88,7 @@
             <field name="parent_id" ref="theme_point_sport.point_sport_main_menu"/>
             <field name="sequence" type="int">40</field>
             <field name="website_id" ref="website_base_multi_anz.point_sport_website"/>
-            <field name="user_logged">False</field>
+            <field name="user_logged">True</field>
             <field name="user_not_logged">True</field>
         </record>
 
@@ -98,7 +98,7 @@
             <field name="parent_id" ref="theme_point_sport.poi_menu_our_shops_parent"/>
             <field name="sequence" type="int">41</field>
             <field name="website_id" ref="website_base_multi_anz.point_sport_website"/>
-            <field name="user_logged">False</field>
+            <field name="user_logged">True</field>
             <field name="user_not_logged">True</field>
         </record>
         <record id="poi_open_shop_submenu_open" model="website.menu">
