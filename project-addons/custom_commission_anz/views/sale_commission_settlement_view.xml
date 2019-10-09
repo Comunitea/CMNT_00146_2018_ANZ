@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record model="ir.ui.view" id="view_settlement_form_custom">
+        <field name="name">Settlements</field>
+        <field name="model">sale.commission.settlement</field>
+        <field name="inherit_id" ref="sale_commission.view_settlement_form"/>
+            <field name="arch" type="xml">
+                <button name="action_invoice" position="after">
+                    <button string="Validate"
+                            states="settled"
+                            type="object"
+                            class="btn-success"
+                            name="action_validate"/>
+                    <button string="Back"
+                            states="validated"
+                            type="object"
+                            class="btn-info"
+                            name="action_back"/>
+                </button>
+
+                <field name="agent" position="before">
+                    <field name="name"/>
+                </field>
+            </field>
+    </record>
+
+     <record model="ir.ui.view" id="view_settlement_line_tree_custom">
+        <field name="name">Settlement lines</field>
+        <field name="model">sale.commission.settlement</field>
+        <field name="inherit_id" ref="sale_commission.view_settlement_tree"/>
+        <field name="arch" type="xml">
+            <field name="state" position="after">
+                <field name="name"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="view_settlement_line_search_custom" model="ir.ui.view">
+        <field name="name">sale.commission.settlement.line.search</field>
+        <field name="model">sale.commission.settlement</field>
+        <field name="inherit_id" ref="sale_commission.view_settlement_search"/>
+        <field name="arch" type="xml">
+            <field name="agent" position="after">
+                    <field name="name"/>
+            </field>
+
+            <filter name="group_date" position="after">
+                <filter string="Name" name="group_name" context="{'group_by': 'name'}"/>
+            </filter>
+        </field>
+    </record>
+</odoo>

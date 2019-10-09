@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-08-09 11:01+0000\n"
-"PO-Revision-Date: 2019-08-09 11:01+0000\n"
+"POT-Creation-Date: 2019-10-09 08:13+0000\n"
+"PO-Revision-Date: 2019-10-09 08:13+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -60,6 +60,11 @@ msgstr "Agentes por marca"
 #: model:ir.ui.view,arch_db:custom_commission_anz.report_settlement
 msgid "Amount settled"
 msgstr "Importe liquidado"
+
+#. module: custom_commission_anz
+#: model:ir.ui.view,arch_db:custom_commission_anz.view_settlement_form_custom
+msgid "Back"
+msgstr "Atrás"
 
 #. module: custom_commission_anz
 #: model:ir.model.fields,field_description:custom_commission_anz.field_agent_brand_brand_id
@@ -118,6 +123,12 @@ msgstr "Compañía"
 #: model:ir.model,name:custom_commission_anz.model_res_partner
 msgid "Contact"
 msgstr "Contacto"
+
+#. module: custom_commission_anz
+#: code:addons/custom_commission_anz/wizard/wizard_settle copy.py:123
+#, python-format
+msgid "Created Settlements"
+msgstr "Liquidaciones creadas"
 
 #. module: custom_commission_anz
 #: model:ir.model.fields,field_description:custom_commission_anz.field_agent_brand_create_uid
@@ -225,6 +236,11 @@ msgid "Mixin model for having commission agent lines in any object inheriting fr
 msgstr "Modelo mixin para tener líneas de agente de comisiones en cualquier objeto heredando de éste"
 
 #. module: custom_commission_anz
+#: model:ir.ui.view,arch_db:custom_commission_anz.view_settlement_line_search_custom
+msgid "Name"
+msgstr "Nombre"
+
+#. module: custom_commission_anz
 #: model:ir.model.fields,field_description:custom_commission_anz.field_sale_commission_settlement_line_partner_id
 #: model:ir.ui.view,arch_db:custom_commission_anz.report_settlement
 msgid "Partner"
@@ -258,14 +274,41 @@ msgid "Sales Order Line"
 msgstr "Línea de pedido de venta"
 
 #. module: custom_commission_anz
+#: model:ir.model,name:custom_commission_anz.model_sale_commission_settlement
+msgid "Settlement"
+msgstr "Liquidación"
+
+#. module: custom_commission_anz
+#: model:ir.ui.view,name:custom_commission_anz.view_settlement_line_tree_custom
+msgid "Settlement lines"
+msgstr "Líneas de liquidación"
+
+#. module: custom_commission_anz
 #: model:ir.ui.view,arch_db:custom_commission_anz.view_commission_by_brand_search
 msgid "Settlement lines search"
 msgstr "Búsqueda de líneas de liquidación"
 
 #. module: custom_commission_anz
+#: code:addons/custom_commission_anz/wizard/wizard_settle copy.py:34
+#: code:addons/custom_commission_anz/wizard/wizard_settle copy.py:48
+#, python-format
+msgid "Settlement period not valid."
+msgstr "Settlement period not valid."
+
+#. module: custom_commission_anz
 #: model:ir.actions.report,name:custom_commission_anz.action_report_settlement
 msgid "Settlement report by invoices"
 msgstr "Informe liquidaciones por factura"
+
+#. module: custom_commission_anz
+#: model:ir.ui.view,name:custom_commission_anz.view_settlement_form_custom
+msgid "Settlements"
+msgstr "Liquidaciones"
+
+#. module: custom_commission_anz
+#: model:ir.model.fields,field_description:custom_commission_anz.field_sale_commission_make_settle_name
+msgid "Settlements name"
+msgstr "Nombre liquidaciones"
 
 #. module: custom_commission_anz
 #: model:ir.ui.view,arch_db:custom_commission_anz.view_commission_by_brand_search
@@ -278,9 +321,19 @@ msgid "Specific rules by brand"
 msgstr "Reglas específicas por marca"
 
 #. module: custom_commission_anz
+#: model:ir.ui.view,arch_db:custom_commission_anz.view_settlement_form_custom
+msgid "Validate"
+msgstr "Validar"
+
+#. module: custom_commission_anz
 #: model:ir.ui.view,arch_db:custom_commission_anz.view_partner_form_agent_brand
 msgid "View Commission Rules"
 msgstr "Ver reglas de comisiones"
+
+#. module: custom_commission_anz
+#: model:ir.model,name:custom_commission_anz.model_sale_commission_make_settle
+msgid "Wizard for settling commissions in invoices"
+msgstr "Asistente para liquidar comisiones en facturas"
 
 #. module: custom_commission_anz
 #: code:addons/custom_commission_anz/models/agent_commission_brand.py:35
@@ -328,6 +381,16 @@ msgstr "reinvoice.wzd"
 #: model:ir.ui.view,name:custom_commission_anz.report_settlement
 msgid "report_settlement"
 msgstr "report_settlement"
+
+#. module: custom_commission_anz
+#: model:ir.ui.view,name:custom_commission_anz.view_settled_wizard_add_name
+msgid "sale.commission.make.settle form"
+msgstr "sale.commission.make.settle form"
+
+#. module: custom_commission_anz
+#: model:ir.ui.view,name:custom_commission_anz.view_settlement_line_search_custom
+msgid "sale.commission.settlement.line.search"
+msgstr "sale.commission.settlement.line.search"
 
 #. module: custom_commission_anz
 #: model:ir.ui.view,name:custom_commission_anz.view_commission_by_brand_search
