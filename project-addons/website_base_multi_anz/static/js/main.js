@@ -1,13 +1,13 @@
 /* Hide top menu part with scroll with phone bar */
 //$(window).on('scroll', function() {
-//    if ($(window).scrollTop() > 60) {
+//    if ($(window).scrollTop() > 92) {
 //        $('.wp-contact-navbar').hide();
 //        if(!$('header').hasClass('homepage-header') || window.screen.width < 769){
 //            $('.header-fixed-margin').show();
 //            if(window.screen.width < 769){
-//                $('#wrap').css({'margin-top': '60px'});
+//                $('#wrap').css({'margin-top': '79px'});
 //            }else{
-//                $('#wrap').css({'margin-top': '35px'});
+//                $('#wrap').css({'margin-top': '55px'});
 //            }
 //        }
 ////        $('header').addClass('fixed');
@@ -22,20 +22,36 @@
 //});
 
 $(document).ready(function(){
-    /* Hide top menu part with scroll without phone bar */
+
+    /* Fixed header without phone bar */
     if(window.screen.width < 769) {
-        $('#wrap').css({'margin-top': '60px'});
-    } else {
-        var xmlid = $("html")[0].getAttribute("data-view-xmlid");
-        if(xmlid.includes('home')) {
-            console.log('hasClass homepage');
-            $('#wrap').css({'margin-top': '54px'});
-        } else if(xmlid.includes('product')) {
-            console.log('hasClass product');
-            $('#wrap').css({'margin-top': '95px'});
+        if ($('#wrap').hasClass('homepage')) {
+            if(window.screen.width > 767) {
+//                console.log('phone homepage margin-top: 95px');
+                $('#wrapwrap').css({'margin-top': '90px'});
+            } else {
+//                console.log('phone homepage margin-top: 44px');
+                $('#wrapwrap').css({'margin-top': '44px'});
+            }
         } else {
-            console.log('hasClass fixed');
-            $('#wrap').css({'margin-top': '79px'});
+//            console.log('phone margin-top: 79px');
+            $('#wrapwrap').css({'margin-top': '79px'});
+        }
+    } else {
+        if($('#wrap').hasClass('homepage')) {
+            if(window.screen.width < 1024) {
+//                console.log('pc homepage margin-top: 107px');
+                $('#wrapwrap').css({'margin-top': '107px'});
+            } else {
+//                console.log('pc homepage margin-top: 54px');
+                $('#wrapwrap').css({'margin-top': '54px'});
+            }
+        } else if($('#wrap').hasClass('map-wrap')) {
+//            console.log('pc map margin-top: 90px');
+            $('#wrapwrap').css({'margin-top': '90px'});;
+        }  else {
+//            console.log('pc generic margin-top: 95px');
+            $('#wrapwrap').css({'margin-top': '95px'});
         }
     }
 

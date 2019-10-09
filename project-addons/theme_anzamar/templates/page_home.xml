@@ -3,7 +3,7 @@
 
     <template id="anz_home_content_template" name="Home Anzamar">
         <t t-call="website.layout">
-            <div id="wrap">
+            <div id="wrap" class="homepage">
                 <t t-call="theme_anzamar.carousel_homepage"/>
                 <section class="oe_structure oe_empty"/>
                 <section id="brands_section" class="mt32 oe_structure">

@@ -55,7 +55,6 @@
     ],
     'data': [
         'data/company_data.xml',
-        # 'data/menu_data.xml',
         'data/page_data.xml',
         'data/website_data.xml',
         'templates/account.xml',
@@ -67,6 +66,7 @@
         'templates/shop.xml',
         'templates/product.xml',
         'templates/newsletter.xml',
+        'templates/portal.xml',
         'templates/reusable_templates.xml',
         'templates/wishlist.xml',
         'views/product_attribute.xml',

@@ -63,7 +63,7 @@
 
     <template id="poi_home_content" name="Home Point">
         <t t-call="website.layout">
-            <div id="wrap">
+            <div id="wrap" class="homepage">
                 <!-- Slider with access control for public and retail users. Both visible for web designers -->
                 <t t-call="theme_point_sport.poi_home_carousel_b2c" groups="website.group_website_designer, base.group_public"/>
                 <strong>
