@@ -9,6 +9,7 @@ from odoo.osv import expression
 
 from odoo.addons.website_sale.controllers.main import WebsiteSale
 from odoo.addons.seo_base.controllers.redirecting import ProductRedirect
+from odoo.addons.website_form_recaptcha.controllers.main import WebsiteForm
 
 
 class WebsiteSaleExtended(WebsiteSale):
@@ -247,6 +248,22 @@ class WebsiteSaleExtended(WebsiteSale):
         }
 
         return request.render("website_sale.extra_info", values)
+
+
+class WebsiteFormCustom(WebsiteForm):
+
+    def extract_data(self, model, values):
+        """
+        Inject ReCaptcha validation into pre-existing data extraction.
+        Hook to work with website_form_recaptcha into website_form.
+        It is needed for activate extra_info view on checkout.
+         """
+        res = super(WebsiteForm, self).extract_data(model, values)
+        # Just read with sudo
+        if model.sudo().website_form_recaptcha:
+            recaptcha_model = request.env['website.form.recaptcha'].sudo()
+            recaptcha_model.validate_request(request, values)
+        return res
 
 
 class ProductRedirectContext(ProductRedirect):
