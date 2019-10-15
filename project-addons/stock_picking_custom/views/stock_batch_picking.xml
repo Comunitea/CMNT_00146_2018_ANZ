@@ -12,13 +12,72 @@
             </xpath>
 
             <xpath expr="//field[@name='move_line_ids']/tree/field[@name='product_id']" position="before">
-                <field name="sequence" invisible="1"/>
+                <!-- <field name="sequence" invisible="1"/> -->
+                <field name="sequence"/>
             </xpath>
 
             <xpath expr="//field[@name='move_line_ids']/tree" position="attributes">
                 <attribute name="default_order">
                     sequence
                 </attribute>
+            </xpath>
+
+            <field name="move_lines" position="after">
+                <group class="oe_right">
+                    <div>
+                        <button class="oe_link oe_right" context="{'model_dest': 'stock.move'}" name="batch_force_set_assigned_qty_done" type="object" string="↳Copy assigned to done"
+                                attrs="{'invisible':[('state','!=', 'assigned')]}"/>
+                    </div>
+                    <div>
+                        <button class="oe_link oe_right" context="{'model_dest': 'stock.move'}" name="batch_force_reset_qties" type="object" string="↳Reset qties" states="assigned"/>
+                    </div>
+                    <field name="reserved_availability" class ="oe_inline" />
+                    <field name="quantity_done" class ="oe_inline" />
+                </group>
+            </field>
+
+            <field name="move_line_ids" position="after">
+                <group class="oe_right">
+                    <div>
+                        <button class="oe_link oe_right" context="{'model_dest': 'stock.move.line'}" name="batch_force_set_assigned_qty_done" type="object" string="↳Copy assigned to done"
+                            attrs="{'invisible':[('state','!=', 'assigned')]}"/>
+                    </div>
+                    <div>
+                        <button class="oe_link oe_right" context="{'model_dest': 'stock.move.line'}" name="batch_force_reset_qties" type="object" string="↳Reset qties" states="assigned"/>
+                    </div>
+                    <field name="reserved_availability_lines" class ="oe_inline" />
+                    <field name="quantity_done_lines" class ="oe_inline" />
+                </group>
+            </field>
+
+            <xpath expr="//field[@name='move_line_ids']/tree/field[@name='product_uom_qty']" position="after">
+                <button name="force_set_qty_done"
+                        string="↳Copy qty. to done"
+                        type="object"
+                        icon="fa-download"
+                        context="{'model_dest': 'stock.move.line'}"
+                        attrs="{'invisible': ['|',('state', '!=', 'assigned'), ('qty_done', '!=', 0)]}"
+                        options="{&quot;warn&quot;: true}"/>
+            </xpath>
+
+            <xpath expr="//field[@name='move_lines']/tree/field[@name='product_uom_qty']" position="after">
+                <button name="force_set_qty_done"
+                    string="↳Copy qty. to done"
+                    type="object"
+                    icon="fa-download"
+                    context="{'model_dest': 'stock.move'}"
+                    attrs="{'invisible': ['|', ('state', 'not in', ('confirmed', 'partially_available', 'assigned')), ('quantity_done', '!=', 0)]}"
+                    options="{&quot;warn&quot;: true}"/>
+            </xpath>
+
+            <xpath expr="//field[@name='move_lines']/tree/field[@name='reserved_availability']" position="after">
+                <button name="force_set_assigned_qty_done"
+                    string="↳Copy qty. to done"
+                    type="object"
+                    icon="fa-download"
+                    context="{'model_dest': 'stock.move'}"
+                    attrs="{'invisible': ['|', ('state', 'not in', ('confirmed', 'partially_available', 'assigned')), ('quantity_done', '!=', 0)]}"
+                    options="{&quot;warn&quot;: true}"/>
             </xpath>
 
         </field>

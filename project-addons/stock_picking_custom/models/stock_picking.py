@@ -84,13 +84,20 @@ class StockPicking(models.Model):
     product_uom_qty = fields.Float(
         'Quantity', compute='compute_picking_qties',
         digits=dp.get_precision('Product Unit of Measure'))
+    reserved_availability_lines = fields.Float(
+        'Quantity Reserved', compute='compute_picking_qties',
+        digits=dp.get_precision('Product Unit of Measure'))
+    quantity_done_lines = fields.Float(
+        'Quantity Done', compute='compute_picking_qties',
+        digits=dp.get_precision('Product Unit of Measure'))
 
     @api.multi
     def compute_picking_qties(self):
         for pick in self:
             pick.quantity_done = sum(x.quantity_done for x in pick.move_lines)
             pick.reserved_availability = sum(x.reserved_availability for x in pick.move_lines)
-            pick.product_uom_qty = sum(x.product_uom_qty for x in pick.move_lines)
+            pick.quantity_done_lines = sum(x.qty_done for x in pick.move_line_ids)
+            pick.reserved_availability_lines = sum(x.product_uom_qty for x in pick.move_line_ids)
 
 
     @api.multi
@@ -141,3 +148,63 @@ class StockPicking(models.Model):
         domain = [('picking_id.picking_type_code', '=', 'outgoing'), ('state', 'in', ('confirmed', 'partially_available'))]
         self.env['stock.move'].search(domain)._action_assign()
 
+    @api.multi
+    def picking_force_set_qty_done(self):
+        ctx = self._context.copy()
+        for picking in self:
+            picking.move_lines.with_context(ctx).force_set_qty_done()
+
+    @api.multi
+    def picking_force_set_assigned_qty_done(self):
+        ctx = self._context.copy()
+        for picking in self:
+            picking.move_lines.with_context(ctx).force_set_assigned_qty_done()
+
+    #APK integration
+    @api.model
+    def action_assign_pick(self, vals):
+        picking = self.browse(vals.get('id', False))
+        if not picking:
+            return {'err': True, 'error': "No se ha encontrado el albarán"}
+        
+        res = picking.action_assign()        
+        return res
+
+    @api.model
+    def button_validate_pick(self, vals):
+        picking_id = self.browse(vals.get('id', False))
+        if not picking_id:
+            return {'err': True, 'error': "No se ha encontrado el albarán"}
+
+        ctx = picking_id._context.copy()
+        ctx.update(skip_overprocessed_check=True)
+        res = picking_id.with_context(ctx).button_validate()
+        if res:
+            if res['res_model'] == 'stock.immediate.transfer':
+                wiz =  self.env['stock.immediate.transfer'].with_context(res['context']).browse(res['res_id'])
+                res_inm = wiz.process()
+
+                if res_inm['res_model'] == 'stock.backorder.confirmation':
+                    wiz = self.env['stock.backorder.confirmation'].with_context(res_inm['context']).browse(res_inm['res_id'])
+                    res_bord = wiz._process()
+
+            if res['res_model'] == 'stock.backorder.confirmation':
+                    wiz = self.env['stock.backorder.confirmation'].with_context(res['context']).browse(res['res_id'])
+                    res_boc = wiz._process()
+        return {'err': False, 'values': {'id': picking_id.id, 'state': picking_id.state}}
+
+    @api.model
+    def force_set_assigned_qty_done_apk(self, vals):
+        picking = self.browse(vals.get('id', False))
+        if not picking:
+            return {'err': True, 'error': "No se ha encontrado el albarán."}
+        picking.force_set_assigned_qty_done()        
+        return True
+
+    @api.model
+    def force_reset_qties_apk(self, vals):
+        picking = self.browse(vals.get('id', False))
+        if not picking:
+            return {'err': True, 'error': "No se ha encontrado el albarán."}
+        picking.force_reset_qties()        
+        return True

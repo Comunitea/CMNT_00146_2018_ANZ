@@ -12,7 +12,8 @@
         'delivery_packing_list',
         'stock_move_manage',
         'stock_batch_picking',
-        'custom_documents'        
+        'custom_documents',
+        'stock_removal_location_by_priority'       
     ],
     'data': [
         'data/res_partner_category.xml',

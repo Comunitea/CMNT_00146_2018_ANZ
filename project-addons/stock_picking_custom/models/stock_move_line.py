@@ -50,6 +50,11 @@ class StockMoveLine(models.Model):
     def force_set_assigned_qty_done(self):
         for move in self.filtered(lambda x: x.product_qty and not x.qty_done):
             move.qty_done = move.product_qty
+        
+    @api.multi
+    def force_set_reserved_qty_done(self):
+        for move in self.filtered(lambda x: x.product_uom_qty and not x.qty_done):
+            move.qty_done = move.product_uom_qty
 
     @api.multi
     def force_set_available_qty_done(self):
@@ -102,3 +107,22 @@ class StockMoveLine(models.Model):
                     sequence = obj and obj[order_vals['field']] or 0
                     ml.sequence = sequence
         return res
+
+    
+    ## APK
+
+    @api.model
+    def force_set_available_qty_done_apk(self, vals):
+        move = self.browse(vals.get('id', False))
+        if not move:
+            return {'err': True, 'error': "No se ha encontrado el movimiento."}
+        move.force_set_available_qty_done()
+        return True
+
+    @api.model
+    def force_set_reserved_qty_done_apk(self, vals):
+        move = self.browse(vals.get('id', False))
+        if not move:
+            return {'err': True, 'error': "No se ha encontrado el movimiento."}
+        move.force_set_reserved_qty_done()        
+        return True
