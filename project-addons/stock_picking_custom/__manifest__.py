@@ -19,6 +19,7 @@
         'data/stock_location_cron.xml',
         'views/stock_batch_picking.xml',
         'views/stock_location.xml',
+        'views/stock_move.xml',
         'views/stock_picking.xml',
         'report/stock_picking_delivery_tag.xml',
         'report/report_stock_picking_view.xml',

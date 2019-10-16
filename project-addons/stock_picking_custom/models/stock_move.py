@@ -2,7 +2,6 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 from odoo import api, models, fields
 
-
 class StockMove(models.Model):
     _inherit = 'stock.move'
 
@@ -20,7 +19,6 @@ class StockMove(models.Model):
             move.default_product_dest_location_id = spps.fixed_location_id or move.location_dest_id
             move.default_product_location_id = spps.fixed_location_id or move.location_id
 
-
     default_product_location_id = fields.Many2one('stock.location', compute="_get_product_default_location_id",
                                                   string="Default location")
     default_product_dest_location_id = fields.Many2one('stock.location', compute="_get_product_default_location_id",
@@ -28,23 +26,28 @@ class StockMove(models.Model):
 
     @api.multi
     def force_set_qty_done(self):
-        for move in self.filtered(lambda x: not x.quantity_done):
-            move.quantity_done = move.product_uom_qty
+        field = self._context.get('field', 'product_uom_qty')
+        reset = self._context.get('reset', False)
+        if reset:
+            self.filtered(lambda x: x.quantity_done > 0 and x.state != 'done').write({field: 0})
+        else:
+            for move in self.filtered(lambda x: not x.quantity_done):
+                move.quantity_done = move[field]
 
     @api.multi
-    def force_set_assigned_qty_done(self):
+    def force_set_assigned_qty_done_to_delete(self):
         for move in self.filtered(lambda x: x.reserved_availability and not x.quantity_done):
             move.quantity_done = move.reserved_availability
 
     @api.multi
-    def force_set_available_qty_done(self):
+    def force_set_available_qty_done_to_delete(self):
         for move in self.filtered(lambda x: x.qty_available and not x.quantity_done):
             move.quantity_done = move.qty_available
 
     @api.depends('state', 'picking_id')
     def _compute_is_initial_demand_editable(self):
+        return super()._compute_is_initial_demand_editable()
         for move in self:
-
             move.is_initial_demand_editable = (move.picking_id and move.picking_id.is_locked or True) and move.state != 'done'
     
     def _prepare_move_line_vals(self, quantity=None, reserved_quant=None):

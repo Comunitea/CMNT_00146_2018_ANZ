@@ -46,29 +46,19 @@ class StockMoveLine(models.Model):
             else:
                 line.qty_available = line.product_id.with_context(location=line.location_id.id).qty_available_global
 
-    @api.multi
-    def force_set_assigned_qty_done(self):
-        for move in self.filtered(lambda x: x.product_qty and not x.qty_done):
-            move.qty_done = move.product_qty
-
-    @api.multi
-    def force_set_available_qty_done(self):
-        for move in self.filtered(lambda x: x.qty_available and not x.qty_done):
-            move.qty_done = move.qty_available
 
     @api.multi
     def force_set_qty_done(self):
-        for move in self.filtered(lambda x: x.ordered_qty and not x.qty_done):
-            move.qty_done = move.ordered_qty
-
-    @api.multi
-    def force_reset_qty_done(self):
-        for move in self.filtered(lambda x: x.qty_done):
-            move.qty_done = 0
+        field = self._context.get('field', 'product_uom_qty')
+        reset = self._context.get('reset', False)
+        if reset:
+            self.filtered(lambda x: x.qty_done > 0 and x.state != 'done').write({'qty_done': 0})
+        else:
+            for move in self.filtered(lambda x: not x.qty_done):
+                move.qty_done = move[field]
 
     @api.multi
     def find_product_location(self):
-
         for move in self:
             put_ids = self.product_id.product_putaway_ids.filtered(lambda x:x.putaway_id.name == 'Put away')
             if put_ids:

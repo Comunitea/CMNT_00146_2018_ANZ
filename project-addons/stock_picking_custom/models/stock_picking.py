@@ -92,6 +92,12 @@ class StockPicking(models.Model):
         digits=dp.get_precision('Product Unit of Measure'))
     product_ids_count = fields.Integer('# Products',
                                        compute='_count_product_ids')
+    all_assigned = fields.Boolean('All assigned', compute='get_all_assigned')
+
+    @api.multi
+    def get_all_assigned(self):
+        for pick in self:
+            pick.all_assigned = not any(x.state in ('partially_available', 'confirmed') for x in pick.move_lines)
 
     @api.multi
     def compute_picking_qties(self):

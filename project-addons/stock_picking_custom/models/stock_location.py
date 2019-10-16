@@ -43,9 +43,10 @@ class StockLocation(models.Model):
         self.set_barcode_field()
 
     def check_vals(self, usage, posx, posy, posz, barcode):
+        return True
         if self._context.get('no_check_locations'):
             return True
-        if usage=='internal' and not posx and not posy and not posz:
+        if usage=='internal' and (posx or posy or posz):
             raise ValidationError('Las ubicaciones internas  debenm tener valor en los campos  Pasillo (x), Estatntería (Y) Altura (Z)')
         if usage=='internal' and not barcode:
             raise ValidationError('Las ubicaciones internas deben tener un código de barras')

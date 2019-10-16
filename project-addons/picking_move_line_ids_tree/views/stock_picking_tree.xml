@@ -7,7 +7,8 @@
         <field name="model">stock.move.line</field>
         <field name="type">tree</field>
         <field name="arch" type="xml">
-            <tree editable="bottom" decoration-muted="(state == 'done' and is_locked == True)"
+            <tree editable="bottom"
+                  decoration-muted="(state == 'done' and is_locked == True)"
                   decoration-danger="qty_done&gt;product_uom_qty and state!='done'"
                   decoration-success="qty_done==product_uom_qty and state!='done' and not result_package_id">
                 <field name="product_id" required="1" attrs="{'readonly': ['|', ('state', '=', 'done'), ('move_id', '!=', False)]}"/>
@@ -16,11 +17,13 @@
 
                 <field name="in_entire_package" invisible="1"/>
                 <field name="product_uom_id" force_save="1" attrs="{'readonly': [('state', '!=', 'draft')]}" groups="product.group_uom"/>
-                <field name="package_id" attrs="{'readonly': [('in_entire_package', '=', True)]}" groups="stock.group_tracking_lot" domain="[('location_id', '=', location_id)]"/>
+                <field name="package_id"
+                       attrs="{'readonly': ['|', ('state', '=', 'done'), ('in_entire_package', '=', True)]}" groups="stock.group_tracking_lot" domain="[('location_id', '=', location_id)]"/>
                 <field name="location_id"
-                       attrs="{'readonly': [('in_entire_package', '=', True)]}"
+                       attrs="{'readonly': ['|', ('state', '=', 'done'),('in_entire_package', '=', True)]}"
                        invisible = "context.get('picking_type_code', '') == 'incoming'"
-                       groups="stock.group_stock_multi_locations,stock.group_tracking_lot" domain="[('id', 'child_of', 12)]"/>
+                       groups="stock.group_stock_multi_locations,stock.group_tracking_lot"
+                       domain="[('id', 'child_of', 12)]"/>
 
                 <button name="find_product_location"
                         type="object"
@@ -31,14 +34,15 @@
                         attrs="{'invisible': ['|', ('state', 'not in', ('confirmed', 'assigned')),('qty_done', '!=', 0)]}"
                         />
                 <field name="location_dest_id"
-                       attrs="{'readonly': [('in_entire_package', '=', True)]}"
+                       attrs="{'readonly': ['|', ('state', '=', 'done'), ('in_entire_package', '=', True)]}"
                        invisible = "context.get('picking_type_code', '') == 'outgoing'"
                        groups="stock.group_stock_multi_locations,stock.group_tracking_lot" domain="[('id', 'child_of', context.get('default_location_dest_id', ''))]"/>
-                <field name="result_package_id" attrs="{'readonly': [('in_entire_package', '=', True)]}"
+                <field name="result_package_id"
+                       attrs="{'readonly': ['|', ('state', '=', 'done'), ('in_entire_package', '=', True)]}"
                        groups="stock.group_tracking_lot" domain="['|', '|', ('location_id', '=', False), ('location_id', '=', location_dest_id), ('id', '=', package_id)]"/>
 
                 <field name="lots_visible" invisible="1"/>
-                <field name="owner_id" groups="stock.group_tracking_owner"/>
+                <field name="owner_id" attrs="{'readonly': [('state', '=', 'done')]}" groups="stock.group_tracking_owner"/>
                 <field name="is_locked" invisible="1"/>
                 <!--field name="lot_id" groups="stock.group_production_lot"
                        attrs="{'readonly': [('in_entire_package', '=', True)]}"
@@ -46,6 +50,7 @@
                        domain="[('product_id', '=', product_id)]" context="{'default_product_id': product_id}"/-->
                 <field name="is_initial_demand_editable" invisible="1"/>
                 <field name="qty_available"
+
                        invisible = "context.get('picking_type_code', '') == 'incoming'"/>
                 <button name="force_set_available_qty_done"
                         type="object"
@@ -64,7 +69,7 @@
                             attrs="{'invisible': ['|',('state', '!=', 'assigned'), ('qty_done', '!=', 0)]}"
                             />
 
-                <field name="qty_done" attrs="{'readonly': ['|', ('state', 'in', ('done', 'cancel')), ('is_locked', '=', True), ('in_entire_package', '=', True)]}" force_save="1"/>
+                <field name="qty_done" attrs="{'readonly': ['|', ('state', 'in', ('done', 'cancel')), ('is_locked', '=', True)]}" force_save="1"/>
                 <button name="force_reset_qty_done"
                             string="↳Reset qties"
                             type="object"
