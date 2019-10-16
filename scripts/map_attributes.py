@@ -28,15 +28,15 @@ MAPINGS = {
     'CALCETINES ADIDAS/PUMA': SOCKS,
     'CALCETINES NK': SOCKS,
     'CALCETIN UMBRO': SOCKS,
-    'CALZADO': FOOTWEAR_ADULT,  # TODO
+    'CALZADO': FOOTWEAR_ADULT,
     'CALZADO EUROPEO': FOOTWEAR_ADULT,  # TODO
-    'CALZADO JOHN SMITH': FOOTWEAR_ADULT,  # TODO,
-    'CALZADO JOMA CABALLERO': FOOTWEAR_ADULT,  # TODO,
+    'CALZADO JOHN SMITH': FOOTWEAR_ADULT,
+    'CALZADO JOMA CABALLERO': FOOTWEAR_ADULT,
     'CALZADO JUNIOR EUROPEO': FOOTWEAR_JUNIOR,  # TODO,
-    'CALZADO MIZUNO CABALLERO': FOOTWEAR_ADULT,  # TODO,
-    'CALZADO MIZUNO SEÑORA': FOOTWEAR_ADULT,  # TODO,
-    'CALZADO NEW BALANCE CRO.': FOOTWEAR_ADULT,  # TODO,
-    'CALZADO NEW BALANCE JR.': FOOTWEAR_KIDS,  # TODO,
+    'CALZADO MIZUNO CABALLERO': FOOTWEAR_ADULT,
+    'CALZADO MIZUNO SEÑORA': FOOTWEAR_ADULT,
+    'CALZADO NEW BALANCE CRO.': FOOTWEAR_ADULT,
+    'CALZADO NEW BALANCE JR.': FOOTWEAR_JUNIOR,  # TODO,
     'CALZADO NEW BALANCE KIDS': FOOTWEAR_KIDS,  # TODO,
     'CALZADO NEW BALANCE SRA.': FOOTWEAR_ADULT,  # TODO,
     'CALZADO NEW BALANCE SRA.2': FOOTWEAR_ADULT,  # TODO,
@@ -102,7 +102,7 @@ MAPINGS = {
     'TEXTIL JOMA JR': APPAREL_JUNIOR,
     'TEXTIL JR': APPAREL_JUNIOR,
     'Textil Junior España': APPAREL_JUNIOR,
-    'Textil Junior Internacional ': APPAREL_JUNIOR,
+    'Textil Junior Internacional': APPAREL_JUNIOR,
     'TEXTIL JUNIOR NIKE': APPAREL_JUNIOR,
     'TEXTIL NIÑO/A': APPAREL_JUNIOR,
     'TEXTIL NK BEBE': APPAREL_BEBE,
@@ -189,7 +189,7 @@ def map_att_values(att, map_att):
         UPDATE product_attribute_value_product_product_rel
         SET product_attribute_value_id = %s
         WHERE product_attribute_value_id = %s
-        """ % (value.id, new_value.id)
+        """ % (new_value.id, value.id)
 
         session.cr.execute(query_product_values)
 
@@ -198,7 +198,7 @@ def map_att_values(att, map_att):
         UPDATE product_attribute_line_product_attribute_value_rel
         SET product_attribute_value_id = %s
         WHERE product_attribute_value_id = %s
-        """ % (value.id, new_value.id)
+        """ % (new_value.id, value.id)
         session.cr.execute(query_att_line_values)
     return res
 
@@ -223,6 +223,15 @@ def change_att_lines(att, map_att):
 #     where id not in (select distinct(attribute_id) from product_attribute_line) and is_tboot is not true and is_color is not true));
 # """
 # session.cr.execute(del_values)
+
+# -- Elimino valores de estos atributos que no se usan
+# del_values2 = """delete from product_attribute_value
+#     where id not in (select distinct(product_attribute_value_id)
+#                      from
+# 		              product_attribute_value_product_product_rel);
+# """
+# session.cr.execute(del_values2)
+
          
 # # -- ELIMINO Atributos que no se usan en las plantillas ni son color ni tipo bota
 # del_atts = """
@@ -268,6 +277,22 @@ change_att_lines(att, map_att)
 if to_review:
     print("REVIEW:--------------------------------------------")
     print(to_review.ids)
+
+# print("Borrando valores viejos...")
+# del_values = """delete from product_attribute_value where attribute_id in
+# (select distinct(id) from product_attribute where new_att_id is not null);"""
+# session.cr.execute(del_values)
+
+
+# print("Borrando atributos viejos...")
+# del_attrs = """delete from product_attribute where new_att_id is not null and id not in
+# (select distinct(pal.attribute_id) from product_attribute_line pal
+#  inner join product_attribute pa on pa.id = pal.attribute_id 
+# where pa.new_att_id is null
+# );"""
+# session.cr.execute(del_attrs)
+
+
 
 session.cr.commit()
 print("******************* DONE ****************************")

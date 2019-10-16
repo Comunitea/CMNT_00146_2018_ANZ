@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+        <record id="attribute_action" model="ir.actions.act_window">
+            <field name="name">Attributes</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">product.attribute</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_type">form</field>
+        </record>
+
+    <record id="product_attribute_view_form_add_custom" model="ir.ui.view">
+        <field name="name">product.attribute.form.add.custom</field>
+        <field name="inherit_id" ref="product.product_attribute_view_form"/>
+        <field name="model">product.attribute</field>
+        <field name="arch" type="xml">
+            <field name="name" position="after">
+                <field name="product_brand_id"/>
+                <!--field name="attribute_category_id"/-->
+                <!-- <field name="product_type_id" domain = "[('product_brand_id','=',product_brand_id), ('type','=','type')]"
+                       context="{'default_type': 'type', 'default_product_brand_id': product_brand_id}"/>
+                <field name="product_gender_id" domain = "[('product_brand_id','=',product_brand_id), ('type','=','gender')]"
+                       context="{'default_type': 'gender', 'default_product_brand_id': product_brand_id}"/>
+                <field name="product_age_id" domain = "[('product_brand_id','=',product_brand_id), ('type','=','age')]"
+                       context="{'default_type': 'age', 'default_product_brand_id': product_brand_id}"/> -->
+            </field>
+            <field name="create_variant" position="after">
+                <field name="is_tboot"/>
+                <field name="is_color"/>
+                <field name="new_att_id"/>
+            </field>
+            <field name="value_ids" position="replace">
+
+            </field>
+            <xpath expr="//group" position="before">
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_show_attribute_values" type="object" class="oe_stat_button" icon="fa-pencil-square-o">
+                            <field name="count_line_ids" widget="statinfo" string="Valores"/>
+                        </button>
+                    </div>
+            </xpath>
+
+        </field>
+    </record>
+
+    <record id="attribute_tree_view_add_custom" model="ir.ui.view">
+        <field name="name">product.attribute.tree.add.custom</field>
+        <field name="model">product.attribute</field>
+        <field name="inherit_id" ref="product.attribute_tree_view"/>
+        <field name="arch" type="xml">
+            <field name="name" position="after">
+                <!-- <field name="display_name" invisible="1"/> -->
+                <!-- <field name="srch_name" invisible="0"/> -->
+                <!-- <field name="product_brand_id"/> -->
+                <!--field name="attribute_category_id"/-->
+                 <!-- <field name="product_type_id" domain = "[('product_brand_id','=',product_brand_id), ('type','=','type')]"
+                       context="{'default_type': 'type', 'default_product_brand_id': product_brand_id}"/>
+                <field name="product_gender_id" domain = "[('product_brand_id','=',product_brand_id), ('type','=','gender')]"
+                       context="{'default_type': 'gender', 'default_product_brand_id': product_brand_id}"/>
+                <field name="product_age_id" domain = "[('product_brand_id','=',product_brand_id), ('type','=','age')]"
+                       context="{'default_type': 'age', 'default_product_brand_id': product_brand_id}"/> -->
+                <field name="new_att_id"/>
+
+            </field>
+            <field name="create_variant" position="after">
+                <field name="is_tboot"/>
+                <field name="is_color"/>
+                 <button name="open_form_view_att"
+                        icon="fa-file-text"
+                        type="object"
+                />
+            </field>
+        </field>
+    </record>
+
+    <!-- Búsqueda por el nombre de atributo completo (el display name tiene la forma del name get) -->
+    <!-- <record id="attr_search_view" model="ir.ui.view">
+        <field name="name">attr_search_view</field>
+        <field name="model">product.attribute</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="srch_name" string="Attribute"/>
+            </search>
+        </field>
+    </record> -->
+
+        <record id="attribute_value_form_view" model="ir.ui.view">
+            <field name="name">attribute_value_form_view</field>
+            <field name="model">product.attribute.value</field>
+            <field name="arch" type="xml">
+                <form string="Variant Values">
+                    <group>
+                        <field name="name"/>
+                        <field name="sequence" widget="handle"/>
+                        <field name="attribute_id"/>
+                        <field name="attr_name" invisible="1"/>
+                        <field name="supplier_code"/>
+                        <field name="is_tboot"/>
+                        <field name="is_color"/>
+                        <field name="range_search"/>
+                    </group>
+                    <group>
+                        <field name="product_ids"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+    <!-- Busqueda en valores de atributo por el campo display name del attributo, no por name -->
+    <record id="variants_tree_view_add_custom" model="ir.ui.view">
+        <field name="name">variants.tree.view.add.custom</field>
+        <field name="model">product.attribute.value</field>
+        <field name="inherit_id" ref="product.variants_tree_view"/>
+        <field name="arch" type="xml">
+            <field name="name" position="after">
+                <field name="attr_name" invisible="1"/>
+                <field name="supplier_code"/>
+                <field name="is_tboot"/>
+                <field name="is_color"/>
+                <field name="range_search"/>
+                <button name="open_form_view_value"
+                        icon="fa-file-text"
+                        type="object"
+                />
+            </field>
+        </field>
+    </record>
+     <record id="attribute_value_view_search" model="ir.ui.view">
+        <field name="name">attribute_value_view_search</field>
+        <field name="model">product.attribute.value</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="attr_name" string="Attribute"/>
+                <field name="name"/>
+            </search>
+        </field>
+    </record>
+
+
+     <record model="ir.ui.view" id="view_produt_attribute_tag_form">
+            <field name="name">Product attribute tag</field>
+            <field name="model">product.attribute.tag</field>
+            <field name="arch" type="xml">
+                <form string="Product attribute tag">
+                    <sheet>
+                        <group col="4">
+                            <field name="product_brand_id" />
+                            <field name="type"/>
+                            <field name="value"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="view_produt_attribute_tag_tree">
+            <field name="name">Product attribute tag</field>
+            <field name="model">product.attribute.tag</field>
+            <field name="arch" type="xml">
+                <tree string="Attribute tags">
+                    <field name="product_brand_id" />
+                    <field name="type"/>
+                    <field name="value"/>
+                </tree>
+            </field>
+        </record>
+        <record id="produt_attribute_tag_search_view" model="ir.ui.view">
+        <field name="name">Product attribute tag.search</field>
+        <field name="model">product.attribute.tag</field>
+        <field name="arch" type="xml">
+            <search string="Product">
+                <field name="value" string="Product" filter_domain="[('value', 'ilike', self)]"/>
+                <field name="product_brand_id" string= "Marca" />
+                <separator/>
+
+                <filter string="Type" name="filter_to_type" domain="[('type','=','type')]"/>
+                <filter string="Gender" name="filter_to_gender" domain="[('type','=','gender')]"/>
+                <filter string="Age" name="filter_to_age" domain="[('type','=','age')]"/>
+
+                <separator/>
+                <group expand="0" string="Group By">
+                    <filter string="Brand" domain="[]" context="{'group_by':'product_brand_id'}"/>
+                    <filter string="Type" domain="[]" context="{'group_by':'type'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+        <record model="ir.actions.act_window" id="action_view_produt_attribute_tag_tree">
+            <field name="name">Product attribute tag</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">product.attribute.tag</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+    </record>
+
+
+     <menuitem id="menu_product_attribute_tag" parent="stock.menu_product_in_config_stock" action="product_custom_anz.action_view_produt_attribute_tag_tree"
+        sequence="500" groups="base.group_no_one"/>
+</odoo>
+
