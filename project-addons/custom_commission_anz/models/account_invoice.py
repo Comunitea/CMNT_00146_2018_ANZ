@@ -57,3 +57,14 @@ class AccountInvoice(models.Model):
         if invoices:
             invoices.recompute_lines_agents()
         return invoices
+
+
+class AccountInvoiceLineAgent(models.Model):
+    _inherit = "account.invoice.line.agent"
+
+    date_due = fields.Date(
+        string="Invoice date",
+        related="invoice.date_due",
+        store=True,
+        readonly=True,
+    )
