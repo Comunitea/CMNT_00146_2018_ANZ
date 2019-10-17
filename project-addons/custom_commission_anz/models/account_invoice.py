@@ -39,8 +39,9 @@ class AccountInvoiceLine(models.Model):
                         line.discount != vals['discount']:
                     self2 += line
         res = super().write(vals)
-        self2.recompute_agents()
-        return res    
+        if self2:
+            self2.recompute_agents()
+        return res
 
 
 class AccountInvoice(models.Model):
@@ -57,6 +58,16 @@ class AccountInvoice(models.Model):
         if invoices:
             invoices.recompute_lines_agents()
         return invoices
+
+    @api.multi
+    def write(self, vals):
+        """
+        Recalcular comisiones cuando se cambia el comercial
+        """
+        res = super().write(vals)
+        if 'user_id' in vals:
+            self.invoice_line_ids.recompute_agents()
+        return res
 
 
 class AccountInvoiceLineAgent(models.Model):
