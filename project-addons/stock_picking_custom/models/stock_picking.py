@@ -30,19 +30,18 @@ class StockPickingType(models.Model):
         ('location_id', 'Ubicación de origen'), 
         ('location_dest_id', 'Ubicación de destino'), 
         ('package_id', 'Paquete de origen'), 
-        ('result_package_id', 'Paquete de destino')], 'Campo de orden en movimeintos')
+        ('result_package_id', 'Paquete de destino')],
+        string='Campo de orden en movimeintos')
     
     def get_move_order_field(self):
         if self.order_field in ('location_id', 'location_dest_id'):
             return {'model': 'stock.location',
                     'order_field': self.order_field,
                     'field': 'sequence'}
-
-        if self.order_field in ('package_id', 'result_package_id'):
+        elif self.order_field in ('package_id', 'result_package_id'):
             return {'model': 'stock.quant.package',
                     'order_field': self.order_field,
                     'field': 'name'}
-
         return {'model': 'stock.location',
                 'order_field': 'location_id',
                 'field': 'sequence'}
@@ -92,7 +91,9 @@ class StockPicking(models.Model):
         digits=dp.get_precision('Product Unit of Measure'))
     product_ids_count = fields.Integer('# Products',
                                        compute='_count_product_ids')
+
     all_assigned = fields.Boolean('All assigned', compute='get_all_assigned')
+
 
     @api.multi
     def get_all_assigned(self):

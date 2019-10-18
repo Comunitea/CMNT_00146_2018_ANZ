@@ -44,7 +44,6 @@
                     <button class="oe_link oe_right"
                             context="{'model_dest': 'stock.move', 'field': 'reserved_availability'}"
                             name="force_set_qty_done" type="object" string="↳Copy assigned to done"
-
                             attrs="{'invisible':[('reserved_availability', '=', 0), ('all_assigned','=',True)]}"/>
                     <button class="oe_link oe_right"
                             context="{'model_dest': 'stock.move', 'field': 'qty_available'}"
@@ -180,8 +179,6 @@
 
         </field>
     </record>
-
-    <!-- stock.picking.type inherit form view -->
     <record id="view_picking_type_form_order_field" model="ir.ui.view">
         <field name="name">stock.picking.type.form.order.field</field>
         <field name="model">stock.picking.type</field>
@@ -192,6 +189,4 @@
             </field>
         </field>
     </record>
-
-
 </odoo>

@@ -10,14 +10,9 @@
                 </div>
                 <group>
                     <field name="name"/>
-
                     <field name="picking_id"/>
-
                     <field name="file" filename="filename"/>
                 </group>
-
-
-
                 <footer>
                     <button name="import_products" type="object" class="btn-primary" string="Import Products"/>
                     <button special="cancel" string="Cancel" class="oe_link"/>

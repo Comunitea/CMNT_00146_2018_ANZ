@@ -29,8 +29,9 @@ class StockMoveLine(models.Model):
     barcode_dest = fields.Char(related='location_dest_id.barcode', store=True)
     default_product_location_id = fields.Many2one('stock.location', compute="_get_product_default_location_id", string="Default location")
     default_product_dest_location_id = fields.Many2one('stock.location', compute="_get_product_default_location_id", string="Default destination location")
-
     qty_available = fields.Float('Qty available', compute="get_qty_available")
+
+
 
     @api.depends('product_id', 'location_id')
     @api.multi
@@ -59,6 +60,7 @@ class StockMoveLine(models.Model):
 
     @api.multi
     def find_product_location(self):
+
         for move in self:
             put_ids = self.product_id.product_putaway_ids.filtered(lambda x:x.putaway_id.name == 'Put away')
             if put_ids:

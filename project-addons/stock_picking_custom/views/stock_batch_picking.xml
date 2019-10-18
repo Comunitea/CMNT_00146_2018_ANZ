@@ -10,17 +10,37 @@
                     [('batch_picking_id', '=', False), ('state', 'not in', ('done', 'cancel'))]
                 </attribute>
             </xpath>
+            <field name="move_lines" position="after">
+                <div>
+                    <group class="oe_left">
+                        <field name="all_assigned" class ="oe_inline" />
+                        <field name="product_uom_qty" class ="oe_inline" />
+                        <field name="reserved_availability" class ="oe_inline" />
+                        <field name="quantity_done" class ="oe_inline" />
 
-            <xpath expr="//field[@name='move_line_ids']/tree/field[@name='product_id']" position="before">
-                <field name="sequence" invisible="1"/>
-            </xpath>
+                    </group>
+                </div>
+            </field>
+            <field name="move_lines" position="before">
+                <div>
+                    <button class="oe_link oe_right"
+                            context="{'model_dest': 'stock.move', 'field': 'product_uom_qty'}"
+                            name="force_set_qty_done"  type="object" string="↳Copy qty. to done"
+                            />
+                    <button class="oe_link oe_right"
+                            context="{'model_dest': 'stock.move', 'field': 'reserved_availability'}"
+                            name="force_set_qty_done" type="object" string="↳Copy assigned to done"
+                            attrs="{'invisible':[('reserved_availability', '=', 0), ('all_assigned','=',True)]}"/>
+                    <button class="oe_link oe_right"
+                            context="{'model_dest': 'stock.move', 'field': 'qty_available'}"
+                            name="force_set_qty_done" type="object" string="↳Copy available to done"
+                            attrs="{'invisible':[('all_assigned','=',True)]}"/>
 
-            <xpath expr="//field[@name='move_line_ids']/tree" position="attributes">
-                <attribute name="default_order">
-                    sequence
-                </attribute>
-            </xpath>
-
+                    <button class="oe_link oe_right"
+                            context="{'model_dest': 'stock.move', 'reset': True, 'field': 'qty_done'}"
+                            name="force_set_qty_done" type="object" string="↳Reset qties" attrs="{'invisible':[('quantity_done','=',0)]}"/>
+                </div>
+            </field>
         </field>
     </record>
 

@@ -33,32 +33,8 @@
             </field>
             <field name="usage" position="after">
                 <field name="inverse_order" attrs="{'invisible': [('usage', '!=', 'view')]}"/>
-                <field name="sequence" attrs="{'invisible': [('usage', '!=', 'internal')]}"/>
-            </field>   
-        </field>
-    </record>
-    
-    <!-- stock.location inherit form view -->
-    <record id="view_location_tree2_sequence" model="ir.ui.view">
-        <field name="name">stock.location.sequencem</field>
-        <field name="model">stock.location</field>
-        <field name="inherit_id" ref="stock.view_location_tree2"/>
-        <field name="arch" type="xml">
-            <field name="display_name" position="before">
-                <field name="sequence"/>
-            </field>            
-        </field>
-    </record>
-
-    <!-- stock.picking inherit form view -->
-    <record id="view_picking_form_sequence" model="ir.ui.view">
-        <field name="name">stock.picking.form.sequence.view</field>
-        <field name="model">stock.picking</field>
-        <field name="inherit_id" ref="stock.view_picking_form"/>
-        <field name="arch" type="xml">
-            <field name="product_id" position="before">
-                <field name="sequence" invisible="1"/>
             </field>
         </field>
     </record>
+
 </odoo>

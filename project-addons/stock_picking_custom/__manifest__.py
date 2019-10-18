@@ -21,6 +21,7 @@
         'views/stock_location.xml',
         'views/stock_move.xml',
         'views/stock_picking.xml',
+        'views/sale_order.xml',
         'report/stock_picking_delivery_tag.xml',
         'report/report_stock_picking_view.xml',
         'wizard/stock_import.xml'

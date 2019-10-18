@@ -21,10 +21,7 @@ class StockImportWzd(models.TransientModel):
     name = fields.Char('Importation name', required=True)
     picking_id = fields.Many2one('stock.picking')
     file = fields.Binary(string='File', required=True)
-
     filename = fields.Char(string='Filename')
-
-
 
     def _parse_row_vals(self, row, idx):
         res = {
@@ -75,7 +72,6 @@ class StockImportWzd(models.TransientModel):
         if not product_id:
             picking_id.message_post(body='No se ha encontrado nada {}'.format(vals))
         else:
-
             move_vals = {'product_id': product_id.id,
                          'name': vals['articulo'],
                          'picking_id': self.picking_id.id,
@@ -103,13 +99,11 @@ class StockImportWzd(models.TransientModel):
         idx = 1
         self.picking_id.origin = 'IMPORTACIÓN'
         for nline in range(idx, sh.nrows):
-
             idx += 1
             row = sh.row_values(nline)
             row_vals = self._parse_row_vals(row, idx)
             if row_vals['barcode']:
                 product_id = self._get_move_line(row_vals, self.picking_id)
-
                 if product_id:
                     _logger.info(_('Importado movimeinto:  %s (%s / %s)') % (product_id.display_name, idx, sh.nrows - 1))
                     created_product_ids.append(product_id.id)
