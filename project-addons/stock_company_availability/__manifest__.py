@@ -14,6 +14,9 @@
     'data': [
         'views/stock_picking.xml',
         'views/stock_move.xml',
+        'views/stock_location_path.xml',
+        'views/stock_location.xml',
+        'views/stock_picking_type.xml',
     ],
     'installable': True,
 }

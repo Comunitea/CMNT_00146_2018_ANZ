@@ -17,7 +17,9 @@
                 <xpath expr="//field[@name='move_lines']/tree/field[@name='quantity_done']" position="attributes">
                     <attribute name="attrs"></attribute>
                 </xpath>
-
+                <xpath expr="//field[@name='move_lines']/tree/field[@name='reserved_availability']" position="attributes">
+                    <attribute name="attrs">{'column_invisible': [('parent.state','=', 'done')]}</attribute>
+                </xpath>
             </field>
 
      </record>

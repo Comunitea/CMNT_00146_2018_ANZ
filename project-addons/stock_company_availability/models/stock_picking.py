@@ -13,11 +13,7 @@ class StockPicking(models.Model):
         if any(x.state in ('confirmed', 'partially_available') for x in self.move_lines):
             state = 'partially_available'
         ctx.update(picking_code=self.picking_type_id.code, picking_state=state)
-        print (ctx)
         return super(StockPicking, self.with_context(ctx)).action_picking_move_tree()
-
-
-
 
 
 
