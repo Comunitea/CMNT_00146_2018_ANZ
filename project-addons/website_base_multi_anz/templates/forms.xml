@@ -2,7 +2,7 @@
 <odoo>
 
     <!-- Accept terms of use -->
-    <template id="acceptance_full_legal_terms_with_check" name="Acceptance Full Legal Terms With Check">
+    <template id="acceptance_full_legal_terms_with_check" name="Acceptance Full Legal Terms With Check Base">
         <div class="form-group form-field o_website_form_required" t-if="website.env.user == request.website.user_id">
             <div class="col-md-7 col-md-offset-3 col-sm-8 col-sm-offset-4">
                 <div class="checkbox">
@@ -16,7 +16,7 @@
     </template>
 
     <!-- Google recaptcha -->
-    <template id="google_recaptcha_contact_form" name="Contact Form Captcha">
+    <template id="google_recaptcha_contact_form" name="Contact Form Captcha Base">
         <div class="form-group form-field o_website_form_required_custom">
             <label class="col-md-3 col-sm-4 control-label" for="g-recaptcha-response">Is human?</label>
             <div class="col-md-7 col-sm-8">
@@ -26,11 +26,11 @@
     </template>
 
     <!-- Terms of use without checkbox -->
-    <template id="acceptance_full_legal_terms_without_check" name="Acceptance Full Legal Terms Without Check">
+    <template id="acceptance_full_legal_terms_without_check" name="Acceptance Full Legal Terms Without Check Base">
         I accept the <a href="/legal/advice">legal advice</a>, the <a href="/legal/privacy-policy">privacy policy and cookies</a>, and the <a href="/legal/terms-of-use">terms of use</a> of this website.
     </template>
 
-    <template id="default_fields_forms" name="Default Form Fields">
+    <template id="default_fields_forms" name="Default Form Fields Base">
        <div class="form-group form-field o_website_form_required_custom">
            <label class="col-md-3 col-sm-4 control-label" for="contact_name">Name</label>
            <div class="col-md-7 col-sm-8">
@@ -69,7 +69,7 @@
         </div>
     </template>
 
-    <template id="default_send_forms" name="Default Send Form">
+    <template id="default_send_forms" name="Default Send Form Base">
         <div class="form-group">
             <div class="col-md-offset-3 col-sm-offset-4 col-sm-8 col-md-7">
                 <span class="btn btn-primary btn-lg o_website_form_send">Send</span>
@@ -78,7 +78,7 @@
         </div>
     </template>
 
-    <template id="default_file_forms" name="Default File Document Form">
+    <template id="default_file_forms" name="Default File Document Form Base">
         <div class="form-group form-field o_website_form_custom">
             <div class="col-md-3 col-sm-4 text-right-not-xs">
                 <label class="control-label" for="a_document">Attach CV</label>
@@ -90,7 +90,7 @@
     </template>
 
     <!-- Default contact form with google recapthca and terms of use-->
-    <template id="default_contact_form" name="Default Contact Form Anzamar">
+    <template id="default_contact_form" name="Default Contact Form Base">
         <form action="/website_form/" method="post" data-model_name="crm.lead" data-success_page="/contactus-thank-you" class="s_website_form form-horizontal container-fluid mt32" enctype="multipart/form-data" data-editable-form="false">
             <input type="hidden" name="name" value="Nueva solicitud de contacto" />
             <t t-call="website_base_multi_anz.default_fields_forms"/>
@@ -101,7 +101,7 @@
     </template>
 
     <!-- Work contact form with google recapthca and terms of use-->
-    <template id="work_contact_form" name="Work With Us Form">
+    <template id="work_contact_form" name="Work With Us Form Base">
         <form action="/website_form/" method="post" data-model_name="crm.lead" data-success_page="/contactus-thank-you" class="s_website_form form-horizontal container-fluid mt32" enctype="multipart/form-data" data-editable-form="false">
             <input type="hidden" name="name" value="Nueva solicitud de trabajo" />
             <t t-call="website_base_multi_anz.default_fields_forms"/>
@@ -113,7 +113,7 @@
     </template>
 
     <!-- Open shop with us contact form with google recapthca and terms of use-->
-    <template id="open_shop_contact_form" name="Open Shop Form">
+    <template id="open_shop_contact_form" name="Open Shop Form Base">
         <form action="/website_form/" method="post" data-model_name="crm.lead" data-success_page="/contactus-thank-you" class="s_website_form form-horizontal mt32 mb32" enctype="multipart/form-data" data-editable-form="false">
             <input type="hidden" name="name" value="Nueva solicitud de apertura" />
             <t t-call="website_base_multi_anz.default_fields_forms"/>

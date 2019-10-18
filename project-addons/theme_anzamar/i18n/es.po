@@ -560,9 +560,80 @@ msgid "Anzamar group"
 msgstr "Grupo Anzamar"
 
 #. module: theme_anzamar
-#: model:website.page,name:theme_anzamar.anz_contactus_page
-msgid "Contact Us"
-msgstr "Contacto"
+#: model:ir.ui.view,arch_db:theme_anzamar.anz_contact_us_content_template
+msgid "Contact us for anything related to our company or services."
+msgstr "Contacte con nosotros para cualquier cosa relacionada con nuestra empresa o servicios."
+
+#. module: theme_anzamar
+#: model:ir.ui.view,arch_db:theme_anzamar.anz_home_content_template
+msgid "Contacta ahora <i class=\"fa fa-chevron-right\"/>"
+msgstr "Contacta ahora <i class=\"fa fa-chevron-right\"/>"
+
+#. module: theme_anzamar
+#: model:ir.ui.view,arch_db:theme_anzamar.anz_contact_us_content_template
+msgid "Contact us for anything related to our company or services."
+msgstr "Contacte con nosotros para cualquier cosa relacionada con nuestra empresa o servicios."
+
+#. module: theme_anzamar
+#: model:ir.ui.view,arch_db:theme_anzamar.anz_contact_us_content_template
+msgid "Do you have any questions? You can contact us through the following channels:"
+msgstr "¿Tienes alguna consulta? Puedes contactar con nosotros a través de los siguientes canales:"
+
+#. module: theme_anzamar
+#: model:ir.ui.view,arch_db:theme_anzamar.anz_contact_us_content_template
+msgid "Monday to Friday from 8 a.m. to 3 p.m.\n"
+"                                    <br/>\n"
+"                                    Monday and Wednesday from 5:00 p.m. to 7:30 p.m."
+msgstr "De lunes a viernes de 8.00 a 15.00 horas\n"
+"                            <br/>\n"
+"                            Lunes y miércoles de 17.00 a 19.30 horas"
+
+#. module: theme_anzamar
+#: model:ir.ui.view,arch_db:theme_anzamar.anz_contact_us_content_template
+msgid "We will do our best to respond to you as soon as possible."
+msgstr "Haremos lo posible por responderle a la mayor brevedad."
+
+#. module: theme_anzamar
+#: model:ir.ui.view,arch_db:theme_anzamar.anz_contact_us_content_template
+msgid "691 41 34 53"
+msgstr "691 41 34 53"
+
+#. module: theme_anzamar
+#: model:ir.ui.view,arch_db:theme_anzamar.anz_contact_us_content_template
+msgid "<strong>Customer service</strong>"
+msgstr "<strong>Horario de atención</strong>"
+
+#. module: theme_anzamar
+#: model:ir.ui.view,arch_db:theme_anzamar.anz_contact_us_content_template
+msgid "<strong>Email</strong>"
+msgstr "<strong>Correo electrónico</strong>"
+
+#. module: theme_anzamar
+#: model:ir.ui.view,arch_db:theme_anzamar.anz_contact_us_content_template
+msgid "<strong>Location</strong>"
+msgstr "<strong>Localización</strong>"
+
+#. module: theme_anzamar
+#: model:ir.ui.view,arch_db:theme_anzamar.anz_contact_us_content_template
+msgid "<strong>Phone</strong>"
+msgstr "<strong>Teléfono</strong>"
+
+#. module: theme_anzamar
+#: model:ir.ui.view,arch_db:theme_anzamar.anz_contact_us_content_template
+msgid "<strong>Social networks</strong>"
+msgstr "<strong>Redes sociales</strong>"
+
+#. module: theme_anzamar
+#: model:ir.ui.view,arch_db:theme_anzamar.anz_contact_us_content_template
+#: model:ir.ui.view,arch_db:theme_anzamar.anz_website_footer_default
+msgid "Company"
+msgstr "Compañía"
+
+#. module: theme_anzamar
+#: model:ir.ui.view,arch_db:theme_anzamar.anz_contact_us_content_template
+#: model:ir.ui.view,arch_db:theme_anzamar.anz_website_footer_default
+msgid "Company Link"
+msgstr "Enlace a Compañia"
 
 #. module: theme_anzamar
 #: model:ir.ui.view,arch_db:theme_anzamar.anz_brand_black_laces_content_template
@@ -795,3 +866,8 @@ msgstr "Empresa"
 #: model:ir.ui.view,arch_db:theme_anzamar.default_file_forms
 msgid "Attach CV"
 msgstr "Adjuntar CV"
+
+#. module: theme_anzamar
+#: model:website.page,name:theme_anzamar.anz_page_newsletter
+msgid "Newsletter"
+msgstr "Canal de noticias"

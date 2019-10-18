@@ -2,7 +2,7 @@
 <odoo>
 
     <!-- Hook to hide cart in review order checkout by website_sale_hide_price module -->
-    <template id="wbm_website_sale_cart" name="Shopping Cart Template" inherit_id="website_sale.cart">
+    <template id="wbm_website_sale_cart" name="Shopping Cart Base" inherit_id="website_sale.cart">
         <!-- Redirect to a Access Forbidden Advice -->
         <xpath expr="//div[@id='wrap']" position="attributes">
             <attribute name="t-if">website.website_show_price</attribute>
@@ -17,7 +17,7 @@
     </template>
 
     <!-- Hook to hide address checkout by website_sale_hide_price module -->
-    <template id="wbm_website_sale_checkout" name="Checkout Template" inherit_id="website_sale.checkout">
+    <template id="wbm_website_sale_checkout" name="Checkout Base" inherit_id="website_sale.checkout">
         <!-- Redirect to a Access Forbidden Advice -->
         <xpath expr="//div[@id='wrap']" position="attributes">
             <attribute name="t-if">website.website_show_price</attribute>
@@ -32,7 +32,34 @@
     </template>
 
     <!-- Hook to hide address checkout extra info by website_sale_hide_price module -->
-    <template id="wbm_website_sale_extra_info" name="Checkout Extra Info Template" inherit_id="website_sale.extra_info">
+    <template id="wbm_website_sale_extra_info" name="Checkout Extra Info Base" inherit_id="website_sale.extra_info">
+        <!-- Redirect to a Access Forbidden Advice -->
+        <xpath expr="//div[@id='wrap']" position="attributes">
+            <attribute name="t-if">website.website_show_price</attribute>
+        </xpath>
+        <xpath expr="//div[@id='wrap']" position="after">
+            <div id="wrap" t-if="not website.website_show_price">
+                <div class="container">
+                    <t t-call="website_base_multi_anz.wbb_access_forbidden_advise"/>
+                </div>
+            </div>
+        </xpath>
+        <!-- Replace title -->
+        <xpath expr="//h2" position="replace">
+            <h2 class="mb16 mt16 text-center">Extra Info</h2>
+        </xpath>
+        <!-- Change feedback to Notes -->
+        <xpath expr="//label[@for='Give us your feedback...']" position="replace">
+            <label class="control-label" for="note">Note</label>
+        </xpath>
+        <xpath expr="//textarea[@name='Give us your feedback...']" position="attributes">
+            <attribute name="name">note</attribute>
+        </xpath>
+
+    </template>
+
+    <!-- Hook to hide address checkout extra info by website_sale_hide_price module -->
+    <template id="wbm_website_sale_payment" name="Payment Base" inherit_id="website_sale.payment">
         <!-- Redirect to a Access Forbidden Advice -->
         <xpath expr="//div[@id='wrap']" position="attributes">
             <attribute name="t-if">website.website_show_price</attribute>
@@ -47,7 +74,7 @@
     </template>
 
     <!-- Hook to hide address checkout extra info by website_sale_hide_price module -->
-    <template id="wbm_website_sale_payment" name="Payment Template" inherit_id="website_sale.payment">
+    <template id="wbm_website_sale_confirmation" name="Confirmation Base" inherit_id="website_sale.confirmation">
         <!-- Redirect to a Access Forbidden Advice -->
         <xpath expr="//div[@id='wrap']" position="attributes">
             <attribute name="t-if">website.website_show_price</attribute>
@@ -59,20 +86,17 @@
                 </div>
             </div>
         </xpath>
-    </template>
 
-    <!-- Hook to hide address checkout extra info by website_sale_hide_price module -->
-    <template id="wbm_website_sale_confirmation" name="Payment Confirmation Template" inherit_id="website_sale.confirmation">
-        <!-- Redirect to a Access Forbidden Advice -->
-        <xpath expr="//div[@id='wrap']" position="attributes">
-            <attribute name="t-if">website.website_show_price</attribute>
-        </xpath>
-        <xpath expr="//div[@id='wrap']" position="after">
-            <div id="wrap" t-if="not website.website_show_price">
-                <div class="container">
-                    <t t-call="website_base_multi_anz.wbb_access_forbidden_advise"/>
-                </div>
-            </div>
+        <!-- Show extra info in documents -->
+        <xpath expr="//h3" position="before">
+            <h3 class="mt32 text-left" t-if="order.client_order_ref">
+                <strong>Your Reference:</strong>
+            </h3>
+            <p t-field="order.client_order_ref" t-if="order.client_order_ref"/>
+            <h3 class="mt32 text-left" t-if="order.note">
+                <strong>Your Note:</strong>
+            </h3>
+            <p t-field="order.note" t-if="order.note"/>
         </xpath>
     </template>
 

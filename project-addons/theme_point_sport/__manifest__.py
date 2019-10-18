@@ -35,7 +35,6 @@
         'templates/page_our_group.xml',
         'templates/shop.xml',
         'templates/product.xml',
-        'templates/account.xml',
         'templates/pages.xml',
         'views/customize_views.xml',
     ],

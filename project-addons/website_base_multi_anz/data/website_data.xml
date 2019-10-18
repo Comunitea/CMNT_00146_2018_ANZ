@@ -2,6 +2,13 @@
 <odoo>
         <data>
 
+            <!-- Functions -->
+            <function model="ir.model.fields" name="formbuilder_whitelist">
+                <value>sale.order</value>
+                <!-- Add to portal orders -->
+                <value eval="['note']"/>
+            </function>
+
             <!--Delete default website-->
             <delete id="website.default_website" model="website"/>
 
@@ -20,7 +27,7 @@
                 <!--<field name="social_linkedin"></field>-->
                 <!--<field name="social_instagram"></field>-->
                 <field name="base_url">http://_______domain_________/</field>
-                <field name="email">info@pskipping.com</field>
+                <field name="email">info@skipping.com</field>
             </record>
 
             <!--Create Website Point Sport-->
