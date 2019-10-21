@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_sale_commission_analysis_pivot_add_date_due" model="ir.ui.view">
+        <field name="name">sale.commission.analysis.pivot</field>
+        <field name="model">sale.commission.analysis.report</field>
+        <field name="inherit_id" ref="sale_commission.view_sale_commission_analysis_pivot"/>
+        <field name="arch" type="xml">
+                <field name="date_invoice" position="after">
+                    <field name="date_due"/>
+                </field>
+         </field>
+    </record>
+
+    <record id="view_sale_commission_analysis_search_add_date_due" model="ir.ui.view">
+        <field name="name">sale.commission.analysis.search</field>
+        <field name="model">sale.commission.analysis.report</field>
+        <field name="inherit_id" ref="sale_commission.view_sale_commission_analysis_search"/>
+        <field name="arch" type="xml">
+            <field name="date_invoice" position="after">
+                    <field name="date_due"/>
+            </field>
+            <filter name="year" position="after">
+                    <filter string="This Year by due date" name="year" domain="[('date_due','&lt;=', time.strftime('%%Y-12-31')),('date_due','&gt;=',time.strftime('%%Y-01-01'))]"/>
+            </filter>
+            <filter name="group_by_invoice_month" position="after">
+                <filter string="Invoice Due Month" name="group_by_invoice_due_month" context="{'group_by':'date_due:month'}"/>
+            </filter>
+        </field>
+    </record>
+
+</odoo>

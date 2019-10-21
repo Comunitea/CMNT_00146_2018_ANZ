@@ -6,14 +6,19 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-04-27 10:29+0000\n"
-"PO-Revision-Date: 2019-04-27 10:29+0000\n"
+"POT-Creation-Date: 2019-09-18 08:12+0000\n"
+"PO-Revision-Date: 2019-09-18 08:12+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
+
+#. module: product_custom_label_anz
+#: model:ir.model.fields,field_description:product_custom_label_anz.field_product_label_pricelist_baseincrement
+msgid "% añadido al precio base: "
+msgstr "% añadido al precio base: "
 
 #. module: product_custom_label_anz
 #: model:ir.ui.view,arch_db:product_custom_label_anz.report_label_anz
@@ -34,6 +39,11 @@ msgstr "<span class=\"font_size_8 font_fam\">PVP</span>"
 #: model:ir.ui.view,arch_db:product_custom_label_anz.report_label_anz
 msgid "<span class=\"font_size_8 font_fam\">Talla</span>"
 msgstr "<span class=\"font_size_8 font_fam\">Talla</span>"
+
+#. module: product_custom_label_anz
+#: model:ir.model.fields,field_description:product_custom_label_anz.field_product_label_pricelist_taxes
+msgid "Add taxes"
+msgstr "Añadir impuestos"
 
 #. module: product_custom_label_anz
 #: model:ir.model.fields,field_description:product_custom_label_anz.field_product_label_pricelist_altura
@@ -61,19 +71,22 @@ msgid "Cancel"
 msgstr "Cancelar"
 
 #. module: product_custom_label_anz
+#: model:ir.model.fields,field_description:product_custom_label_anz.field_product_label_pricelist_create_uid
 #: model:ir.model.fields,field_description:product_custom_label_anz.field_product_product_label_create_uid
 msgid "Created by"
 msgstr "Creado por"
 
 #. module: product_custom_label_anz
+#: model:ir.model.fields,field_description:product_custom_label_anz.field_product_label_pricelist_create_date
 #: model:ir.model.fields,field_description:product_custom_label_anz.field_product_product_label_create_date
 msgid "Created on"
 msgstr "Creado en"
 
 #. module: product_custom_label_anz
+#: model:ir.model.fields,field_description:product_custom_label_anz.field_product_label_pricelist_display_name
 #: model:ir.model.fields,field_description:product_custom_label_anz.field_product_product_label_display_name
 msgid "Display Name"
-msgstr "Nombre mostrado"
+msgstr "Nombre a mostrar"
 
 #. module: product_custom_label_anz
 #: model:ir.actions.report,name:product_custom_label_anz.action_print_label_docs_pricelist
@@ -91,6 +104,7 @@ msgid "Height T"
 msgstr "Altura total"
 
 #. module: product_custom_label_anz
+#: model:ir.model.fields,field_description:product_custom_label_anz.field_product_label_pricelist_id
 #: model:ir.model.fields,field_description:product_custom_label_anz.field_product_product_label_id
 msgid "ID"
 msgstr "ID (identificación)"
@@ -112,16 +126,19 @@ msgid "Labels with pricelist"
 msgstr "Etiquetas con precios de tarifa"
 
 #. module: product_custom_label_anz
+#: model:ir.model.fields,field_description:product_custom_label_anz.field_product_label_pricelist___last_update
 #: model:ir.model.fields,field_description:product_custom_label_anz.field_product_product_label___last_update
 msgid "Last Modified on"
 msgstr "Última modificación en"
 
 #. module: product_custom_label_anz
+#: model:ir.model.fields,field_description:product_custom_label_anz.field_product_label_pricelist_write_uid
 #: model:ir.model.fields,field_description:product_custom_label_anz.field_product_product_label_write_uid
 msgid "Last Updated by"
 msgstr "Última actualización de"
 
 #. module: product_custom_label_anz
+#: model:ir.model.fields,field_description:product_custom_label_anz.field_product_label_pricelist_write_date
 #: model:ir.model.fields,field_description:product_custom_label_anz.field_product_product_label_write_date
 msgid "Last Updated on"
 msgstr "Última actualización en"
@@ -147,6 +164,11 @@ msgid "Price List"
 msgstr "Lista de precios"
 
 #. module: product_custom_label_anz
+#: model:ir.ui.view,name:product_custom_label_anz.view_product_tag_price_list
+msgid "Price per unit"
+msgstr "Precio por unidad"
+
+#. module: product_custom_label_anz
 #: model:ir.ui.view,arch_db:product_custom_label_anz.view_product_tag_price_list
 msgid "Print"
 msgstr "Imprimir"
@@ -162,7 +184,21 @@ msgid "Rows"
 msgstr "Filas"
 
 #. module: product_custom_label_anz
+#: model:ir.model.fields,field_description:product_custom_label_anz.field_product_label_pricelist_price_list
+msgid "Tarifa"
+msgstr "Tarifa"
+
+#. module: product_custom_label_anz
 #: model:ir.model,name:product_custom_label_anz.model_product_product_label
 msgid "product.product.label"
 msgstr "product.product.label"
 
+#. module: product_custom_label_anz
+#: model:ir.ui.view,name:product_custom_label_anz.report_docs_label_anz
+msgid "report_docs_label_anz"
+msgstr "report_docs_label_anz"
+
+#. module: product_custom_label_anz
+#: model:ir.ui.view,name:product_custom_label_anz.report_label_anz
+msgid "report_label_anz"
+msgstr "report_label_anz"

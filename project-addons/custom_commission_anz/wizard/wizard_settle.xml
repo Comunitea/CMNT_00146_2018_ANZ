@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<odoo>
+
+    <record id="view_settled_wizard_add_name" model="ir.ui.view">
+        <field name="model">sale.commission.make.settle</field>
+        <field name="inherit_id" ref="sale_commission.view_settled_wizard"/>
+        <field name="arch" type="xml">
+            <field name="date_to" position="after">
+                <field name="name"/>
+            </field>
+        </field>
+    </record>
+
+</odoo>
