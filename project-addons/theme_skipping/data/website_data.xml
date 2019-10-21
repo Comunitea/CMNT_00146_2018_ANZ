@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="website_base_multi_anz.skipping_website" model="website">
+        <field name="multi_theme_id" ref="theme_skipping.theme_skipping_multi"/>
+    </record>
+
+</odoo>

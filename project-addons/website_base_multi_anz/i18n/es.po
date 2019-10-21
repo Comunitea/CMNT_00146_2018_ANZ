@@ -255,8 +255,8 @@ msgstr "Modo de disponibilidad predeterminado"
 
 #. module: website_base_multi_anz
 #: model:ir.ui.view,name:website_base_multi_anz.default_contact_form
-msgid "Default Contact Form Anzamar"
-msgstr "Default Contact Form Anzamar"
+msgid "Default Contact Form Base"
+msgstr "Default Contact Form Base"
 
 #. module: website_base_multi_anz
 #: model:ir.ui.view,name:website_base_multi_anz.default_file_forms

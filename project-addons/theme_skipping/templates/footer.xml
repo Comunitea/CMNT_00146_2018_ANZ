@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <template id="ski_website_footer_default" name="Automatic Footer skipping" inherit_id="website_multi_theme.auto_view_ski_website_footer_default">
+
+        <!-- Put footer on checkout again -->
+        <xpath expr="//div[@id='footer']" position="attributes">
+            <attribute name="t-if"></attribute>
+        </xpath>
+
+        <xpath expr="//div[@id='footer']//div[hasclass('row')]" position="replace">
+            <div class="row">
+                <div class="col-md-4">
+                    <section id="who_section" class="oe_structure">
+                        <h4>Who we are</h4>
+                        <ul class="list-unstyled">
+                            <li><a href="/page/anzamar_group#group_section" alt="Anzamar Group Link" title="Anzamar Group" rel="nofollow">Anzamar group</a></li>
+                            <li><a href="/page/anzamar_group#presence_section" alt="Presence Link" title="Presence" rel="nofollow">National presence</a></li>
+                        </ul>
+                        <h4>Press</h4>
+                        <ul class="list-unstyled">
+                            <li><a href="/blog">Blog</a></li>
+                        </ul>
+                        <h4>Follow us</h4>
+                        <ul class="list-unstyled">
+                            <li><a href="/page/newsletter" alt="Blog Link" title="Blog" rel="nofollow">Newsletter</a></li>
+                            <li><a href="https://es.linkedin.com/company/grupo-anzamar" target="_blank" alt="LinkedIn Link" title="LinkedIn" rel="nofollow">LinkedIn</a></li>
+                        </ul>
+                    </section>
+                </div>
+                <div class="col-md-4">
+                    <section id="brand_section" class="oe_structure">
+
+                        <h4>Group brands</h4>
+                        <ul class="list-unstyled">
+                            <li><a href="/page/brands/umbro" alt="Umbro Brand Page" title="Umbro Brand Page" rel="nofollow">Umbro</a></li>
+                            <li><a href="/page/brands/point-sport" alt="Point Sport Brand Page" title="Point Sport Brand Page" rel="nofollow">Point Sport</a></li>
+                            <li><a href="/page/brands/blacklaces" alt="Black Laces Brand Page" title="Black Laces Brand Page" rel="nofollow">Black Laces</a></li>
+                            <li><a href="/page/brands/goalkers" alt="Goalkers Brand Page" title="Goalkers Brand Page" rel="nofollow">Goalkers</a></li>
+                            <li><a href="/page/brands/feel-point" alt="Feel Point Brand Page" title="Feel Point Brand Page" rel="nofollow">Feel Point</a></li>
+                            <li><a href="/page/brands/skipping" alt="Skipping Brand Page" title="Skipping Brand Page" rel="nofollow">Skipping</a></li>
+                        </ul>
+                    </section>
+                </div>
+                <div class="col-md-4">
+                    <div class="clearfix"/>
+                    <section id="contact_section" class="oe_structure">
+                        <h4><a href="/contactus" alt="Contact" title="Contact" rel="nofollow">Contact</a></h4>
+                        <ul class="list-unstyled">
+                            <li>Anzamar group</li>
+                            <li>
+                                <i class="fa fa-map-marker"/>
+                                <a href="https://goo.gl/maps/Hm78jxSEG5B2" target="_blank" alt="Company Link" title="Company" rel="nofollow">
+                                    <t t-esc="res_company.street"/>,
+                                    <t t-esc="res_company.zip"/>,
+                                    <t t-esc="res_company.city"/>
+                                </a>
+                            </li>
+                            <li><i class="fa fa-phone"/><a t-field="res_company.phone" t-att-href="'tel:%s' %res_company.phone"/></li>
+                            <li><i class="fa fa-envelope"/><a t-field="res_company.email" t-att-href="'mailto:%s' %res_company.email"/></li>
+                        </ul>
+                        <h4><a href="/page/page_work_with_us" alt="Work with Us Link" title="Work with Us" rel="nofollow">Work with us</a></h4>
+                    </section>
+                </div>
+            </div>
+        </xpath>
+    </template>
+
+</odoo>

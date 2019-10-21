@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <template id="ski_contact_us_content_template" name="Contact Form Skipping">
+        <t t-call="website.layout">
+            <div id="wrap">
+                <div class="container">
+                    <section class="oe_structure oe_empty"/>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h1 class="text-center">Contact us</h1>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-8">
+                            <section id="contact_section" class="mt32 oe_structure">
+                                <p>Contact us for anything related to our company or services.</p>
+                                <p>We will do our best to respond to you as soon as possible.</p>
+                            </section>
+                            <t t-call="website_base_multi_anz.default_contact_form"/>
+                        </div>
+                        <div class="col-md-4">
+                            <section id="canal_section" class="mt32 oe_structure">
+                                <p>Do you have any questions? You can contact us through the following channels:</p>
+                            </section>
+                            <h4 class="mt16"><strong>Email</strong></h4>
+                            <p>
+                                <i class="fa fa-envelope"/>
+                                <a t-field="website.email" t-att-href="'mailto:%s' % website.email"/>
+                            </p>
+                            <h4 class="mt16"><strong>Phone</strong></h4>
+                            <p>
+                                <i class="fa fa-phone"/>
+                                <a t-field="res_company.phone" t-att-href="'tel:%s' %res_company.phone"/>
+                                <br/>
+                                <i class="fa fa-phone"/>
+                                <a href="tel:691413453">691 41 34 53</a>
+                            </p>
+                            <h4 class="mt16" t-if="website.social_facebook or website.social_twitter or website.social_linkedin or website.social_youtube or website.social_instagram or website.social_github">
+                                <strong>Social networks</strong>
+                            </h4>
+                            <h3 t-if="website.social_facebook or website.social_twitter or website.social_linkedin or website.social_youtube or website.social_instagram or website.social_github">
+                                <t t-if="website.social_facebook"><i class="fa fa-facebook-square"/> <a t-att-href="website.social_facebook" rel="nofollow" target="_blank"/></t>
+                                <t t-if="website.social_twitter"><i class="fa fa-twitter"/> <a t-att-href="website.social_twitter" t-if="website.social_twitter" rel="nofollow" target="_blank"/></t>
+                                <t t-if="website.social_linkedin"><i class="fa fa-linkedin"/> <a t-att-href="website.social_linkedin" t-if="website.social_linkedin" rel="nofollow" target="_blank"/></t>
+                                <t t-if="website.social_youtube"><i class="fa fa-youtube-play"/> <a t-att-href="website.social_youtube" t-if="website.social_youtube" rel="nofollow" target="_blank"/></t>
+                                <t t-if="website.social_instagram"><i class="fa fa-instagram"/> <a t-att-href="website.social_instagram" t-if="website.social_instagram" rel="nofollow" target="_blank"/></t>
+                                <t t-if="website.social_github"><i class="fa fa-github"/> <a t-att-href="website.social_github" t-if="website.social_github" rel="nofollow" target="_blank"/></t>
+                            </h3>
+                            <section id="hour_section" class="oe_structure">
+                                <h4 class="mt16"><strong>Customer service</strong></h4>
+                                <p>
+                                    Monday to Friday from 8 a.m. to 3 p.m.
+                                    <br/>
+                                    Monday and Wednesday from 5:00 p.m. to 7:30 p.m.
+                                </p>
+                            </section>
+                            <h4><strong>Location</strong></h4>
+                            <p class="mt16">
+                                <t t-set="group_anz" t-value="request.env['res.company'].search([('name', 'ilike', 'Anzamar')])"/>
+                                <i class="fa fa-map-marker"/>
+                                <a href="https://goo.gl/maps/Hm78jxSEG5B2" target="_blank" alt="Company Link" title="Company" rel="nofollow">
+                                    <t t-esc="group_anz.street"/>,
+                                    <t t-esc="group_anz.zip"/>,
+                                    <t t-esc="group_anz.city"/>
+                                </a>
+                            </p>
+                        </div>
+                    </div>
+                    <section class="oe_structure oe_empty"/>
+                </div>
+            </div>
+        </t>
+    </template>
+</odoo>
