@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-10-09 08:13+0000\n"
-"PO-Revision-Date: 2019-10-09 08:13+0000\n"
+"POT-Creation-Date: 2019-10-16 14:18+0000\n"
+"PO-Revision-Date: 2019-10-16 14:18+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -126,6 +126,7 @@ msgstr "Contacto"
 
 #. module: custom_commission_anz
 #: code:addons/custom_commission_anz/wizard/wizard_settle copy.py:123
+#: code:addons/custom_commission_anz/wizard/wizard_settle.py:79
 #, python-format
 msgid "Created Settlements"
 msgstr "Liquidaciones creadas"
@@ -148,6 +149,11 @@ msgstr "Creado en"
 #: model:ir.model.fields,field_description:custom_commission_anz.field_agent_brand_partner_id
 msgid "Customer"
 msgstr "Cliente"
+
+#. module: custom_commission_anz
+#: model:ir.model.fields,field_description:custom_commission_anz.field_sale_commission_analysis_report_date_due
+msgid "Date Due"
+msgstr "Fecha vencimiento"
 
 #. module: custom_commission_anz
 #: model:ir.model.fields,field_description:custom_commission_anz.field_agent_brand_display_name
@@ -179,10 +185,20 @@ msgid "ID"
 msgstr "ID (identificación)"
 
 #. module: custom_commission_anz
+#: model:ir.model.fields,help:custom_commission_anz.field_account_invoice_line_agent_date_due
+msgid "If you use payment terms, the due date will be computed automatically at the generation of accounting entries. The Payment terms may compute several due dates, for example 50% now and 50% in one month, but if you want to force a due date, make sure that the payment term is not set on the invoice. If you keep the Payment terms and the due date empty, it means direct payment."
+msgstr "Si usa plazos de pago, la fecha de vencimiento se calculará automáticamente con la generación de los asientos contables. El plazo de pago puede calcular varias fechas de vencimiento, por ejemplo 50% ahora y 50% en un mes, pero si quiere forzar una fecha de vencimiento, asegúrese que el plazo de pago no se establece en la factura. Si deja vacío el plazo de pago y la fecha de vencimiento, significa pago directo."
+
+#. module: custom_commission_anz
 #: model:ir.model,name:custom_commission_anz.model_account_invoice
 #: model:ir.ui.view,arch_db:custom_commission_anz.report_settlement
 msgid "Invoice"
 msgstr "Factura"
+
+#. module: custom_commission_anz
+#: model:ir.ui.view,arch_db:custom_commission_anz.view_sale_commission_analysis_search_add_date_due
+msgid "Invoice Due Month"
+msgstr "Mes vencimiento factura"
 
 #. module: custom_commission_anz
 #: model:ir.model,name:custom_commission_anz.model_account_invoice_line
@@ -190,9 +206,15 @@ msgid "Invoice Line"
 msgstr "Línea de factura"
 
 #. module: custom_commission_anz
+#: model:ir.model.fields,field_description:custom_commission_anz.field_account_invoice_line_agent_date_due
 #: model:ir.ui.view,arch_db:custom_commission_anz.report_settlement
 msgid "Invoice date"
 msgstr "Fecha de factura"
+
+#. module: custom_commission_anz
+#: model:ir.model.fields,field_description:custom_commission_anz.field_sale_commission_settlement_invoice_count
+msgid "Invoices"
+msgstr "Facturas"
 
 #. module: custom_commission_anz
 #: model:ir.ui.view,arch_db:custom_commission_anz.view_recompute_commission_wzd_form
@@ -269,6 +291,11 @@ msgid "Reinvoice commercial"
 msgstr "Comercial factura asociado"
 
 #. module: custom_commission_anz
+#: model:ir.model,name:custom_commission_anz.model_sale_commission_analysis_report
+msgid "Sale Commission Analysis Report"
+msgstr "Informe de análisis de comisiones"
+
+#. module: custom_commission_anz
 #: model:ir.model,name:custom_commission_anz.model_sale_order_line
 msgid "Sales Order Line"
 msgstr "Línea de pedido de venta"
@@ -285,7 +312,7 @@ msgstr "Líneas de liquidación"
 
 #. module: custom_commission_anz
 #: model:ir.ui.view,arch_db:custom_commission_anz.view_commission_by_brand_search
-msgid "Settlement lines search"
+msgid "Settlement  search"
 msgstr "Búsqueda de líneas de liquidación"
 
 #. module: custom_commission_anz
@@ -321,6 +348,11 @@ msgid "Specific rules by brand"
 msgstr "Reglas específicas por marca"
 
 #. module: custom_commission_anz
+#: model:ir.ui.view,arch_db:custom_commission_anz.view_sale_commission_analysis_search_add_date_due
+msgid "This Year by due date"
+msgstr "Año vencimiento"
+
+#. module: custom_commission_anz
 #: model:ir.ui.view,arch_db:custom_commission_anz.view_settlement_form_custom
 msgid "Validate"
 msgstr "Validar"
@@ -341,6 +373,11 @@ msgstr "Asistente para liquidar comisiones en facturas"
 #, python-format
 msgid "You can not define same, agent, brand and from discount rule"
 msgstr "No puedes definir el mismo agente, marca y desde descuento que uno ya existente"
+
+#. module: custom_commission_anz
+#: model:ir.model,name:custom_commission_anz.model_account_invoice_line_agent
+msgid "account.invoice.line.agent"
+msgstr "account.invoice.line.agent"
 
 #. module: custom_commission_anz
 #: model:ir.ui.view,name:custom_commission_anz.account_invoice_form_reinvoice_commercial
@@ -381,6 +418,16 @@ msgstr "reinvoice.wzd"
 #: model:ir.ui.view,name:custom_commission_anz.report_settlement
 msgid "report_settlement"
 msgstr "report_settlement"
+
+#. module: custom_commission_anz
+#: model:ir.ui.view,name:custom_commission_anz.view_sale_commission_analysis_pivot_add_date_due
+msgid "sale.commission.analysis.pivot"
+msgstr "sale.commission.analysis.pivot"
+
+#. module: custom_commission_anz
+#: model:ir.ui.view,name:custom_commission_anz.view_sale_commission_analysis_search_add_date_due
+msgid "sale.commission.analysis.search"
+msgstr "sale.commission.analysis.search"
 
 #. module: custom_commission_anz
 #: model:ir.ui.view,name:custom_commission_anz.view_settled_wizard_add_name

@@ -19,7 +19,7 @@
         </record>
 
         <act_window id="action_recompute_commission_wzd"
-                    multi="True"
+                    multi="False"
                     key2="client_action_multi"
                     name="Recompute Agents Commisions"
                     src_model="account.invoice"

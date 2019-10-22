@@ -14,6 +14,16 @@ class SaleOrder(models.Model):
         super(SaleOrder, self).onchange_partner_id()
         self.update({'user_id': self.env.uid})
 
+    @api.multi
+    def write(self, vals):
+        """
+        Recalcular comisiones cuando se cambia el comercial
+        """
+        res = super().write(vals)
+        if 'user_id' in vals:
+            self.recompute_lines_agents()
+        return res
+
 
 class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"
@@ -50,5 +60,6 @@ class SaleOrderLine(models.Model):
                         line.discount != vals['discount']:
                     self2 += line
         res = super().write(vals)
-        self2.recompute_agents()
+        if self2:
+            self2.recompute_agents()
         return res
