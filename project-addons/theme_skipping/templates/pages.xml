@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <!-- ======================================= Page Open Your Shop ======================================= -->
+
+    <!--Template Open Your Shop-->
+    <!--    <template id="page_open_shop" name="Open Shop Anzamar Template">-->
+    <!--        <t t-call="website.layout">-->
+    <!--            <div id="wrap">-->
+    <!--                <div class="container"/>-->
+    <!--            </div>-->
+    <!--        </t>-->
+    <!--    </template>-->
+
+    <!--Page Open Your Shop-->
+    <record id="id_page_open_shop" model="website.page">
+        <field name="name">Open Your Shop</field>
+        <field name="website_published">True</field>
+        <field name="website_ids" eval="[(6, 0, [ref('website_base_multi_anz.skipping_website')])]"/>
+        <field name="url">/page/open_shop</field>
+        <field name="view_id" ref="ski_open_shop_content_template"/>
+    </record>
+
+    <!-- ======================================= Page Anzamar Group ======================================= -->
+
+    <!--Anzamar Group Templates-->
+    <!--    <template id="page_anzamar_group" name="Group Anzamar Template">-->
+    <!--        <t t-call="website.layout">-->
+    <!--            <div id="wrap">-->
+    <!--                <div class="container"/>-->
+    <!--            </div>-->
+    <!--        </t>-->
+    <!--    </template>-->
+
+    <!--Anzamar Group Pages -->
+    <record id="id_page_anzamar_group" model="website.page">
+        <field name="name">Anzamar Group</field>
+        <field name="website_ids" eval="[(6, 0, [ref('website_base_multi_anz.skipping_website')])]"/>
+        <field name="website_published">True</field>
+        <field name="url">/page/anzamar_group</field>
+        <field name="view_id" ref="ski_anzamar_group_content_template"/>
+    </record>
+
+    <!-- ======================================= Page Anzamar Brands ======================================= -->
+
+    <!--Anzamar Brands Templates -->
+    <!--    <template id="page_brand_umbro" name="Brand Umbro Anzamar Template">-->
+    <!--        <t t-call="website.layout">-->
+    <!--            <div id="wrap">-->
+    <!--                <div class="container"/>-->
+    <!--            </div>-->
+    <!--        </t>-->
+    <!--    </template>-->
+
+    <!--    <template id="page_brand_point_sport" name="Brand Point Anzamar Template">-->
+    <!--        <t t-call="website.layout">-->
+    <!--            <div id="wrap">-->
+    <!--                <div class="container"/>-->
+    <!--            </div>-->
+    <!--        </t>-->
+    <!--    </template>-->
+
+    <!--    <template id="page_brand_black_laces" name="Brand Black Anzamar Template">-->
+    <!--        <t t-call="website.layout">-->
+    <!--            <div id="wrap">-->
+    <!--                <div class="container"/>-->
+    <!--            </div>-->
+    <!--        </t>-->
+    <!--    </template>-->
+
+    <!--    <template id="page_brand_goalkers" name="Brand Goal Anzamar Template">-->
+    <!--        <t t-call="website.layout">-->
+    <!--            <div id="wrap">-->
+    <!--                <div class="container"/>-->
+    <!--            </div>-->
+    <!--        </t>-->
+    <!--    </template>-->
+
+    <!--    <template id="page_brand_feel_point" name="Brand Feel Anzamar Template">-->
+    <!--        <t t-call="website.layout">-->
+    <!--            <div id="wrap">-->
+    <!--                <div class="container"/>-->
+    <!--            </div>-->
+    <!--        </t>-->
+    <!--    </template>-->
+
+    <!--    <template id="page_brand_skipping" name="Brand Skip Anzamar Template">-->
+    <!--        <t t-call="website.layout">-->
+    <!--            <div id="wrap">-->
+    <!--                <div class="container"/>-->
+    <!--            </div>-->
+    <!--        </t>-->
+    <!--    </template>-->
+
+    <!--Anzamar Brands Pages -->
+    <record id="id_page_brand_umbro" model="website.page">
+        <field name="name">Umbro</field>
+        <field name="website_published">True</field>
+        <field name="website_ids" eval="[(6, 0, [ref('website_base_multi_anz.skipping_website')])]"/>
+        <field name="url">/page/brands/umbro</field>
+        <field name="view_id" ref="ski_brand_umbro_content_template"/>
+    </record>
+
+    <record id="id_page_brand_point_sport" model="website.page">
+        <field name="name">Point Sport</field>
+        <field name="website_published">True</field>
+        <field name="website_ids" eval="[(6, 0, [ref('website_base_multi_anz.skipping_website')])]"/>
+        <field name="url">/page/brands/point-sport</field>
+        <field name="view_id" ref="ski_brand_point_sport_content_template"/>
+    </record>
+
+    <record id="id_page_brand_black_laces" model="website.page">
+        <field name="name">Black Laces</field>
+        <field name="website_published">True</field>
+        <field name="website_ids" eval="[(6, 0, [ref('website_base_multi_anz.skipping_website')])]"/>
+        <field name="url">/page/brands/blacklaces</field>
+        <field name="view_id" ref="ski_brand_black_laces_content_template"/>
+    </record>
+
+    <record id="id_page_brand_goalkers" model="website.page">
+        <field name="name">Goalkers</field>
+        <field name="website_published">True</field>
+        <field name="website_ids" eval="[(6, 0, [ref('website_base_multi_anz.skipping_website')])]"/>
+        <field name="url">/page/brands/goalkers</field>
+        <field name="view_id" ref="ski_brand_goalkers_content_template"/>
+    </record>
+
+    <record id="id_page_brand_feel_point" model="website.page">
+        <field name="name">Feel Point</field>
+        <field name="website_published">True</field>
+        <field name="website_ids" eval="[(6, 0, [ref('website_base_multi_anz.skipping_website')])]"/>
+        <field name="url">/page/brands/feel-point</field>
+        <field name="view_id" ref="ski_brand_feel_point_content_template"/>
+    </record>
+
+    <record id="id_page_brand_skipping" model="website.page">
+        <field name="name">Skipping</field>
+        <field name="website_published">True</field>
+        <field name="website_ids" eval="[(6, 0, [ref('website_base_multi_anz.skipping_website')])]"/>
+        <field name="url">/page/brands/skipping</field>
+        <field name="view_id" ref="ski_brand_skipping_content_template"/>
+    </record>
+
+    <!-- ======================================= Page Work with Us ======================================= -->
+
+    <!--A Work with Us Template-->
+    <!--    <template id="page_work_with_us" name="Work With Us Anzamar Template">-->
+    <!--        <t t-call="website.layout">-->
+    <!--            <div id="wrap">-->
+    <!--                <div class="container"/>-->
+    <!--            </div>-->
+    <!--        </t>-->
+    <!--    </template>-->
+
+    <!-- Work with Us Page -->
+    <record id="id_page_work_with_us" model="website.page">
+        <field name="name">Work with Us</field>
+        <field name="website_ids" eval="[(6, 0, [ref('website_base_multi_anz.skipping_website')])]"/>
+        <field name="website_published">True</field>
+        <field name="url">/page/page_work_with_us</field>
+        <field name="view_id" ref="ski_work_with_us_content_template"/>
+    </record>
+
+    <!-- ======================================= Legal ======================================= -->
+
+    <record id="website_legal_page.advise_page" model="website.page">
+        <field name="name">Legal Advise</field>
+        <field name="website_published">True</field>
+        <field name="website_ids" eval="[(6, 0, [ref('website_base_multi_anz.skipping_website')])]"/>
+        <field name="url">/legal/advice</field>
+        <field name="view_id" ref="ski_advise_page_tmp"/>
+    </record>
+
+    <record id="website_legal_page.privacy_page" model="website.page">
+        <field name="name">Privacy Policy and Cookies</field>
+        <field name="website_published">True</field>
+        <field name="website_ids" eval="[(6, 0, [ref('website_base_multi_anz.skipping_website')])]"/>
+        <field name="url">/legal/privacy-policy</field>
+        <field name="view_id" ref="ski_privacy_page_tmp"/>
+    </record>
+
+    <record id="website_legal_page.terms_page" model="website.page">
+        <field name="name">Terms of Use</field>
+        <field name="website_published">True</field>
+        <field name="website_ids" eval="[(6, 0, [ref('website_base_multi_anz.skipping_website')])]"/>
+        <field name="url">/legal/terms-of-use</field>
+        <field name="view_id" ref="ski_terms_page_tmp"/>
+    </record>
+
+    <!-- ======================================= Contact Us ======================================= -->
+    <record id="website.contactus_page" model="website.page">
+        <field name="name">Contact Us</field>
+        <field name="website_published">True</field>
+        <field name="website_ids" eval="[(6, 0, [ref('website_base_multi_anz.skipping_website')])]"/>
+        <field name="url">/contactus</field>
+        <field name="view_id" ref="ski_contact_us_content_template"/>
+    </record>
+
+    <!-- ======================================= Newsletter ======================================= -->
+    <record id="ski_page_newsletter" model="website.page">
+        <field name="name">Newsletter</field>
+        <field name="website_ids" eval="[(6, 0, [ref('website_base_multi_anz.skipping_website')])]"/>
+        <field name="website_published">True</field>
+        <field name="url">/page/newsletter</field>
+        <field name="view_id" ref="ski_follow_us_base_fub_newsletter_page_template"/>
+    </record>
+
+</odoo>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <template id="ski_follow_us_base_fub_newsletter_page_template" name="Newsletter Skipping" inherit_id="follow_us_base.fub_newsletter_page_template"/>
+
+</odoo>

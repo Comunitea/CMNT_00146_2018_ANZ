@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <template id="ski_brand_skipping_content_template" name="Brand Skipping Skipping">
+        <t t-call="website.layout">
+            <div id="wrap">
+                <t t-call="theme_skipping.carousel_homepage"/>
+                <div class="container">
+                    <section class="oe_structure oe_empty"/>
+                    <section id="brand_section" class="mt32 oe_structure">
+                        <div class="row mt32 mb32">
+                            <div class="col-md-12">
+                                <h1>Umbro</h1>
+                                <h2>Specialists in you</h2>
+                            </div>
+                            <div class="col-md-6">
+                                <h3>About us?</h3>
+                                <p>Our 90 years of history are a source of constant inspiration, but the goal is always the future. In 2017, Umbro has created the equipment of some of the best football teams in the world, a great collection of professional boots, cutting-edge sports equipment and elegant streetwear inspired by the greatness of this sport</p>
+                                <p>Dress with pride, play with passion</p>
+                                <p>Wherever the mythical double diamond <strong><em>sneakers or boots, shirts or kits</em></strong> appear, it will always be a guarantee of quality and authenticity. Each and every one of the items that sport the Umbro logo have been designed by people who know and love the sport.</p>
+                                <p>The visionary Harold Humphreys wanted to give a touch of sartorial style to sportswear to cover with style the practical needs of the contemporary athlete. From the Speciali boots <strong><em>the lightweight revolution that continues to be a key piece in the dressing rooms around the world</em></strong>, from the pitch to the training track, Umbro remains true to that ideal.</p>
+                                <p>The most memorable parties have one thing in common: <a href="https://umbro.es/" target="_blank" alt="Link to www.umbro.es" title="Umbro Website" rel="nofollow">Umbro</a>.</p>
+                            </div>
+                            <div class="col-md-6 text-center">
+                                <p>
+                                    <a href="https://umbro.es/" target="_blank" alt="Link to www.umbro.es" title="Umbro Website" rel="nofollow">
+                                        <img class="img-responsive" src="/theme_skipping/static/img/umbro/umbro_logo.jpg" alt="Logo Umbro"/>
+                                    </a>
+                                </p>
+                            </div>
+                            <div class="col-md-12">
+                                <h3>Know Us</h3>
+                                <p>You can visit the official Umbro store at this link: <a href="https://umbro.es/" target="_blank" alt="Link to www.umbro.es" title="Umbro website" rel="nofollow">Umbro</a></p>
+                            </div>
+                        </div>
+                    </section>
+                    <section class="oe_structure oe_empty"/>
+                </div>
+            </div>
+        </t>
+    </template>
+
+</odoo>

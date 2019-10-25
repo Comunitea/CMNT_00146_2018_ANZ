@@ -4,13 +4,13 @@
     <!-- ======================================= Page Work with Us ======================================= -->
 
     <!-- A Work with Us Template -->
-    <template id="poi_page_work_with_us" name="Page Work with Us Point Template">
-        <t t-call="website.layout">
-            <div id="wrap">
-                <div class="container"/>
-            </div>
-        </t>
-    </template>
+<!--    <template id="poi_page_work_with_us" name="Page Work with Us Point Template">-->
+<!--        <t t-call="website.layout">-->
+<!--            <div id="wrap">-->
+<!--                <div class="container"/>-->
+<!--            </div>-->
+<!--        </t>-->
+<!--    </template>-->
 
     <!-- Work with Us Page -->
     <record id="poi_id_page_work_with_us" model="website.page">
@@ -18,13 +18,13 @@
         <field name="website_ids" eval="[(6, 0, [ref('website_base_multi_anz.point_sport_website')])]"/>
         <field name="website_published">True</field>
         <field name="url">/page/page_work_with_us</field>
-        <field name="view_id" ref="poi_page_work_with_us"/>
+        <field name="view_id" ref="poi_work_with_us_content_template"/>
     </record>
 
     <!-- ======================================= Page Newsletter ======================================= -->
 
     <!--Newsletter Template-->
-    <template id="poi_page_newsletter" name="Newsletter Point Template" inherit_id="follow_us_base.fub_newsletter_page_template"/>
+<!--    <template id="poi_page_newsletter" name="Newsletter Point Template" inherit_id="follow_us_base.fub_newsletter_page_template"/>-->
 
     <!-- Newsletter Page -->
     <record id="poi_id_page_newsletter" model="website.page">
@@ -32,19 +32,19 @@
         <field name="website_ids" eval="[(6, 0, [ref('website_base_multi_anz.point_sport_website')])]"/>
         <field name="website_published">True</field>
         <field name="url">/page/newsletter</field>
-        <field name="view_id" ref="poi_page_newsletter"/>
+        <field name="view_id" ref="poi_follow_us_base_fub_newsletter_page_template"/>
     </record>
 
     <!-- ======================================= Page About us ======================================= -->
 
     <!-- About us Template -->
-    <template id="poi_template_about_us" name="About Us Point Template">
-        <t t-call="website.layout">
-            <div id="wrap">
-                <div class="container"/>
-            </div>
-        </t>
-    </template>
+<!--    <template id="poi_template_about_us" name="About Us Point Template">-->
+<!--        <t t-call="website.layout">-->
+<!--            <div id="wrap">-->
+<!--                <div class="container"/>-->
+<!--            </div>-->
+<!--        </t>-->
+<!--    </template>-->
 
     <!-- About us Page -->
     <record id="poi_page_about_us" model="website.page">
@@ -52,29 +52,19 @@
         <field name="website_ids" eval="[(6, 0, [ref('website_base_multi_anz.point_sport_website')])]"/>
         <field name="website_published">True</field>
         <field name="url">/page/about-us</field>
-        <field name="view_id" ref="poi_template_about_us"/>
-    </record>
-
-    <!-- About us Page -->
-    <record id="poi_menu_about_us" model="website.menu">
-        <field name="name">About Us</field>
-        <field name="url">/page/about-us</field>
-        <field name="parent_id" ref="point_sport_main_menu"/>
-        <field name="sequence" type="int">35</field>
-        <field name="website_id" ref="website_base_multi_anz.point_sport_website"/>
-        <field name="website_published">False</field>
+        <field name="view_id" ref="poi_about_us_content_template"/>
     </record>
 
     <!-- ======================================= Page Our shops ======================================= -->
 
     <!-- Our shop Template -->
-    <template id="poi_template_our_shops" name="Our Shops Point Template">
-        <t t-call="website.layout">
-            <div id="wrap">
-                <div class="container"/>
-            </div>
-        </t>
-    </template>
+<!--    <template id="poi_template_our_shops" name="Our Shops Point Template">-->
+<!--        <t t-call="website.layout">-->
+<!--            <div id="wrap">-->
+<!--                <div class="container"/>-->
+<!--            </div>-->
+<!--        </t>-->
+<!--    </template>-->
 
     <!-- Our shop Page -->
     <record id="poi_page_our_shops" model="website.page">
@@ -82,39 +72,17 @@
         <field name="website_ids" eval="[(6, 0, [ref('website_base_multi_anz.point_sport_website')])]"/>
         <field name="website_published">True</field>
         <field name="url">/page/our-shops</field>
-        <field name="view_id" ref="poi_template_our_shops"/>
+        <field name="view_id" ref="poi_our_shops_content_template"/>
     </record>
-
-    <!-- Our shop Page -->
-
-    <record id="poi_menu_our_shops_parent" model="website.menu">
-        <field name="name">Shops</field>
-        <field name="parent_id" ref="point_sport_main_menu"/>
-        <field name="sequence" type="int">30</field>
-        <field name="website_id" ref="website_base_multi_anz.point_sport_website"/>
-        <field name="website_published">True</field>
-    </record>
-
-    <record id="poi_menu_our_shops" model="website.menu">
-        <field name="name">Shops</field>
-        <field name="url">/page/our-shops</field>
-        <field name="parent_id" ref="poi_menu_our_shops_parent"/>
-        <field name="sequence" type="int">20</field>
-        <field name="website_id" ref="website_base_multi_anz.point_sport_website"/>
-<!--        <field name="not_portal">False</field>-->
-        <field name="website_published">True</field>
-    </record>
-
-    <!-- ======================================= Page Open Your Shop ======================================= -->
 
     <!--Template Open Your Shop -->
-    <template id="poi_template_open_shop" name="Open Your Shop Point Template">
-        <t t-call="website.layout">
-            <div id="wrap">
-                <div class="container"/>
-            </div>
-        </t>
-    </template>
+<!--    <template id="poi_template_open_shop" name="Open Your Shop Point Template">-->
+<!--        <t t-call="website.layout">-->
+<!--            <div id="wrap">-->
+<!--                <div class="container"/>-->
+<!--            </div>-->
+<!--        </t>-->
+<!--    </template>-->
 
     <!-- Page Open Your Shop-->
     <record id="poi_page_open_shop" model="website.page">
@@ -122,56 +90,19 @@
         <field name="website_published">True</field>
         <field name="website_ids" eval="[(6, 0, [ref('website_base_multi_anz.point_sport_website')])]"/>
         <field name="url">/page/open_shop</field>
-        <field name="view_id" ref="poi_template_open_shop"/>
-    </record>
-
-    <!-- Open Shop Menu -->
-    <record id="poi_open_shop_menu" model="website.menu">
-        <field name="name">Open Your Shop</field>
-        <field name="url">/page/open_shop</field>
-        <field name="page_id" ref="poi_page_open_shop"/>
-        <field name="parent_id" ref="point_sport_main_menu"/>
-        <field name="sequence" type="int">25</field>
-        <field name="website_id" ref="website_base_multi_anz.point_sport_website"/>
-        <field name="website_published">False</field>
-    </record>
-
-    <!-- Open Shop Submenu -->
-    <record id="poi_open_shop_submenu_open" model="website.menu">
-        <field name="name">Open Your Shop</field>
-        <field name="url">/page/open_shop</field>
-        <field name="parent_id" ref="poi_menu_our_shops_parent"/>
-        <field name="sequence" type="int">10</field>
-        <field name="website_id" ref="website_base_multi_anz.point_sport_website"/>
-        <field name="website_published">True</field>
-    </record>
-    <record id="poi_open_shop_submenu_steps" model="website.menu">
-        <field name="name">Open Your Shop Steps</field>
-        <field name="url">/page/open_shop#step_section</field>
-        <field name="parent_id" ref="poi_open_shop_menu"/>
-        <field name="sequence" type="int">20</field>
-        <field name="website_id" ref="website_base_multi_anz.point_sport_website"/>
-        <field name="website_published">False</field>
-    </record>
-    <record id="poi_open_shop_submenu_request" model="website.menu">
-        <field name="name">Open Request</field>
-        <field name="url">/page/open_shop#request_section</field>
-        <field name="parent_id" ref="poi_open_shop_menu"/>
-        <field name="sequence" type="int">30</field>
-        <field name="website_id" ref="website_base_multi_anz.point_sport_website"/>
-        <field name="website_published">False</field>
+        <field name="view_id" ref="poi_open_shop_content_template"/>
     </record>
 
     <!-- ======================================= Information pages ======================================= -->
 
     <!--Template Delivery-->
-    <template id="poi_template_delivery_and_payment" name="Delivery and Payment Point Template">
-        <t t-call="website.layout">
-            <div id="wrap">
-                <div class="container"/>
-            </div>
-        </t>
-    </template>
+<!--    <template id="poi_template_delivery_and_payment" name="Delivery and Payment Point Template">-->
+<!--        <t t-call="website.layout">-->
+<!--            <div id="wrap">-->
+<!--                <div class="container"/>-->
+<!--            </div>-->
+<!--        </t>-->
+<!--    </template>-->
 
     <!-- Page Delivery -->
     <record id="poi_page_delivery" model="website.page">
@@ -179,105 +110,95 @@
         <field name="website_published">True</field>
         <field name="website_ids" eval="[(6, 0, [ref('website_base_multi_anz.point_sport_website')])]"/>
         <field name="url">/page/delivery-and-payment</field>
-        <field name="view_id" ref="poi_template_delivery_and_payment"/>
+        <field name="view_id" ref="poi_delivery_and_payment_content_template"/>
     </record>
 
     <!-- ======================================= Contact us page ======================================= -->
 
-    <template id="poi_template_contactus" name="Contact Us Point Template">
-        <t t-call="website.layout">
-            <div id="wrap">
-                <div class="container"/>
-            </div>
-        </t>
-    </template>
+<!--    <template id="poi_template_contactus" name="Contact Us Point Template">-->
+<!--        <t t-call="website.layout">-->
+<!--            <div id="wrap">-->
+<!--                <div class="container"/>-->
+<!--            </div>-->
+<!--        </t>-->
+<!--    </template>-->
 
     <record id="poi_contactus_page" model="website.page">
         <field name="name">Contact us</field>
         <field name="website_published">True</field>
         <field name="website_ids" eval="[(6, 0, [ref('website_base_multi_anz.point_sport_website')])]"/>
         <field name="url">/contactus</field>
-        <field name="view_id" ref="poi_template_contactus"/>
+        <field name="view_id" ref="poi_contact_us_content_template"/>
     </record>
 
-    <record id="poi_contact_us_menu" model="website.menu">
-        <field name="name">Contact us</field>
-        <field name="url">/contactus</field>
-        <field name="page_id" ref="poi_contactus_page"/>
-        <field name="parent_id" ref="point_sport_main_menu"/>
-        <field name="sequence" type="int">50</field>
-        <field name="website_id" ref="website_base_multi_anz.point_sport_website"/>
-        <field name="website_published">True</field>
-    </record>
-
-    <template id="poi_template_contactus_thanks" name="Contact Us (Thanks) Point Template">
-        <t t-call="website.layout">
-            <div id="wrap">
-                <div class="container"/>
-            </div>
-        </t>
-    </template>
+<!--    <template id="poi_template_contactus_thanks" name="Contact Us (Thanks) Point Template">-->
+<!--        <t t-call="website.layout">-->
+<!--            <div id="wrap">-->
+<!--                <div class="container"/>-->
+<!--            </div>-->
+<!--        </t>-->
+<!--    </template>-->
 
     <record id="poi_contactus_thanks" model="website.page">
         <field name="name">Contactus (Thanks)</field>
         <field name="website_published">True</field>
         <field name="website_ids" eval="[(6, 0, [ref('website_base_multi_anz.point_sport_website')])]"/>
         <field name="url">/contactus-thank-you</field>
-        <field name="view_id" ref="poi_template_contactus_thanks"/>
+        <field name="view_id" ref="poi_contact_us_thanks_content_template"/>
     </record>
 
     <!-- ======================================= Shop menu ======================================= -->
 
-    <template id="poi_products_view" name="Brands Point Template" inherit_id="website_sale.products"/>
-    <record id="poi_shop_page" model="website.page">
-        <field name="name">Products</field>
-        <field name="website_published">True</field>
-        <field name="website_ids" eval="[(6, 0, [ref('website_base_multi_anz.point_sport_website')])]"/>
-        <field name="url">/shop</field>
-        <field name="view_id" ref="poi_products_view"/>
-    </record>
-    <record id="poi_shop_menu" model="website.menu">
-        <field name="name">Shop</field>
-        <field name="url">/shop</field>
-        <field name="parent_id" ref="point_sport_main_menu"/>
-        <field name="sequence" type="int">20</field>
-        <field name="website_id" ref="website_base_multi_anz.point_sport_website"/>
-        <field name="website_published">False</field>
-<!--        <field name="not_public">True</field>-->
-    </record>
+<!--    <template id="poi_products_view" name="Brands Point Template" inherit_id="website_sale.products"/>-->
+<!--    <record id="poi_shop_page" model="website.page">-->
+<!--        <field name="name">Products</field>-->
+<!--        <field name="website_published">True</field>-->
+<!--        <field name="website_ids" eval="[(6, 0, [ref('website_base_multi_anz.point_sport_website')])]"/>-->
+<!--        <field name="url">/shop</field>-->
+<!--        <field name="view_id" ref="theme_point_sport.poi_products_view"/>-->
+<!--    </record>-->
+<!--    <record id="poi_shop_menu" model="website.menu">-->
+<!--        <field name="name">Shop</field>-->
+<!--        <field name="url">/shop</field>-->
+<!--        <field name="parent_id" ref="theme_point_sport.point_sport_main_menu"/>-->
+<!--        <field name="sequence" type="int">20</field>-->
+<!--        <field name="website_id" ref="website_base_multi_anz.point_sport_website"/>-->
+<!--        <field name="user_logged">True</field>-->
+<!--         <field name="user_not_logged">True</field>-->
+<!--    </record>-->
 
     <!-- Product Brands -->
+<!--    <template id="poi_product_brands_view" name="Brands Point Template" inherit_id="website_sale_product_brand.product_brands"/>-->
 
-    <template id="poi_product_brands_view" name="Brands Point Template" inherit_id="website_sale_product_brand.product_brands"/>
+<!--    <record id="poi_product_brands" model="website.page">-->
+<!--        <field name="name">Brands</field>-->
+<!--        <field name="website_published">True</field>-->
+<!--        <field name="website_ids" eval="[(6, 0, [ref('website_base_multi_anz.point_sport_website')])]"/>-->
+<!--        <field name="url">/page/product_brands</field>-->
+<!--        <field name="view_id" ref="theme_point_sport.poi_product_brands_view"/>-->
+<!--    </record>-->
 
-    <record id="poi_product_brands" model="website.page">
-        <field name="name">Brands</field>
-        <field name="website_published">True</field>
-        <field name="website_ids" eval="[(6, 0, [ref('website_base_multi_anz.point_sport_website')])]"/>
-        <field name="url">/page/product_brands</field>
-        <field name="view_id" ref="poi_product_brands_view"/>
-    </record>
-    <record id="poi_product_brands_menu" model="website.menu">
-        <field name="name">Brands</field>
-        <field name="url">/page/product_brands</field>
-        <field name="page_id" ref="poi_product_brands"/>
-        <field name="parent_id" ref="point_sport_main_menu" />
-        <field name="sequence" type="int">22</field>
-        <field name="website_id" ref="website_base_multi_anz.point_sport_website"/>
-        <field name="website_published">False</field>
-<!--        <field name="not_public">True</field>-->
-    </record>
+<!--    <record id="poi_product_brands_menu" model="website.menu">-->
+<!--        <field name="name">Brands</field>-->
+<!--        <field name="url">/page/product_brands</field>-->
+<!--&lt;!&ndash;        <field name="page_id" ref="theme_point_sport.poi_product_brands"/>&ndash;&gt;-->
+<!--        <field name="parent_id" ref="theme_point_sport.point_sport_main_menu" />-->
+<!--        <field name="sequence" type="int">30</field>-->
+<!--        <field name="website_id" ref="website_base_multi_anz.point_sport_website"/>-->
+<!--        <field name="user_logged">True</field>-->
+<!--        <field name="user_not_logged">True</field>-->
+<!--    </record>-->
 
     <!-- ======================================= Group menu ======================================= -->
 
     <!-- Our shop Template -->
-    <template id="poi_template_our_group" name="Our Shop Point Template" >
-        <t t-call="website.layout">
-            <div id="wrap">
-                <div class="container"/>
-            </div>
-        </t>
-    </template>
+<!--    <template id="poi_template_our_group" name="Our Shop Point Template" >-->
+<!--        <t t-call="website.layout">-->
+<!--            <div id="wrap">-->
+<!--                <div class="container"/>-->
+<!--            </div>-->
+<!--        </t>-->
+<!--    </template>-->
 
     <!-- Our shop Page -->
     <record id="poi_page_our_group" model="website.page">
@@ -285,31 +206,33 @@
         <field name="website_ids" eval="[(6, 0, [ref('website_base_multi_anz.point_sport_website')])]"/>
         <field name="website_published">True</field>
         <field name="url">/page/our-group</field>
-        <field name="view_id" ref="poi_template_our_group"/>
+        <field name="view_id" ref="poi_template_our_group_content_template"/>
     </record>
 
-    <!-- Our shop Page -->
-    <record id="poi_menu_our_group" model="website.menu">
-        <field name="name">Group</field>
-        <field name="url">/page/our-group</field>
-        <field name="parent_id" ref="point_sport_main_menu"/>
-        <field name="sequence" type="int">30</field>
-        <field name="website_id" ref="website_base_multi_anz.point_sport_website"/>
-<!--        <field name="not_public">True</field>-->
-        <field name="website_published">False</field>
-    </record>
+    <!-- ======================================= Legal ======================================= -->
 
-    <!-- ======================================= Shop categories menu ======================================= -->
+    <record id="poi_advise_page" model="website.page">
+            <field name="name">Legal Advise</field>
+            <field name="website_published">True</field>
+            <field name="website_ids" eval="[(6, 0, [ref('website_base_multi_anz.point_sport_website')])]"/>
+            <field name="url">/legal/advice</field>
+            <field name="view_id" ref="poi_advise_page_tmp"/>
+        </record>
 
-    <!-- Our shop Page -->
-    <record id="poi_menu_category_1" model="website.menu">
-        <field name="name">Novedades</field>
-        <field name="url">/category/novedades</field>
-        <field name="parent_id" ref="point_sport_main_menu"/>
-        <field name="sequence" type="int">21</field>
-        <field name="website_id" ref="website_base_multi_anz.point_sport_website"/>
-<!--        <field name="not_public">True</field>-->
-        <field name="website_published">True</field>
-    </record>
+        <record id="poi_privacy_page" model="website.page">
+            <field name="name">Privacy policy</field>
+            <field name="website_published">True</field>
+            <field name="website_ids" eval="[(6, 0, [ref('website_base_multi_anz.point_sport_website')])]"/>
+            <field name="url">/legal/privacy-policy</field>
+            <field name="view_id" ref="poi_privacy_page_tmp"/>
+        </record>
+
+        <record id="poi_terms_page" model="website.page">
+            <field name="name">Terms of Use</field>
+            <field name="website_published">True</field>
+            <field name="website_ids" eval="[(6, 0, [ref('website_base_multi_anz.point_sport_website')])]"/>
+            <field name="url">/legal/terms-of-use</field>
+            <field name="view_id" ref="poi_terms_page_tmp"/>
+        </record>
 
 </odoo>

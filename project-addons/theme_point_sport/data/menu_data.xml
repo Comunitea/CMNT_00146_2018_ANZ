@@ -1,29 +1,29 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-    <data noupdate="1">
+    <data>
 
         <!--Main menu-->
         <record id="point_sport_main_menu" model="website.menu">
-            <field name="name">Main Menu</field>
+            <field name="name">Point Main Menu</field>
             <field name="website_id" ref="website_base_multi_anz.point_sport_website"/>
-            <field name="website_published">True</field>
         </record>
 
         <!--Home Menu-->
         <record id="point_sport_menu_homepage" model="website.menu">
-            <field name="name">Home</field>
+            <field name="name">Home Point</field>
             <field name="url">/</field>
             <field name="parent_id" ref="point_sport_main_menu"/>
             <field name="sequence" type="int">10</field>
             <field name="website_id" ref="website_base_multi_anz.point_sport_website"/>
-            <field name="website_published">False</field>
+            <field name="user_logged">False</field>
+            <field name="user_not_logged">False</field>
         </record>
 
         <!-- split between ir_ui_view & website_page record to keep external_id on ir_ui_view -->
         <record id="point_sport_homepage" model="ir.ui.view">
             <field name="name">Home</field>
             <field name="type">qweb</field>
-            <field name="key">website.homepage</field>
+            <field name="key">theme_point_sport.homepage</field>
             <field name="arch" type="xml">
                 <t name="Home" priority="29" t-name="point_sport_homepage">
                     <t t-call="theme_point_sport.poi_home_content"/>
@@ -38,15 +38,152 @@
             <field name="website_ids" eval="[(6, 0, [ref('website_base_multi_anz.point_sport_website')])]"/>
         </record>
 
+        <!-- Shop -->
+        <record id="poi_shop_menu" model="website.menu">
+            <field name="name">Shop</field>
+            <field name="url">/shop</field>
+            <field name="parent_id" ref="theme_point_sport.point_sport_main_menu"/>
+            <field name="sequence" type="int">20</field>
+            <field name="website_id" ref="website_base_multi_anz.point_sport_website"/>
+            <field name="user_logged">True</field>
+            <field name="user_not_logged">True</field>
+        </record>
+
+        <!-- Novedades -->
+        <record id="poi_menu_category_1" model="website.menu">
+            <field name="name">Novedades</field>
+            <field name="url">/category/novedades</field>
+            <field name="parent_id" ref="theme_point_sport.point_sport_main_menu"/>
+            <field name="sequence" type="int">21</field>
+            <field name="website_id" ref="website_base_multi_anz.point_sport_website"/>
+            <field name="user_logged">True</field>
+            <field name="user_not_logged">False</field>
+        </record>
+
+        <!-- Ofertas -->
+        <record id="poi_menu_category_2" model="website.menu">
+            <field name="name">Ofertas</field>
+            <field name="url">/category/ofertas</field>
+            <field name="parent_id" ref="theme_point_sport.point_sport_main_menu"/>
+            <field name="sequence" type="int">22</field>
+            <field name="website_id" ref="website_base_multi_anz.point_sport_website"/>
+            <field name="user_logged">True</field>
+            <field name="user_not_logged">False</field>
+        </record>
+
+        <!-- Product Brands -->
+        <record id="poi_product_brands_menu" model="website.menu">
+            <field name="name">Brands</field>
+            <field name="url">/page/product_brands</field>
+            <field name="parent_id" ref="theme_point_sport.point_sport_main_menu" />
+            <field name="sequence" type="int">30</field>
+            <field name="website_id" ref="website_base_multi_anz.point_sport_website"/>
+            <field name="user_logged">True</field>
+            <field name="user_not_logged">True</field>
+        </record>
+
+        <!-- Shops -->
+        <record id="poi_menu_our_shops_parent" model="website.menu">
+            <field name="name">Shops</field>
+            <field name="parent_id" ref="theme_point_sport.point_sport_main_menu"/>
+            <field name="sequence" type="int">40</field>
+            <field name="website_id" ref="website_base_multi_anz.point_sport_website"/>
+            <field name="user_logged">True</field>
+            <field name="user_not_logged">True</field>
+        </record>
+
+        <record id="poi_menu_our_shops" model="website.menu">
+            <field name="name">Shops</field>
+            <field name="url">/page/our-shops</field>
+            <field name="parent_id" ref="theme_point_sport.poi_menu_our_shops_parent"/>
+            <field name="sequence" type="int">41</field>
+            <field name="website_id" ref="website_base_multi_anz.point_sport_website"/>
+            <field name="user_logged">True</field>
+            <field name="user_not_logged">True</field>
+        </record>
+        <record id="poi_open_shop_submenu_open" model="website.menu">
+            <field name="name">Open Your Shop</field>
+            <field name="url">/page/open_shop#open_section</field>
+            <field name="parent_id" ref="theme_point_sport.poi_menu_our_shops_parent"/>
+            <field name="sequence" type="int">42</field>
+            <field name="website_id" ref="website_base_multi_anz.point_sport_website"/>
+            <field name="user_logged">True</field>
+            <field name="user_not_logged">True</field>
+        </record>
+        <record id="poi_open_shop_submenu_steps" model="website.menu">
+            <field name="name">Open Your Shop Steps</field>
+            <field name="url">/page/open_shop#step_section</field>
+            <field name="parent_id" ref="theme_point_sport.poi_menu_our_shops_parent"/>
+            <field name="sequence" type="int">43</field>
+            <field name="website_id" ref="website_base_multi_anz.point_sport_website"/>
+            <field name="user_logged">True</field>
+            <field name="user_not_logged">True</field>
+        </record>
+        <record id="poi_open_shop_submenu_request" model="website.menu">
+            <field name="name">Open Request</field>
+            <field name="url">/page/open_shop#request_section</field>
+            <field name="parent_id" ref="theme_point_sport.poi_menu_our_shops_parent"/>
+            <field name="sequence" type="int">44</field>
+            <field name="website_id" ref="website_base_multi_anz.point_sport_website"/>
+            <field name="user_logged">True</field>
+            <field name="user_not_logged">True</field>
+        </record>
+
+        <!-- Our shop Page -->
+        <record id="poi_menu_our_group" model="website.menu">
+            <field name="name">Anzamar Group</field>
+            <field name="url">/page/our-group</field>
+            <field name="parent_id" ref="theme_point_sport.point_sport_main_menu"/>
+            <field name="sequence" type="int">50</field>
+            <field name="website_id" ref="website_base_multi_anz.point_sport_website"/>
+            <field name="user_logged">False</field>
+            <field name="user_not_logged">True</field>
+        </record>
+
+        <!--Blog Menu-->
+        <record id="menu_news" model="website.menu">
+            <field name="name">Blog</field>
+            <!--<field name="url" eval="'/blog/'+str(ref('website_blog.blog_blog_1'))"/>-->
+            <field name="url">/blog</field>
+            <field name="parent_id" ref="theme_point_sport.point_sport_main_menu"/>
+            <field name="sequence" type="int">60</field>
+            <field name="website_id" ref="website_base_multi_anz.point_sport_website"/>
+            <field name="user_logged">True</field>
+            <field name="user_not_logged">False</field>
+        </record>
+
         <!-- Dynamic menu of product categories-->
         <record id="point_sport_categories_menu" model="website.menu">
             <field name="name">Categories</field>
             <field name="url">#</field>
             <field name="parent_id" ref="point_sport_main_menu"/>
-            <field name="sequence" type="int">23</field>
+            <field name="sequence" type="int">100</field>
             <field name="website_id" ref="website_base_multi_anz.point_sport_website"/>
-            <field name="website_published">False</field>
             <field name="dynamic_cat_menu">True</field>
+            <field name="user_logged">False</field>
+            <field name="user_not_logged">False</field>
+        </record>
+
+        <!-- About us Page -->
+        <record id="poi_menu_about_us" model="website.menu">
+            <field name="name">About Us</field>
+            <field name="url">/page/about-us</field>
+            <field name="parent_id" ref="theme_point_sport.point_sport_main_menu"/>
+            <field name="sequence" type="int">110</field>
+            <field name="website_id" ref="website_base_multi_anz.point_sport_website"/>
+            <field name="user_logged">False</field>
+            <field name="user_not_logged">False</field>
+        </record>
+
+        <record id="poi_contact_us_menu" model="website.menu">
+            <field name="name">Contact us</field>
+            <field name="url">/contactus</field>
+            <!--        <field name="page_id" ref="theme_point_sport.poi_contactus_page"/>-->
+            <field name="parent_id" ref="theme_point_sport.point_sport_main_menu"/>
+            <field name="sequence" type="int">120</field>
+            <field name="website_id" ref="website_base_multi_anz.point_sport_website"/>
+            <field name="user_logged">False</field>
+            <field name="user_not_logged">False</field>
         </record>
 
     </data>

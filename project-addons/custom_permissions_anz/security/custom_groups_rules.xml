@@ -18,18 +18,7 @@
 
     <!-- Esta regla asociada al grupo de empleado me impide que ae apique la regla restrictiva de abajo, ya que se aplican con un OR, la hago global quitándole el grupo -->
     <delete id="base.res_partner_rule_private_employee" model="ir.rule"/>
-    <record id="base.res_partner_rule_private_employee" model="ir.rule">
-            <field name="name">res.partner.rule.private.employee</field>
-            <field name="model_id" ref="base.model_res_partner"/>
-            <field name="domain_force">
-                ['|', ('type', '!=', 'private'), ('type', '=', False)]
-            </field>
-            <field name="groups" eval="False"/>
-            <field name="perm_read" eval="True"/>
-            <field name="perm_write" eval="False"/>
-            <field name="perm_create" eval="False"/>
-            <field name="perm_unlink" eval="False"/>
-    </record>
+    <delete id="base.res_partner_rule_private_group" model="ir.rule"/>
 
     <!-- Ver solo clientes para los que coincide el comercial -->
     <record id="anz_salesman_own_partners" model="ir.rule">

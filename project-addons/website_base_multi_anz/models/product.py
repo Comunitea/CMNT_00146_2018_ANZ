@@ -132,3 +132,8 @@ class ProductProduct(models.Model):
             max_qty = max(0, max_qty - self.product_tmpl_id.available_threshold)
         return max_qty
 
+    def delete_all_variable_images(self):
+        variables_with_images = self.search([('image_variant', '!=', False)])
+        variables_with_images.update({
+            'image_variant': False,
+        })
