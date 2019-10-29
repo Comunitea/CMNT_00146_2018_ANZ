@@ -6,15 +6,15 @@ session.open(db='anzamar')
 pa = session.env['product.attribute']
 pav = session.env['product.attribute.value']
 
-APPAREL_ADULTO = pa.create({'name': '**APPAREL ADULTO'})
-APPAREL_JUNIOR = pa.create({'name': '**APPAREL JUNIOR'})
-APPAREL_BEBE = pa.create({'name': '**APPAREL BEBE'})
-SOCKS = pa.create({'name': '**SOCKS'})
-HARDWARE = pa.create({'name': '**HARDWARE'})
-FOOTWEAR_INFANT = pa.create({'name': '**FOOTWEAR_INFANT'})
-FOOTWEAR_KIDS = pa.create({'name': '**FOOTWEAR_KIDS'})
-FOOTWEAR_JUNIOR = pa.create({'name': '**FOOTWEAR_JUNIOR'})
-FOOTWEAR_ADULT = pa.create({'name': '**FOOTWEAR_ADULT'})
+APPAREL_ADULTO = pa.create({'name': 'APPAREL ADULTO', 'type': 'select'})
+APPAREL_JUNIOR = pa.create({'name': 'APPAREL JUNIOR', 'type': 'select'})
+APPAREL_BEBE = pa.create({'name': 'APPAREL BEBE', 'type': 'select'})
+SOCKS = pa.create({'name': 'SOCKS', 'type': 'select'})
+HARDWARE = pa.create({'name': 'HARDWARE', 'type': 'select'})
+FOOTWEAR_INFANT = pa.create({'name': 'FOOTWEAR_INFANT', 'type': 'select'})
+FOOTWEAR_KIDS = pa.create({'name': 'FOOTWEAR_KIDS', 'type': 'select'})
+FOOTWEAR_JUNIOR = pa.create({'name': 'FOOTWEAR_JUNIOR', 'type': 'select'})
+FOOTWEAR_ADULT = pa.create({'name': 'FOOTWEAR_ADULT', 'type': 'select'})
 
 UNKNOW = pa.create({'name': '**UNKNOW'})
 
@@ -65,7 +65,7 @@ MAPINGS = {
     # 'Color':
     # 'Color de fornituras':
     'cuc': UNKNOW,  # TODO, REVISAR, NO DEBERÍA HABER NINGUNA
-    # '**EDAD**':
+    # 'EDAD':
     'Equipment': HARDWARE,
     'ESCUDO': HARDWARE,
     'ESPINILLERAS CABALLERO': HARDWARE,  
@@ -74,7 +74,7 @@ MAPINGS = {
     'Footwear': FOOTWEAR_JUNIOR,
     'FOOTWEAR': 'select',
     'FOOTWEAR ': FOOTWEAR_ADULT,
-    # '**GENERO**':
+    # 'GENERO':
     'GORRAS ADIDAS': HARDWARE,
     'GUANTES': HARDWARE,
     'GUANTES DE FUTBOL': HARDWARE,
@@ -114,7 +114,7 @@ MAPINGS = {
     'TEXTIL NK SEÑORA': APPAREL_ADULTO,
     'TEXTIL PUMA JR': APPAREL_JUNIOR,
     # 'Tipo de bota':
-    # '**TIPO PRODUCTO**':
+    # 'TIPO PRODUCTO':
 }
 
 
@@ -215,31 +215,6 @@ def change_att_lines(att, map_att):
     session.cr.execute(query_att_line)
     return res
 
-
-# # -- Elimino valores de estos atributos que no se usan
-# del_values = """delete from product_attribute_value where id in 
-#     (select id from product_attribute_value where attribute_id in
-#     (select id from product_attribute
-#     where id not in (select distinct(attribute_id) from product_attribute_line) and is_tboot is not true and is_color is not true));
-# """
-# session.cr.execute(del_values)
-
-# -- Elimino valores de estos atributos que no se usan
-# del_values2 = """delete from product_attribute_value
-#     where id not in (select distinct(product_attribute_value_id)
-#                      from
-# 		              product_attribute_value_product_product_rel);
-# """
-# session.cr.execute(del_values2)
-
-         
-# # -- ELIMINO Atributos que no se usan en las plantillas ni son color ni tipo bota
-# del_atts = """
-# delete from product_attribute
-# where id not in (select distinct(attribute_id) from product_attribute_line) and is_tboot is not true and is_color is not true;
-# """
-# session.cr.execute(del_atts)
-
 domain = []
 attributes = pa.search(domain)
 
@@ -277,22 +252,6 @@ change_att_lines(att, map_att)
 if to_review:
     print("REVIEW:--------------------------------------------")
     print(to_review.ids)
-
-# print("Borrando valores viejos...")
-# del_values = """delete from product_attribute_value where attribute_id in
-# (select distinct(id) from product_attribute where new_att_id is not null);"""
-# session.cr.execute(del_values)
-
-
-# print("Borrando atributos viejos...")
-# del_attrs = """delete from product_attribute where new_att_id is not null and id not in
-# (select distinct(pal.attribute_id) from product_attribute_line pal
-#  inner join product_attribute pa on pa.id = pal.attribute_id 
-# where pa.new_att_id is null
-# );"""
-# session.cr.execute(del_attrs)
-
-
 
 session.cr.commit()
 print("******************* DONE ****************************")

@@ -10,11 +10,11 @@ session.open(db='anzamar')
 templates = session.env['product.template'].search([])
 
 product_age_id = session.env['product.attribute'].\
-    search([('name', '=', '**EDAD**')]).id
+    search([('name', '=', 'EDAD')]).id
 product_gender_id = session.env['product.attribute'].\
-    search([('name', '=', '**GENERO**')]).id
+    search([('name', '=', 'GENERO')]).id
 product_type_id = session.env['product.attribute'].\
-    search([('name', '=', '**TIPO PRODUCTO**')]).id
+    search([('name', '=', 'TIPO PRODUCTO')]).id
 
 num_total = len(templates)
 idx = 0

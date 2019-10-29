@@ -5,7 +5,7 @@ session.open(db='anzamar')
 
 # Creo atributo género:
 vals = {
-    'name': '**GENERO**',
+    'name': 'GENERO',
     'product_brand_id': 194,
     'product_type_id': 61,
     'create_variant': False,
@@ -29,7 +29,7 @@ for val in genero_tags_vals:
 
 # Creo atributo tipo producto:
 vals = {
-    'name': '**TIPO PRODUCTO**',
+    'name': 'TIPO PRODUCTO',
     'product_brand_id': 194,
     'product_type_id': 61,
     'create_variant': False,
@@ -51,7 +51,7 @@ for tipo in tipo_tags_vals:
 
 # Creo atributo tipo edad:
 vals = {
-    'name': '**EDAD**',
+    'name': 'EDAD',
     'product_brand_id': 194,
     'product_type_id': 61,
     'create_variant': False,
