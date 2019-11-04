@@ -75,6 +75,14 @@ msgid "Contact Us (Thanks)"
 msgstr "Contacto (Gracias)"
 
 #. module: theme_skipping
+#: model:ir.ui.view,arch_db:theme_skipping.ski_contactus_page_ir_ui_view
+#: model:ir.ui.view,arch_db:theme_skipping.ski_template_contactus
+#: model:website.page,arch_db:theme_skipping.ski_contact_us_content_template
+#: model:website.page,name:theme_skipping.ski_contact_us_content_template
+msgid "Contact us"
+msgstr "Contacto"
+
+#. module: theme_skipping
 #: model:ir.ui.view,arch_db:theme_skipping.ski_website_footer_default
 msgid "Feel Point Brand Page"
 msgstr "Grupo Anzamar - Marca Feel Point"
