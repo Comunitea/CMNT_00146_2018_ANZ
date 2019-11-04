@@ -9,11 +9,11 @@
                 <value eval="['note']"/>
             </function>
 
-<!--            &lt;!&ndash;Delete default website&ndash;&gt;-->
-<!--            <delete id="website.default_website" model="website"/>-->
+            <!--Delete default website-->
+            <delete id="website.default_website" model="website"/>
 
-<!--            &lt;!&ndash;Create Website Anzamar&ndash;&gt;-->
-<!--            <record id="anzamar_website" model="website">-->
+            <!-- Create Website Anzamar-->
+<!--            <record id="website.default_website" model="website">-->
 <!--                <field name="name">Anzamar</field>-->
 <!--                <field name="domain">anzamar</field>-->
 <!--                <field name="canonical_domain">http://anzamar</field>-->
@@ -26,7 +26,7 @@
 <!--                &lt;!&ndash;<field name="social_googleplus"></field>&ndash;&gt;-->
 <!--                &lt;!&ndash;<field name="social_linkedin"></field>&ndash;&gt;-->
 <!--                &lt;!&ndash;<field name="social_instagram"></field>&ndash;&gt;-->
-<!--                <field name="base_url">http://erp.anzamar</field>-->
+<!--                <field name="base_url">http://anzamar</field>-->
 <!--                <field name="email">info@anzamar.com</field>-->
 <!--            </record>-->
 

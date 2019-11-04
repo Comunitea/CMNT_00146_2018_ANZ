@@ -77,6 +77,7 @@
         'views/blog_blog.xml',
         'views/blog_post_view.xml',
         'security/ir.model.access.csv',
+        "security/account_security.xml",
     ],
     'images': [
         '/static/description/icon.png',
