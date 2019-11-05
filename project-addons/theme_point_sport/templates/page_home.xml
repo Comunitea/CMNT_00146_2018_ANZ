@@ -9,14 +9,14 @@
                 <li data-target="#carousel_point_sport_b2c" data-slide-to="2"/>
             </ol>
             <div class="carousel-inner" role="listbox">
+                <div class="item">
+                    <img class="img-responsive" src="/theme_point_sport/static/img/home/autumn2.jpg" alt="Autumn Collection"/>
+                </div>
                 <div class="item active">
                     <img class="img-responsive" src="/theme_point_sport/static/img/home/descubre_ultimas_novedades.png" alt="Last Novelties"/>
                 </div>
                 <div class="item">
-                    <img class="img-responsive" src="/theme_point_sport/static/img/home/encuentra_productos.png" alt="Find Products"/>
-                </div>
-                <div class="item">
-                    <img class="img-responsive" src="/theme_point_sport/static/img/home/primavera_verano.png" alt="Spring_Summer"/>
+                    <img class="img-responsive" src="/theme_point_sport/static/img/home/encuentra_productos.png" alt="Find Your Products"/>
                 </div>
             </div>
             <!-- Controls -->
@@ -40,13 +40,13 @@
             </ol>
             <div class="carousel-inner" role="listbox">
                 <div class="item active">
-                    <img class="img-responsive" src="/theme_point_sport/static/img/home/umbro_vueltacole.png" alt="Last Novelties"/>
+                    <img class="img-responsive" src="/theme_point_sport/static/img/home/mal_tiempo.jpg" alt="Ready for weather?"/>
                 </div>
                 <div class="item">
-                    <img class="img-responsive" src="/theme_point_sport/static/img/home/vuelta_al_cole.png" alt="Find Products"/>
+                    <img class="img-responsive" src="/theme_point_sport/static/img/home/urban_season.jpg" alt="Urban Season"/>
                 </div>
                 <div class="item">
-                    <img class="img-responsive" src="/theme_point_sport/static/img/home/web_ofertas.png" alt="Spring_Summer"/>
+                    <img class="img-responsive" src="/theme_point_sport/static/img/home/autumn2.jpg" alt="Autumn Collection"/>
                 </div>
             </div>
             <!-- Controls -->
