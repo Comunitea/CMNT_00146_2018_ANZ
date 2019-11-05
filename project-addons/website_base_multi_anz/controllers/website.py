@@ -39,50 +39,11 @@ class WebsiteSaleExtended(WebsiteSale):
                                      ('ref_template', 'ilike', srch),
                                      ('product_color', 'ilike', srch),
                                      ('product_variant_ids.attribute_value_ids', 'ilike', srch),
+                                     ('product_variant_ids.product_brand_id', 'ilike', srch),
                                      ('public_categ_ids.complete_name', 'ilike', srch),
-                                     ('public_categ_ids.public_categ_tag_ids', 'ilike', srch),
-                                     # ('product_variant_ids', 'ilike', srch),
-                                     ('product_variant_ids.product_brand_id', 'ilike', srch)]
+                                     ('public_categ_ids.public_categ_tag_ids', 'ilike', srch)]
                     domain_origin = expression.normalize_domain(domain_origin)
                     domain_origin = expression.OR([domain_origin, domain_search])
-
-        if filter_args:
-            brand = int(filter_args.get('brand', False))
-            context = dict(request.env.context)
-            if context.get('brand_id') == 0:
-                context.pop('brand_id')
-                domain_origin.remove([d for d in domain_origin if 'product_brand_id' in d][0])
-            if brand and brand != 0:
-                domain_origin.append(('product_brand_id', '=', brand))
-
-            tags = request.env['product.attribute.tag'].sudo()
-
-            gender = filter_args.get('gender', False)
-            if gender:
-                gender_domain = ['&', ('type', '=', 'gender'), ('value', '=', gender)]
-                if brand and brand != 0:
-                    gender_domain += [('product_brand_id', '=', brand)]
-                tag_gender = tags.search(gender_domain)
-                if tag_gender:
-                    attr_domain += [('product_gender_id', 'in', tag_gender.ids)]
-                    has_att_filter = True
-
-            age = filter_args.get('age', False)
-            if age:
-                tag_domain = ['&', ('type', '=', 'age'), ('value', '=', age)]
-                if brand and brand != 0:
-                    tag_domain += [('product_brand_id', '=', brand)]
-                tag_age = tags.search(tag_domain)
-                if tag_age:
-                    attr_domain += [('product_age_id', 'in', tag_age.ids)]
-                    has_att_filter = True
-
-            if has_att_filter:
-                product_attributes = request.env['product.attribute'].sudo().search(attr_domain)
-                product_attribute_lines = request.env['product.attribute.line'].sudo().search([
-                    ('attribute_id', 'in', product_attributes.ids)
-                ])
-                domain_origin += [('attribute_line_ids', 'in', product_attribute_lines.ids)]
 
         # Only can put on context products with stock > 0 or with stock = 0 but published
         # search and filters and all domain have to respect this. So that we need add this like an AND

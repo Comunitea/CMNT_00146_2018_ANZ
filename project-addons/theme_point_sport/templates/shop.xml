@@ -3,11 +3,12 @@
 
     <!-- Shop categories template -->
     <template id="website_sale_products_categories" name="eCommerce categories Point Sport" inherit_id="website_multi_theme.auto_view_poi_website_sale_products_categories">
-        <xpath expr="//div[@id='products_grid_before']/ul" position="replace">
-            <div class="navbar filters-navbar hidden-md hidden-sm hidden-lg">
-                <div class="navbar-header">
-                    <h4 class="mt16 text-uppercase">Filters and categories</h4>
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#wrap-collapse-filters">
+        <!-- Media menu collapsible -->
+        <xpath expr="//div[@id='products_grid_before']" position="before">
+            <div class="navbar filters-navbar hidden-md hidden-lg">
+                <div class="navbar-header ml16">
+                    <h4 class="mt16 text-uppercase"><strong>Filters and categories</strong></h4>
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#products_grid_before">
                         <span class="sr-only">Toggle navigation</span>
                         <span class="icon-bar"/>
                         <span class="icon-bar"/>
@@ -15,97 +16,28 @@
                     </button>
                 </div>
             </div>
-            <div class="collapse navbar-collapse" id="wrap-collapse-filters">
-                <h4 class="mt0 text-uppercase hidden-xs mb16">Product categories</h4>
-                <div id="products_grid_before">
-                    <ul class="nav nav-pills nav-stacked" id="o_shop_collapse_category">
-                        <li t-att-class="'active' if not (category or request.params.get('search')) else None">
-                            <a href="/shop" class="o_not_editable">All Products</a>
-                        </li>
-                        <t t-foreach="categories" t-as="categ">
-                            <t t-call="website_sale.option_collapse_categories_recursive"/>
-                        </t>
-                    </ul>
-                </div>
-                <div class="wp-attribute-filters mt32 mb32">
-                    <h4 class="mt0 text-uppercase hidden-xs">Filters</h4>
-                    <t t-set="current_filter" t-value="request.httprequest.args"/>
-                    <form id="product-attributes-filter" method="get">
-                        <div t-if="current_filter.get('search', False)">
-                            <h5>Search</h5>
-                            <select name="search" class="form-control">
-                                <t t-foreach="current_filter.get('search').split(' ') if len(current_filter.get('search')) > 1 else current_filter.get('search')" t-as="option">
-                                    <option t-att-value="option" t-att-selected="option" t-esc="option"/>
-                                </t>
-                                <option t-att-value="current_filter.get('search', False)" t-att-selected="current_filter.get('search', False)" t-esc="search"
-                                        t-if="len(current_filter.get('search').split(' ')) > 1"/>
-                            </select>
-                        </div>
-                        <div>
-                            <h5>Brand</h5>
-                            <select name="brand" class="form-control">
-                                <option value="0"/>
-                                <t t-foreach="website.product_brand_list()" t-as="option">
-                                    <option t-att-value="option.id" t-att-selected="option.id == int(current_filter.get('brand', False))" t-esc="option.name"/>
-                                </t>
-                            </select>
-                        </div>
-                        <!--<div>
-                            <h5>Product type</h5>
-                            <select name="type" class="form-control">
-                                <option value="0"/>
-                                <t t-foreach="request.env['product.attribute.tag'].sudo().search([('type', '=', 'type')], order='value').filtered(lambda x: x.lines_count != 0)" t-as="option">
-                                    <option t-att-value="option.id" t-att-selected="option.id == int(current_filter.get('type', False))" t-esc="option.value"/>
-                                </t>
-                            </select>
-                        </div>-->
-                        <div>
-                            <h5>Gender</h5>
-                            <select name="gender" class="form-control">
-                                <option value="0"/>
-                                <t t-foreach="website.product_gender_list()" t-as="option">
-                                    <option t-att-value="option" t-att-selected="option == current_filter.get('gender', False)" t-esc="option"/>
-                                </t>
-                            </select>
-                        </div>
-                        <div>
-                            <h5>Age</h5>
-                            <select name="age" class="form-control">
-                                <option value="0"/>
-                                <t t-foreach="website.product_age_list()" t-as="option">
-                                    <option t-att-value="option" t-att-selected="option == current_filter.get('age', False)" t-esc="option"/>
-                                </t>
-                            </select>
-                        </div>
-                        <!--<div t-if="category">
-                            <h4>Size</h4>
-                            <label>
-                                <input type="checkbox" name="size" value="xs"/>
-                                <span>XS</span>
-                            </label>
-                        </div>-->
-                        <div class="mt16 text-center">
-                            <button class="btn btn-primary">Apply filters</button>
-                            <a class="btn btn-default" t-att-href="request.httprequest.path">Reset</a>
-                        </div>
-                    </form>
-                </div>
-            </div>
+        </xpath>
+        <!-- Categories title -->
+        <xpath expr="//div[@id='products_grid_before']/ul" position="before">
+            <h4 class="mt0 mb16 hidden-xs hidden-sm text-uppercase"><strong>Product categories</strong></h4>
         </xpath>
     </template>
 
-    <!-- Shop Collapsible Categories template -->
-<!--    <template id="website_sale_option_collapse_products_categories" name="Collapsible Category List Point Sport" inherit_id="website_multi_theme.auto_view_poi_website_sale_option_collapse_products_categories">-->
-<!--        <xpath expr="//div[@id='products_grid_before']/ul" position="replace">-->
-<!--            <ul class="nav nav-pills nav-stacked" id="o_shop_collapse_category">-->
-<!--                <li t-att-class="'active' if not (category or request.params.get('search')) else None">-->
-<!--                    <a href="/shop" class="o_not_editable">All Products</a>-->
-<!--                </li>-->
-<!--                <t t-foreach="categories" t-as="categ">-->
-<!--                    <t t-call="website_sale.option_collapse_categories_recursive"/>-->
-<!--                </t>-->
-<!--            </ul>-->
-<!--        </xpath>-->
-<!--    </template>-->
+    <template id="website_sale_products_attributes" name="Product Attribute's Filters Point" inherit_id="website_multi_theme.auto_view_poi_website_sale_products_attributes">
+        <!-- Media menu collapsible -->
+        <xpath expr="//div[@id='products_grid_before']" position="attributes">
+            <attribute name="class">col-md-3 collapse navbar-collapse</attribute>
+        </xpath>
+        <!-- Attributes title -->
+        <xpath expr="//div[@id='products_grid_before']//form[hasclass('js_attributes')]/ul" position="before">
+            <div class="mt32" t-if="attributes and len(attributes) &gt; 1">
+                <h4 class="text-uppercase"><strong>Filters</strong></h4>
+            </div>
+        </xpath>
+        <!-- Attributes style -->
+        <xpath expr="//div[@id='products_grid_before']//form[@class='js_attributes']//ul//li//div" position="replace">
+            <h5 t-field="a.name" class="text-capitalize"/>
+        </xpath>
+    </template>
 
 </odoo>

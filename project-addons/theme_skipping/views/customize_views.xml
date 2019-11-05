@@ -58,9 +58,9 @@
     </record>
 
     <!-- Collapsible Category List -->
-<!--    <record id="website_multi_theme.auto_view_ski_website_sale_option_collapse_products_categories" model="ir.ui.view">-->
-<!--        <field name="active">True</field>-->
-<!--    </record>-->
+    <record id="website_multi_theme.auto_view_ski_website_sale_option_collapse_products_categories" model="ir.ui.view">
+        <field name="active">True</field>
+    </record>
 
     <!-- List View  -->
 <!--    <record id="website_multi_theme.auto_view_ski_website_sale_products_list_view" model="ir.ui.view">-->
@@ -68,9 +68,9 @@
 <!--    </record>-->
 
     <!-- Product Attribute's Filters -->
-<!--    <record id="website_multi_theme.auto_view_ski_website_sale_products_attributes" model="ir.ui.view">-->
-<!--        <field name="active">True</field>-->
-<!--    </record>-->
+    <record id="website_multi_theme.auto_view_ski_website_sale_products_attributes" model="ir.ui.view">
+        <field name="active">True</field>
+    </record>
 
     <!-- Show Sort by -->
     <record id="website_multi_theme.auto_view_ski_website_sale_sort" model="ir.ui.view">

@@ -414,8 +414,8 @@ msgstr "Productos"
 
 #. module: theme_point_sport
 #: model:ir.ui.view,arch_db:theme_point_sport.website_sale_products_categories
-msgid "Product categories"
-msgstr "Categorías de productos"
+msgid "<strong>Product categories</strong>"
+msgstr "<strong>Categorías de productos</strong>"
 
 #. module: theme_point_sport
 #: model:ir.ui.view,arch_db:theme_point_sport.website_sale_products_categories
@@ -424,8 +424,13 @@ msgstr "Filtrar"
 
 #. module: theme_point_sport
 #: model:ir.ui.view,arch_db:theme_point_sport.website_sale_products_categories
-msgid "Filters"
-msgstr "Filtros"
+msgid "<strong>Filters and categories</strong>"
+msgstr "<strong>Filtros y categorías</strong>"
+
+#. module: theme_point_sport
+#: model:ir.ui.view,arch_db:theme_point_sport.website_sale_products_attributes
+msgid "<strong>Filters</strong>"
+msgstr "<strong>Filtros</strong>"
 
 #. module: theme_point_sport
 #: model:ir.ui.view,arch_db:theme_point_sport.website_sale_products_categories
