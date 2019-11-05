@@ -31,7 +31,7 @@
         <!-- Attributes title -->
         <xpath expr="//div[@id='products_grid_before']//form[hasclass('js_attributes')]/ul" position="before">
             <div class="mt32" t-if="attributes and len(attributes) &gt; 1">
-                <h4 class="text-uppercase hidden-xs hidden-sm"><strong>Filters</strong></h4>
+                <h4 class="text-uppercase"><strong>Filters</strong></h4>
             </div>
         </xpath>
         <!-- Attributes style -->
