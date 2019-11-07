@@ -24,7 +24,8 @@ class ProductAttributeValue(models.Model):
                 self._context.get('default_product_tmpl_id'))
 
             # Solo si en el producto hay una línea de atributos
-            if len(tmp_obj.attribute_line_ids) == 1:
+            if len(tmp_obj.attribute_line_ids.filtered(
+                    lambda x: x.attribute_id.create_variant is True)) == 1:
                 p_ids = tmp_obj.product_variant_ids
                 res = []
                 qty_field = 'qty_available'
