@@ -2,7 +2,7 @@
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
 from odoo import fields, models, api, _
 from odoo.http import request
-
+from odoo.exceptions import ValidationError
 
 class ProductAttributeCategory(models.Model):
     _name = 'product.attribute.category'
@@ -31,6 +31,17 @@ class ProductAttributeTag(models.Model):
             tag.lines_count = len(lines)
 
 
+# class ProductAttributeLine(models.Model):
+
+#     _inherit = 'product.attribute.line'
+
+#     @api.constrains('atribute_id', 'value_ids')
+#     def _check_num_values(self):
+#         for line in self:
+#             if line.attribute_id.feature and len(line.value_ids) > 1:
+#                 raise ValidationError(_('Many values for feature attribute"'))
+
+
 class ProductAttribute(models.Model):
 
     _inherit = "product.attribute"
@@ -46,6 +57,7 @@ class ProductAttribute(models.Model):
     srch_name = fields.Char(store=True, string='Search Name',
                             compute="_get_srch_name")
     new_att_id = fields.Many2one('product.attribute', 'New Att')
+    feature = fields.Boolean("Product Feauture")
 
     # @api.multi
     # def name_get(self):

@@ -238,4 +238,3 @@ class ProductProduct(models.Model):
             i+=1
             print("Van {} de {}".format(i, len_p))
             create_xml_id(p.barcode, p.id, model)
-

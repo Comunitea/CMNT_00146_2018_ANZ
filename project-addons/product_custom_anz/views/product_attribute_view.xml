@@ -28,6 +28,7 @@
                 <field name="is_tboot"/>
                 <field name="is_color"/>
                 <field name="new_att_id"/>
+                <field name="feature"/>
             </field>
             <field name="value_ids" position="replace">
 
@@ -60,6 +61,7 @@
                 <field name="product_age_id" domain = "[('product_brand_id','=',product_brand_id), ('type','=','age')]"
                        context="{'default_type': 'age', 'default_product_brand_id': product_brand_id}"/> -->
                 <field name="new_att_id"/>
+                <field name="feature"/>
 
             </field>
             <field name="create_variant" position="after">
