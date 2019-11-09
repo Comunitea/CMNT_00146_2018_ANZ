@@ -38,7 +38,7 @@ for tmp in templates:
         continue
     att = tmp.attribute_line_ids.filtered(
         lambda r: r.attribute_id.create_variant and
-        r.attribute_id.featured is False)[0].attribute_id
+        r.attribute_id.feature is False)[0].attribute_id
 
     evals = ['product_brand_id']
 
