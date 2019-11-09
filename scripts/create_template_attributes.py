@@ -8,7 +8,8 @@ vals = {
     'name': 'GENERO',
     'product_brand_id': 194,
     'product_type_id': 61,
-    'create_variant': False,
+    'create_variant': True,
+    'feature': True,
     'type': 'select'
 }
 att_genero = session.env['product.attribute'].create(vals)
@@ -32,7 +33,8 @@ vals = {
     'name': 'TIPO PRODUCTO',
     'product_brand_id': 194,
     'product_type_id': 61,
-    'create_variant': False,
+    'create_variant': True,
+    'feature': True,
     'type': 'select'
 }
 att_tipo = session.env['product.attribute'].create(vals)
@@ -54,7 +56,8 @@ vals = {
     'name': 'EDAD',
     'product_brand_id': 194,
     'product_type_id': 61,
-    'create_variant': False,
+    'create_variant': True,
+    'feature': True,
     'type': 'select'
 }
 att_edad = session.env['product.attribute'].create(vals)

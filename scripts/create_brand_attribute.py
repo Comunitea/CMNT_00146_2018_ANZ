@@ -8,7 +8,8 @@ vals = {
     'name': 'MARCA',
     'product_brand_id': 194,
     'product_type_id': 61,
-    'create_variant': False,
+    'create_variant': True,
+    'feature': True,
     'type': 'select'
 }
 att_brand = session.env['product.attribute'].create(vals)
