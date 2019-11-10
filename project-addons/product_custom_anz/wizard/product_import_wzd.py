@@ -171,9 +171,10 @@ class ProductImportWzd(models.TransientModel):
         maps = {
             'type': 'TIPO PRODUCTO',
             'gender': 'GÉNERO',
-            'age': 'EDAD'
+            'age': 'EDAD',
+            'brand_id': 'MARCA',
         }
-        for key in ['type', 'gender', 'age']:
+        for key in ['type', 'gender', 'age', 'brand_id']:
             attr_name = maps.get(key, False)
             if not attr_name or not row_vals[key]:
                 continue
@@ -290,7 +291,6 @@ class ProductImportWzd(models.TransientModel):
     def import_products(self):
         self.ensure_one()
         _logger.info(_('STARTING PRODUCT IMPORTATION'))
-
         # get the first worksheet
         file = base64.b64decode(self.file)
         book = xlrd.open_workbook(file_contents=file)

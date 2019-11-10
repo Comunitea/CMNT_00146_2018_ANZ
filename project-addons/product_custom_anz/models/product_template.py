@@ -1,8 +1,8 @@
 # © 2016 Comunitea - Javier Colmenero <javier@comunitea.com>
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
-from odoo import api, fields, models
+from odoo import api, fields, models, _
 from odoo.addons import decimal_precision as dp
-from odoo.exceptions import ValidationError
+from odoo.exceptions import ValidationError, UserError
 
 class ProductTemplate(models.Model):
 
@@ -180,6 +180,61 @@ class ProductTemplate(models.Model):
             print("Van {} de {}".format(i, len_p))
             d_c = p.default_code or p.ref_template
             create_xml_id(d_c, p.id, model)
+
+    @api.multi
+    def set_brand_attribute(self, brand):
+        self.ensure_one()
+        att_brand = self.env['product.attribute'].search(
+            [('name', '=', 'MARCA')])
+        if not att_brand:
+            raise UserError(_('Attribute Brand not founded'))
+
+        domain = [
+                ('attribute_id', '=', att_brand.id),
+                ('name', '=', brand.name),
+            ]
+        value = self.env['product.attribute.value'].search(domain,
+                                                            limit=1)
+        if not value:
+            raise UserError(
+                _('Not value found for equivalent to brand %s') % brand.name)
+
+        brand_att_line = self.attribute_line_ids.filtered(
+            lambda l: l.attribute_id.id == att_brand.id
+        )
+
+        if brand_att_line:
+            brand_att_line = brand_att_line[0]
+            brand_att_line.value_ids.unlink()
+            brand_att_line.write({'value_ids': [(6, 0, [value.id])]})
+        else:
+            vals = {
+                'product_tmpl_id': self.id,
+                'attribute_id': att_brand.id,
+                'value_ids': [(6, 0, [value.id])],
+            }
+            att_lst_vals = [(0, 0, vals)]
+            self.write({'attribute_line_ids': att_lst_vals})
+
+    @api.model
+    def create(self, vals):
+        res = super().create(vals)
+        if vals.get('product_brand_id'):
+            brand = self.env['product.brand'].browse(vals['product_brand_id'])
+            res.set_brand_attribute(brand)
+        return res
+
+    @api.multi
+    def write(self, vals):
+        if vals.get('product_brand_id'):
+            brand = self.env['product.brand'].browse(vals['product_brand_id'])
+            for tmp in self:
+                if not tmp.product_brand_id or (tmp.product_brand_id and
+                                                tmp.product_brand_id.id !=
+                                                brand.id):
+                    tmp.set_brand_attribute(brand)
+        res = super().write(vals)
+        return res
 
 
 class ProductProduct(models.Model):
