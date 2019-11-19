@@ -10,7 +10,7 @@ class ShippingCustomCustomerAnz(models.AbstractModel):
     _name = 'report.stock.report_picking'
 
     def get_report_values(self, docids, data=None):
-        import ipdb; ipdb.set_trace()
+        #import ipdb; ipdb.set_trace()
         model = 'stock.picking'
         doc_id = self.env[model].browse(docids)
 
