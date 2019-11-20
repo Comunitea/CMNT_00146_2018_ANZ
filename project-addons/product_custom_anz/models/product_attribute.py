@@ -31,15 +31,16 @@ class ProductAttributeTag(models.Model):
             tag.lines_count = len(lines)
 
 
-# class ProductAttributeLine(models.Model):
+class ProductAttributeLine(models.Model):
 
-#     _inherit = 'product.attribute.line'
+    _inherit = 'product.attribute.line'
 
-#     @api.constrains('atribute_id', 'value_ids')
-#     def _check_num_values(self):
-#         for line in self:
-#             if line.attribute_id.feature and len(line.value_ids) > 1:
-#                 raise ValidationError(_('Many values for feature attribute"'))
+    @api.constrains('atribute_id', 'value_ids')
+    def _check_num_values(self):
+        for line in self:
+            if line.attribute_id.feature and len(line.value_ids) > 1:
+                raise ValidationError(
+            _('Many values for attribute beacause is product feature'))
 
 
 class ProductAttribute(models.Model):
@@ -58,6 +59,18 @@ class ProductAttribute(models.Model):
                             compute="_get_srch_name")
     new_att_id = fields.Many2one('product.attribute', 'New Att')
     feature = fields.Boolean("Product Feauture")
+
+    @api.multi
+    def write(self, vals):
+        if vals.get('feature', False):
+            vals.update(create_variant=True)
+        return super().write(vals)
+
+    @api.model
+    def create(self, vals):
+        if vals.get('feature', False):
+            vals.update(create_variant=True)
+        return super().write(vals)
 
     # @api.multi
     # def name_get(self):
@@ -81,11 +94,11 @@ class ProductAttribute(models.Model):
         for attr in self:
             attr.count_line_ids = len(attr.value_ids)
 
-
     def action_show_attribute_values(self):
         action = self.env.ref('product.variants_action').read()[0]
         action['domain'] = [('attribute_id', '=', self.id)]
-        action['context'] = {'default_attribute_id': self.id}
+        action['context'] = {'default_attribute_id': self.id, 
+                             'active_id': False}
         return action
 
 
