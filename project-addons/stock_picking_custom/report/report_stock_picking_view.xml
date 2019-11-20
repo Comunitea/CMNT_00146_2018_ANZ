@@ -432,7 +432,7 @@
                         <t t-set="group_by_template" t-value="not len(move.product_id.product_tmpl_id.product_variant_ids) == 1"/>
                         <t t-set="template_name" t-value="move.product_id.product_tmpl_id.name"/>
 
-                        <tr t-if="group_by_template and (prev_location != move.location_id.id or prev_template != move.product_id.product_tmpl_id.id)" style="background-color: #eeeeee;">
+                        <tr t-if="group_by_template and (prev_location != move.location_dest_id.id or prev_template != move.product_id.product_tmpl_id.id)" style="background-color: #eeeeee;">
                             <td colspan="2" style="padding: 2px">
                                 <div class="col-xs-10">
                                     <t t-call="stock_picking_custom.template_name">
@@ -440,7 +440,7 @@
                                     </t>
                                 </div>
                                 <div class="col-xs-2">
-                                     <t t-set="str_key" t-value="'{}{}'.format(template_name, move.location_id.name)"/>
+                                     <t t-set="str_key" t-value="'{}{}'.format(template_name, move.location_dest_id.name)"/>
                                     <span t-esc="template_qty[str_key]"></span> Uds.
                                 </div>
 
@@ -458,7 +458,7 @@
 
 
                         <t t-set="prev_template" t-value="move.product_id.product_tmpl_id.id"/>
-                        <t t-set="prev_location" t-value="move.location_id.id"/>
+                        <t t-set="prev_location" t-value="move.location_dest_id.id"/>
                         <tr t-if="group_by_template">
                             <td  style="text-align:right; padding: 2px" colspan="2">
                                 <div class="col-xs-6" >

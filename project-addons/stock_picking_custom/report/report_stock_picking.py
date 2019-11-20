@@ -52,12 +52,11 @@ class ShippingCustomCustomerAnzGroupTemplate(models.AbstractModel):
         doc_id = self.env[model].browse(docids)
         code = doc_id.picking_type_id.code
 
-        sorted_lines = doc_id.move_line_ids.sorted(key=lambda m: (
-        m.location_dest_id.sequence, m.product_id.product_tmpl_id, m.product_id.attribute_value_ids.sequence))
+        sorted_lines = doc_id.move_line_ids.sorted(key=lambda m: (m.location_dest_id.sequence, m.product_id.product_tmpl_id, m.product_id.attribute_value_ids.sequence))
         template_qty = {}
         for move in sorted_lines:
             template = move.product_id.product_tmpl_id
-            str = template.name + move.location_id.name
+            str = template.name + move.location_dest_id.name
             qty = move.qty_done if move.state == 'done' else move.product_uom_qty
             if str in template_qty.keys():
                 template_qty[str] += qty
