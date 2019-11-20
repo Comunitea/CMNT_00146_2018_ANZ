@@ -73,7 +73,20 @@
             </tbody>
         </table>
     </template>
+    <template id="template_name">
+         <t t-if="product_template.display_name.find(product_template.ref_template)>-1">
+            <strong>
+                <span t-field="move.product_id.product_tmpl_id.display_name"/>
+            </strong>
 
+        </t>
+        <t t-else="">
+             <strong>
+                <span t-field="move.product_id.product_tmpl_id.ref_template"/>
+                <span t-field="move.product_id.product_tmpl_id.display_name"/>
+            </strong>
+        </t>
+    </template>
     <template id="location_name">
         <strong>
         <span t-field="putaway.name"/>
@@ -305,12 +318,12 @@
                     <t t-foreach="sorted_lines" t-as="move">
                         <t t-set="group_by_template" t-value="not len(move.product_id.product_tmpl_id.product_variant_ids) == 1"/>
                         <t t-set="template_name" t-value="move.product_id.product_tmpl_id.name"/>
+
                         <tr t-if="group_by_template and (prev_location != move.location_id.id or prev_template != move.product_id.product_tmpl_id.id)" style="background-color: #eeeeee;">
                             <td colspan="2">
-                                 <strong>
-                                    <span t-field="move.product_id.product_tmpl_id.display_name"/>
-                                </strong>
-
+                                <t t-call="stock_picking_custom.template_name">
+                                    <t t-set="product_template" t-value="move.product_id.product_tmpl_id"/>
+                                </t>
                             </td>
                             <td t-if="has_barcode"/>
                             <td style="border-left: 1px" class="text-center">
