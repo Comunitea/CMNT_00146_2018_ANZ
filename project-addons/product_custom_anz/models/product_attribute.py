@@ -94,11 +94,11 @@ class ProductAttribute(models.Model):
         for attr in self:
             attr.count_line_ids = len(attr.value_ids)
 
-
     def action_show_attribute_values(self):
         action = self.env.ref('product.variants_action').read()[0]
         action['domain'] = [('attribute_id', '=', self.id)]
-        action['context'] = {'default_attribute_id': self.id}
+        action['context'] = {'default_attribute_id': self.id, 
+                             'active_id': False}
         return action
 
 
