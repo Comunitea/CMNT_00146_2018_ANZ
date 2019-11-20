@@ -22,11 +22,21 @@ msgstr "&amp;mdash;"
 
 #. module: website_base_multi_anz
 #: model:ir.ui.view,arch_db:website_base_multi_anz.acceptance_full_legal_terms_without_check
-msgid ", and the"
-msgstr "y los"
+msgid " and the"
+msgstr " y los"
+
+#. module: website_base_multi_anz
+#: model:ir.ui.view,arch_db:website_base_multi_anz.web_login
+msgid " and the"
+msgstr " y los"
 
 #. module: website_base_multi_anz
 #: model:ir.ui.view,arch_db:website_base_multi_anz.acceptance_full_legal_terms_without_check
+msgid ", the"
+msgstr ", la"
+
+#. module: website_base_multi_anz
+#: model:ir.ui.view,arch_db:website_base_multi_anz.web_login
 msgid ", the"
 msgstr ", la"
 
@@ -360,6 +370,11 @@ msgstr "Header my cart link without text"
 
 #. module: website_base_multi_anz
 #: model:ir.ui.view,arch_db:website_base_multi_anz.acceptance_full_legal_terms_without_check
+msgid "I accept the"
+msgstr "Acepto el"
+
+#. module: website_base_multi_anz
+#: model:ir.ui.view,arch_db:website_base_multi_anz.web_login
 msgid "I accept the"
 msgstr "Acepto el"
 
@@ -839,7 +854,17 @@ msgid "legal advice"
 msgstr "aviso legal"
 
 #. module: website_base_multi_anz
+#: model:ir.ui.view,arch_db:website_base_multi_anz.web_login
+msgid "legal advice"
+msgstr "aviso legal"
+
+#. module: website_base_multi_anz
 #: model:ir.ui.view,arch_db:website_base_multi_anz.acceptance_full_legal_terms_without_check
+msgid "of this website."
+msgstr "de este Sitio Web."
+
+#. module: website_base_multi_anz
+#: model:ir.ui.view,arch_db:website_base_multi_anz.web_login
 msgid "of this website."
 msgstr "de este Sitio Web."
 
@@ -851,7 +876,12 @@ msgstr "o correo electrónico"
 #. module: website_base_multi_anz
 #: model:ir.ui.view,arch_db:website_base_multi_anz.acceptance_full_legal_terms_without_check
 msgid "privacy policy and cookies"
-msgstr "privacy policy and cookies"
+msgstr "política de privacidad y cookies"
+
+#. module: website_base_multi_anz
+#: model:ir.ui.view,arch_db:website_base_multi_anz.web_login
+msgid "privacy policy and cookies"
+msgstr "política de privacidad y cookies"
 
 #. module: website_base_multi_anz
 #: model:ir.ui.view,name:website_base_multi_anz.attribute_tree_view
@@ -890,6 +920,11 @@ msgstr "template.stock.web"
 
 #. module: website_base_multi_anz
 #: model:ir.ui.view,arch_db:website_base_multi_anz.acceptance_full_legal_terms_without_check
+msgid "terms of use"
+msgstr "términos de uso"
+
+#. module: website_base_multi_anz
+#: model:ir.ui.view,arch_db:website_base_multi_anz.web_login
 msgid "terms of use"
 msgstr "términos de uso"
 
