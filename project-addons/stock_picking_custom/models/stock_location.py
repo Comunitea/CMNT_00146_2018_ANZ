@@ -31,7 +31,7 @@ class StockLocation(models.Model):
         print (self)
         for location in self:
             ubic = location.location_id and (location.location_id.ubic or location.location_id.id) or 0
-            barcode = "{:05d}.{:02d}.{:02d}.{:02d}".format(ubic, location.posx, location.posy, location.posz)
+            barcode = "{:05d}{:02d}{:02d}{:02d}".format(ubic, location.posx, location.posy, location.posz)
             location.barcode = barcode
             inc += 1
             print ('{} de {} >> {}: Codigo: {}'.format(inc, total, location.display_name, location.barcode))
@@ -69,24 +69,28 @@ class StockLocation(models.Model):
 
     @api.multi
     def _set_order(self):
-        count =len(self)
-        index=0
-        for location in self:
-            index+=1
-            print ('Ordenando {}  {}/{}'.format(location.name, index, count))
+        count = len(self)
+        index = 0
+        for location in self.sudo():
+            index += 1
             if location.location_id:
+                ubic = location.location_id.ubic or location.location_id.id
                 pasillo = location.posy if not location.location_id.inverse_order else (100-location.posy)
             else:
+                ubic = location.id
                 pasillo = location.posy
-            #sequence = int('{}{}{}'.format('%0*d' % (2, location.location_id.ubic), '%0*d' % (2, pasillo), '%0*d' % (2, location.posz)))
-            sequence = "{:02d}{:02d}{:02d}".format(location.location_id.ubic or location.posx, pasillo, location.posz)
+            sequence = "{:02d}{:02d}{:02d} ".format(location.location_id.ubic or location.posx, pasillo, location.posz)
 
+            #ubic = location.location_id and (location.location_id.ubic or location.location_id.id) or 0
+            barcode = "{:05d}{:02d}{:02d}{:02d}".format(ubic, location.posx, location.posy, location.posz)
+
+            print('Ordenando {}/{}: Ubicación: {} Sec: {} y Codigo: {}'.format( index, count, location.name, sequence, barcode))
             location.update({
+                'barcode': barcode,
                 'sequence': int(sequence)
             })
 
     @api.multi
     def order_full_list(self):
         locations = self.env['stock.location'].search([])
-
         locations.filtered(lambda x: x.usage =='internal' and x.posx)._set_order()
