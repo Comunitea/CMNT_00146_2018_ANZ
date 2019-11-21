@@ -49,6 +49,28 @@
             <field name="user_not_logged">True</field>
         </record>
 
+        <!-- Novedades -->
+        <record id="novedades_menu" model="website.menu">
+            <field name="name">Novedades</field>
+            <field name="url">/category/novedades</field>
+            <field name="parent_id" ref="theme_skipping.skipping_main_menu"/>
+            <field name="sequence" type="int">21</field>
+            <field name="website_id" ref="website_base_multi_anz.skipping_website"/>
+            <field name="user_logged">True</field>
+            <field name="user_not_logged">False</field>
+        </record>
+
+        <!-- Ofertas -->
+        <record id="ofertas_menu" model="website.menu">
+            <field name="name">Ofertas</field>
+            <field name="url">/category/ofertas</field>
+            <field name="parent_id" ref="theme_skipping.skipping_main_menu"/>
+            <field name="sequence" type="int">22</field>
+            <field name="website_id" ref="website_base_multi_anz.skipping_website"/>
+            <field name="user_logged">True</field>
+            <field name="user_not_logged">False</field>
+        </record>
+
         <!-- Shop by Brands -->
         <record id="website_sale_product_brand.menu_website_sale_brand" model="website.menu">
             <field name="name">Brands</field>

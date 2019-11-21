@@ -27,7 +27,7 @@
 
     <!-- Terms of use without checkbox -->
     <template id="acceptance_full_legal_terms_without_check" name="Acceptance Full Legal Terms Without Check Base">
-        I accept the <a href="/legal/advice">legal advice</a>, the <a href="/legal/privacy-policy">privacy policy and cookies</a>, and the <a href="/legal/terms-of-use">terms of use</a> of this website.
+        I accept the <a href="/legal/advice">legal advice</a>, the <a href="/legal/privacy-policy">privacy policy and cookies</a> and the <a href="/legal/terms-of-use">terms of use</a> of this website.
     </template>
 
     <template id="default_fields_forms" name="Default Form Fields Base">

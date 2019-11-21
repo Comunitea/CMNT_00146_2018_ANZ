@@ -142,7 +142,7 @@
 
         <!--Blog Menu-->
         <record id="menu_news" model="website.menu">
-            <field name="name">Blog</field>
+            <field name="name">Intranet</field>
             <!--<field name="url" eval="'/blog/'+str(ref('website_blog.blog_blog_1'))"/>-->
             <field name="url">/blog</field>
             <field name="parent_id" ref="theme_point_sport.point_sport_main_menu"/>
