@@ -55,6 +55,7 @@
     ],
     'data': [
         'data/company_data.xml',
+        'data/menu_data.xml',
         'data/website_data.xml',
         'templates/account.xml',
         'templates/forms.xml',

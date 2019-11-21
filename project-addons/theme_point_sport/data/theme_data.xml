@@ -22,7 +22,7 @@
               name="_convert_assets"
               eval="([ref('theme_point_sport.theme_point_sport_multi')])"/>
 
-    <!-- This method prepare assets and applies Point theme for Point website -->
+    <!-- This method prepare assets and applies theme for website -->
     <!-- Hook to reload theme on website_multi_theme module updates -->
     <function model="website"
               name="multi_theme_reload"

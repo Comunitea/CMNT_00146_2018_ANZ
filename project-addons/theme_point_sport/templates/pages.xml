@@ -32,7 +32,7 @@
         <field name="website_ids" eval="[(6, 0, [ref('website_base_multi_anz.point_sport_website')])]"/>
         <field name="website_published">True</field>
         <field name="url">/page/newsletter</field>
-        <field name="view_id" ref="poi_follow_us_base_fub_newsletter_page_template"/>
+        <field name="view_id" ref="website_multi_theme.auto_view_poi_follow_us_base_fub_newsletter_page_template"/>
     </record>
 
     <!-- ======================================= Page About us ======================================= -->
