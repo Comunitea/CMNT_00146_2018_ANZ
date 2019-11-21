@@ -31,12 +31,22 @@ msgid " and the"
 msgstr " y los"
 
 #. module: website_base_multi_anz
+#: model:ir.ui.view,arch_db:website_base_multi_anz.auth_signup_fields
+msgid " and the"
+msgstr " y los"
+
+#. module: website_base_multi_anz
 #: model:ir.ui.view,arch_db:website_base_multi_anz.acceptance_full_legal_terms_without_check
 msgid ", the"
 msgstr ", la"
 
 #. module: website_base_multi_anz
 #: model:ir.ui.view,arch_db:website_base_multi_anz.web_login
+msgid ", the"
+msgstr ", la"
+
+#. module: website_base_multi_anz
+#: model:ir.ui.view,arch_db:website_base_multi_anz.auth_signup_fields
 msgid ", the"
 msgstr ", la"
 
@@ -375,6 +385,11 @@ msgstr "Acepto el"
 
 #. module: website_base_multi_anz
 #: model:ir.ui.view,arch_db:website_base_multi_anz.web_login
+msgid "I accept the"
+msgstr "Acepto el"
+
+#. module: website_base_multi_anz
+#: model:ir.ui.view,arch_db:website_base_multi_anz.auth_signup_fields
 msgid "I accept the"
 msgstr "Acepto el"
 
@@ -859,12 +874,22 @@ msgid "legal advice"
 msgstr "aviso legal"
 
 #. module: website_base_multi_anz
+#: model:ir.ui.view,arch_db:website_base_multi_anz.auth_signup_fields
+msgid "legal advice"
+msgstr "aviso legal"
+
+#. module: website_base_multi_anz
 #: model:ir.ui.view,arch_db:website_base_multi_anz.acceptance_full_legal_terms_without_check
 msgid "of this website."
 msgstr "de este Sitio Web."
 
 #. module: website_base_multi_anz
 #: model:ir.ui.view,arch_db:website_base_multi_anz.web_login
+msgid "of this website."
+msgstr "de este Sitio Web."
+
+#. module: website_base_multi_anz
+#: model:ir.ui.view,arch_db:website_base_multi_anz.auth_signup_fields
 msgid "of this website."
 msgstr "de este Sitio Web."
 
@@ -880,6 +905,11 @@ msgstr "política de privacidad y cookies"
 
 #. module: website_base_multi_anz
 #: model:ir.ui.view,arch_db:website_base_multi_anz.web_login
+msgid "privacy policy and cookies"
+msgstr "política de privacidad y cookies"
+
+#. module: website_base_multi_anz
+#: model:ir.ui.view,arch_db:website_base_multi_anz.auth_signup_fields
 msgid "privacy policy and cookies"
 msgstr "política de privacidad y cookies"
 
@@ -925,6 +955,11 @@ msgstr "términos de uso"
 
 #. module: website_base_multi_anz
 #: model:ir.ui.view,arch_db:website_base_multi_anz.web_login
+msgid "terms of use"
+msgstr "términos de uso"
+
+#. module: website_base_multi_anz
+#: model:ir.ui.view,arch_db:website_base_multi_anz.auth_signup_fields
 msgid "terms of use"
 msgstr "términos de uso"
 
