@@ -74,7 +74,7 @@
         </table>
     </template>
     <template id="template_name">
-         <t t-if="product_template.display_name.find(product_template.ref_template)>-1">
+         <t t-if="not product_template.ref_template or product_template.display_name.find(product_template.ref_template)>-1">
             <strong>
                 <span t-field="move.product_id.product_tmpl_id.display_name"/>
             </strong>
@@ -412,7 +412,9 @@
             </tbody>
         </table>
     </template>
+
      <template id="report_table_move_line_ids_customer">
+
         <table class="table table-condensed" t-if="templates">
             <t t-set="has_barcode" t-value="False"/>
             <thead>
@@ -430,10 +432,10 @@
                     <t t-foreach="templates" t-as="template_line">
                         <t t-set="template" t-value="template_line['template_id']"/>
                         <tr t-if="len(template.product_variant_ids) != 1" style="min-heigh: 25px; background-color: #eeeeee;">
+
                             <td colspan="2" style="padding: 2px">
                                 <div class="col-xs-10">
-
-                                        <t t-if="template.display_name.find(template.ref_template)>-1">
+                                        <t t-if="not template.ref_template or template.display_name.find(template.ref_template)>-1">
                                             <strong>
                                                 <span t-field="template.display_name"/>
                                             </strong>
@@ -598,27 +600,7 @@
                         </tbody>
                         </table>
                         <t t-if="o.picking_type_id.code=='outgoing'" t-call="stock_picking_custom.report_table_move_line_ids_customer"/>
-                        <!--table class="table table-condensed" t-if="o.move_line_ids" width="100%">
 
-                            <thead>
-                                <tr>
-                                <th width="80%" class="text-left">Product</th>
-
-                                <th width="20%" class="text-right">Cantidad</th>
-
-                            </tr>
-                            </thead>
-                            <tbody>
-                                <tr t-foreach="o.move_lines" t-as="move">
-                                    <td >
-                                        <span t-field="move.product_id.display_name"/>
-                                    </td>
-                                    <td align="right">
-                                        <span t-field="move.product_uom_qty"/>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table-->
                         <t t-call="stock_picking_custom.report_table_picking_qties"/>
                         <t t-call="stock_picking_custom.report_table_picking_qties_customer"/>
                         <p t-if="o.state in ['draft', 'waiting', 'confirmed']">

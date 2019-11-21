@@ -93,7 +93,6 @@ class ShippingCustomCustomerAnzGroupTemplate(models.AbstractModel):
         for index in templates:
             t_ids.append(templates[index])
 
-        print(t_ids)
         docargs = {
            #'group_by_template': False,
            'doc_ids': docids,
@@ -101,28 +100,5 @@ class ShippingCustomCustomerAnzGroupTemplate(models.AbstractModel):
            'docs': doc_id,
            'sorted_lines': sorted_lines,
            'templates': t_ids
-        }
-        return docargs
-
-        for move in sorted_lines:
-            template = move.product_id.product_tmpl_id
-            str = template.name + move.location_dest_id.name
-            qty = move.qty_done if move.state == 'done' else move.product_uom_qty
-            if str in template_qty.keys():
-                template_qty[str] += qty
-            else:
-                template_qty.update({str: qty})
-
-
-
-
-
-        docargs = {
-           #'group_by_template': False,
-           'doc_ids': docids,
-           'doc_model': '',
-           'docs': doc_id,
-           'sorted_lines': sorted_lines,
-           'templates': templates
         }
         return docargs
