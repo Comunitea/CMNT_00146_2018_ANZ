@@ -22,7 +22,7 @@
               name="_convert_assets"
               eval="([ref('theme_skipping.theme_skipping_multi')])"/>
 
-    <!-- This method prepare assets and applies Anzamar theme for theme_skipping_multi website -->
+    <!-- This method prepare assets and applies theme for website -->
     <!-- Hook to reload theme on website_multi_theme module updates -->
     <function model="website"
               name="multi_theme_reload"

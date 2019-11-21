@@ -2,13 +2,6 @@
 <odoo>
         <data>
 
-            <!-- Functions -->
-            <function model="ir.model.fields" name="formbuilder_whitelist">
-                <value>sale.order</value>
-                <!-- Add to portal orders -->
-                <value eval="['note']"/>
-            </function>
-
             <!--Delete default website-->
             <delete id="website.default_website" model="website"/>
 
@@ -67,6 +60,24 @@
                 <field name="base_url">http://skipping</field>
                 <field name="email">info@skipping.com</field>
             </record>
+
+            <!-- Functions -->
+            <function model="ir.model.fields" name="formbuilder_whitelist">
+                <value>sale.order</value>
+                <!-- Add to portal orders -->
+                <value eval="['note']"/>
+            </function>
+
+            <!-- This method prepare assets and applies theme for website -->
+            <!-- Hook to reload theme on website_multi_theme module updates -->
+            <function model="website"
+                      name="multi_theme_reload"
+                      eval="[ref('website_base_multi_anz.skipping_website')], {'skip_converting_assets': True}"
+            />
+            <function model="website"
+                      name="multi_theme_reload"
+                      eval="[ref('website_base_multi_anz.point_sport_website')], {'skip_converting_assets': True}"
+            />
 
         </data>
 </odoo>
