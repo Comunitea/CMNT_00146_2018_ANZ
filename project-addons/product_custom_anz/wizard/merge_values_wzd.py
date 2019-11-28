@@ -43,7 +43,7 @@ class MergeValuetWzd(models.TransientModel):
         self.ensure_one()
         _logger.info(_('MERGING ATTRIBUTES VALUES'))
         value = self.value_id
-        to_delete_values = self.env['product.atribute.value']
+        to_delete_values = self.env['product.attribute.value']
         for value2map in self.map_value_ids:
             if value2map.id == value.id:
                 continue
