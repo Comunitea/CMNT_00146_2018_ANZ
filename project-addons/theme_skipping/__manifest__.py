@@ -38,7 +38,6 @@
         'templates/page_contact_us.xml',
         'templates/shop.xml',
         'templates/product.xml',
-        'templates/newsletter.xml',
         'templates/pages.xml',
         'views/customize_views.xml',
     ],

@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-09-18 08:13+0000\n"
-"PO-Revision-Date: 2019-09-18 08:13+0000\n"
+"POT-Creation-Date: 2019-11-19 18:33+0000\n"
+"PO-Revision-Date: 2019-11-19 18:33+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -143,16 +143,6 @@ msgid "Carrier partner"
 msgstr "Transportista"
 
 #. module: stock_picking_custom
-#: model:ir.model.fields,field_description:stock_picking_custom.field_stock_import_wzd_create_uid
-msgid "Created by"
-msgstr "Creado por"
-
-#. module: stock_picking_custom
-#: model:ir.model.fields,field_description:stock_picking_custom.field_stock_import_wzd_create_date
-msgid "Created on"
-msgstr "Creado en"
-
-#. module: stock_picking_custom
 #: model:ir.model.fields,field_description:stock_picking_custom.field_stock_move_default_product_dest_location_id
 #: model:ir.model.fields,field_description:stock_picking_custom.field_stock_move_line_default_product_dest_location_id
 msgid "Default destination location"
@@ -198,12 +188,13 @@ msgid "Destination"
 msgstr "Destino"
 
 #. module: stock_picking_custom
+#: model:ir.model.fields,field_description:stock_picking_custom.field_report_stock_report_picking_display_name
 #: model:ir.model.fields,field_description:stock_picking_custom.field_stock_import_wzd_display_name
 msgid "Display Name"
 msgstr "Nombre a mostrar"
 
 #. module: stock_picking_custom
-#: code:addons/stock_picking_custom/wizard/stock_import.py:116
+#: code:addons/stock_picking_custom/wizard/stock_import.py:117
 #, python-format
 msgid "Error en línea %s (%s / %s)"
 msgstr "Error en línea %s (%s / %s)"
@@ -224,7 +215,7 @@ msgid "Hecha"
 msgstr "Hecha"
 
 #. module: stock_picking_custom
-#: model:ir.model.fields,field_description:stock_picking_custom.field_stock_import_wzd_id
+#: model:ir.model.fields,field_description:stock_picking_custom.field_report_stock_report_picking_id
 msgid "ID"
 msgstr "ID (identificación)"
 
@@ -236,15 +227,15 @@ msgstr "Importar productos"
 #. module: stock_picking_custom
 #: model:ir.actions.act_window,name:stock_picking_custom.action_import_products
 msgid "Import moves"
-msgstr "Import moves"
+msgstr "Importar movimientos"
 
 #. module: stock_picking_custom
 #: model:ir.ui.view,arch_db:stock_picking_custom.view_product_import_wzd_form
 msgid "Import stock move"
-msgstr "Import stock move"
+msgstr "Importar movimientos"
 
 #. module: stock_picking_custom
-#: code:addons/stock_picking_custom/wizard/stock_import.py:113
+#: code:addons/stock_picking_custom/wizard/stock_import.py:114
 #, python-format
 msgid "Importado movimeinto:  %s (%s / %s)"
 msgstr "Importado movimeinto:  %s (%s / %s)"
@@ -272,28 +263,19 @@ msgstr "Ubicaciones de inventario"
 #. module: stock_picking_custom
 #: model:ir.model.fields,field_description:stock_picking_custom.field_stock_location_inverse_order
 msgid "Inverse order"
-msgstr "Inverse order"
+msgstr "Orden inverso"
 
 #. module: stock_picking_custom
+#: model:ir.model.fields,field_description:stock_picking_custom.field_report_stock_report_picking___last_update
 #: model:ir.model.fields,field_description:stock_picking_custom.field_stock_import_wzd___last_update
 msgid "Last Modified on"
 msgstr "Última modificación en"
 
 #. module: stock_picking_custom
-#: model:ir.model.fields,field_description:stock_picking_custom.field_stock_import_wzd_write_uid
-msgid "Last Updated by"
-msgstr "Última actualización de"
-
-#. module: stock_picking_custom
-#: model:ir.model.fields,field_description:stock_picking_custom.field_stock_import_wzd_write_date
-msgid "Last Updated on"
-msgstr "Última actualización en"
-
-#. module: stock_picking_custom
 #: model:ir.model.fields,field_description:stock_picking_custom.field_stock_location_sequence
 #: model:ir.model.fields,field_description:stock_picking_custom.field_stock_move_line_sequence
 msgid "Location order"
-msgstr "Location order"
+msgstr "Secuencia de pick"
 
 #. module: stock_picking_custom
 #: model:ir.ui.view,arch_db:stock_picking_custom.report_table_move_line_ids_orig
@@ -308,7 +290,7 @@ msgstr "Marcar como 'Por hacer'"
 #. module: stock_picking_custom
 #: model:ir.model.fields,help:stock_picking_custom.field_stock_location_inverse_order
 msgid "Mark for inverse order."
-msgstr "Mark for inverse order."
+msgstr "Si está marcado, el pasillo se recorre en sentido inverso."
 
 #. module: stock_picking_custom
 #: model:ir.model.fields,help:stock_picking_custom.field_stock_location_ubic
@@ -320,7 +302,7 @@ msgstr "Detalles de la ubicación, solo informativos"
 #: model:ir.cron,cron_name:stock_picking_custom.auto_order_full_list
 #: model:ir.cron,name:stock_picking_custom.auto_order_full_list
 msgid "Order Full Location List"
-msgstr "Order Full Location List"
+msgstr "Calcular la secuncia en ubicaciones"
 
 #. module: stock_picking_custom
 #: model:ir.model,name:stock_picking_custom.model_stock_move_line
@@ -343,16 +325,6 @@ msgid "Picking"
 msgstr "Albarán"
 
 #. module: stock_picking_custom
-#: model:ir.model,name:stock_picking_custom.model_procurement_group
-msgid "Procurement Requisition"
-msgstr "Petición de abastecimiento"
-
-#. module: stock_picking_custom
-#: model:ir.model,name:stock_picking_custom.model_procurement_rule
-msgid "Procurement Rule"
-msgstr "Regla de abastecimiento"
-
-#. module: stock_picking_custom
 #: model:ir.model,name:stock_picking_custom.model_product_product
 #: model:ir.ui.view,arch_db:stock_picking_custom.report_shipping_custom_customer_anz
 #: model:ir.ui.view,arch_db:stock_picking_custom.report_table_move_line_ids_incoming
@@ -369,7 +341,6 @@ msgstr "Productos"
 
 #. module: stock_picking_custom
 #: model:ir.model.fields,field_description:stock_picking_custom.field_stock_move_line_qty_available
-#: model:ir.model.fields,field_description:stock_picking_custom.field_stock_move_qty_available
 msgid "Qty available"
 msgstr "Disponible"
 
@@ -403,10 +374,10 @@ msgid "Return Picking"
 msgstr "Albarán de devolución"
 
 #. module: stock_picking_custom
-#: code:addons/stock_picking_custom/wizard/stock_import.py:95
+#: code:addons/stock_picking_custom/wizard/stock_import.py:96
 #, python-format
 msgid "STARTING PRODUCT IMPORTATION"
-msgstr "STARTING PRODUCT IMPORTATION"
+msgstr "Iniciando importación de productos"
 
 #. module: stock_picking_custom
 #: model:ir.model.fields,field_description:stock_picking_custom.field_stock_location_ubic
@@ -431,6 +402,11 @@ msgid "Stock Move"
 msgstr "Movimiento de stock"
 
 #. module: stock_picking_custom
+#: model:ir.model,name:stock_picking_custom.model_stock_picking
+msgid "Stock Picking"
+msgstr "Albarán"
+
+#. module: stock_picking_custom
 #: model:ir.model,name:stock_picking_custom.model_stock_picking_type
 msgid "The operation type determines the picking view"
 msgstr "El tipo de operación determina la vista de la operación"
@@ -450,11 +426,6 @@ msgstr "Total:"
 #: model:ir.ui.view,arch_db:stock_picking_custom.report_table_picking_qties
 msgid "Totales"
 msgstr "Totales"
-
-#. module: stock_picking_custom
-#: model:ir.model,name:stock_picking_custom.model_stock_picking
-msgid "Transfer"
-msgstr "Transferir"
 
 #. module: stock_picking_custom
 #: selection:stock.picking.type,order_field:0
@@ -486,7 +457,7 @@ msgstr "external_layout_standard_custom"
 #. module: stock_picking_custom
 #: model:ir.ui.view,name:stock_picking_custom.location_name
 msgid "location_name"
-msgstr "location_name"
+msgstr "Nombre de ubicación"
 
 #. module: stock_picking_custom
 #: model:ir.ui.view,name:stock_picking_custom.location_name2
@@ -507,6 +478,11 @@ msgstr "quantity_template"
 #: model:ir.ui.view,name:stock_picking_custom.quantity_template_move
 msgid "quantity_template_move"
 msgstr "quantity_template_move"
+
+#. module: stock_picking_custom
+#: model:ir.model,name:stock_picking_custom.model_report_stock_report_picking
+msgid "report.stock.report_picking"
+msgstr "report.stock.report_picking"
 
 #. module: stock_picking_custom
 #: model:ir.ui.view,name:stock_picking_custom.report_shipping_custom_anz
