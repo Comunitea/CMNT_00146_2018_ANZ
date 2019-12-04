@@ -26,20 +26,16 @@ class WebsiteSaleExtended(WebsiteSale):
         # Set fuzzy search for more results
         request.env.cr.execute("SELECT set_limit(0.2);")
         domain_origin = super(WebsiteSaleExtended, self)._get_search_domain(search, category, attrib_values)
-        attr_domain = []
-        has_att_filter = False
-        filter_args = request.httprequest.args
 
         # Search and filters work together
         if search and search != 0:
             for srch in shlex.split(search):
                 if len(srch) > 2:
-                    domain_search = ['|', '|', '|', '|', '|', '|',
+                    domain_search = ['|', '|', '|', '|', '|',
                                      ('name', '%', srch),
                                      ('ref_template', 'ilike', srch),
-                                     ('product_color', 'ilike', srch),
-                                     ('product_variant_ids.attribute_value_ids', 'ilike', srch),
-                                     ('product_variant_ids.product_brand_id', 'ilike', srch),
+                                     ('attribute_line_ids', 'ilike', srch),
+                                     ('product_variant_ids.attribute_value_ids.range_search', 'ilike', srch),
                                      ('public_categ_ids.complete_name', 'ilike', srch),
                                      ('public_categ_ids.public_categ_tag_ids', 'ilike', srch)]
                     domain_origin = expression.normalize_domain(domain_origin)
