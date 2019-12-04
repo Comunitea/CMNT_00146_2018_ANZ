@@ -47,7 +47,6 @@ class MergeValuetWzd(models.TransientModel):
         for value2map in self.map_value_ids:
             if value2map.id == value.id:
                 continue
-
             # Actualizo m2m productos y valores
             query_product_values = """
             UPDATE product_attribute_value_product_product_rel
@@ -56,16 +55,27 @@ class MergeValuetWzd(models.TransientModel):
             """ % (value.id, value2map.id)
 
             self._cr.execute(query_product_values)
+            self._cr.commit()
 
-            # Actualizo m2m líneas de atributo y valores
-            query_att_line_values = """
-            UPDATE product_attribute_line_product_attribute_value_rel
-            SET product_attribute_value_id = %s
-            WHERE product_attribute_value_id = %s
-            """ % (value.id, value2map.id)
-            self._cr.execute(query_att_line_values)
-
-            to_delete_values += value2map
+            # Si se mapean valores de una misma línea de atributo en un
+            # producto fallara, ya que un una primera pasada ya se hizo un
+            # update poniendo un nuevo valor, y en una segunda pasada, al
+            # volver a intentar cambiar un valor por el nuevo, como ya
+            # lo había creado ante falla, estew caso no es necesario hacer el
+            # update, de ahí el try except
+            try:
+                query_att_line_values = """
+                    UPDATE product_attribute_line_product_attribute_value_rel
+                    SET product_attribute_value_id = %s
+                    WHERE product_attribute_value_id = %s
+                    """ % (value.id, value2map.id)
+                self._cr.execute(query_att_line_values)
+                self._cr.commit()
+            except Exception:
+                print("SKIP")
+                self._cr.rollback()
+                to_delete_values += value2map
+                continue;
 
         _logger.info(_('DELETING ATTRIBUTES VALUES'))
         to_delete_values.unlink()
