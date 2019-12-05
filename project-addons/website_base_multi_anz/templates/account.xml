@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <!-- Legal acceptance on login -->
+<!--    <template id="web_login" name="Login Legal Base" inherit_id="web.login">-->
+<!--        <xpath expr="//div[hasclass('oe_login_buttons')]" position="before">-->
+<!--            <div class="on_login_advise mt4 mb8 small">-->
+<!--&lt;!&ndash;                <t t-call="website_base_multi_anz.acceptance_full_legal_terms_with_check"/>&ndash;&gt;-->
+<!--                 <div class="form-group field-legal" t-if="website.env.user == request.website.user_id">-->
+<!--                    <label for="privacy_policy">-->
+<!--                        <input type="checkbox" value="accepted" id="privacy_policy" name="privacy_policy" required="required"/>-->
+<!--                        <span class="acceptance_full">-->
+<!--                            I accept the <a href="/legal/advice">legal advice</a>, the <a href="/legal/privacy-policy">privacy policy and cookies</a> and the <a href="/legal/terms-of-use">terms of use</a> of this website.-->
+<!--                        </span>-->
+<!--                    </label>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </xpath>-->
+<!--    </template>-->
+
+    <!-- Legal acceptance on register -->
+    <template id="auth_signup_fields" name="Auth Signup/ResetPassword form fields Base" inherit_id="auth_signup.fields">
+        <xpath expr="//div[last()]" position="after">
+            <div class="on_login_advise mt4 mb8 small">
+                 <div class="form-group field-legal" t-if="website.env.user == request.website.user_id">
+                    <label for="privacy_policy">
+                        <input type="checkbox" value="accepted" id="privacy_policy" name="privacy_policy" required="required"/>
+                        <span class="acceptance_full">
+                            I accept the <a href="/legal/advice">legal advice</a>, the <a href="/legal/privacy-policy">privacy policy and cookies</a> and the <a href="/legal/terms-of-use">terms of use</a> of this website.
+                        </span>
+                    </label>
+                </div>
+            </div>
+        </xpath>
+    </template>
+
+</odoo>

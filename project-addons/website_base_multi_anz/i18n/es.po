@@ -6,14 +6,228 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-03-25 11:48+0000\n"
-"PO-Revision-Date: 2019-03-25 11:48+0000\n"
-"Last-Translator: <ruben@comunitea.com>\n"
-"Language-Team: es/ES\n"
+"POT-Creation-Date: 2019-10-16 16:13+0000\n"
+"PO-Revision-Date: 2019-10-16 16:13+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
+
+#. module: website_base_multi_anz
+#: model:ir.ui.view,arch_db:website_base_multi_anz.base_website_sale_product
+msgid "&amp;mdash;"
+msgstr "&amp;mdash;"
+
+#. module: website_base_multi_anz
+#: model:ir.ui.view,arch_db:website_base_multi_anz.acceptance_full_legal_terms_without_check
+msgid " and the"
+msgstr " y los"
+
+#. module: website_base_multi_anz
+#: model:ir.ui.view,arch_db:website_base_multi_anz.web_login
+msgid " and the"
+msgstr " y los"
+
+#. module: website_base_multi_anz
+#: model:ir.ui.view,arch_db:website_base_multi_anz.auth_signup_fields
+msgid " and the"
+msgstr " y los"
+
+#. module: website_base_multi_anz
+#: model:ir.ui.view,arch_db:website_base_multi_anz.acceptance_full_legal_terms_without_check
+msgid ", the"
+msgstr ", la"
+
+#. module: website_base_multi_anz
+#: model:ir.ui.view,arch_db:website_base_multi_anz.web_login
+msgid ", the"
+msgstr ", la"
+
+#. module: website_base_multi_anz
+#: model:ir.ui.view,arch_db:website_base_multi_anz.auth_signup_fields
+msgid ", the"
+msgstr ", la"
+
+#. module: website_base_multi_anz
+#: model:ir.ui.view,arch_db:website_base_multi_anz.wbb_access_forbidden_advise
+msgid "403: Forbidden"
+msgstr "403: Prohibido"
+
+#. module: website_base_multi_anz
+#: model:ir.ui.view,arch_db:website_base_multi_anz.base_website_sale_product
+msgid "<i class=\"fa fa-chevron-left\"/> <span class=\"hidden-xs\">Continue Shopping</span><span class=\"visible-xs-inline\">Continue</span>"
+msgstr "<i class=\"fa fa-chevron-left\"/> <span class=\"hidden-xs\">Continuar comprando</span><span class=\"visible-xs-inline\">Continuar</span>"
+
+#. module: website_base_multi_anz
+#: model:ir.ui.view,arch_db:website_base_multi_anz.base_website_sale_product
+msgid "<i class=\"fa fa-shopping-cart fa-fw\"/> <span class=\"hidden-xs\">Proceed to Checkout</span><span class=\"visible-xs-inline\">Checkout</span>"
+msgstr "<i class=\"fa fa-shopping-cart fa-fw\"/> <span class=\"hidden-xs\">Ir a Pagar</span><span class=\"visible-xs-inline\">Pagar</span>"
+
+#. module: website_base_multi_anz
+#: code:addons/website_base_multi_anz/controllers/website.py:148
+#, python-format
+msgid "<p class=\"alert alert-success\">%s: Added %d unit(s)</p>"
+msgstr "<p class=\"alert alert-success\">%s: Añadidas %d ud(s)</p>"
+
+#. module: website_base_multi_anz
+#: code:addons/website_base_multi_anz/controllers/website.py:145
+#, python-format
+msgid "<p class=\"alert alert-warning\">%s: Added %d unit(s) but %d unit(s) was already in your cart</p>"
+msgstr "<p class=\"alert alert-warning\">%s: Añadidas %d ud(s) aunque %d ud(s) ya estaban en el carrito</p>"
+
+#. module: website_base_multi_anz
+#: code:addons/website_base_multi_anz/controllers/website.py:139
+#, python-format
+msgid "<p class=\"alert alert-warning\">%s: Ask for %d units but only %d is available %s</p>"
+msgstr "<p class=\"alert alert-warning\">%s: Solicita %d ud(s), pero solo %d están disponibles %s</p>"
+
+#. module: website_base_multi_anz
+#: code:addons/website_base_multi_anz/controllers/website.py:163
+#, python-format
+msgid "<p><strong>Empty product list</strong></p>"
+msgstr "<p><strong>Lista de productos vacía</strong></p>"
+
+#. module: website_base_multi_anz
+#: code:addons/website_base_multi_anz/controllers/website.py:161
+#, python-format
+msgid "<p><strong>Product for %s not found:</strong></p>%s"
+msgstr "<p><strong>Producto para %s no encontrado:</strong></p>%s"
+
+#. module: website_base_multi_anz
+#: code:addons/website_base_multi_anz/controllers/website.py:157
+#, python-format
+msgid "<p><strong>Was added %d unit(s) of %s:</strong></p>%s"
+msgstr "<p><strong>Fue añadido %d unidades de %s:</strong></p>%s"
+
+#. module: website_base_multi_anz
+#: model:ir.ui.view,arch_db:website_base_multi_anz.default_send_forms
+msgid "<span class=\"btn btn-primary btn-lg o_website_form_send\">Send</span>\n"
+"                <span id=\"o_website_form_result\"/>"
+msgstr "<span class=\"btn btn-primary btn-lg o_website_form_send\">Enviar</span>\n"
+"                                <span id=\"o_website_form_result\"/>"
+
+#. module: website_base_multi_anz
+#: model:ir.ui.view,arch_db:website_base_multi_anz.base_website_sale_product
+msgid "<span class=\"exhausted\">&amp;mdash;</span>"
+msgstr "<span class=\"exhausted\">&amp;mdash;</span>"
+
+#. module: website_base_multi_anz
+#: model:ir.ui.view,arch_db:website_base_multi_anz.wbm_website_sale_confirmation
+msgid "<strong>Your Note:</strong>"
+msgstr "<strong>Su Nota:</strong>"
+
+#. module: website_base_multi_anz
+#: model:ir.ui.view,arch_db:website_base_multi_anz.wbm_website_sale_confirmation
+msgid "<strong>Your Reference:</strong>"
+msgstr "<strong>Su referencia:</strong>"
+
+#. module: website_base_multi_anz
+#: model:ir.ui.view,name:website_base_multi_anz.acceptance_full_legal_terms_with_check
+msgid "Acceptance Full Legal Terms With Check"
+msgstr "Acceptance Full Legal Terms With Check"
+
+#. module: website_base_multi_anz
+#: model:ir.ui.view,name:website_base_multi_anz.acceptance_full_legal_terms_without_check
+msgid "Acceptance Full Legal Terms Without Check"
+msgstr "Acceptance Full Legal Terms Without Check"
+
+#. module: website_base_multi_anz
+#: model:ir.ui.view,name:website_base_multi_anz.wbb_access_forbidden_advise
+msgid "Access Forbidden Advice"
+msgstr "Access Forbidden Advice"
+
+#. module: website_base_multi_anz
+#: model:ir.ui.view,arch_db:website_base_multi_anz.affiliate_access_view_blog_blog_form
+#: model:ir.ui.view,arch_db:website_base_multi_anz.affiliate_view_blog_post_form
+msgid "Access control"
+msgstr "Control de Acceso"
+
+#. module: website_base_multi_anz
+#: model:ir.ui.view,arch_db:website_base_multi_anz.base_website_sale_product
+msgid "Add to Cart"
+msgstr "Añadir al carrito"
+
+#. module: website_base_multi_anz
+#: model:ir.ui.view,name:website_base_multi_anz.base_website_sale_products_add_to_cart
+msgid "Add to Cart Base"
+msgstr "Add to Cart Base"
+
+#. module: website_base_multi_anz
+#: model:ir.ui.view,name:website_base_multi_anz.affiliate_access_view_blog_blog_form
+msgid "Affiliate access control blog form view"
+msgstr "Affiliate access control blog form view"
+
+#. module: website_base_multi_anz
+#: model:ir.ui.view,name:website_base_multi_anz.affiliate_view_blog_post_form
+msgid "Affiliate access control blog.post view"
+msgstr "Affiliate access control blog.post view"
+
+#. module: website_base_multi_anz
+#: model:ir.ui.view,arch_db:website_base_multi_anz.base_website_sale_product
+msgid "An error has occurred"
+msgstr "Ha ocurrido un error"
+
+#. module: website_base_multi_anz
+#: model:ir.ui.view,name:website_base_multi_anz.wbm_website_assets_frontend
+msgid "Assets Website Base"
+msgstr "Assets Website Base"
+
+#. module: website_base_multi_anz
+#: model:ir.ui.view,arch_db:website_base_multi_anz.default_file_forms
+msgid "Attach CV"
+msgstr "Adjuntar CV"
+
+#. module: website_base_multi_anz
+#: model:ir.model,name:website_base_multi_anz.model_blog_post
+msgid "Blog Post"
+msgstr "Entrada del blog"
+
+#. module: website_base_multi_anz
+#: model:ir.ui.view,arch_db:website_base_multi_anz.wbma_wbb_website_blog_blog_post_complete
+msgid "Blog Post Title"
+msgstr "Título de la entrada del blog"
+
+#. module: website_base_multi_anz
+#: model:ir.ui.view,name:website_base_multi_anz.wbma_wbb_website_blog_blog_post_complete
+msgid "Blog Post with Right Column Associated Base Template"
+msgstr "Blog Post with Right Column Associated Base Template"
+
+#. module: website_base_multi_anz
+#: model:ir.ui.view,name:website_base_multi_anz.wbma_wbb_website_blog_index
+msgid "Blog/post Control Access Associated Base Template"
+msgstr "Blog/post Control Access Associated Base Template"
+
+#. module: website_base_multi_anz
+#: model:ir.model,name:website_base_multi_anz.model_blog_blog
+msgid "Blogs"
+msgstr "Blogs"
+
+#. module: website_base_multi_anz
+#: model:ir.ui.view,arch_db:website_base_multi_anz.open_shop_contact_form
+msgid "Brand you want information about"
+msgstr "Marca sobre la que desea información."
+
+#. module: website_base_multi_anz
+#: model:ir.ui.view,arch_db:website_base_multi_anz.wbb_access_forbidden_advise
+msgid "Change account"
+msgstr "Cambiar la cuenta"
+
+#. module: website_base_multi_anz
+#: model:ir.ui.view,name:website_base_multi_anz.wbm_website_sale_extra_info
+msgid "Checkout Extra Info Base"
+msgstr "Checkout Extra Info Base"
+
+#. module: website_base_multi_anz
+#: model:ir.ui.view,name:website_base_multi_anz.wbm_website_sale_checkout
+msgid "Checkout Template"
+msgstr "Checkout Template"
+
+#. module: website_base_multi_anz
+#: model:ir.ui.view,arch_db:website_base_multi_anz.base_website_sale_product
+msgid "Close"
+msgstr "Cerrar"
 
 #. module: website_base_multi_anz
 #: model:ir.model,name:website_base_multi_anz.model_res_company
@@ -21,18 +235,109 @@ msgid "Companies"
 msgstr "Compañías"
 
 #. module: website_base_multi_anz
+#: model:ir.ui.view,arch_db:website_base_multi_anz.default_fields_forms
+msgid "Company"
+msgstr "Compañía"
+
+#. module: website_base_multi_anz
+#: model:ir.model.fields,field_description:website_base_multi_anz.field_product_public_category_complete_name
+msgid "Complete Name"
+msgstr "Nombre completo"
+
+#. module: website_base_multi_anz
+#: model:ir.ui.view,name:website_base_multi_anz.google_recaptcha_contact_form
+msgid "Contact Form Captcha"
+msgstr "Contact Form Captcha"
+
+#. module: website_base_multi_anz
+#: model:ir.ui.view,arch_db:website_base_multi_anz.wbb_access_forbidden_advise
+msgid "Contactus"
+msgstr "Contáctenos"
+
+#. module: website_base_multi_anz
+#: model:ir.model.fields,field_description:website_base_multi_anz.field_product_public_category_tag_create_uid
+#: model:ir.model.fields,field_description:website_base_multi_anz.field_seo_analytics_settings_create_uid
+#: model:ir.model.fields,field_description:website_base_multi_anz.field_template_stock_web_create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: website_base_multi_anz
+#: model:ir.model.fields,field_description:website_base_multi_anz.field_product_public_category_tag_create_date
+#: model:ir.model.fields,field_description:website_base_multi_anz.field_seo_analytics_settings_create_date
+#: model:ir.model.fields,field_description:website_base_multi_anz.field_template_stock_web_create_date
+msgid "Created on"
+msgstr "Creado en"
+
+#. module: website_base_multi_anz
+#: model:ir.ui.view,arch_db:website_base_multi_anz.res_config_settings_view_form_custom
+msgid "Default Availability Mode"
+msgstr "Modo de disponibilidad predeterminado"
+
+#. module: website_base_multi_anz
+#: model:ir.ui.view,name:website_base_multi_anz.default_contact_form
+msgid "Default Contact Form Base"
+msgstr "Default Contact Form Base"
+
+#. module: website_base_multi_anz
+#: model:ir.ui.view,name:website_base_multi_anz.default_file_forms
+msgid "Default File Document Form"
+msgstr "Default File Document Form"
+
+#. module: website_base_multi_anz
+#: model:ir.ui.view,name:website_base_multi_anz.default_fields_forms
+msgid "Default Form Fields"
+msgstr "Default Form Fields"
+
+#. module: website_base_multi_anz
+#: model:ir.ui.view,name:website_base_multi_anz.default_send_forms
+msgid "Default Send Form"
+msgstr "Default Send Form"
+
+#. module: website_base_multi_anz
+#: model:ir.ui.view,arch_db:website_base_multi_anz.res_config_settings_view_form_custom
+msgid "Default availability mode set on newly created stockable products. This can be changed at the product level."
+msgstr "El modo de disponibilidad predeterminado se aplica a los productos almacenables recién creados. Esta opción puede cambiarse a nivel de producto."
+
+#. module: website_base_multi_anz
+#: model:ir.ui.view,arch_db:website_base_multi_anz.res_config_settings_view_form_custom
+msgid "Default threshold"
+msgstr "Umbral predeterminado"
+
+#. module: website_base_multi_anz
+#: model:ir.ui.view,arch_db:website_base_multi_anz.website_sale_products
+msgid "Delete all"
+msgstr "Borrar todo"
+
+#. module: website_base_multi_anz
+#: model:ir.model.fields,field_description:website_base_multi_anz.field_product_public_category_tag_display_name
+#: model:ir.model.fields,field_description:website_base_multi_anz.field_seo_analytics_settings_display_name
+#: model:ir.model.fields,field_description:website_base_multi_anz.field_template_stock_web_display_name
+msgid "Display Name"
+msgstr "Nombre a mostrar"
+
+#. module: website_base_multi_anz
+#: model:ir.model.fields,field_description:website_base_multi_anz.field_website_menu_dynamic_cat_menu
+msgid "Dynamic categories menu"
+msgstr "Menú de Categorías dinámico"
+
+#. module: website_base_multi_anz
+#: model:ir.ui.view,arch_db:website_base_multi_anz.default_fields_forms
+msgid "Email"
+msgstr "Correo electrónico"
+
+#. module: website_base_multi_anz
 #: model:res.company,overdue_msg:website_base_multi_anz.bemar_company
 #: model:res.company,overdue_msg:website_base_multi_anz.group_company
-msgid "Dear Sir/Madam,\n"
+msgid "Estimado/a Señor/Señora, \n"
 "\n"
-"Our records indicate that some payments on your account are still due. Please find details below.\n"
-"If the amount has already been paid, please disregard this notice. Otherwise, please forward us the total amount stated below.\n"
-"If you have any queries regarding your account, Please contact us.\n"
+"Nuestros registros indican que tiene pagos pendientes de su cuenta. Encontrará los detalles a continuación. \n"
+"Si ya ha pagado la cantidad, por favor ignore este aviso. \n"
+"De lo contrario, por favor envíe la cantidad total que se indica a continuación. \n"
+"Si tiene cualquier pregunta relacionada con su cuenta, por favor póngase en contacto con nosotros. \n"
 "\n"
-"Thank you in advance for your cooperation.\n"
-"Best Regards,"
-msgstr ""
-"Estimado/a Señor/Señora, \n"
+"Gracias de antemano por su colaboración. \n"
+"Atentamente,"
+msgstr "Estimado/a Señor/Señora, \n"
 "\n"
 "Nuestros registros indican que tiene pagos pendientes de su cuenta. Encontrará los detalles a continuación. \n"
 "Si ya ha pagado la cantidad, por favor ignore este aviso. \n"
@@ -43,9 +348,71 @@ msgstr ""
 "Atentamente,"
 
 #. module: website_base_multi_anz
+#: model:ir.ui.view,arch_db:website_base_multi_anz.wbm_website_sale_extra_info
+msgid "Extra Info"
+msgstr "Información extra"
+
+#. module: website_base_multi_anz
+#: model:ir.ui.view,arch_db:website_base_multi_anz.base_website_sale_product
+msgid "FORECAST"
+msgstr "PREVISTO"
+
+#. module: website_base_multi_anz
+#: model:ir.model.fields,help:website_base_multi_anz.field_product_public_category_public_categ_tag_ids
+msgid "Find Website Categories in Search Box by Related Tags"
+msgstr "Encuentre Categorías Web en el buscador web mediante las etiquetas relacionadas"
+
+#. module: website_base_multi_anz
+#: model:ir.ui.view,name:website_base_multi_anz.website_mail_follow
+msgid "Follow Base"
+msgstr "Follow Base"
+
+#. module: website_base_multi_anz
+#: model:website,codecoupon_form_title:website_base_multi_anz.anzamar_website
+#: model:website,codecoupon_form_title:website_base_multi_anz.point_sport_website
+msgid "Have a discount coupon?"
+msgstr "¿Tiene un cupòn de descuento?"
+
+#. module: website_base_multi_anz
+#: model:ir.ui.view,name:website_base_multi_anz.wbm_website_sale_header
+msgid "Header my cart link without text"
+msgstr "Header my cart link without text"
+
+#. module: website_base_multi_anz
+#: model:ir.ui.view,arch_db:website_base_multi_anz.acceptance_full_legal_terms_without_check
+msgid "I accept the"
+msgstr "Acepto el"
+
+#. module: website_base_multi_anz
+#: model:ir.ui.view,arch_db:website_base_multi_anz.web_login
+msgid "I accept the"
+msgstr "Acepto el"
+
+#. module: website_base_multi_anz
+#: model:ir.ui.view,arch_db:website_base_multi_anz.auth_signup_fields
+msgid "I accept the"
+msgstr "Acepto el"
+
+#. module: website_base_multi_anz
+#: model:ir.model.fields,field_description:website_base_multi_anz.field_product_public_category_tag_id
+#: model:ir.model.fields,field_description:website_base_multi_anz.field_seo_analytics_settings_id
+#: model:ir.model.fields,field_description:website_base_multi_anz.field_template_stock_web_id
+msgid "ID"
+msgstr "ID (identificación)"
+
+#. module: website_base_multi_anz
+#: model:ir.ui.view,arch_db:website_base_multi_anz.wbb_access_forbidden_advise
+msgid "If you have any problem, please"
+msgstr "Si tiene algun problema, por favor"
+
+#. module: website_base_multi_anz
+#: model:ir.model.fields,field_description:website_base_multi_anz.field_avc_res_config_settings_social_instagram_16241
+#: model:ir.model.fields,field_description:website_base_multi_anz.field_codecoupon_base_settings_social_instagram
+#: model:ir.model.fields,field_description:website_base_multi_anz.field_ftp_server_config_setting_social_instagram_16492
 #: model:ir.model.fields,field_description:website_base_multi_anz.field_res_company_social_instagram
 #: model:ir.model.fields,field_description:website_base_multi_anz.field_res_config_settings_social_instagram
 #: model:ir.model.fields,field_description:website_base_multi_anz.field_robots_txt_settings_social_instagram
+#: model:ir.model.fields,field_description:website_base_multi_anz.field_seo_analytics_settings_social_instagram
 #: model:ir.model.fields,field_description:website_base_multi_anz.field_seo_general_settings_social_instagram
 #: model:ir.model.fields,field_description:website_base_multi_anz.field_sitemap_base_settings_social_instagram
 #: model:ir.model.fields,field_description:website_base_multi_anz.field_web_app_settings_social_instagram
@@ -54,85 +421,349 @@ msgid "Instagram Account"
 msgstr "Cuenta Instagram"
 
 #. module: website_base_multi_anz
+#: model:website,codecoupon_err_msg:website_base_multi_anz.anzamar_website
+#: model:website,codecoupon_err_msg:website_base_multi_anz.point_sport_website
+msgid "Invalid coupon!"
+msgstr "¡Cupón no válido!"
+
+#. module: website_base_multi_anz
+#: model:ir.model.fields,field_description:website_base_multi_anz.field_codecoupon_base_settings_inventory_availability
+#: model:ir.model.fields,field_description:website_base_multi_anz.field_seo_analytics_settings_inventory_availability
+msgid "Inventory"
+msgstr "Inventario"
+
+#. module: website_base_multi_anz
+#: model:ir.ui.view,arch_db:website_base_multi_anz.google_recaptcha_contact_form
+msgid "Is human?"
+msgstr "¿Eres humano?"
+
+#. module: website_base_multi_anz
+#: model:website,codecoupon_adv_msg:website_base_multi_anz.anzamar_website
+#: model:website,codecoupon_adv_msg:website_base_multi_anz.point_sport_website
+msgid "It will be eliminated with a some change in the cart"
+msgstr "El cupón será eliminado si se hacen cambios en el carrito"
+
+#. module: website_base_multi_anz
+#: model:ir.model.fields,field_description:website_base_multi_anz.field_product_public_category_tag___last_update
+#: model:ir.model.fields,field_description:website_base_multi_anz.field_seo_analytics_settings___last_update
+#: model:ir.model.fields,field_description:website_base_multi_anz.field_template_stock_web___last_update
+msgid "Last Modified on"
+msgstr "Última modificación en"
+
+#. module: website_base_multi_anz
+#: model:ir.model.fields,field_description:website_base_multi_anz.field_product_public_category_tag_write_uid
+#: model:ir.model.fields,field_description:website_base_multi_anz.field_seo_analytics_settings_write_uid
+#: model:ir.model.fields,field_description:website_base_multi_anz.field_template_stock_web_write_uid
+msgid "Last Updated by"
+msgstr "Última actualización de"
+
+#. module: website_base_multi_anz
+#: model:ir.model.fields,field_description:website_base_multi_anz.field_product_public_category_tag_write_date
+#: model:ir.model.fields,field_description:website_base_multi_anz.field_seo_analytics_settings_write_date
+#: model:ir.model.fields,field_description:website_base_multi_anz.field_template_stock_web_write_date
+msgid "Last Updated on"
+msgstr "Última actualización en"
+
+#. module: website_base_multi_anz
+#: model:ir.ui.view,arch_db:website_base_multi_anz.wbb_access_forbidden_advise
+msgid "Log In"
+msgstr "Entrar"
+
+#. module: website_base_multi_anz
+#: model:ir.ui.view,name:website_base_multi_anz.web_login
+msgid "Login Legal Base"
+msgstr "Login Legal Base"
+
+#. module: website_base_multi_anz
+#: model:ir.ui.view,name:website_base_multi_anz.portal_frontend_layout
+msgid "Main Frontend Layout Base"
+msgstr "Main Frontend Layout Base"
+
+#. module: website_base_multi_anz
+#: model:ir.ui.view,name:website_base_multi_anz.base_layout_website
+msgid "Main Layout Base"
+msgstr "Main Layout Base"
+
+#. module: website_base_multi_anz
+#: model:ir.ui.view,arch_db:website_base_multi_anz.base_website_sale_product
+msgid "N/D"
+msgstr "N/D"
+
+#. module: website_base_multi_anz
+#: model:ir.model.fields,field_description:website_base_multi_anz.field_product_public_category_tag_name
+#: model:ir.ui.view,arch_db:website_base_multi_anz.default_fields_forms
+msgid "Name"
+msgstr "Nombre"
+
+#. module: website_base_multi_anz
+#: model:ir.ui.view,arch_db:website_base_multi_anz.wbm_website_sale_extra_info
+msgid "Note"
+msgstr "Nota"
+
+#. module: website_base_multi_anz
+#: model:ir.ui.view,arch_db:website_base_multi_anz.base_website_sale_product
+msgid "ON HAND"
+msgstr "A MANO"
+
+#. module: website_base_multi_anz
+#: code:addons/website_base_multi_anz/models/blog_blog.py:9
+#: code:addons/website_base_multi_anz/models/blog_post.py:9
+#: model:ir.model.fields,field_description:website_base_multi_anz.field_blog_blog_only_affiliates
+#: model:ir.model.fields,field_description:website_base_multi_anz.field_blog_post_only_affiliates
+#, python-format
+msgid "Only available for affiliate partners"
+msgstr "Solo disponible para asociados"
+
+#. module: website_base_multi_anz
+#: model:ir.ui.view,name:website_base_multi_anz.open_shop_contact_form
+msgid "Open Shop Form"
+msgstr "Open Shop Form"
+
+#. module: website_base_multi_anz
+#: code:addons/website_base_multi_anz/models/website_blog.py:59
+#, python-format
+msgid "Our latest news"
+msgstr "Our latest news"
+
+#. module: website_base_multi_anz
+#: model:ir.model,name:website_base_multi_anz.model_stock_move_line
+msgid "Packing Operation"
+msgstr "Operación de empaquetado"
+
+#. module: website_base_multi_anz
 #: model:ir.model,name:website_base_multi_anz.model_payment_acquirer
 msgid "Payment Acquirer"
 msgstr "Método de Pago"
 
 #. module: website_base_multi_anz
-#: model:ir.model.fields,field_description:website_base_multi_anz.field_website_menu_website_published
+#: model:ir.ui.view,name:website_base_multi_anz.wbm_website_sale_confirmation
+msgid "Payment Confirmation Template"
+msgstr "Payment Confirmation Template"
+
+#. module: website_base_multi_anz
+#: model:ir.ui.view,name:website_base_multi_anz.wbm_website_sale_payment
+msgid "Payment Template"
+msgstr "Payment Template"
+
+#. module: website_base_multi_anz
+#: model:ir.ui.view,arch_db:website_base_multi_anz.default_fields_forms
+msgid "Phone"
+msgstr "Teléfono"
+
+#. module: website_base_multi_anz
+#: model:ir.ui.view,name:website_base_multi_anz.wbma_wbb_s_post_short_list
+msgid "Post Short List Associated Base Template"
+msgstr "Post Short List Associated Base Template"
+
+#. module: website_base_multi_anz
+#: model:ir.model,name:website_base_multi_anz.model_product_product
+#: model:ir.model.fields,field_description:website_base_multi_anz.field_template_stock_web_product_id
+msgid "Product"
+msgstr "Producto"
+
+#. module: website_base_multi_anz
+#: model:ir.model,name:website_base_multi_anz.model_product_attribute
+msgid "Product Attribute"
+msgstr "Atributo de producto"
+
+#. module: website_base_multi_anz
+#: model:ir.ui.view,name:website_base_multi_anz.base_website_sale_products_attributes
+msgid "Product Attribute's Filters Base"
+msgstr "Product Attribute's Filters Base"
+
+#. module: website_base_multi_anz
+#: model:ir.ui.view,name:website_base_multi_anz.base_website_sale_product
+msgid "Product Base"
+msgstr "Product Base"
+
+#. module: website_base_multi_anz
+#: model:ir.ui.view,name:website_base_multi_anz.website_sale_products_item
+msgid "Product Item Base"
+msgstr "Product Item Base"
+
+#. module: website_base_multi_anz
+#: model:ir.model,name:website_base_multi_anz.model_product_template
+msgid "Product Template"
+msgstr "Plantilla de producto"
+
+#. module: website_base_multi_anz
+#: model:ir.ui.view,name:website_base_multi_anz.website_sale_products
+msgid "Products Base"
+msgstr "Products Base"
+
+#. module: website_base_multi_anz
+#: model:ir.model.fields,field_description:website_base_multi_anz.field_product_attribute_website_published
 msgid "Published"
 msgstr "Publicado"
 
 #. module: website_base_multi_anz
-#: model:ir.model.fields,field_description:website_base_multi_anz.field_website_menu_not_public
-msgid "Show it only if the user is logged in"
-msgstr "Mostrar solo si el usuario está logueado"
+#: model:website,codecoupon_form_text:website_base_multi_anz.anzamar_website
+#: model:website,codecoupon_form_text:website_base_multi_anz.point_sport_website
+msgid "Put it in this field and apply"
+msgstr "Introducir y aplicar"
 
 #. module: website_base_multi_anz
+#: model:ir.ui.view,arch_db:website_base_multi_anz.default_fields_forms
+msgid "Question"
+msgstr "Consulta"
+
+#. module: website_base_multi_anz
+#: model:ir.model,name:website_base_multi_anz.model_sale_order
+msgid "Quotation"
+msgstr "Presupuesto"
+
+#. module: website_base_multi_anz
+#: code:addons/website_base_multi_anz/models/website_blog.py:60
+#, python-format
+msgid "Read all our news"
+msgstr "Read all our news"
+
+#. module: website_base_multi_anz
+#: model:ir.model.fields,field_description:website_base_multi_anz.field_product_public_category_public_categ_tag_ids
+msgid "Related Tags"
+msgstr "Tags Relacionadas"
+
+#. module: website_base_multi_anz
+#: model:ir.ui.view,name:website_base_multi_anz.bcb_portal_portal_layout
+msgid "Remove the My Account breadcrumb's bar"
+msgstr "Remove the My Account breadcrumb's bar"
+
+#. module: website_base_multi_anz
+#: model:ir.ui.view,name:website_base_multi_anz.base_sgeede_infinite_scroll_products_infinite_scrol
+msgid "SGEEDE Infinite Scroll Base"
+msgstr "SGEEDE Infinite Scroll Base"
+
+#. module: website_base_multi_anz
+#: model:ir.ui.view,arch_db:website_base_multi_anz.base_website_sale_product
+msgid "STOCK"
+msgstr "STOCK"
+
+#. module: website_base_multi_anz
+#: model:ir.model.fields,field_description:website_base_multi_anz.field_avc_res_config_settings_sale_type_id
+#: model:ir.model.fields,field_description:website_base_multi_anz.field_codecoupon_base_settings_sale_type_id
+#: model:ir.model.fields,field_description:website_base_multi_anz.field_ftp_server_config_setting_sale_type_id
+#: model:ir.model.fields,field_description:website_base_multi_anz.field_res_config_settings_sale_type_id
+#: model:ir.model.fields,field_description:website_base_multi_anz.field_robots_txt_settings_sale_type_id
+#: model:ir.model.fields,field_description:website_base_multi_anz.field_seo_analytics_settings_sale_type_id
+#: model:ir.model.fields,field_description:website_base_multi_anz.field_seo_general_settings_sale_type_id
+#: model:ir.model.fields,field_description:website_base_multi_anz.field_sitemap_base_settings_sale_type_id
+#: model:ir.model.fields,field_description:website_base_multi_anz.field_web_app_settings_sale_type_id
+#: model:ir.model.fields,field_description:website_base_multi_anz.field_website_sale_type_id
+msgid "Sale type"
+msgstr "Tipo de Venta"
+
+#. module: website_base_multi_anz
+#: selection:codecoupon_base.settings,inventory_availability:0
+#: selection:seo_analytics.settings,inventory_availability:0
+msgid "Sell regardless of inventory"
+msgstr "Vender independientemente del inventario"
+
+#. module: website_base_multi_anz
+#: model:ir.ui.view,name:website_base_multi_anz.website_sale_stock_website_sale_stock_cart_lines
+msgid "Shopping Cart Lines Base"
+msgstr "Shopping Cart Lines Base"
+
+#. module: website_base_multi_anz
+#: model:ir.ui.view,name:website_base_multi_anz.wbm_website_sale_cart
+msgid "Shopping Cart Template"
+msgstr "Shopping Cart Template"
+
+#. module: website_base_multi_anz
+#: model:ir.ui.view,name:website_base_multi_anz.base_website_sale_sort
+msgid "Show Sort by Base"
+msgstr "Show Sort by Base"
+
+#. module: website_base_multi_anz
+#: code:addons/website_base_multi_anz/models/product.py:42
+#: code:addons/website_base_multi_anz/models/website.py:115
+#: selection:codecoupon_base.settings,inventory_availability:0
+#: selection:seo_analytics.settings,inventory_availability:0
+#, python-format
+msgid "Show future and current inventory below a threshold and prevent sales if not enough stock"
+msgstr "Mostrar inventario futuro y actual por debajo de un umbral y evitar ventas si no hay suficiente stock"
+
+#. module: website_base_multi_anz
+#: code:addons/website_base_multi_anz/models/product.py:40
+#: code:addons/website_base_multi_anz/models/website.py:113
+#: selection:codecoupon_base.settings,inventory_availability:0
+#: selection:seo_analytics.settings,inventory_availability:0
+#, python-format
+msgid "Show future and current inventory on website and prevent sales if not enough stock"
+msgstr "Muestra el inventario futuro y actual en el sitio web y evita ventas si no hay suficiente stock"
+
+#. module: website_base_multi_anz
+#: selection:codecoupon_base.settings,inventory_availability:0
+#: selection:seo_analytics.settings,inventory_availability:0
+msgid "Show inventory below a threshold and prevent sales if not enough stock"
+msgstr "Mostrar inventario por debajo de un umbral y evitar ventas si no hay suficiente stock"
+
+#. module: website_base_multi_anz
+#: selection:codecoupon_base.settings,inventory_availability:0
+#: selection:seo_analytics.settings,inventory_availability:0
+msgid "Show inventory on website and prevent sales if not enough stock"
+msgstr "Mostrar inventario en el sitio web y evitar ventas si no hay suficiente stock"
+
+#. module: website_base_multi_anz
+#: selection:codecoupon_base.settings,inventory_availability:0
+#: selection:seo_analytics.settings,inventory_availability:0
+msgid "Show product-specific notifications"
+msgstr "Mostrar notificaciones específicas del producto"
+
+#. module: website_base_multi_anz
+#: model:ir.ui.view,arch_db:website_base_multi_anz.wbb_access_forbidden_advise
+msgid "Start page"
+msgstr "Página de Inicio"
+
+#. module: website_base_multi_anz
+#: model:ir.model.fields,field_description:website_base_multi_anz.field_template_stock_web_stock_website_published
+msgid "Stock Visible"
+msgstr "Stock Visible"
+
+#. module: website_base_multi_anz
+#: model:ir.ui.view,arch_db:website_base_multi_anz.default_fields_forms
+msgid "Subject"
+msgstr "Asunto"
+
+#. module: website_base_multi_anz
+#: model:ir.ui.view,arch_db:website_base_multi_anz.wbma_wbb_website_blog_blog_post_complete
+msgid "Subtitle"
+msgstr "Subtítulo"
+
+#. module: website_base_multi_anz
+#: model:ir.ui.view,arch_db:website_base_multi_anz.base_website_sale_product
+msgid "TO ORDER"
+msgstr "PEDIR"
+
+#. module: website_base_multi_anz
+#: model:ir.ui.view,arch_db:website_base_multi_anz.base_website_sale_product
+msgid "This product was added to cart"
+msgstr "Este producto fue añadido al carrito"
+
+#. module: website_base_multi_anz
+#: model:ir.model.fields,field_description:website_base_multi_anz.field_product_product_visibility_stock_web
+#: model:ir.model.fields,field_description:website_base_multi_anz.field_product_template_visibility_stock_web
+msgid "Visibility Stock Web"
+msgstr "Visibilidad Stock Web"
+
+#. module: website_base_multi_anz
+#: model:ir.model.fields,field_description:website_base_multi_anz.field_website_warehouse
+#: model:ir.ui.view,arch_db:website_base_multi_anz.view_website_form_warehouse
+msgid "Warehouse"
+msgstr "Almacén"
+
+#. module: website_base_multi_anz
+#: model:ir.model,name:website_base_multi_anz.model_website
+#: model:ir.model.fields,field_description:website_base_multi_anz.field_template_stock_web_website_id
+msgid "Website"
+msgstr "Sitio web"
+
+#. module: website_base_multi_anz
+#: model:ir.model.fields,field_description:website_base_multi_anz.field_avc_res_config_settings_email_16242
+#: model:ir.model.fields,field_description:website_base_multi_anz.field_codecoupon_base_settings_email
+#: model:ir.model.fields,field_description:website_base_multi_anz.field_ftp_server_config_setting_email_16493
 #: model:ir.model.fields,field_description:website_base_multi_anz.field_res_config_settings_email
 #: model:ir.model.fields,field_description:website_base_multi_anz.field_robots_txt_settings_email
-#: model:ir.model.fields,field_description:website_base_multi_anz.field_seo_general_settings_email
-#: model:ir.model.fields,field_description:website_base_multi_anz.field_sitemap_base_settings_email
-#: model:ir.model.fields,field_description:website_base_multi_anz.field_web_app_settings_email
-#: model:ir.model.fields,field_description:website_base_multi_anz.field_website_email
-msgid "Website Email"
-msgstr "Email del Sitio Web"
-
-#. module: website_base_multi_anz
-#: model:ir.model,name:website_base_multi_anz.model_website_menu
-msgid "Website Menu"
-msgstr "Menú del Sitio Web"
-
-#. module: website_base_multi_anz
-#: model:ir.model.fields,field_description:website_base_multi_anz.field_website_menu_not_portal
-msgid "Available only for public users"
-msgstr "Disponible solo para Usuarios Públicos"
-
-#. module: website_base_multi_anz
-#: code:addons/website_base_multi_anz/controllers/website.py:120
-#, python-format
-msgid "and %d unit(s) are already in cart"
-msgstr "y %d ud(s) ya están en el carrito"
-
-#. module: website_base_multi_anz
-#: code:addons/website_base_multi_anz/controllers/website.py:121
-#, python-format
-msgid "<p class=\"alert alert-warning\">%s: Ask for %d units but only %d is available %s</p>"
-msgstr "<p class=\"alert alert-warning\">%s: Solicita %d ud(s), pero solo %d están disponibles %s</p>"
-
-#. module: website_base_multi_anz
-#: code:addons/website_base_multi_anz/controllers/website.py:127
-#, python-format
-msgid "<p class=\"alert alert-warning\">%s: Added %d unit(s) but %d unit(s) was already in your cart</p>"
-msgstr "<p class=\"alert alert-warning\">%s: Añadidas %d ud(s) aunque %d ud(s) ya estaban en el carrito</p>"
-
-#. module: website_base_multi_anz
-#: code:addons/website_base_multi_anz/controllers/website.py:131
-#, python-format
-msgid "<p class=\"alert alert-success\">%s: Added %d unit(s)</p>"
-msgstr "<p class=\"alert alert-success\">%s: Añadidas %d ud(s)</p>"
-
-#. module: website_base_multi_anz
-#: code:addons/website_base_multi_anz/controllers/website.py:140
-#, python-format
-msgid "<p><strong>Was added %d unit(s) of %s:</strong></p>%s"
-msgstr "<p><strong>Añadidas %d ud(s) de %s:</strong></p>%s"
-
-#. module: website_base_multi_anz
-#: code:addons/website_base_multi_anz/controllers/website.py:132
-#, python-format
-msgid "<p><strong>Product for %s not found:</strong></p>%s"
-msgstr "<p><strong>Producto para %s no encontrado:</strong></p>%s"
-
-#. module: website_base_multi_anz
-#: code:addons/website_base_multi_anz/controllers/website.py:134
-#, python-format
-msgid "<p><strong>Empty product list</strong></p>"
-msgstr "<p><strong>Lista de productos vacía</strong></p>"
-
-#. module: website_base_multi_anz
-#: model:ir.model.fields,field_description:website_base_multi_anz.field_res_config_settings_email
-#: model:ir.model.fields,field_description:website_base_multi_anz.field_robots_txt_settings_email
+#: model:ir.model.fields,field_description:website_base_multi_anz.field_seo_analytics_settings_email
 #: model:ir.model.fields,field_description:website_base_multi_anz.field_seo_general_settings_email
 #: model:ir.model.fields,field_description:website_base_multi_anz.field_sitemap_base_settings_email
 #: model:ir.model.fields,field_description:website_base_multi_anz.field_web_app_settings_email
@@ -151,251 +782,205 @@ msgid "Website Product Category"
 msgstr "Categoría eCommerce"
 
 #. module: website_base_multi_anz
-#: model:ir.model.fields,field_description:website_base_multi_anz.field_avc_res_config_settings_sale_type_id
-#: model:ir.model.fields,field_description:website_base_multi_anz.field_ftp_server_config_setting_sale_type_id
-#: model:ir.model.fields,field_description:website_base_multi_anz.field_res_config_settings_sale_type_id
-#: model:ir.model.fields,field_description:website_base_multi_anz.field_robots_txt_settings_sale_type_id
-#: model:ir.model.fields,field_description:website_base_multi_anz.field_seo_general_settings_sale_type_id
-#: model:ir.model.fields,field_description:website_base_multi_anz.field_sitemap_base_settings_sale_type_id
-#: model:ir.model.fields,field_description:website_base_multi_anz.field_web_app_settings_sale_type_id
-#: model:ir.model.fields,field_description:website_base_multi_anz.field_website_sale_type_id
-msgid "Sale type"
-msgstr "Tipo de Venta"
+#: model:ir.model,name:website_base_multi_anz.model_product_public_category_tag
+msgid "Website Product Category Related Tag"
+msgstr "Website Product Category Related Tag"
 
 #. module: website_base_multi_anz
-#: model:ir.model.fields,field_description:website_base_multi_anz.field_product_public_category_tag_create_uid
-msgid "Created by"
-msgstr "Creado por"
+#: model:ir.ui.view,name:website_base_multi_anz.website_public_category_form
+msgid "Website category tag form"
+msgstr "Website category tag form"
 
 #. module: website_base_multi_anz
-#: model:ir.model.fields,field_description:website_base_multi_anz.field_product_public_category_tag___last_update
-msgid "Last Modified on"
-msgstr "Última modificación en"
+#: model:ir.ui.view,name:website_base_multi_anz.website_public_category_tree
+msgid "Website category tag tree"
+msgstr "Website category tag tree"
 
 #. module: website_base_multi_anz
-#: model:ir.model.fields,field_description:website_base_multi_anz.field_product_public_category_tag_write_uid
-msgid "Last Updated by"
-msgstr "Última actualización de"
+#: model:ir.ui.view,name:website_base_multi_anz.website_sequence_product_template_tree_view
+msgid "Website sequence for product template tree view"
+msgstr "Website sequence for product template tree view"
 
 #. module: website_base_multi_anz
-#: model:ir.model.fields,field_description:website_base_multi_anz.field_product_public_category_tag_write_date
-msgid "Last Updated on"
-msgstr "Última actualización en"
+#: model:ir.ui.view,name:website_base_multi_anz.website_menu_form_display_user
+msgid "Website.menu.form: Display to user booleans"
+msgstr "Website.menu.form: Display to user booleans"
 
 #. module: website_base_multi_anz
-#: model:ir.model.fields,field_description:website_base_multi_anz.field_product_public_category_tag_create_date
-msgid "Created on"
-msgstr "Creado en"
+#: model:ir.ui.view,name:website_base_multi_anz.wbm_website_sale_wishlist_product_wishlist
+msgid "Wishlist Page Template"
+msgstr "Wishlist Page Template"
 
 #. module: website_base_multi_anz
-#: model:ir.model.fields,field_description:website_base_multi_anz.field_product_public_category_tag_display_name
-msgid "Display Name"
-msgstr "Nombre a mostrar"
+#: model:ir.ui.view,arch_db:website_base_multi_anz.web_login
+msgid "With entering"
+msgstr "Al entrar"
 
 #. module: website_base_multi_anz
-#: model:ir.model.fields,help:website_base_multi_anz.field_product_public_category_public_categ_tag_ids
-msgid "Find Website Categories in Search Box by Related Tags"
-msgstr "Find Website Categories in Search Box by Related Tags"
+#: model:ir.ui.view,arch_db:website_base_multi_anz.website_mail_follow
+msgid "With subscribe"
+msgstr "Al subscribirse"
 
 #. module: website_base_multi_anz
-#: model:ir.model.fields,field_description:website_base_multi_anz.field_product_public_category_tag_name
-msgid "Name"
-msgstr "Nombre"
+#: model:ir.ui.view,name:website_base_multi_anz.work_contact_form
+msgid "Work With Us Form"
+msgstr "Work With Us Form"
 
 #. module: website_base_multi_anz
-#: model:ir.model.fields,field_description:website_base_multi_anz.field_website_menu_dynamic_cat_menu
-msgid "Dynamic categories menu"
-msgstr "Menú Categorías Dinámico"
-
-#. module: website_base_multi_anz
-#: model:ir.model.fields,field_description:website_base_multi_anz.field_product_public_category_public_categ_tag_ids
-msgid "Related Tags"
-msgstr "Tags Relacionadas"
-
-#. module: website_base_multi_anz
-#: model:ir.model.fields,field_description:website_base_multi_anz.field_website_warehouse
-#: model:ir.ui.view,arch_db:website_base_multi_anz.view_website_form_warehouse
-msgid "Warehouse"
-msgstr "Almacén"
-
-#. module: website_base_multi_anz
-#: selection:product.template,inventory_availability:0
-#: selection:res.config.settings,inventory_availability:0
-#, python-format
-msgid "Show future and current inventory on website and prevent sales if not enough stock"
-msgstr "Mostrar el inventario actual y futuro en el sitio web y bloquear las ventas si no hay "
-"suficientes existencias
-
-#. module: website_base_multi_anz
-#: selection:product.template,inventory_availability:0
-#: selection:res.config.settings,inventory_availability:0
-#, python-format
-msgid "Show future and current inventory below a threshold and prevent sales if not enough stock"
-msgstr "Mostrar el inventario actual y futuro por debajo de un determinado umbral y bloquear las "
-"ventas si no hay suficientes existencias"
-
-#. module: website_base_multi_anz
-#: model:ir.ui.view,arch_db:website_base_multi_anz.res_config_settings_view_form_custom
-msgid "Default Availability Mode"
-msgstr "Modo de disponibilidad predeterminado"
-
-#. module: website_base_multi_anz
-#: model:ir.ui.view,arch_db:website_base_multi_anz.res_config_settings_view_form_custom
-msgid "Default availability mode set on newly created stockable products. This can be changed at the product level."
-msgstr "El modo de disponibilidad predeterminado se aplica a los productos almacenables recién creados. Esta opción puede cambiarse a nivel de producto."
-
-#. module: website_base_multi_anz
-#: model:ir.ui.view,arch_db:website_base_multi_anz.res_config_settings_view_form_custom
-msgid "Default threshold"
-msgstr "Umbral predeterminado"
-
-#. module: website_base_multi_anz
-#: model:ir.model.fields,field_description:website_base_multi_anz.field_product_product_visibility_stock_web
-#: model:ir.model.fields,field_description:website_base_multi_anz.field_product_template_visibility_stock_web
-msgid "Visibility Stock Web"
-msgstr "Visibilidad Stock Web"
-
-#. module: website_base_multi_anz
-#: selection:robots_txt.settings,inventory_availability:0
-#: selection:seo_general.settings,inventory_availability:0
-#: selection:sitemap_base.settings,inventory_availability:0
-#: selection:web_app.settings,inventory_availability:0
-msgid "Show product-specific notifications"
-msgstr "Mostrar notificaciones sobre el producto"
-
-#. module: website_base_multi_anz
-#: model:ir.model,name:website_base_multi_anz.model_website
-#: model:ir.model.fields,field_description:website_base_multi_anz.field_template_stock_web_website_id
-msgid "Website"
-msgstr "Sitio web"
-
-#. module: website_base_multi_anz
-#: model:ir.model.fields,field_description:website_base_multi_anz.field_avc_res_config_settings_website_id
-#: model:ir.model.fields,field_description:website_base_multi_anz.field_ftp_server_config_setting_website_id
-msgid "website"
-msgstr "sitio web"
-
-#. module: website_sale
-#: model:ir.ui.view,name:website_sale.cart
-msgid "Shopping Cart"
-msgstr "Carrito de la compra"
-
-#. module: website_sale
-#: model:ir.ui.view,name:website_sale.address
-msgid "Address Management"
-msgstr "Facturación y envío"
-
-#. module: website_sale
-#: model:ir.ui.view,name:website_sale.checkout
-msgid "checkout"
-msgstr "Facturación y envío"
-
-#. module: website_sale
-#: model:ir.ui.view,name:website_sale.payment
-msgid "Payment"
-msgstr "Pago"
-
-#. module: web
-#: model:ir.ui.view,name:web.login
-msgid "Login"
-msgstr "Iniciar sesión"
-
-#. module: auth_signup
-#: model:ir.ui.view,name:auth_signup.signup
-msgid "Sign up login"
-msgstr "Registrarse"
-
-#. module: auth_signup
-#: model:ir.ui.view,name:auth_signup.reset_password
-msgid "Reset password"
-msgstr "Restablecer Contraseña"
-
-#. module: website_blog
-#: model:ir.ui.view,name:website_blog.latest_blogs
-msgid "Reset password"
-msgstr "Últimas Publicaciones"
-
-#. module: website_base_multi_anz
-#: model:ir.ui.view,arch_db:website_base_multi_anz.affiliate_access_view_blog_blog_form
-#: model:ir.ui.view,arch_db:website_base_multi_anz.affiliate_view_blog_post_form
-msgid "Access control"
-msgstr "Control de Acceso"
-
-#. module: website_base_multi_anz
-#: code:addons/website_base_multi_anz/models/blog_blog.py:9
-#: code:addons/website_base_multi_anz/models/blog_post.py:9
-#: model:ir.model.fields,field_description:website_base_multi_anz.field_blog_blog_only_affiliates
-#: model:ir.model.fields,field_description:website_base_multi_anz.field_blog_post_only_affiliates
-#, python-format
-msgid "Only available for affiliate partners"
-msgstr "Solo disponible para asociados"
-
-#. module: website_base_multi_anz
-#: model:ir.ui.view,arch_db:website_base_multi_anz.wbma_wbb_website_blog_blog_post_complete
-msgid "403: Forbidden"
-msgstr "403: Prohibido"
-
-#. module: website_base_multi_anz
-#: model:ir.ui.view,arch_db:website_base_multi_anz.wbma_wbb_website_blog_blog_post_complete
+#: model:ir.ui.view,arch_db:website_base_multi_anz.wbb_access_forbidden_advise
 msgid "You do not have access to this page"
 msgstr "Usted no tiene permiso para acceder a esta página"
 
 #. module: website_base_multi_anz
-#: model:ir.ui.view,arch_db:website_base_multi_anz.wbma_wbb_website_blog_blog_post_complete
+#: model:website,codecoupon_appl_title:website_base_multi_anz.anzamar_website
+#: model:website,codecoupon_appl_title:website_base_multi_anz.point_sport_website
+msgid "You have a coupon applied"
+msgstr "Cupón aplicado"
+
+#. module: website_base_multi_anz
+#: model:ir.ui.view,arch_db:website_base_multi_anz.wbb_access_forbidden_advise
 msgid "You need to be"
 msgstr "Necesita estar"
 
 #. module: website_base_multi_anz
-#: model:ir.ui.view,arch_db:website_base_multi_anz.wbma_wbb_website_blog_blog_post_complete
-msgid "Logged"
-msgstr "Logueado"
+#: code:addons/website_base_multi_anz/controllers/website.py:138
+#, python-format
+msgid "and %d unit(s) are already in cart"
+msgstr "y %d ud(s) ya están en el carrito"
 
 #. module: website_base_multi_anz
-#: model:ir.ui.view,arch_db:website_base_multi_anz.wbma_wbb_website_blog_blog_post_complete
-msgid "and your user must have enough permissions."
-msgstr "y que su usuario tenga los permisos necesarios"
-
-#. module: website_base_multi_anz
-#: model:ir.ui.view,arch_db:website_base_multi_anz.wbma_wbb_website_blog_blog_post_complete
-msgid "If you have any problem, please"
-msgstr "Si tiene algun problema, por favor"
-
-#. module: website_base_multi_anz
-#: model:ir.ui.view,arch_db:website_base_multi_anz.wbma_wbb_website_blog_blog_post_complete
-msgid "contact with us"
-msgstr "pónganse en contacto con nosotros"
-
-#. module: website_base_multi_anz
-#: model:ir.ui.view,arch_db:website_base_multi_anz.wbma_wbb_website_blog_blog_post_complete
+#: model:ir.ui.view,arch_db:website_base_multi_anz.wbb_access_forbidden_advise
 msgid "by phone"
 msgstr "por teléfono"
 
 #. module: website_base_multi_anz
-#: model:ir.ui.view,arch_db:website_base_multi_anz.wbma_wbb_website_blog_blog_post_complete
+#: model:ir.ui.view,arch_db:website_base_multi_anz.wbb_access_forbidden_advise
+msgid "contact with us"
+msgstr "pónganse en contacto con nosotros"
+
+#. module: website_base_multi_anz
+#: model:ir.ui.view,arch_db:website_base_multi_anz.wbb_access_forbidden_advise
+msgid "how a different user to see the content"
+msgstr "como un usuario diferente para ver el contenido"
+
+#. module: website_base_multi_anz
+#: model:ir.ui.view,arch_db:website_base_multi_anz.acceptance_full_legal_terms_without_check
+msgid "legal advice"
+msgstr "aviso legal"
+
+#. module: website_base_multi_anz
+#: model:ir.ui.view,arch_db:website_base_multi_anz.web_login
+msgid "legal advice"
+msgstr "aviso legal"
+
+#. module: website_base_multi_anz
+#: model:ir.ui.view,arch_db:website_base_multi_anz.auth_signup_fields
+msgid "legal advice"
+msgstr "aviso legal"
+
+#. module: website_base_multi_anz
+#: model:ir.ui.view,arch_db:website_base_multi_anz.acceptance_full_legal_terms_without_check
+msgid "of this website."
+msgstr "de este Sitio Web."
+
+#. module: website_base_multi_anz
+#: model:ir.ui.view,arch_db:website_base_multi_anz.web_login
+msgid "of this website."
+msgstr "de este Sitio Web."
+
+#. module: website_base_multi_anz
+#: model:ir.ui.view,arch_db:website_base_multi_anz.auth_signup_fields
+msgid "of this website."
+msgstr "de este Sitio Web."
+
+#. module: website_base_multi_anz
+#: model:ir.ui.view,arch_db:website_base_multi_anz.wbb_access_forbidden_advise
 msgid "or email"
 msgstr "o correo electrónico"
 
 #. module: website_base_multi_anz
-#: model:ir.ui.view,arch_db:website_base_multi_anz.wbma_wbb_website_blog_blog_post_complete
-msgid "Start page"
-msgstr "Página de Inicio"
+#: model:ir.ui.view,arch_db:website_base_multi_anz.acceptance_full_legal_terms_without_check
+msgid "privacy policy and cookies"
+msgstr "política de privacidad y cookies"
+
+#. module: website_base_multi_anz
+#: model:ir.ui.view,arch_db:website_base_multi_anz.web_login
+msgid "privacy policy and cookies"
+msgstr "política de privacidad y cookies"
+
+#. module: website_base_multi_anz
+#: model:ir.ui.view,arch_db:website_base_multi_anz.auth_signup_fields
+msgid "privacy policy and cookies"
+msgstr "política de privacidad y cookies"
+
+#. module: website_base_multi_anz
+#: model:ir.ui.view,name:website_base_multi_anz.attribute_tree_view
+msgid "product.attribute.tree.published"
+msgstr "product.attribute.tree.published"
+
+#. module: website_base_multi_anz
+#: model:ir.ui.view,name:website_base_multi_anz.product_template_form_view_inherit_website_sale_stock_custom
+msgid "product.template.form.inherit.website.sale.stock.custom"
+msgstr "product.template.form.inherit.website.sale.stock.custom"
 
 #. module: website_base_multi_anz
 #: model:ir.ui.view,arch_db:website_base_multi_anz.wbma_wbb_website_blog_blog_post_complete
-msgid "Log In"
-msgstr "Entrar"
+msgid "pull-right"
+msgstr "pull-right"
 
 #. module: website_base_multi_anz
-#: model:ir.ui.view,arch_db:website_base_multi_anz.wbma_wbb_website_blog_blog_post_complete
-msgid "Contact"
-msgstr "Contacto"
+#: model:ir.ui.view,name:website_base_multi_anz.view_company_form_inherit_website_instagram
+msgid "res.company.form.inherit.website.instagram"
+msgstr "res.company.form.inherit.website.instagram"
 
-#. module: website_multi_company_blog
-#: model:ir.model.fields,field_description:website_multi_company_blog.field_blog_blog_website_ids
-msgid "Allowed websites"
-msgstr "Sitios Web Permitidos"
+#. module: website_base_multi_anz
+#: model:ir.model,name:website_base_multi_anz.model_res_config_settings
+msgid "res.config.settings"
+msgstr "res.config.settings"
 
-#. module: website_multi_company_blog
-#: model:ir.model.fields,help:website_multi_company_blog.field_blog_blog_website_ids
-msgid "Set the websites your blog should be available on. Leave empty to post the blog on each website you created."
-msgstr "Establece en que sitios web estará disponible el blog. Dejarlo vacio implica que estará disponible para TODOS los sitios web."
+#. module: website_base_multi_anz
+#: model:ir.ui.view,name:website_base_multi_anz.res_config_settings_view_form_custom
+msgid "res.config.settings.view.form.inherit.website.sale.stock.custom"
+msgstr "res.config.settings.view.form.inherit.website.sale.stock.custom"
+
+#. module: website_base_multi_anz
+#: model:ir.model,name:website_base_multi_anz.model_template_stock_web
+msgid "template.stock.web"
+msgstr "template.stock.web"
+
+#. module: website_base_multi_anz
+#: model:ir.ui.view,arch_db:website_base_multi_anz.acceptance_full_legal_terms_without_check
+msgid "terms of use"
+msgstr "términos de uso"
+
+#. module: website_base_multi_anz
+#: model:ir.ui.view,arch_db:website_base_multi_anz.web_login
+msgid "terms of use"
+msgstr "términos de uso"
+
+#. module: website_base_multi_anz
+#: model:ir.ui.view,arch_db:website_base_multi_anz.auth_signup_fields
+msgid "terms of use"
+msgstr "términos de uso"
+
+#. module: website_base_multi_anz
+#: model:ir.ui.view,name:website_base_multi_anz.view_website_form_instagram
+msgid "view.website.form.instagramm"
+msgstr "view.website.form.instagramm"
+
+#. module: website_base_multi_anz
+#: model:ir.model.fields,field_description:website_base_multi_anz.field_avc_res_config_settings_website_id_16110
+#: model:ir.model.fields,field_description:website_base_multi_anz.field_ftp_server_config_setting_website_id_16417
+msgid "website"
+msgstr "sitio web"
+
+#. module: website_base_multi_anz
+#: model:ir.ui.view,name:website_base_multi_anz.view_website_form_sale_data
+#: model:ir.ui.view,name:website_base_multi_anz.view_website_form_warehouse
+msgid "website form"
+msgstr "website form"
+
+#. module: website_base_multi_anz
+#: model:ir.ui.view,name:website_base_multi_anz.website_submenu
+msgid "website_submenu"
+msgstr "website_submenu"

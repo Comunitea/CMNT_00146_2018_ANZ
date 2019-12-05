@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data>
+
+        <!-- // Portal part -->
+        <template id="ski_portal_my_home_view" name="My Portal Skipping View" inherit_id="portal.portal_my_home"/>
+        <record id="portal_my_home" model="website.page">
+            <field name="name">My Portal</field>
+            <field name="website_published">True</field>
+            <field name="website_ids" eval="[(6, 0, [ref('website_base_multi_anz.skipping_website')])]"/>
+            <field name="url">/my/home</field>
+            <field name="view_id" ref="ski_portal_my_home_view"/>
+        </record>
+
+        <template id="ski_portal_my_details_view" name="Account Details Skipping View" inherit_id="portal.portal_my_details"/>
+        <record id="portal_my_details" model="website.page">
+            <field name="name">Account Details</field>
+            <field name="website_published">True</field>
+            <field name="website_ids" eval="[(6, 0, [ref('website_base_multi_anz.skipping_website')])]"/>
+            <field name="url">/my/account</field>
+            <field name="view_id" ref="ski_portal_my_details_view"/>
+            <field name="parent_id" ref="portal_my_home"/>
+        </record>
+
+        <template id="ski_portal_my_quotations_view" name="My Quotations Skipping View" inherit_id="sale.portal_my_quotations"/>
+        <record id="portal_my_quotations" model="website.page">
+            <field name="name">My Quotations</field>
+            <field name="website_published">True</field>
+            <field name="website_ids" eval="[(6, 0, [ref('website_base_multi_anz.skipping_website')])]"/>
+            <field name="url">/my/quotes</field>
+            <field name="view_id" ref="ski_portal_my_quotations_view"/>
+            <field name="parent_id" ref="portal_my_home"/>
+        </record>
+
+        <template id="ski_portal_my_orders_view" name="My Sales Orders Skipping View" inherit_id="sale.portal_my_orders"/>
+        <record id="portal_my_orders" model="website.page">
+            <field name="name">My Sales Orders</field>
+            <field name="website_published">True</field>
+            <field name="website_ids" eval="[(6, 0, [ref('website_base_multi_anz.skipping_website')])]"/>
+            <field name="url">/my/orders</field>
+            <field name="view_id" ref="ski_portal_my_orders_view"/>
+            <field name="parent_id" ref="portal_my_home"/>
+        </record>
+
+        <template id="ski_portal_my_purchase_orders_view" name="My Purchase Orders Skipping View" inherit_id="purchase.portal_my_purchase_orders"/>
+        <record id="ski_portal_my_purchase_orders" model="website.page">
+            <field name="name">My Purchase Orders</field>
+            <field name="website_published">True</field>
+            <field name="website_ids" eval="[(6, 0, [ref('website_base_multi_anz.skipping_website')])]"/>
+            <field name="url">/my/purchase</field>
+            <field name="view_id" ref="ski_portal_my_purchase_orders_view"/>
+        </record>
+
+        <template id="ski_portal_order_page_view" name="Sales Order Skipping View" inherit_id="sale.portal_order_page"/>
+        <record id="portal_order_page" model="website.page">
+            <field name="name">Sales Order</field>
+            <field name="website_published">True</field>
+            <field name="website_ids" eval="[(6, 0, [ref('website_base_multi_anz.skipping_website')])]"/>
+            <field name="view_id" ref="ski_portal_order_page_view"/>
+            <field name="parent_id" ref="portal_my_orders"/>
+        </record>
+
+        <template id="ski_portal_my_invoices_view" name="My Invoices and Payments Skipping View" inherit_id="account.portal_my_invoices"/>
+        <record id="portal_my_invoices" model="website.page">
+            <field name="name">My Invoices and Payments</field>
+            <field name="website_published">True</field>
+            <field name="website_ids" eval="[(6, 0, [ref('website_base_multi_anz.skipping_website')])]"/>
+            <field name="url">/my/invoices</field>
+            <field name="view_id" ref="ski_portal_my_invoices_view"/>
+            <field name="parent_id" ref="portal_my_home"/>
+        </record>
+
+        <template id="ski_portal_invoice_page_view" name="Invoice Skipping View" inherit_id="account.portal_invoice_page"/>
+        <record id="portal_invoice_page" model="website.page">
+            <field name="name">Invoice</field>
+            <field name="website_published">True</field>
+            <field name="website_ids" eval="[(6, 0, [ref('website_base_multi_anz.skipping_website')])]"/>
+            <field name="view_id" ref="ski_portal_invoice_page_view"/>
+            <field name="parent_id" ref="portal_my_invoices"/>
+        </record>
+
+        <!-- // Shop part -->
+        <template id="ski_order_confirmation_view" name="Order Confirmation Skipping View" inherit_id="website_sale.confirmation"/>
+        <record id="order_confirmation" model="website.page">
+            <field name="name">Order Confirmation</field>
+            <field name="website_published">True</field>
+            <field name="website_ids" eval="[(6, 0, [ref('website_base_multi_anz.skipping_website')])]"/>
+            <field name="url">/shop/confirmation</field>
+            <field name="view_id" ref="ski_order_confirmation_view"/>
+            <field name="parent_id" ref="portal_my_home"/>
+        </record>
+
+        <!-- // Error pages part -->
+        <template id="ski_page_404_view" name="Error 404 Skipping View" inherit_id="website.page_404"/>
+        <record id="page_404" model="website.page">
+            <field name="name">Error 404</field>
+            <field name="website_published">True</field>
+            <field name="website_ids" eval="[(6, 0, [ref('website_base_multi_anz.skipping_website')])]"/>
+            <field name="url">/page_404</field>
+            <field name="view_id" ref="ski_page_404_view"/>
+        </record>
+
+<!--        <record id="website_legal_page.advise_page" model="website.page">-->
+<!--            <field name="name">Legal Advise</field>-->
+<!--            <field name="website_published">True</field>-->
+<!--            <field name="website_ids" eval="[(6, 0, [ref('website_base_multi_anz.skipping_website')])]"/>-->
+<!--            <field name="url">/legal/advice</field>-->
+<!--            <field name="view_id" ref="theme_skipping.ski_advise_page_tmp"/>-->
+<!--        </record>-->
+
+<!--        <record id="website_legal_page.privacy_page" model="website.page">-->
+<!--            <field name="name">Privacy Policy</field>-->
+<!--            <field name="website_published">True</field>-->
+<!--            <field name="website_ids" eval="[(6, 0, [ref('website_base_multi_anz.skipping_website')])]"/>-->
+<!--            <field name="url">/legal/privacy-policy</field>-->
+<!--            <field name="view_id" ref="theme_skipping.ski_privacy_page_tmp"/>-->
+<!--        </record>-->
+
+<!--        <record id="website_legal_page.terms_page" model="website.page">-->
+<!--            <field name="name">Terms of Use</field>-->
+<!--            <field name="website_published">True</field>-->
+<!--            <field name="website_ids" eval="[(6, 0, [ref('website_base_multi_anz.skipping_website')])]"/>-->
+<!--            <field name="url">/legal/terms-of-use</field>-->
+<!--            <field name="view_id" ref="theme_skipping.ski_terms_page_tmp"/>-->
+<!--        </record>-->
+
+        <!-- // Contact Us part -->
+<!--        <template id="ski_contactus_view" name="Contact Us Skipping View" inherit_id="website.contactus"/>-->
+<!--        <record id="ski_contactus_page" model="website.page">-->
+<!--            <field name="name">Contact Us</field>-->
+<!--            <field name="website_published">True</field>-->
+<!--            <field name="website_ids" eval="[(6, 0, [ref('website_base_multi_anz.skipping_website')])]"/>-->
+<!--            <field name="url">/contactus</field>-->
+<!--            <field name="view_id" ref="ski_contactus_view"/>-->
+<!--        </record>-->
+
+<!--        <template id="ski_contactus_thanks_view" name="Contact Us (Thanks) Skipping View" inherit_id="website_crm.contactus_thanks_ir_ui_view"/>-->
+<!--        <record id="ski_contactus_thanks_page" model="website.page">-->
+<!--            <field name="name">Contact Us (Thanks)</field>-->
+<!--            <field name="website_published">True</field>-->
+<!--            <field name="website_ids" eval="[(6, 0, [ref('website_base_multi_anz.skipping_website')])]"/>-->
+<!--            <field name="url">/contactus-thank-you</field>-->
+<!--            <field name="view_id" ref="ski_contactus_thanks_view"/>-->
+<!--        </record>-->
+
+    </data>
+</odoo>

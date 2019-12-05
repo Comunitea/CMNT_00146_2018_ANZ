@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <!-- Custom styles already load at theme_data.xml -->
+    <template id="ski_website_assets_frontend" name="Assets Skipping" inherit_id="website.assets_frontend">
+        <xpath expr="link[last()]" position="after">
+            <link href="/theme_skipping/static/css/_general.less" rel="stylesheet" type="text/less"/>
+            <link href="/theme_skipping/static/css/blog.less" rel="stylesheet" type="text/less"/>
+            <link href="/theme_skipping/static/css/breadcrumbs.less" rel="stylesheet" type="text/less"/>
+            <link href="/theme_skipping/static/css/elements.less" rel="stylesheet" type="text/less"/>
+            <link href="/theme_skipping/static/css/footer.less" rel="stylesheet" type="text/less"/>
+            <link href="/theme_skipping/static/css/header.less" rel="stylesheet" type="text/less"/>
+            <link href="/theme_skipping/static/css/map.less" rel="stylesheet" type="text/less"/>
+            <link href="/theme_skipping/static/css/media.less" rel="stylesheet" type="text/less"/>
+            <link href="/theme_skipping/static/css/product.less" rel="stylesheet" type="text/less"/>
+            <link href="/theme_skipping/static/css/shop.less" rel="stylesheet" type="text/less"/>
+        </xpath>
+
+<!--        <xpath expr="//script[last()]" position="after">-->
+<!--            <script type="text/javascript" src="/theme_skipping/static/js/main.js"/>-->
+<!--        </xpath>-->
+    </template>
+
+</odoo>

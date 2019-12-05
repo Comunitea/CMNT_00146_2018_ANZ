@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<odoo>
-
-    <record id="website_base_multi_anz.anzamar_website" model="website">
-        <field name="multi_theme_id" ref="theme_anzamar.theme_anzamar_multi"/>
-    </record>
-
-</odoo>

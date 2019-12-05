@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <!-- Remove the My Account breadcrumb's bar -->
+    <template id="bcb_portal_portal_layout" inherit_id="portal.portal_layout" name="Remove the My Account breadcrumb's bar">
+        <xpath expr="//div[hasclass('o_portal')]" position="attributes">
+            <attribute name="t-if">True == False</attribute>
+        </xpath>
+    </template>
+
+</odoo>

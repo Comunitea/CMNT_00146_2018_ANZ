@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
 
-    <template id="poi_work_with_us_content_template" name="Work With Us Point Content Template" inherit_id="theme_point_sport.poi_page_work_with_us">
+    <template id="poi_work_with_us_content_template" name="Work With Us Point">
 
-        <xpath expr="//div[hasclass('container')]" position="before">
-            <t t-call="theme_point_sport.poi_home_carousel_b2c" t-if="request.env.user.has_group('base.group_public')"/>
+        <t t-call="website.layout">
+            <div id="wrap">
+                <t t-call="theme_point_sport.poi_home_carousel_b2c" t-if="request.env.user.has_group('base.group_public')"/>
                 <t t-call="theme_point_sport.poi_home_carousel_b2b" t-else=""/>
-        </xpath>
-
-        <xpath expr="//div[hasclass('container')]" position="inside">
+                <div class="container">
             <section class="oe_structure oe_empty"/>
             <section id="work_section" class="oe_structure">
                 <div class="col-md-12">
@@ -27,10 +26,12 @@
                 </div>
             </section>
             <section id="request_section_form" class="mt32">
-                <t t-call="theme_point_sport.work_contact_form"/>
+                <t t-call="website_base_multi_anz.work_contact_form"/>
             </section>
             <section class="oe_structure oe_empty"/>
-        </xpath>
+                </div>
+            </div>
+       </t>
     </template>
 
 </odoo>

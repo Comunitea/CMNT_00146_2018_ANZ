@@ -9,14 +9,14 @@
                 <li data-target="#carousel_point_sport_b2c" data-slide-to="2"/>
             </ol>
             <div class="carousel-inner" role="listbox">
+                <div class="item">
+                    <img class="img-responsive" src="/theme_point_sport/static/img/home/todo_sport.jpg" alt="Todos los Deportes"/>
+                </div>
+                <div class="item">
+                    <img class="img-responsive" src="/theme_point_sport/static/img/home/corriendo.jpg" alt="Find Your Products"/>
+                </div>
                 <div class="item active">
-                    <img class="img-responsive" src="/theme_point_sport/static/img/descubre_ultimas_novedades.png" alt="Last Novelties"/>
-                </div>
-                <div class="item">
-                    <img class="img-responsive" src="/theme_point_sport/static/img/encuentra_productos.png" alt="Find Products"/>
-                </div>
-                <div class="item">
-                    <img class="img-responsive" src="/theme_point_sport/static/img/primavera_verano.png" alt="Spring_Summer"/>
+                    <img class="img-responsive" src="/theme_point_sport/static/img/home/descubre_ultimas_novedades.png" alt="Last Novelties"/>
                 </div>
             </div>
             <!-- Controls -->
@@ -37,16 +37,24 @@
                 <li data-target="#carousel_point_sport_b2b" data-slide-to="0" class="active"/>
                 <li data-target="#carousel_point_sport_b2b" data-slide-to="1"/>
                 <li data-target="#carousel_point_sport_b2b" data-slide-to="2"/>
+                <li data-target="#carousel_point_sport_b2b" data-slide-to="3"/>
+                <li data-target="#carousel_point_sport_b2b" data-slide-to="4"/>
             </ol>
             <div class="carousel-inner" role="listbox">
                 <div class="item active">
-                    <img class="img-responsive" src="/theme_point_sport/static/img/descubre_ultimas_novedades.png" alt="Last Novelties"/>
+                    <img class="img-responsive" src="/theme_point_sport/static/img/home/black_friday.jpg" alt="Black Friday?"/>
                 </div>
                 <div class="item">
-                    <img class="img-responsive" src="/theme_point_sport/static/img/encuentra_productos.png" alt="Find Products"/>
+                    <img class="img-responsive" src="/theme_point_sport/static/img/home/seleccion.jpg" alt="Selección"/>
+                </div>
+                <div class="item active">
+                    <img class="img-responsive" src="/theme_point_sport/static/img/home/mal_tiempo.jpg" alt="Ready for weather?"/>
+                </div>
+                <div class="item active">
+                    <img class="img-responsive" src="/theme_point_sport/static/img/home/carrusel_madrid.jpg" alt="Real Madrid"/>
                 </div>
                 <div class="item">
-                    <img class="img-responsive" src="/theme_point_sport/static/img/primavera_verano.png" alt="Spring_Summer"/>
+                    <img class="img-responsive" src="/theme_point_sport/static/img/home/flotamos.jpg" alt="Autumn Collection"/>
                 </div>
             </div>
             <!-- Controls -->
@@ -61,14 +69,14 @@
         </div>
     </template>
 
-    <template id="poi_home_content" name="Home Point Content Template">
+    <template id="poi_home_content" name="Home Point">
         <t t-call="website.layout">
-            <div id="wrap">
+            <div id="wrap" class="homepage">
                 <!-- Slider with access control for public and retail users. Both visible for web designers -->
                 <t t-call="theme_point_sport.poi_home_carousel_b2c" groups="website.group_website_designer, base.group_public"/>
                 <strong>
                     <p class="text-center mt32 mb32" groups="website.group_website_designer">
-                        <span class="glyphicon glyphicon-arrow-down"></span> Carousel B2B ------------ Carousel B2C <span class="glyphicon glyphicon-arrow-up"></span>
+                        <span class="glyphicon glyphicon-arrow-down"/> Carousel B2B ------------ Carousel B2C <span class="glyphicon glyphicon-arrow-up"/>
                     </p>
                 </strong>
                 <t t-call="theme_point_sport.poi_home_carousel_b2b" groups="website.group_website_designer, base.group_portal"/>
@@ -107,7 +115,7 @@
                 </div>
                  <strong>
                     <p class="text-center mt32 mb32" groups="website.group_website_designer">
-                        <span class="glyphicon glyphicon-arrow-down"></span> Texto B2B ------------ Texto B2C <span class="glyphicon glyphicon-arrow-up"></span>
+                        <span class="glyphicon glyphicon-arrow-down"/> Texto B2B ------------ Texto B2C <span class="glyphicon glyphicon-arrow-up"/>
                     </p>
                 </strong>
                 <div class="container" groups="website.group_website_designer, base.group_portal">
