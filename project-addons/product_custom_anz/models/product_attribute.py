@@ -35,7 +35,7 @@ class ProductAttributeLine(models.Model):
 
     _inherit = 'product.attribute.line'
 
-    @api.constrains('atribute_id', 'value_ids')
+    @api.constrains('attribute_id', 'value_ids')
     def _check_num_values(self):
         for line in self:
             if line.attribute_id.feature and len(line.value_ids) > 1:
@@ -148,6 +148,7 @@ class ProductAttributeValue(models.Model):
     name_normalizado = fields.Char()
     attr_name = fields.Char('Attribute', related="attribute_id.srch_name")
     range_search = fields.Text('Range Search')
+    active = fields.Boolean('Active', default=True)
 
     def open_form_view_value(self):
         self.ensure_one()

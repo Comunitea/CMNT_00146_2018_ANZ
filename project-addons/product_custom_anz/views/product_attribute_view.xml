@@ -100,6 +100,7 @@
                         <field name="is_tboot"/>
                         <field name="is_color"/>
                         <field name="range_search"/>
+                        <field name="active"/>
                     </group>
                     <group>
                         <field name="product_ids"/>
@@ -120,6 +121,7 @@
                 <field name="is_tboot"/>
                 <field name="is_color"/>
                 <field name="range_search"/>
+                <field name="active"/>
                 <button name="open_form_view_value"
                         icon="fa-file-text"
                         type="object"
