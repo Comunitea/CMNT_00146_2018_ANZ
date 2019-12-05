@@ -70,7 +70,7 @@ class ProductAttribute(models.Model):
     def create(self, vals):
         if vals.get('feature', False):
             vals.update(create_variant=True)
-        return super().write(vals)
+        return super().create(vals)
 
     # @api.multi
     # def name_get(self):
