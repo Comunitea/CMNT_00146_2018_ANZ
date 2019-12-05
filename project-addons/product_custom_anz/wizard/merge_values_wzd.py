@@ -47,6 +47,8 @@ class MergeValuetWzd(models.TransientModel):
         for value2map in self.map_value_ids:
             if value2map.id == value.id:
                 continue
+
+            to_delete_values += value2map
             # Actualizo m2m productos y valores
             query_product_values = """
             UPDATE product_attribute_value_product_product_rel
@@ -74,7 +76,6 @@ class MergeValuetWzd(models.TransientModel):
             except Exception:
                 print("SKIP")
                 self._cr.rollback()
-                to_delete_values += value2map
                 continue;
 
         _logger.info(_('DELETING ATTRIBUTES VALUES'))
