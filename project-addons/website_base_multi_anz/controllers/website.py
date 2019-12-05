@@ -48,6 +48,15 @@ class WebsiteSaleExtended(WebsiteSale):
         product_ids = request.env['template.stock.web'].sudo().search(domain_swp).mapped('product_id').ids
         domain_origin += [('id', 'in', product_ids)]
 
+        # Hide all not published products in website for all employees that they do not web editors
+        user = request.env.user
+        is_editor_web = user.has_group('website.group_website_publisherl') \
+                        or user.has_group('website.group_website_designer')
+        if not is_editor_web:
+            domain_editor = [('website_published', '=', True)]
+            domain_origin = expression.normalize_domain(domain_origin)
+            domain_origin = expression.AND([domain_origin, domain_editor])
+
         return domain_origin
 
     @http.route(['/shop/cart/multi_update'], type='json', auth="public", methods=['POST'], website=True)
