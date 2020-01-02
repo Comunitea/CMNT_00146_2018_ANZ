@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <!-- Product template -->
+    <template id="ski_website_sale_product" name="Product Skipping" inherit_id="website_base_multi_anz.base_website_sale_product">
+        <xpath expr="//div[hasclass('add-to-cart-multi')]" position="after">
+            <!-- Add to wishlist button -->
+            <t t-if="product.env.ref('website_multi_theme.auto_view_ski_website_sale_wishlist_add_to_wishlist').active">
+                <t t-set="in_wish" t-value="product.product_variant_ids &amp; request.env['product.wishlist'].current().mapped('product_id')"/>
+                <a class="btn btn-default btn-lg mt8 o_add_wishlist_dyn" t-att-disabled='in_wish or None' title="Add to Wishlist" t-att-data-product-product-id="product.product_variant_ids[0].id" data-action="o_wishlist">
+                    <span class="fa fa-heart"/>
+                </a>
+            </t>
+        </xpath>
+        <xpath expr="//t[@t-if='variant.attribute_value_ids']//div[@class='one-stock'][1]" position="attributes">
+            <attribute name="t-raw">str('+5') if available &gt; 5 else str(int(available))</attribute>
+        </xpath>
+        <xpath expr="//t[@t-if='variant.attribute_value_ids']//div[@class='one-stock'][2]" position="attributes">
+            <attribute name="t-raw">(str('+5') if variant.sudo().virtual_available &gt; 5 else str(int(available)) if variant.sudo().virtual_available &gt; 0 else 0)</attribute>
+        </xpath>
+    </template>
+
+</odoo>

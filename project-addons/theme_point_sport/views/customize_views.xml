@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <!-- Here goes the views what you want be active on editor web for customized views -->
+    <!-- True will be activate the view, False deactivate it -->
+
+    <!-- ======================================== General ================================================ -->
+
+    <!-- Logo Show -->
+    <record id="website_multi_theme.auto_view_poi_website_layout_logo_show" model="ir.ui.view">
+        <field name="active">True</field>
+    </record>
+
+    <!-- Automatic Footer -->
+    <record id="website_multi_theme.auto_view_poi_website_footer_default" model="ir.ui.view">
+        <field name="active">True</field>
+    </record>
+
+    <!-- ======================================== Shop ================================================ -->
+
+    <!-- Show Found in search Box -->
+    <record id="website_multi_theme.auto_view_poi_website_sale_search count" model="ir.ui.view">
+        <field name="active">True</field>
+    </record>
+
+    <!-- Disable Pagination -->
+    <!-- Only available with sgeede_infinite_scroll module. We provided in -->
+    <!-- Provided in external_ecommerce_modules comunitea repo -->
+<!--    <record id="website_multi_theme.auto_view_poi_sgeede_infinite_scroll_disable_pagination" model="ir.ui.view">-->
+<!--        <field name="active">True</field>-->
+<!--    </record>-->
+
+        <!-- SGEEDE Infinite Scroll  -->
+    <!-- Only available with sgeede_infinite_scroll module. We provided in -->
+    <!-- Provided in external_ecommerce_modules comunitea repo -->
+<!--    <record id="website_multi_theme.auto_view_poi_sgeede_infinite_scroll_products_infinite_scroll" model="ir.ui.view">-->
+<!--        <field name="active">True</field>-->
+<!--    </record>-->
+
+    <!-- Add to Cart -->
+    <record id="website_multi_theme.auto_view_poi_website_sale_products_add_to_cart" model="ir.ui.view">
+        <field name="active">True</field>
+    </record>
+
+    <!-- Product Description -->
+<!--    <record id="	website_multi_theme.auto_view_poi_website_sale_products_description" model="ir.ui.view">-->
+<!--        <field name="active">True</field>-->
+<!--    </record>-->
+
+    <!-- Wishlist -->
+    <record id="website_multi_theme.auto_view_poi_website_sale_wishlist_add_to_wishlist" model="ir.ui.view">
+        <field name="active">True</field>
+    </record>
+
+    <!-- eCommerce Categories -->
+    <record id="website_multi_theme.auto_view_poi_website_sale_products_categories" model="ir.ui.view">
+        <field name="active">True</field>
+    </record>
+
+    <!-- Collapsible Category List -->
+<!--    <record id="website_multi_theme.auto_view_poi_website_sale_option_collapse_products_categories" model="ir.ui.view">-->
+<!--        <field name="active">True</field>-->
+<!--    </record>-->
+
+    <!-- List View  -->
+<!--    <record id="website_multi_theme.auto_view_poi_website_sale_products_list_view" model="ir.ui.view">-->
+<!--        <field name="active">True</field>-->
+<!--    </record>-->
+
+    <!-- Product Attribute's Filters -->
+<!--    <record id="website_multi_theme.auto_view_poi_website_sale_products_attributes" model="ir.ui.view">-->
+<!--        <field name="active">True</field>-->
+<!--    </record>-->
+
+    <!-- Show Sort by -->
+    <record id="website_multi_theme.auto_view_poi_website_sale_sort" model="ir.ui.view">
+        <field name="active">True</field>
+    </record>
+
+    <!-- ======================================== Product ================================================ -->
+
+    <!-- Activate Magnify -->
+    <record id="website_multi_theme.auto_view_poi_website_sale_product_picture_magnify" model="ir.ui.view">
+        <field name="active">True</field>
+    </record>
+
+    <!-- Alternative Product -->
+    <record id="website_multi_theme.auto_view_poi_website_sale_recommended_products" model="ir.ui.view">
+        <field name="active">True</field>
+    </record>
+
+    <!-- Discussion and Rating -->
+<!--    <record id="website_multi_theme.auto_view_poi_website_sale_product_comment" model="ir.ui.view">-->
+<!--        <field name="active">True</field>-->
+<!--    </record>-->
+
+    <!-- List View of Variants -->
+<!--    <record id="website_multi_theme.auto_view_poi_website_sale_product_variants" model="ir.ui.view">-->
+<!--        <field name="active">True</field>-->
+<!--    </record>-->
+
+    <!-- Select Quantity -->
+    <record id="website_multi_theme.auto_view_poi_website_sale_product_quantity" model="ir.ui.view">
+        <!-- Special in this case by multi_add_to_cart -->
+        <field name="active">False</field>
+        <field name="customize_show">False</field>
+    </record>
+
+    <!-- ======================================== Checkout ================================================ -->
+
+    <!-- Checkout - Extra Step Option -->
+    <record id="website_multi_theme.auto_view_poi_website_sale_extra_info_option" model="ir.ui.view">
+        <field name="active">True</field>
+    </record>
+
+    <!-- Checkout - Continue Shopping Button -->
+    <record id="website_multi_theme.auto_view_poi_website_sale_continue_shopping" model="ir.ui.view">
+        <field name="active">True</field>
+    </record>
+
+    <!-- Checkout - Promo Code -->
+<!--    <record id="website_multi_theme.auto_view_poi_website_sale_reduction_code" model="ir.ui.view">-->
+<!--        <field name="active">True</field>-->
+<!--    </record>-->
+
+    <!-- Checkout - Accept Terms & Conditions  -->
+<!--    <record id="website_multi_theme.auto_view_poi_website_sale_payment_sale_note" model="ir.ui.view">-->
+<!--        <field name="active">True</field>-->
+<!--    </record>-->
+
+    <!-- ======================================== Blog ================================================ -->
+
+    <!-- About Us -->
+    <record id="website_multi_theme.auto_view_poi_website_blog_opt_blog_rc_about_us" model="ir.ui.view">
+        <field name="active">True</field>
+    </record>
+
+    <!-- Subscription -->
+    <record id="website_multi_theme.auto_view_poi_website_blog_opt_blog_rc_follow_us" model="ir.ui.view">
+        <field name="active">True</field>
+    </record>
+
+    <!-- Status -->
+<!--    <record id="website_multi_theme.auto_view_poi_website_blog_opt_blog_rc_status" model="ir.ui.view">-->
+<!--        <field name="active">True</field>-->
+<!--    </record>-->
+
+    <!-- Our Blogs -->
+    <record id="website_multi_theme.auto_view_poi_website_blog_opt_blog_rc_blogs" model="ir.ui.view">
+        <field name="active">True</field>
+    </record>
+
+    <!-- Archives -->
+<!--    <record id="website_multi_theme.auto_view_poi_website_blog_opt_blog_rc_history" model="ir.ui.view">-->
+<!--        <field name="active">True</field>-->
+<!--    </record>-->
+
+    <!-- Tags -->
+    <record id="website_multi_theme.auto_view_poi_website_blog_opt_blog_rc_tags" model="ir.ui.view">
+        <field name="active">True</field>
+    </record>
+
+    <!-- Grid View -->
+    <record id="website_multi_theme.auto_view_poi_website_blog_opt_blog_post_grid_layout" model="ir.ui.view">
+        <field name="active">False</field>
+        <!-- Until bug will be fix. Now broken -->
+<!--        <field name="active">False</field>-->
+<!--        <field name="customize_show">False</field>-->
+    </record>
+
+    <!-- Author avatar  -->
+<!--    <record id="website_multi_theme.auto_view_poi_website_blog_opt_blog_post_author_avatar" model="ir.ui.view">-->
+<!--        <field name="active">True</field>-->
+<!--    </record>-->
+
+    <!-- Cover image -->
+<!--    <record id="website_multi_theme.auto_view_poi_website_blog_opt_blog_post_cover_image" model="ir.ui.view">-->
+<!--        <field name="active">True</field>-->
+<!--    </record>-->
+
+    <!-- ======================================== Blog Post ================================================ -->
+    <!-- Some new views they only available with website_blog_base module. Not just website_blog.-->
+    <!-- Provided in external_ecommerce_modules comunitea repo -->
+    <!-- Just views created in website_blog_base for Right Column Post in blog post. They have wbb view id -->
+
+    <!-- Subscription Post -->
+    <record id="website_multi_theme.auto_view_poi_website_blog_base_wbb_website_blog_opt_blog_rc_follow_us" model="ir.ui.view">
+        <field name="active">True</field>
+    </record>
+
+    <!-- Our Blogs Post -->
+    <record id="website_multi_theme.auto_view_poi_website_blog_base_wbb_website_blog_opt_blog_rc_blogs" model="ir.ui.view">
+        <field name="active">True</field>
+    </record>
+
+    <!-- Tags Post -->
+    <record id="website_multi_theme.auto_view_poi_website_blog_base_wbb_website_blog_opt_blog_rc_tags" model="ir.ui.view">
+        <field name="active">True</field>
+    </record>
+
+    <!-- About Us Post -->
+    <record id="website_multi_theme.auto_view_poi_website_blog_base_wbb_website_blog_opt_blog_rc_about_us" model="ir.ui.view">
+        <field name="active">True</field>
+    </record>
+
+        <!-- Status Post -->
+    <record id="website_multi_theme.auto_view_poi_website_blog_base_wbb_website_blog_opt_blog_rc_status" model="ir.ui.view">
+        <field name="active">False</field>
+    </record>
+
+        <!-- Archives Post -->
+    <record id="website_multi_theme.auto_view_poi_website_blog_base_wbb_website_blog_opt_blog_rc_history" model="ir.ui.view">
+        <field name="active">False</field>
+    </record>
+
+    <!-- Allow blog post comment  -->
+<!--    <record id="website_multi_theme.auto_view_poi_website_blog_opt_blog_post_complete_comment" model="ir.ui.view">-->
+<!--        <field name="active">True</field>-->
+<!--    </record>-->
+
+    <!-- Author Avatar -->
+<!--    <record id="website_multi_theme.auto_view_poi_website_blog_opt_blog_post_author_avatar_display" model="ir.ui.view">-->
+<!--        <field name="active">True</field>-->
+<!--    </record>-->
+
+    <!-- Breadcrumb -->
+    <record id="website_multi_theme.auto_view_poi_website_blog_blog_breadcrumb" model="ir.ui.view">
+        <!-- Custom breadcrumbs are provided in  breadcrumbs_base module in external_ecommerce_modules by comunitea -->
+        <field name="active">False</field>
+        <field name="customize_show">False</field>
+    </record>
+
+    <!-- Read next article -->
+<!--    <record id="website_multi_theme.auto_view_poi_website_blog_opt_blog_post_complete_read_next" model="ir.ui.view">-->
+<!--        <field name="active">True</field>-->
+<!--    </record>-->
+
+    <!-- Select to Tweet -->
+<!--    <record id="website_multi_theme.auto_view_poi_website_blog_opt_blog_post_select_to_tweet" model="ir.ui.view">-->
+<!--        <field name="active">True</field>-->
+<!--    </record>-->
+
+</odoo>

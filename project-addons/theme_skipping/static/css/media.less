@@ -1,0 +1,118 @@
+/*
+    CSS media part MIN-WIDTH 1201 px
+*/
+@media (min-width: 1201px){
+    #carousel_demo {
+        height: 100vh;
+    }
+}
+
+/*
+    CSS media part MIN-WIDTH 769 px
+*/
+// @media (min-width: 769px){
+//     header {
+//         &.homepage-header {
+//             position: fixed;
+//             top: 0;
+//             & .header-fixed-margin {
+//                 display: block;
+//             }
+//         }
+//     }
+// }
+
+/*
+    CSS media part MAX-WIDTH 1024 px
+*/
+@media (max-width: 1024px){
+    header {
+        & .navbar-default {
+            & .navbar-nav > li > a, & .navbar-nav > li > a.dropdown-toggle {
+                padding: 15px 8px;
+            }
+        }
+    }
+    .dynamic-cat-menu {
+        width: 740px;
+        & .first-level-inner {
+            width: 539px;
+        }
+    }
+}
+
+/*
+    CSS media part MAX-WIDTH 768 px
+*/
+@media (max-width: 768px){
+    header {
+        /*background-color: rgba(0,0,0,0.9);
+        &.fixed {
+            background-color: rgba(0,0,0,0.9);
+        }*/
+        .navbar {
+            min-height: 40px;
+        }
+        & .navbar-default {
+            & .navbar-nav > li > a, & .navbar-nav > li > a.dropdown-toggle {
+                padding: 10px 8px 5px 8px;
+            }
+            & .navbar-nav {
+                & a {
+                    outline: none !important;
+                }
+                & .open .dropdown-menu > li > a {
+                    color: @white;
+                    &:hover, &:focus {
+                        color: @color-dark;
+                    }
+                }
+            }
+        }
+        & .navbar-toggle {
+            margin-top: 3px;
+            margin-bottom: 3px;
+        }
+        & a.navbar-brand.logo {
+            height: 40px;
+            & img {
+                margin-top: 2px;
+            }
+        }
+        & .wp-contact-navbar {
+            padding: 5px 0;
+        }
+    }
+//     .map-wrap {
+//         margin-top: -110px;
+//     }
+    .dynamic-cat-menu {
+        & .first-level a {
+            padding: 5px 15px 5px 25px;
+            line-height: 20px;
+            color: @white;
+            &:hover {
+                color: @color-dark;
+            }
+        }
+        & .first-level-inner {
+            display: none !important;
+        }
+    }
+    #products_grid {
+        & .oe_product.oe_grid {
+            width: 49.5%;
+            & section {
+                background: none;
+            }
+        }
+    }
+}
+/*
+    CSS media part MAX-WIDTH 400 px
+*/
+@media (max-width: 400px){
+    .pagination > li > a, .pagination > li > span {
+        padding: 6px 8px;
+    }
+}

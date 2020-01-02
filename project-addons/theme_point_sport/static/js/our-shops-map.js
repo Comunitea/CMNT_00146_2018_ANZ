@@ -1,7 +1,7 @@
 // Add Point Sport shop's Google map
 function pointShopsInitMap() {
     // Set var
-    var icon1 = '/theme_anzamar/static/img/map/place-marker.png'
+    var icon1 = '/theme_point_sport/static/img/map/place-marker.png'
         offset = new google.maps.Size(0, 46)
         toclaster = []
     // Map create
@@ -182,7 +182,7 @@ function pointShopsInitMap() {
             textSize: '16',
             height: 53,
             width: 53,
-            url: '/theme_anzamar/static/img/map/cluster-marker-1.png'
+            url: '/theme_point_sport/static/img/map/cluster-marker-1.png'
         }]
     });
 }

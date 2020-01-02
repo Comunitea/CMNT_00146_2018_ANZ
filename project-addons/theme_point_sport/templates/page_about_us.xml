@@ -1,20 +1,22 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
 
-    <template id="poi_about_us_content_template" name="About Us Point Content Template" inherit_id="theme_point_sport.poi_template_about_us">
-
-        <xpath expr="//div[hasclass('container')]" position="inside">
-            <section class="oe_structure oe_empty"/>
-            <div class="row">
-                <div class="col-md-12">
-                    <h1 class="text-center">About us</h1>
-                    <p>Point Sport belongs to the Anzamar Group; shopping center and distributor of sporting goods founded more than 30 years ago. As a purchasing center, we combine a large number of associates with whom we gain competitiveness and visibility in the market thanks to collective strength. In this way any member of our group can access a series of brands, promotions and prices that would be impossible to access alone. Our catalog of more than 100 brands integrates the best and most important in the market with the most competitive prices.</p>
-                    <p>As a wholesaler, our main objective is to supply all the necessary products for the execution of sports practice to any establishment. For this our professionals with decades of experience in the sports sector continuously analyze the market, the offer and the latest trends to have the best news available for sale.</p>
-                    <p>Anzamar Group has storage facilities totaling more than 3,000 square meters, in which we have more than 12,500 references. These references are the expression of our selection of the articles with the highest prospective sales based on our experience, specialized studies and the reciprocity of our relations with the rest of the retail dedicated to sports and retailers in the market. Our experience and trajectory added to our potential and capacity, makes us one of the references among sports retailers in the national sports market.</p>
+    <template id="poi_about_us_content_template" name="About Us Point">
+        <t t-call="website.layout">
+            <div id="wrap">
+                <div class="container">
+                    <section class="oe_structure oe_empty"/>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h1 class="text-center">About us</h1>
+                            <p>Point Sport belongs to the Anzamar Group; shopping center and distributor of sporting goods founded more than 30 years ago. As a purchasing center, we combine a large number of associates with whom we gain competitiveness and visibility in the market thanks to collective strength. In this way any member of our group can access a series of brands, promotions and prices that would be impossible to access alone. Our catalog of more than 100 brands integrates the best and most important in the market with the most competitive prices.</p>
+                            <p>As a wholesaler, our main objective is to supply all the necessary products for the execution of sports practice to any establishment. For this our professionals with decades of experience in the sports sector continuously analyze the market, the offer and the latest trends to have the best news available for sale.</p>
+                            <p>Anzamar Group has storage facilities totaling more than 3,000 square meters, in which we have more than 12,500 references. These references are the expression of our selection of the articles with the highest prospective sales based on our experience, specialized studies and the reciprocity of our relations with the rest of the retail dedicated to sports and retailers in the market. Our experience and trajectory added to our potential and capacity, makes us one of the references among sports retailers in the national sports market.</p>
+                        </div>
+                    </div>
+                    <section class="oe_structure oe_empty"/>
                 </div>
             </div>
-            <section class="oe_structure oe_empty"/>
-        </xpath>
-
+        </t>
     </template>
 </odoo>

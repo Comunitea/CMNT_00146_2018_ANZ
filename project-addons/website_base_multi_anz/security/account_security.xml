@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Apply this rule only for employees because portal users have to see their invoices in their portal account -->
+    <delete id="account_operating_unit.account_invoice_rule_portal" model="ir.rule"/>
+    <record id="account_operating_unit_account_invoice_rule_portal" model="ir.rule">
+        <field name="model_id" ref="account.model_account_invoice"/>
+        <field name="domain_force">['|', ('operating_unit_id','=',False), ('operating_unit_id','in',[g.id for g in user.operating_unit_ids])]</field>
+        <field name="name">Invoices from allowed operating units</field>
+        <field name="global" eval="True"/>
+        <field eval="0" name="perm_unlink"/>
+        <field eval="0" name="perm_write"/>
+        <field eval="1" name="perm_read"/>
+        <field eval="0" name="perm_create"/>
+        <field name="groups" eval="[(4, ref('base.group_user'))]"/>
+    </record>
+
+</odoo>

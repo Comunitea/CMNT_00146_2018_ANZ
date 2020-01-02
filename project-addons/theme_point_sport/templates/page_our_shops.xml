@@ -1,37 +1,35 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
 
-    <template id="poi_our_shops_content_template" name="Our Shops Point Content Template" inherit_id="theme_point_sport.poi_template_our_shops">
-
-        <xpath expr="//div[hasclass('container')]" position="before">
-            <div class="map-wrap">
-                    <span class="metadata-marker" data-region_tag="html-body"/>
-                    <div id="map" class="full-size"/>
-                    <script type="text/javascript" src="/theme_point_sport/static/js/our-shops-map.js"/>
-                    <script type="text/javascript" src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"/>
-                    <script type="text/javascript" async="async" defer="defer"
-                            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA_3Mma3hft3POI5f2LhzxSzie0dF1BtOs&amp;language=es&amp;callback=pointShopsInitMap"/>
-                </div>
-        </xpath>
-
-        <xpath expr="//div[hasclass('container')]" position="inside">
-            <section class="oe_structure oe_empty"/>
-            <div class="row">
-                <div class="col-md-12 mb32">
-                    <h1 class="text-center mb32">Shops</h1>
-                    <h3 class="text-center">Where can you find your Sports Shop, sportswear, running shoes and accessories to buy online or in Malaga?</h3>
-                    <p><strong>"Your point of reference in sports"</strong></p>
-                    <p><strong>Point Sport</strong>, online store of sports equipment, is composed of two stores located in Malaga Capital with more than 16 years of experience.</p>
-                    <p>Both in our online store and in our sports stores in Malaga you can find the sports items you need, among others, sportswear, sports shoes and the latest in sportswear.</p>
-                    <p>If you are a lover of Running, Padel, Football or any other sport, our highly qualified staff will answer all your questions and help you choose the material you need.</p>
-                    <p>We adapt to you and your available time thanks to our online store! In it you can make inquiries to our specialists and they will contact you to help you in your choice to receive the sports equipment that best suits you as comfortably and as soon as possible at your home to practice your favorite sport in less than <a href="/page/delivery">48 hours</a>.</p>
-                    <p>In addition, in 2000 we joined the <strong>Shopping Group</strong>, dedicated company and sports specialist since 1986, that is, with more than 25 years of experience in the sports market being one of the major distributors at the National Level, with more than 130 stores throughout Spain.</p>
-                    <p>All your purchases and doubts will be endorsed and attended by a qualified staff and always supported by a company of more than 26 years specialized in sports.</p>
-                    <p>We only sell original products and only the main brands of the sports market.</p>
+    <template id="poi_our_shops_content_template" name="Our Shops Point">
+        <t t-call="website.layout">
+            <div id="wrap" class="map-wrap">
+                <span class="metadata-marker" data-region_tag="html-body"/>
+                <div id="map" class="full-size"/>
+                <script type="text/javascript" src="/theme_point_sport/static/js/our-shops-map.js"/>
+                <script type="text/javascript" src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"/>
+                <script type="text/javascript" async="async" defer="defer"
+                        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA_3Mma3hft3POI5f2LhzxSzie0dF1BtOs&amp;language=es&amp;callback=pointShopsInitMap"/>
+                <div class="container">
+                    <section class="oe_structure oe_empty"/>
+                    <div class="row">
+                        <div class="col-md-12 mb32">
+                            <h1 class="text-center mb32">Shops</h1>
+                            <h3 class="text-center">Where can you find your Sports Shop, sportswear, running shoes and accessories to buy online or in Malaga?</h3>
+                            <p><strong>"Your point of reference in sports"</strong></p>
+                            <p><strong>Point Sport</strong>, online store of sports equipment, is composed of two stores located in Malaga Capital with more than 16 years of experience.</p>
+                            <p>Both in our online store and in our sports stores in Malaga you can find the sports items you need, among others, sportswear, sports shoes and the latest in sportswear.</p>
+                            <p>If you are a lover of Running, Padel, Football or any other sport, our highly qualified staff will answer all your questions and help you choose the material you need.</p>
+                            <p>We adapt to you and your available time thanks to our online store! In it you can make inquiries to our specialists and they will contact you to help you in your choice to receive the sports equipment that best suits you as comfortably and as soon as possible at your home to practice your favorite sport in less than <a href="/page/delivery">48 hours</a>.</p>
+                            <p>In addition, in 2000 we joined the <strong>Shopping Group</strong>, dedicated company and sports specialist since 1986, that is, with more than 25 years of experience in the sports market being one of the major distributors at the National Level, with more than 130 stores throughout Spain.</p>
+                            <p>All your purchases and doubts will be endorsed and attended by a qualified staff and always supported by a company of more than 26 years specialized in sports.</p>
+                            <p>We only sell original products and only the main brands of the sports market.</p>
+                        </div>
+                    </div>
+                    <section class="oe_structure oe_empty"/>
                 </div>
             </div>
-            <section class="oe_structure oe_empty"/>
-        </xpath>
-
+        </t>
     </template>
+
 </odoo>
