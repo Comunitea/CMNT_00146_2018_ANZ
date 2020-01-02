@@ -31,6 +31,7 @@
 
             <xpath expr="//page[@name='other_info']//field[@name='origin']" position="after">
                 <field name="supplier_invoice_id"/>
+                <field name="supplier_invoice_id_partner_id" attrs="{'invisible':[('supplier_invoice_id','=',False)]}"/>
             </xpath>
 
             <field name="amount_total" position="after">

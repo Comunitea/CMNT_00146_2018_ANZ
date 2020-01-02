@@ -28,6 +28,7 @@ class AccountInvoice(models.Model):
     supplier_invoice_id = fields.Many2one('account.invoice',
                                           'Supplier Invoice', readonly=True,
                                           copy=False)
+    supplier_invoice_id_partner_id = fields.Many2one(related="supplier_invoice_id.partner_id", string='Supplier invoice partner')
     amount_discount = fields.Monetary(
         string='Amount discounted', store=False, readonly=True,
         compute='_compute_amount_discount')
