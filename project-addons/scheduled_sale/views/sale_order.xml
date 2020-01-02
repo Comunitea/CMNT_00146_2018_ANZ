@@ -8,13 +8,13 @@
         <field name="arch" type="xml">
             <xpath expr="//field[@name='order_line']/form/group/group/field[@name='product_id']" position="attributes">
                 <attribute name="context">
-                    {'sale_order_id': parent.id, 'scheduled_sale_id': parent.scheduled_sale_id, 'partner_id':parent.partner_id, 'quantity':product_uom_qty, 'pricelist':parent.pricelist_id, 'uom':product_uom, 'company_id': parent.company_id, 'sale_order_type_id': parent.type_id}
+                    {'warehouse': parent.warehouse_id, 'sale_order_id': parent.id, 'scheduled_sale_id': parent.scheduled_sale_id, 'partner_id':parent.partner_id, 'quantity':product_uom_qty, 'pricelist':parent.pricelist_id, 'uom':product_uom, 'company_id': parent.company_id, 'sale_order_type_id': parent.type_id}
                 </attribute>
             </xpath>
 
             <xpath expr="//field[@name='order_line']/tree/field[@name='product_id']" position="attributes">
                 <attribute name="context">
-                    {'sale_order_id': parent.id, 'scheduled_sale_id': parent.scheduled_sale_id, 'partner_id':parent.partner_id, 'quantity':product_uom_qty, 'pricelist':parent.pricelist_id, 'uom':product_uom, 'company_id': parent.company_id, 'sale_order_type_id': parent.type_id}
+                    {'warehouse': parent.warehouse_id, 'sale_order_id': parent.id, 'scheduled_sale_id': parent.scheduled_sale_id, 'partner_id':parent.partner_id, 'quantity':product_uom_qty, 'pricelist':parent.pricelist_id, 'uom':product_uom, 'company_id': parent.company_id, 'sale_order_type_id': parent.type_id}
                 </attribute>
             </xpath>
             <field name="team_id" position="after">
@@ -43,6 +43,7 @@
                 <attribute name="context">
                     {'default_product_tmpl_id': product_tmpl_id_sale_order_variant_mgmt,
                     'scheduled_sale_id': parent.scheduled_sale_id,
+                    'warehouse': parent.warehouse_id,
                     'sale_order_type_id': parent.type_id}
                 </attribute>
 
