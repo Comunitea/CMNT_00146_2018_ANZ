@@ -66,37 +66,51 @@ msgid "<i class=\"fa fa-shopping-cart fa-fw\"/> <span class=\"hidden-xs\">Procee
 msgstr "<i class=\"fa fa-shopping-cart fa-fw\"/> <span class=\"hidden-xs\">Ir a Pagar</span><span class=\"visible-xs-inline\">Pagar</span>"
 
 #. module: website_base_multi_anz
-#: code:addons/website_base_multi_anz/controllers/website.py:148
+#. openerp-web
+#: code:addons/website_base_multi_anz/static/js/main.js:116
+#, python-format
+msgid "Empty product list. Please, select one."
+msgstr "Lista de productos vacia. Seleccione uno."
+
+#. module: website_base_multi_anz
+#. openerp-web
+#: code:addons/website_base_multi_anz/static/js/main.js:118
+#, python-format
+msgid "User access error"
+msgstr "Error de acceso del usuario"
+
+#. module: website_base_multi_anz
+#: code:addons/website_base_multi_anz/controllers/website.py:157
 #, python-format
 msgid "<p class=\"alert alert-success\">%s: Added %d unit(s)</p>"
 msgstr "<p class=\"alert alert-success\">%s: Añadidas %d ud(s)</p>"
 
 #. module: website_base_multi_anz
-#: code:addons/website_base_multi_anz/controllers/website.py:145
+#: code:addons/website_base_multi_anz/controllers/website.py:154
 #, python-format
 msgid "<p class=\"alert alert-warning\">%s: Added %d unit(s) but %d unit(s) was already in your cart</p>"
 msgstr "<p class=\"alert alert-warning\">%s: Añadidas %d ud(s) aunque %d ud(s) ya estaban en el carrito</p>"
 
 #. module: website_base_multi_anz
-#: code:addons/website_base_multi_anz/controllers/website.py:139
+#: code:addons/website_base_multi_anz/controllers/website.py:148
 #, python-format
 msgid "<p class=\"alert alert-warning\">%s: Ask for %d units but only %d is available %s</p>"
 msgstr "<p class=\"alert alert-warning\">%s: Solicita %d ud(s), pero solo %d están disponibles %s</p>"
 
 #. module: website_base_multi_anz
-#: code:addons/website_base_multi_anz/controllers/website.py:163
+#: code:addons/website_base_multi_anz/controllers/website.py:172
 #, python-format
 msgid "<p><strong>Empty product list</strong></p>"
 msgstr "<p><strong>Lista de productos vacía</strong></p>"
 
 #. module: website_base_multi_anz
-#: code:addons/website_base_multi_anz/controllers/website.py:161
+#: code:addons/website_base_multi_anz/controllers/website.py:170
 #, python-format
 msgid "<p><strong>Product for %s not found:</strong></p>%s"
 msgstr "<p><strong>Producto para %s no encontrado:</strong></p>%s"
 
 #. module: website_base_multi_anz
-#: code:addons/website_base_multi_anz/controllers/website.py:157
+#: code:addons/website_base_multi_anz/controllers/website.py:166
 #, python-format
 msgid "<p><strong>Was added %d unit(s) of %s:</strong></p>%s"
 msgstr "<p><strong>Fue añadido %d unidades de %s:</strong></p>%s"
