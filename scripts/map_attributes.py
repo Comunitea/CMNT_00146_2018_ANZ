@@ -6,79 +6,86 @@ session.open(db='anzamar')
 pa = session.env['product.attribute']
 pav = session.env['product.attribute.value']
 
-APPAREL_ADULTO = pa.create({'name': 'APPAREL ADULTO', 'type': 'select'})
-APPAREL_JUNIOR = pa.create({'name': 'APPAREL JUNIOR', 'type': 'select'})
-APPAREL_BEBE = pa.create({'name': 'APPAREL BEBE', 'type': 'select'})
+APPAREL = pa.create({'name': 'APPAREL', 'type': 'select'})
+# APPAREL = pa.create({'name': 'APPAREL ADULTO', 'type': 'select'})
+# APPAREL = pa.create({'name': 'APPAREL JUNIOR', 'type': 'select'})
+# APPAREL = pa.create({'name': 'APPAREL BEBE', 'type': 'select'})
 SOCKS = pa.create({'name': 'SOCKS', 'type': 'select'})
 HARDWARE = pa.create({'name': 'HARDWARE', 'type': 'select'})
-FOOTWEAR_INFANT = pa.create({'name': 'FOOTWEAR_INFANT', 'type': 'select'})
-FOOTWEAR_KIDS = pa.create({'name': 'FOOTWEAR_KIDS', 'type': 'select'})
-FOOTWEAR_JUNIOR = pa.create({'name': 'FOOTWEAR_JUNIOR', 'type': 'select'})
-FOOTWEAR_ADULT = pa.create({'name': 'FOOTWEAR_ADULT', 'type': 'select'})
+FOOTWEAR = pa.create({'name': 'FOOTWEAR', 'type': 'select'})
+# FOOTWEAR= pa.create({'name': 'FOOTWEAR', 'type': 'select'})
+# FOOTWEAR= pa.create({'name': 'FOOTWEAR', 'type': 'select'})
+# FOOTWEAR= pa.create({'name': 'FOOTWEAR', 'type': 'select'})
+# FOOTWEAR= pa.create({'name': 'FOOTWEAR', 'type': 'select'})
 
 UNKNOW = pa.create({'name': '**UNKNOW'})
 
 MAPINGS = {
-    'APPAREAL': APPAREL_ADULTO,
-    'Apparel': 'select',
-    'APPAREL': 'select',
+    'APPAREAL': APPAREL,
+    'Apparel': APPAREL,
+    'APPAREL': APPAREL,
     'BALONES DE BALONCESTO': HARDWARE,
     'BALONES DE FUTBOL': HARDWARE,
     'BAÑADOR NK ADULTO': HARDWARE,
     'CALCETINES ADIDAS/PUMA': SOCKS,
     'CALCETINES NK': SOCKS,
     'CALCETIN UMBRO': SOCKS,
-    'CALZADO': FOOTWEAR_ADULT,
-    'CALZADO EUROPEO': FOOTWEAR_ADULT,
-    'CALZADO JOHN SMITH': FOOTWEAR_ADULT,
-    'CALZADO JOMA CABALLERO': FOOTWEAR_ADULT,
-    'CALZADO JUNIOR EUROPEO': FOOTWEAR_JUNIOR,
-    'CALZADO MIZUNO CABALLERO': FOOTWEAR_ADULT,
-    'CALZADO MIZUNO SEÑORA': FOOTWEAR_ADULT,
-    'CALZADO NEW BALANCE CRO.': FOOTWEAR_ADULT,
-    'CALZADO NEW BALANCE JR.': FOOTWEAR_JUNIOR,
-    'CALZADO NEW BALANCE KIDS': FOOTWEAR_KIDS,
-    'CALZADO NEW BALANCE SRA.': FOOTWEAR_ADULT,
-    'CALZADO NEW BALANCE SRA.2': FOOTWEAR_ADULT,
-    'CALZADO NK CABALLERO': FOOTWEAR_ADULT,
-    'CALZADO NK NIÑOS (GS)': FOOTWEAR_JUNIOR,
-    'CALZADO NK NIÑOS (PS)': FOOTWEAR_KIDS,
-    'CALZADO NK NIÑOS (TD)': FOOTWEAR_INFANT,
-    'CALZADO NK SEÑORA': FOOTWEAR_ADULT,
-    'CALZADO PUMA CABALLERO': FOOTWEAR_ADULT,
-    'CALZADO PUMA SEÑORA': FOOTWEAR_ADULT,
-    'CALZADO REEBOK CABALLERO': FOOTWEAR_ADULT,
-    'CALZADO REEBOK CHILDRENS': FOOTWEAR_KIDS,
-    'CALZADO REEBOK INFANTIL': FOOTWEAR_INFANT,
-    'CALZADO REEBOK JUNIOR': FOOTWEAR_JUNIOR,
-    'CALZADO REEBOK NIÑO/A': FOOTWEAR_KIDS, 
-    'CALZADO REEBOK SEÑORA': FOOTWEAR_ADULT,
-    'CALZADO SEÑORA EUROPEO': FOOTWEAR_ADULT,
-    'calzado umbro caballero': FOOTWEAR_ADULT,
-    'CALZADO UMBRO JUNIOR': FOOTWEAR_JUNIOR,
-    'CALZADO VANS ADULTO': FOOTWEAR_ADULT, 
-    'CALZADO VANS JUNIOR': FOOTWEAR_JUNIOR,
-    'CALZADO VANS NIÑA': FOOTWEAR_KIDS,
-    'CALZADO VANS SEÑORA': FOOTWEAR_ADULT,
-    'CHANCLAS ADIDAS': FOOTWEAR_ADULT,
-    'CHANCLAS ADIDAS JR': FOOTWEAR_JUNIOR,
+    'CALZADO': FOOTWEAR,
+    'CALZADO EUROPEO': FOOTWEAR,
+    'CALZADO JOHN SMITH': FOOTWEAR,
+    'CALZADO JOMA CABALLERO': FOOTWEAR,
+    'CALZADO JUNIOR EUROPEO': FOOTWEAR,
+    'CALZADO MIZUNO CABALLERO': FOOTWEAR,
+    'CALZADO MIZUNO SEÑORA': FOOTWEAR,
+    'CALZADO NEW BALANCE CRO.': FOOTWEAR,
+    'CALZADO NEW BALANCE JR.': FOOTWEAR,
+    'CALZADO NEW BALANCE KIDS': FOOTWEAR,
+    'CALZADO NEW BALANCE SRA.': FOOTWEAR,
+    'CALZADO NEW BALANCE SRA.2': FOOTWEAR,
+    'CALZADO NK CABALLERO': FOOTWEAR,
+    'CALZADO NK NIÑOS (GS)': FOOTWEAR,
+    'CALZADO NK NIÑOS (PS)': FOOTWEAR,
+    'CALZADO NK NIÑOS (TD)': FOOTWEAR,
+    'CALZADO NK SEÑORA': FOOTWEAR,
+    'CALZADO PUMA CABALLERO': FOOTWEAR,
+    'CALZADO PUMA SEÑORA': FOOTWEAR,
+    'CALZADO REEBOK CABALLERO': FOOTWEAR,
+    'CALZADO REEBOK CHILDRENS': FOOTWEAR,
+    'CALZADO REEBOK INFANTIL': FOOTWEAR,
+    'CALZADO REEBOK JUNIOR': FOOTWEAR,
+    'CALZADO REEBOK NIÑO/A': FOOTWEAR,
+    'CALZADO REEBOK SEÑORA': FOOTWEAR,
+    'CALZADO SEÑORA EUROPEO': FOOTWEAR,
+    'calzado umbro caballero': FOOTWEAR,
+    'CALZADO UMBRO JUNIOR': FOOTWEAR,
+    'CALZADO VANS ADULTO': FOOTWEAR,
+    'CALZADO VANS JUNIOR': FOOTWEAR,
+    'CALZADO VANS NIÑA': FOOTWEAR,
+    'CALZADO VANS SEÑORA': FOOTWEAR,
+    'CHANCLAS ADIDAS': FOOTWEAR,
+    'CHANCLAS ADIDAS JR': FOOTWEAR,
     # 'Color':
     # 'Color de fornituras':
     'cuc': UNKNOW,  # TODO, REVISAR, NO DEBERÍA HABER NINGUNA
     # 'EDAD':
     'Equipment': HARDWARE,
     'ESCUDO': HARDWARE,
-    'ESPINILLERAS CABALLERO': HARDWARE,  
-    'ESPINILLERAS INFANTIL': HARDWARE,  
-    'ESPINILLERAS JUNIOR': HARDWARE,  
-    'Footwear': FOOTWEAR_JUNIOR,
-    'FOOTWEAR': 'select',
-    'FOOTWEAR ': FOOTWEAR_ADULT,
+    'ESPINILLERAS CABALLERO': HARDWARE, 
+    'ESPINILLERAS INFANTIL': HARDWARE, 
+    'ESPINILLERAS JUNIOR': HARDWARE,
+    'footwear': FOOTWEAR,
+    'Footwear': FOOTWEAR,
+    'FOOTWEAR ': FOOTWEAR,
+    'FOOTWEAR': FOOTWEAR,
     # 'GENERO':
     'GORRAS ADIDAS': HARDWARE,
     'GUANTES': HARDWARE,
     'GUANTES DE FUTBOL': HARDWARE,
     'HARDWARE': HARDWARE,
+    'Hardware': HARDWARE,
+    'HARDWEAR': HARDWARE,
+    'Hardwear': HARDWARE,
+    'Ha': HARDWARE,
     'Indeterminada': UNKNOW,
     'MEDIAS FUTBOL': HARDWARE,
     'PROTECCIONES': HARDWARE,
@@ -86,35 +93,38 @@ MAPINGS = {
     'STREET TRAINERS': HARDWARE,
     'TALLAJE UNICO': HARDWARE,
     'Tamaño de fornituras': UNKNOW,  # TODO, ARTICULOS NO VENTA, NO VER EN WEB
-    'TEXTIL ADIDAS BEBE': APPAREL_BEBE,
-    'TEXTIL ADIDAS CABALLERO': APPAREL_ADULTO,
-    'TEXTIL ADIDAS CABALLERO 2': APPAREL_ADULTO,
-    'TEXTIL ADIDAS INFANTIL': APPAREL_JUNIOR,
-    'TEXTIL ADIDAS JUN-CAB': APPAREL_JUNIOR,
-    'TEXTIL ADIDAS JUNIOR': APPAREL_JUNIOR,
-    'TEXTIL ADIDAS SEÑORA': APPAREL_ADULTO,
-    'TEXTIL ADULTO': APPAREL_ADULTO,
-    'TEXTIL BAÑADOR': APPAREL_ADULTO,
-    'TEXTIL BEBE':  APPAREL_BEBE,
-    'TEXTIL BETIS JR': APPAREL_JUNIOR,
-    'TEXTIL CASTELLANO': APPAREL_ADULTO,
-    'TEXTIL JOHN SMITH': APPAREL_ADULTO,
-    'TEXTIL JOMA JR': APPAREL_JUNIOR,
-    'TEXTIL JR': APPAREL_JUNIOR,
-    'Textil Junior España': APPAREL_JUNIOR,
-    'Textil Junior Internacional': APPAREL_JUNIOR,
-    'TEXTIL JUNIOR NIKE': APPAREL_JUNIOR,
-    'TEXTIL NIÑO/A': APPAREL_JUNIOR,
-    'TEXTIL NK BEBE': APPAREL_BEBE,
-    'TEXTIL NK CABALLERO': APPAREL_ADULTO,
-    'TEXTIL NK NIÑA (GS)': APPAREL_JUNIOR,
-    'TEXTIL NK NIÑA (LG)': APPAREL_JUNIOR,
-    'TEXTIL NK NIÑO (BS)': APPAREL_JUNIOR,
-    'TEXTIL NK NIÑO (LB)': APPAREL_JUNIOR,
-    'TEXTIL NK SEÑORA': APPAREL_ADULTO,
-    'TEXTIL PUMA JR': APPAREL_JUNIOR,
+    'TEXTIL ADIDAS BEBE': APPAREL,
+    'TEXTIL ADIDAS CABALLERO': APPAREL,
+    'TEXTIL ADIDAS CABALLERO 2': APPAREL,
+    'TEXTIL ADIDAS INFANTIL': APPAREL,
+    'TEXTIL ADIDAS JUN-CAB': APPAREL,
+    'TEXTIL ADIDAS JUNIOR': APPAREL,
+    'TEXTIL ADIDAS SEÑORA': APPAREL,
+    'TEXTIL ADULTO': APPAREL,
+    'TEXTIL BAÑADOR': APPAREL,
+    'TEXTIL BEBE':  APPAREL,
+    'TEXTIL BETIS JR': APPAREL,
+    'TEXTIL CASTELLANO': APPAREL,
+    'TEXTIL JOHN SMITH': APPAREL,
+    'TEXTIL JOMA JR': APPAREL,
+    'TEXTIL JR': APPAREL,
+    'Textil Junior España': APPAREL,
+    'Textil Junior Internacional': APPAREL,
+    'TEXTIL JUNIOR NIKE': APPAREL,
+    'TEXTIL NIÑO/A': APPAREL,
+    'TEXTIL NK BEBE': APPAREL,
+    'TEXTIL NK CABALLERO': APPAREL,
+    'TEXTIL NK NIÑA (GS)': APPAREL,
+    'TEXTIL NK NIÑA (LG)': APPAREL,
+    'TEXTIL NK NIÑO (BS)': APPAREL,
+    'TEXTIL NK NIÑO (LB)': APPAREL,
+    'TEXTIL NK SEÑORA': APPAREL,
+    'TEXTIL PUMA JR': APPAREL,
+    'TEXTTIL JU': APPAREL,
     # 'Tipo de bota':
     # 'TIPO PRODUCTO':
+
+    'FOOTWEAR ': FOOTWEAR
 }
 
 
@@ -122,37 +132,40 @@ def select_unique_att(att):
     res = False
     # Apparel
     if att.name == 'Apparel':
-        if 'ADULT' in att.product_age_id.value:
-            res = APPAREL_ADULTO
-        elif 'JUNIOR' in att.product_age_id.value:
-            res = APPAREL_JUNIOR
+        res = APPAREL
+        # if 'ADULT' in att.product_age_id.value:
+        #     res = APPAREL
+        # elif 'JUNIOR' in att.product_age_id.value:
+        #     res = APPAREL
     # APPAREL
     elif att.name == 'APPAREL':
-        if 'ADULT' in att.product_age_id.value:
-            res = APPAREL_ADULTO
-        elif 'JUNIOR' in att.product_age_id.value:
-            res = APPAREL_JUNIOR
-        elif 'KIDS' in att.product_age_id.value:
-            res = APPAREL_JUNIOR
-        elif 'INFANT' in att.product_age_id.value:
-            res = APPAREL_BEBE
-        elif 'BEBE' in att.product_age_id.value:
-            res = APPAREL_BEBE
-        else:
-            res = UNKNOW
+        # if 'ADULT' in att.product_age_id.value:
+        #     res = APPAREL
+        # elif 'JUNIOR' in att.product_age_id.value:
+        #     res = APPAREL
+        # elif 'KIDS' in att.product_age_id.value:
+        #     res = APPAREL
+        # elif 'INFANT' in att.product_age_id.value:
+        #     res = APPAREL
+        # elif 'BEBE' in att.product_age_id.value:
+        #     res = APPAREL
+        # else:
+        #     res = FOOTWEAR
+        res = APPAREL
 
     # FOOTWEAR
     elif att.name == 'FOOTWEAR':
-        if 'INFANT' in att.product_age_id.value:
-            res = FOOTWEAR_INFANT
-        elif 'KIDS' in att.product_age_id.value:
-            res = FOOTWEAR_KIDS
-        elif 'JUNIOR' in att.product_age_id.value:
-            res = FOOTWEAR_JUNIOR
-        elif 'ADULT' in att.product_age_id.value:
-            res = FOOTWEAR_KIDS
-        else:
-            res = UNKNOW
+        # if 'INFANT' in att.product_age_id.value:
+        #     res = FOOTWEAR
+        # elif 'KIDS' in att.product_age_id.value:
+        #     res = FOOTWEAR
+        # elif 'JUNIOR' in att.product_age_id.value:
+        #     res = FOOTWEAR
+        # elif 'ADULT' in att.product_age_id.value:
+        #     res = FOOTWEAR
+        # else:
+        #     res = FOOTWEAR
+        res = FOOTWEAR
     return res
 
 
@@ -162,8 +175,8 @@ def get_map_att(att):
     if not map_att:
         return False
 
-    if map_att == 'select':
-        map_att = select_unique_att(att)
+    # if map_att == 'select':
+    #     map_att = select_unique_att(att)
 
     return map_att
 

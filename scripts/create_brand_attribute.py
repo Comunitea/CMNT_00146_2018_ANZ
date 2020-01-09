@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-session.open(db='anzamar_testing')
+session.open(db='anzamar')
 
 # import ipdb; ipdb.set_trace()
 
