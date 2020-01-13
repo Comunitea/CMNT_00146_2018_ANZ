@@ -65,12 +65,12 @@ class SaleOrder(models.Model):
 
     @api.onchange('partner_id')
     def onchange_partner_id(self):
-        ctx = self._context.copy()
-        if self.warehouse_id:
-            ctx.update(warehouse_id=self.warehouse_id.id)
+        #ctx = self._context.copy()
+        #if self.warehouse_id:
+        #    ctx.update(warehouse_id=self.warehouse_id.id)
         if self.partner_id.player and self.partner_id.sponsorship_bag > 0:
             self.sponsored = True
-        return super(SaleOrder, self).with_context(ctx).onchange_partner_id()
+        return super(SaleOrder, self).onchange_partner_id()
 
     @api.multi
     def post_message_bag(self, mode):
