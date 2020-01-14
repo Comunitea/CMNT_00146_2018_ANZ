@@ -152,9 +152,10 @@ class SaleOrderLine(models.Model):
     @api.multi
     @api.onchange('product_id')
     def product_id_change(self):
-        ctx = self._context.copy()
-        ctx.update(warehouse=self.warehouse_id.id)
-        result = super(SaleOrderLine, self.with_context(ctx)).product_id_change()
+        result = super(SaleOrderLine).product_id_change()
+        #ctx = self._context.copy()
+        #ctx.update(warehouse=self.warehouse_id.id)
+        #result = super(SaleOrderLine, self.with_context(ctx)).product_id_change()
         # Check if product added is restricted by brand.
         # If restricted sets true ref_check field
         if self._context.get('ref_change_partner_id', False):
