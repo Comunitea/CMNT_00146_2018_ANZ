@@ -43,8 +43,8 @@
                         </t>
                     </div>
                     <t t-set="variant_ids" t-value="product.product_variant_ids"/>
-                    <t t-foreach="variant_ids.sorted(key=lambda x: x.attribute_value_ids.filtered(lambda x: not x.attribute_id.feature and x.attribute_id.create_variant)[0].sequence)" t-as="variant">
-                        <t t-set="main_att" t-value="variant.attribute_value_ids.filtered(lambda x: not x.attribute_id.feature and x.attribute_id.create_variant)[0]"/>
+                    <t t-foreach="variant_ids.sorted(key=lambda x: x.attribute_value_ids.filtered(main)[0].sequence)" t-as="variant">
+                        <t t-set="main_att" t-value="variant.attribute_value_ids.filtered(main)[0]"/>
                         <t t-if="main_att">
                             <div t-att-class="'one-line' if stock_control else 'one-line large-line'">
                                 <div class="one-label">

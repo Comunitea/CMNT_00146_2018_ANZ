@@ -13,7 +13,8 @@
         'stock',
         'stock_move_manage',
         'stock_batch_picking',
-        'custom_documents'        
+        'custom_documents',
+        'product_custom_anz'        
     ],
     'data': [
         'data/res_partner_category.xml',

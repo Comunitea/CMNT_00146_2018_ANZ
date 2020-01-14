@@ -25,9 +25,7 @@ class ProductAttributeValue(models.Model):
                 self._context.get('default_product_tmpl_id'))
 
             # Solo si en el producto hay una línea de atributos
-            if len(tmp_obj.attribute_line_ids.filtered(
-                    lambda x: x.attribute_id.create_variant is True and
-                    x.attribute_id.feature is False)) == 1:
+            if len(tmp_obj.attribute_line_ids.filtered('main')) == 1:
                 p_ids = tmp_obj.product_variant_ids
                 res = []
                 qty_field = 'qty_available'
@@ -43,11 +41,9 @@ class ProductAttributeValue(models.Model):
                         if parent.warehouse_id:
                             ctx.update(warehouse=parent.warehouse_id.id)
                 # Añado el campo stock en al nombre del atributo
-                for product in p_ids.with_context(ctx).filtered(lambda x: x.attribute_value_ids):
-                    a_value = product.attribute_value_ids.filtered(
-                        lambda v: v.attribute_id.create_variant and
-                        v.attribute_id.feature is False
-                    )
+                for product in p_ids.with_context(ctx).filtered(
+                        lambda x: x.attribute_value_ids):
+                    a_value = product.attribute_value_ids.filtered('main')
                     res.append([a_value.id, "%s (%s)" %
                                 (a_value.name, product[qty_field])])
                 return res

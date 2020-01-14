@@ -42,6 +42,8 @@ class ProductAttributeLine(models.Model):
                 raise ValidationError(
             _('Many values for attribute beacause is product feature'))
 
+    main = fields.Boolean('From Main Attribute', related="attribute_id.main")
+
 
 class ProductAttribute(models.Model):
 
@@ -56,6 +58,9 @@ class ProductAttribute(models.Model):
 
     @api.multi
     def _get_is_main_attr(self):
+        """
+        Calculo el atributo que es principal, el que determina el tallaje
+        """
         for att in self:
             att.main = not att.feature and att.create_variant
 

@@ -87,7 +87,7 @@ class WebsiteSaleExtended(WebsiteSale):
                     attr_name = '<strong>%s</strong>' % product_id.name
                 else:
                     # Search product.product with current attributes for multi-variant template
-                    product_id = variant_ids.filtered(lambda x: int(key, 10) in x.attribute_value_ids.ids)
+                    product_id = variant_ids.filtered(lambda x: int(key, 10) in x.attribute_value_ids.filtered('main').ids)
                     if product_id:
                         attr_name = product_id.attribute_value_ids.sudo().search([('id', '=', int(key, 10))], limit=1).name
                         attr_name = '<strong>%s</strong>' % attr_name

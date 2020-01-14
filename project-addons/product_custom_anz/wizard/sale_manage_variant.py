@@ -24,10 +24,7 @@ class SaleManageVariant(models.TransientModel):
             sale_order = record
         # OVERWRITED, MOSTRAR SOLO LOS QUE CREAN VARIANTE PERO NO ESTAN COMO
         # FEATURES
-        attr_lines = template.attribute_line_ids.filtered(
-            lambda x: x.attribute_id.create_variant and not
-            x.attribute_id.feature
-        )
+        attr_lines = template.attribute_line_ids.filtered('main')
         num_attrs = len(attr_lines)
         if not template or not num_attrs or num_attrs > 2:
             return
