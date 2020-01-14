@@ -152,7 +152,7 @@ class SaleOrderLine(models.Model):
     @api.multi
     @api.onchange('product_id')
     def product_id_change(self):
-        result = super(SaleOrderLine).product_id_change()
+        result = super().product_id_change()
         #ctx = self._context.copy()
         #ctx.update(warehouse=self.warehouse_id.id)
         #result = super(SaleOrderLine, self.with_context(ctx)).product_id_change()
