@@ -12,6 +12,7 @@
         'sale_order_line_date',
         'sale_order_type',
         'sale_order_variant_mgmt',
+        'sale_stock'
         #'sale_order_line_tree'
     ],
     'data': [
