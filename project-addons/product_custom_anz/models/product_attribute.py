@@ -54,11 +54,17 @@ class ProductAttribute(models.Model):
         for att in self:
             att.srch_name = att.display_name
 
+    @api.multi
+    def _get_is_main_attr(self):
+        for att in self:
+            att.main = not att.feature and att.create_variant
+
     display_name = fields.Char(store=False, string='Complet Name')
     srch_name = fields.Char(store=True, string='Search Name',
                             compute="_get_srch_name")
     new_att_id = fields.Many2one('product.attribute', 'New Att')
     feature = fields.Boolean("Product Feauture")
+    main = fields.Boolean('Is Main Attribute', compute="_get_is_main_attr")
 
     @api.multi
     def write(self, vals):
@@ -147,6 +153,7 @@ class ProductAttributeValue(models.Model):
     supplier_code = fields.Char("Supplier name")
     name_normalizado = fields.Char()
     attr_name = fields.Char('Attribute', related="attribute_id.srch_name")
+    main = fields.Boolean('From Main Attribute', related="attribute_id.main")
     range_search = fields.Text('Range Search')
     active = fields.Boolean('Active', default=True)
 
