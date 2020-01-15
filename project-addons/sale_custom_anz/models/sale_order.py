@@ -65,6 +65,9 @@ class SaleOrder(models.Model):
 
     @api.onchange('partner_id')
     def onchange_partner_id(self):
+        #ctx = self._context.copy()
+        #if self.warehouse_id:
+        #    ctx.update(warehouse_id=self.warehouse_id.id)
         if self.partner_id.player and self.partner_id.sponsorship_bag > 0:
             self.sponsored = True
         return super(SaleOrder, self).onchange_partner_id()
@@ -144,11 +147,15 @@ class SaleOrderLine(models.Model):
         related="product_id.virtual_stock_conservative",
         string='Virtual Stock Conservative', related_sudo=True)
     ref_change = fields.Boolean('Reference change', default=False)
+    warehouse_id = fields.Many2one(related='order_id.warehouse_id')
 
     @api.multi
     @api.onchange('product_id')
     def product_id_change(self):
-        result = super(SaleOrderLine, self).product_id_change()
+        result = super().product_id_change()
+        #ctx = self._context.copy()
+        #ctx.update(warehouse=self.warehouse_id.id)
+        #result = super(SaleOrderLine, self.with_context(ctx)).product_id_change()
         # Check if product added is restricted by brand.
         # If restricted sets true ref_check field
         if self._context.get('ref_change_partner_id', False):

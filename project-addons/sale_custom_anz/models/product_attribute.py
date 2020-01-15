@@ -16,6 +16,7 @@ class ProductAttributeValue(models.Model):
         campo stock de  qty_available o el qty_available_global si la compañia
         tiene padre.
         """
+        ctx= self._context.copy()
         a_model = self._context.get('active_model', False)
         if a_model in ('sale.order', 'sale.order.line') and \
                 self._context.get('default_product_tmpl_id'):
@@ -33,12 +34,14 @@ class ProductAttributeValue(models.Model):
                     id = self._context.get('active_id', False)
                     if id:
                         parent = self.env[active_model].browse(id)
+
                         if parent and parent.company_id and \
                                 parent.company_id.stock_global:
                             qty_field = 'qty_available_global'
-
+                        if parent.warehouse_id:
+                            ctx.update(warehouse=parent.warehouse_id.id)
                 # Añado el campo stock en al nombre del atributo
-                for product in p_ids.filtered(lambda x: x.attribute_value_ids):
+                for product in p_ids.with_context(ctx).filtered(lambda x: x.attribute_value_ids):
                     a_value = product.attribute_value_ids[0]
                     res.append([a_value.id, "%s (%s)" %
                                 (a_value.name, product[qty_field])])
