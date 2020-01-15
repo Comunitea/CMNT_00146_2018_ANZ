@@ -60,6 +60,7 @@
                         <field name="limit" string="Limit"/>
 
                         <field name="with_stock"/>
+                        <field name="location_id" attrs="{'required': [('with_stock','=',True)]}"/>
                         <field name="image_scale" invisible="1"/>
                         <field name="x_offset" invisible="1"/>
 

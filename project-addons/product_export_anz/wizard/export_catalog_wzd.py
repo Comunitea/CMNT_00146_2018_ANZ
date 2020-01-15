@@ -110,7 +110,7 @@ class ExportCatalogtWzd(models.TransientModel):
                                ('60', '60%'),
                                ('75', '75%'),
                                ('100', '100%')], default='100', string="Tamaño del fichero generado")
-
+    location_id = fields.Many2one('stock.location', 'Ubicación para consultar stock', default=12)
     product_template_ids = fields.Many2many('product.template', string="Lista de plantillas")
     filter_state = fields.Selection([('all', 'Todos los movimientos'), ('done', 'Moviemintos realizados'), ('not_done', 'Moviemientos pendientes')],
                                     string="Filtro de movimientos",
@@ -225,14 +225,30 @@ class ExportCatalogtWzd(models.TransientModel):
                 price_template_ids = self.env['product.pricelist.item'].search(template_domain).mapped('product_tmpl_id')
                 product_domain = [('pricelist_id', '=', self.pricelist_id.id), ('applied_on', '=', '0_product_variant')]
                 price_product_ids = self.env['product.pricelist.item'].search(product_domain).mapped('product_id').mapped('product_tmpl_id')
-                domain += [('id', 'in', price_template_ids.ids + price_product_ids.ids + self.product_template_ids.ids) ]
+                domain += [('id', 'in', price_template_ids.ids + price_product_ids.ids + self.product_template_ids.ids)]
+
+        if self.with_stock:
+
+            templates = self.env['product.template'].search(domain)
+            product_ids = templates.mapped('product_variant_ids').ids
+            quant_domain = [('product_id', 'in', product_ids), ('location_id', 'child_of', self.location_id.id)]
+            res = self.env['stock.quant'].read_group(quant_domain, ['quantity', 'product_id'], 'product_id')
+            product_ids_with_stock = [x['product_id'][0] for x in res if x['quantity'] > 0]
+
+            template_domain = [('id', 'in', product_ids_with_stock)]
+            tmpl_ids = self.env['product.product'].search_read(template_domain, ['product_tmpl_id'])
+            if tmpl_ids:
+                domain = [('id', 'in', [x['product_tmpl_id'][0] for x in tmpl_ids])]
+            else:
+                domain = []
         if self.limit>0:
             templates = self.env['product.template'].with_context(ctx).search(domain, limit=self.limit)
         else:
             templates = self.env['product.template'].with_context(ctx).search(domain)
 
-        if self.with_stock:
-            return templates.filtered(lambda x: x.qty_available >0)
+        #if self.with_stock:
+        #    return templates.filtered(lambda x: x.qty_available > 0)
+
         return templates
 
 
@@ -243,8 +259,6 @@ class ExportCatalogtWzd(models.TransientModel):
 
     def get_report_vals(self):
         res = {}
-
-
 
         templates = self.get_templates()
         if not templates:
@@ -371,11 +385,13 @@ class ExportCatalogtWzd(models.TransientModel):
         self.ensure_one()
         data_dic = {
             'wzd_id': self.id
+
         }
-        report_vals = self.get_report_vals()
+        #report_vals = self.get_report_vals()
         #data_dic.update(report_vals=report_vals)
         if self._context.get('xls_export'):
             report = self.env.ref('product_export_anz.export_catalog_xlsx')
-            report.file = "{}_{}.xls".format(self.catalog_type_id.name, self.scheduled_id.name or self.brand_id.name or '')
+            file_name = "{}_{}.xls".format(self.catalog_type_id.name, self.scheduled_id.name or self.brand_id.name or '')
+            report.name = report.file = file_name
             return report.\
                 report_action(self, data=data_dic)
