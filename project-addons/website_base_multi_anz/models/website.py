@@ -100,7 +100,16 @@ class Website(models.Model):
             labels.append(age)
 
         return labels
+    
+    @api.multi
+    def sale_get_order(self, force_create=False, code=None, update_pricelist=False, force_pricelist=False):
 
+        ctx = self.env.context.copy()
+        ctx.update({
+            'from_website': True,
+        })
+        
+        return super(Website, self.with_context(ctx)).sale_get_order(force_create, code, update_pricelist, force_pricelist)
 
 class ResConfigSettings(models.TransientModel):
     _inherit = 'res.config.settings'
