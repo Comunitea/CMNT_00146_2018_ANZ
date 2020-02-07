@@ -26,10 +26,12 @@
         <field name="model">sale.order</field>
         <field name="inherit_id" ref="sale.view_order_form"/>
         <field name="arch" type="xml">
-
+            <field name="warehouse_id" position="after">
+                <field name="default_user_location_id"/>
+            </field>
              <xpath expr="//button[@name='%(sale_order_variant_mgmt.action_sale_manage_variant)d']" position="attributes">
                   <attribute name="context">
-                    {'qty_variant_name': True, 'warehouse': warehouse_id}
+                    {'qty_variant_name': True, 'warehouse': warehouse_id, 'location':  default_user_location_id}
                  </attribute>
              </xpath>
 
@@ -45,11 +47,11 @@
                 </attribute>
             </xpath-->
             <xpath expr="//field[@name='order_line']/form/group/group/field[@name='price_subtotal']" position="after">
-                <field name="virtual_stock_conservative"></field>
+                <field name="virtual_stock_conservative" context="{'sale_order_line_id': self.id}"></field>
                 <field name="warehouse_id" invisible="1"></field>
             </xpath>
             <xpath expr="//field[@name='order_line']/tree/field[@name='product_uom_qty']" position="before">
-                <field name="virtual_stock_conservative"></field>
+                <field name="virtual_stock_conservative" context="{'sale_order_line_id': self.id}"></field>
                 <field name="warehouse_id" invisible="1"></field>
             </xpath>
              <xpath expr="//field[@name='order_line']/tree/field[@name='product_id']" position="attributes">

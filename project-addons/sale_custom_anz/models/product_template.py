@@ -27,7 +27,6 @@ class ProductTemplate(models.Model):
         return super(ProductTemplate, self)._search(args, offset=offset, limit=limit, order=order, count=count, access_rights_uid=access_rights_uid)
 
 
-
 class ProductProduct(models.Model):
 
     _inherit = 'product.product'
