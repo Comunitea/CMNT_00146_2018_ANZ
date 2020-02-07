@@ -11,6 +11,12 @@ import logging
 
 _logger = logging.getLogger(__name__)
 
+
+try:
+    import xlsxwriter
+except ImportError:
+    _logger.debug('Can not import xlsxwriter`.')
+
 class ProductProduct(models.Model):
 
     _inherit = 'product.product'
@@ -90,6 +96,8 @@ class CatalogType(models.Model):
         [('all', 'Todos los movimientos'), ('done', 'Moviemintos realizados'), ('not_done', 'Moviemientos pendientes')],
         string="Filtro de movimientos",
         help="Filtra los movimientos según el estado. Permite visualizar entradas y salidas a futuro.")
+    select_price = fields.Selection([('pvp', 'PVP'), ('venta', 'Previo de venta'), ('tarifa', 'Tarifa')],string="PVP/Precio de venta")
+
 class ExportCatalogtWzd(models.TransientModel):
 
     _name = 'export.catalog.wzd'
@@ -280,6 +288,16 @@ class ExportCatalogtWzd(models.TransientModel):
 
 
         for tmp in self.get_ordered_obj(templates):
+
+            if self.catalog_type_id.select_price == 'pvp':
+                precio_venta = tmp.pvp
+            elif self.catalog_type_id.select_price == 'venta':
+                precio_venta = tmp.lst_price
+            else:
+                precio_venta = tmp.price
+
+
+
             idx += 1
             _logger.info("Export template %s / %s" % (str(idx), str(tot)))
             new_template = {
@@ -288,6 +306,7 @@ class ExportCatalogtWzd(models.TransientModel):
                 'cost': tmp.standard_price or tmp.product_variant_ids and tmp.product_variant_ids[0].standard_price or 0.00,
                 'lst_price': tmp.pvp or tmp.lst_price,
                 'pvp': tmp.price,
+                'precio_venta': precio_venta,
                 'attr_names': [],
                 'sales': [],
                 'purchases': [],
@@ -364,10 +383,14 @@ class ExportCatalogtWzd(models.TransientModel):
                         percent = 0
                     new_template['percent'] = percent
 
+
                 for f in total_field:
                     new_template['total_' + f] = sum(x for x in new_template[f])
-                new_template['ventas_percent'] = int(100*(new_template['total_sales']/ new_template['total_purchases']) if new_template.get('total_purchases') else 0.0)
-                new_template['moves_percent'] = int(100*(new_template['total_outgoings']/ new_template['total_incomings']) if new_template.get('total_incomings') else 0.0)
+                if 'purchases' in total_field and 'sales' in total_field:
+                    new_template['ventas_percent'] = int(100*(new_template['total_sales']/ new_template['total_purchases']) if new_template.get('total_purchases') else 0.0)
+
+                if 'total_outgoings' in total_field and 'total_incomings' in total_field:
+                    new_template['moves_percent'] = int(100*(new_template['total_outgoings']/ new_template['total_incomings']) if new_template.get('total_incomings') else 0.0)
 
 
             res[tmp.name] = new_template
@@ -385,7 +408,6 @@ class ExportCatalogtWzd(models.TransientModel):
         self.ensure_one()
         data_dic = {
             'wzd_id': self.id
-
         }
         #report_vals = self.get_report_vals()
         #data_dic.update(report_vals=report_vals)

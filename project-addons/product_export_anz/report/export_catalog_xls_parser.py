@@ -8,6 +8,7 @@ import time
 from xlsxwriter.utility import xl_rowcol_to_cell
 from PIL import Image
 
+
 class ExportCatalogXlsParser(models.AbstractModel):
     """
     Parser to get data of report export catalog all
@@ -210,10 +211,10 @@ class ExportCatalogXlsParser(models.AbstractModel):
             cols+=1
             if catalog_id.pvp or catalog_id.euros:
                 sheet.write(row, cols, 'Precio', f_header)
-                sheet.write(row + 1, cols, tmp_dic['lst_price'], money_with_border)
+                sheet.write(row + 1, cols, tmp_dic['precio_venta'], money_with_border)
             price_cell = xl_rowcol_to_cell(row + 1, cols)
             cols += 1
-            if pricelist_id:
+            if pricelist_id and catalog_id.select_price != 'tarifa':
                 sheet.write(row, cols, 'P.V.P. Tarifa', f_header)
                 sheet.write(row + 1, cols , tmp_dic['pvp'], money_with_border)
             pvp_cell = xl_rowcol_to_cell(row + 1, cols)

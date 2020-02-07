@@ -16,7 +16,7 @@
                         <field name="sales" string="Ventas"/>
 
                         <field name="stocks" string="Stocks"/>
-
+                        <field name="select_price"/>
                         <field name="pvp" string="P.V.P."/>
                         <field name="cost" string="Coste"/>
 
