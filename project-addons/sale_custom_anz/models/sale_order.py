@@ -153,7 +153,7 @@ class SaleOrderLine(models.Model):
         "Stock virtual conservativo", compute="get_line_conservative")
     ref_change = fields.Boolean('Reference change', default=False)
     warehouse_id = fields.Many2one(related='order_id.warehouse_id')
-
+    default_user_location_id = fields.Many2one(related="order_id.default_user_location_id")
 
     @api.multi
     def get_line_conservative(self):
