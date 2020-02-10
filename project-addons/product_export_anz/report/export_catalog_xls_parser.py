@@ -41,7 +41,7 @@ class ExportCatalogXlsParser(models.AbstractModel):
         scheduled_id = wzd.scheduled_id
         brand_id = wzd.brand_id or scheduled_id and scheduled_id.product_brand_id or False
         categ_id = wzd.categ_id
-        pricelist_id = wzd.pricelist_id or scheduled_id and scheduled_id.pricelist_id or False
+        pricelist_id = wzd.pricelist_id or False
         scheduled_id = wzd.scheduled_id
         catalog_id = wzd.catalog_type_id
 
