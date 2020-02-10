@@ -12,10 +12,10 @@
                 </a>
             </t>
         </xpath>
-        <xpath expr="//t[@t-if='variant.attribute_value_ids']//div[@class='one-stock'][1]" position="attributes">
+        <xpath expr="//t[@t-if='main_att']//div[@class='one-stock'][1]" position="attributes">
             <attribute name="t-raw">str('+5') if available &gt; 5 else str(int(available))</attribute>
         </xpath>
-        <xpath expr="//t[@t-if='variant.attribute_value_ids']//div[@class='one-stock'][2]" position="attributes">
+        <xpath expr="//t[@t-if='main_att']//div[@class='one-stock'][2]" position="attributes">
             <attribute name="t-raw">(str('+5') if variant.sudo().virtual_available &gt; 5 else str(int(available)) if variant.sudo().virtual_available &gt; 0 else 0)</attribute>
         </xpath>
     </template>

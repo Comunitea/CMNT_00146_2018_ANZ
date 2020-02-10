@@ -39,7 +39,7 @@
     'depends': [
         'ecommerce_base',
         'seo_base',
-        'breadcrumbs_base',
+        'breadcrumbs_base_tmp',
         'website_blog_base',
         'follow_us_base',
         'multi_company_base',
