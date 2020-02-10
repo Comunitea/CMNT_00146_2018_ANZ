@@ -32,7 +32,6 @@ class ExportCatalogXlsParser(models.AbstractModel):
             'x_scale': image_scale / 100 / factor,
             'y_scale': image_scale / 100 / factor,
             'x_offset': x_offset}
-
         return img_dic
 
     def generate_xlsx_report(self, workbook, data, objs):
@@ -334,7 +333,6 @@ class ExportCatalogXlsParser(models.AbstractModel):
 
                 if catalog_id.outgoings:
                     sheet.write_number(outgoings_row, total_col + 1, tmp_dic['moves_percent']/100, percent_with_border)
-
                 sum_row += 1
 
             if catalog_id.grouped:
