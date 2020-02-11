@@ -4,6 +4,14 @@
     <!-- Here goes the views what you want be active on editor web for customized views -->
     <!-- True will be activate the view, False deactivate it -->
 
+    <!-- ======================================== Assets  ================================================ -->
+    <record id="theme_point_sport.poi_website_assets_frontend" model="ir.ui.view">
+        <field name="active">True</field>
+    </record>
+<!--    <record id="website_multi_theme.auto_view_poi_theme_point_sport_poi_website_assets_frontend" model="ir.ui.view">-->
+<!--        <field name="active">False</field>-->
+<!--    </record>-->
+
     <!-- ======================================== General ================================================ -->
 
     <!-- Logo Show -->
