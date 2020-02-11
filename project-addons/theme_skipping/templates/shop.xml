@@ -35,7 +35,7 @@
             </div>
         </xpath>
         <!-- Attributes style -->
-        <xpath expr="//div[@id='products_grid_before']//form[@class='js_attributes']//ul//li//div" position="replace">
+        <xpath expr="//div[@id='products_grid_before']//form[hasclass('js_attributes')]//ul//li//div" position="replace">
             <h5 t-field="a.name" class="text-capitalize"/>
         </xpath>
     </template>
