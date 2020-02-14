@@ -182,6 +182,9 @@
                                 </form>
                             </field>
                         </page>
+                        <page name='internal_notes' string="Internal Notes">
+                            <field name="comment" placeholder="Internal note..."/>
+                        </page>
                     </notebook>
                 </sheet>
                 </form>

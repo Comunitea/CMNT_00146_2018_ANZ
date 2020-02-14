@@ -1,24 +1,27 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
 
-    <template id="poi_template_our_group_content_template" name="Our Group Point Content Template" inherit_id="theme_point_sport.poi_template_our_group">
-
-        <xpath expr="//div[hasclass('container')]" position="inside">
-            <section class="oe_structure oe_empty"/>
-            <div class="row">
-                <div class="col-md-12">
-                    <h1 class="text-center">Anzamar Group</h1>
-                </div>
-                <div class="col-md-12 mb32">
-                    <h2>The Company</h2>
-                    <p><strong>Anzamar S.L.</strong> is a company dedicated to the distribution of sporting goods since 1986. Our main objective has been to supply all the necessary products for the execution of sports practice in any establishment. We currently have more than 12,500 references providing this being one of the references in the sports market Nacional.es is a company dedicated to the distribution of sporting goods since 1986. Our main objective has been to supply all the necessary products for the execution of sports practice in any establishment. We currently have more than 12,500 references providing this being one of the references in the national sports market.</p>
-                    <p>Our more than 20 years of experience as wholesalers gives us access to the best and most profitable brands in the national sports world, providing our clients with the highest quality advice. In 1999, the <strong> POINT SPORT </strong> Shopping Group was born, being one of the national reference groups according to the sports magazine CMD (Correo del Mercado Deportivo) which places us as the sixth National operator.</p>
-                    <p>One of our basic principles in the purchasing group <strong>POINT SPORT</strong> is to make things easy, and for this we have negotiated the best conditions with more than 50 sports providers that will provide you with the most adequate product and with the best conditions necessary to carry out your favorite sport.</p>
-                    <p>We currently have 132 establishments with 107 associates distributed in 112 cities throughout Spain.</p>
+    <template id="poi_template_our_group_content_template" name="Our Group Point">
+        <t t-call="website.layout">
+            <div id="wrap">
+                <div class="container">
+                    <section class="oe_structure oe_empty"/>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h1 class="text-center">Anzamar Group</h1>
+                        </div>
+                        <div class="col-md-12 mb32">
+                            <h2>The Company</h2>
+                            <p><strong>Anzamar S.L.</strong> is a company dedicated to the distribution of sporting goods since 1986. Our main objective has been to supply all the necessary products for the execution of sports practice in any establishment. We currently have more than 12,500 references providing this being one of the references in the sports market Nacional.es is a company dedicated to the distribution of sporting goods since 1986. Our main objective has been to supply all the necessary products for the execution of sports practice in any establishment. We currently have more than 12,500 references providing this being one of the references in the national sports market.</p>
+                            <p>Our more than 20 years of experience as wholesalers gives us access to the best and most profitable brands in the national sports world, providing our clients with the highest quality advice. In 1999, the <strong> POINT SPORT </strong> Shopping Group was born, being one of the national reference groups according to the sports magazine CMD (Correo del Mercado Deportivo) which places us as the sixth National operator.</p>
+                            <p>One of our basic principles in the purchasing group <strong>POINT SPORT</strong> is to make things easy, and for this we have negotiated the best conditions with more than 50 sports providers that will provide you with the most adequate product and with the best conditions necessary to carry out your favorite sport.</p>
+                            <p>We currently have 132 establishments with 107 associates distributed in 112 cities throughout Spain.</p>
+                        </div>
+                    </div>
+                    <section class="oe_structure oe_empty"/>
                 </div>
             </div>
-            <section class="oe_structure oe_empty"/>
-        </xpath>
-
+        </t>
     </template>
+
 </odoo>

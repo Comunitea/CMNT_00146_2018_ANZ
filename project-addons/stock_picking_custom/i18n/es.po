@@ -6,14 +6,19 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-02-06 20:11+0000\n"
-"PO-Revision-Date: 2019-02-06 20:11+0000\n"
+"POT-Creation-Date: 2019-11-19 18:33+0000\n"
+"PO-Revision-Date: 2019-11-19 18:33+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
+
+#. module: stock_picking_custom
+#: model:ir.model.fields,field_description:stock_picking_custom.field_stock_picking_product_ids_count
+msgid "# Products"
+msgstr "# Productos"
 
 #. module: stock_picking_custom
 #: model:ir.ui.view,arch_db:stock_picking_custom.report_shipping_custom_customer_anz
@@ -50,11 +55,6 @@ msgstr "<strong>Transportista: </strong>"
 #: model:ir.ui.view,arch_db:stock_picking_custom.report_shipping_custom_customer_anz
 msgid "<strong>Code</strong>"
 msgstr "<strong>Código</strong>"
-
-#. module: stock_picking_custom
-#: model:ir.ui.view,arch_db:stock_picking_custom.report_shipping_custom_customer_anz
-msgid "<strong>Commitment Date</strong>"
-msgstr "<strong>Fecha de compromiso</strong>"
 
 #. module: stock_picking_custom
 #: model:ir.ui.view,arch_db:stock_picking_custom.stock_picking_tag
@@ -112,11 +112,6 @@ msgid "Albarán de cliente"
 msgstr "Albarán de cliente"
 
 #. module: stock_picking_custom
-#: model:ir.ui.view,arch_db:stock_picking_custom.view_picking_form_custom
-msgid "Apply packing"
-msgstr "Contenido de bultos"
-
-#. module: stock_picking_custom
 #: model:ir.model.fields,field_description:stock_picking_custom.field_stock_move_line_barcode
 #: model:ir.model.fields,field_description:stock_picking_custom.field_stock_move_line_barcode_dest
 #: model:ir.ui.view,arch_db:stock_picking_custom.report_table_move_line_ids_incoming
@@ -128,6 +123,16 @@ msgid "Barcode"
 msgstr "Código de barras"
 
 #. module: stock_picking_custom
+#: model:ir.model.fields,field_description:stock_picking_custom.field_stock_picking_type_order_field
+msgid "Campo de orden en movimeintos"
+msgstr "Campo de orden en movimeintos"
+
+#. module: stock_picking_custom
+#: model:ir.ui.view,arch_db:stock_picking_custom.view_product_import_wzd_form
+msgid "Cancel"
+msgstr "Cancelar"
+
+#. module: stock_picking_custom
 #: model:ir.ui.view,arch_db:stock_picking_custom.report_shipping_custom_customer_anz
 msgid "Cantidad"
 msgstr "Cantidad"
@@ -136,16 +141,6 @@ msgstr "Cantidad"
 #: model:ir.model.fields,field_description:stock_picking_custom.field_stock_picking_carrier_partner_id
 msgid "Carrier partner"
 msgstr "Transportista"
-
-#. module: stock_picking_custom
-#: model:ir.ui.view,arch_db:stock_picking_custom.view_picking_form_custom
-msgid "Copy availability to qty done"
-msgstr "Copiar disponible"
-
-#. module: stock_picking_custom
-#: model:ir.ui.view,arch_db:stock_picking_custom.view_picking_form_custom
-msgid "Copy qty to qty done"
-msgstr "Copiar demanda"
 
 #. module: stock_picking_custom
 #: model:ir.model.fields,field_description:stock_picking_custom.field_stock_move_default_product_dest_location_id
@@ -181,6 +176,11 @@ msgid "Delivery stock picking tag report"
 msgstr "Etiqueta de transporte"
 
 #. module: stock_picking_custom
+#: model:ir.ui.view,arch_db:stock_picking_custom.report_table_picking_qties
+msgid "Demanda"
+msgstr "Demanda"
+
+#. module: stock_picking_custom
 #: model:ir.ui.view,arch_db:stock_picking_custom.report_table_move_line_ids_incoming
 #: model:ir.ui.view,arch_db:stock_picking_custom.report_table_move_line_ids_internal
 #: model:ir.ui.view,arch_db:stock_picking_custom.report_table_move_line_ids_orig
@@ -188,9 +188,94 @@ msgid "Destination"
 msgstr "Destino"
 
 #. module: stock_picking_custom
+#: model:ir.model.fields,field_description:stock_picking_custom.field_report_stock_report_picking_display_name
+#: model:ir.model.fields,field_description:stock_picking_custom.field_stock_import_wzd_display_name
+msgid "Display Name"
+msgstr "Nombre a mostrar"
+
+#. module: stock_picking_custom
+#: code:addons/stock_picking_custom/wizard/stock_import.py:117
+#, python-format
+msgid "Error en línea %s (%s / %s)"
+msgstr "Error en línea %s (%s / %s)"
+
+#. module: stock_picking_custom
+#: model:ir.model.fields,field_description:stock_picking_custom.field_stock_import_wzd_file
+msgid "File"
+msgstr "Archivo"
+
+#. module: stock_picking_custom
+#: model:ir.model.fields,field_description:stock_picking_custom.field_stock_import_wzd_filename
+msgid "Filename"
+msgstr "Nombre de archivo"
+
+#. module: stock_picking_custom
+#: model:ir.ui.view,arch_db:stock_picking_custom.report_table_picking_qties
+msgid "Hecha"
+msgstr "Hecha"
+
+#. module: stock_picking_custom
+#: model:ir.model.fields,field_description:stock_picking_custom.field_report_stock_report_picking_id
+msgid "ID"
+msgstr "ID (identificación)"
+
+#. module: stock_picking_custom
+#: model:ir.ui.view,arch_db:stock_picking_custom.view_product_import_wzd_form
+msgid "Import Products"
+msgstr "Importar productos"
+
+#. module: stock_picking_custom
+#: model:ir.actions.act_window,name:stock_picking_custom.action_import_products
+msgid "Import moves"
+msgstr "Importar movimientos"
+
+#. module: stock_picking_custom
+#: model:ir.ui.view,arch_db:stock_picking_custom.view_product_import_wzd_form
+msgid "Import stock move"
+msgstr "Importar movimientos"
+
+#. module: stock_picking_custom
+#: code:addons/stock_picking_custom/wizard/stock_import.py:114
+#, python-format
+msgid "Importado movimeinto:  %s (%s / %s)"
+msgstr "Importado movimeinto:  %s (%s / %s)"
+
+#. module: stock_picking_custom
+#: model:ir.ui.menu,name:stock_picking_custom.menu_import_stock
+msgid "Importar movimientos"
+msgstr "Importar movimientos"
+
+#. module: stock_picking_custom
+#: model:ir.model.fields,field_description:stock_picking_custom.field_stock_import_wzd_name
+msgid "Importation name"
+msgstr "Nombre importación"
+
+#. module: stock_picking_custom
+#: model:ir.model,name:stock_picking_custom.model_stock_inventory_line
+msgid "Inventory Line"
+msgstr "Línea de inventario"
+
+#. module: stock_picking_custom
 #: model:ir.model,name:stock_picking_custom.model_stock_location
 msgid "Inventory Locations"
 msgstr "Ubicaciones de inventario"
+
+#. module: stock_picking_custom
+#: model:ir.model.fields,field_description:stock_picking_custom.field_stock_location_inverse_order
+msgid "Inverse order"
+msgstr "Orden inverso"
+
+#. module: stock_picking_custom
+#: model:ir.model.fields,field_description:stock_picking_custom.field_report_stock_report_picking___last_update
+#: model:ir.model.fields,field_description:stock_picking_custom.field_stock_import_wzd___last_update
+msgid "Last Modified on"
+msgstr "Última modificación en"
+
+#. module: stock_picking_custom
+#: model:ir.model.fields,field_description:stock_picking_custom.field_stock_location_sequence
+#: model:ir.model.fields,field_description:stock_picking_custom.field_stock_move_line_sequence
+msgid "Location order"
+msgstr "Secuencia de pick"
 
 #. module: stock_picking_custom
 #: model:ir.ui.view,arch_db:stock_picking_custom.report_table_move_line_ids_orig
@@ -203,9 +288,21 @@ msgid "Mark as Todo"
 msgstr "Marcar como 'Por hacer'"
 
 #. module: stock_picking_custom
+#: model:ir.model.fields,help:stock_picking_custom.field_stock_location_inverse_order
+msgid "Mark for inverse order."
+msgstr "Si está marcado, el pasillo se recorre en sentido inverso."
+
+#. module: stock_picking_custom
 #: model:ir.model.fields,help:stock_picking_custom.field_stock_location_ubic
 msgid "Optional ubication details, for information purpose only"
 msgstr "Detalles de la ubicación, solo informativos"
+
+#. module: stock_picking_custom
+#: model:ir.actions.server,name:stock_picking_custom.auto_order_full_list_ir_actions_server
+#: model:ir.cron,cron_name:stock_picking_custom.auto_order_full_list
+#: model:ir.cron,name:stock_picking_custom.auto_order_full_list
+msgid "Order Full Location List"
+msgstr "Calcular la secuncia en ubicaciones"
 
 #. module: stock_picking_custom
 #: model:ir.model,name:stock_picking_custom.model_stock_move_line
@@ -213,14 +310,19 @@ msgid "Packing Operation"
 msgstr "Operación de empaquetado"
 
 #. module: stock_picking_custom
-#: model:ir.model,name:stock_picking_custom.model_procurement_group
-msgid "Procurement Requisition"
-msgstr "Petición de abastecimiento"
+#: selection:stock.picking.type,order_field:0
+msgid "Paquete de destino"
+msgstr "Paquete de destino"
 
 #. module: stock_picking_custom
-#: model:ir.model,name:stock_picking_custom.model_procurement_rule
-msgid "Procurement Rule"
-msgstr "Regla de abastecimiento"
+#: selection:stock.picking.type,order_field:0
+msgid "Paquete de origen"
+msgstr "Paquete de origen"
+
+#. module: stock_picking_custom
+#: model:ir.model.fields,field_description:stock_picking_custom.field_stock_import_wzd_picking_id
+msgid "Picking"
+msgstr "Albarán"
 
 #. module: stock_picking_custom
 #: model:ir.model,name:stock_picking_custom.model_product_product
@@ -233,8 +335,12 @@ msgid "Product"
 msgstr "Producto"
 
 #. module: stock_picking_custom
+#: model:ir.ui.view,arch_db:stock_picking_custom.view_picking_form_custom
+msgid "Products"
+msgstr "Productos"
+
+#. module: stock_picking_custom
 #: model:ir.model.fields,field_description:stock_picking_custom.field_stock_move_line_qty_available
-#: model:ir.model.fields,field_description:stock_picking_custom.field_stock_move_qty_available
 msgid "Qty available"
 msgstr "Disponible"
 
@@ -258,9 +364,30 @@ msgid "Quantity Reserved"
 msgstr "Cantidad reservada"
 
 #. module: stock_picking_custom
+#: model:ir.ui.view,arch_db:stock_picking_custom.report_table_picking_qties
+msgid "Reservada"
+msgstr "Reservada"
+
+#. module: stock_picking_custom
 #: model:ir.model,name:stock_picking_custom.model_stock_return_picking
 msgid "Return Picking"
 msgstr "Albarán de devolución"
+
+#. module: stock_picking_custom
+#: code:addons/stock_picking_custom/wizard/stock_import.py:96
+#, python-format
+msgid "STARTING PRODUCT IMPORTATION"
+msgstr "Iniciando importación de productos"
+
+#. module: stock_picking_custom
+#: model:ir.model.fields,field_description:stock_picking_custom.field_stock_location_ubic
+msgid "Secuencia de recorrido"
+msgstr "Secuencia de recorrido"
+
+#. module: stock_picking_custom
+#: model:ir.ui.view,arch_db:stock_picking_custom.view_product_import_wzd_form
+msgid "Select file to import"
+msgstr "Selecciona el fichero para importar"
 
 #. module: stock_picking_custom
 #: model:ir.ui.view,arch_db:stock_picking_custom.report_table_move_line_ids_internal
@@ -272,7 +399,17 @@ msgstr "Origen"
 #. module: stock_picking_custom
 #: model:ir.model,name:stock_picking_custom.model_stock_move
 msgid "Stock Move"
-msgstr "Movimiento de Stock"
+msgstr "Movimiento de stock"
+
+#. module: stock_picking_custom
+#: model:ir.model,name:stock_picking_custom.model_stock_picking
+msgid "Stock Picking"
+msgstr "Albarán"
+
+#. module: stock_picking_custom
+#: model:ir.model,name:stock_picking_custom.model_stock_picking_type
+msgid "The operation type determines the picking view"
+msgstr "El tipo de operación determina la vista de la operación"
 
 #. module: stock_picking_custom
 #: code:addons/stock_picking_custom/models/procurement.py:148
@@ -281,21 +418,51 @@ msgid "There is no vendor associated to the product %s. Please define a vendor f
 msgstr "No hay un proveedor asociado al artículo %s. Define un proveedor para este artículo."
 
 #. module: stock_picking_custom
-#: model:ir.model,name:stock_picking_custom.model_stock_picking
-msgid "Transfer"
-msgstr "Transferir"
+#: model:ir.ui.view,arch_db:stock_picking_custom.report_table_picking_qties_customer
+msgid "Total:"
+msgstr "Total:"
 
 #. module: stock_picking_custom
-#: model:ir.model.fields,field_description:stock_picking_custom.field_stock_location_ubic
-msgid "Ubicación"
-msgstr "Ubicación"
+#: model:ir.ui.view,arch_db:stock_picking_custom.report_table_picking_qties
+msgid "Totales"
+msgstr "Totales"
+
+#. module: stock_picking_custom
+#: selection:stock.picking.type,order_field:0
+msgid "Ubicación de destino"
+msgstr "Ubicación de destino"
+
+#. module: stock_picking_custom
+#: selection:stock.picking.type,order_field:0
+msgid "Ubicación de origen"
+msgstr "Ubicación de origen"
+
+#. module: stock_picking_custom
+#: model:ir.model,name:stock_picking_custom.model_stock_warehouse
+msgid "Warehouse"
+msgstr "Almacén"
 
 #. module: stock_picking_custom
 #: model:ir.ui.view,arch_db:stock_picking_custom.report_shipping_custom_customer_anz
 msgid "You do not have any products reserved for this picking.  Please click the 'Reserve' button\n"
-"                                to check if products are available."
+"                            to check if products are available."
 msgstr "No tiene ningún producto reservado para este albarán. Haga clic en el botón 'Reservar'\n"
 "                                para comprobar si los productos están disponibles."
+
+#. module: stock_picking_custom
+#: model:ir.ui.view,name:stock_picking_custom.external_layout_standard_custom
+msgid "external_layout_standard_custom"
+msgstr "external_layout_standard_custom"
+
+#. module: stock_picking_custom
+#: model:ir.ui.view,name:stock_picking_custom.location_name
+msgid "location_name"
+msgstr "Nombre de ubicación"
+
+#. module: stock_picking_custom
+#: model:ir.ui.view,name:stock_picking_custom.location_name2
+msgid "location_name2"
+msgstr "location_name2"
 
 #. module: stock_picking_custom
 #: model:ir.ui.view,arch_db:stock_picking_custom.stock_picking_tag
@@ -303,9 +470,129 @@ msgid "packs :"
 msgstr "Bultos :"
 
 #. module: stock_picking_custom
+#: model:ir.ui.view,name:stock_picking_custom.quantity_template
+msgid "quantity_template"
+msgstr "quantity_template"
+
+#. module: stock_picking_custom
+#: model:ir.ui.view,name:stock_picking_custom.quantity_template_move
+msgid "quantity_template_move"
+msgstr "quantity_template_move"
+
+#. module: stock_picking_custom
+#: model:ir.model,name:stock_picking_custom.model_report_stock_report_picking
+msgid "report.stock.report_picking"
+msgstr "report.stock.report_picking"
+
+#. module: stock_picking_custom
+#: model:ir.ui.view,name:stock_picking_custom.report_shipping_custom_anz
+msgid "report_shipping_custom_anz"
+msgstr "report_shipping_custom_anz"
+
+#. module: stock_picking_custom
+#: model:ir.ui.view,name:stock_picking_custom.report_shipping_custom_customer_anz
+msgid "report_shipping_custom_customer_anz"
+msgstr "report_shipping_custom_customer_anz"
+
+#. module: stock_picking_custom
+#: model:ir.ui.view,name:stock_picking_custom.report_table_move_line_ids_customer_outgoing
+msgid "report_table_move_line_ids_customer_outgoing"
+msgstr "report_table_move_line_ids_customer_outgoing"
+
+#. module: stock_picking_custom
+#: model:ir.ui.view,name:stock_picking_custom.report_table_move_line_ids_incoming
+msgid "report_table_move_line_ids_incoming"
+msgstr "report_table_move_line_ids_incoming"
+
+#. module: stock_picking_custom
+#: model:ir.ui.view,name:stock_picking_custom.report_table_move_line_ids_internal
+msgid "report_table_move_line_ids_internal"
+msgstr "report_table_move_line_ids_internal"
+
+#. module: stock_picking_custom
+#: model:ir.ui.view,name:stock_picking_custom.report_table_move_line_ids_orig
+msgid "report_table_move_line_ids_orig"
+msgstr "report_table_move_line_ids_orig"
+
+#. module: stock_picking_custom
+#: model:ir.ui.view,name:stock_picking_custom.report_table_move_line_ids_outgoing
+msgid "report_table_move_line_ids_outgoing"
+msgstr "report_table_move_line_ids_outgoing"
+
+#. module: stock_picking_custom
+#: model:ir.ui.view,name:stock_picking_custom.report_table_picking_qties
+msgid "report_table_picking_qties"
+msgstr "report_table_picking_qties"
+
+#. module: stock_picking_custom
+#: model:ir.ui.view,name:stock_picking_custom.report_table_picking_qties_customer
+msgid "report_table_picking_qties_customer"
+msgstr "report_table_picking_qties_customer"
+
+#. module: stock_picking_custom
+#: model:ir.ui.view,name:stock_picking_custom.stock_batch_picking_form_custom_anz
+msgid "stock.batch.picking.form.custom.anz"
+msgstr "stock.batch.picking.form.custom.anz"
+
+#. module: stock_picking_custom
+#: model:ir.model,name:stock_picking_custom.model_stock_import_wzd
+msgid "stock.import.wzd"
+msgstr "stock.import.wzd"
+
+#. module: stock_picking_custom
+#: model:ir.ui.view,name:stock_picking_custom.view_location_form_custom
+msgid "stock.location.form.custom_anz"
+msgstr "stock.location.form.custom_anz"
+
+#. module: stock_picking_custom
+#: model:ir.ui.view,name:stock_picking_custom.view_location_search_custom
+msgid "stock.location.search"
+msgstr "stock.location.search"
+
+#. module: stock_picking_custom
+#: model:ir.ui.view,name:stock_picking_custom.view_location_tree2_sequence
+msgid "stock.location.sequencem"
+msgstr "stock.location.sequencem"
+
+#. module: stock_picking_custom
+#: model:ir.ui.view,name:stock_picking_custom.view_picking_form_sequence
+msgid "stock.picking.form.sequence.view"
+msgstr "stock.picking.form.sequence.view"
+
+#. module: stock_picking_custom
+#: model:ir.ui.view,name:stock_picking_custom.view_picking_type_form_order_field
+msgid "stock.picking.type.form.order.field"
+msgstr "stock.picking.type.form.order.field"
+
+#. module: stock_picking_custom
 #: model:ir.model,name:stock_picking_custom.model_stock_return_picking_line
 msgid "stock.return.picking.line"
 msgstr "Movimiento de retorno"
+
+#. module: stock_picking_custom
+#: model:ir.ui.view,name:stock_picking_custom.stock_picking_tag
+msgid "stock_picking_tag"
+msgstr "stock_picking_tag"
+
+#. module: stock_picking_custom
+#: model:ir.ui.view,name:stock_picking_custom.template_product_barcode
+msgid "template_product_barcode"
+msgstr "template_product_barcode"
+
+#. module: stock_picking_custom
+#: model:ir.ui.view,name:stock_picking_custom.view_picking_delivery_note
+msgid "view.picking.delivery_note"
+msgstr "view.picking.delivery_note"
+
+#. module: stock_picking_custom
+#: model:ir.ui.view,name:stock_picking_custom.view_picking_form_custom
+msgid "view.picking.form.custom"
+msgstr "view.picking.form.custom"
+
+#. module: stock_picking_custom
+#: model:ir.ui.view,name:stock_picking_custom.view_product_import_wzd_form
+msgid "view.stock.import.wzd.form"
+msgstr "view.stock.import.wzd.form"
 
 #. module: stock_picking_custom
 #: model:ir.ui.view,arch_db:stock_picking_custom.view_picking_form_custom

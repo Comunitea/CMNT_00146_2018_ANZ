@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record model="ir.ui.view" id="view_settlement_form_custom">
+        <field name="name">Settlements</field>
+        <field name="model">sale.commission.settlement</field>
+        <field name="inherit_id" ref="sale_commission.view_settlement_form"/>
+
+            <field name="arch" type="xml">
+                <xpath expr="//header" position="after">
+                    <div name="button_box" class="oe_button_box">
+                        <button name="view_invoices" type="object" class="oe_stat_button" icon="fa-list">
+                            <field name="invoice_count"  widget="statinfo"/>
+                        </button>
+                        <button name="view_settlement_lines" type="object" class="oe_stat_button" icon="fa-list">
+                            <field name="lines_count"  widget="statinfo"/>
+                        </button>
+                    </div>
+                </xpath>
+                <button name="action_invoice" position="after">
+                    <button string="Validate"
+                            states="settled"
+                            type="object"
+                            class="btn-success"
+                            name="action_validate"/>
+                    <button string="Back"
+                            states="validated"
+                            type="object"
+                            class="btn-info"
+                            name="action_back"/>
+                </button>
+
+                <field name="agent" position="before">
+                    <field name="name"/>
+                </field>
+                <xpath expr="/form/group[2]" position="replace">
+                </xpath>
+            </field>
+    </record>
+
+     <record model="ir.ui.view" id="view_settlement_line_tree_custom">
+        <field name="name">Settlement lines</field>
+        <field name="model">sale.commission.settlement</field>
+        <field name="inherit_id" ref="sale_commission.view_settlement_tree"/>
+        <field name="arch" type="xml">
+            <field name="state" position="after">
+                <field name="name"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="view_settlement_line_search_custom" model="ir.ui.view">
+        <field name="name">sale.commission.settlement.line.search</field>
+        <field name="model">sale.commission.settlement</field>
+        <field name="inherit_id" ref="sale_commission.view_settlement_search"/>
+        <field name="arch" type="xml">
+            <field name="agent" position="after">
+                    <field name="name"/>
+            </field>
+
+            <filter name="group_date" position="after">
+                <filter string="Name" name="group_name" context="{'group_by': 'name'}"/>
+            </filter>
+        </field>
+    </record>
+
+    <record id="action_settle_line" model="ir.actions.act_window" >
+        <field name="name">Settlements Lines</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">sale.commission.settlement.line</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree</field>
+    </record>
+
+</odoo>

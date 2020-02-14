@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <!-- Legal acceptance on login -->
+<!--    <template id="web_login" name="Login Legal Base" inherit_id="web.login">-->
+<!--        <xpath expr="//div[hasclass('oe_login_buttons')]" position="before">-->
+<!--            <div class="on_login_advise mt4 mb8 small">-->
+<!--&lt;!&ndash;                <t t-call="website_base_multi_anz.acceptance_full_legal_terms_with_check"/>&ndash;&gt;-->
+<!--                 <div class="form-group field-legal" t-if="website.env.user == request.website.user_id">-->
+<!--                    <label for="privacy_policy">-->
+<!--                        <input type="checkbox" value="accepted" id="privacy_policy" name="privacy_policy" required="required"/>-->
+<!--                        <span class="acceptance_full">-->
+<!--                            I accept the <a href="/legal/advice">legal advice</a>, the <a href="/legal/privacy-policy">privacy policy and cookies</a> and the <a href="/legal/terms-of-use">terms of use</a> of this website.-->
+<!--                        </span>-->
+<!--                    </label>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </xpath>-->
+<!--    </template>-->
+
+    <!-- Legal acceptance on register -->
+    <template id="auth_signup_fields" name="Auth Signup/ResetPassword form fields Base" inherit_id="auth_signup.fields">
+        <xpath expr="//div[last()]" position="after">
+            <div class="on_login_advise mt4 mb8 small">
+                 <div class="form-group field-legal" t-if="website.env.user == request.website.user_id">
+                    <label for="privacy_policy">
+                        <input type="checkbox" value="accepted" id="privacy_policy" name="privacy_policy" required="required"/>
+                        <span class="acceptance_full">
+                            I accept the <a href="/legal/advice">legal advice</a>, the <a href="/legal/privacy-policy">privacy policy and cookies</a> and the <a href="/legal/terms-of-use">terms of use</a> of this website.
+                        </span>
+                    </label>
+                </div>
+            </div>
+        </xpath>
+    </template>
+
+    <!-- Show / Hide price by user -->
+    <template id="my_price_link" name="Show / Hide Price" inherit_id="portal.frontend_layout">
+        <xpath expr="//li[@id='o_logout']" position="before">
+            <li t-attf-class="js_publish_management #{request.env.user.website_show_price and 'css_published' or 'css_unpublished'}"
+                groups="website.group_website_designer, custom_permissions_anz.anz_asociated_user">
+                <form t-attf-action="/website/publish/price" method="post">
+                    <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                    <input type="hidden" name="id" t-att-value="request.env.user.partner_id.id"/>
+                    <input type="hidden" name="url" t-att-value="request.httprequest.url"/>
+                    <button role="menuitem" type="submit" class="">
+                        <span class="css_publish">Show Prices</span>
+                        <span class="css_unpublish">Hide Prices</span>
+                    </button>
+                </form>
+            </li>
+        </xpath>
+    </template>
+
+</odoo>

@@ -43,9 +43,18 @@ class ProductTemplate(models.Model):
     ])
     visibility_stock_web = fields.One2many('template.stock.web', 'product_id')
 
+    def delete_tsw(self, website):
+        """
+        Disassociate product with his website setting stock_website_published to false.
+        """
+        domain = [('product_id', '=', self.id), ('website_id', '=', website.id)]
+        tsw_id = self.env['template.stock.web'].search(domain)
+        if tsw_id:
+            tsw_id.stock_website_published = False
+
     def create_tsw(self, website):
         """
-        Associate product with his website setting stock_website_published to true.
+        Associate product with his website setting stock_website_published to true if max_qty > 0.
         """
         ctx = self._context.copy()
         swp_fields = ['always_virtual', 'threshold_virtual']
@@ -98,9 +107,13 @@ class ProductTemplate(models.Model):
         for template in template_ids:
             cont += 1
             _logger.info('{}: {} de {}: {}'.format('Update Website Visibility by Stock', cont, tot, template.name))
-            websites = template.website_ids or self.env['website'].search([])
-            for website in websites:
-                template.create_tsw(website)
+            template_websites = template.website_ids
+            all_websites = self.env['website'].search([])
+            for website in all_websites:
+                if website in template_websites or len(template_websites) == 0:
+                    template.create_tsw(website)
+                else:
+                    template.delete_tsw(website)
 
 
 class TemplateStockWeb(models.Model):
@@ -132,3 +145,8 @@ class ProductProduct(models.Model):
             max_qty = max(0, max_qty - self.product_tmpl_id.available_threshold)
         return max_qty
 
+    def delete_all_variable_images(self):
+        variables_with_images = self.search([('image_variant', '!=', False)])
+        variables_with_images.update({
+            'image_variant': False,
+        })

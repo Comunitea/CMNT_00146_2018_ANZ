@@ -10,6 +10,7 @@
     'depends': [
         'delivery',
         'delivery_packing_list',
+        'stock',
         'stock_move_manage',
         'stock_batch_picking',
         'custom_documents'        

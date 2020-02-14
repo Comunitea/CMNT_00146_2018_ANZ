@@ -41,3 +41,42 @@ class SaleManageVariant(models.TransientModel):
     def default_get(self, fields):
         res = super(SaleManageVariant, self).default_get(fields)
         return res
+
+    # Sobrescribo para añadir el onchange del discount y que funcio
+    # con tarifas que muestran el precio fuera del descuento
+    @api.multi
+    def button_transfer_to_order(self):
+        context = self.env.context
+        record = self.env[context['active_model']].browse(context['active_id'])
+        if context['active_model'] == 'sale.order.line':
+            sale_order = record.order_id
+        else:
+            sale_order = record
+        OrderLine = self.env['sale.order.line']
+        lines2unlink = OrderLine
+        for line in self.variant_line_ids:
+            product = self._get_product_variant(line.value_x, line.value_y)
+            order_line = sale_order.order_line.filtered(
+                lambda x: x.product_id == product
+            )
+            if order_line:
+                if not line.product_uom_qty:
+                    # Done this way because there's a side effect removing here
+                    lines2unlink |= order_line
+                else:
+                    order_line.product_uom_qty = line.product_uom_qty
+            elif line.product_uom_qty:
+                vals = OrderLine.default_get(OrderLine._fields.keys())
+                vals.update({
+                    'product_id': product.id,
+                    'product_uom': product.uom_id,
+                    'product_uom_qty': line.product_uom_qty,
+                    'order_id': sale_order.id,
+                })
+                order_line = OrderLine.new(vals)
+                order_line.product_id_change()
+                order_line._onchange_discount()
+                order_line_vals = order_line._convert_to_write(
+                    order_line._cache)
+                sale_order.order_line.browse().create(order_line_vals)
+        lines2unlink.unlink()

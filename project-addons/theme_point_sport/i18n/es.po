@@ -80,7 +80,7 @@ msgstr "Contacto"
 
 #. module: theme_point_sport
 #: model:ir.ui.view,arch_db:theme_point_sport.poi_contact_us_content_template
-#: model:ir.ui.view,arch_db:theme_point_sport.poi_website_footer_custom
+#: model:ir.ui.view,arch_db:theme_point_sport.poi_website_footer_default
 #: model:website.menu,name:theme_point_sport.poi_contact_us_menu
 #: model:website.page,name:theme_point_sport.poi_contactus_page
 msgid "Contact us"
@@ -166,8 +166,11 @@ msgid "Shop - Confirmed"
 msgstr "Tienda - Confirmado"
 
 #. module: theme_point_sport
+#: model:ir.ui.view,arch_db:theme_point_sport.poi_our_shops_content_template
+#: model:ir.ui.view,arch_db:theme_point_sport.poi_page_our_shops_ir_ui_view
 #: model:website.menu,name:theme_point_sport.poi_menu_our_shops
 #: model:website.menu,name:theme_point_sport.poi_menu_our_shops_parent
+#: model:website.page,arch_db:theme_point_sport.poi_page_our_shops
 #: model:website.page,name:theme_point_sport.poi_page_our_shops
 msgid "Shops"
 msgstr "Tiendas"
@@ -228,7 +231,7 @@ msgstr ""
 #. module: theme_point_sport
 #: model:website.menu,name:theme_point_sport.poi_menu_our_group
 #: model:website.page,name:theme_point_sport.poi_page_our_group
-msgid "Group"
+msgid "Anzamar Group"
 msgstr "Grupo Anzamar"
 
 #. module: theme_point_sport
@@ -380,23 +383,23 @@ msgstr "Categorías"
 
 #. module: theme_point_sport
 #: model:ir.ui.view,arch_db:theme_point_sport.poi_website_sale_product
-msgid "To order"
-msgstr "Solicitud"
+msgid "TO ORDER"
+msgstr "PEDIR"
 
 #. module: theme_point_sport
 #: model:ir.ui.view,arch_db:theme_point_sport.poi_website_sale_product
-msgid "Available"
-msgstr "Disponible"
+msgid "STOCK"
+msgstr "STOCK"
 
 #. module: theme_point_sport
 #: model:ir.ui.view,arch_db:theme_point_sport.poi_website_sale_product
-msgid "On hand"
-msgstr "A mano"
+msgid "ON HAND"
+msgstr "A MANO"
 
 #. module: theme_point_sport
 #: model:ir.ui.view,arch_db:theme_point_sport.poi_website_sale_product
-msgid "Forecast"
-msgstr "Planificado"
+msgid "FORECAST"
+msgstr "PREVISTO"
 
 #. module: website_sale_wishlist
 #: model:ir.ui.view,arch_db:website_sale_wishlist.product_wishlist
@@ -455,38 +458,38 @@ msgid "Filters and categories"
 msgstr "Filtros y categorías"
 
 #. module: theme_point_sport
-#: model:ir.ui.view,arch_db:theme_point_sport.poi_website_footer_custom
+#: model:ir.ui.view,arch_db:theme_point_sport.poi_website_footer_default
 #: model:ir.ui.view,arch_db:theme_point_sport.only_logged_in_users_advise
 msgid "Contact us"
 msgstr "Contacto"
 
 #. module: theme_point_sport
-#: model:ir.ui.view,arch_db:theme_point_sport.poi_website_footer_custom
+#: model:ir.ui.view,arch_db:theme_point_sport.poi_website_footer_default
 msgid "Delivery and payment"
 msgstr "Entrega y pago"
 
 #. module: theme_point_sport
-#: model:ir.ui.view,arch_db:theme_point_sport.poi_website_footer_custom
+#: model:ir.ui.view,arch_db:theme_point_sport.poi_website_footer_default
 msgid "About us"
 msgstr "Nosotros"
 
 #. module: theme_point_sport
-#: model:ir.ui.view,arch_db:theme_point_sport.poi_website_footer_custom
+#: model:ir.ui.view,arch_db:theme_point_sport.poi_website_footer_default
 msgid "Our shops"
 msgstr "Nuestras tiendas"
 
 #. module: theme_point_sport
-#: model:ir.ui.view,arch_db:theme_point_sport.poi_website_footer_custom
+#: model:ir.ui.view,arch_db:theme_point_sport.poi_website_footer_default
 msgid "Our group"
 msgstr "Nuestro grupo"
 
 #. module: theme_point_sport
-#: model:ir.ui.view,arch_db:theme_point_sport.poi_website_footer_custom
+#: model:ir.ui.view,arch_db:theme_point_sport.poi_website_footer_default
 msgid "Follow us"
 msgstr "Síguenos"
 
 #. module: theme_point_sport
-#: model:ir.ui.view,arch_db:theme_point_sport.poi_website_footer_custom
+#: model:ir.ui.view,arch_db:theme_point_sport.poi_website_footer_default
 msgid "Information / Franchises"
 msgstr "Información / Franquicias"
 
@@ -501,12 +504,12 @@ msgid "You need to"
 msgstr "Es necesario"
 
 #. module: theme_point_sport
-#: model:ir.ui.view,arch_db:theme_point_sport.poi_website_footer_custom
+#: model:ir.ui.view,arch_db:theme_point_sport.poi_website_footer_default
 msgid "Open request"
 msgstr "Solicitud de apertura"
 
 #. module: theme_point_sport
-#: model:ir.ui.view,arch_db:theme_point_sport.poi_website_footer_custom
+#: model:ir.ui.view,arch_db:theme_point_sport.poi_website_footer_default
 msgid "Open your shop"
 msgstr "Abre tu tienda"
 
@@ -516,17 +519,17 @@ msgid "Start page"
 msgstr "Página de Inicio"
 
 #. module: theme_point_sport
-#: model:ir.ui.view,arch_db:theme_point_sport.poi_website_footer_custom
+#: model:ir.ui.view,arch_db:theme_point_sport.poi_website_footer_default
 msgid "Steps to open your shop"
 msgstr "Pasos para abrir tu tienda"
 
 #. module: theme_point_sport
-#: model:ir.ui.view,arch_db:theme_point_sport.poi_website_footer_custom
+#: model:ir.ui.view,arch_db:theme_point_sport.poi_website_footer_default
 msgid "Work with Us Link"
 msgstr "Enlace a trabaje con nosotros"
 
 #. module: theme_point_sport
-#: model:ir.ui.view,arch_db:theme_point_sport.poi_website_footer_custom
+#: model:ir.ui.view,arch_db:theme_point_sport.poi_website_footer_default
 msgid "Work with us"
 msgstr "Trabaje con nosotros"
 
@@ -700,8 +703,8 @@ msgstr "Contacte con nosotros para cualquier cosa relacionada con nuestra empres
 
 #. module: theme_point_sport
 #: model:ir.ui.view,arch_db:theme_point_sport.poi_contact_us_content_template
-msgid "Customer service"
-msgstr "Horario de atención"
+msgid "<strong>Customer service</strong>"
+msgstr "<strong>Horario de atención</strong>"
 
 #. module: theme_point_sport
 #: model:ir.ui.view,arch_db:theme_point_sport.poi_contact_us_content_template
@@ -713,13 +716,13 @@ msgstr "¿Tienes alguna consulta? Puedes contactar con nosotros a través de los
 #: model:ir.ui.view,arch_db:theme_point_sport.poi_contact_us_content_template
 #: model:ir.ui.view,arch_db:theme_point_sport.poi_open_shop_content_template
 #: model:ir.ui.view,arch_db:theme_point_sport.poi_work_with_us_content_template
-msgid "Email"
-msgstr "Correo electrónico"
+msgid "<strong>Email</strong>"
+msgstr "<strong>Correo electrónico</strong>"
 
 #. module: theme_point_sport
 #: model:ir.ui.view,arch_db:theme_point_sport.poi_contact_us_content_template
-msgid "Location:"
-msgstr "Localización:"
+msgid "<strong>Location</strong>"
+msgstr "<strong>Localización</strong>"
 
 #. module: theme_point_sport
 #: model:ir.ui.view,arch_db:theme_point_sport.poi_contact_us_content_template
@@ -732,13 +735,13 @@ msgstr "De lunes a viernes de 8.00 a 15.00 horas\n"
 
 #. module: theme_point_sport
 #: model:ir.ui.view,arch_db:theme_point_sport.poi_contact_us_content_template
-msgid "Phone"
-msgstr "Teléfono"
+msgid "<strong>Phone</strong>"
+msgstr "<strong>Teléfono</strong>"
 
 #. module: theme_point_sport
 #: model:ir.ui.view,arch_db:theme_point_sport.poi_contact_us_content_template
-msgid "Social networks"
-msgstr "Redes sociales"
+msgid "<strong>Social networks</strong>"
+msgstr "<strong>Redes sociales</strong>"
 
 #. module: theme_point_sport
 #: model:ir.ui.view,arch_db:theme_point_sport.poi_contact_us_content_template
@@ -747,7 +750,7 @@ msgstr "Haremos lo posible por responderle a la mayor brevedad."
 
 #. module: theme_point_sport
 #: model:ir.ui.view,arch_db:theme_point_sport.poi_about_us_content_template
-#: model:ir.ui.view,arch_db:theme_point_sport.poi_website_footer_custom
+#: model:ir.ui.view,arch_db:theme_point_sport.poi_website_footer_default
 msgid "About us"
 msgstr "Nosotros"
 
@@ -921,7 +924,7 @@ msgid "Where can you find your Sports Shop, sportswear, running shoes and access
 msgstr "¿Dónde encontrar tu Tienda de deportes, ropa deportiva, zapatillas deportivas running y accesorios para comprar online o en Málaga?"
 
 #. module: theme_point_sport
-#: model:ir.ui.view,arch_db:theme_point_sport.poi_website_footer_custom
+#: model:ir.ui.view,arch_db:theme_point_sport.poi_website_footer_default
 msgid "About Shopping"
 msgstr "Comprar"
 
@@ -938,7 +941,7 @@ msgstr "Grupo Anzamar"
 #. module: theme_point_sport
 #: model:ir.ui.view,arch_db:theme_point_sport.poi_contact_us_content_template
 #: model:ir.ui.view,arch_db:theme_point_sport.poi_template_our_group_content_template
-#: model:ir.ui.view,arch_db:theme_point_sport.poi_website_footer_custom
+#: model:ir.ui.view,arch_db:theme_point_sport.poi_website_footer_default
 msgid "The Company"
 msgstr "La empresa"
 
