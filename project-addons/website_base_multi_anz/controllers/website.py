@@ -263,7 +263,7 @@ class WebsiteSaleExtended(WebsiteSale):
 class Website(Website):
 
     @http.route(['/website/publish/price'], type='http', auth="user", website=True)
-    def publish(self, access_token=None, **post):
+    def publish_price(self, access_token=None, **post):
         """
         Gets show/hide prices form by change website_show_price field for partner of request user.
         """
