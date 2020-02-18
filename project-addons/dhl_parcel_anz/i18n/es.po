@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-02-05 17:00+0000\n"
-"PO-Revision-Date: 2020-02-05 17:00+0000\n"
+"POT-Creation-Date: 2020-02-18 08:23+0000\n"
+"PO-Revision-Date: 2020-02-18 08:23+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,16 +16,11 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: dhl_parcel_anz
-#: code:addons/dhl_parcel_anz/models/stock_picking.py:42
+#: code:addons/dhl_parcel_anz/models/stock_picking.py:43
 #: selection:stock.picking,dhl_shipping_type:0
 #, python-format
 msgid "Air Transport"
 msgstr "Transporte Aéreo"
-
-#. module: dhl_parcel_anz
-#: model:ir.model,name:dhl_parcel_anz.model_delivery_carrier
-msgid "Carrier"
-msgstr "Forma de envío"
 
 #. module: dhl_parcel_anz
 #: model:ir.model.fields,field_description:dhl_parcel_anz.field_stock_picking_dhl_cash_on_delivery
@@ -96,13 +91,13 @@ msgstr "Tipo de envío DHL"
 #: model:ir.model.fields,field_description:dhl_parcel_anz.field_sitemap_base_settings_dhl_client_number
 #: model:ir.model.fields,field_description:dhl_parcel_anz.field_web_app_settings_dhl_client_number
 msgid "DHL client number"
-msgstr "Número de cliente DHL"
+msgstr "Número Cliente DHL"
 
 #. module: dhl_parcel_anz
-#: code:addons/dhl_parcel_anz/models/stock_picking.py:46
-#: code:addons/dhl_parcel_anz/models/stock_picking.py:52
-#: code:addons/dhl_parcel_anz/models/stock_picking.py:57
-#: code:addons/dhl_parcel_anz/models/stock_picking.py:61
+#: code:addons/dhl_parcel_anz/models/stock_picking.py:47
+#: code:addons/dhl_parcel_anz/models/stock_picking.py:53
+#: code:addons/dhl_parcel_anz/models/stock_picking.py:58
+#: code:addons/dhl_parcel_anz/models/stock_picking.py:62
 #: selection:stock.picking,dhl_cash_on_delivery:0
 #: selection:stock.picking,dhl_customs_payment:0
 #: selection:stock.picking,dhl_insurance_payment:0
@@ -117,12 +112,17 @@ msgid "Declared Amount"
 msgstr "Cantidad Declarada"
 
 #. module: dhl_parcel_anz
-#: model:ir.model.fields,field_description:dhl_parcel_anz.field_dhl_txt_file_display_name
-msgid "Display Name"
-msgstr "Nombre"
+#: model:ir.model.fields,field_description:dhl_parcel_anz.field_stock_picking_dhl_carrier
+msgid "Dhl Carrier"
+msgstr "Dhl Carrier"
 
 #. module: dhl_parcel_anz
-#: code:addons/dhl_parcel_anz/models/stock_picking.py:94
+#: model:ir.model.fields,field_description:dhl_parcel_anz.field_dhl_txt_file_display_name
+msgid "Display Name"
+msgstr "Nombre a mostrar"
+
+#. module: dhl_parcel_anz
+#: code:addons/dhl_parcel_anz/models/stock_picking.py:104
 #, python-format
 msgid "Download File"
 msgstr "Descargar archivo"
@@ -188,10 +188,10 @@ msgid "Merchandise description"
 msgstr "Descripción de mercancía"
 
 #. module: dhl_parcel_anz
-#: code:addons/dhl_parcel_anz/models/stock_picking.py:45
-#: code:addons/dhl_parcel_anz/models/stock_picking.py:51
-#: code:addons/dhl_parcel_anz/models/stock_picking.py:56
-#: code:addons/dhl_parcel_anz/models/stock_picking.py:60
+#: code:addons/dhl_parcel_anz/models/stock_picking.py:46
+#: code:addons/dhl_parcel_anz/models/stock_picking.py:52
+#: code:addons/dhl_parcel_anz/models/stock_picking.py:57
+#: code:addons/dhl_parcel_anz/models/stock_picking.py:61
 #: selection:stock.picking,dhl_cash_on_delivery:0
 #: selection:stock.picking,dhl_customs_payment:0
 #: selection:stock.picking,dhl_insurance_payment:0
@@ -211,7 +211,7 @@ msgid "Return signed picking"
 msgstr "Devolver Albarán Firmado"
 
 #. module: dhl_parcel_anz
-#: code:addons/dhl_parcel_anz/models/stock_picking.py:41
+#: code:addons/dhl_parcel_anz/models/stock_picking.py:42
 #: selection:stock.picking,dhl_shipping_type:0
 #, python-format
 msgid "Sea Transport"
@@ -228,7 +228,7 @@ msgid "The file has been successfully generated."
 msgstr "El archivo se ha generado correctamente."
 
 #. module: dhl_parcel_anz
-#: code:addons/dhl_parcel_anz/models/stock_picking.py:80
+#: code:addons/dhl_parcel_anz/models/stock_picking.py:90
 #, python-format
 msgid "There was a problem creating the file {}"
 msgstr "Ha ocurrido un error creando el archivo: {}"
@@ -239,7 +239,7 @@ msgid "Transfer"
 msgstr "Transferir"
 
 #. module: dhl_parcel_anz
-#: code:addons/dhl_parcel_anz/models/stock_picking.py:91
+#: code:addons/dhl_parcel_anz/models/stock_picking.py:101
 #, python-format
 msgid "We could not create the DHL file because:\n"
 "%s."
@@ -247,7 +247,7 @@ msgstr "No hemos podido generar el archivo debido a:\n"
 "%s."
 
 #. module: dhl_parcel_anz
-#: code:addons/dhl_parcel_anz/models/stock_picking.py:156
+#: code:addons/dhl_parcel_anz/models/stock_picking.py:166
 #, python-format
 msgid "We could not create the line for the stock picking %s because:\n"
 "%s."

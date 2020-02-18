@@ -36,6 +36,7 @@ class StockPickingDHL(models.Model):
 
     _inherit = 'stock.picking'
 
+    dhl_carrier = fields.Boolean(default=False)
     number_of_packages = fields.Integer(string='Number of Packages', copy=False, default=1)
     dhl_shipping_type = fields.Selection([
         ('M', _('Sea Transport')),
@@ -66,6 +67,15 @@ class StockPickingDHL(models.Model):
     dhl_international_declared_amount = fields.Float(string="Declared Amount", digits=(13,2))
     dhl_international_currency = fields.Many2one('res.currency', string="Currency for Declared Amount")
 
+    @api.multi
+    @api.onchange('carrier_id')
+    def carrier_id_change(self):
+        for picking in self:
+            picking.dhl_carrier = False
+            if picking.carrier_id:
+                if picking.carrier_id.name.startswith('DHL'):
+                    picking.dhl_carrier = True
+            
     @api.multi
     def create_dhl_file(self):
         now = datetime.now()
