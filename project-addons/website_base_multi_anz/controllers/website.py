@@ -8,6 +8,7 @@ from odoo.http import request
 from odoo.osv import expression
 
 from odoo.addons.website_sale.controllers.main import WebsiteSale
+from odoo.addons.website.controllers.main import Website
 from odoo.addons.seo_base.controllers.redirecting import ProductRedirect
 from odoo.addons.website_form_recaptcha.controllers.main import WebsiteForm
 
@@ -257,6 +258,19 @@ class WebsiteSaleExtended(WebsiteSale):
         }
 
         return request.render("website_sale.extra_info", values)
+
+
+class Website(Website):
+
+    @http.route(['/website/publish/price'], type='http', auth="user", website=True)
+    def publish_price(self, access_token=None, **post):
+        """
+        Gets show/hide prices form by change website_show_price field for partner of request user.
+        """
+        record = request.env["res.partner"].browse(int(post.get('id', False)))
+        if record:
+            record.sudo().website_show_price = not record.website_show_price
+        return request.redirect(post.get('url', '/shop'))
 
 
 class WebsiteFormCustom(WebsiteForm):

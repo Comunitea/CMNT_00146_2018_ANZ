@@ -18,6 +18,12 @@ class SaleOrder(models.Model):
         'Sponsored', readonly=True,
         states={'draft': [('readonly', False)]}, copy=False)
     bag_decreased = fields.Boolean('Bag decreased', readonly=True, copy=False)
+    default_user_location_id = fields.Many2one('stock.location', string = 'Mostrar stock en', help="Ubicación por defecto desde donde se mostrará el stock disponile para este almacén")
+
+    def _get_default_loc_for_stock(self):
+        if self.default_user_location_id:
+            return self.default_user_location_id
+        return self.env['stock.warehouse'].search([], limit=1).lot_stock_id
 
     @api.model
     def create(self, vals):
@@ -144,10 +150,17 @@ class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"
 
     virtual_stock_conservative = fields.Float(
-        related="product_id.virtual_stock_conservative",
-        string='Virtual Stock Conservative', related_sudo=True)
+        "Stock virtual conservativo", compute="get_line_conservative")
     ref_change = fields.Boolean('Reference change', default=False)
     warehouse_id = fields.Many2one(related='order_id.warehouse_id')
+    default_user_location_id = fields.Many2one(related="order_id.default_user_location_id")
+
+    @api.multi
+    def get_line_conservative(self):
+
+        for line in self:
+            location_id  = line.order_id.default_user_location_id
+            line.virtual_stock_conservative = line.product_id.with_context(location=location_id.id).virtual_stock_conservative
 
     @api.multi
     @api.onchange('product_id')
@@ -167,6 +180,7 @@ class SaleOrderLine(models.Model):
                 self.ref_change = True
             else:
                 self.ref_change = False
+        self.get_line_conservative()
         return result
 
     @api.multi

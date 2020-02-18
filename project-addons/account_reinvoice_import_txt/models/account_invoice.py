@@ -36,25 +36,25 @@ class AccountInvoice(models.Model):
         return super(AccountInvoice, self.with_context(ctx))._onchange_payment_term_date_invoice()
 
     def _compute_amount(self):
+        for line in self:
+            if not(line.import_txt_id and line.env['ir.config_parameter'].sudo().get_param(
+                'import_account.overwrite_odoo_amount', 'False').lower() == 'true'):
+                return super()._compute_amount()
 
-        if not(self.import_txt_id and self.env['ir.config_parameter'].sudo().get_param(
-            'import_account.overwrite_odoo_amount', 'False').lower() == 'true'):
-            return super()._compute_amount()
-
-        round_curr = self.currency_id.round
-        self.amount_untaxed = self.import_txt_id.valor_neto
-        self.amount_tax = self.import_txt_id.total_amount - self.import_txt_id.valor_neto
-        self.amount_total = self.import_txt_id.total_amount
-        amount_total_company_signed = self.amount_total
-        amount_untaxed_signed = self.amount_untaxed
-        if self.currency_id and self.company_id and self.currency_id != self.company_id.currency_id:
-            currency_id = self.currency_id.with_context(date=self.date_value or self.date_invoice)
-            amount_total_company_signed = currency_id.compute(self.amount_total, self.company_id.currency_id)
-            amount_untaxed_signed = currency_id.compute(self.amount_untaxed, self.company_id.currency_id)
-        sign = self.type in ['in_refund', 'out_refund'] and -1 or 1
-        self.amount_total_company_signed = amount_total_company_signed * sign
-        self.amount_total_signed = self.amount_total * sign
-        self.amount_untaxed_signed = amount_untaxed_signed * sign
+            round_curr = line.currency_id.round
+            line.amount_untaxed = line.import_txt_id.valor_neto
+            line.amount_tax = line.import_txt_id.total_amount - line.import_txt_id.valor_neto
+            line.amount_total = line.import_txt_id.total_amount
+            amount_total_company_signed = line.amount_total
+            amount_untaxed_signed = line.amount_untaxed
+            if line.currency_id and line.company_id and line.currency_id != line.company_id.currency_id:
+                currency_id = line.currency_id.with_context(date=line.date_value or line.date_invoice)
+                amount_total_company_signed = currency_id.compute(line.amount_total, line.company_id.currency_id)
+                amount_untaxed_signed = currency_id.compute(line.amount_untaxed, line.company_id.currency_id)
+            sign = line.type in ['in_refund', 'out_refund'] and -1 or 1
+            line.amount_total_company_signed = amount_total_company_signed * sign
+            line.amount_total_signed = line.amount_total * sign
+            line.amount_untaxed_signed = amount_untaxed_signed * sign
 
 class AccountInvoiceLine(models.Model):
 

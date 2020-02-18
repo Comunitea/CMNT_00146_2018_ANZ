@@ -16,7 +16,7 @@
                         <field name="sales" string="Ventas"/>
 
                         <field name="stocks" string="Stocks"/>
-
+                        <field name="select_price"/>
                         <field name="pvp" string="P.V.P."/>
                         <field name="cost" string="Coste"/>
 
@@ -60,6 +60,7 @@
                         <field name="limit" string="Limit"/>
 
                         <field name="with_stock"/>
+                        <field name="location_id" attrs="{'required': [('with_stock','=',True)]}"/>
                         <field name="image_scale" invisible="1"/>
                         <field name="x_offset" invisible="1"/>
 
