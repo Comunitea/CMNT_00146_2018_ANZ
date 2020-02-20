@@ -34,7 +34,8 @@
     'data': [
         'views/res_config.xml',
         'views/stock_picking.xml',
-        'data/dhl_data.xml'
+        'data/dhl_data.xml',
+        'wizard/dhl_mass_export.xml'
     ],
     'installable': True,
     'auto_install': False,

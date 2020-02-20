@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #    License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
-#    Copyright (C) 2019 Comunitea Servicios Tecnológicos S.L. All Rights Reserved
+#    Copyright (C) 2020 Comunitea Servicios Tecnológicos S.L. All Rights Reserved
 #    Vicente Ángel Gutiérrez <vicente@comunitea.com>
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -19,4 +19,4 @@
 #
 ##############################################################################
 
-from . import models, wizard
+from . import dhl_mass_export
