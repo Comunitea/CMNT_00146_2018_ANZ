@@ -20,9 +20,9 @@ Skipping Multi Theme
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
-**Attention!**
+**Attention!!!**
 
-    #. Note that this theme was made for Anzamar Group website but was changed for Skipping website.
+    **Note:** This theme was made for **Anzamar Group** website BUT was changed for **Skipping website**.
 
 **Table of contents**
 

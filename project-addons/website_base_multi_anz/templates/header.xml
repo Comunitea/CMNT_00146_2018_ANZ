@@ -17,10 +17,10 @@
             <div groups="base.group_user" class="clearfix mt32 header-fixed-margin"/>
         </xpath>
 
-        <!-- Add custom breadcrumbs -->
-        <xpath expr="//div[@id='wrapwrap']//div[hasclass('navbar')]" position="after">
-            <t t-call="breadcrumbs_base.bcb_main_wrap" t-if="'homepage' not in xmlid"/>
-        </xpath>
+        <!-- Add custom breadcrumbs if not breadcrumbs_base_tmp is installed -->
+<!--        <xpath expr="//div[@id='wrapwrap']//div[hasclass('navbar')]" position="after">-->
+            <!--<t t-call="breadcrumbs_base.bcb_main_wrap" t-if="'homepage' not in xmlid"/>-->
+<!--        </xpath>-->
 
     </template>
 

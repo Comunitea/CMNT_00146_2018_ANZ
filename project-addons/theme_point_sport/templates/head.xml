@@ -6,7 +6,6 @@
         <xpath expr="link[last()]" position="after">
             <link href="/theme_point_sport/static/css/_general.less" rel="stylesheet" type="text/less"/>
             <link href="/theme_point_sport/static/css/blog.less" rel="stylesheet" type="text/less"/>
-            <link href="/theme_point_sport/static/css/breadcrumbs.less" rel="stylesheet" type="text/less"/>
             <link href="/theme_point_sport/static/css/elements.less" rel="stylesheet" type="text/less"/>
             <link href="/theme_point_sport/static/css/footer.less" rel="stylesheet" type="text/less"/>
             <link href="/theme_point_sport/static/css/header.less" rel="stylesheet" type="text/less"/>
