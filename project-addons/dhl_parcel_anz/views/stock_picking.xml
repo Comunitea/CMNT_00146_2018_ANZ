@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_picking_withcarrier_out_form_dhl" model="ir.ui.view">
+        <field name="name">delivery.stock.picking_withcarrier.dhl.form.view</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="delivery.view_picking_withcarrier_out_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='number_of_packages']" position="replace">
+                <field name="number_of_packages"/>
+                <field name="dhl_carrier" invisible="1"/>
+                <field name="picking_type_code" invisible="1"/>
+            </xpath>
+            <xpath expr="//notebook" position="inside">
+                <page id="dhl_information" string="DHL Information" attrs="{'invisible': ['|', ('dhl_carrier', '!=', True), ('picking_type_code', '!=', 'outgoing')]}">
+                    <group>
+                        <group>
+                            <field name="dhl_shipping_type"/>
+                            <field name="dhl_cash_on_delivery"/>
+                            <field name="dhl_refund_amount"/>
+                            <field name="dhl_insurance_amount"/>
+                            <field name="dhl_insurance_payment"/>
+                            <field name="dhl_return_signed_picking"/>
+                        </group>
+                        <group>
+                            <field name="dhl_customs_payment"/>
+                            <field name="dhl_shipping_payment"/>
+                            <field name="dhl_international_shipping"/>
+                            <field name="dhl_international_partner" attrs="{'invisible': [('dhl_international_shipping', '=', False)]}"/>
+                            <field name="dhl_international_description" attrs="{'invisible': [('dhl_international_shipping', '=', False)]}"/>
+                            <field name="dhl_international_declared_amount" attrs="{'invisible': [('dhl_international_shipping', '=', False)]}"/>
+                            <field name="dhl_international_currency" attrs="{'invisible': [('dhl_international_shipping', '=', False)]}"/>
+                        </group>
+                    </group>
+                </page>                
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_picking_form_custom" model="ir.ui.view">
+        <field name="name">view.picking.form.custom</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='action_confirm']" position="after">
+            <button name="create_dhl_file"
+                    string="DHL File" type="object" class="oe_highlight"
+                    groups="base.group_user" attrs="{'invisible': ['|', ('dhl_carrier', '!=', True), ('picking_type_code', '!=', 'outgoing')]}"/>
+            </xpath>
+        </field>
+    </record>
+
+
+    <record id="save_dhl_txt_file_done" model="ir.ui.view">
+        <field name="name">dhl.txt.file.form</field>
+        <field name="model">dhl.txt.file</field>
+        <field name="arch" type="xml">
+            <form string="File download">
+                <group cols="2">
+                    <div>
+                        <field name="filename" invisible="1" />
+                        <label string="The file has been successfully generated." />
+                        <field name="file_data" filename="filename" nolabel="1" />
+                    </div>
+                </group>
+                <footer>
+                    <button special="cancel" string="Close" type="object" />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+</odoo>

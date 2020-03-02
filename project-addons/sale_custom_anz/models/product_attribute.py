@@ -40,6 +40,8 @@ class ProductAttributeValue(models.Model):
                             qty_field = 'qty_available_global'
                         if parent.warehouse_id:
                             ctx.update(warehouse=parent.warehouse_id.id)
+                if self._context.get('location', False):
+                    ctx.update(location=self._context['location'])
                 # Añado el campo stock en al nombre del atributo
                 for product in p_ids.with_context(ctx).filtered(
                         lambda x: x.attribute_value_ids):

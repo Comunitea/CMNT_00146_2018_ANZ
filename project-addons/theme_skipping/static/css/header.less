@@ -51,6 +51,18 @@ header {
         }
         & .navbar-nav > li > .dropdown-menu {
             margin-right: -3px;
+            /* Hide or show prices button */
+            & button {
+                background: none;
+                border: none;
+                padding: 3px 20px;
+                &:focus{
+                    outline: none;
+                }
+            }
+             & form:hover, & form:focus{
+                background: #f5f5f5;
+            }
         }
         & .navbar-toggle {
             & .icon-bar {

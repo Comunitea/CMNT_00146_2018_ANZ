@@ -16,6 +16,15 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: website_base_multi_anz
+#: model:ir.ui.view,arch_db:website_base_multi_anz.my_price_link
+msgid "<span class=\"css_publish\">Show Prices</span>\n"
+"                        <span class=\"css_unpublish\">Hide Prices</span>"
+msgstr "<span class=\"css_publish\">Mostrar Precios</span>\n"
+"                        <span class=\"css_unpublish\">Ocultar Precios</span>"
+
+
+
+#. module: website_base_multi_anz
 #: model:ir.ui.view,arch_db:website_base_multi_anz.base_website_sale_product
 msgid "&amp;mdash;"
 msgstr "&amp;mdash;"

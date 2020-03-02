@@ -1,0 +1,306 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* dhl_parcel_anz
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 11.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-02-18 08:23+0000\n"
+"PO-Revision-Date: 2020-02-18 08:23+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: dhl_parcel_anz
+#: code:addons/dhl_parcel_anz/models/stock_picking.py:43
+#: selection:stock.picking,dhl_shipping_type:0
+#, python-format
+msgid "Air Transport"
+msgstr "Transporte Aéreo"
+
+#. module: dhl_parcel_anz
+#: model:ir.model.fields,field_description:dhl_parcel_anz.field_stock_picking_dhl_cash_on_delivery
+msgid "Cash on delivery"
+msgstr "Contrarreembolso"
+
+#. module: dhl_parcel_anz
+#: model:ir.ui.view,arch_db:dhl_parcel_anz.save_dhl_txt_file_done
+msgid "Close"
+msgstr "Cerrar"
+
+#. module: dhl_parcel_anz
+#: model:ir.actions.server,name:dhl_parcel_anz.action_create_dhl_file_ir_actions_server
+#: model:ir.cron,cron_name:dhl_parcel_anz.action_create_dhl_file
+#: model:ir.cron,name:dhl_parcel_anz.action_create_dhl_file
+msgid "Create DHL File"
+msgstr "Archivo DHL"
+
+#. module: dhl_parcel_anz
+#: model:ir.model.fields,field_description:dhl_parcel_anz.field_dhl_txt_file_create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: dhl_parcel_anz
+#: model:ir.model.fields,field_description:dhl_parcel_anz.field_dhl_txt_file_create_date
+msgid "Created on"
+msgstr "Creado en"
+
+#. module: dhl_parcel_anz
+#: model:ir.model.fields,field_description:dhl_parcel_anz.field_stock_picking_dhl_international_currency
+msgid "Currency for Declared Amount"
+msgstr "Moneda para la cantidad declarada"
+
+#. module: dhl_parcel_anz
+#: model:ir.model.fields,field_description:dhl_parcel_anz.field_stock_picking_dhl_customs_payment
+#: model:ir.model.fields,field_description:dhl_parcel_anz.field_stock_picking_dhl_shipping_payment
+msgid "Customs Payment"
+msgstr "Pago de aduanas"
+
+#. module: dhl_parcel_anz
+#: model:ir.ui.view,arch_db:dhl_parcel_anz.res_config_settings_dhl_form
+msgid "DHL Config"
+msgstr "DHL Config"
+
+#. module: dhl_parcel_anz
+#: model:ir.ui.view,arch_db:dhl_parcel_anz.view_picking_form_custom
+msgid "DHL File"
+msgstr "Archivo DHL"
+
+#. module: dhl_parcel_anz
+#: model:ir.ui.view,arch_db:dhl_parcel_anz.view_picking_withcarrier_out_form_dhl
+msgid "DHL Information"
+msgstr "Información de DHL"
+
+#. module: dhl_parcel_anz
+#: model:ir.model.fields,field_description:dhl_parcel_anz.field_stock_picking_dhl_shipping_type
+msgid "DHL Shipping Type"
+msgstr "Tipo de envío DHL"
+
+#. module: dhl_parcel_anz
+#: model:ir.model.fields,field_description:dhl_parcel_anz.field_avc_res_config_settings_dhl_client_number
+#: model:ir.model.fields,field_description:dhl_parcel_anz.field_codecoupon_base_settings_dhl_client_number
+#: model:ir.model.fields,field_description:dhl_parcel_anz.field_ftp_server_config_setting_dhl_client_number
+#: model:ir.model.fields,field_description:dhl_parcel_anz.field_res_config_settings_dhl_client_number
+#: model:ir.model.fields,field_description:dhl_parcel_anz.field_robots_txt_settings_dhl_client_number
+#: model:ir.model.fields,field_description:dhl_parcel_anz.field_seo_analytics_settings_dhl_client_number
+#: model:ir.model.fields,field_description:dhl_parcel_anz.field_seo_general_settings_dhl_client_number
+#: model:ir.model.fields,field_description:dhl_parcel_anz.field_sitemap_base_settings_dhl_client_number
+#: model:ir.model.fields,field_description:dhl_parcel_anz.field_web_app_settings_dhl_client_number
+msgid "DHL client number"
+msgstr "Número Cliente DHL"
+
+#. module: dhl_parcel_anz
+#: code:addons/dhl_parcel_anz/models/stock_picking.py:47
+#: code:addons/dhl_parcel_anz/models/stock_picking.py:53
+#: code:addons/dhl_parcel_anz/models/stock_picking.py:58
+#: code:addons/dhl_parcel_anz/models/stock_picking.py:62
+#: selection:stock.picking,dhl_cash_on_delivery:0
+#: selection:stock.picking,dhl_customs_payment:0
+#: selection:stock.picking,dhl_insurance_payment:0
+#: selection:stock.picking,dhl_shipping_payment:0
+#, python-format
+msgid "Debt"
+msgstr "Debido"
+
+#. module: dhl_parcel_anz
+#: model:ir.model.fields,field_description:dhl_parcel_anz.field_stock_picking_dhl_international_declared_amount
+msgid "Declared Amount"
+msgstr "Cantidad Declarada"
+
+#. module: dhl_parcel_anz
+#: model:ir.model.fields,field_description:dhl_parcel_anz.field_stock_picking_dhl_carrier
+msgid "Dhl Carrier"
+msgstr "Dhl Carrier"
+
+#. module: dhl_parcel_anz
+#: model:ir.model.fields,field_description:dhl_parcel_anz.field_dhl_txt_file_display_name
+msgid "Display Name"
+msgstr "Nombre a mostrar"
+
+#. module: dhl_parcel_anz
+#: code:addons/dhl_parcel_anz/models/stock_picking.py:104
+#, python-format
+msgid "Download File"
+msgstr "Descargar archivo"
+
+#. module: dhl_parcel_anz
+#: model:ir.model.fields,field_description:dhl_parcel_anz.field_dhl_txt_file_file_data
+msgid "File data"
+msgstr "Datos"
+
+#. module: dhl_parcel_anz
+#: model:ir.ui.view,arch_db:dhl_parcel_anz.save_dhl_txt_file_done
+msgid "File download"
+msgstr "Descarga"
+
+#. module: dhl_parcel_anz
+#: model:ir.model.fields,field_description:dhl_parcel_anz.field_dhl_txt_file_filename
+msgid "File name"
+msgstr "Nombre de archivo"
+
+#. module: dhl_parcel_anz
+#: model:ir.model.fields,field_description:dhl_parcel_anz.field_dhl_txt_file_id
+msgid "ID"
+msgstr "ID"
+
+#. module: dhl_parcel_anz
+#: model:ir.model.fields,field_description:dhl_parcel_anz.field_stock_picking_dhl_insurance_amount
+msgid "Insurance Amount"
+msgstr "Cantidad Asegurada"
+
+#. module: dhl_parcel_anz
+#: model:ir.model.fields,field_description:dhl_parcel_anz.field_stock_picking_dhl_insurance_payment
+msgid "Insurance Payment"
+msgstr "Seguro Pagado"
+
+#. module: dhl_parcel_anz
+#: model:ir.model.fields,field_description:dhl_parcel_anz.field_stock_picking_dhl_international_partner
+msgid "International Partner"
+msgstr "Contacto Internacional"
+
+#. module: dhl_parcel_anz
+#: model:ir.model.fields,field_description:dhl_parcel_anz.field_stock_picking_dhl_international_shipping
+msgid "International Shipping"
+msgstr "Envío Internacional"
+
+#. module: dhl_parcel_anz
+#: model:ir.model.fields,field_description:dhl_parcel_anz.field_dhl_txt_file___last_update
+msgid "Last Modified on"
+msgstr "Última modificación en"
+
+#. module: dhl_parcel_anz
+#: model:ir.model.fields,field_description:dhl_parcel_anz.field_dhl_txt_file_write_uid
+msgid "Last Updated by"
+msgstr "Última actualización de"
+
+#. module: dhl_parcel_anz
+#: model:ir.model.fields,field_description:dhl_parcel_anz.field_dhl_txt_file_write_date
+msgid "Last Updated on"
+msgstr "Última actualización en"
+
+#. module: dhl_parcel_anz
+#: model:ir.model.fields,field_description:dhl_parcel_anz.field_stock_picking_dhl_international_description
+msgid "Merchandise description"
+msgstr "Descripción de mercancía"
+
+#. module: dhl_parcel_anz
+#: code:addons/dhl_parcel_anz/models/stock_picking.py:46
+#: code:addons/dhl_parcel_anz/models/stock_picking.py:52
+#: code:addons/dhl_parcel_anz/models/stock_picking.py:57
+#: code:addons/dhl_parcel_anz/models/stock_picking.py:61
+#: selection:stock.picking,dhl_cash_on_delivery:0
+#: selection:stock.picking,dhl_customs_payment:0
+#: selection:stock.picking,dhl_insurance_payment:0
+#: selection:stock.picking,dhl_shipping_payment:0
+#, python-format
+msgid "Paid"
+msgstr "Pagado"
+
+#. module: dhl_parcel_anz
+#: model:ir.model.fields,field_description:dhl_parcel_anz.field_stock_picking_dhl_refund_amount
+msgid "Refund Amount"
+msgstr "Cantidad Reembolso"
+
+#. module: dhl_parcel_anz
+#: model:ir.model.fields,field_description:dhl_parcel_anz.field_stock_picking_dhl_return_signed_picking
+msgid "Return signed picking"
+msgstr "Devolver Albarán Firmado"
+
+#. module: dhl_parcel_anz
+#: code:addons/dhl_parcel_anz/models/stock_picking.py:42
+#: selection:stock.picking,dhl_shipping_type:0
+#, python-format
+msgid "Sea Transport"
+msgstr "Transporte Marino"
+
+#. module: dhl_parcel_anz
+#: model:ir.model.fields,help:dhl_parcel_anz.field_stock_picking_dhl_shipping_type
+msgid "Select if the shipping goes to Canarias/Tenerife/LasPalmas/Madeira/Azores else left it empty"
+msgstr "Seleccionar si el envío va a Canarias/Tenerife/Las Palmas/Madeira/Azores, en caso contrario dejar vacío."
+
+#. module: dhl_parcel_anz
+#: model:ir.ui.view,arch_db:dhl_parcel_anz.save_dhl_txt_file_done
+msgid "The file has been successfully generated."
+msgstr "El archivo se ha generado correctamente."
+
+#. module: dhl_parcel_anz
+#: code:addons/dhl_parcel_anz/models/stock_picking.py:90
+#, python-format
+msgid "There was a problem creating the file {}"
+msgstr "Ha ocurrido un error creando el archivo: {}"
+
+#. module: dhl_parcel_anz
+#: model:ir.model,name:dhl_parcel_anz.model_stock_picking
+msgid "Transfer"
+msgstr "Transferir"
+
+#. module: dhl_parcel_anz
+#: code:addons/dhl_parcel_anz/models/stock_picking.py:101
+#, python-format
+msgid "We could not create the DHL file because:\n"
+"%s."
+msgstr "No hemos podido generar el archivo debido a:\n"
+"%s."
+
+#. module: dhl_parcel_anz
+#: code:addons/dhl_parcel_anz/models/stock_picking.py:166
+#, python-format
+msgid "We could not create the line for the stock picking %s because:\n"
+"%s."
+msgstr "No se ha podido generar la línea para el albarán %s debido a:\n"
+"%s."
+
+#. module: dhl_parcel_anz
+#: model:ir.model,name:dhl_parcel_anz.model_autoradio_config
+msgid "autoradio.config"
+msgstr "autoradio.config"
+
+#. module: dhl_parcel_anz
+#: model:ir.ui.view,name:dhl_parcel_anz.view_picking_withcarrier_out_form_dhl
+msgid "delivery.stock.picking_withcarrier.dhl.form.view"
+msgstr "delivery.stock.picking_withcarrier.dhl.form.view"
+
+#. module: dhl_parcel_anz
+#: model:ir.model,name:dhl_parcel_anz.model_dhl_config
+msgid "dhl.config"
+msgstr "dhl.config"
+
+#. module: dhl_parcel_anz
+#: model:ir.model,name:dhl_parcel_anz.model_dhl_export_log
+msgid "dhl.export.log"
+msgstr "dhl.export.log"
+
+#. module: dhl_parcel_anz
+#: model:ir.model,name:dhl_parcel_anz.model_dhl_sale_order_wzd
+msgid "dhl.sale.order.wzd"
+msgstr "dhl.sale.order.wzd"
+
+#. module: dhl_parcel_anz
+#: model:ir.model,name:dhl_parcel_anz.model_dhl_txt_file
+msgid "dhl.txt.file"
+msgstr "dhl.txt.file"
+
+#. module: dhl_parcel_anz
+#: model:ir.ui.view,name:dhl_parcel_anz.save_dhl_txt_file_done
+msgid "dhl.txt.file.form"
+msgstr "dhl.txt.file.form"
+
+#. module: dhl_parcel_anz
+#: model:ir.model,name:dhl_parcel_anz.model_res_config_settings
+msgid "res.config.settings"
+msgstr "res.config.settings"
+
+#. module: dhl_parcel_anz
+#: model:ir.ui.view,name:dhl_parcel_anz.res_config_settings_dhl_form
+msgid "res.config.settings.dhl.form"
+msgstr "res.config.settings.dhl.form"
+
+#. module: dhl_parcel_anz
+#: model:ir.ui.view,name:dhl_parcel_anz.view_picking_form_custom
+msgid "view.picking.form.custom"
+msgstr "view.picking.form.custom"
+

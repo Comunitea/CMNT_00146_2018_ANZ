@@ -16,6 +16,7 @@
                         <field name="qty_to_invoice" invisible="1"/>
                         <field name="qty_delivered_updateable" invisible="1"/>
                         <field name="price_subtotal" invisible="1"/>
+                        <field name="default_user_location_id" invisible="1"/>
 
                         <label for="virtual_stock_conservative" />
                         <div>
@@ -76,13 +77,17 @@
                 <field name="product_updatable" invisible="1"/>
                 <field name="order_partner_id" invisible="1"/>
                 <field name="product_attribute_value_ids" invisible="1"/>
+                <field name="default_user_location_id" invisible="1"/>
                 <field name="product_tmpl_id" options="{'no_create': True}" invisible="1" context="{'from_template': True, 'ref_change_partner_id': order_partner_id}"/>
                 <button name="%(sale_order_variant_mgmt.action_sale_manage_variant)d"
                         type="action"
                         string="Modify Variants"
                         icon="fa-th"
                         class="oe_edit_only"
-                        context="{'default_product_tmpl_id': product_tmpl_id, 'qty_variant_name': True, 'return_sale_order_line_tree': True}"
+                        context="{'default_product_tmpl_id': product_tmpl_id,
+                                  'qty_variant_name': True,
+                                  'return_sale_order_line_tree': True,
+                                  'location': default_user_location_id}"
                         attrs="{'invisible': ['|', ('state', 'not in', ('draft', 'sent')), ('product_attribute_value_ids', '=', [])]}"
                 />
                 <field name="product_id" attrs="{'readonly': [('product_updatable', '=', False)]}" force_save="1"

@@ -8,6 +8,7 @@ import time
 from xlsxwriter.utility import xl_rowcol_to_cell
 from PIL import Image
 
+
 class ExportCatalogXlsParser(models.AbstractModel):
     """
     Parser to get data of report export catalog all
@@ -31,7 +32,6 @@ class ExportCatalogXlsParser(models.AbstractModel):
             'x_scale': image_scale / 100 / factor,
             'y_scale': image_scale / 100 / factor,
             'x_offset': x_offset}
-
         return img_dic
 
     def generate_xlsx_report(self, workbook, data, objs):
@@ -41,7 +41,7 @@ class ExportCatalogXlsParser(models.AbstractModel):
         scheduled_id = wzd.scheduled_id
         brand_id = wzd.brand_id or scheduled_id and scheduled_id.product_brand_id or False
         categ_id = wzd.categ_id
-        pricelist_id = wzd.pricelist_id or scheduled_id and scheduled_id.pricelist_id or False
+        pricelist_id = wzd.pricelist_id or False
         scheduled_id = wzd.scheduled_id
         catalog_id = wzd.catalog_type_id
 
@@ -136,6 +136,7 @@ class ExportCatalogXlsParser(models.AbstractModel):
         col = 3
         resumen_initial_col = col +1
         resumen_initial_row = row_header + 1
+        sheet.write(row_header-1, col + 1, 'CABECERA', f_header)
         sheet.write(row_header, col + 1, 'TALLAS', f_header)
         if catalog_id.total:
             sheet.write(row_header, col + 2, 'TOTAL', f_header_right)
@@ -143,11 +144,12 @@ class ExportCatalogXlsParser(models.AbstractModel):
             sheet.write(row_header, col + 3, '€', f_header_right)
         #sheet.write(row_header, col + 4, '', f_header)
         row_header += 1
-
+        header={}
         if catalog_id.purchases:
             sheet.write(row_header, col + 1, 'COMPRAS', f_header)
             sheet.write(row_header, col + 2, header_values['purchases'], f_border)
             sheet.write(row_header, col + 3, '', f_border)
+            header['compras'] = [row_header, col+2]
             row_header +=1
 
         if catalog_id.incomings:
@@ -160,6 +162,7 @@ class ExportCatalogXlsParser(models.AbstractModel):
             sheet.write(row_header, col + 1, 'VENTAS', f_header)
             sheet.write(row_header, col + 2, header_values['sales'], f_border)
             sheet.write(row_header, col + 3, '', f_border)
+            header['ventas'] = [row_header, col +2]
             row_header += 1
 
         if catalog_id.outgoings:
@@ -172,6 +175,7 @@ class ExportCatalogXlsParser(models.AbstractModel):
             sheet.write(row_header, col + 1, 'STOCKS', f_header)
             sheet.write(row_header, col + 2, header_values['stocks'], f_border)
             sheet.write(row_header, col + 3, '', f_border)
+            header['stocks'] = [row_header, col +2]
 
 
         # TEMPLATE BLOCKS
@@ -180,6 +184,7 @@ class ExportCatalogXlsParser(models.AbstractModel):
         page_breakers = []
         page_row = row
         template_len = 0
+        form_cell_compras = form_cell_ventas = form_cell_stocks = 'SUM('
         for tmp_name in report_vals:
 
 
@@ -193,21 +198,25 @@ class ExportCatalogXlsParser(models.AbstractModel):
             sheet.merge_range('{}:{}'.format(c1, c2), tmp_dic['ref_template'] or tmp_name, f_product)
             cols = 3
 
-            pvp_cell = cost_cell = xl_rowcol_to_cell(row + 1, 5)
+            pvp_cell = xl_rowcol_to_cell(row + 1, 5)
+            cost_cell = xl_rowcol_to_cell(row + 1, 4)
+            cost_coordenadas = [row+1, 4]
+            pvp_coordenadas = [row + 1, 4]
 
-            if catalog_id.cost:
+            if catalog_id.cost or catalog_id.euros:
                 sheet.write(row, cols, 'COSTE', f_header)
                 sheet.write(row + 1, cols, tmp_dic['cost'], money_with_border)
-                cost_cell = xl_rowcol_to_cell(row + 1, cols)
-                cols+=1
-            if catalog_id.pvp:
+            cost_cell = xl_rowcol_to_cell(row + 1, cols)
+            cols+=1
+            if catalog_id.pvp or catalog_id.euros:
                 sheet.write(row, cols, 'Precio', f_header)
-                sheet.write(row + 1, cols, tmp_dic['lst_price'], money_with_border)
-                pvp_cell = xl_rowcol_to_cell(row + 1, cols)
-                if pricelist_id:
-                    sheet.write(row, cols +1 , 'P.V.P.', f_header)
-                    sheet.write(row + 1, cols +1 , tmp_dic['pvp'], money_with_border)
-
+                sheet.write(row + 1, cols, tmp_dic['precio_venta'], money_with_border)
+            price_cell = xl_rowcol_to_cell(row + 1, cols)
+            cols += 1
+            if pricelist_id and catalog_id.select_price != 'tarifa':
+                sheet.write(row, cols, 'P.V.P. Tarifa', f_header)
+                sheet.write(row + 1, cols , tmp_dic['pvp'], money_with_border)
+            pvp_cell = xl_rowcol_to_cell(row + 1, cols)
 
             row += 1
 
@@ -228,37 +237,38 @@ class ExportCatalogXlsParser(models.AbstractModel):
             attr_names = tmp_dic['attr_names']
             attr_values = []
 
-
+            row_name = {}
             if catalog_id.purchases:
                 tmpl_row +=1
                 purchases_row = tmpl_row
                 sheet.write(purchases_row, col, 'COMPRAS', format_header_row_tallas)
                 attr_values += [tmp_dic['purchases']]
-
+                row_name[str(tmpl_row)] = 'COMPRAS'
             if catalog_id.incomings:
                 tmpl_row +=1
                 incomings_row = tmpl_row
                 sheet.write(incomings_row, col, 'ENTRADAS', format_header_row_tallas)
                 attr_values += [tmp_dic['incomings']]
+                row_name[str(tmpl_row)] = 'ENTRADAS'
 
             if catalog_id.sales:
                 tmpl_row +=1
                 sales_row = tmpl_row
                 sheet.write(sales_row, col, 'VENTAS', format_header_row_tallas)
                 attr_values += [tmp_dic['sales']]
-
+                row_name[str(tmpl_row)] = 'VENTAS'
             if catalog_id.outgoings:
                 tmpl_row +=1
                 outgoings_row = tmpl_row
                 sheet.write(outgoings_row, col, 'SALIDAS', format_header_row_tallas)
                 attr_values += [tmp_dic['outgoings']]
-
+                row_name[str(tmpl_row)] = 'SALIDAS'
             if catalog_id.stocks:
                 tmpl_row +=1
                 stocks_row = tmpl_row
                 sheet.write(stocks_row, col, 'STOCKS', format_header_row_tallas)
                 attr_values += [tmp_dic['stocks']]
-
+                row_name[str(tmpl_row)] = 'STOCKS'
             col = 4
             sum_col = 0
             #MARCO LAS TALLAS
@@ -266,12 +276,12 @@ class ExportCatalogXlsParser(models.AbstractModel):
                 sheet.write(row, col + sum_col, attr_name, format_header_tallas)
                 sum_col += 1
 
-
             if catalog_id.total:
                 sheet.write(row, col + sum_col, 'TOTAL', f_header_right)
                 if catalog_id.euros:
                     sum_col += 1
                     sheet.write(row, col + sum_col, '€', f_header_right)
+                    euros_column = col + sum_col
                 if catalog_id.show_per_cent and catalog_id.incomings and catalog_id.outgoings:
                     sum_col += 1
                     sheet.write(row, col + sum_col, '%', f_header_right)
@@ -300,9 +310,18 @@ class ExportCatalogXlsParser(models.AbstractModel):
 
                     # TOTAL AMOUNT
                     if catalog_id.euros:
-                        form_euros = '=' + total_cell + '*' + pvp_cell
+                        if row_name[str(row_val)] == 'COMPRAS':
+                            form_cell_compras = form_cell_compras + ',' + xl_rowcol_to_cell (row_val, total_col+1)
+                            form_euros = '=' + total_cell + '*' + cost_cell
+                        elif row_name[str(row_val)] == 'STOCKS':
+                            form_euros = '=' + total_cell + '*' + cost_cell
+                            form_cell_stocks = form_cell_stocks + '+' + xl_rowcol_to_cell(row_val, total_col +1)
+                        elif row_name[str(row_val)] == 'VENTAS':
+                            form_euros = '=' + total_cell + '*' + price_cell
+                            form_cell_ventas = form_cell_ventas + '+' + xl_rowcol_to_cell(row_val, total_col+1)
                         total_col += 1
                         sheet.write_formula(row_val, total_col, form_euros, money_with_border)
+
                 sum_row += 1
                 sum_col = 0
                     # total %
@@ -314,9 +333,6 @@ class ExportCatalogXlsParser(models.AbstractModel):
 
                 if catalog_id.outgoings:
                     sheet.write_number(outgoings_row, total_col + 1, tmp_dic['moves_percent']/100, percent_with_border)
-
-
-
                 sum_row += 1
 
             if catalog_id.grouped:
@@ -339,7 +355,17 @@ class ExportCatalogXlsParser(models.AbstractModel):
                     page_row = 1
                     page_breakers.append(row - 1)
 
-
+        if catalog_id.purchases:
+            form_cell_compras += ')'
+            sheet.write_formula(header['compras'][0], header['compras'][1] +1, form_cell_compras, money_with_border)
+        if catalog_id.sales:
+            form_cell_ventas += ')'
+            sheet.write_formula(header['ventas'][0], header['ventas'][1] +1, form_cell_ventas,
+                                money_with_border)
+        if catalog_id.stocks:
+            form_cell_stocks += ')'
+            sheet.write_formula(header['stocks'][0], header['stocks'][1] +1, form_cell_stocks,
+                                money_with_border)
         #sheet.fit_to_pages(1, 0)
         sheet.set_h_pagebreaks(page_breakers)
         sheet.set_v_pagebreaks([25])

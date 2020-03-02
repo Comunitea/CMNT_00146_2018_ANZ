@@ -34,4 +34,22 @@
         </xpath>
     </template>
 
+    <!-- Show / Hide price by user -->
+    <template id="my_price_link" name="Show / Hide Price" inherit_id="portal.frontend_layout">
+        <xpath expr="//li[@id='o_logout']" position="before">
+            <li t-attf-class="js_publish_management #{request.env.user.website_show_price and 'css_published' or 'css_unpublished'}"
+                groups="website.group_website_designer, custom_permissions_anz.anz_asociated_user">
+                <form t-attf-action="/website/publish/price" method="post">
+                    <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                    <input type="hidden" name="id" t-att-value="request.env.user.partner_id.id"/>
+                    <input type="hidden" name="url" t-att-value="request.httprequest.url"/>
+                    <button role="menuitem" type="submit" class="">
+                        <span class="css_publish">Show Prices</span>
+                        <span class="css_unpublish">Hide Prices</span>
+                    </button>
+                </form>
+            </li>
+        </xpath>
+    </template>
+
 </odoo>
