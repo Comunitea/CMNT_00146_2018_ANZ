@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
 session.open(db='anzamar')
 
-import time
-inicio_de_tiempo = time.time()
 
 
 # templates = session.env['product.template'].search(
@@ -63,10 +61,6 @@ for tmp in templates:
     tmp.write({'attribute_line_ids': att_lst_vals})
     print('PROCESADO %s/%s' % (idx, num_total))
 
-tiempo_final = time.time()
-tiempo_transcurrido = tiempo_final - inicio_de_tiempo
-tiempo_horas = tiempo_transcurrido / 3600
-print("\nTomo %d horas." % (tiempo_horas))
-
 session.cr.commit()
+
 exit()
