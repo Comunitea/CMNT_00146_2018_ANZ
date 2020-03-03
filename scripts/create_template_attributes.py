@@ -72,6 +72,24 @@ for edad in edad_tags_vals:
     }
     session.env['product.attribute.value'].create(vals)
 
+# Creo atributo marca:
+vals = {
+    'name': 'MARCA',
+    'product_brand_id': 194,
+    'product_type_id': 61,
+    'create_variant': True,
+    'feature': True,
+    'type': 'select'
+}
+att_brand = session.env['product.attribute'].create(vals)
 
+brands = session.env['product.brand'].search([])
+for brand in brands:
+    vals = {
+        'attribute_id': att_brand.id,
+        'name': brand.name
+    }
+    session.env['product.attribute.value'].create(vals)
+print('DONE')
 session.cr.commit()
 exit()

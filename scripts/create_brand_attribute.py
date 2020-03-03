@@ -3,7 +3,7 @@ session.open(db='anzamar')
 
 # import ipdb; ipdb.set_trace()
 
-# Creo atributo género:
+# Creo atributo marca:
 vals = {
     'name': 'MARCA',
     'product_brand_id': 194,
