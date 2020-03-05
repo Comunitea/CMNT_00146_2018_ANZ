@@ -25,7 +25,7 @@ class ProductAttributeValue(models.Model):
                 self._context.get('default_product_tmpl_id'))
 
             # Solo si en el producto hay una línea de atributos
-            if len(tmp_obj.attribute_line_ids) == 1:
+            if len(tmp_obj.attribute_line_ids.filtered('main')) == 1:
                 p_ids = tmp_obj.product_variant_ids
                 res = []
                 qty_field = 'qty_available'
@@ -43,8 +43,9 @@ class ProductAttributeValue(models.Model):
                 if self._context.get('location', False):
                     ctx.update(location=self._context['location'])
                 # Añado el campo stock en al nombre del atributo
-                for product in p_ids.with_context(ctx).filtered(lambda x: x.attribute_value_ids):
-                    a_value = product.attribute_value_ids[0]
+                for product in p_ids.with_context(ctx).filtered(
+                        lambda x: x.attribute_value_ids):
+                    a_value = product.attribute_value_ids.filtered('main')
                     res.append([a_value.id, "%s (%s)" %
                                 (a_value.name, product[qty_field])])
                 return res

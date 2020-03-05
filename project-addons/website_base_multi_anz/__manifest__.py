@@ -39,7 +39,7 @@
     'depends': [
         'ecommerce_base',
         'seo_base',
-        'breadcrumbs_base',
+        'breadcrumbs_base_tmp',
         'website_blog_base',
         'follow_us_base',
         'multi_company_base',
@@ -52,6 +52,7 @@
         'product_virtual_stock_conservative',
         'portal_refunds_request',
         'portal_multi_access_management',
+        'product_custom_anz'
     ],
     'data': [
         'data/company_data.xml',

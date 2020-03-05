@@ -1,16 +1,17 @@
 /*
     CSS media part MIN-WIDTH 1201 px
 */
-@media (min-width: 1201px){
-    #carousel_demo {
-        height: 100vh;
-    }
-}
+// @media (min-width: 1201px){
+//     #carousel_demo {
+//         height: 100vh;
+//     }
+// }
 
 /*
     CSS media part MIN-WIDTH 769 px
 */
-// @media (min-width: 769px){
+// @media (min-width: 768px){
+    /* Header phone line */
 //     header {
 //         &.homepage-header {
 //             position: fixed;
@@ -21,6 +22,31 @@
 //         }
 //     }
 // }
+
+@media (min-width: 992px){
+    /* ecommerce categories and attributes filters */
+    .oe_website_sale {
+        & .navbar-collapse {
+            width: 25%;
+        }
+    }
+}
+
+@media (max-width: 992px){
+    /* ecommerce categories and attributes filters */
+    .navbar-toggle {
+        display: block;
+    }
+    .navbar-header {
+        float: none;
+    }
+    .navbar-collapse.collapse {
+        display: block !important;
+    }
+    .navbar-collapse.collapse.in {
+        display: none !important;
+    }
+}
 
 /*
     CSS media part MAX-WIDTH 1024 px

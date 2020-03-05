@@ -84,8 +84,11 @@ class SaleOrderLine(models.Model):
     def write(self, vals):
         if 'product_tmpl_id' not in vals and vals.get('product_id', False):
             tmpl_id = self.env['product.product'].\
-                search_read([('id', '=', vals['product_id'])],['product_tmpl_id'])
-            vals.update({'product_tmpl_id': tmpl_id and tmpl_id[0]['product_tmpl_id'][0]})
+                search_read([('id', '=', vals['product_id'])],
+                            ['product_tmpl_id'])
+            vals.update({
+                'product_tmpl_id':
+                tmpl_id and tmpl_id[0]['product_tmpl_id'][0]})
         return super(SaleOrderLine, self).write(vals)
 
     @api.multi
@@ -95,7 +98,7 @@ class SaleOrderLine(models.Model):
         if self.product_id:
             self.product_tmpl_id = self.product_id.product_tmpl_id
             self.variant_sequence = self.product_id.attribute_value_ids.\
-                sequence
+                filtered('main').sequence
         else:
             self.variant_sequence = 0
         return result
@@ -104,6 +107,9 @@ class SaleOrderLine(models.Model):
     def create(self, vals):
         if 'product_tmpl_id' not in vals and vals.get('product_id', False):
             tmpl_id = self.env['product.product'].\
-                search_read([('id', '=', vals['product_id'])],['product_tmpl_id'])
-            vals.update({'product_tmpl_id': tmpl_id and tmpl_id[0]['product_tmpl_id'][0]})
+                search_read([('id', '=', vals['product_id'])],
+                            ['product_tmpl_id'])
+            vals.update({
+                'product_tmpl_id':
+                tmpl_id and tmpl_id[0]['product_tmpl_id'][0]})
         return super(SaleOrderLine, self).create(vals)

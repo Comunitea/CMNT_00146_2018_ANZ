@@ -368,7 +368,7 @@
                                     <span t-if="group_by_template" t-field="move.product_id.default_code" />
                                 </div>
                                 <div t-if="group_by_template" class="col-xs-4" style="width: 30%">
-                                    <t t-foreach="move.product_id.attribute_value_ids.filtered(lambda x:x.attribute_id.create_variant)" t-as="variant_value">
+                                    <t t-foreach="move.product_id.attribute_value_ids.filtered('main')" t-as="variant_value">
                                         <strong><span t-if="group_by_template" t-esc="variant_value.name"/></strong>
                                     </t>
                                 </div>
@@ -465,7 +465,7 @@
                                 <div class="col-xs-6" >
                                 </div>
                                 <div class="col-xs-4" style="text-align:right" >
-                                    <t t-foreach="line['product_id'].attribute_value_ids.filtered(lambda x:x.attribute_id.create_variant)" t-as="variant_value">
+                                    <t t-foreach="line['product_id'].attribute_value_ids.filtered('main')" t-as="variant_value">
                                         <strong><span t-esc="variant_value.name"/></strong>
                                     </t>
                                 </div>

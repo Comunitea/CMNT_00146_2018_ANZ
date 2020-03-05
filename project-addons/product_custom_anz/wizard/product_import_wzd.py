@@ -42,6 +42,7 @@ _logger = logging.getLogger(__name__)
 # Global variable to store the new created templates
 template_ids = []
 
+
 class ProductImportWzd(models.TransientModel):
 
     _name = 'product.import.wzd'
@@ -52,11 +53,11 @@ class ProductImportWzd(models.TransientModel):
 
     brand_id = fields.Many2one('product.brand', 'Brand')
     categ_id = fields.Many2one('product.category', 'Default product category')
-    create_attributes = fields.Boolean('Create attributes/values if neccesary')
 
     def _get_brand(self, name, create=False):
         if name:
-            brand = self.env['product.brand'].search([('name','=ilike',name)])
+            brand = self.env['product.brand'].search(
+                [('name', '=ilike', name)])
             brand.ensure_one()
             return brand
         return self.brand_id
@@ -65,9 +66,6 @@ class ProductImportWzd(models.TransientModel):
     def onchange_filename(self):
         if not self.name and self.filename:
             self.name = self.filename and self.filename.split('.')[0]
-
-    def _parse_rows(self):
-        pass
 
     def _parse_row_vals(self, row, idx):
         res = {
@@ -112,11 +110,11 @@ class ProductImportWzd(models.TransientModel):
             VALUES (%s, %s, %s, %s)',
                         (virual_module_name, xml_id, res_id, model))
 
-
-    def _get_category_id(self, category_name = False, idx=0):
+    def _get_category_id(self, category_name=False, idx=0):
         categ_id = False
         if category_name:
-            categ_id = self.env['product.category'].search([('name', '=', category_name)], limit=1)
+            categ_id = self.env['product.category'].search(
+                [('name', '=', category_name)], limit=1)
 
         categ_id = categ_id or self.categ_id
         if not categ_id:
@@ -136,82 +134,54 @@ class ProductImportWzd(models.TransientModel):
             res = False
         return res
 
-
-    def _get_product_att(self, value, brand_id, type='type', create=False):
-        at_tag = self.env['product.attribute.tag']
-        domain = [('product_brand_id', '=', brand_id), ('type', '=', type), ('value', '=', value)]
-        tag = at_tag.search(domain, limit=1)
-        if not tag and create:
-            vals ={'product_brand_id': brand_id,
-                   'type': type,
-                   'value': value}
-
-            tag = at_tag.create(vals)
-            print ("Se ha creado la etiqueta de atributo: {}".format(tag.display_name))
-        return tag
-
-
-    def _get_attr_value(self, row_vals, idx, categ_id):
-        """
-        Get an Existing attribute or raise an error
-        """
-        if not categ_id:
-            categ_id = self._get_category_id(row_vals['category'], idx)
-
-        domain = [('product_brand_id', '=', self._get_brand(row_vals['brand_id']).id)]
-        tag_type_id=tag_age_id=tag_gender_id=False
-        if row_vals['type']:
-            tag_type_id = self._get_product_att(row_vals['type'], self._get_brand(row_vals['brand_id']).id, 'type', self.create_attributes)
-            if tag_type_id:
-                domain += [('product_type_id', '=', tag_type_id.id)]
-            else:
-                domain += [('product_type_id', '=', False)]
-
-        if row_vals['gender']:
-            tag_gender_id = self._get_product_att(row_vals['gender'], self._get_brand(row_vals['brand_id']).id,'gender', self.create_attributes)
-            if tag_gender_id:
-                domain += [('product_gender_id', '=', tag_gender_id.id)]
-            else:
-                domain += [('product_gender_id', '=', False)]
-
-        if row_vals['age']:
-            tag_age_id = self._get_product_att(row_vals['age'], self._get_brand(row_vals['brand_id']).id,'age', self.create_attributes)
-            if tag_age_id:
-                domain += [('product_age_id', '=', tag_age_id.id)]
-            else:
-                domain += [('product_age_id', '=', False)]
-        print (domain)
+    def _get_attribute(self, attr_name):
+        domain = [('name', '=', attr_name)]
         attr = self.env['product.attribute'].search(domain, limit=1)
+        return attr
+
+    def _get_attr_value(self, attr_name, attr_val, idx):
+        """
+        Busco el valor de atributo, si no existe atributo o valor fallo
+        """
+        # BUSCO EL ATRIBUTO
+        attr = self._get_attribute(attr_name)
         if not attr:
-            if self.create_attributes:
-                vals = {#'attribute_category_id': categ_id.id,
-                        'product_brand_id': self._get_brand(row_vals['brand_id']).id,
-                        'name': row_vals['attr_name'],
-                        'product_type_id': tag_type_id and tag_type_id.id,
-                        'product_gender_id': tag_gender_id and tag_gender_id.id,
-                        'product_age_id': tag_age_id and tag_age_id.id}
-                attr = self.env['product.attribute'].create(vals)
-                print("Se ha creado el atributo: {}".format(attr.display_name))
-            else:
-                raise UserError(
-                        _('Error: El atributo %s in line %s no existe') % (row_vals['attr_name'], str(idx)))
+            raise UserError(
+                _('Error: El atributo %s in line %s no existe') %
+                (attr_name, str(idx)))
+
+        # BUSCO EL VALOR DE ESE ATRIBUTO
         domain = [
             ('attribute_id', '=', attr.id),
-            '|', ('supplier_code', '=', row_vals['code_attr']), ('name', '=', row_vals['attr_val'])
+            ('name', '=', attr_val)
         ]
         attr_value = self.env['product.attribute.value'].search(domain)
         if not attr_value:
-            if self.create_attributes:
-                vals = {'attribute_id': attr.id,
-                        'name': row_vals['attr_val'],
-                        'supplier_code': row_vals['code_attr'] or row_vals['attr_val']}
-                attr_value = self.env['product.attribute.value'].create(vals)
-                print("Se ha creado el valor {} para el atributo: {}".format(attr_value.display_name, attr.display_name))
-            else:
-                raise UserError(
-                    _('Error getting attribute %s with value %s in line %s: \
-                        Not found') % (attr.name, row_vals['attr_val'], str(idx)))
+            raise UserError(
+                _('Error getting attribute %s with value %s in line %s: \
+                    Not found') % (attr.name, attr_val, str(idx)))
         return attr_value
+
+    def _get_extra_attr_value(self, row_vals, idx):
+        """
+        Si hay columna para tipo genero o edad busco el valor de ese atributo
+        si no lo encuenta falla
+        """
+        extra_attrs = []
+        maps = {
+            'type': 'TIPO PRODUCTO',
+            'gender': 'GÉNERO',
+            'age': 'EDAD',
+            'brand_id': 'MARCA',
+        }
+        for key in ['type', 'gender', 'age', 'brand_id']:
+            attr_name = maps.get(key, False)
+            if not attr_name or not row_vals[key]:
+                continue
+            attr_val = row_vals[key]
+            attr_value = self._get_attr_value(attr_name, attr_val, idx)
+            extra_attrs.append(attr_value)
+        return extra_attrs
 
     def _update_template_attributes(self, template, attr_value):
         """
@@ -236,45 +206,38 @@ class ProductImportWzd(models.TransientModel):
         # Add new attr value to the attr line
         else:
             attr_line.write({'value_ids': [(4, attr_value.id)]})
-    def _get_tags(self, vals):
-
-        def find_tag(tag):
-            domain = [('name', '=', tag)]
-            s_t = self.env['product.supplier.tag'].search(domain, limit=1)
-            if s_t:
-                return s_t.tag_id
-            return self.env['product.tag'].search(domain, limit=1)
-
-        tag_ids = []
-        tag = find_tag(vals['tag1'])
-        if tag:
-            tag_ids.append(tag.id)
-
-        tag = find_tag(vals['tag2'])
-        if tag:
-            tag_ids.append(tag.id)
-
-        tag = find_tag(vals['tag3'])
-
-        if tag:
-            tag_ids.append(tag.id)
-        return tag_ids
 
     def create_variant(self, template, row_vals, idx):
 
         pp_pool = self.env['product.product']
         product_name = row_vals['name_temp'] + ' ' + row_vals['name_color'] + row_vals['name_extra']
         categ_id = self._get_category_id(row_vals['category'], idx)
-        attr_value = self._get_attr_value(row_vals, idx, categ_id)
 
-        code_attr = attr_value.supplier_code or row_vals['code_attr'] and row_vals['code_attr'] or '%04d' % (attr_value.id)
+        # Obtengo valor del atributo principal
+        attr_value = self._get_attr_value(
+            row_vals['attr_name'], row_vals['attr_val'], idx)
+
+        # Calculo los valores de los atributos edad tipo y genero si vienen
+        # y los añado al valor del atributo principal
+        extra_values = self._get_extra_attr_value(row_vals, idx)
+        all_values = [attr_value] + extra_values
+
+        attr_values_lst = []
+        if all_values:
+            extra_values_lst = [(4, v.id) for v in all_values]
+            attr_values_lst.extend(extra_values_lst)
+
+        # Calculo default code
+        code_attr = attr_value.supplier_code or row_vals['code_attr'] and \
+            row_vals['code_attr'] or '%04d' % (attr_value.id)
         default_code = row_vals['code_temp'] + '.' + code_attr
 
+        # CREO LA VARIANTE
         vals = {
             'name': product_name,
             'default_code': default_code,
             'available_in_pos': False,
-            'attribute_value_ids': [(4, attr_value.id)],
+            'attribute_value_ids': attr_values_lst,
             'barcode': row_vals['ean'],
             'importation_name': self.name,
             'lst_price': row_vals['pvp'],
@@ -288,60 +251,35 @@ class ProductImportWzd(models.TransientModel):
         # CREATE PRODUCT XMLID
         self._create_xml_id(
             product.barcode, product.id, 'product.product')
-        print("Se crea el producto {} con xml_id {} \nVals :{} y ".format(product.display_name, product.get_xml_id(), vals))
+        print("Se crea el producto {} con xml_id {} \nVals :{} y ".format(
+            product.display_name, product.get_xml_id(), vals))
+
         # WRITE TEMPLATE REF AND XMLID TO THE NEW CREATED TEMPLATE
         if not template:
             template = product.product_tmpl_id
-            tags = self._get_tags(row_vals)
             vals = {
                 'ref_template': row_vals['code_temp'],
                 'importation_name': self.name,
                 'product_brand_id': self._get_brand(row_vals['brand_id']).id,
                 'categ_id': categ_id.id
             }
-            if tags:
-                vals.update(tag_ids=[(6, 0, tags)])
             template.write(vals)
             xml_id = row_vals['code_temp']
             self._create_xml_id(xml_id, template.id, 'product.template')
             template_ids.append(template.id)
-            print("Se crea la plantilla {} con xml_id {} \nVals :{} y ".format(template.display_name, template.get_xml_id(), vals))
-            if len(template.product_variant_ids)>1:
+            print("Se crea la plantilla {} con xml_id {} \nVals :{} y ".format(
+                template.display_name, template.get_xml_id(), vals))
+            if len(template.product_variant_ids) > 1:
                 raise UserError(
-                    "Linea %s: Plantilla %s. Si la plantilla tiene más de una variante debes de crear variantes y el codigo del atributo debe ser distinto a 'NO'" %(idx, template.display_name))
+                    "Linea %s: Plantilla %s. Si la plantilla tiene más de una \
+                    variante debes de crear variantes y el codigo del \
+                    atributo debe ser distinto a 'NO'" %
+                    (idx, template.display_name))
 
         # LINK ATTRIBUTE VALUE TO THE TEMPLATE
-        self._update_template_attributes(template, attr_value)
+        for att_val in all_values:
+            self._update_template_attributes(template, att_val)
         return product
-
-    def import_products(self):
-        self.ensure_one()
-        _logger.info(_('STARTING PRODUCT IMPORTATION'))
-
-        # get the first worksheet
-        file = base64.b64decode(self.file)
-        book = xlrd.open_workbook(file_contents=file)
-        sh = book.sheet_by_index(0)
-        created_product_ids = []
-        idx = 1
-        for nline in range(1, sh.nrows):
-
-            idx += 1
-            row = sh.row_values(nline)
-            row_vals = self._parse_row_vals(row, idx)
-            if not row_vals['code_temp'] or row_vals['code_temp'] == 'FIN':
-                break
-            # If existing template, fail, only templates created from this file
-            template = self._get_existing_template_obj(row_vals)
-            if template and template.id not in template_ids:
-                raise UserError(
-                    _('The template %s already exists') % template.name)
-
-            product = self.create_variant(template, row_vals, idx)
-            created_product_ids.append(product.id)
-            _logger.info(_('IMPORTED PRODUCT %s / %s') % (idx, sh.nrows - 1))
-
-        return self.action_view_products(created_product_ids)
 
     def action_view_products(self, product_ids):
         self.ensure_one()
@@ -349,3 +287,31 @@ class ProductImportWzd(models.TransientModel):
             'product.product_normal_action_sell').read()[0]
         action['domain'] = [('id', 'in', product_ids)]
         return action
+
+    def import_products(self):
+        self.ensure_one()
+        _logger.info(_('STARTING PRODUCT IMPORTATION'))
+        # get the first worksheet
+        file = base64.b64decode(self.file)
+        book = xlrd.open_workbook(file_contents=file)
+        sh = book.sheet_by_index(0)
+        created_product_ids = []
+        idx = 1
+        for nline in range(1, sh.nrows):
+            idx += 1
+            row = sh.row_values(nline)
+            row_vals = self._parse_row_vals(row, idx)
+            if not row_vals['code_temp'] or row_vals['code_temp'] == 'FIN':
+                break
+
+            # Si existe plantilla y no fué creada desde el importador error
+            template = self._get_existing_template_obj(row_vals)
+            if template and template.id not in template_ids:
+                raise UserError(
+                    _('The template %s already exists') % template.name)
+
+            # CREO LA VARIANTE
+            product = self.create_variant(template, row_vals, idx)
+            created_product_ids.append(product.id)
+            _logger.info(_('IMPORTED PRODUCT %s / %s') % (idx, sh.nrows - 1))
+        return self.action_view_products(created_product_ids)

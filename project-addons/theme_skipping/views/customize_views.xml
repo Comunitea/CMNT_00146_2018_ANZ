@@ -4,6 +4,14 @@
     <!-- Here goes the views what you want be active on editor web for customized views -->
     <!-- True will be activate the view, False deactivate it -->
 
+    <!-- ======================================== Assets  ================================================ -->
+    <record id="theme_skipping.ski_website_assets_frontend" model="ir.ui.view">
+        <field name="active">True</field>
+    </record>
+<!--    <record id="website_multi_theme.auto_view_ski_theme_skipping_ski_website_assets_frontend" model="ir.ui.view">-->
+<!--        <field name="active">False</field>-->
+<!--    </record>-->
+
     <!-- ======================================== General ================================================ -->
 
     <!-- Logo Show -->
@@ -58,9 +66,9 @@
     </record>
 
     <!-- Collapsible Category List -->
-<!--    <record id="website_multi_theme.auto_view_ski_website_sale_option_collapse_products_categories" model="ir.ui.view">-->
-<!--        <field name="active">True</field>-->
-<!--    </record>-->
+    <record id="website_multi_theme.auto_view_ski_website_sale_option_collapse_products_categories" model="ir.ui.view">
+        <field name="active">True</field>
+    </record>
 
     <!-- List View  -->
 <!--    <record id="website_multi_theme.auto_view_ski_website_sale_products_list_view" model="ir.ui.view">-->
@@ -68,9 +76,9 @@
 <!--    </record>-->
 
     <!-- Product Attribute's Filters -->
-<!--    <record id="website_multi_theme.auto_view_ski_website_sale_products_attributes" model="ir.ui.view">-->
-<!--        <field name="active">True</field>-->
-<!--    </record>-->
+    <record id="website_multi_theme.auto_view_ski_website_sale_products_attributes" model="ir.ui.view">
+        <field name="active">True</field>
+    </record>
 
     <!-- Show Sort by -->
     <record id="website_multi_theme.auto_view_ski_website_sale_sort" model="ir.ui.view">
@@ -78,6 +86,11 @@
     </record>
 
     <!-- ======================================== Product ================================================ -->
+
+    <!-- Multi add to cart -->
+    <record id="website_multi_theme.auto_view_ski_website_base_multi_anz_base_website_sale_product" model="ir.ui.view">
+        <field name="active">True</field>
+    </record>
 
     <!-- Activate Magnify -->
     <record id="website_multi_theme.auto_view_ski_website_sale_product_picture_magnify" model="ir.ui.view">

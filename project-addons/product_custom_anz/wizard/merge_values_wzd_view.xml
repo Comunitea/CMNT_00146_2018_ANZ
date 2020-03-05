@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_merge_value_form" model="ir.ui.view">
+        <field name="name">view.merge.value.form</field>
+        <field name="model">merge.value.wzd</field>
+        <field name="arch" type="xml">
+            <form string="Merge Selected Values">
+                <group string="Merge values with">
+                    <field name="value_id" domain="[('id', 'in', map_value_ids)]" required="True"/>
+                </group>
+                <group string="values2map">
+                    <field name="map_value_ids" nolabel="1"/>
+                </group>
+                <footer>
+                    <button name="merge_values" type="object" class="btn-primary" string="Merge"/>
+                    <button special="cancel" string="Cancel" class="oe_link"/>
+                </footer> 
+            </form>
+        </field>
+    </record>
+
+    <act_window
+            id="action_value_merge"
+            res_model="merge.value.wzd"
+            src_model="product.attribute.value"
+            target="new"
+            multi="True"
+            key2="client_action_multi"
+            view_mode="form"
+            name="Merge Selected Values"/>
+    
+</odoo>

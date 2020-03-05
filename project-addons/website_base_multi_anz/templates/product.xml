@@ -2,7 +2,7 @@
 <odoo>
 
     <!-- Product template -->
-    <template id="base_website_sale_product" name="Product Base" active="False" customize_show="True" inherit_id="website_sale.product">
+    <template id="base_website_sale_product" name="Product Base" active="True" customize_show="True" inherit_id="website_sale.product">
 
          <!-- Remove the product breadcrumb's bar -->
         <xpath expr="//ol[hasclass('breadcrumb')]" position="attributes">
@@ -43,11 +43,12 @@
                         </t>
                     </div>
                     <t t-set="variant_ids" t-value="product.product_variant_ids"/>
-                    <t t-foreach="variant_ids.sorted(key=lambda x: x.attribute_value_ids[0].sequence)" t-as="variant">
-                        <t t-if="variant.attribute_value_ids">
+                    <t t-foreach="variant_ids.sorted(key=lambda x: x.attribute_value_ids.filtered('main')[0].sequence)" t-as="variant">
+                        <t t-set="main_att" t-value="variant.attribute_value_ids.filtered('main')[0]"/>
+                        <t t-if="main_att">
                             <div t-att-class="'one-line' if stock_control else 'one-line large-line'">
                                 <div class="one-label">
-                                    <label t-att-for="variant.attribute_value_ids[0].id" t-field="variant.attribute_value_ids[0].name" t-if="len(product.product_variant_ids) &gt; 1"/>
+                                    <label t-att-for="main_att.id" t-field="main_att.name" t-if="len(product.product_variant_ids) &gt; 1"/>
                                     <label t-att-for="variant.id" t-field="variant.variant_suffix" t-else=""/>
                                 </div>
                                 <t t-set="qty" t-value="(variant.sudo().virtual_stock_conservative + variant.sudo().virtual_available) if product.inventory_availability in ('always_virtual', 'threshold_virtual') else variant.sudo().virtual_stock_conservative"/>
@@ -57,8 +58,8 @@
                                     <span t-if="stock_control and available &lt; 1" class="exhausted">&amp;mdash;</span>
                                     <input t-elif="len(product.product_variant_ids) &gt; 1" type="number" min="0"
                                            t-att-max="'%d' % available if stock_control else None"
-                                           t-att-id="variant.attribute_value_ids[0].id"
-                                           t-att-name="'attribute-%s-%s' % (product.id, variant.attribute_value_ids[0].id)"/>
+                                           t-att-id="main_att.id"
+                                           t-att-name="'attribute-%s-%s' % (product.id, main_att.id)"/>
                                     <input t-else="" type="number" min="0" t-att-max="'%d' % available if stock_control else None"
                                            t-att-id="variant.id"
                                            t-att-name="'attribute-%s-%s' % (product.id, variant.id)"/>

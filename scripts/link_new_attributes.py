@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 session.open(db='anzamar')
 
-# import ipdb; ipdb.set_trace()
 
 
 # templates = session.env['product.template'].search(
@@ -10,11 +9,13 @@ session.open(db='anzamar')
 templates = session.env['product.template'].search([])
 
 product_age_id = session.env['product.attribute'].\
-    search([('name', '=', '**EDAD**')]).id
+    search([('name', '=', 'EDAD')]).id
 product_gender_id = session.env['product.attribute'].\
-    search([('name', '=', '**GENERO**')]).id
+    search([('name', '=', 'GENERO')]).id
 product_type_id = session.env['product.attribute'].\
-    search([('name', '=', '**TIPO PRODUCTO**')]).id
+    search([('name', '=', 'TIPO PRODUCTO')]).id
+product_brand_id = session.env['product.attribute'].\
+    search([('name', '=', 'MARCA')]).id
 
 num_total = len(templates)
 idx = 0
@@ -25,7 +26,8 @@ for tmp in templates:
         continue
     att = tmp.attribute_line_ids[0].attribute_id
 
-    evals = ['product_type_id', 'product_gender_id', 'product_age_id']
+    evals = ['product_type_id', 'product_gender_id', 'product_age_id',
+             'product_brand_id']
 
     for field in evals:
         field_name = 'att.' + field
@@ -33,10 +35,16 @@ for tmp in templates:
         attribute_id = eval(field)
         if tag_instance:
 
-            domain = [
-                ('attribute_id', '=', attribute_id),
-                ('name', '=', tag_instance.value),
-            ]
+            if field != 'product_brand_id':
+                domain = [
+                    ('attribute_id', '=', attribute_id),
+                    ('name', '=', tag_instance.value),
+                ]
+            else:
+                domain = [
+                    ('attribute_id', '=', attribute_id),
+                    ('name', '=', tag_instance.name),
+                ]
             value = session.env['product.attribute.value'].search(domain,
                                                                   limit=1)
 
@@ -54,4 +62,5 @@ for tmp in templates:
     print('PROCESADO %s/%s' % (idx, num_total))
 
 session.cr.commit()
+
 exit()
