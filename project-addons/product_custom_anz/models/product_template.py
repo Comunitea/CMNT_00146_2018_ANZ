@@ -69,7 +69,7 @@ class ProductTemplate(models.Model):
         idx = 0
         for template in self:
             idx += 1
-            template.attribute_id = template.attribute_line_ids and template.attribute_line_ids[0].attribute_id or False
+            template.attribute_id = template.attribute_line_ids and template.attribute_line_ids.filtered('main').attribute_id or False
             template.numero_de_variantes = template.product_variant_count
             names = template.attribute_line_ids.mapped('value_ids').mapped('name')
             if names:
@@ -144,7 +144,7 @@ class ProductTemplate(models.Model):
                     change_template = True
                     print('-------------> ---> ---> Escribo en {} la variante {}'.format(variant.oldname, val_id.name))
                     variant.write({'attribute_value_ids': [(6,0,[val_id.id])]})
-                    tmpl.attribute_line_ids[0].with_context(ctx).write({'value_ids': [(4, val_id.id)]})
+                    tmpl.attribute_line_ids.filtered('main').with_context(ctx).write({'value_ids': [(4, val_id.id)]})
                 else:
                     print('-------------> ---> La variante {} no tiene talla'.format(variant.oldname))
                 #else:
@@ -246,7 +246,7 @@ class ProductProduct(models.Model):
     @api.multi
     def _get_attribute_id(self):
         for product in self:
-            product.attribute_id = product.product_tmpl_id.attribute_line_ids and product.product_tmpl_id.attribute_line_ids[0].attribute_id or False
+            product.attribute_id = product.product_tmpl_id.attribute_line_ids and product.product_tmpl_id.attribute_line_ids.filtered('main').attribute_id or False
 
     oldname = fields.Char()
     oldname_normalizado = fields.Char()
