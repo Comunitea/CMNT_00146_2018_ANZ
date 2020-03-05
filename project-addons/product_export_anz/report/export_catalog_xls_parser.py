@@ -185,6 +185,7 @@ class ExportCatalogXlsParser(models.AbstractModel):
         page_row = row
         template_len = 0
         form_cell_compras = form_cell_ventas = form_cell_stocks = 'SUM('
+        form_cell_compras_total = form_cell_ventas_total = form_cell_stocks_total = 'SUM('
         for tmp_name in report_vals:
 
 
@@ -311,14 +312,17 @@ class ExportCatalogXlsParser(models.AbstractModel):
                     # TOTAL AMOUNT
                     if catalog_id.euros:
                         if row_name[str(row_val)] == 'COMPRAS':
-                            form_cell_compras = form_cell_compras + ',' + xl_rowcol_to_cell (row_val, total_col+1)
                             form_euros = '=' + total_cell + '*' + cost_cell
+                            form_cell_compras = form_cell_compras + ',' + xl_rowcol_to_cell (row_val, total_col+1)
+                            form_cell_compras_total = form_cell_compras_total + ',' + xl_rowcol_to_cell (row_val, total_col)
                         elif row_name[str(row_val)] == 'STOCKS':
                             form_euros = '=' + total_cell + '*' + cost_cell
                             form_cell_stocks = form_cell_stocks + '+' + xl_rowcol_to_cell(row_val, total_col +1)
+                            form_cell_stocks_total = form_cell_stocks_total + '+' + xl_rowcol_to_cell(row_val, total_col)
                         elif row_name[str(row_val)] == 'VENTAS':
                             form_euros = '=' + total_cell + '*' + price_cell
                             form_cell_ventas = form_cell_ventas + '+' + xl_rowcol_to_cell(row_val, total_col+1)
+                            form_cell_ventas_total = form_cell_ventas_total + '+' + xl_rowcol_to_cell(row_val, total_col)
                         total_col += 1
                         sheet.write_formula(row_val, total_col, form_euros, money_with_border)
 
@@ -357,15 +361,19 @@ class ExportCatalogXlsParser(models.AbstractModel):
 
         if catalog_id.purchases:
             form_cell_compras += ')'
+            form_cell_compras_total += ')'
             sheet.write_formula(header['compras'][0], header['compras'][1] +1, form_cell_compras, money_with_border)
+            sheet.write_formula(header['compras'][0], header['compras'][1], form_cell_compras_total, f_border)
         if catalog_id.sales:
             form_cell_ventas += ')'
-            sheet.write_formula(header['ventas'][0], header['ventas'][1] +1, form_cell_ventas,
-                                money_with_border)
+            sheet.write_formula(header['ventas'][0], header['ventas'][1] +1, form_cell_ventas, money_with_border)
+            form_cell_ventas_total += ')'
+            sheet.write_formula(header['ventas'][0], header['ventas'][1], form_cell_ventas_total, f_border)
         if catalog_id.stocks:
             form_cell_stocks += ')'
-            sheet.write_formula(header['stocks'][0], header['stocks'][1] +1, form_cell_stocks,
-                                money_with_border)
+            sheet.write_formula(header['stocks'][0], header['stocks'][1] +1, form_cell_stocks, money_with_border)
+            form_cell_stocks += ')'
+            sheet.write_formula(header['stocks'][0], header['stocks'][1], form_cell_stocks_total, f_border)
         #sheet.fit_to_pages(1, 0)
         sheet.set_h_pagebreaks(page_breakers)
         sheet.set_v_pagebreaks([25])
