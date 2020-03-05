@@ -323,7 +323,7 @@ class ExportCatalogtWzd(models.TransientModel):
             t_sales = t_purchases = t_incomings = t_outgoings = t_stocks = 0
             variants = tmp.product_variant_ids.sorted(
                 lambda x: x.attribute_value_ids and
-                x.attribute_value_ids[0].sequence or 0)
+                x.attribute_value_ids.filtered('main').sequence or 0)
 
             # Si la plantilla no tiene variantes evitar el calculo
             #  sino el total_field = [], pisará el de la última iteración
@@ -337,7 +337,7 @@ class ExportCatalogtWzd(models.TransientModel):
             for variant in variants:
                 attr_name = ''
                 if variant.attribute_value_ids:
-                    attr_name = variant.attribute_value_ids[0].name
+                    attr_name = variant.attribute_value_ids.filtered('main').name
                 new_template['attr_names'].append(attr_name)
 
                 if self.catalog_type_id.grouped:

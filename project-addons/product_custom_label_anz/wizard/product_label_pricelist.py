@@ -62,7 +62,7 @@ class ProductLabelPricelist(models.TransientModel):
                 p.product_tmpl_id.default_code,
                 'barcode': p.barcode,
                 'attr_name': p.attribute_value_ids and
-                p.attribute_value_ids[0].name or 'Única',
+                p.attribute_value_ids.filtered('main').name or 'Única',
                 'price': price,
                 'lst_price': lst_price,
                 'height_r': h / rows,
