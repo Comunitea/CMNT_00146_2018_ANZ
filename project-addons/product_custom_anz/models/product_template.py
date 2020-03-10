@@ -183,6 +183,7 @@ class ProductTemplate(models.Model):
 
     @api.multi
     def set_brand_attribute(self, brand):
+        import ipdb; ipdb.set_trace()
         self.ensure_one()
         att_brand = self.env['product.attribute'].search(
             [('name', '=', 'MARCA')])
@@ -205,7 +206,6 @@ class ProductTemplate(models.Model):
 
         if brand_att_line:
             brand_att_line = brand_att_line[0]
-            brand_att_line.value_ids.unlink()
             brand_att_line.write({'value_ids': [(6, 0, [value.id])]})
         else:
             vals = {
