@@ -183,7 +183,6 @@ class ProductTemplate(models.Model):
 
     @api.multi
     def set_brand_attribute(self, brand):
-        import ipdb; ipdb.set_trace()
         self.ensure_one()
         att_brand = self.env['product.attribute'].search(
             [('name', '=', 'MARCA')])
