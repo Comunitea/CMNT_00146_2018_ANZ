@@ -6,7 +6,7 @@
         <!-- Media menu collapsible -->
         <xpath expr="//div[@id='products_grid_before']" position="before">
             <div class="navbar filters-navbar hidden-md hidden-lg">
-                <div class="navbar-header ml16">
+                <div class="navbar-header ml16 mr16">
                     <h4 class="mt16 text-uppercase"><strong>Filters and categories</strong></h4>
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#products_grid_before">
                         <span class="sr-only">Toggle navigation</span>
