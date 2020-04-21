@@ -55,7 +55,7 @@ msgid "Blog Link"
 msgstr "Enlace al Blog"
 
 #. module: theme_skipping
-#: model:website.menu,name:website_sale_product_brand.menu_website_sale_brand
+#: model:website.menu,name:theme_skipping.menu_website_sale_brand
 msgid "Brands"
 msgstr "Marcas"
 
