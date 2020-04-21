@@ -40,14 +40,14 @@
 
     <!-- Fix friendly URL's by category with infinite scroll in table view -->
     <template id="base_sgeede_infinite_scroll_products_infinite_scrol" inherit_id="sgeede_infinite_scroll.products_infinite_scroll"
-              name="SGEEDE Infinite Scroll by Categ. Base" active="False" customize_show="True" >
+              name="SGEEDE Infinite Scroll Base">
         <xpath expr="//t[1]/tr[hasclass('sgeede-infinite-pagination')]//a" position="attributes">
             <attribute name="t-att-href">'/category/%s/page/%d' % (category.slug, int(pager['page']['num']) + 1) if category.slug else pager['page_next']['url']</attribute>
         </xpath>
     </template>
 
     <!-- Fix friendly URL's by category with infinite scroll in list view -->
-    <template id="website_sale_products_list_view" inherit_id="website_sale.products_list_view" name="List View Scroll by Categ. Base" active="False" customize_show="True">
+    <template id="website_sale_products_list_view" inherit_id="website_sale.products_list_view" name="List View Scroll Base">
         <xpath expr="//div[hasclass('sgeede-infinite-pagination')]//a" position="attributes">
             <attribute name="t-att-href">'/category/%s/page/%d' % (category.slug, int(pager['page']['num']) + 1) if category.slug else pager['page_next']['url']</attribute>
         </xpath>
