@@ -36,6 +36,7 @@
         'templates/page_open_shop.xml',
         'templates/page_work_with_us.xml',
         'templates/page_contact_us.xml',
+        'templates/page_contact_us_thanks.xml',
         'templates/shop.xml',
         'templates/product.xml',
         'templates/pages.xml',

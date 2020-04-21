@@ -2,17 +2,6 @@
 <odoo>
 
     <!-- ======================================= Page Open Your Shop ======================================= -->
-
-    <!--Template Open Your Shop-->
-    <!--    <template id="page_open_shop" name="Open Shop Anzamar Template">-->
-    <!--        <t t-call="website.layout">-->
-    <!--            <div id="wrap">-->
-    <!--                <div class="container"/>-->
-    <!--            </div>-->
-    <!--        </t>-->
-    <!--    </template>-->
-
-    <!--Page Open Your Shop-->
     <record id="id_page_open_shop" model="website.page">
         <field name="name">Open Your Shop</field>
         <field name="website_published">True</field>
@@ -22,17 +11,6 @@
     </record>
 
     <!-- ======================================= Page Anzamar Group ======================================= -->
-
-    <!--Anzamar Group Templates-->
-    <!--    <template id="page_anzamar_group" name="Group Anzamar Template">-->
-    <!--        <t t-call="website.layout">-->
-    <!--            <div id="wrap">-->
-    <!--                <div class="container"/>-->
-    <!--            </div>-->
-    <!--        </t>-->
-    <!--    </template>-->
-
-    <!--Anzamar Group Pages -->
     <record id="id_page_anzamar_group" model="website.page">
         <field name="name">Anzamar Group</field>
         <field name="website_ids" eval="[(6, 0, [ref('website_base_multi_anz.skipping_website')])]"/>
@@ -42,57 +20,6 @@
     </record>
 
     <!-- ======================================= Page Anzamar Brands ======================================= -->
-
-    <!--Anzamar Brands Templates -->
-    <!--    <template id="page_brand_umbro" name="Brand Umbro Anzamar Template">-->
-    <!--        <t t-call="website.layout">-->
-    <!--            <div id="wrap">-->
-    <!--                <div class="container"/>-->
-    <!--            </div>-->
-    <!--        </t>-->
-    <!--    </template>-->
-
-    <!--    <template id="page_brand_point_sport" name="Brand Point Anzamar Template">-->
-    <!--        <t t-call="website.layout">-->
-    <!--            <div id="wrap">-->
-    <!--                <div class="container"/>-->
-    <!--            </div>-->
-    <!--        </t>-->
-    <!--    </template>-->
-
-    <!--    <template id="page_brand_black_laces" name="Brand Black Anzamar Template">-->
-    <!--        <t t-call="website.layout">-->
-    <!--            <div id="wrap">-->
-    <!--                <div class="container"/>-->
-    <!--            </div>-->
-    <!--        </t>-->
-    <!--    </template>-->
-
-    <!--    <template id="page_brand_goalkers" name="Brand Goal Anzamar Template">-->
-    <!--        <t t-call="website.layout">-->
-    <!--            <div id="wrap">-->
-    <!--                <div class="container"/>-->
-    <!--            </div>-->
-    <!--        </t>-->
-    <!--    </template>-->
-
-    <!--    <template id="page_brand_feel_point" name="Brand Feel Anzamar Template">-->
-    <!--        <t t-call="website.layout">-->
-    <!--            <div id="wrap">-->
-    <!--                <div class="container"/>-->
-    <!--            </div>-->
-    <!--        </t>-->
-    <!--    </template>-->
-
-    <!--    <template id="page_brand_skipping" name="Brand Skip Anzamar Template">-->
-    <!--        <t t-call="website.layout">-->
-    <!--            <div id="wrap">-->
-    <!--                <div class="container"/>-->
-    <!--            </div>-->
-    <!--        </t>-->
-    <!--    </template>-->
-
-    <!--Anzamar Brands Pages -->
     <record id="id_page_brand_umbro" model="website.page">
         <field name="name">Umbro</field>
         <field name="website_published">True</field>
@@ -142,17 +69,6 @@
     </record>
 
     <!-- ======================================= Page Work with Us ======================================= -->
-
-    <!--A Work with Us Template-->
-    <!--    <template id="page_work_with_us" name="Work With Us Anzamar Template">-->
-    <!--        <t t-call="website.layout">-->
-    <!--            <div id="wrap">-->
-    <!--                <div class="container"/>-->
-    <!--            </div>-->
-    <!--        </t>-->
-    <!--    </template>-->
-
-    <!-- Work with Us Page -->
     <record id="id_page_work_with_us" model="website.page">
         <field name="name">Work with Us</field>
         <field name="website_ids" eval="[(6, 0, [ref('website_base_multi_anz.skipping_website')])]"/>
@@ -162,7 +78,6 @@
     </record>
 
     <!-- ======================================= Legal ======================================= -->
-
     <record id="website_legal_page.advise_page" model="website.page">
         <field name="name">Legal Advise</field>
         <field name="website_published">True</field>
@@ -188,7 +103,7 @@
     </record>
 
     <!-- ======================================= Contact Us ======================================= -->
-    <record id="website.contactus_page" model="website.page">
+    <record id="contactus_page" model="website.page">
         <field name="name">Contact us</field>
         <field name="website_published">True</field>
         <field name="website_ids" eval="[(6, 0, [ref('website_base_multi_anz.skipping_website')])]"/>
@@ -196,11 +111,20 @@
         <field name="view_id" ref="ski_contact_us_content_template"/>
     </record>
 
-    <!-- ======================================= Newsletter ======================================= -->
-    <record id="ski_page_newsletter" model="website.page">
-        <field name="name">Newsletter</field>
-        <field name="website_ids" eval="[(6, 0, [ref('website_base_multi_anz.skipping_website')])]"/>
+    <record id="contactus_thanks" model="website.page">
+        <field name="name">Contact us (Thanks)</field>
         <field name="website_published">True</field>
+        <field name="website_ids" eval="[(6, 0, [ref('website_base_multi_anz.skipping_website')])]"/>
+        <field name="url">/contactus-thank-you</field>
+        <field name="view_id" ref="ski_contact_us_thanks_content_template"/>
+    </record>
+
+    <!-- ======================================= Newsletter ======================================= -->
+    <record id="newsletter_page" model="website.page">
+        <field name="name">Newsletter</field>
+        <field name="website_published">True</field>
+        <field name="active">True</field>
+        <field name="website_ids" eval="[(6, 0, [ref('website_base_multi_anz.skipping_website')])]"/>
         <field name="url">/page/newsletter</field>
         <field name="view_id" ref="follow_us_base.fub_newsletter_page_template"/>
     </record>

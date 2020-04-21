@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-    <data noupdate="1">
+    <data>
 
         <!--Main menu-->
         <record id="skipping_main_menu" model="website.menu">
@@ -39,7 +39,7 @@
         </record>
 
         <!-- Shop -->
-        <record id="website_sale.menu_shop" model="website.menu">
+        <record id="menu_shop" model="website.menu">
             <field name="name">Shop</field>
             <field name="url">/shop</field>
             <field name="parent_id" ref="theme_skipping.skipping_main_menu"/>
@@ -56,7 +56,7 @@
             <field name="parent_id" ref="theme_skipping.skipping_main_menu"/>
             <field name="sequence" type="int">21</field>
             <field name="website_id" ref="website_base_multi_anz.skipping_website"/>
-            <field name="user_logged">True</field>
+            <field name="user_logged">False</field>
             <field name="user_not_logged">False</field>
         </record>
 
@@ -67,19 +67,19 @@
             <field name="parent_id" ref="theme_skipping.skipping_main_menu"/>
             <field name="sequence" type="int">22</field>
             <field name="website_id" ref="website_base_multi_anz.skipping_website"/>
-            <field name="user_logged">True</field>
+            <field name="user_logged">False</field>
             <field name="user_not_logged">False</field>
         </record>
 
         <!-- Shop by Brands -->
-        <record id="website_sale_product_brand.menu_website_sale_brand" model="website.menu">
+        <record id="menu_website_sale_brand" model="website.menu">
             <field name="name">Brands</field>
             <field name="url">/page/product_brands</field>
             <field name="parent_id" ref="theme_skipping.skipping_main_menu"/>
             <field name="sequence" type="int">30</field>
             <field name="website_id" ref="website_base_multi_anz.skipping_website"/>
-            <field name="user_logged">True</field>
-            <field name="user_not_logged">True</field>
+            <field name="user_logged">False</field>
+            <field name="user_not_logged">False</field>
         </record>
 
         <!-- Open Shop Menu -->
@@ -236,20 +236,20 @@
         </record>
 
         <!--Blog Menu-->
-        <record id="website_blog.menu_news" model="website.menu">
+        <record id="menu_news" model="website.menu">
             <field name="name">Blog</field>
             <!--<field name="url" eval="'/blog/'+str(ref('website_blog.blog_blog_1'))"/>-->
             <field name="url">/blog</field>
             <field name="parent_id" ref="theme_skipping.skipping_main_menu"/>
             <field name="sequence" type="int">100</field>
             <field name="website_id" ref="website_base_multi_anz.skipping_website"/>
-            <field name="user_logged">True</field>
-            <field name="user_not_logged">True</field>
+            <field name="user_logged">False</field>
+            <field name="user_not_logged">False</field>
         </record>
 
         <!-- Contact -->
-        <record id="website.menu_contactus" model="website.menu">
-            <field name="name">Contact Us</field>
+        <record id="contact_us_menu" model="website.menu">
+            <field name="name">Contact us</field>
             <field name="url">/contactus</field>
             <field name="parent_id" ref="theme_skipping.skipping_main_menu"/>
             <field name="sequence" type="int">110</field>

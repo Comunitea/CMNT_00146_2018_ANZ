@@ -70,15 +70,16 @@ msgid "Brands of our group"
 msgstr "Marcas de nuestro grupo"
 
 #. module: theme_skipping
-#: model:website.page,name:theme_skipping.ski_contactus_thanks_page
-msgid "Contact Us (Thanks)"
+#: model:website.page,name:theme_skipping.contactus_thanks
+msgid "Contact us (Thanks)"
 msgstr "Contacto (Gracias)"
 
 #. module: theme_skipping
-#: model:ir.ui.view,arch_db:theme_skipping.ski_contactus_page_ir_ui_view
-#: model:ir.ui.view,arch_db:theme_skipping.ski_template_contactus
+#: model:ir.ui.view,arch_db:theme_skipping.contactus_page
+#: model:website.page,name:theme_skipping.contactus_page
 #: model:website.page,arch_db:theme_skipping.ski_contact_us_content_template
 #: model:website.page,name:theme_skipping.ski_contact_us_content_template
+#: model:website.menu,name:theme_skipping.contact_us_menu
 msgid "Contact us"
 msgstr "Contacto"
 
@@ -157,7 +158,8 @@ msgstr "Necesario para"
 
 #. module: theme_skipping
 #: model:ir.ui.view,arch_db:theme_skipping.ski_website_footer_default
-#: model:ir.ui.view,arch_db:theme_skipping.page_newsletter
+#: model:ir.ui.view,arch_db:theme_skipping.newsletter_page
+#: model:website.page,name:theme_skipping.newsletter_page
 msgid "Newsletter"
 msgstr "Noticias"
 
@@ -434,7 +436,7 @@ msgid "Products"
 msgstr "Productos"
 
 #. module: theme_skipping
-#: model:website.menu,name:theme_skipping.ski_shop_menu
+#: model:website.menu,name:theme_skipping.menu_shop
 #: model:website.menu,name:website_sale.menu_shop
 msgid "Shop"
 msgstr "Tienda"
@@ -576,6 +578,11 @@ msgstr "Grupo Anzamar"
 #: model:ir.ui.view,arch_db:theme_skipping.ski_contact_us_content_template
 msgid "Contact us for anything related to our company or services."
 msgstr "Contacte con nosotros para cualquier cosa relacionada con nuestra empresa o servicios."
+
+#. module: theme_skipping
+#: model:ir.ui.view,arch_db:theme_skipping.ski_contact_us_content_template
+msgid "Contact us"
+msgstr "Contacto"
 
 #. module: theme_skipping
 #: model:ir.ui.view,arch_db:theme_skipping.ski_home_content_template
