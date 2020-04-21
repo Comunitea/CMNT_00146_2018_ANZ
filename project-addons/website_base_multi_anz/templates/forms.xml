@@ -26,7 +26,7 @@
     </template>
 
     <!-- Terms of use without checkbox -->
-    <template id="acceptance_full_legal_terms_without_check" name="Acceptance Full Legal Terms Without Check Base">
+    <template id="acceptance_full_legal_terms_without_check" name="Acceptance Full Leg Without Check Base">
         I accept the <a href="/legal/advice">legal advice</a>, the <a href="/legal/privacy-policy">privacy policy and cookies</a> and the <a href="/legal/terms-of-use">terms of use</a> of this website.
     </template>
 
@@ -38,15 +38,16 @@
            </div>
        </div>
         <div class="form-group form-field">
-            <label class="col-md-3 col-sm-4 control-label" for="phone">Phone</label>
+            <label class="col-md-3 col-sm-4 control-label" for="phone">Phone *</label>
             <div class="col-md-7 col-sm-8">
-                <input type="text" class="form-control o_website_form_input" name="phone" t-att-value="request.params.get('phone', '')" />
+                <input type="text" class="form-control o_website_form_input" name="phone" t-att-value="request.params.get('phone', '')" required=""/>
             </div>
         </div>
         <div class="form-group form-field o_website_form_required_custom">
             <label class="col-md-3 col-sm-4 control-label" for="email_from">Email</label>
             <div class="col-md-7 col-sm-8">
-                <input type="text" class="form-control o_website_form_input" name="email_from" required="" t-att-value="request.params.get('email_from', '')" />
+                <input type="text" class="form-control o_website_form_input" name="email_from" required="" t-att-value="request.params.get('email_from', '')"
+                    placeholder="your_name@provider.domain"/>
             </div>
         </div>
         <div class="form-group form-field o_website_form_required_custom">

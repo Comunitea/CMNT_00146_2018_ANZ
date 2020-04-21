@@ -263,6 +263,11 @@ msgid "Company"
 msgstr "Compañía"
 
 #. module: website_base_multi_anz
+#: model:ir.ui.view,arch_db:website_base_multi_anz.default_fields_forms
+msgid "your_name@provider.domain"
+msgstr "nombre@proveedor.dominio"
+
+#. module: website_base_multi_anz
 #: model:ir.model.fields,field_description:website_base_multi_anz.field_product_public_category_complete_name
 msgid "Complete Name"
 msgstr "Nombre completo"
