@@ -15,27 +15,4 @@
         </xpath>
     </template>
 
-    <template id="base_website_sale_sort" name="Show Sort by Base" inherit_id="website_sale.sort">
-        <xpath expr="//t[@t-set='website_sale_sortable_current']" position="after">
-            <t t-set="brand" t-if="request.params.get('brand', 0)" t-value="[request.params.get('brand', 0)]"/>
-            <t t-set="gender" t-if="request.params.get('gender', 0)" t-value="[request.params.get('gender', 0)]"/>
-            <t t-set="age" t-if="request.params.get('age', 0)" t-value="[request.params.get('age', 0)]"/>
-        </xpath>
-
-        <xpath expr="//ul/li[@t-foreach='website_sale_sortable']" position="replace">
-            <li t-foreach="website_sale_sortable" t-as="sortby">
-                <t t-if="brand or gender or age">
-                    <a t-att-href="keep('/shop', order=sortby[1], brand=brand, gender=gender, age=age)">
-                        <span t-raw="sortby[0]"/>
-                    </a>
-                </t>
-                <t t-else="">
-                    <a t-att-href="keep('/shop', order=sortby[1])">
-                        <span t-raw="sortby[0]"/>
-                    </a>
-                </t>
-            </li>
-        </xpath>
-    </template>
-
 </odoo>
