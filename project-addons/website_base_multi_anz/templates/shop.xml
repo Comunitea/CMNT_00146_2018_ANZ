@@ -25,14 +25,15 @@
     <template id="website_sale_products" name="Products Base" inherit_id="website_sale.products">
         <xpath expr="//div[@id='products_grid']/table" position="before">
             <span t-esc="Filters" class="label label-primary"/>
-            <div class="filter-labels mb16 ml4" t-if="len(attributes) &gt; 0 or category">
+            <div class="filter-labels mb32 ml4" t-if="len(attributes) &gt; 0 or category">
                 <span t-if="category" t-esc="category.name" class="label label-primary"/>
                 <t t-foreach="attributes" t-as="a">
                     <t t-foreach="a.value_ids" t-as="v" t-if="a.value_ids and len(a.value_ids) &gt; 1">
                         <span t-esc="v.name" class="label label-primary" t-if="v.id in attrib_set"/>
                     </t>
                 </t>
-                <a href="/shop" class="label label-danger">Delete all</a>
+                <a href="/shop" class="label label-danger"
+                   t-if="category or attrib_set">Delete all</a>
             </div>
         </xpath>
     </template>
