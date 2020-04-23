@@ -46,7 +46,7 @@
 
     </template>
 
-    <template id="ski_logo_show" name="Logo Show Skipping Template" inherit_id="website_multi_theme.auto_view_ski_website_layout_logo_show">
+    <template id="ski_logo_show" name="Logo Show Skipping" inherit_id="website.layout_logo_show">
         <xpath expr="//a[hasclass('navbar-brand')]/span" position="replace">
             <img class="img img-responsive" src="/theme_skipping/static/img/skipping/skipping_logo.png" alt="res_company.name"/>
         </xpath>
