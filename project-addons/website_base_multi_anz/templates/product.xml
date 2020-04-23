@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
 
-    <template id="base_website_sale_products_add_to_cart" name="Add to Cart Base" inherit_id="website_sale.products_add_to_cart">
+    <template id="base_website_sale_products_add_to_cart" name="Add to Cart Base" active="False" customize_show="True" inherit_id="website_sale.products_add_to_cart">
         <!-- Replace add to cart miniature -->
         <xpath expr="//t[2]/a" position="attributes">
             <attribute name="t-att-href">keep('/product/{}', page=(pager['page']['num'] if pager['page']['num']&gt;1 else None)).format(product.slug) if product.slug else keep('/shop/product/%s' % slug(product), page=(pager['page']['num'] if pager['page']['num']&gt;1 else None))</attribute>

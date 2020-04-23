@@ -95,5 +95,77 @@
                 </div>
             </t>
         </xpath>
+
+        <!-- Multi-add-to-cart success/fail windows -->
+        <xpath expr="//form[hasclass('js_add_cart_variants')]" position="after">
+            <div id="multi_was_added" class="modal fade multi-add-result" tabindex="-1" role="dialog">
+                <div class="modal-dialog modal-md">
+                    <div class="modal-content">
+                        <div class="modal-header bg-success">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+                            <h4 class="modal-title">This product was added to cart</h4>
+                        </div>
+                        <div class="modal-body"/>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal" aria-hidden="true"><i class="fa fa-chevron-left"/> <span class="hidden-xs">Continue Shopping</span><span class="visible-xs-inline">Continue</span></button>
+                            <a class="btn btn-primary pull-right" href="/shop/cart"><i class="fa fa-shopping-cart fa-fw"/> <span class="hidden-xs">Proceed to Checkout</span><span class="visible-xs-inline">Checkout</span></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="multi_error" class="modal fade multi-add-result" tabindex="-1" role="dialog">
+                <div class="modal-dialog modal-md">
+                    <div class="modal-content">
+                        <div class="modal-header bg-danger">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+                            <h4 class="modal-title text-danger">An error has occurred</h4>
+                        </div>
+                        <div class="modal-body"/>
+                        <div class="modal-footer">
+                            <a class="btn btn-default pull-right" data-dismiss="modal" aria-hidden="true">Close</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </xpath>
+
+        <!-- Image URL and attributes -->
+        <xpath expr="//div[hasclass('carousel-inner')]/div[2]" position="replace">
+            <div t-attf-class="item#{'' if variant_img else ' active'}">
+                <img t-att-alt="product.name" t-att-title="product.name" class="product_detail_img js_variant_img"
+                     t-attf-src="/website/image/product.template/{{product.id}}/image/" data-zoom="1"
+                     t-attf-data-zoom-image="/website/image/product.template/{{product.id}}/image/"/>
+            </div>
+        </xpath>
+        <xpath expr="//div[hasclass('carousel-inner')]/t/div[hasclass('item')]" position="replace">
+            <div class="item">
+                <img t-att-alt="pimg.name" t-att-title="pimg.name" class="product_detail_img"
+                     t-attf-src="/web/image/product.image/{{pimg.id}}/image/" data-zoom="1"
+                     t-attf-data-zoom-image="/web/image/product.image/{{pimg.id}}/image/"/>
+            </div>
+        </xpath>
+
+        <!-- Hide guarantee-->
+        <xpath expr="//div[@id='product_details']//hr[last()]" position="replace"/>
+        <xpath expr="//div[@id='product_details']/p[last()]" position="replace"/>
+
+        <!-- Add short product description-->
+        <xpath expr="//div[@id='product_details']//hr[@t-if='product.description_sale']" position="attributes">
+            <attribute name="t-if">product.description_short</attribute>
+        </xpath>
+        <xpath expr="//div[@id='product_details']//div[hasclass('o_not_editable')]/p" position="attributes">
+            <attribute name="t-field">product.description_short</attribute>
+        </xpath>
+
+        <!-- Add full product HTML description-->
+        <xpath expr="//div[@id='product_full_description']" position="replace">
+            <div class="oe_structure mt16 mb16" id="product_full_description" t-if="product.description">
+                <div class="container" t-if="len(product.description) > 15" itemprop="description">
+                    <div class="row">
+                        <div class="col-md-12" t-field="product.description"/>
+                    </div>
+                </div>
+            </div>
+        </xpath>
     </template>
 </odoo>
