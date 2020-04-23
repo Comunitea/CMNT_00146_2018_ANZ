@@ -23,8 +23,8 @@
         </xpath>
     </template>
 
-    <template id="website_sale_products_attributes" name="Product Attribute's Filters Skipping" inherit_id="website_multi_theme.auto_view_ski_website_sale_products_attributes">
-         <!-- Media menu collapsible -->
+    <template id="website_sale_products_attributes" name="Product Attribute's Filters Skipping" inherit_id="website_sale.products_attributes">
+        <!-- Media menu collapsible -->
         <xpath expr="//div[@id='products_grid_before']" position="attributes">
             <attribute name="class">col-md-3 collapse navbar-collapse</attribute>
         </xpath>
