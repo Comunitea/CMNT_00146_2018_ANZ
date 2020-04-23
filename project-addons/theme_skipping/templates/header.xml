@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
 
-    <template id="ski_layout_website" name="Main Layout Skipping" inherit_id="website_multi_theme.auto_view_ski_website_base_multi_anz_base_layout_website">
+    <template id="ski_layout_website" name="Main Layout Skipping" inherit_id="website.layout">
         <!-- Phone header bar -->
 <!--        <xpath expr="//div[@id='wrapwrap']//div[hasclass('navbar')]" position="before">-->
             <!-- Add phone and mail before menu. If yuo can use this, needs uncomment main.js header-fixed-margin part and their css in header.less too-->
@@ -30,6 +30,16 @@
 <!--                </div>-->
 <!--            </div>-->
 <!--        </xpath>-->
+
+        <!-- Fixed header -->
+        <xpath expr="//div[@id='wrapwrap']/header" position="attributes">
+            <attribute name="t-att-class">'fixed'</attribute>
+        </xpath>
+
+        <!-- Fixed header with web editor bar -->
+        <xpath expr="//div[@id='wrapwrap']//div[hasclass('navbar')]" position="before">
+            <div groups="base.group_user" class="clearfix mt32 header-fixed-margin"/>
+        </xpath>
 
         <!-- Add wishlist menu -->
         <xpath expr="//header//ul[@id='top_menu']/li[@id='my_cart']" position="after">

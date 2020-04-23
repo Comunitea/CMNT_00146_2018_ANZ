@@ -1,29 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
 
-    <template id="base_layout_website" name="Main Layout Base" active="True" customize_show="True" inherit_id="website.layout">
-
-        <!-- Fixed header with phone bar -->
-<!--        <xpath expr="//div[@id='wrapwrap']/header" position="attributes">-->
-<!--             <attribute name="t-att-class">'homepage-header' if 'homepage' in xmlid else None</attribute>-->
-<!--        </xpath>-->
-
-        <xpath expr="//div[@id='wrapwrap']/header" position="attributes">
-            <attribute name="t-att-class">'fixed'</attribute>
-        </xpath>
-
-        <xpath expr="//div[@id='wrapwrap']//div[hasclass('navbar')]" position="before">
-            <!-- Fixed header with web editor bar -->
-            <div groups="base.group_user" class="clearfix mt32 header-fixed-margin"/>
-        </xpath>
-
-        <!-- Add custom breadcrumbs if not breadcrumbs_base_tmp is installed -->
-<!--        <xpath expr="//div[@id='wrapwrap']//div[hasclass('navbar')]" position="after">-->
-            <!--<t t-call="breadcrumbs_base.bcb_main_wrap" t-if="'homepage' not in xmlid"/>-->
-<!--        </xpath>-->
-
-    </template>
-
     <template id="wbm_website_sale_header" name="Header my cart link without text" inherit_id="website_sale.header">
         <!-- Hook to hide cart icon in header by website_sale_hide_price module or show without text if exist -->
         <xpath expr="//li[@id='my_cart']/a" position="replace">
