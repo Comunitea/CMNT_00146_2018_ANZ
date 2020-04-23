@@ -26,7 +26,7 @@
 
         <!-- Add to wishlist button -->
         <xpath expr="//div[hasclass('add-to-cart-multi')]" position="after">
-            <t t-if="product.env.ref('website_multi_theme.auto_view_poi_website_sale_wishlist_add_to_wishlist').active">
+            <t t-if="request.env['ir.ui.view'].search([('key', '=', 'website_sale_wishlist.product_add_to_wishlist')]).active">
                 <t t-set="in_wish" t-value="product.product_variant_ids &amp; request.env['product.wishlist'].current().mapped('product_id')"/>
                 <a class="btn btn-default btn-lg mt8 o_add_wishlist_dyn" t-att-disabled='in_wish or None' title="Add to Wishlist" t-att-data-product-product-id="product.product_variant_ids[0].id" data-action="o_wishlist">
                     <span class="fa fa-heart"/>
