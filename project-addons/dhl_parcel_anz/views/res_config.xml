@@ -10,7 +10,8 @@
                 <h2>DHL Config</h2>
                 <div class="o_settings_container">
                     <group>
-                        <field name="dhl_client_number"/>
+                        <field name="dhl_client_number_b2b"/>
+                        <field name="dhl_client_number_b2c"/>
                     </group>
                 </div>
             </xpath>

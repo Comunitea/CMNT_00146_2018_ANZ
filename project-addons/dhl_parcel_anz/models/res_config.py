@@ -23,13 +23,14 @@ from odoo import fields, models, tools, api, _
 from odoo.exceptions import UserError
 from ast import literal_eval
 
-DHL_PARAMS = ['dhl_client_number']
+DHL_PARAMS = ['dhl_client_number_b2b', 'dhl_client_number_b2c']
 
 class ConfigDHLData(models.TransientModel):
 
     _inherit = 'res.config.settings'
 
-    dhl_client_number = fields.Char(string='DHL client number', size=6)
+    dhl_client_number_b2b = fields.Char(string='DHL client number B2B', size=6)
+    dhl_client_number_b2c = fields.Char(string='DHL client number B2C', size=6)
 
     @api.model
     def get_values(self):

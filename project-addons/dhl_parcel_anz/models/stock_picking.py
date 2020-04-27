@@ -66,6 +66,19 @@ class StockPickingDHL(models.Model):
     dhl_international_description = fields.Char(string="Merchandise description")
     dhl_international_declared_amount = fields.Float(string="Declared Amount", digits=(13,2))
     dhl_international_currency = fields.Many2one('res.currency', string="Currency for Declared Amount")
+    dhl_override_weight = fields.Float(string="Override shipment weight")
+    dhl_client_type = fields.Selection([
+        ('dhl_client_number_b2b', _('B2B')),
+        ('dhl_client_number_b2c', _('B2C'))
+    ], string="Customs Payment", default="dhl_client_number_b2b")
+
+    def get_dhl_selected_client(self):
+        ICP =self.env['ir.config_parameter'].sudo()
+        for picking in self:
+            if picking.dhl_client_type == 'dhl_client_number_b2b':
+                return ICP.get_param('dhl_parcel_anz.dhl_client_number_b2b', False).zfill(6)
+            elif picking.dhl_client_type == 'dhl_client_number_b2c':
+                return ICP.get_param('dhl_parcel_anz.dhl_client_number_b2c', False).zfill(6)            
 
     @api.multi
     @api.onchange('carrier_id')
@@ -82,9 +95,9 @@ class StockPickingDHL(models.Model):
         filename = "DHL_PARCEL_{}.txt".format(now)
         f = open(filename,"w")
         if f:
-            for picking in self:
+            for picking in self.filtered(lambda x: x.dhl_carrier):
                 line = picking.create_dhl_line()
-                f.write(line)
+                f.write(line+ '\n')
             f.close()
         else:
             raise ValidationError(_("There was a problem creating the file {}".format(filename)))
@@ -112,12 +125,11 @@ class StockPickingDHL(models.Model):
         }
 
     def create_dhl_line(self):
-        ICP =self.env['ir.config_parameter'].sudo()
         line = ''
 
         try:
-
-            line += ICP.get_param('dhl_parcel_anz.dhl_client_number', False).zfill(6)
+            dhl_selected_client = self.get_dhl_selected_client()
+            line += "{}".format(dhl_selected_client).zfill(6)
             line += '{:<1}'.format('')
             line += self.partner_id.country_id.code
             line += '{:<8}'.format('')
@@ -132,7 +144,7 @@ class StockPickingDHL(models.Model):
             line +=  '{:<35}'.format(self.name[:35])
             line += '{:<2}'.format('')
             line += "{}".format(self.number_of_packages).zfill(3)
-            line += "{}".format(round(self.shipping_weight)).zfill(5)
+            line += "{}".format(round(self.dhl_override_weight) if self.dhl_override_weight else round(self.shipping_weight)).zfill(5)
             line += ''.zfill(5)
             line += ''.zfill(11) if not self.dhl_refund_amount else '{:<11}'.format(int(self.dhl_refund_amount*100)) # Refund - last two positions are decimals
             line += 'EUR'
@@ -154,12 +166,12 @@ class StockPickingDHL(models.Model):
             line += '{:<15}'.format('' if not (self.dhl_international_shipping and self.dhl_international_declared_amount) else int(self.dhl_international_declared_amount*100)) # Must fill on International shipping
             line += '{:<3}'.format('' if not (self.dhl_international_shipping and self.dhl_international_currency) else self.dhl_international_currency.name) # Must fill on International shipping
             line += '{:<15}'.format('') # Optional on International shipping
-            line += '{}{}'.format(300, ICP.get_param('dhl_parcel_anz.dhl_client_number', False).zfill(6)) # Must fill on International shipping
+            line += '{}{}'.format(300, dhl_selected_client.zfill(6)) # Must fill on International shipping
             line += '{:<10}'.format('') # Optional on International shipping
             line += 'ES'
-            line += '{:<50}'.format(self.company_id.email)
+            line += '{:<50}'.format(self.company_id.email or '')
             line += '{:<25}'.format('')
-            line += '{:<50}'.format(self.partner_id.email)
+            line += '{:<50}'.format(self.partner_id.email or self.partner_id.parent_id.email or '')
             line += ''.zfill(4)
             line += '{:<90}'.format('')
         except Exception as e:

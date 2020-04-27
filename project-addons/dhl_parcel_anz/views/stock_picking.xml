@@ -21,6 +21,7 @@
                             <field name="dhl_insurance_amount"/>
                             <field name="dhl_insurance_payment"/>
                             <field name="dhl_return_signed_picking"/>
+                            <field name="dhl_client_type"/>
                         </group>
                         <group>
                             <field name="dhl_customs_payment"/>
@@ -30,6 +31,7 @@
                             <field name="dhl_international_description" attrs="{'invisible': [('dhl_international_shipping', '=', False)]}"/>
                             <field name="dhl_international_declared_amount" attrs="{'invisible': [('dhl_international_shipping', '=', False)]}"/>
                             <field name="dhl_international_currency" attrs="{'invisible': [('dhl_international_shipping', '=', False)]}"/>
+                            <field name="dhl_override_weight"/>
                         </group>
                     </group>
                 </page>                
