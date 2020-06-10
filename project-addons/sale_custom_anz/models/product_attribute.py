@@ -28,16 +28,15 @@ class ProductAttributeValue(models.Model):
             if len(tmp_obj.attribute_line_ids.filtered('main')) == 1:
                 p_ids = tmp_obj.product_variant_ids
                 res = []
-                qty_field = 'qty_available'
+                qty_field = 'virtual_available'
                 active_model = self._context.get('active_model', False)
                 if active_model:
                     id = self._context.get('active_id', False)
                     if id:
                         parent = self.env[active_model].browse(id)
-
                         if parent and parent.company_id and \
                                 parent.company_id.stock_global:
-                            qty_field = 'qty_available_global'
+                            qty_field = '{}_{}'.format('global', qty_field)
                         if parent.warehouse_id:
                             ctx.update(warehouse=parent.warehouse_id.id)
                 if self._context.get('location', False):
