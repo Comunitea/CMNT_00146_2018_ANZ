@@ -24,36 +24,36 @@
 $(document).ready(function(){
 
     /* Fixed header without phone bar */
-    if(window.screen.width < 769) {
-        if ($('#wrap').hasClass('homepage')) {
-            if(window.screen.width > 767) {
-//                console.log('phone homepage margin-top: 95px');
-                $('#wrapwrap').css({'margin-top': '90px'});
-            } else {
-//                console.log('phone homepage margin-top: 44px');
-                $('#wrapwrap').css({'margin-top': '44px'});
-            }
-        } else {
-//            console.log('phone margin-top: 79px');
-            $('#wrapwrap').css({'margin-top': '79px'});
-        }
-    } else {
-        if($('#wrap').hasClass('homepage')) {
-            if(window.screen.width < 1024) {
-//                console.log('pc homepage margin-top: 107px');
-                $('#wrapwrap').css({'margin-top': '107px'});
-            } else {
-//                console.log('pc homepage margin-top: 54px');
-                $('#wrapwrap').css({'margin-top': '54px'});
-            }
-        } else if($('#wrap').hasClass('map-wrap')) {
-//            console.log('pc map margin-top: 90px');
-            $('#wrapwrap').css({'margin-top': '90px'});;
-        }  else {
-//            console.log('pc generic margin-top: 95px');
-            $('#wrapwrap').css({'margin-top': '95px'});
-        }
-    }
+//    if(window.screen.width < 769) {
+//        if ($('#wrap').hasClass('homepage')) {
+//            if(window.screen.width > 767) {
+////                console.log('phone homepage margin-top: 95px');
+//                $('#wrapwrap').css({'margin-top': '90px'});
+//            } else {
+////                console.log('phone homepage margin-top: 44px');
+//                $('#wrapwrap').css({'margin-top': '44px'});
+//            }
+//        } else {
+////            console.log('phone margin-top: 79px');
+//            $('#wrapwrap').css({'margin-top': '79px'});
+//        }
+//    } else {
+//        if($('#wrap').hasClass('homepage')) {
+//            if(window.screen.width < 1024) {
+////                console.log('pc homepage margin-top: 107px');
+//                $('#wrapwrap').css({'margin-top': '107px'});
+//            } else {
+////                console.log('pc homepage margin-top: 54px');
+//                $('#wrapwrap').css({'margin-top': '54px'});
+//            }
+//        } else if($('#wrap').hasClass('map-wrap')) {
+////            console.log('pc map margin-top: 90px');
+//            $('#wrapwrap').css({'margin-top': '90px'});;
+//        }  else {
+////            console.log('pc generic margin-top: 95px');
+//            $('#wrapwrap').css({'margin-top': '95px'});
+//        }
+//    }
 
     /* Open sub-menu with hover action */
     $('#top_menu li.dropdown').hover(function(){

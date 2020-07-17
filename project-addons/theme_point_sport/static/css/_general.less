@@ -1,13 +1,6 @@
 /* Import new fonts */
 @import url('https://fonts.googleapis.com/css?family=Roboto:400,400i,700&subset=latin-ext');
 
-/* Breadcrumbs colors */
-:root {
-    --color-bg: @white;
-    --color-href: @color-dark;
-    --color-current: #666;
-}
-
 /* Set default colours */
 @color-1: #e7e7e7;
 @white: #fff;
@@ -22,3 +15,26 @@
 @label-border: 1px solid #a2a2a2;
 @label-danger-color: #fff;
 @label-danger-text: @color-dark;
+
+/****************************** Start Global variables ******************************/
+// Animation Creation Pattern
+// @keyframes opacity_frame {
+//     from {opacity: 1;}
+//     to {opacity: 0;}
+// }
+
+:root {
+    // website_sale_affix_header
+    --affix-header-bg-color: @color-dark;
+//     --affix-header-z-index: you_index or 999;
+    // Just if NOT want use animation
+    --affix-header-animation-name: none;
+    --affix-header-animation-duration: none;
+    --affix-header-animation-delay: none;
+
+    // Breadcrumbs colors
+    --color-bg: @white;
+    --color-href: @color-dark;
+    --color-current: #666;
+}
+/****************************** End Global variables ******************************/

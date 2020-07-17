@@ -32,14 +32,14 @@
 <!--        </xpath>-->
 
         <!-- Fixed header -->
-        <xpath expr="//div[@id='wrapwrap']/header" position="attributes">
-            <attribute name="t-att-class">'fixed'</attribute>
-        </xpath>
+<!--        <xpath expr="//div[@id='wrapwrap']/header" position="attributes">-->
+<!--            <attribute name="t-att-class">'fixed'</attribute>-->
+<!--        </xpath>-->
 
         <!-- Fixed header with web editor bar -->
-        <xpath expr="//div[@id='wrapwrap']//div[hasclass('navbar')]" position="before">
-            <div groups="base.group_user" class="clearfix mt32 header-fixed-margin"/>
-        </xpath>
+<!--        <xpath expr="//div[@id='wrapwrap']//div[hasclass('navbar')]" position="before">-->
+<!--            <div groups="base.group_user" class="clearfix mt32 header-fixed-margin"/>-->
+<!--        </xpath>-->
 
         <!-- Add wishlist menu -->
         <xpath expr="//header//ul[@id='top_menu']/li[@id='my_cart']" position="after">
@@ -56,9 +56,9 @@
 
     </template>
 
-    <template id="ski_logo_show" name="Logo Show Skipping" inherit_id="website.layout_logo_show">
+    <template id="ski_logo_show" name="Show Logo Skipping" inherit_id="website.layout_logo_show">
         <xpath expr="//a[hasclass('navbar-brand')]/span" position="replace">
-            <img class="img img-responsive" src="/theme_skipping/static/img/skipping/skipping_logo.png" alt="res_company.name"/>
+            <img class="img img-responsive" t-attf-src="/web/image/website/{{website.id}}/logo" t-att-alt="website.name"/>
         </xpath>
     </template>
 

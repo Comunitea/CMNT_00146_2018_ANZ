@@ -3,14 +3,14 @@
 
     <template id="poi_layout_website" name="Main Layout Point" inherit_id="website.layout">
         <!-- Fixed header -->
-        <xpath expr="//div[@id='wrapwrap']/header" position="attributes">
-            <attribute name="t-att-class">'fixed'</attribute>
-        </xpath>
+<!--        <xpath expr="//div[@id='wrapwrap']/header" position="attributes">-->
+<!--            <attribute name="t-att-class">'fixed'</attribute>-->
+<!--        </xpath>-->
 
         <!-- Fixed header with web editor bar -->
-        <xpath expr="//div[@id='wrapwrap']//div[hasclass('navbar')]" position="before">
-            <div groups="base.group_user" class="clearfix mt32 header-fixed-margin"/>
-        </xpath>
+<!--        <xpath expr="//div[@id='wrapwrap']//div[hasclass('navbar')]" position="before">-->
+<!--            <div groups="base.group_user" class="clearfix mt32 header-fixed-margin"/>-->
+<!--        </xpath>-->
 
         <!-- Add wishlist menu -->
         <xpath expr="//header//ul[@id='top_menu']/li[@id='my_cart']" position="after">
@@ -27,9 +27,9 @@
     </template>
 
     <!-- Logo -->
-    <template id="logo_show" name="Logo Show Point" inherit_id="website.layout_logo_show">
+    <template id="logo_show" name="Show Logo Point" inherit_id="website.layout_logo_show">
         <xpath expr="//a[hasclass('navbar-brand')]/span" position="replace">
-            <img class="img img-responsive" src="/theme_point_sport/static/img/logo-horizontal-white.png" alt="website.name"/>
+            <img class="img img-responsive" t-attf-src="/web/image/website/{{website.id}}/logo" t-att-alt="website.name"/>
         </xpath>
     </template>
 
