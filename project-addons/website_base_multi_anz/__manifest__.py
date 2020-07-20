@@ -67,6 +67,7 @@
         'website_mail',
         'website_menu_by_user_status',
         'website_sale',
+        'website_sale_affix_header',
         'website_sale_hide_price',
         'website_sale_stock',
         'website_sale_wishlist',
