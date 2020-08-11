@@ -2,13 +2,14 @@
 # © 2018 Comunitea
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import models, fields, _
+from odoo import models, fields, _, api
 from odoo.exceptions import UserError
 from odoo.addons import decimal_precision as dp
 from odoo.tools.float_utils import float_round
 from pprint import pprint
 import logging
-
+from io import BytesIO
+from base64 import b64encode
 _logger = logging.getLogger(__name__)
 
 
@@ -102,6 +103,8 @@ class ExportCatalogtWzd(models.TransientModel):
 
     _name = 'export.catalog.wzd'
 
+    binary_field = fields.Binary("Descarga")
+    binary_name = fields.Char("Descarga", compute="get_excel_name")
     scheduled_id = fields.Many2one('scheduled.sale', string='Scheduled')
     brand_id = fields.Many2one('product.brand', string='Brand')
     categ_id = fields.Many2one('product.category', string='Category')
@@ -123,6 +126,21 @@ class ExportCatalogtWzd(models.TransientModel):
     filter_state = fields.Selection([('all', 'Todos los movimientos'), ('done', 'Moviemintos realizados'), ('not_done', 'Moviemientos pendientes')],
                                     string="Filtro de movimientos",
                                     help="Filtra los movimientos según el estado. Permite visualizar entradas y salidas a futuro.")
+
+    @api.multi
+    def get_excel_name(self):
+        res = []
+        for wzd in self:
+            name = wzd.catalog_type_id.name or 'Catalogo %s '%wzd.id
+            if wzd.brand_id:
+                name = '%s. %s' % (name, wzd.brand_id.name)
+            if wzd.scheduled_id:
+                name = '%s. %s' % (name, wzd.scheduled_id.name)
+            if wzd.pricelist_id:
+                name = '%s. %s' % (name, wzd.pricelist_id.name)
+            wzd.binary_name = '%s.xls'%name
+
+
 
     def get_grouped_moves(self, variant, company= False, done_qty = True):
 
@@ -405,16 +423,22 @@ class ExportCatalogtWzd(models.TransientModel):
                 header_values[f] += res[tmp]['total_' + f]
         return res, header_values
 
+
     def export_catalog_xls(self):
-        self.ensure_one()
-        data_dic = {
-            'wzd_id': self.id
-        }
-        #report_vals = self.get_report_vals()
-        #data_dic.update(report_vals=report_vals)
-        if self._context.get('xls_export'):
-            report = self.env.ref('product_export_anz.export_catalog_xlsx')
-            file_name = "{}_{}.xls".format(self.catalog_type_id.name, self.scheduled_id.name or self.brand_id.name or '')
-            report.name = report.file = file_name
-            return report.\
-                report_action(self, data=data_dic)
+
+        obj = 'report.product_export_anz.export_catalog_xls.xlsx'
+        report = self.env[obj]#._get_objs_for_report(docids, data)
+        objs = self#._get_objs_for_report(docids, data)
+        file_data = BytesIO()
+        # file_data = "/opt/odoo/catalog_id_%s.xls"
+        data = {'context': self._context, 'wzd_id': self.id}
+        workbook = xlsxwriter.Workbook(file_data, report.get_workbook_options())
+        report.generate_xlsx_report(workbook, data, objs)
+
+        workbook.close()
+        # return
+        file_data.seek(0)
+        self.binary_field = b64encode(file_data.read())
+        action = self.env.ref('product_export_anz.action_export_catalog').read()[0]
+        action['res_id'] = self.id
+        return action

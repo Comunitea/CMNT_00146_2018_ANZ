@@ -11,6 +11,11 @@ from PIL import Image
 import logging
 _logger = logging.getLogger(__name__)
 
+try:
+    import xlsxwriter
+except ImportError:
+    _logger.debug('Can not import xlsxwriter`.')
+
 class ExportCatalogXlsParser(models.AbstractModel):
     """
     Parser to get data of report export catalog all
@@ -389,4 +394,20 @@ class ExportCatalogXlsParser(models.AbstractModel):
         sheet.set_h_pagebreaks(page_breakers)
         sheet.set_v_pagebreaks([25])
         _logger.info("##### FIN EXPORTACIÓN #####")
-        
+
+    def create_xlsx_report(self, docids, data):
+        import pdb; pdb.set_trace()
+        if self._name != 'report.product_export_anz.export_catalog_xls.xlsx':
+            return super().docids.data
+        objs = self._get_objs_for_report(docids, data)
+        file_data = BytesIO()
+        #file_data = "/opt/odoo/catalog_id_%s.xls"
+        workbook = xlsxwriter.Workbook(file_data, self.get_workbook_options())
+        self.generate_xlsx_report(workbook, data, objs)
+
+        workbook.close()
+        #return
+        file_data.seek(0)
+        self.binary_field = file_data.read()
+        return
+        return file_data.read(), 'xlsx'
