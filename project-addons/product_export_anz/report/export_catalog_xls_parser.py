@@ -8,6 +8,8 @@ import time
 from xlsxwriter.utility import xl_rowcol_to_cell
 from PIL import Image
 
+import logging
+_logger = logging.getLogger(__name__)
 
 class ExportCatalogXlsParser(models.AbstractModel):
     """
@@ -186,7 +188,15 @@ class ExportCatalogXlsParser(models.AbstractModel):
         template_len = 0
         form_cell_compras = form_cell_ventas = form_cell_stocks = 'SUM('
         form_cell_compras_total = form_cell_ventas_total = form_cell_stocks_total = 'SUM('
+        tot = len(report_vals)
+        idx = 0
         for tmp_name in report_vals:
+            ref_template = tmp_dic['ref_template']
+            if ref_template:
+                _logger.info ("----> Plantilla %s completa" % ref_template)
+            idx += 1
+            _logger.info("----> Export template: %s (%s / %s)" % (ref_template, str(idx), str(tot)))
+
 
 
             tmp_dic = report_vals[tmp_name]
@@ -196,7 +206,7 @@ class ExportCatalogXlsParser(models.AbstractModel):
 
             sheet.write(row, 0, 'MODELO', f_header)
             #sheet.write(row + 1, 0, tmp_name, f_product)
-            sheet.merge_range('{}:{}'.format(c1, c2), tmp_dic['ref_template'] or tmp_name, f_product)
+            sheet.merge_range('{}:{}'.format(c1, c2), tmp_dic['ref_template'] or '', f_product)
             cols = 3
 
             pvp_cell = xl_rowcol_to_cell(row + 1, 5)
@@ -227,10 +237,11 @@ class ExportCatalogXlsParser(models.AbstractModel):
             # Write template image
             tmp_obj = self.env['product.template'].browse(tmp_dic['tmp_id'])
             if catalog_id.image and tmp_obj.image_medium:
+                _logger.info("----> Inserto imagen")
                 image_name = 'id_{}.jpg'.format(tmp_obj.id)
                 img_dic = self.adap_image(tmp_obj[wzd.catalog_type_id.image_field], wzd.catalog_type_id.image_scale, wzd.catalog_type_id.x_offset)
                 sheet.insert_image(row, 0, image_name, img_dic)
-
+                _logger.info("----> Imagen Ok")
             col = 3
             # Write attributes table
             sheet.write(row, col, 'TALLAS', format_header_row_tallas)
@@ -331,7 +342,6 @@ class ExportCatalogXlsParser(models.AbstractModel):
                     # total %
 
             if catalog_id.show_per_cent:
-
                 if catalog_id.sales:
                     sheet.write_number(sales_row, total_col + 1, tmp_dic['ventas_percent']/100, percent_with_border)
 
@@ -377,3 +387,4 @@ class ExportCatalogXlsParser(models.AbstractModel):
         #sheet.fit_to_pages(1, 0)
         sheet.set_h_pagebreaks(page_breakers)
         sheet.set_v_pagebreaks([25])
+        _logger.info("##### FIN EXPORTACIÓN #####")
