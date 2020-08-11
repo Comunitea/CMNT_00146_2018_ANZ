@@ -434,7 +434,6 @@ class ExportCatalogtWzd(models.TransientModel):
         data = {'context': self._context, 'wzd_id': self.id}
         workbook = xlsxwriter.Workbook(file_data, report.get_workbook_options())
         report.generate_xlsx_report(workbook, data, objs)
-
         workbook.close()
         # return
         file_data.seek(0)
