@@ -191,6 +191,7 @@ class ExportCatalogXlsParser(models.AbstractModel):
         tot = len(report_vals)
         idx = 0
         for tmp_name in report_vals:
+            tmp_dic = report_vals[tmp_name]
             ref_template = tmp_dic['ref_template']
             if ref_template:
                 _logger.info ("----> Plantilla %s completa" % ref_template)
@@ -199,7 +200,7 @@ class ExportCatalogXlsParser(models.AbstractModel):
 
 
 
-            tmp_dic = report_vals[tmp_name]
+
             c1 = xl_rowcol_to_cell(row+1, 0)
             c2 = xl_rowcol_to_cell(row+1, 2)
 
