@@ -389,3 +389,4 @@ class ExportCatalogXlsParser(models.AbstractModel):
         sheet.set_h_pagebreaks(page_breakers)
         sheet.set_v_pagebreaks([25])
         _logger.info("##### FIN EXPORTACIÓN #####")
+        workbook.save('/opt/odoo/workbook%s'%wzd.id)
