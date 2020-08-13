@@ -126,7 +126,7 @@
         <field name="active">True</field>
         <field name="website_ids" eval="[(6, 0, [ref('website_base_multi_anz.skipping_website')])]"/>
         <field name="url">/page/newsletter</field>
-        <field name="view_id" ref="follow_us_base.fub_newsletter_page_template"/>
+<!--        <field name="view_id" ref="follow_us_base.fub_newsletter_page_template"/>-->
     </record>
 
 </odoo>

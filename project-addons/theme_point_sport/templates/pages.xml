@@ -17,7 +17,7 @@
         <field name="website_published">True</field>
         <field name="active">True</field>
         <field name="url">/page/newsletter</field>
-        <field name="view_id" ref="follow_us_base.fub_newsletter_page_template"/>
+<!--        <field name="view_id" ref="follow_us_base.fub_newsletter_page_template"/>-->
     </record>
 
     <!-- ======================================= About us ======================================= -->
