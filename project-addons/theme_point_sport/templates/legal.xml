@@ -867,7 +867,6 @@
     </template>
 
     <template id="poi_terms_page_tmp" name="Legal Advice - Legal Terms Point sport">
-        <p>sss</p>
         <t t-call="website.layout">
             <div id="wrap" class="oe_structure oe_empty"/>
         </t>
