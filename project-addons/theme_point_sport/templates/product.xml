@@ -6,7 +6,7 @@
 
          <!-- Remove the product breadcrumb's bar -->
         <xpath expr="//ol[hasclass('breadcrumb')]" position="attributes">
-            <attribute name="t-if">True == False</attribute>
+            <attribute name="class" add="hide" separator=" "/>
         </xpath>
 
         <!-- Multi-add-to-cart action in the form -->
@@ -15,7 +15,7 @@
             <attribute name="t-att-id">'multi_update' if len(product.product_variant_ids) &gt; 0 else None</attribute>
         </xpath>
         <xpath expr="//a[@id='add_to_cart']" position="attributes">
-            <attribute name="t-if">not len(product.product_variant_ids) &gt; 0</attribute>
+            <attribute name="class" add="hide" separator=" "/>
         </xpath>
         <xpath expr="//a[@id='add_to_cart']" position="after">
             <!-- Multi cart update button -->
