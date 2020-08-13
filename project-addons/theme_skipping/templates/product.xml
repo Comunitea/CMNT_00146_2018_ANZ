@@ -19,7 +19,7 @@
         </xpath>
         <xpath expr="//a[@id='add_to_cart']" position="after">
             <!-- Multi cart update button -->
-            <div class="add-to-cart-multi" t-if="len(product.product_variant_ids) &gt; 0 and website.website_show_price">
+            <div class="add-to-cart-multi" t-if="website.website_show_price">
                 <a class="btn btn-primary btn-lg mt8 a-submit" href="#">Add to Cart</a>
             </div>
         </xpath>
