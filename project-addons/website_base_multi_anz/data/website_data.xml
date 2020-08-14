@@ -70,14 +70,15 @@
 
             <!-- This method prepare assets and applies theme for website -->
             <!-- Hook to reload theme on website_multi_theme module updates -->
-            <function model="website"
-                      name="multi_theme_reload"
-                      eval="[ref('website_base_multi_anz.skipping_website')], {'skip_converting_assets': True}"
-            />
-            <function model="website"
-                      name="multi_theme_reload"
-                      eval="[ref('website_base_multi_anz.point_sport_website')], {'skip_converting_assets': True}"
-            />
+            <!-- Do not duplicate. Just on themes to prevent error when try delete multi views already not exist -->
+<!--            <function model="website"-->
+<!--                      name="multi_theme_reload"-->
+<!--                      eval="[ref('website_base_multi_anz.skipping_website')], {'skip_converting_assets': True}"-->
+<!--            />-->
+<!--            <function model="website"-->
+<!--                      name="multi_theme_reload"-->
+<!--                      eval="[ref('website_base_multi_anz.point_sport_website')], {'skip_converting_assets': True}"-->
+<!--            />-->
 
         </data>
 </odoo>
