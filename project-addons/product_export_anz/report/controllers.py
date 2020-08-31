@@ -15,17 +15,13 @@ class BinaryExtension(Binary):
 
     # pylint: disable=redefined-builtin,too-many-locals
     @http.route()
-    def content_common(self, xmlid=None, model='ir.attachment', id=None,
-                       field='datas', filename=None,
-                       filename_field='datas_fname', unique=None,
-                       mimetype=None, download=None, data=None, token=None,
-                       access_token=None, related_id=None, access_mode=None,
-                       **kw):
+    def content_common(self, xmlid=None, model='ir.attachment', id=None, field='datas',
+                       filename=None, filename_field='datas_fname', unique=None, mimetype=None,
+                       download=None, data=None, token=None, access_token=None, **kw):
         status, headers, content = binary_content(
-            xmlid=xmlid, model=model, id=id, field=field, unique=unique,
-            filename=filename, filename_field=filename_field,
-            download=download, mimetype=mimetype, access_token=access_token,
-            related_id=related_id, access_mode=access_mode)
+            xmlid=xmlid, model=model, id=id, field=field, unique=unique, filename=filename,
+            filename_field=filename_field, download=download, mimetype=mimetype,
+            access_token=access_token)
         if status == 304:
             response = werkzeug.wrappers.Response(
                 status=status, headers=headers)
