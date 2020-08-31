@@ -407,12 +407,10 @@ class ExportCatalogtWzd(models.TransientModel):
 
                 if 'purchases' in total_field and 'sales' in total_field:
                     new_template['ventas_percent'] = int(100*(new_template['total_sales']/ new_template['total_purchases']) if new_template.get('total_purchases') else 0.0)
-
-
                 new_template['moves_percent'] = int(100*(new_template['total_outgoings']/ new_template['total_incomings']) if new_template.get('total_incomings') else 0.0)
 
 
-            res[tmp.name] = new_template
+            res[tmp.display_name] = new_template
 
         header_values = {}
 
