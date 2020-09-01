@@ -409,8 +409,9 @@ class ExportCatalogtWzd(models.TransientModel):
                     new_template['ventas_percent'] = int(100*(new_template['total_sales']/ new_template['total_purchases']) if new_template.get('total_purchases') else 0.0)
                 new_template['moves_percent'] = int(100*(new_template['total_outgoings']/ new_template['total_incomings']) if new_template.get('total_incomings') else 0.0)
 
-
-            res[tmp.display_name] = new_template
+            if not tmp.ref_template:
+                raise UserError ("Error: La plantilla {} no tiene referencia interna".format(tmp.display_name))
+            res[tmp.ref_template] = new_template
 
         header_values = {}
 

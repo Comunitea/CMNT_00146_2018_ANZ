@@ -69,4 +69,3 @@ class StockMove(models.Model):
         move.create(vals)
         move.action_done()
 
-        move_in
