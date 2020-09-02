@@ -116,13 +116,15 @@ class WebsiteSaleExtended(WebsiteSale):
 
                     # Add to cart
                     if qty > 0:
-                        order._cart_update(product_id=product_id.id, line_id=line_id, add_qty=qty)
+                        values = order._cart_update(product_id=product_id.id, line_id=line_id, add_qty=qty)
+                        message = values.get('warning', '')
                         qty_total += qty
 
             if qty_total > 0:
-                success = True
-                message = _('<p><strong>Was added %d unit(s) of %s:</strong></p>%s') % (
-                    qty_total, template.name, prod_list)
+                if not message:
+                    success = True
+                    message = _('<p><strong>Was added %d unit(s) of %s:</strong></p>%s') % (
+                        qty_total, template.name, prod_list)
                 quantity = order.cart_quantity
             else:
                 message = _('<p><strong>Product for %s not found:</strong></p>%s') % (template.name, prod_list)
