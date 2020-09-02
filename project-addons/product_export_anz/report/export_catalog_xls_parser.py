@@ -387,8 +387,8 @@ class ExportCatalogXlsParser(models.AbstractModel):
             sheet.write_formula(header['ventas'][0], header['ventas'][1], form_cell_ventas_total, f_border)
         if catalog_id.stocks:
             form_cell_stocks += ')'
-            sheet.write_formula(header['stocks'][0], header['stocks'][1] +1, form_cell_stocks, money_with_border)
-            form_cell_stocks += ')'
+            sheet.write_formula(header['stocks'][0], header['stocks'][1] + 1, form_cell_stocks, money_with_border)
+            form_cell_stocks_total += ')'
             sheet.write_formula(header['stocks'][0], header['stocks'][1], form_cell_stocks_total, f_border)
         #sheet.fit_to_pages(1, 0)
         sheet.set_h_pagebreaks(page_breakers)
