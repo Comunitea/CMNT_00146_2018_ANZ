@@ -120,13 +120,16 @@
     </record>
 
     <!-- ======================================= Newsletter ======================================= -->
+    <template id="ski_newsletter_content_template" name="NewsLetter Skipping">
+        <t t-call="follow_us_base.fub_newsletter_page_template"/>
+    </template>
     <record id="newsletter_page" model="website.page">
         <field name="name">Newsletter</field>
         <field name="website_published">True</field>
         <field name="active">True</field>
         <field name="website_ids" eval="[(6, 0, [ref('website_base_multi_anz.skipping_website')])]"/>
         <field name="url">/page/newsletter</field>
-        <field name="view_id" ref="follow_us_base.fub_newsletter_page_template"/>
+        <field name="view_id" ref="ski_newsletter_content_template"/>
     </record>
 
 </odoo>

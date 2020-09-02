@@ -11,13 +11,16 @@
     </record>
 
     <!-- ======================================= Newsletter ======================================= -->
+    <template id="poi_newsletter_content_template" name="NewsLetter Point">
+        <t t-call="follow_us_base.fub_newsletter_page_template"/>
+    </template>
     <record id="poi_id_page_newsletter" model="website.page">
         <field name="name">Newsletter</field>
         <field name="website_ids" eval="[(6, 0, [ref('website_base_multi_anz.point_sport_website')])]"/>
         <field name="website_published">True</field>
         <field name="active">True</field>
         <field name="url">/page/newsletter</field>
-        <field name="view_id" ref="follow_us_base.fub_newsletter_page_template"/>
+        <field name="view_id" ref="poi_newsletter_content_template"/>
     </record>
 
     <!-- ======================================= About us ======================================= -->

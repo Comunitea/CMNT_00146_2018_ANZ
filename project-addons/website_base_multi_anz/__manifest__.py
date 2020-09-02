@@ -37,26 +37,6 @@
         'Vicente Gutiérrez, <vicente@comunitea.com>',
     ],
     'depends': [
-        # Before
-        #
-        # 'ecommerce_base',
-        # 'seo_base',
-        # 'breadcrumbs_base_tmp',
-        # 'website_blog_base',
-        # 'follow_us_base',
-        # 'multi_company_base',
-        # 'website_multi_company_blog',
-        # 'mass_mailing',
-        # 'website_form_builder',
-        # 'website_sale_product_brand',
-        # 'payment_redsys',
-        # 'website_sale_hide_price',
-        # 'product_virtual_stock_conservative',
-        # 'portal_refunds_request',
-        # 'portal_multi_access_management',
-        # 'product_custom_anz'
-        #
-        # Now
         'auth_signup',
         'portal',
         'product_virtual_stock_conservative',
@@ -67,14 +47,15 @@
         'website_mail',
         'website_menu_by_user_status',
         'website_sale',
+        'website_sale_affix_header',
         'website_sale_hide_price',
         'website_sale_stock',
         'website_sale_wishlist',
         # Comunitea
+        'follow_us_base',
         'product_custom_anz',
         'seo_base',
         'website_blog_base',
-        'website_multi_company',
         # Third party
         'sgeede_infinite_scroll',
     ],

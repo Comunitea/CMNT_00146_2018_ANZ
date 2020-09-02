@@ -94,8 +94,10 @@ class WebsiteSaleExtended(WebsiteSale):
                         attr_name = '<strong>%s</strong>' % attr_name
 
                 if product_id:
-                    # Check of product in stock and shop cart
-                    max_qty = product_id.sudo().get_web_max_qty()
+                    # Check of product in stock and shop cart by warehouse
+                    ctx = request._context.copy()
+                    ctx.update(warehouse=request.website.warehouse.id)
+                    max_qty = product_id.with_context(ctx).sudo().get_web_max_qty()
                     product_line = order.order_line.filtered(lambda x: x.product_id == product_id)
                     cart_qty = product_line and product_line[0].product_uom_qty or 0
                     if cart_qty:
@@ -116,13 +118,15 @@ class WebsiteSaleExtended(WebsiteSale):
 
                     # Add to cart
                     if qty > 0:
-                        order._cart_update(product_id=product_id.id, line_id=line_id, add_qty=qty)
+                        values = order._cart_update(product_id=product_id.id, line_id=line_id, add_qty=qty)
+                        message = values.get('warning', '')
                         qty_total += qty
 
             if qty_total > 0:
-                success = True
-                message = _('<p><strong>Was added %d unit(s) of %s:</strong></p>%s') % (
-                    qty_total, template.name, prod_list)
+                if not message:
+                    success = True
+                    message = _('<p><strong>Was added %d unit(s) of %s:</strong></p>%s') % (
+                        qty_total, template.name, prod_list)
                 quantity = order.cart_quantity
             else:
                 message = _('<p><strong>Product for %s not found:</strong></p>%s') % (template.name, prod_list)

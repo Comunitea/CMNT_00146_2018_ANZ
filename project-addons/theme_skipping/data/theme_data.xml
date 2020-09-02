@@ -11,7 +11,7 @@
 
     <!-- List provided assets  -->
     <record model="website.theme.asset" id="ski_multi_asset">
-        <field name="name">website_theme_asset_anzamar</field>
+        <field name="name">website_theme_asset_skipping</field>
         <field name="theme_id" ref="theme_skipping.theme_skipping_multi"/>
 <!--        <field name="view_id" ref="theme_skipping.ski_website_assets_frontend"/>-->
     </record>
