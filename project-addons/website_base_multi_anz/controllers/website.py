@@ -94,8 +94,10 @@ class WebsiteSaleExtended(WebsiteSale):
                         attr_name = '<strong>%s</strong>' % attr_name
 
                 if product_id:
-                    # Check of product in stock and shop cart
-                    max_qty = product_id.sudo().get_web_max_qty()
+                    # Check of product in stock and shop cart by warehouse
+                    ctx = request._context.copy()
+                    ctx.update(warehouse=request.website.warehouse.id)
+                    max_qty = product_id.with_context(ctx).sudo().get_web_max_qty()
                     product_line = order.order_line.filtered(lambda x: x.product_id == product_id)
                     cart_qty = product_line and product_line[0].product_uom_qty or 0
                     if cart_qty:

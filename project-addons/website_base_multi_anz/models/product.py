@@ -80,14 +80,27 @@ class ProductTemplate(models.Model):
         """
         Determina la cantidad maxima disponible del producto a partir de la cual se va a mostrar el stock del
         producto en la web. Esto se realiza en función de las diferentes opciones de inventory_availability.
+        Se llama desde multi_update_cart cuando se añaden productos desde el grid de variantes en la web.
 
         :return: max_qty
         """
+        # Old way
+        # max_qty = -1
+        # if self.inventory_availability in ['always', 'threshold']:
+        #     max_qty = max(0, self.qty_available - self.sudo().outgoing_qty)
+        #
+        # if self.inventory_availability in ['threshold'] and self.available_threshold > 0:
+        #     max_qty = max(0, max_qty - self.available_threshold)
+        # return max_qty
+
+        # New way. Same way as act_stock_published because is more complete
         max_qty = -1
         if self.inventory_availability in ['always', 'threshold']:
             max_qty = max(0, self.qty_available - self.sudo().outgoing_qty)
+        elif self.inventory_availability in ['always_virtual', 'threshold_virtual']:
+            max_qty = max(0, self.virtual_available)
 
-        if self.inventory_availability in ['threshold'] and self.available_threshold > 0:
+        if self.inventory_availability in ['threshold', 'threshold_virtual'] and self.available_threshold > 0:
             max_qty = max(0, max_qty - self.available_threshold)
         return max_qty
 
@@ -131,6 +144,8 @@ class ProductProduct(models.Model):
         """
         Determina la cantidad maxima disponible del producto a partir de la cual se va a mostrar el stock del
         producto en la web. Esto se realiza en función de las diferentes opciones de inventory_availability.
+        Se llama desde act_stock_published al ejecutarse la acción programada
+        para no publicar articulos sin stock en la web.
 
         :return: max_qty
         """
