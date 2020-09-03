@@ -165,3 +165,16 @@ class ProductProduct(models.Model):
         variables_with_images.update({
             'image_variant': False,
         })
+
+    def _compute_quantities_dict(self, lot_id, owner_id, package_id, from_date=False, to_date=False):
+        """
+        Workaround para que funcione el carrito con las cantidades correctas en los productos con ubicaciones sin compañia.
+        Cuando se establezca la compañía a las ubicaciones hay que borrar este método.
+        """
+        # TODO: Borrar cuando se establezca la compañía a las ubicaciones hay que borrar este método
+        ctx = self._context.copy()
+        if 'from_website' in ctx:
+            # ctx.pop('from_website')
+            ctx.pop('force_company')
+        return super(ProductProduct, self.with_context(ctx))._compute_quantities_dict(
+            lot_id, owner_id, package_id, from_date, to_date)

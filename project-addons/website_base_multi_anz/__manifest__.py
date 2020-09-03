@@ -37,6 +37,7 @@
         'Vicente Gutiérrez, <vicente@comunitea.com>',
     ],
     'depends': [
+        'product',
         'auth_signup',
         'portal',
         'product_virtual_stock_conservative',
