@@ -61,7 +61,7 @@
                                     <label t-att-for="main_att.id" t-field="main_att.name" t-if="len(product.product_variant_ids) &gt; 1"/>
                                     <label t-att-for="variant.id" t-field="variant.variant_suffix" t-else=""/>
                                 </div>
-                                <t t-set="qty" t-value="(variant.sudo().virtual_stock_conservative + variant.sudo().virtual_available) if product.inventory_availability in ('always_virtual', 'threshold_virtual') else variant.sudo().virtual_stock_conservative"/>
+                                <t t-set="qty" t-value="variant.sudo().virtual_available if product.inventory_availability in ('always_virtual', 'threshold_virtual') else variant.sudo().virtual_stock_conservative"/>
                                 <t t-set="available" t-value="(qty - product.available_threshold) if product.inventory_availability in ('threshold', 'threshold_virtual') else qty"/>
                                 <t t-set="available" t-value="available if available &gt; 0 else 0"/>
                                 <div class="one-input">
