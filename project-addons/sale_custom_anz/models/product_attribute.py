@@ -28,7 +28,7 @@ class ProductAttributeValue(models.Model):
             if len(tmp_obj.attribute_line_ids.filtered('main')) == 1:
                 p_ids = tmp_obj.product_variant_ids
                 res = []
-                qty_field = 'virtual_available'
+                qty_field = 'product_virtual_stock_conservative'
                 active_model = self._context.get('active_model', False)
                 if active_model:
                     id = self._context.get('active_id', False)
