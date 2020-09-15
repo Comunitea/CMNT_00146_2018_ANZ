@@ -8,7 +8,7 @@ class Product(models.Model):
     _inherit = "product.product"
 
     def _get_domain_locations(self):
-        return super()._get_domain_locations()
+        # return super()._get_domain_locations()
         '''
         Parses the context and returns a list of location_ids based on it.
         It will return all stock locations when no parameters are given
