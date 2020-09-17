@@ -1,4 +1,3 @@
-
 # © 2018 Comunitea
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 from odoo import models, fields, api, _
@@ -38,6 +37,7 @@ class ReinvoiceWzd(models.TransientModel):
 
     def _get_associated_invoice_lines(self, inv_ass, inv):
         # Get account
+        error = False
         cat = self.env['product.category'].search([], limit=1)
         account_id = cat.property_account_income_categ_id.id
         for line in inv_ass.invoice_line_ids:
@@ -64,7 +64,10 @@ class ReinvoiceWzd(models.TransientModel):
                     line.product_id.taxes_id, line.product_id,
                     inv_ass.partner_id)
             else:
-                return False
+                inv.message_post(body="Error al crear las líneas de factura. Linea {}".format(line.display_name))
+                error = True
+        if error:
+            return False
         return True
 
     def get_invoices_values(self, inv):

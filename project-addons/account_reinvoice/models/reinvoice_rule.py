@@ -15,7 +15,7 @@ class ReInvoiceRule(models.Model):
     def name_get(self):
         res = []
         for rule in self:
-            name = "Regla de {} para {}: {}".format(rule.supplier_id.name, rule.affiliate and "Asociado" or "No asociado", rule.partner_id and rule.partner_id.name or 'Sin cliente')
+            name = "Regla Nº {}. De {} para {}: {}".format(rule.id, rule.supplier_id.name, rule.affiliate and "Asociado" or "No asociado", rule.partner_id and rule.partner_id.name or 'Sin cliente')
             if rule.order_type == '0_apply_discount':
                 name_2 = "Categoría: {} Descuento: {} -> {}".format(
                     rule.supplier_customer_ranking_id or rule.supplier_customer_ranking_id.name or "Sin categoría",
@@ -76,32 +76,29 @@ class ReInvoiceRule(models.Model):
         #    domain = expression.normalize_domain(domain)
         #    domain = expression.AND([domain, ['|', ('brand_id', '=', product_id.product_brand_id.id), ('brand_id', '=', False)]])
 
-        domain_data = [('supplier_id', '=', supplier.id), '|', ('supplier_code', '=', associate_id.supplier_code), ('supplier_str', '=', associate_id.supplier_str)]
+        domain_data = [('supplier_id', '=', supplier.id), ('supplier_customer_ranking_id', '!=', False), '|', ('supplier_code', '=', associate_id.supplier_code), ('supplier_str', '=', associate_id.supplier_str)]
         supplier_data = self.env['res.partner'].search(domain_data, limit=1, order='external asc, supplier_str desc')
 
         if supplier_data:
-            if supplier_data.supplier_customer_ranking_id:
-                domain = expression.normalize_domain(domain)
-                domain = expression.AND([domain, [('supplier_customer_ranking_id', '=', supplier_data.supplier_customer_ranking_id.id)]])
-            domain = expression.normalize_domain(domain)
-            domain = expression.AND([domain, ['|', ('partner_id', '=', associate_id.id), ('partner_id', '=', False)]])
-        else:
-            domain = expression.normalize_domain(domain)
-            domain = expression.AND([domain, [('partner_id', '=', False)]])
+            print ("Regla con supplier_data {}".format(supplier_data.display_name))
 
-        rule = self.search(domain, order='partner_id asc, supplier_discount desc, customer_discount desc, order_type asc')
+            domain = expression.normalize_domain(domain)
+            domain = expression.AND([domain, [('supplier_customer_ranking_id', '=', supplier_data.supplier_customer_ranking_id.id)]])
+
+        domain = expression.normalize_domain(domain)
+        domain = expression.AND([domain, ['|', ('partner_id', '=', associate_id.id), ('partner_id', '=', False)]])
+
+        rule = self.search(domain, order='partner_id asc, supplier_discount desc, customer_discount desc, order_type asc', limit=1)
+        print("Regla: {}".format(rule.display_name))
         if not rule:
-            message = ('{}\nNo se ha encontrado una regla de refactura para: Descuento: {}, Proveedor: {}, {} Asociado'.format(
+            message = ('{}\nNo se ha encontrado una regla de refactura para: Descuento: {}, Proveedor: {}, {} Asociado: {}'.format(
                 line.invoice_id.name,
-                line.discount, supplier.display_name, 'no ' if not associate_id.affiliate else ''))
+                line.discount, supplier.display_name, 'no ' if not associate_id.affiliate else '', associate_id and associate_id.display_name or ''))
             if product_id.product_brand_id:
                 message = '{}, Marca: {}'.format(message, product_id.product_brand_id.name)
-
             if supplier_data and supplier_data.supplier_customer_ranking_id:
                 message = '{}, Clasificación: {}'.format(message, supplier_data.supplier_customer_ranking_id.name)
-
-            line.invoice_id.message_post(body=message)
-
+            line.invoice_id.supplier_invoice_id.message_post(body=message)
 
         return rule and rule[0] or []
 
