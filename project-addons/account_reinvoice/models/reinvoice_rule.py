@@ -76,15 +76,12 @@ class ReInvoiceRule(models.Model):
         #    domain = expression.normalize_domain(domain)
         #    domain = expression.AND([domain, ['|', ('brand_id', '=', product_id.product_brand_id.id), ('brand_id', '=', False)]])
 
-        domain_data = [('supplier_id', '=', supplier.id), ('supplier_customer_ranking_id', '!=', False), '|', ('supplier_code', '=', associate_id.supplier_code), ('supplier_str', '=', associate_id.supplier_str)]
+        domain_data = [('supplier_id', '=', supplier.id), '|', ('supplier_code', '=', associate_id.supplier_code), ('supplier_str', '=', associate_id.supplier_str)]
         supplier_data = self.env['res.partner'].search(domain_data, limit=1, order='external asc, supplier_str desc')
-
         if supplier_data:
-            print ("Regla con supplier_data {}".format(supplier_data.display_name))
-
-            domain = expression.normalize_domain(domain)
-            domain = expression.AND([domain, [('supplier_customer_ranking_id', '=', supplier_data.supplier_customer_ranking_id.id)]])
-
+            if supplier_data.supplier_customer_ranking_id:
+                domain = expression.normalize_domain(domain)
+                domain = expression.AND([domain, [('supplier_customer_ranking_id', '=', supplier_data.supplier_customer_ranking_id.id)]])
         domain = expression.normalize_domain(domain)
         domain = expression.AND([domain, ['|', ('partner_id', '=', associate_id.id), ('partner_id', '=', False)]])
 
