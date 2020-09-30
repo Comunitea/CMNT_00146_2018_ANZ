@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+        <data>
+            <!-- Default template user for new users signing in on Point Sport-->
+            <record id="default_template_user_point" model="res.users">
+                <field name="name">Portal User Template Point Sport</field>
+                <field name="login">portaltemplate@pointsport</field>
+                <field name="active" eval="False"/>
+                <!-- Avoid auto-including this user in any default group, just like a typical portal member -->
+                <!-- For Point is Portal and B2B -->
+                <field name="groups_id" eval="[(6, 0,  [ref('base.group_portal'), ref('sale.group_show_price_subtotal')])]"/>
+                <!-- Multi company -->
+                <field name="company_ids" eval="[(6, 0, [ref('base.main_company')])]"/>
+                <!-- Multi website -->
+                <field name="backend_website_ids" eval="[(6, 0, [ref('website_base_multi_anz.point_sport_website')])]"/>
+            </record>
+
+            <!-- Default template user for new users signing in on Skipping-->
+            <record id="default_template_user_skipping" model="res.users">
+                <field name="name">Portal User Template Skipping</field>
+                <field name="login">portaltemplate@skipping</field>
+                <field name="active" eval="False"/>
+                <!-- Avoid auto-including this user in any default group, just like a typical portal member -->
+                <!-- For Point is Portal and B2B -->
+                <field name="groups_id" eval="[(6, 0,  [ref('base.group_portal'), ref('sale.group_show_price_total')])]"/>
+                <!-- Multi company -->
+                <field name="company_ids" eval="[(6, 0, [ref('base.main_company')])]"/>
+                <!-- Multi website -->
+                <field name="backend_website_ids" eval="[(6, 0, [ref('website_base_multi_anz.skipping_website')])]"/>
+            </record>
+
+            <!-- Avoid prices. Public always see prices with taxes -->
+            <record model="res.groups" id="base.group_public">
+                <field name="implied_ids" eval="[(6, 0, [ref('sale.group_show_price_total')])]"/>
+            </record>
+
+            <!-- Avoid prices. Portal can not have a group because there are two websites configured different. -->
+            <!-- Fix user group changes -->
+            <record model="res.groups" id="base.group_portal">
+                <field name="implied_ids" eval="[(6, 0, [])]"/>
+            </record>
+
+        </data>
+</odoo>
