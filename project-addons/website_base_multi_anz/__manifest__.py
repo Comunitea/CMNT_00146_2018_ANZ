@@ -74,7 +74,6 @@
         'templates/header.xml',
         'templates/shop.xml',
         'templates/product.xml',
-        'templates/newsletter.xml',
         'templates/portal.xml',
         'templates/reusable_templates.xml',
         'templates/wishlist.xml',

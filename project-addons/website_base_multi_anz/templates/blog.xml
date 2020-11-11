@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
 
+    <template id="website_blog_opt_blog_rc_follow_us" name="Subscription Base" priority="4" inherit_id="website_blog.opt_blog_rc_follow_us" active="True" customize_show="True">
+        <!-- Add Legal Acceptance on Blog Subscription -->
+        <xpath expr="//t[@t-call='website_mail.follow']" position="after">
+            <t t-call="website_blog_base.follow_blog_legal_acceptance">
+                <t t-set="object" t-value="blog"/>
+            </t>
+        </xpath>
+    </template>
+
     <template id="wbma_wbb_website_blog_index" inherit_id="website_blog_base.wbb_website_blog_index" name="Blog/post Control Access Associated Base Template">
         <xpath expr="//div[@id='wrap']/t[1]" position="attributes">
             <attribute name="t-if">access and (not request.env.user.partner_id.affiliate and not blog.only_affiliates) or (request.env.user.partner_id.affiliate and blog.only_affiliates)</attribute>

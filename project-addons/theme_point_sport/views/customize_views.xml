@@ -152,6 +152,11 @@
         <field name="active">True</field>
     </record>
 
+    <!-- Add Legal Acceptance on Subscription -->
+    <record id="website_multi_theme.auto_view_poi_website_base_multi_anz_website_blog_opt_blog_rc_follow_us" model="ir.ui.view">
+        <field name="active">True</field>
+    </record>
+
     <!-- Status -->
 <!--    <record id="website_multi_theme.auto_view_poi_website_blog_opt_blog_rc_status" model="ir.ui.view">-->
 <!--        <field name="active">True</field>-->
@@ -196,7 +201,7 @@
     <!-- Just views created in website_blog_base for Right Column Post in blog post. They have wbb view id -->
 
     <!-- Subscription Post -->
-    <record id="website_multi_theme.auto_view_poi_website_blog_base_wbb_website_blog_opt_blog_rc_follow_us" model="ir.ui.view">
+    <record id="website_multi_theme.auto_view_poi_website_blog_base_website_blog_base_wbb_website_blog_index_right" model="ir.ui.view">
         <field name="active">True</field>
     </record>
 
