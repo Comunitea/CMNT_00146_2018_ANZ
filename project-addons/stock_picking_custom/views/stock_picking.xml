@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+
+     <template id="report_package_add_product_barcode" inherit_id="stock.report_package_barcode">
+        <xpath expr="//t[@t-if='l.lot_id']" position="after">
+            <span t-field="l.product_id.barcode"/>
+        </xpath>
+    </template>
+
     <delete id="view_picking_delivery_note" model="ir.ui.view"/>
 
     <record id="view_picking_form_custom" model="ir.ui.view">
