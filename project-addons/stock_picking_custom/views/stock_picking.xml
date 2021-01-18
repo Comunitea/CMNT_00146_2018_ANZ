@@ -5,6 +5,9 @@
         <xpath expr="//t[@t-if='l.lot_id']" position="after">
             <span t-field="l.product_id.barcode"/>
         </xpath>
+           <xpath expr="//t[@t-if='l.lot_id']/.." position="attributes">
+            <attribute name="class">text-right</attribute>
+        </xpath>
     </template>
 
     <delete id="view_picking_delivery_note" model="ir.ui.view"/>
