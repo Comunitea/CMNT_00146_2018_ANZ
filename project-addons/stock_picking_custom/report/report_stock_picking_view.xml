@@ -45,7 +45,7 @@
     </template>
 
     <template id="report_table_picking_qties">
-        <table class="table table-condensed" width="100%">
+        <table class="table table-condensed" width="100%" style="page-break-inside: avoid;">
             <thead>
                 <tr>
                     <th width="55%">
