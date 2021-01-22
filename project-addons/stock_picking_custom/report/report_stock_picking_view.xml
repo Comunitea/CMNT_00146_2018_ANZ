@@ -45,32 +45,21 @@
     </template>
 
     <template id="report_table_picking_qties">
-        <table class="table table-condensed" width="100%" style="page-break-inside: avoid;">
-            <thead>
-                <tr>
-                    <th width="55%">
-                        <t align="right">Totales</t>
-                    </th>
-                    <!--th width="0%">Quantity</th-->
-                    <th width="15%" class="text-center">
-                        <t >Demanda</t>
-                    </th>
-                    <th width="15%" class="text-center">
-                        <t >Reservada</t>
-                    </th>
-                    <th width="15%" class="text-center">
-                        <t>Hecha</t>
-                    </th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td></td>
-                    <td class="text-center"><span t-field="o.product_uom_qty"/></td>
-                    <td class="text-center"><span t-field="o.reserved_availability"/></td>
-                    <td class="text-center"><span t-field="o.quantity_done"/></td>
-                </tr>
-            </tbody>
+         <table class="table" border="1" width="100%" style="page-break-inside: avoid">
+          <tr>
+            <td width="55%" class="text-left"><strong>Totales</strong></td>
+            <td width="15%" class="text-center"><strong>Demanda</strong></td>
+            <td width="15%" class="text-center"><strong>Reservada</strong></td>
+            <td width="15%" class="text-center"><strong>Hecha</strong></td>
+          </tr>
+          <tr>
+            <td width="55%" class="text-center"></td>
+            <td width="15%" class="text-center"><span t-field="o.product_uom_qty"/></td>
+            <td width="15%" class="text-center"><span t-field="o.reserved_availability"/></td>
+            <td width="15%" class="text-center"><span t-field="o.quantity_done"/></td>
+
+
+          </tr>
         </table>
     </template>
     <template id="template_name">
