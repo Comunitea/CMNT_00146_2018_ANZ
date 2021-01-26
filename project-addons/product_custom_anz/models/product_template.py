@@ -1,8 +1,11 @@
 # © 2016 Comunitea - Javier Colmenero <javier@comunitea.com>
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
-from odoo import api, fields, models, _
+from odoo import api, fields, models, tools, _
 from odoo.addons import decimal_precision as dp
-from odoo.exceptions import ValidationError, UserError
+from odoo.exceptions import ValidationError, except_orm
+import itertools
+import psycopg2
+
 
 class ProductTemplate(models.Model):
 
@@ -109,9 +112,85 @@ class ProductTemplate(models.Model):
 
     @api.multi
     def create_variant_ids(self):
+        """
+        SOBREESCRITA PARA QUE SOLO CREE VARIANTES CON LOS ATRIBUTOS MAIN
+        NO QUEREMOS QUE AL CAMBIAR UN ATRIBUTO FEATURE NOS DESACTIVE Y CREE
+        NUEVAS VARIANTES
+        (todos los filtered por .main antes eran por .create_variant)
+        SE AÑADE NUEVO CASO AL FINAL DE LA FUNCIÓN PARA BORRAR LOS ATRIBUTOS
+        QUE SON FEATURE Y VOLVERLOS A ENLAZAR (ACTUALIZANDOLOS ASÍ)
+        El resto de la función es la original del módulo de product.
+        No hay herencias instaladas (módulo product_variant_configurator)
+        """
         if self._context.get('no_create_variants', False):
             return True
-        return super(ProductTemplate, self).create_variant_ids()
+        Product = self.env["product.product"]
+        AttributeValues = self.env['product.attribute.value']
+        for tmpl_id in self.with_context(active_test=False):
+            # adding an attribute with only one value should not recreate product
+            # write this attribute on every product to make sure we don't lose them
+            variant_alone = tmpl_id.attribute_line_ids.filtered(lambda line: line.attribute_id.main and len(line.value_ids) == 1).mapped('value_ids')
+            for value_id in variant_alone:
+                updated_products = tmpl_id.product_variant_ids.filtered(lambda product: value_id.attribute_id not in product.mapped('attribute_value_ids.attribute_id'))
+                updated_products.write({'attribute_value_ids': [(4, value_id.id)]})
+
+            # iterator of n-uple of product.attribute.value *ids*
+            variant_matrix = [
+                AttributeValues.browse(value_ids)
+                for value_ids in itertools.product(*(line.value_ids.ids for line in tmpl_id.attribute_line_ids if line.value_ids[:1].attribute_id.main))
+            ]
+
+            # get the value (id) sets of existing variants
+            existing_variants = {frozenset(variant.attribute_value_ids.filtered(lambda r: r.attribute_id.main).ids) for variant in tmpl_id.product_variant_ids}
+            # -> for each value set, create a recordset of values to create a
+            #    variant for if the value set isn't already a variant
+            to_create_variants = [
+                value_ids
+                for value_ids in variant_matrix
+                if set(value_ids.ids) not in existing_variants
+            ]
+
+            # check product
+            variants_to_activate = self.env['product.product']
+            variants_to_unlink = self.env['product.product']
+            for product_id in tmpl_id.product_variant_ids:
+                if not product_id.active and product_id.attribute_value_ids.filtered(lambda r: r.attribute_id.main) in variant_matrix:
+                    variants_to_activate |= product_id
+                elif product_id.attribute_value_ids.filtered(lambda r: r.attribute_id.main) not in variant_matrix:
+                    variants_to_unlink |= product_id
+            if variants_to_activate:
+                variants_to_activate.write({'active': True})
+
+            # create new product
+            for variant_ids in to_create_variants:
+                new_variant = Product.create({
+                    'product_tmpl_id': tmpl_id.id,
+                    'attribute_value_ids': [(6, 0, variant_ids.ids)]
+                })
+
+            # unlink or inactive product
+            for variant in variants_to_unlink:
+                try:
+                    with self._cr.savepoint(), tools.mute_logger('odoo.sql_db'):
+                        variant.unlink()
+                # We catch all kind of exception to be sure that the operation doesn't fail.
+                except (psycopg2.Error, except_orm):
+                    variant.write({'active': False})
+                    pass
+
+            # NUEVO CASO, ACTUALIZAR LOS VALORES DE ATRIBUTO QUE SON FEATURE
+            # BORRAR
+            old_feature_values = tmpl_id.product_variant_ids.mapped('attribute_value_ids').filtered(lambda val: val.attribute_id.feature)
+            if old_feature_values:
+                # El unlink salta un error que no se puede saltar heredando, uso sql
+                # old_feature_values.unlink()
+                self._cr.execute('DELETE FROM product_attribute_value_product_product_rel WHERE product_attribute_value_id IN %s and product_product_id IN %s' % ( str(tuple(old_feature_values.ids)).replace(',)', ')'), str(tuple(tmpl_id.product_variant_ids.ids)).replace(',)', ')')))
+
+            # VOLVER A ENLAZAR
+            new_features = tmpl_id.attribute_line_ids.filtered(lambda line: line.attribute_id.feature and len(line.value_ids) == 1).mapped('value_ids')
+            for value_id in new_features:
+                tmpl_id.product_variant_ids.write({'attribute_value_ids': [(4, value_id.id)]})
+        return True
 
     @api.multi
     def fix_variant_attributes(self):
