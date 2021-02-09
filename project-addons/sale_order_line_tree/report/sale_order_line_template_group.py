@@ -218,8 +218,8 @@ class SaleOrderLineTemplateGroup(models.Model):
 
     def get_qties(self):
         lines = self._get_order_lines()
-        #if len(lines) == 1:
-        #    return [formatLang(self.env, lines.product_uom_qty)]
+        if len(lines) == 1:
+            return ['%d'% lines.product_uom_qty]
         qties_list = []
         for line in lines:
             att_tag = line.product_id.attribute_value_ids.filtered(lambda x: x.attribute_id.main)
