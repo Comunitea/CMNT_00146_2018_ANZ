@@ -223,7 +223,7 @@ class SaleOrderLineTemplateGroup(models.Model):
         qties_list = []
         for line in lines:
             qty_str = ''
-            att_tag = line.product_id.attribute_value_ids
+            att_tag = line.product_id.attribute_value_ids.sorted(lambda x: not x.attribute_id.main)
             if att_tag:
                 qty_str = att_tag.name_get()[0][1]
             qty_str += ' - ' + formatLang(self.env, line.product_uom_qty)
