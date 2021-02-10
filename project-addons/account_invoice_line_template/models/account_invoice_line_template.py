@@ -116,14 +116,18 @@ l.ref_change
             list(map(int, self.idlist.split(','))))
 
     def get_qties(self):
+
+
         lines = self._get_invoice_lines()
 
         qties_list = []
-        for line in lines.sorted(lambda x: x.product_id.attribute_value_ids.filtered(lambda x: x.attribute_id.main).sequence):
+        for line in lines.sorted(
+                lambda x: x.product_id.attribute_value_ids.filtered(lambda x: x.attribute_id.main).sequence):
             att_tag = line.product_id.attribute_value_ids.filtered(lambda x: x.attribute_id.main)
             if att_tag:
-                qty_str = '%s - %d' % (att_tag[0].name, line.product_uom_qty)
+                qty_str = '%s - %d' % (att_tag[0].name, line.quantity)
             else:
-                qty_str = '%d' % line.product_uom_qty
+                qty_str = '%d' % line.quantity
             qties_list.append(qty_str)
         return qties_list
+
