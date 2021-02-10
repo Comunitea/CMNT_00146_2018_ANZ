@@ -118,13 +118,14 @@ l.ref_change
     def get_qties(self):
         lines = self._get_invoice_lines()
         if len(lines) == 1:
-            return [formatLang(self.env, lines.quantity)]
+            return ['%d' % lines.product_uom_qty]
         qties_list = []
         for line in lines:
-            qty_str = ''
-            att_tag = line.product_id.attribute_value_ids
+            att_tag = line.product_id.attribute_value_ids.filtered(lambda x: x.attribute_id.main)
             if att_tag:
-                qty_str = att_tag.name_get()[0][1]
-            qty_str += ' - ' + formatLang(self.env, line.quantity)
+                qty_str = '%s - %d' % (att_tag[0].name, line.product_uom_qty)
+            else:
+                qty_str = '%d' % line.product_uom_qty
+                # qty_str += ' - ' + formatLang(self.env, line.product_uom_qty)
             qties_list.append(qty_str)
         return qties_list
