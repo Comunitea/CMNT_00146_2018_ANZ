@@ -37,9 +37,8 @@ class AcquirerRedsys(models.Model):
             'Ds_Merchant_Terminal': self.redsys_terminal or '1',
             'Ds_Merchant_TransactionType': (
                 self.redsys_transaction_type or '0'),
-            'Ds_Merchant_Titular': (
-                self.redsys_merchant_titular[:60] and
-                self.redsys_merchant_titular[:60]),
+            'Ds_Merchant_Titular': tx_values.get(
+                'billing_partner', self.env.user.partner_id).display_name[:60],
             'Ds_Merchant_MerchantName': (
                 self.redsys_merchant_name and
                 self.redsys_merchant_name[:25]),
