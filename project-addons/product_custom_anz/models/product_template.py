@@ -2,7 +2,7 @@
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
 from odoo import api, fields, models, tools, _
 from odoo.addons import decimal_precision as dp
-from odoo.exceptions import ValidationError, except_orm
+from odoo.exceptions import ValidationError, except_orm, UserError
 import itertools
 import psycopg2
 
