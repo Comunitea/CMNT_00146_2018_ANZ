@@ -266,7 +266,7 @@ class ProductTemplate(models.Model):
         att_brand = self.env['product.attribute'].search(
             [('name', '=', 'MARCA')])
         if not att_brand:
-            raise UserError(_('Attribute Brand not founded'))
+            raise ValidationError(_('Attribute Brand not founded'))
 
         domain = [
                 ('attribute_id', '=', att_brand.id),
