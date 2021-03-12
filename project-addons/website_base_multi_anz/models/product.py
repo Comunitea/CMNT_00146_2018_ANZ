@@ -49,8 +49,14 @@ class ProductTemplate(models.Model):
         """
         domain = [('product_id', '=', self.id), ('website_id', '=', website.id)]
         tsw_id = self.env['template.stock.web'].search(domain)
-        if tsw_id:
+        if len(tsw_id) > 1:
+            tsw_id.unlink()
+            vals = {'product_id': self.id, 'website_id': website.id,
+                    'stock_website_published': False}
+            self.env['template.stock.web'].create(vals)
+        elif tsw_id:
             tsw_id.stock_website_published = False
+
 
     def create_tsw(self, website):
         """
@@ -70,8 +76,10 @@ class ProductTemplate(models.Model):
                 'stock_website_published': stock_website_published}
         domain = [('product_id', '=', self.id), ('website_id', '=', website.id)]
         tsw_id = self.env['template.stock.web'].search(domain)
-
-        if tsw_id:
+        if len(tsw_id) > 1:
+            tsw_id.unlink()
+            self.env['template.stock.web'].create(vals)
+        elif tsw_id:
             tsw_id.stock_website_published = stock_website_published
         else:
             self.env['template.stock.web'].create(vals)
@@ -117,6 +125,9 @@ class ProductTemplate(models.Model):
         template_ids = self.env['product.template'].search([('website_published', '=', True)])
         cont = 0
         tot = len(template_ids)
+        template_stock_web_error_domain = [('website_id', '=', False)]
+        self.env['template.stock.web'].search(template_stock_web_error_domain).unlink()
+
         for template in template_ids:
             cont += 1
             _logger.info('{}: {} de {}: {}'.format('Update Website Visibility by Stock', cont, tot, template.name))
