@@ -156,17 +156,6 @@
             </field>
         </record>
 
-        <report
-            string="Delivery packing list"
-            id="action_report_delivery_packing_list"
-            model="stock.picking"
-            report_type="qweb-pdf"
-            name="delivery_packing_list.picking_packing_list"
-            file="delivery_packing_list.picking_packing_list"
-            print_report_name="'Delivery packing list- %s - %s' % (object.partner_id.name or '', object.name)"
-        />
-
-
     <record id="view_picking_delivery_note" model="ir.ui.view">
         <field name="name">view.picking.delivery_note</field>
         <field name="model">stock.picking</field>
