@@ -11,4 +11,31 @@
 
         </field>
     </record>
+
+
+
+
+    <record id="product_product_export_fields" model="ir.ui.view">
+        <field name="name">product.product.export.fields</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.product_normal_form_view"/>
+        <field name="arch" type="xml">
+            <group name="group_standard_price">
+
+            </group>
+            <xpath expr="//group[@name='group_standard_price']" position="after">
+                <group name="group_export_fields">
+                    <field name="export_str_categ"/>
+                    <field name="export_str_attrib_str"/>
+                    <field name="export_str_atrib_talla"/>
+                    <field name="export_str_value_talla"/>
+                    <field name="export_str_color"/>
+                    <field name="export_str_categ"/>
+                    <field name="export_str_meta_keywords"/>
+
+                </group>
+
+            </xpath>
+        </field>
+    </record>
 </odoo>
