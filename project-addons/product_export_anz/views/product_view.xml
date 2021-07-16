@@ -30,7 +30,6 @@
                     <field name="export_str_atrib_talla"/>
                     <field name="export_str_value_talla"/>
                     <field name="export_str_color"/>
-                    <field name="export_str_categ"/>
                     <field name="export_str_meta_keywords"/>
 
                 </group>
