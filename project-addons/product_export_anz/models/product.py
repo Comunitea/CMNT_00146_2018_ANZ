@@ -18,13 +18,19 @@ class ProductTemplate(models.Model):
             categ_names = self.env['product.public.category']
             for categ in template.public_categ_ids:
                 this_categ = categ
-               
+                categ_names |= this_categ
+                """               
                 while this_categ:
                     categ_names |= this_categ
                     this_categ = this_categ.parent_id
-                
+                """
             cont = 0
             #print (categ_names.mapped('name'))
+            while cont<10:
+                field_name = 'categ_str%d'%cont
+                cont +=1
+                template[field_name] = ''
+            cont = 0
             for categ in categ_names.sorted(lambda x: x.sequence):
                 if cont <= 9:
                     field_name = 'categ_str%d'%cont
