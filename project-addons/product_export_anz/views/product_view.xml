@@ -31,7 +31,16 @@
                     <field name="export_str_value_talla"/>
                     <field name="export_str_color"/>
                     <field name="export_str_meta_keywords"/>
-
+                    <field name="categ_str0"/>
+                    <field name="categ_str1"/>
+                    <field name="categ_str2"/>
+                    <field name="categ_str3"/>
+                    <field name="categ_str4"/>
+                    <field name="categ_str5"/>
+                    <field name="categ_str6"/>
+                    <field name="categ_str7"/>
+                    <field name="categ_str8"/>
+                    <field name="categ_str9"/>
                 </group>
 
             </xpath>

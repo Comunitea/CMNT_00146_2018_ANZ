@@ -2,6 +2,47 @@
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
 from odoo import fields, models, api, _
 
+
+
+class ProductTemplate(models.Model):
+    _inherit = 'product.template'
+
+
+    @api.multi
+    @api.depends('public_categ_ids')
+    def _get_export_categ_str(self):
+        rest = len(self)
+        for template in self:
+            rest -= 1
+            #print ("Template name %s %d"% (template.name, rest))
+            categ_names = self.env['product.public.category']
+            for categ in template.public_categ_ids:
+                this_categ = categ
+               
+                while this_categ:
+                    categ_names |= this_categ
+                    this_categ = this_categ.parent_id
+                
+            cont = 0
+            #print (categ_names.mapped('name'))
+            for categ in categ_names.sorted(lambda x: x.sequence):
+                if cont <= 9:
+                    field_name = 'categ_str%d'%cont
+                    cont +=1
+                    template[field_name] = categ.name
+    
+    categ_str1 = fields.Char("Categ Str 1", compute = _get_export_categ_str, store=True)
+    categ_str2 = fields.Char("Categ Str 2", compute = _get_export_categ_str, store=True)
+    categ_str3 = fields.Char("Categ Str 3", compute = _get_export_categ_str, store=True)
+    categ_str4 = fields.Char("Categ Str 4", compute = _get_export_categ_str, store=True)
+    categ_str5 = fields.Char("Categ Str 5", compute = _get_export_categ_str, store=True)
+    categ_str6 = fields.Char("Categ Str 6", compute = _get_export_categ_str, store=True)
+    categ_str7 = fields.Char("Categ Str 7", compute = _get_export_categ_str, store=True)
+    categ_str8 = fields.Char("Categ Str 8", compute = _get_export_categ_str, store=True)
+    categ_str9 = fields.Char("Categ Str 9", compute = _get_export_categ_str, store=True)
+    categ_str0 = fields.Char("Categ Str 0", compute = _get_export_categ_str, store=True)
+
+
 class ProductProduct(models.Model):
     _inherit = 'product.product'
 
@@ -37,6 +78,8 @@ class ProductProduct(models.Model):
     export_str_value_talla = fields.Char("Talla", compute=_get_export_str, store=True)
     export_str_attrib_str = fields.Char("Atributos", compute=_get_export_str, store=True)
     export_str_meta_keywords = fields.Char(related="product_meta_keywords", string="Meta Keywords (str)")
+
+    
     """
     export_str_categ = fields.Char("Categoría (str)")
     export_str_image_url = fields.Char("Image URL (str)")
