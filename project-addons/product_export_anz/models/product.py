@@ -13,30 +13,25 @@ class ProductTemplate(models.Model):
     def _get_export_categ_str(self):
         rest = len(self)
         for template in self:
+            
             rest -= 1
-            #print ("Template name %s %d"% (template.name, rest))
-            categ_names = self.env['product.public.category']
+            
+            vals = {}
+            cont = 0
             for categ in template.public_categ_ids:
-                this_categ = categ
-                categ_names |= this_categ
-                """               
-                while this_categ:
-                    categ_names |= this_categ
-                    this_categ = this_categ.parent_id
-                """
-            cont = 0
-            #print (categ_names.mapped('name'))
-            while cont<10:
-                field_name = 'categ_str%d'%cont
-                cont +=1
-                template[field_name] = ''
-            cont = 0
-            for categ in categ_names.sorted(lambda x: x.sequence):
-                if cont <= 9:
+                if cont <10:
                     field_name = 'categ_str%d'%cont
                     cont +=1
-                    template[field_name] = categ.name
-    
+                    vals[field_name] = categ.display_name
+
+            while cont<10:
+                field_name = 'categ_str%d'%cont
+                vals[field_name] = ''
+                cont +=1
+            print ("{}: {}: {} >>>>>> {}".format(template.name, template.public_categ_ids.mapped('display_name'), rest, vals))
+            template.write(vals)
+
+
     categ_str1 = fields.Char("Categ Str 1", compute = _get_export_categ_str, store=True)
     categ_str2 = fields.Char("Categ Str 2", compute = _get_export_categ_str, store=True)
     categ_str3 = fields.Char("Categ Str 3", compute = _get_export_categ_str, store=True)
