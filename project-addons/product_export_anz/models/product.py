@@ -29,7 +29,7 @@ class ProductTemplate(models.Model):
                 vals[field_name] = ''
                 cont +=1
             print ("{}: {}: {} >>>>>> {}".format(template.name, template.public_categ_ids.mapped('display_name'), rest, vals))
-            template.write(vals)
+            template.update(vals)
 
 
     categ_str1 = fields.Char("Categ Str 1", compute = _get_export_categ_str, store=True)
@@ -62,13 +62,13 @@ class ProductProduct(models.Model):
             if attrib_talla:
                 export_str_atrib_talla = attrib_talla[0].attribute_id.name
                 export_str_value_talla = attrib_talla[0].name
+                product.export_str_atrib_talla = export_str_atrib_talla
+                product.export_str_value_talla = export_str_value_talla
             export_str_color= attrib_ids.filtered(lambda x: x.attribute_id.is_color).name
             export_str_image_url = "https://skipping.es/web/image/product.template/{}/image".format(product.product_tmpl_id.id)
             product.export_str_categ = export_str_categ
             product.export_str_image_url = export_str_image_url
-            product.export_str_atrib_talla = export_str_atrib_talla
             product.export_str_color = export_str_color
-            product.export_str_value_talla = export_str_value_talla
             product.export_str_attrib_str = export_str_attrib_str
             
     
