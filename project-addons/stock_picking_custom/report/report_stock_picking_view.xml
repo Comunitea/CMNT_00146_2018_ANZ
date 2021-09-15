@@ -403,8 +403,8 @@
     </template>
 
      <template id="report_table_move_line_ids_customer">
-
-        <table class="table table-condensed" t-if="templates">
+         <t t-set="tmpl_ids" t-value="templates[o.id]"/>
+        <table class="table table-condensed" t-if="tmpl_ids">
             <t t-set="has_barcode" t-value="False"/>
             <thead>
                 <tr>
@@ -418,7 +418,7 @@
             <tbody style="padding: px !important">
                 <t t-set="prev_template" t-value="0"/>
                 <t t-set="prev_location" t-value="0"/>
-                    <t t-foreach="templates" t-as="template_line">
+                    <t t-foreach="tmpl_ids" t-as="template_line">
                         <t t-set="template" t-value="template_line['template_id']"/>
                         <tr t-if="len(template.product_variant_ids) != 1" style="min-heigh: 25px; background-color: #eeeeee;">
 
@@ -588,6 +588,7 @@
                             </tr>
                         </tbody>
                         </table>
+                        
                         <t t-if="o.picking_type_id.code=='outgoing'" t-call="stock_picking_custom.report_table_move_line_ids_customer"/>
 
                         <t t-call="stock_picking_custom.report_table_picking_qties"/>
