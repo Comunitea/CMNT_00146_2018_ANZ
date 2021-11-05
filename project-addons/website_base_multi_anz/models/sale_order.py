@@ -53,9 +53,9 @@ class SaleOrder(models.Model):
                 cart_qty = sum(self.order_line.filtered(
                     lambda p: p.product_id.id == line.product_id.id).mapped('product_uom_qty'))
                 if cart_qty > line.product_id.with_context(
-                        warehouse=self.website_id.warehouse.id).virtual_available and (line_id == line.id):
+                        warehouse=self.website_id.warehouse.id).qty_available and (line_id == line.id):
                     qty = line.product_id.with_context(
-                        warehouse=self.website_id.warehouse.id).virtual_available - cart_qty
+                        warehouse=self.website_id.warehouse.id).qty_available - cart_qty
                     new_val = super(SaleOrder, self)._cart_update(line.product_id.id, line.id, qty, 0, **kwargs)
                     values.update(new_val)
 
